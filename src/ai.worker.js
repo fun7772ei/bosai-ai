@@ -21,6 +21,7 @@ self.onmessage = async ({ data }) => {
   try {
     if (data.type === 'load') {
       const start = performance.now();
+      send('stage', { stage: 'WebGPUの確認' });
       if (!navigator.gpu) throw new Error('WebGPUが利用できません。Safari 26以降・HTTPSで確認してください。');
       const adapter = await navigator.gpu.requestAdapter();
       if (!adapter) throw new Error('WebGPUアダプターを取得できません。');
@@ -38,7 +39,7 @@ self.onmessage = async ({ data }) => {
         url = pinnedModelUrl(url);
         const saved = await cache.match(url, { ignoreVary: true });
         if (saved) return options?.method === 'HEAD' ? new Response(null, { headers: saved.headers, status: saved.status }) : saved;
-        if (data.cachedOnly) throw new Error(`保存済みファイルが不足しています: ${url}`);
+        if (new URL(url).origin === 'https://huggingface.co' || data.cachedOnly) throw new Error(`保存済みファイルが不足しています: ${url}`);
         return fetch(url, options);
       };
       const progressTimes = new Map();
@@ -49,12 +50,15 @@ self.onmessage = async ({ data }) => {
         if (frequent && progress.progress !== 100 && now - (progressTimes.get(key) || 0) < 200) return;
         progressTimes.set(key, now); send('progress', { progress });
       } };
-      tokenizer = await AutoTokenizer.from_pretrained(MODEL_ID, options);
+      send('stage', { stage: 'モデル初期化（WebGPU）' });
       model = await AutoModelForCausalLM.from_pretrained(MODEL_ID, { ...options, device: 'webgpu', dtype: data.dtype });
-      send('warming');
-      await model.generate({ ...tokenizer('こんにちは'), max_new_tokens: 1, do_sample: false });
+      send('stage', { stage: 'Tokenizerの読み込み' });
+      tokenizer = await AutoTokenizer.from_pretrained(MODEL_ID, options);
+      // Do not start inference during loading. First-token shader compilation
+      // is measured when the user explicitly chooses to generate.
       send('ready', { loadMs: performance.now() - start, dtype: data.dtype });
     } else if (data.type === 'generate') {
+      send('stage', { stage: '日本語生成（初回はシェーダー準備を含む）' });
       if (!model || !tokenizer) throw new Error('先にモデルを読み込んでください。');
       stopping.reset();
       const started = performance.now(); let first = null, tokens = 0, text = '';

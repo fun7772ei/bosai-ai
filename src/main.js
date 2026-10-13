@@ -1,8 +1,18 @@
 import './style.css';
-import { MODEL_ID, REVISION, MODEL_CACHE } from './config.js';
+import { MODEL_ID, REVISION, MODEL_CACHE, modelFiles, modelFileUrl } from './config.js';
 const $ = id => document.getElementById(id);
 const logs = [], runs = [], files = new Map();
 let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype;
+const CHECKPOINT = 'bosai-ai-active-stage';
+let previousAttempt;
+try { previousAttempt = JSON.parse(localStorage.getItem(CHECKPOINT) || 'null'); } catch {}
+if (previousAttempt) $('recovery').textContent = `前回は「${previousAttempt.stage}」の完了前にページが終了・再読み込みされました。原因はまだ特定できません。`;
+function checkpoint(stage) {
+  try {
+    if (stage) localStorage.setItem(CHECKPOINT, JSON.stringify({ stage, dtype: $('dtype').value, time: new Date().toISOString() }));
+    else localStorage.removeItem(CHECKPOINT);
+  } catch {}
+}
 const log = (message, data) => {
   logs.push({ time: new Date().toISOString(), message, data });
   if (logs.length > 400) logs.shift();
@@ -11,6 +21,7 @@ const log = (message, data) => {
 };
 function controls() {
   $('load').disabled = busy || ready; $('generate').disabled = busy || !ready;
+  $('download').disabled = busy || ready || $('cachedOnly').checked;
   $('repeat').disabled = busy || !ready; $('stop').disabled = !busy || !ready;
   $('dtype').disabled = busy || ready; $('cachedOnly').disabled = busy || ready;
   $('clear').disabled = busy || ready; $('reset').disabled = !worker;
@@ -18,6 +29,7 @@ function controls() {
 function reset() {
   worker?.terminate(); worker = null; ready = false; busy = false; repeats = 0;
   $('status').textContent = 'リセット済み。モデルを再読み込みできます。'; controls();
+  checkpoint(null);
 }
 function updateMetrics(data) {
   $('ttft').textContent = data.ttftMs === null ? '—' : `${(data.ttftMs / 1000).toFixed(2)} 秒`;
@@ -28,10 +40,13 @@ function generate() {
   if (!ready || busy || !worker) return;
   const prompt = $('prompt').value.trim(); if (!prompt) return;
   activePrompt = prompt; busy = true; $('output').textContent = ''; $('status').textContent = '生成中…';
+  checkpoint('日本語生成');
   controls(); worker.postMessage({ type: 'generate', prompt, maxTokens: Number($('tokens').value) });
 }
-function makeWorker() {
-  worker = new Worker(new URL('./ai.worker.js', import.meta.url), { type: 'module' });
+function makeWorker(download = false) {
+  worker = download
+    ? new Worker(new URL('./download.worker.js', import.meta.url), { type: 'module' })
+    : new Worker(new URL('./ai.worker.js', import.meta.url), { type: 'module' });
   worker.onerror = event => {
     log('Workerエラー', { message: event.message }); reset(); $('status').textContent = `実行エラー: ${event.message}`;
   };
@@ -39,6 +54,7 @@ function makeWorker() {
     switch (data.type) {
       case 'progress': {
         const p = data.progress;
+        if (p.status === 'initiate') checkpoint(`ダウンロード・保存: ${p.file}`);
         files.set(p.file || p.name || 'model', p);
         $('progress').replaceChildren(...Array.from(files, ([name, item]) => {
           const box = document.createElement('div'), label = document.createElement('p'), bar = document.createElement('progress');
@@ -48,11 +64,15 @@ function makeWorker() {
         }));
         if (p.status !== 'progress' && p.status !== 'progress_total') log('モデルファイル', p); break;
       }
-      case 'warming': $('status').textContent = 'シェーダーを準備中（初回推論）…'; log('ウォームアップ'); break;
+      case 'stage': checkpoint(data.stage); $('status').textContent = data.stage; log('処理段階', { stage: data.stage }); break;
+      case 'downloaded':
+        reset(); $('status').textContent = 'ダウンロード・保存完了。いったんページを再読み込みし、「モデルを読み込む」を押してください。';
+        log('ダウンロード・保存完了'); await inspect(); break;
       case 'cache-error': log('端末保存失敗（オフライン再利用不可の可能性）', data); break;
-      case 'ready': ready = true; busy = false; loadedDtype = data.dtype; $('status').textContent = '生成可能'; $('loadTime').textContent = `${(data.loadMs / 1000).toFixed(2)} 秒`; log('モデル準備完了', data); controls(); await inspect(); break;
+      case 'ready': checkpoint(null); ready = true; busy = false; loadedDtype = data.dtype; $('status').textContent = '生成可能'; $('loadTime').textContent = `${(data.loadMs / 1000).toFixed(2)} 秒`; log('モデル準備完了', data); controls(); await inspect(); break;
       case 'update': $('output').textContent = data.text; updateMetrics(data); break;
       case 'complete':
+        checkpoint(null);
         $('output').textContent = data.text; updateMetrics(data); busy = false;
         runs.push({ ...data, prompt: activePrompt, dtype: loadedDtype, time: new Date().toISOString() });
         if (runs.length > 100) runs.shift();
@@ -73,9 +93,25 @@ async function inspect() {
     log('保存状態', { urls: keys.map(key => key.url), estimate, persisted });
   } catch (error) { $('storage').textContent = `保存確認エラー: ${error.message}`; log('保存エラー', { message: error.message }); }
 }
-$('load').onclick = () => {
-  busy = true; files.clear(); $('progress').replaceChildren(); makeWorker(); controls();
-  $('status').textContent = 'モデルを読み込み中… 初回は数百MBを取得します。';
+$('download').onclick = () => {
+  busy = true; files.clear(); $('progress').replaceChildren(); makeWorker(true); controls();
+  checkpoint('ダウンロード・保存'); $('status').textContent = 'ダウンロードして端末に保存中… 推論用の初期化は行いません。';
+  log('ダウンロード開始', { dtype: $('dtype').value });
+  worker.postMessage({ dtype: $('dtype').value });
+};
+$('cachedOnly').onchange = controls;
+$('load').onclick = async () => {
+  busy = true; controls();
+  try {
+    const cache = await caches.open(MODEL_CACHE);
+    const missing = [];
+    for (const file of modelFiles($('dtype').value)) {
+      if (!await cache.match(modelFileUrl(file), { ignoreVary: true })) missing.push(file);
+    }
+    if (missing.length) throw new Error(`モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: ${missing.join(', ')}`);
+  } catch (error) { busy = false; controls(); $('status').textContent = `エラー: ${error.message}`; log('保存確認エラー', { message: error.message }); return; }
+  files.clear(); $('progress').replaceChildren(); makeWorker(); controls();
+  checkpoint('保存済みモデルの読み込み'); $('status').textContent = '保存済みモデルを読み込み中…';
   log('読み込み開始', { dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
   worker.postMessage({ type: 'load', dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
 };
@@ -87,7 +123,7 @@ $('inspect').onclick = inspect;
 $('persist').onclick = async () => { try { log('永続保存リクエスト', { allowed: await navigator.storage?.persist?.() }); await inspect(); } catch (error) { log('永続保存エラー', { message: error.message }); } };
 $('clear').onclick = async () => { try { await caches.delete(MODEL_CACHE); log('モデルキャッシュを削除'); await inspect(); } catch (error) { log('削除エラー', { message: error.message }); } };
 $('export').onclick = () => {
-  const result = { model: MODEL_ID, revision: REVISION, transformers: '4.3.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
+  const result = { model: MODEL_ID, revision: REVISION, transformers: '4.3.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
   const url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = 'bosai-ai-phase1.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 };

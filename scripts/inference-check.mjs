@@ -8,6 +8,9 @@ page.on('console', msg => { if (msg.type() === 'error') console.log('browser:', 
 page.on('pageerror', error => console.log('pageerror:', error.message));
 try {
   await page.goto('http://localhost:4173/bosai-ai/');
+  await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+  await page.waitForFunction(() => /ダウンロード・保存完了|エラー:/.test(document.querySelector('#status').textContent), null, { timeout: 600000 });
+  await page.reload();
   await page.getByRole('button', { name: 'モデルを読み込む', exact: true }).click();
   await page.waitForFunction(() => /生成可能|エラー:/.test(document.querySelector('#status').textContent), null, { timeout: 600000 });
   console.log('load:', await page.locator('#status').textContent());

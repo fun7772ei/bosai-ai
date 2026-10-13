@@ -14,6 +14,24 @@ await page.reload();
 await page.waitForFunction(() => document.querySelector('#environment').textContent !== '環境を確認中…');
 await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
 const environment = await page.locator('#environment').textContent();
+// Fixtures validate saving and resuming only; never treat these bytes as a real model.
+let downloads = 0;
+await page.route('https://huggingface.co/**', async route => {
+  downloads++;
+  await route.fulfill({ body: 'fixture', headers: { 'access-control-allow-origin': '*', 'content-length': '7' } });
+});
+await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+if (downloads !== 5) throw new Error(`Expected 5 fixture downloads; got ${downloads}`);
+await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+if (downloads !== 5) throw new Error('Saved files were downloaded again');
+// Record interrupted initialization and verify recovery after a reload.
+await page.evaluate(() => localStorage.setItem('bosai-ai-active-stage', JSON.stringify({ stage: 'モデル初期化（WebGPU）', dtype: 'q4f16' })));
+await page.reload();
+await page.getByText('前回は「モデル初期化（WebGPU）」', { exact: false }).waitFor();
+await page.getByRole('button', { name: 'モデル保存を削除', exact: true }).click();
+await page.waitForFunction(() => document.querySelector('#storage').textContent.includes('0ファイル'));
 await context.setOffline(true);
 await page.reload();
 await page.getByRole('heading', { name: '端末内AIを、確かめる。' }).waitFor();
@@ -31,7 +49,7 @@ if (overflow) throw new Error('Horizontal overflow');
 await page.setViewportSize({ width: 1180, height: 820 });
 mkdirSync('test-results', { recursive: true });
 await page.screenshot({ path: 'test-results/phase1.png', fullPage: true });
-const result = { browser: 'Windows Playwright Chromium (not iPad Safari)', environment, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
+const result = { browser: 'Windows Playwright Chromium (not iPad Safari)', environment, fixtureDownloadAndReuse: true, interruptedStageRecovery: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
 writeFileSync('test-results/browser-check.json', JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));
 await browser.close();
