@@ -51,6 +51,14 @@ await page.waitForFunction(() => document.querySelector('#status').textContent.i
 await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
 await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
 if (downloads !== 5) throw new Error('Saved files were downloaded again');
+// Reload offline while fixtures still exist; this verifies storage, not inference.
+await context.setOffline(true);
+await page.reload();
+await page.getByText('選択中のq4: 5/5ファイル保存済み', { exact: false }).waitFor();
+await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+if (downloads !== 5) throw new Error('Offline fixture reuse attempted a download');
+await context.setOffline(false);
 // Record interrupted initialization and verify recovery after a reload.
 await page.evaluate(() => localStorage.setItem('bosai-ai-active-stage', JSON.stringify({ stage: 'モデル初期化（WebGPU）', dtype: 'q4f16' })));
 await page.reload();
@@ -74,7 +82,7 @@ if (overflow) throw new Error('Horizontal overflow');
 await page.setViewportSize({ width: 1180, height: 820 });
 mkdirSync('test-results', { recursive: true });
 await page.screenshot({ path: 'test-results/phase1.png', fullPage: true });
-const result = { browser: 'Windows Playwright Chromium (not iPad Safari)', environment, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, savedDtypeRestored: true, legacyCacheDtypeRestored: true, interruptedStageRecovery: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
+const result = { browser: `${process.platform} Playwright Chromium (not iPad Safari)`, environment, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, offlineFixtureReuse: true, savedDtypeRestored: true, legacyCacheDtypeRestored: true, interruptedStageRecovery: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
 writeFileSync('test-results/browser-check.json', JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));
 await browser.close();
