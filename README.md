@@ -6,7 +6,7 @@
 
 Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作を確認する場合は `npm run build` → `npm run preview` → http://localhost:4173/bosai-ai/ 。WebGPUとService WorkerにはHTTPSまたはlocalhostが必要。iPadからLANのHTTPアドレスを開く方法はWebGPU検証には使えない。
 
-公開予定URL: https://fun7772ei.github.io/bosai-ai/ 。GitHub Settings → Pages → Sourceを **GitHub Actions** に設定してmainへpushすると、`.github/workflows/pages.yml`でテスト・ビルド・公開する。
+公開URL: https://fun7772ei.github.io/bosai-ai/ 。GitHub PagesのSourceは **GitHub Actions** に設定済み。mainへpushすると、`.github/workflows/pages.yml`でテスト・ビルド・公開する。
 
 ## 実装
 

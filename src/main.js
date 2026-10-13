@@ -45,7 +45,7 @@ function makeWorker() {
           bar.max = 100; if (item.progress !== undefined) bar.value = item.progress; else if (item.status === 'done') bar.value = 100;
           box.append(label, bar); return box;
         }));
-        if (p.status !== 'progress') log('モデルファイル', p); break;
+        if (p.status !== 'progress' && p.status !== 'progress_total') log('モデルファイル', p); break;
       }
       case 'warming': $('status').textContent = 'シェーダーを準備中（初回推論）…'; log('ウォームアップ'); break;
       case 'cache-error': log('端末保存失敗（オフライン再利用不可の可能性）', data); break;

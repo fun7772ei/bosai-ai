@@ -1,5 +1,5 @@
 import { AutoTokenizer, AutoModelForCausalLM, TextStreamer, InterruptableStoppingCriteria, env } from '@huggingface/transformers';
-import { MODEL_ID, REVISION, MODEL_CACHE, metrics } from './config.js';
+import { MODEL_ID, REVISION, MODEL_CACHE, metrics, pinnedModelUrl } from './config.js';
 env.allowLocalModels = false;
 env.cacheKey = MODEL_CACHE;
 env.backends.onnx.wasm.numThreads = 1;
@@ -28,17 +28,27 @@ self.onmessage = async ({ data }) => {
       const cache = await caches.open(MODEL_CACHE);
       env.useCustomCache = true;
       env.customCache = {
-        match: key => cache.match(key, { ignoreVary: true }),
+        match: key => cache.match(pinnedModelUrl(key), { ignoreVary: true }),
         put: async (key, response) => {
-          try { await cache.put(key, response); }
+          try { await cache.put(pinnedModelUrl(key), response); }
           catch (error) { send('cache-error', { message: error.message }); throw error; }
         },
       };
-      env.fetch = (url, options) => {
+      env.fetch = async (url, options) => {
+        url = pinnedModelUrl(url);
+        const saved = await cache.match(url, { ignoreVary: true });
+        if (saved) return options?.method === 'HEAD' ? new Response(null, { headers: saved.headers, status: saved.status }) : saved;
         if (data.cachedOnly) throw new Error(`保存済みファイルが不足しています: ${url}`);
         return fetch(url, options);
       };
-      const options = { revision: REVISION, progress_callback: progress => send('progress', { progress }) };
+      const progressTimes = new Map();
+      const options = { revision: REVISION, progress_callback: progress => {
+        const key = progress.file || progress.name;
+        const now = performance.now();
+        const frequent = progress.status === 'progress' || progress.status === 'progress_total';
+        if (frequent && now - (progressTimes.get(key) || 0) < 200) return;
+        progressTimes.set(key, now); send('progress', { progress });
+      } };
       tokenizer = await AutoTokenizer.from_pretrained(MODEL_ID, options);
       model = await AutoModelForCausalLM.from_pretrained(MODEL_ID, { ...options, device: 'webgpu', dtype: data.dtype });
       send('warming');
