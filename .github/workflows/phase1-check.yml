@@ -1,0 +1,34 @@
+name: Phase 1 regression checks
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  storage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Check production preview with dummy model data
+        shell: bash
+        run: |
+          npm run preview -- --port 4173 --host 127.0.0.1 > /tmp/bosai-preview.log 2>&1 &
+          preview_pid=$!
+          trap 'kill "$preview_pid" || true' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://localhost:4173/bosai-ai/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/browser-check.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phase1-dummy-storage-results
+          path: test-results/

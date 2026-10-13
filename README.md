@@ -24,6 +24,8 @@ Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作�
 
 ## 検証
 
+最新の保存完全性チェック、推論メモリの制約、今回の検証環境の失敗は [安定化レビュー](docs/phase1-stability-review.md) を参照。件数・サイズ照合は同じ長さの内容破損を検出するハッシュ検証ではない。
+
 `npm test`、`npm run build`。ブラウザテストは `npx playwright install chromium`、本番preview起動中に `node scripts/browser-check.mjs`。実モデルの取得を伴う任意テストは `node scripts/inference-check.mjs`（WebGPU利用可能な環境が必要）。
 
 今回の結果と限界は [docs/phase1-results.md](docs/phase1-results.md)、iPadでの手順は [docs/ipad-verification.md](docs/ipad-verification.md) に記録。デスクトップChromiumの結果をSafari実機の確認として扱わない。
