@@ -18,7 +18,7 @@ Phase 1は**iPadで未成立（修正版の実機結果待ち）**。今回の�
 | 完全性 | 保存状態取得時にchunk件数をキーだけで確認。読込時に総byte数と新manifestの分割サイズを確認 | 同じ長さの内容破損は検出できない。SHA等による配布元との内容照合は未実装。旧Cacheは存在確認のみ |
 | 保存形式・更新 | DB名・version・キーは変更なし。旧manifestの読込をテスト。正常な旧Cacheも再利用し、自動再書込・削除なし。SW更新はshell名のみに限定 | 必要5ファイルありは推論成功の意味ではない。q4とq4f16両方が完全な場合は既存選択を維持 |
 | 再読み込み | close/reopenのbyte一致をNodeで確認。量子化復元と最後の段階表示は既存実装を維持 | 意図的終了も途中終了表示になる。OS/Safariによる保存領域の破棄を防ぐ保証なし |
-| オフライン | 読込Workerは保存済みモデルのみ、欠損HFファイル取得拒否。JS/WASMはshell保存。ブラウザスクリプトにダミー保存を残したオフライン再読込・再利用を追加 | この環境ではブラウザを起動できず追加経路は未実行。実モデル・機内モード・ホーム画面は未確認 |
+| オフライン | 読込Workerは保存済みモデルのみ、欠損HFファイル取得拒否。JS/WASMはshell保存。ブラウザスクリプトにダミー保存を残したオフライン再読込・再利用を追加 | ローカルでは起動不可。後述のGitHub CIでダミー経路は成功。実モデル・機内モード・ホーム画面は未確認 |
 | 推論メモリ | 依存のhub.jsとhub/utils.jsを直接確認。progress付き読込でも`new Uint8Array(total)`へ全モデルを集め、各chunkをコピーする。正しいContent-Lengthの維持は再確保を避ける上で必要 | 約570MBの連続CPUバッファに加えORT/WASM/WebGPU側の確保が必要。コピー数・ピーク・実機上限は未測定。WebGPU maxBufferSizeは総メモリではない |
 | 推論検証スクリプト | WebGPU検出を取得前に実行。保存・初期化・オンライン/オフライン生成失敗と空出力で非ゼロ終了にする | 推論スクリプト自体は未実行。短い出力の有無は日本語品質の合格判定ではない |
 
@@ -45,7 +45,18 @@ Phase 1は**iPadで未成立（修正版の実機結果待ち）**。今回の�
 
 最初のテスト実行もnpm ci失敗後の依存不足で2テストファイルが失敗した。依存導入後の既存10件と修正後16件は成功。過去のWindows Chromium成功を今回の環境・実装・iPadへ流用しない。
 
-PR用CI `.github/workflows/phase1-check.yml`を追加。Node24で通常npm ci、テスト、本番ビルド、Chromium導入、4173 preview、ダミー保存ブラウザ検証を実施する。Pages公開は行わず、実モデルはダウンロードしない。CI結果はGitHub上で別途確認するまで未確認。
+PR用CI `.github/workflows/phase1-check.yml`を追加。Node24で通常npm ci、テスト、本番ビルド、Chromium導入、4173 preview、ダミー保存ブラウザ検証を実施する。Pages公開は行わず、実モデルはダウンロードしない。GitHub CIも確認済み（下記）。
+
+### GitHub Actionsでの追加検証
+
+[run 38432180231](https://github.com/fun7772ei/bosai-ai/actions/runs/38432180231)、実装commit `3285e41589a079f3dc565d55f473408ed3665e58`、Linux runner / Chromium 149。全step成功をAPIで確認し、jobログの出力も確認した。
+
+- 通常`npm ci`、16テスト、本番ビルド、`npx playwright install --with-deps chromium`、4173本番previewと`node scripts/browser-check.mjs`が成功。
+- 12MiB＋123byteのダミー重みを4分割保存し、各分割の内容・サイズ、再読み込み保持、q4復元、旧選択情報なしの復元、再取得回避、オフラインのダミー再利用、未完了段階表示、欠損エラー、390px幅での横はみ出しなしを確認。未処理pageerrorは0。
+- 環境表示は「WebGPU利用可能 / shader-f16: 非対応」。Qwen3 q4f16の実推論を確認した環境ではない。q4も実推論は行っていない。
+- [成果物](https://github.com/fun7772ei/bosai-ai/actions/runs/38432180231/artifacts/11831821350)はbrowser-check.jsonとスクリーンショット。実モデル・iPadの成功記録ではない。
+
+ローカルの環境制約は上表のとおり残す。CIによるダミー経路の成功を実モデル・iPadへ拡大解釈しない。
 
 ## iPadで次に試す最小手順
 
