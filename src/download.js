@@ -2,9 +2,9 @@ import { modelFiles, modelFileUrl } from './config.js';
 
 // Do not arrayBuffer(), clone(), or collect weight chunks. The model store consumes
 // this stream in bounded IndexedDB chunks instead of a large Cache API entry.
-export async function downloadModel(cache, dtype, report, fetcher = fetch) {
-  for (const file of modelFiles(dtype)) {
-    const url = modelFileUrl(file);
+export async function downloadModel(cache, dtype, report, fetcher = fetch, modelKey) {
+  for (const file of modelFiles(dtype, modelKey)) {
+    const url = modelFileUrl(file, modelKey);
     if (await cache.match(url, { ignoreVary: true })) {
       report({ file, status: 'done', progress: 100, reused: true }); continue;
     }

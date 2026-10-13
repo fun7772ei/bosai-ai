@@ -2,6 +2,19 @@
 
 更新日: 2026-10-14（日本時間）。作業の対象は**Phase 1の安定化**。
 
+## Phase 1の比較モデル追加（2026-10-14 日本時間）
+
+ユーザーの指定により、LFM2.5-350MとGemma 3-270M-itを比較モデルへ追加。Qwen3へのこだわりはないと明示され、両候補の追加とPages公開まで依頼された。**Phase 2の辞書統合はまだ実装しない。** 詳細と実機の比較手順は [モデル比較](docs/phase1-model-comparison.md)。
+
+- 作業ブランチ: `codex/phase1-model-comparison`。アプリ版: `7912da5965d7`。旧Qwen3の保存・選択形式は維持し、初期選択を勝手に新モデルへ切り替えない。
+- 固定revisionは `src/config.js` のcatalog。LFM/Gemmaは `.onnx_data` を含む6ファイルが必要。旧Qwenは従来の5ファイル。Hugging Faceのmain metadataも各モデルの固定revisionへ正規化。
+- モデル選択と量子化形式をモデル別に保存。処理中／モデル準備後は選択をロックし、比較前にWorkerをリセット。削除ボタンは選択モデルの両4bit形式だけを削除し、ほかのモデル・共有保存領域を消さない。
+- 診断JSON・ログ・生成測定・未完了checkpointにモデルID、revision、形式を記録する。JSONに全catalogも含める。初回比較の生成上限は64トークン。
+- Node.jsの32テスト・本番ビルド・本番previewでのChromium検証は成功。ダミー外部重みで保存、形式とモデル復元、オフライン再利用、Qwen保持、選択モデル削除、診断の帰属を確認。
+- 実際の固定revisionのTokenizerで日本語のsystem＋user入力と生成開始テンプレートを確認（LFM 49 tokens、Gemma 40 tokens）。**Tokenizer検証は回答生成や実モデル初期化の成功ではない。** 重み本体はGitに追加しない。
+- `node scripts/inference-check.mjs lfm2 q4f16` / `gemma3 q4f16` はどちらもGPU機能不足で `not-run` / exit 2。このCloudのWebGPUはshader-f16非対応。iPadでの両候補の保存・初期化・日本語生成・再起動後オフライン生成は未確認。
+- Qwen3について、公開後のユーザー写真でWorker起動・WebGPU確認・重み読込doneまで進み、その後Safari終了／再読み込みの報告がある。モデル準備完了・Tokenizer読込・生成成功は確認できない。Safari側の終了原因は未確定。小型候補を追加しても、推論初期化時の全重み・ORT・GPUメモリ需要は残る。
+
 ## Cloud継続作業の更新（2026-10-14 日本時間）
 
 作業ブランチ: `codex/phase1-worker-storage-stability`。今回の詳細は [Cloudレビュー結果](docs/phase1-cloud-review.md)。**最新修正もiPad実機・実モデル推論は未確認。Phase 1の成立とは扱わない。** 以下の古い検証結果と今回の結果を区別する。
