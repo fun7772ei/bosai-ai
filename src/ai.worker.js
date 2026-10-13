@@ -1,6 +1,7 @@
 import { AutoTokenizer, AutoModelForCausalLM, TextStreamer, InterruptableStoppingCriteria, env } from '@huggingface/transformers';
 import { MODEL_ID, REVISION, MODEL_CACHE, metrics, pinnedModelUrl } from './config.js';
 import { openModelStore } from './model-storage.js';
+import { workerError } from './worker-errors.js';
 env.allowLocalModels = false;
 env.cacheKey = MODEL_CACHE;
 env.backends.onnx.wasm.numThreads = 1;
@@ -14,7 +15,8 @@ env.backends.onnx.wasm.wasmPaths = {
 };
 let tokenizer, model, busy = false;
 const stopping = new InterruptableStoppingCriteria();
-const send = (type, data = {}) => self.postMessage({ type, ...data });
+let stage;
+const send = (type, data = {}) => { if (type === 'stage') stage = data.stage; self.postMessage({ type, ...data }); };
 self.onmessage = async ({ data }) => {
   if (data.type === 'stop') { stopping.interrupt(); return; }
   if (busy) return;
@@ -75,6 +77,6 @@ self.onmessage = async ({ data }) => {
       send('complete', { text, ...metrics(tokens, started, first, performance.now()) });
     }
   } catch (error) {
-    send('error', { operation: data.type, message: error.message, stack: error.stack });
+    send('error', workerError(error, { operation: data.type, stage }));
   } finally { busy = false; }
 };

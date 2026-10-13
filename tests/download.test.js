@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { downloadModel } from '../src/download.js';
 import { modelFiles } from '../src/config.js';
+import 'fake-indexeddb/auto';
+import { openChunkStore } from '../src/chunk-store.js';
 
 test('download streams each file into cache and reuses completed files', async () => {
   const saved = new Map(), reports = []; let fetches = 0;
@@ -28,6 +30,17 @@ test('download streams each file into cache and reuses completed files', async (
   assert.equal(reports.filter(p => p.status === 'done').length, 5);
   await downloadModel(cache, 'q4f16', () => {}, fetcher);
   assert.equal(fetches, 5);
+});
+
+test('compressed transfer length is not mistaken for decoded model size', async () => {
+  const cache = await openChunkStore('compressed-transfer', 4);
+  try {
+    await downloadModel(cache, 'q4f16', () => {}, async () => new Response('decoded', { headers: { 'content-encoding': 'gzip', 'content-length': '2' } }));
+    const response = await cache.match((await cache.keys())[0].url);
+    assert.equal(response.headers.get('content-length'), '7');
+    assert.equal(response.headers.has('content-encoding'), false);
+    assert.equal(await response.text(), 'decoded');
+  } finally { cache.close(); }
 });
 test('storage failure is surfaced and stops later downloads', async () => {
   let fetched = 0;

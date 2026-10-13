@@ -1,7 +1,10 @@
 import './style.css';
 import { MODEL_ID, REVISION, MODEL_CACHE } from './config.js';
 import { modelStorageStatus, selectStoredDtype, openModelStore } from './model-storage.js';
+import { createWorkerClient } from './worker-client.js';
+import { workerError } from './worker-errors.js';
 const $ = id => document.getElementById(id);
+$('build').textContent = `アプリ版: ${__APP_BUILD__}`;
 const logs = [], runs = [], files = new Map();
 let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype;
 const CHECKPOINT = 'bosai-ai-active-stage';
@@ -54,14 +57,14 @@ function generate() {
   controls(); worker.postMessage({ type: 'generate', prompt, maxTokens: Number($('tokens').value) });
 }
 function makeWorker(download = false) {
-  worker = download
-    ? new Worker(new URL('./download.worker.js', import.meta.url), { type: 'module' })
-    : new Worker(new URL('./ai.worker.js', import.meta.url), { type: 'module' });
-  worker.onerror = event => {
-    log('Workerエラー', { message: event.message }); reset(); $('status').textContent = `実行エラー: ${event.message}`;
+  const failed = data => {
+    let lastStage;
+    try { lastStage = JSON.parse(localStorage.getItem(CHECKPOINT) || 'null'); } catch {}
+    log('Workerエラー', { ...data, lastStage }); reset(); $('status').textContent = `エラー: ${data.message}`;
   };
-  worker.onmessage = async ({ data }) => {
+  const onMessage = async ({ data }) => {
     switch (data.type) {
+      case 'worker-ready': log('Worker起動完了', { kind: data.kind }); break;
       case 'progress': {
         const p = data.progress;
         if (download && p.status === 'initiate') checkpoint(`ダウンロード・保存: ${p.file}`);
@@ -89,9 +92,17 @@ function makeWorker(download = false) {
         $('status').textContent = '生成終了（停止要求時は途中結果）'; log('生成終了', data); controls();
         if (repeats > 0 && --repeats > 0) setTimeout(generate, 250); break;
       case 'error':
-        log('実行エラー', data); reset(); $('status').textContent = `エラー: ${data.message}`; break;
+        failed(data); break;
     }
   };
+  try {
+    worker?.terminate();
+    worker = createWorkerClient(
+      () => new Worker(new URL('./bootstrap.worker.js', import.meta.url), { type: 'module' }),
+      download ? 'download' : 'inference', onMessage, failed,
+    );
+    return true;
+  } catch (error) { failed(workerError(error, { stage: 'Worker作成' })); return false; }
 }
 async function inspect(restoreSelection = false) {
   let cache;
@@ -117,9 +128,11 @@ async function inspect(restoreSelection = false) {
 }
 $('download').onclick = () => {
   saveDtype();
-  busy = true; files.clear(); $('progress').replaceChildren(); makeWorker(true); controls();
+  busy = true; files.clear(); $('progress').replaceChildren();
   checkpoint('ダウンロード・保存'); $('status').textContent = 'ダウンロードして端末に保存中… 推論用の初期化は行いません。';
   log('ダウンロード開始', { dtype: $('dtype').value });
+  if (!makeWorker(true)) return;
+  controls();
   worker.postMessage({ dtype: $('dtype').value });
 };
 $('cachedOnly').onchange = controls;
@@ -132,9 +145,11 @@ $('load').onclick = async () => {
     if (missing.length) throw new Error(`モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: ${missing.join(', ')}`);
   } catch (error) { busy = false; controls(); $('status').textContent = `エラー: ${error.message}`; log('保存確認エラー', { message: error.message }); return; }
   finally { cache?.close(); }
-  files.clear(); $('progress').replaceChildren(); makeWorker(); controls();
+  files.clear(); $('progress').replaceChildren();
   checkpoint('保存済みモデルの読み込み'); $('status').textContent = '保存済みモデルを読み込み中…';
   log('読み込み開始', { dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
+  if (!makeWorker()) return;
+  controls();
   worker.postMessage({ type: 'load', dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
 };
 $('generate').onclick = generate;
@@ -150,7 +165,7 @@ $('clear').onclick = async () => {
   finally { cache?.close(); }
 };
 $('export').onclick = () => {
-  const result = { model: MODEL_ID, revision: REVISION, transformers: '4.3.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
+  const result = { appBuild: __APP_BUILD__, model: MODEL_ID, revision: REVISION, transformers: '4.3.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
   const url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = 'bosai-ai-phase1.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 };

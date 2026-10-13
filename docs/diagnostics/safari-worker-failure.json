@@ -1,0 +1,240 @@
+{
+  "model": "onnx-community/Qwen3-0.6B-ONNX",
+  "revision": "1e0a4a196ecabdf9a879664110574563d3f372d3",
+  "transformers": "4.3.1",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+  "secureContext": true,
+  "generatedAt": "2026-10-13T16:18:00.710Z",
+  "previousAttempt": {
+    "stage": "モデル初期化（WebGPU）",
+    "dtype": "q4f16",
+    "time": "2026-10-13T16:17:19.603Z"
+  },
+  "runs": [],
+  "logs": [
+    {
+      "time": "2026-10-13T16:17:29.463Z",
+      "message": "環境",
+      "data": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+        "secureContext": true,
+        "webgpu": true,
+        "shaderF16": true,
+        "limits": {
+          "maxBufferSize": 715827880,
+          "maxStorageBufferBindingSize": 715827880
+        }
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:29.528Z",
+      "message": "保存状態",
+      "data": {
+        "urls": [
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json"
+        ],
+        "estimate": {
+          "quota": 36077725287,
+          "usage": 1233797165
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:29.534Z",
+      "message": "アプリ本体のオフライン保存完了"
+    },
+    {
+      "time": "2026-10-13T16:17:32.580Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:33.545Z",
+      "message": "ダウンロード開始",
+      "data": {
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:33.880Z",
+      "message": "Workerエラー",
+      "data": {}
+    },
+    {
+      "time": "2026-10-13T16:17:34.562Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:37.804Z",
+      "message": "ダウンロード開始",
+      "data": {
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:37.831Z",
+      "message": "Workerエラー",
+      "data": {}
+    },
+    {
+      "time": "2026-10-13T16:17:38.959Z",
+      "message": "ダウンロード開始",
+      "data": {
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:39.036Z",
+      "message": "Workerエラー",
+      "data": {}
+    },
+    {
+      "time": "2026-10-13T16:17:39.640Z",
+      "message": "ダウンロード開始",
+      "data": {
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:39.666Z",
+      "message": "Workerエラー",
+      "data": {}
+    },
+    {
+      "time": "2026-10-13T16:17:42.762Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:45.415Z",
+      "message": "保存状態",
+      "data": {
+        "urls": [
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json"
+        ],
+        "estimate": {
+          "quota": 36077725287,
+          "usage": 1233797165
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:46.975Z",
+      "message": "ダウンロード開始",
+      "data": {
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:47.005Z",
+      "message": "Workerエラー",
+      "data": {}
+    },
+    {
+      "time": "2026-10-13T16:17:47.584Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:48.391Z",
+      "message": "保存状態",
+      "data": {
+        "urls": [
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json"
+        ],
+        "estimate": {
+          "quota": 36077725287,
+          "usage": 1233797165
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:48.830Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:49.530Z",
+      "message": "永続保存リクエスト",
+      "data": {
+        "allowed": false
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:49.599Z",
+      "message": "保存状態",
+      "data": {
+        "urls": [
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json"
+        ],
+        "estimate": {
+          "quota": 36077725287,
+          "usage": 1233797165
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:50.931Z",
+      "message": "モデルキャッシュを削除"
+    },
+    {
+      "time": "2026-10-13T16:17:50.941Z",
+      "message": "保存状態",
+      "data": {
+        "urls": [],
+        "estimate": {
+          "quota": 36077725287,
+          "usage": 1233797165
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:51.791Z",
+      "message": "ダウンロード開始",
+      "data": {
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T16:17:51.835Z",
+      "message": "Workerエラー",
+      "data": {}
+    },
+    {
+      "time": "2026-10-13T16:17:54.228Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: tokenizer_config.json, tokenizer.json, config.json, generation_config.json, onnx/model_q4f16.onnx"
+      }
+    }
+  ],
+  "deviceVerification": "User must record actual device; no iPad verification claimed"
+}
