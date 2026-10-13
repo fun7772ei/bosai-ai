@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#146c5b"><link rel="manifest" href="./manifest.webmanifest"><title>防災AI · Phase 1</title></head>
 <body><main>
-<header><span class="badge">BOSAI AI / PHASE 1</span><h1>端末内AIを、確かめる。</h1><p>Qwen3-0.6B · 4bit · Transformers.js + WebGPU</p></header>
+<header><span class="badge">BOSAI AI / PHASE 1</span><h1>端末内AIを、確かめる。</h1><p>Qwen3-0.6B · 4bit · Transformers.js + WebGPU</p><p id="build"></p></header>
 <aside>動作検証用です。防災辞書は未統合で、生成内容は防災判断に使えません。リアルタイムの災害情報は取得しません。</aside>
 <div class="layout"><section><h2>1. モデルの準備</h2><p id="connection"></p><p id="environment">環境を確認中…</p>
 <label for="dtype">4bit形式</label><select id="dtype"><option value="q4f16">q4f16（FP16演算）</option><option value="q4">q4（FP32演算・比較用）</option></select>

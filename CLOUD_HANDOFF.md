@@ -2,6 +2,18 @@
 
 更新日: 2026-10-14（日本時間）。作業の対象は**Phase 1の安定化**。
 
+## Cloud継続作業の更新（2026-10-14 日本時間）
+
+作業ブランチ: `codex/phase1-worker-storage-stability`。今回の詳細は [Cloudレビュー結果](docs/phase1-cloud-review.md)。**最新修正もiPad実機・実モデル推論は未確認。Phase 1の成立とは扱わない。** 以下の古い検証結果と今回の結果を区別する。
+
+- 新しい提供ログは [safari-worker-failure.json](docs/diagnostics/safari-worker-failure.json)。ダウンロード開始直後のWorkerエラーに詳細がなく、成功記録なし。保存状態のログ形式は分割保存前のコードと一致し、現在の公開資産の形式とは異なる。旧画面・旧資産の可能性はあるが、Safariの原因を断定しない。ログ末尾には明示的なモデルキャッシュ削除がある。
+- 小さなbootstrap Workerから取得／推論モジュールを動的に読み、起動完了後に処理を送る。モジュール読込・作成・実行・メッセージ・起動無応答を診断し、空のErrorEventにも説明を付ける。アプリ版を画面とJSONへ追加。
+- IndexedDBのDB名・versionは維持。旧 `[url, index]` を読み、新規保存は `[url, generation, index]`。完成情報と全分割キーを照合し、取得サイズ・読込時の分割サイズを確認。再保存中は旧完成ファイルを保持し、最終transactionで切り替える。途中データは次の明示的な取得時に整理する。Rangeによる途中再開と暗号学的な内容検証は未実装。
+- 書込はWeb Locksでタブ／Worker間を直列化する。APIがない環境の代替は同一JS実行領域のみで、複数タブの保証はない。旧Cache APIの正常ファイルの再利用は維持。
+- Service Workerの即時切替を廃止。使用中の旧画面のWorker資産を保ち、旧タブを閉じた後に更新する。モデル保存の削除処理は追加しない。
+- Node.js 24.19.0で現行10テスト・ビルド・ブラウザ検証を再実行後、回帰テストを追加。Cloud側の実測・失敗は上記レビュー資料に記録する。
+- Qwen3と量子化の第一候補は変更しない。4MiB保存でもTransformers.jsは重み全体をUint8Arrayに読み、ORT/WASM/WebGPUの追加メモリが必要。実機の保存・初期化・短い生成・再起動後オフライン生成が判断材料。
+
 ## まず読むもの
 
 1. [仕様書v1.1](docs/specification-v1.1.md)

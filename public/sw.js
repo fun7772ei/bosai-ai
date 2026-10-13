@@ -5,7 +5,9 @@ self.addEventListener('install', event => event.waitUntil((async () => {
   const files = await response.json();
   const cache = await caches.open(SHELL);
   await cache.addAll(files.map(path => new URL(path, self.registration.scope).href));
-  await self.skipWaiting();
+  // Keep the current worker and its shell while existing tabs still use it.
+  // Immediate activation would delete the hashed Worker/modules referenced by
+  // an already-open page. Closing the old tabs permits normal activation.
 })()));
 self.addEventListener('activate', event => event.waitUntil((async () => {
   for (const key of await caches.keys()) if (key.startsWith('bosai-ai-shell-') && key !== SHELL) await caches.delete(key);

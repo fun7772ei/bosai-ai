@@ -1,6 +1,7 @@
 import { chromium } from '@playwright/test';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync, unlinkSync } from 'node:fs';
 const browser = await chromium.launch({ args: ['--enable-unsafe-webgpu'] });
+try {
 const context = await browser.newContext({ viewport: { width: 1180, height: 820 } });
 const page = await context.newPage();
 const errors = [];
@@ -37,7 +38,8 @@ const stored = await page.evaluate(async () => {
   const weight = files.find(file => file.url.endsWith('.onnx'));
   const sizes = [];
   for (let i = 0; i < weight.chunks; i++) {
-    const chunk = await result(db.transaction('chunks').objectStore('chunks').get([weight.url, i]));
+    const key = weight.generation ? [weight.url, weight.generation, i] : [weight.url, i];
+    const chunk = await result(db.transaction('chunks').objectStore('chunks').get(key));
     if (chunk.some(byte => byte !== 7)) throw new Error('Corrupted chunk');
     sizes.push(chunk.byteLength);
   }
@@ -51,6 +53,14 @@ await page.waitForFunction(() => document.querySelector('#status').textContent.i
 await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
 await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
 if (downloads !== 5) throw new Error('Saved files were downloaded again');
+// Offline metadata and download reuse must work with the saved fixtures intact.
+await context.setOffline(true);
+await page.reload();
+await page.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4）'));
+await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+if (downloads !== 5) throw new Error('Offline reuse tried to download fixtures');
+await context.setOffline(false);
 // Record interrupted initialization and verify recovery after a reload.
 await page.evaluate(() => localStorage.setItem('bosai-ai-active-stage', JSON.stringify({ stage: 'モデル初期化（WebGPU）', dtype: 'q4f16' })));
 await page.reload();
@@ -74,8 +84,75 @@ if (overflow) throw new Error('Horizontal overflow');
 await page.setViewportSize({ width: 1180, height: 820 });
 mkdirSync('test-results', { recursive: true });
 await page.screenshot({ path: 'test-results/phase1.png', fullPage: true });
-const result = { browser: 'Windows Playwright Chromium (not iPad Safari)', environment, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, savedDtypeRestored: true, legacyCacheDtypeRestored: true, interruptedStageRecovery: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
+// A failed dependency import must surface details and allow retry, without a
+// model or real GPU. Block SW here so injected failures reach the module loader.
+const failureContext = await browser.newContext({ serviceWorkers: 'block' });
+let breakModule = true;
+await failureContext.route('**/assets/download.worker-*.js', route => breakModule
+  ? route.fulfill({ status: 503, contentType: 'text/javascript', body: 'unavailable' })
+  : route.continue());
+await failureContext.route('https://huggingface.co/**', route => route.fulfill({ body: 'fixture', headers: { 'access-control-allow-origin': '*' } }));
+const failurePage = await failureContext.newPage();
+failurePage.on('pageerror', error => errors.push(error.message));
+await failurePage.goto('http://localhost:4173/bosai-ai/');
+await failurePage.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+await failurePage.waitForFunction(() => document.querySelector('#status').textContent.startsWith('エラー:'));
+const workerImportFailure = await failurePage.locator('#logs').textContent();
+if (!workerImportFailure.includes('Workerモジュールの読み込み')) throw new Error('Missing worker import stage');
+if (!(await failurePage.locator('#download').isEnabled())) throw new Error('Worker error left download disabled');
+breakModule = false;
+await failurePage.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+await failurePage.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+await failureContext.close();
+// Install a second SW while a page is open: it must wait rather than deleting
+// the old hashed Worker assets. Activation must also preserve both model stores.
+const updateContext = await browser.newContext();
+await updateContext.route('https://huggingface.co/**', route => route.fulfill({ body: 'fixture', headers: { 'access-control-allow-origin': '*' } }));
+const oldPage = await updateContext.newPage();
+oldPage.on('pageerror', error => errors.push(error.message));
+await oldPage.goto('http://localhost:4173/bosai-ai/');
+await oldPage.waitForFunction(() => document.querySelector('#logs').textContent.includes('アプリ本体のオフライン保存完了'));
+await oldPage.reload();
+await oldPage.waitForFunction(() => navigator.serviceWorker.controller !== null);
+await oldPage.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+await oldPage.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+await oldPage.evaluate(async () => {
+  const cache = await caches.open('bosai-ai-model-v1');
+  await cache.put('https://example.org/legacy-sentinel', new Response('keep-legacy'));
+});
+const updateScript = 'dist/sw-update-test.js';
+writeFileSync(updateScript, readFileSync('dist/sw.js', 'utf8').replace(/const SHELL = '[^']+';/, "const SHELL = 'bosai-ai-shell-test-update';"));
+try {
+  await oldPage.evaluate(() => navigator.serviceWorker.register('/bosai-ai/sw-update-test.js', { scope: '/bosai-ai/' }));
+  await oldPage.waitForFunction(async () => !!(await navigator.serviceWorker.getRegistration()).waiting);
+  const oldController = await oldPage.evaluate(() => navigator.serviceWorker.controller.scriptURL);
+  if (!oldController.endsWith('/sw.js')) throw new Error('App update took over an active page');
+  await updateContext.setOffline(true);
+  await oldPage.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+  await oldPage.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+  await updateContext.setOffline(false);
+  await oldPage.close();
+  const newPage = await updateContext.newPage();
+  // Poll from an uncontrolled page; a SW global's registration object can be
+  // stale during its own activation. Keep new clients outside the scope first.
+  await newPage.goto('http://localhost:4173/outside-bosai-scope');
+  await newPage.waitForFunction(async () => {
+    const registration = await navigator.serviceWorker.getRegistration('/bosai-ai/');
+    return registration?.active?.scriptURL.endsWith('/sw-update-test.js') && registration.active.state === 'activated';
+  });
+  const shellCaches = await newPage.evaluate(() => caches.keys());
+  if (!shellCaches.includes('bosai-ai-shell-test-update')) throw new Error('Update did not install the new shell cache');
+  await newPage.goto('http://localhost:4173/bosai-ai/');
+  await newPage.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4f16）'));
+  const legacy = await newPage.evaluate(async () => (await (await caches.open('bosai-ai-model-v1')).match('https://example.org/legacy-sentinel')).text());
+  if (legacy !== 'keep-legacy') throw new Error('App update deleted legacy models');
+} finally { unlinkSync(updateScript); await updateContext.close(); }
+const result = { browser: `${process.platform} Playwright Chromium (not iPad Safari)`, environment, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, offlineFixtureReuse: true, savedDtypeRestored: true, savedFormatWithoutPreferenceRestored: true, interruptedStageRecovery: true, workerImportFailureAndRetry: true, safeAppUpdatePreservesWorkersAndModels: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
 writeFileSync('test-results/browser-check.json', JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));
-await browser.close();
 if (errors.length) process.exitCode = 1;
+} catch (error) {
+  mkdirSync('test-results', { recursive: true });
+  writeFileSync('test-results/browser-check.json', JSON.stringify({ status: 'failed', error: error.message }, null, 2));
+  throw error;
+} finally { await browser.close(); }

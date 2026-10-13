@@ -28,6 +28,10 @@ Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作�
 
 今回の結果と限界は [docs/phase1-results.md](docs/phase1-results.md)、iPadでの手順は [docs/ipad-verification.md](docs/ipad-verification.md) に記録。デスクトップChromiumの結果をSafari実機の確認として扱わない。
 
+Cloudでの追加修正と検証は [docs/phase1-cloud-review.md](docs/phase1-cloud-review.md)。Workerの起動待ち・詳細ログ、分割キーとサイズの検証、再保存失敗時の旧データ保持を追加。旧IndexedDB形式とCache API保存を読み続ける。アプリ更新は使用中のタブを強制切替せず、旧タブを閉じた後に有効になる。保存データやSafariのサイトデータを消す必要はない。画面の「アプリ版」と診断JSONの `appBuild` で使用版を識別する。
+
+ブラウザ依存込みの準備は `npx playwright install --with-deps chromium`。Cloudで管理者権限がない場合は失敗しうるため、既存OS依存で起動できるかを `npx playwright install chromium` 後に実行確認する。実モデルスクリプトはq4f16に必要なGPU機能がなければ取得せず終了コード2（未検証）、保存・生成失敗は1、オンラインとオフラインで生成できた場合だけ0を返す。
+
 ## 次の段階
 
 Phase 2: `fun7772ei/bosai-app`の`data.js`にある88項目を、内容・優先度・注意事項・出典を維持して移植。元リポジトリは参照のみ。Phase 1では移植しない。参照時のblob SHA: `881355b4a4b85a1da39515e8578aa5f74bb2644b`。元リポジトリはprivateのため、辞書を公開リポジトリに移す際に公開範囲・利用条件を確認する。

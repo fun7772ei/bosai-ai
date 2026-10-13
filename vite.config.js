@@ -1,8 +1,13 @@
 import { defineConfig } from 'vite';
 import { readdirSync, copyFileSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+const sourceFiles = [...readdirSync('src').sort().map(name => `src/${name}`), 'package-lock.json', 'vite.config.js', 'public/sw.js', 'index.html'];
+const buildId = createHash('sha256');
+for (const file of sourceFiles) buildId.update(file).update(readFileSync(file));
 export default defineConfig({
   base: '/bosai-ai/',
+  define: { __APP_BUILD__: JSON.stringify(buildId.digest('hex').slice(0, 12)) },
+  worker: { format: 'es' },
   build: { target: 'safari18', chunkSizeWarningLimit: 2500 },
   plugins: [{
     name: 'offline-runtime',
