@@ -25,21 +25,30 @@ export async function openModelStore() {
       try { for (const key of await legacy?.keys() || []) if (!result.has(key.url)) result.set(key.url, key); } catch {}
       return [...result.values()];
     },
-    async clear() { await chunks.clear(); await caches.delete(MODEL_CACHE); },
+    async clear(modelKey) {
+      if (modelKey === undefined) { await chunks.clear(); await caches.delete(MODEL_CACHE); return; }
+      const urls = new Set(['q4f16', 'q4'].flatMap(dtype => modelFiles(dtype, modelKey).map(file => modelFileUrl(file, modelKey))));
+      for (const url of urls) await chunks.delete(url);
+      try {
+        const prefix = modelFileUrl('', modelKey);
+        for (const key of await legacy?.keys() || []) if (pinnedModelUrl(key).startsWith(prefix)) await legacy.delete(key);
+      } catch (error) { return { legacyWarning: error.message }; }
+    },
   };
 }
 
-export async function modelStorageStatus(cache, dtype) {
+export async function modelStorageStatus(cache, dtype, modelKey) {
   const missing = [], present = [], details = [];
-  for (const file of modelFiles(dtype)) {
-    const response = await cache.match(modelFileUrl(file), { ignoreVary: true });
+  const required = modelFiles(dtype, modelKey);
+  for (const file of required) {
+    const response = await cache.match(modelFileUrl(file, modelKey), { ignoreVary: true });
     if (response) {
       present.push(file);
       details.push({ file, backend: response.storageBackend || 'unknown', bytes: response.storedBytes ?? (Number(response.headers.get('content-length')) || null), chunks: response.storedChunks || null });
     }
     else missing.push(file);
   }
-  return { dtype, present, missing, details, complete: missing.length === 0 };
+  return { modelKey, dtype, required: required.length, present, missing, details, complete: missing.length === 0 };
 }
 
 export function selectStoredDtype(selected, statuses) {

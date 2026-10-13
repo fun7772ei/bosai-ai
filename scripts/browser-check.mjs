@@ -1,6 +1,10 @@
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync, readFileSync, unlinkSync } from 'node:fs';
 const browser = await chromium.launch({ args: ['--enable-unsafe-webgpu'] });
+const candidateModels = [
+  { key: 'lfm2', label: 'LFM2.5-350M', id: 'onnx-community/LFM2.5-350M-ONNX' },
+  { key: 'gemma3', label: 'Gemma 3-270M-it', id: 'onnx-community/gemma-3-270m-it-ONNX' },
+];
 try {
 const context = await browser.newContext({ viewport: { width: 1180, height: 820 } });
 const page = await context.newPage();
@@ -19,7 +23,9 @@ const environment = await page.locator('#environment').textContent();
 let downloads = 0;
 await page.route('https://huggingface.co/**', async route => {
   downloads++;
-  const body = route.request().url().endsWith('.onnx') ? Buffer.alloc(12 * 1024 * 1024 + 123, 7) : Buffer.from('fixture');
+  const url = route.request().url();
+  const weight = url.endsWith('.onnx_data') || (url.includes('/Qwen3-0.6B-ONNX/') && url.endsWith('.onnx'));
+  const body = weight ? Buffer.alloc(12 * 1024 * 1024 + 123, 7) : Buffer.from('fixture');
   await route.fulfill({ body, headers: { 'access-control-allow-origin': '*', 'content-length': String(body.length) } });
 });
 await page.getByLabel('4bit形式', { exact: true }).selectOption('q4');
@@ -47,7 +53,10 @@ const stored = await page.evaluate(async () => {
 });
 if (JSON.stringify(stored.sizes) !== JSON.stringify([4194304, 4194304, 4194304, 123])) throw new Error(`Bad chunk sizes: ${JSON.stringify(stored)}`);
 // Simulate an old install that saved q4 before preference persistence existed.
-await page.evaluate(() => localStorage.removeItem('bosai-ai-selected-dtype'));
+await page.evaluate(() => {
+  localStorage.removeItem('bosai-ai-selected-dtype');
+  localStorage.removeItem('bosai-ai-selected-dtype:qwen3');
+});
 await page.reload();
 await page.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4）'));
 await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
@@ -61,12 +70,54 @@ await page.getByRole('button', { name: 'ダウンロードして保存', exact: 
 await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
 if (downloads !== 5) throw new Error('Offline reuse tried to download fixtures');
 await context.setOffline(false);
+// Save the actual two candidate file layouts, with dummy external weights.
+let expectedDownloads = 5;
+for (const model of candidateModels) {
+  await page.getByLabel('比較モデル', { exact: true }).selectOption(model.key);
+  await page.getByLabel('4bit形式', { exact: true }).selectOption('q4f16');
+  await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+  expectedDownloads += 6;
+  if (downloads !== expectedDownloads) throw new Error(`${model.key}: wrong download count`);
+  await page.reload();
+  await page.waitForFunction(label => document.querySelector('#storage').textContent.includes(label) && document.querySelector('#storage').textContent.includes('6/6ファイル保存済み'), model.label);
+  if (await page.locator('#model').inputValue() !== model.key) throw new Error('Selected model was lost');
+  const external = await page.evaluate(async id => {
+    const result = req => new Promise((resolve, reject) => { req.onsuccess = () => resolve(req.result); req.onerror = () => reject(req.error); });
+    const db = await result(indexedDB.open('bosai-ai-model-chunks-v1', 1));
+    const files = await result(db.transaction('files').objectStore('files').getAll());
+    const weight = files.find(file => file.url.includes(`/${id}/`) && file.url.endsWith('.onnx_data'));
+    const sizes = [];
+    for (let i = 0; i < weight.chunks; i++) {
+      const chunk = await result(db.transaction('chunks').objectStore('chunks').get([weight.url, weight.generation, i]));
+      if (chunk.some(byte => byte !== 7)) throw new Error('Corrupted external weight chunk');
+      sizes.push(chunk.byteLength);
+    }
+    db.close(); return sizes;
+  }, model.id);
+  if (JSON.stringify(external) !== JSON.stringify([4194304, 4194304, 4194304, 123])) throw new Error('Wrong external weight layout');
+  const [diagnostic] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: '検証結果をJSON保存', exact: true }).click()]);
+  const exported = JSON.parse(readFileSync(await diagnostic.path(), 'utf8'));
+  if (exported.model !== model.id || exported.modelKey !== model.key || exported.modelCatalog.length !== 3) throw new Error('Wrong model in diagnostic JSON');
+  if (!exported.logs.some(log => log.data?.model === model.id && log.data?.modelKey === model.key)) throw new Error('Logs lost model attribution');
+  await context.setOffline(true);
+  await page.reload();
+  await page.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4f16）'));
+  await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+  if (downloads !== expectedDownloads) throw new Error('Candidate offline reuse downloaded again');
+  await context.setOffline(false);
+}
+// Switching back must retain Qwen's old format and all its saved files.
+await page.getByLabel('比較モデル', { exact: true }).selectOption('qwen3');
+await page.waitForFunction(() => document.querySelector('#storage').textContent.includes('Qwen3-0.6B') && document.querySelector('#storage').textContent.includes('5/5ファイル保存済み'));
+if (await page.locator('#dtype').inputValue() !== 'q4') throw new Error('Qwen dtype was overwritten by a candidate');
 // Record interrupted initialization and verify recovery after a reload.
 await page.evaluate(() => localStorage.setItem('bosai-ai-active-stage', JSON.stringify({ stage: 'モデル初期化（WebGPU）', dtype: 'q4f16' })));
 await page.reload();
 await page.getByText('前回は「モデル初期化（WebGPU）」', { exact: false }).waitFor();
-await page.getByRole('button', { name: 'モデル保存を削除', exact: true }).click();
-await page.waitForFunction(() => document.querySelector('#storage').textContent.includes('0ファイル'));
+await page.getByRole('button', { name: '選択モデルの保存を削除', exact: true }).click();
+await page.waitForFunction(() => document.querySelector('#storage').textContent.includes('12ファイル') && document.querySelector('#storage').textContent.includes('0/5ファイル保存済み'));
 await context.setOffline(true);
 await page.reload();
 await page.getByRole('heading', { name: '端末内AIを、確かめる。' }).waitFor();
@@ -147,7 +198,7 @@ try {
   const legacy = await newPage.evaluate(async () => (await (await caches.open('bosai-ai-model-v1')).match('https://example.org/legacy-sentinel')).text());
   if (legacy !== 'keep-legacy') throw new Error('App update deleted legacy models');
 } finally { unlinkSync(updateScript); await updateContext.close(); }
-const result = { browser: `${process.platform} Playwright Chromium (not iPad Safari)`, environment, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, offlineFixtureReuse: true, savedDtypeRestored: true, savedFormatWithoutPreferenceRestored: true, interruptedStageRecovery: true, workerImportFailureAndRetry: true, safeAppUpdatePreservesWorkersAndModels: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
+const result = { browser: `${process.platform} Playwright Chromium (not iPad Safari)`, environment, candidateModelFixtures: candidateModels.map(model => model.key), externalWeightChunksVerified: true, selectedModelAndDtypeRestored: true, modelAttributedDiagnostics: true, selectedDeletionPreservesOtherModels: true, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, offlineFixtureReuse: true, savedDtypeRestored: true, savedFormatWithoutPreferenceRestored: true, interruptedStageRecovery: true, workerImportFailureAndRetry: true, safeAppUpdatePreservesWorkersAndModels: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
 writeFileSync('test-results/browser-check.json', JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));
 if (errors.length) process.exitCode = 1;

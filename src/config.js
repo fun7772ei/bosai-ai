@@ -1,16 +1,38 @@
-export const MODEL_ID = 'onnx-community/Qwen3-0.6B-ONNX';
-export const REVISION = '1e0a4a196ecabdf9a879664110574563d3f372d3';
-export const MODEL_CACHE = 'bosai-ai-model-v1';
-export function modelFiles(dtype) {
-  if (!['q4f16', 'q4'].includes(dtype)) throw new Error('Unsupported dtype');
-  return ['tokenizer_config.json', 'tokenizer.json', 'config.json', 'generation_config.json', `onnx/model_${dtype}.onnx`];
+export const DEFAULT_MODEL = 'qwen3';
+export const MODELS = Object.freeze([
+  { key: 'lfm2', label: 'LFM2.5-350M', id: 'onnx-community/LFM2.5-350M-ONNX', revision: '7dd4999565b0342c381ba90a3d8fc467d6df19c4', externalData: true, weightBytes: { q4f16: 255148587, q4: 293813394 } },
+  { key: 'gemma3', label: 'Gemma 3-270M-it', id: 'onnx-community/gemma-3-270m-it-ONNX', revision: '2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0', externalData: true, weightBytes: { q4f16: 272956893, q4: 323175770 } },
+  { key: 'qwen3', label: 'Qwen3-0.6B', id: 'onnx-community/Qwen3-0.6B-ONNX', revision: '1e0a4a196ecabdf9a879664110574563d3f372d3', externalData: false, weightBytes: { q4f16: 569789750, q4: 919096585 } },
+]);
+export function getModel(key = DEFAULT_MODEL) {
+  const model = MODELS.find(item => item.key === key);
+  if (!model) throw new Error('Unsupported model');
+  return model;
 }
-export const modelFileUrl = file => `https://huggingface.co/${MODEL_ID}/resolve/${REVISION}/${file}`;
+// Retain default-model exports and URLs for existing Qwen3 installations.
+export const MODEL_ID = getModel().id;
+export const REVISION = getModel().revision;
+export const MODEL_CACHE = 'bosai-ai-model-v1';
+export function modelFiles(dtype, modelKey = DEFAULT_MODEL) {
+  if (!['q4f16', 'q4'].includes(dtype)) throw new Error('Unsupported dtype');
+  const model = getModel(modelKey);
+  const files = ['tokenizer_config.json', 'tokenizer.json', 'config.json', 'generation_config.json', `onnx/model_${dtype}.onnx`];
+  if (model.externalData) files.push(`onnx/model_${dtype}.onnx_data`);
+  return files;
+}
+export function modelFileUrl(file, modelKey = DEFAULT_MODEL) {
+  const model = getModel(modelKey);
+  return `https://huggingface.co/${model.id}/resolve/${model.revision}/${file}`;
+}
 // Transformers.js 4.3.1 tokenizer discovery requests main metadata even with revision set.
 // Canonicalize those requests and their cache lookups to the pinned revision.
 export function pinnedModelUrl(value) {
   const url = value instanceof Request ? value.url : String(value);
-  return url.replace(`https://huggingface.co/${MODEL_ID}/resolve/main/`, `https://huggingface.co/${MODEL_ID}/resolve/${REVISION}/`);
+  for (const model of MODELS) {
+    const root = `https://huggingface.co/${model.id}/resolve/`;
+    if (url.startsWith(root + 'main/')) return root + model.revision + url.slice((root + 'main').length);
+  }
+  return url;
 }
 export function metrics(tokens, started, first, ended) {
   return { tokens, elapsedMs: ended - started, ttftMs: first === null ? null : first - started,

@@ -1,33 +1,54 @@
 import './style.css';
-import { MODEL_ID, REVISION, MODEL_CACHE } from './config.js';
+import { MODELS, DEFAULT_MODEL, getModel } from './config.js';
+import { readSelection, readDtype, saveSelection } from './model-preferences.js';
 import { modelStorageStatus, selectStoredDtype, openModelStore } from './model-storage.js';
 import { createWorkerClient } from './worker-client.js';
 import { workerError } from './worker-errors.js';
 const $ = id => document.getElementById(id);
 $('build').textContent = `アプリ版: ${__APP_BUILD__}`;
+$('model').replaceChildren(...MODELS.map(model => new Option(model.label, model.key)));
+$('model').value = DEFAULT_MODEL;
 const logs = [], runs = [], files = new Map();
-let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype;
+let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype, loadedModel, loadMs;
 const CHECKPOINT = 'bosai-ai-active-stage';
-const DTYPE_KEY = 'bosai-ai-selected-dtype';
 try {
-  const savedDtype = localStorage.getItem(DTYPE_KEY);
-  if (['q4f16', 'q4'].includes(savedDtype)) $('dtype').value = savedDtype;
+  const saved = readSelection(localStorage);
+  $('model').value = saved.modelKey; $('dtype').value = saved.dtype;
 } catch {}
-function saveDtype() {
-  try { localStorage.setItem(DTYPE_KEY, $('dtype').value); } catch {}
+const currentModel = () => getModel($('model').value);
+function selection() {
+  const model = currentModel();
+  return { modelKey: model.key, model: model.id, revision: model.revision, dtype: $('dtype').value };
 }
-$('dtype').onchange = () => { saveDtype(); inspect(); };
+function modelInfo() {
+  const model = currentModel();
+  $('modelInfo').textContent = `${model.label}: ${$('dtype').value}の重みは約${Math.round(model.weightBytes[$('dtype').value] / 1000000)} MB（Tokenizer等は別）。必要メモリはこの値より大きくなります。${model.key === DEFAULT_MODEL ? 'iPadで初期化中のクラッシュ報告があります。' : 'iPadの保存・推論成功は未確認です。'}`;
+}
+function saveDtype() {
+  try { saveSelection(localStorage, { modelKey: currentModel().key, dtype: $('dtype').value }); } catch {}
+}
+$('dtype').onchange = () => { saveDtype(); modelInfo(); inspect(); };
+$('model').onchange = () => {
+  $('dtype').value = 'q4f16';
+  try { $('dtype').value = readDtype(localStorage, currentModel().key); } catch {}
+  saveDtype(); modelInfo(); files.clear(); $('progress').replaceChildren();
+  for (const id of ['loadTime', 'ttft', 'speed', 'count']) $(id).textContent = '—';
+  $('output').textContent = '生成結果がここに表示されます。';
+  $('status').textContent = `${currentModel().label}を選択しました。保存状態を確認中…`;
+  inspect(true);
+};
+modelInfo();
 let previousAttempt;
 try { previousAttempt = JSON.parse(localStorage.getItem(CHECKPOINT) || 'null'); } catch {}
 if (previousAttempt) $('recovery').textContent = `前回は「${previousAttempt.stage}」の完了前にページが終了・再読み込みされました。原因はまだ特定できません。`;
 function checkpoint(stage) {
   try {
-    if (stage) localStorage.setItem(CHECKPOINT, JSON.stringify({ stage, dtype: $('dtype').value, time: new Date().toISOString() }));
+    if (stage) localStorage.setItem(CHECKPOINT, JSON.stringify({ stage, ...selection(), time: new Date().toISOString() }));
     else localStorage.removeItem(CHECKPOINT);
   } catch {}
 }
 const log = (message, data) => {
-  logs.push({ time: new Date().toISOString(), message, data });
+  logs.push({ time: new Date().toISOString(), message, data: { ...selection(), ...data } });
   if (logs.length > 400) logs.shift();
   $('logs').textContent = logs.map(x => `${x.time} ${x.message}${x.data ? ' ' + JSON.stringify(x.data) : ''}`).join('\n');
   $('logs').scrollTop = $('logs').scrollHeight;
@@ -37,6 +58,7 @@ function controls() {
   $('download').disabled = busy || ready || $('cachedOnly').checked;
   $('repeat').disabled = busy || !ready; $('stop').disabled = !busy || !ready;
   $('dtype').disabled = busy || ready; $('cachedOnly').disabled = busy || ready;
+  $('model').disabled = busy || ready;
   $('clear').disabled = busy || ready; $('reset').disabled = !worker;
 }
 function reset() {
@@ -82,12 +104,12 @@ function makeWorker(download = false) {
         reset(); $('status').textContent = 'ダウンロード・保存完了。いったんページを再読み込みし、「モデルを読み込む」を押してください。';
         log('ダウンロード・保存完了'); await inspect(); break;
       case 'cache-error': log('端末保存失敗（オフライン再利用不可の可能性）', data); break;
-      case 'ready': checkpoint(null); ready = true; busy = false; loadedDtype = data.dtype; $('status').textContent = '生成可能'; $('loadTime').textContent = `${(data.loadMs / 1000).toFixed(2)} 秒`; log('モデル準備完了', data); controls(); await inspect(); break;
+      case 'ready': checkpoint(null); ready = true; busy = false; loadedDtype = data.dtype; loadedModel = getModel(data.modelKey); loadMs = data.loadMs; $('status').textContent = '生成可能'; $('loadTime').textContent = `${(data.loadMs / 1000).toFixed(2)} 秒`; log('モデル準備完了', data); controls(); await inspect(); break;
       case 'update': $('output').textContent = data.text; updateMetrics(data); break;
       case 'complete':
         checkpoint(null);
         $('output').textContent = data.text; updateMetrics(data); busy = false;
-        runs.push({ ...data, prompt: activePrompt, dtype: loadedDtype, time: new Date().toISOString() });
+        runs.push({ ...data, modelKey: loadedModel.key, model: loadedModel.id, revision: loadedModel.revision, loadMs, prompt: activePrompt, dtype: loadedDtype, time: new Date().toISOString() });
         if (runs.length > 100) runs.shift();
         $('status').textContent = '生成終了（停止要求時は途中結果）'; log('生成終了', data); controls();
         if (repeats > 0 && --repeats > 0) setTimeout(generate, 250); break;
@@ -106,22 +128,26 @@ function makeWorker(download = false) {
 }
 async function inspect(restoreSelection = false) {
   let cache;
+  const model = currentModel();
   try {
     cache = await openModelStore();
     const keys = await cache.keys();
     const estimate = await navigator.storage?.estimate?.();
     const persisted = await navigator.storage?.persisted?.();
     const weights = keys.filter(key => /\.onnx(?:_data)?$/.test(key.url));
-    const statuses = await Promise.all(['q4f16', 'q4'].map(dtype => modelStorageStatus(cache, dtype)));
+    const statuses = await Promise.all(['q4f16', 'q4'].map(dtype => modelStorageStatus(cache, dtype, model.key)));
+    if (currentModel().key !== model.key) return;
     if (restoreSelection && !busy && !ready) {
       const dtype = selectStoredDtype($('dtype').value, statuses);
       if (dtype !== $('dtype').value) log('保存済み形式を復元', { dtype });
-      $('dtype').value = dtype; saveDtype();
+      $('dtype').value = dtype; saveDtype(); modelInfo();
     }
     const selected = statuses.find(item => item.dtype === $('dtype').value);
-    const weight = selected.details.find(item => item.file.endsWith('.onnx'));
-    $('storage').textContent = `モデル関連の保存: ${keys.length}ファイル（重み${weights.length}）。選択中の${selected.dtype}: ${selected.present.length}/5ファイル保存済み${selected.complete ? '（必要ファイルあり）' : `。不足: ${selected.missing.join(', ')}`}。モデル本体: ${weight ? `${weight.backend === 'indexeddb-chunks' ? `IndexedDB・${weight.chunks}分割` : '旧Cache API'}${weight.bytes ? ` / ${(weight.bytes / 1048576).toFixed(1)} MB` : ''}` : '未保存'}。オリジン使用量: ${estimate?.usage ? (estimate.usage / 1048576).toFixed(1) + ' MB' : '不明'} / 容量 ${estimate?.quota ? (estimate.quota / 1048576).toFixed(0) + ' MB' : '不明'}。永続保存: ${persisted ? '許可' : '未許可'}。`;
-    if (restoreSelection && !busy && !ready && selected.complete) $('status').textContent = `保存済みモデル（${selected.dtype}）が見つかりました。「モデルを読み込む」で推論を準備できます。`;
+    const modelWeights = selected.details.filter(item => /\.onnx(?:_data)?$/.test(item.file));
+    const weight = modelWeights.find(item => item.file.endsWith('.onnx_data')) || modelWeights[0];
+    const totalWeightBytes = modelWeights.reduce((sum, item) => sum + (item.bytes || 0), 0);
+    $('storage').textContent = `モデル関連の保存: ${keys.length}ファイル（重み${weights.length}）。${model.label} / 選択中の${selected.dtype}: ${selected.present.length}/${selected.required}ファイル保存済み${selected.complete ? '（必要ファイルあり）' : `。不足: ${selected.missing.join(', ')}`}。モデル本体: ${weight ? `${weight.backend === 'indexeddb-chunks' ? `IndexedDB・${weight.chunks}分割` : '旧Cache API'}${totalWeightBytes ? ` / 合計${(totalWeightBytes / 1048576).toFixed(1)} MiB` : ''}` : '未保存'}。オリジン使用量: ${estimate?.usage ? (estimate.usage / 1048576).toFixed(1) + ' MiB' : '不明'} / 容量 ${estimate?.quota ? (estimate.quota / 1048576).toFixed(0) + ' MiB' : '不明'}。永続保存: ${persisted ? '許可' : '未許可'}。`;
+    if (restoreSelection && !busy && !ready && selected.complete) $('status').textContent = `保存済みモデル（${selected.dtype}）が見つかりました。${model.label}の「モデルを読み込む」で推論を準備できます。`;
     log('保存状態', { selectedDtype: selected.dtype, statuses, urls: keys.map(key => key.url), estimate, persisted });
   } catch (error) { $('storage').textContent = `保存確認エラー: ${error.message}`; log('保存エラー', { message: error.message }); }
   finally { cache?.close(); }
@@ -133,7 +159,7 @@ $('download').onclick = () => {
   log('ダウンロード開始', { dtype: $('dtype').value });
   if (!makeWorker(true)) return;
   controls();
-  worker.postMessage({ dtype: $('dtype').value });
+  worker.postMessage({ modelKey: currentModel().key, dtype: $('dtype').value });
 };
 $('cachedOnly').onchange = controls;
 $('load').onclick = async () => {
@@ -141,7 +167,7 @@ $('load').onclick = async () => {
   let cache;
   try {
     cache = await openModelStore();
-    const { missing } = await modelStorageStatus(cache, $('dtype').value);
+    const { missing } = await modelStorageStatus(cache, $('dtype').value, currentModel().key);
     if (missing.length) throw new Error(`モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: ${missing.join(', ')}`);
   } catch (error) { busy = false; controls(); $('status').textContent = `エラー: ${error.message}`; log('保存確認エラー', { message: error.message }); return; }
   finally { cache?.close(); }
@@ -150,7 +176,7 @@ $('load').onclick = async () => {
   log('読み込み開始', { dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
   if (!makeWorker()) return;
   controls();
-  worker.postMessage({ type: 'load', dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
+  worker.postMessage({ type: 'load', modelKey: currentModel().key, dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
 };
 $('generate').onclick = generate;
 $('repeat').onclick = () => { if (!$('prompt').value.trim()) return; repeats = 10; generate(); };
@@ -159,13 +185,20 @@ $('reset').onclick = () => { reset(); log('Workerを終了'); };
 $('inspect').onclick = () => inspect();
 $('persist').onclick = async () => { try { log('永続保存リクエスト', { allowed: await navigator.storage?.persist?.() }); await inspect(); } catch (error) { log('永続保存エラー', { message: error.message }); } };
 $('clear').onclick = async () => {
+  const model = currentModel();
+  busy = true; controls();
   let cache;
-  try { cache = await openModelStore(); await cache.clear(); log('モデル保存を削除'); await inspect(); }
+  try {
+    cache = await openModelStore(); const result = await cache.clear(model.key);
+    log(result?.legacyWarning ? 'IndexedDB保存を削除・旧Cache APIの削除は未完了' : '選択モデルの保存を削除', result);
+    $('status').textContent = result?.legacyWarning ? `${model.label}: 旧Cache APIの削除が未完了です。` : `${model.label}の保存を削除しました。`;
+    await inspect();
+  }
   catch (error) { log('削除エラー', { message: error.message }); }
-  finally { cache?.close(); }
+  finally { cache?.close(); busy = false; controls(); }
 };
 $('export').onclick = () => {
-  const result = { appBuild: __APP_BUILD__, model: MODEL_ID, revision: REVISION, transformers: '4.3.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
+  const result = { appBuild: __APP_BUILD__, ...selection(), modelCatalog: MODELS, transformers: '4.3.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
   const url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = 'bosai-ai-phase1.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 };

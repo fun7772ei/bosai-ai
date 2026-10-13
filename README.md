@@ -1,6 +1,6 @@
 # bosai-ai — Phase 1
 
-仕様書v1.1の最初の段階として、Qwen3-0.6Bの単独推論を検証するページ。iPad第10世代・iPadOS 26以降のSafariを優先する。**iPad実機からモデル読み込み時のSafari終了／ページ再読み込みが報告された。修正版の実機動作は未確認。** 辞書未統合のため、このページの回答を防災判断には使わない。
+仕様書v1.1の最初の段階として、端末内LLMの単独推論を検証するページ。Qwen3-0.6Bに加え、ユーザーの指定でLFM2.5-350MとGemma 3-270M-itを比較する。iPad第10世代・iPadOS 26以降のSafariを優先する。**Qwen3ではモデル読み込み時のSafari終了／ページ再読み込みが報告された。両候補のiPad動作は未確認。** 辞書未統合のため、このページの回答を防災判断には使わない。
 
 ## 起動
 
@@ -9,6 +9,9 @@ Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作�
 公開URL: https://fun7772ei.github.io/bosai-ai/ 。GitHub PagesのSourceは **GitHub Actions** に設定済み。mainへpushすると、`.github/workflows/pages.yml`でテスト・ビルド・公開する。
 
 ## 実装
+
+- 「比較モデル」でLFM2.5-350M／Gemma 3-270M-it／Qwen3-0.6Bを選べる。Qwenの既存保存・形式設定を維持し、新モデルの取得は明示操作。LFM→Gemmaの順に比較する。モデルを変える前に「実行をリセット」する。
+- LFMとGemmaはONNXグラフ＋外部重み `.onnx_data` を含む6ファイルを分割保存する。Qwenは従来の5ファイル。モデル別の固定revision・形式設定・保存状態・診断を使い、選択モデルを削除してもほかのモデルは残る。[比較モデル・手順・検証限界](docs/phase1-model-comparison.md) を参照。
 
 - Transformers.js 4.3.1とONNX Runtimeはロックファイルで固定。
 - `onnx-community/Qwen3-0.6B-ONNX`のrevision `1e0a4a196ecabdf9a879664110574563d3f372d3`を固定。第一候補q4f16、比較用q4。どちらも4bit重み。q4f16はshader-f16が必要。
@@ -26,7 +29,7 @@ Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作�
 
 `npm test`、`npm run build`。ブラウザテストは `npx playwright install chromium`、本番preview起動中に `node scripts/browser-check.mjs`。実モデルの取得を伴う任意テストは `node scripts/inference-check.mjs`（WebGPU利用可能な環境が必要）。
 
-今回の結果と限界は [docs/phase1-results.md](docs/phase1-results.md)、iPadでの手順は [docs/ipad-verification.md](docs/ipad-verification.md) に記録。デスクトップChromiumの結果をSafari実機の確認として扱わない。
+今回の結果と限界は [docs/phase1-results.md](docs/phase1-results.md)、iPadでの手順は [docs/ipad-verification.md](docs/ipad-verification.md) に記録。実モデルの比較スクリプトは `node scripts/inference-check.mjs lfm2 q4f16` または `node scripts/inference-check.mjs gemma3 q4f16`。q4比較時は最後の引数をq4とするが、省メモリになる保証はない。成果物をモデル・形式別に保存する。デスクトップChromiumの結果をSafari実機の確認として扱わない。
 
 Cloudでの追加修正と検証は [docs/phase1-cloud-review.md](docs/phase1-cloud-review.md)。Workerの起動待ち・詳細ログ、分割キーとサイズの検証、再保存失敗時の旧データ保持を追加。旧IndexedDB形式とCache API保存を読み続ける。アプリ更新は使用中のタブを強制切替せず、旧タブを閉じた後に有効になる。保存データやSafariのサイトデータを消す必要はない。画面の「アプリ版」と診断JSONの `appBuild` で使用版を識別する。
 

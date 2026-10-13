@@ -10,7 +10,7 @@ self.onmessage = async ({ data }) => {
     await downloadModel(cache, data.dtype, progress => {
       if (progress.status === 'initiate') stage = `ダウンロード・保存: ${progress.file}`;
       self.postMessage({ type: 'progress', progress });
-    });
+    }, fetch, data.modelKey);
     self.postMessage({ type: 'downloaded' });
   } catch (error) { self.postMessage({ type: 'error', ...workerError(error, { operation: 'download', stage }) }); }
   finally { cache?.close(); }

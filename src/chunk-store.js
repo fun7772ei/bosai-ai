@@ -72,6 +72,7 @@ export async function openChunkStore(name = MODEL_DB, chunkBytes = CHUNK_BYTES) 
   }
   return {
     close: () => db.close(),
+    async delete(url) { await exclusive(lock, () => write(db, ['files', 'chunks'], tx => { tx.objectStore('files').delete(String(url)); tx.objectStore('chunks').delete(range(String(url))); })); },
     async keys() { return (await requestValue(db.transaction('files').objectStore('files').getAll())).map(file => new Request(file.url)); },
     async clear() { await exclusive(lock, () => write(db, ['files', 'chunks'], tx => { tx.objectStore('files').clear(); tx.objectStore('chunks').clear(); })); },
     async match(url) {

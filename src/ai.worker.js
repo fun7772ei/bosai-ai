@@ -1,5 +1,5 @@
 import { AutoTokenizer, AutoModelForCausalLM, TextStreamer, InterruptableStoppingCriteria, env } from '@huggingface/transformers';
-import { MODEL_ID, REVISION, MODEL_CACHE, metrics, pinnedModelUrl } from './config.js';
+import { getModel, MODEL_CACHE, metrics, pinnedModelUrl } from './config.js';
 import { openModelStore } from './model-storage.js';
 import { workerError } from './worker-errors.js';
 env.allowLocalModels = false;
@@ -13,16 +13,20 @@ env.backends.onnx.wasm.wasmPaths = {
   mjs: new URL('ort-wasm-simd-threaded.asyncify.mjs', runtime).href,
   wasm: new URL('ort-wasm-simd-threaded.asyncify.wasm', runtime).href,
 };
-let tokenizer, model, busy = false;
+let tokenizer, model, activeModel, busy = false;
 const stopping = new InterruptableStoppingCriteria();
 let stage;
-const send = (type, data = {}) => { if (type === 'stage') stage = data.stage; self.postMessage({ type, ...data }); };
+const send = (type, data = {}) => {
+  if (type === 'stage') stage = data.stage;
+  self.postMessage({ type, modelKey: activeModel?.key, model: activeModel?.id, revision: activeModel?.revision, ...data });
+};
 self.onmessage = async ({ data }) => {
   if (data.type === 'stop') { stopping.interrupt(); return; }
   if (busy) return;
   busy = true;
   try {
     if (data.type === 'load') {
+      activeModel = getModel(data.modelKey);
       const start = performance.now();
       send('stage', { stage: 'WebGPUの確認' });
       if (!navigator.gpu) throw new Error('WebGPUが利用できません。Safari 26以降・HTTPSで確認してください。');
@@ -46,7 +50,7 @@ self.onmessage = async ({ data }) => {
         return fetch(url, options);
       };
       const progressTimes = new Map();
-      const options = { revision: REVISION, progress_callback: progress => {
+      const options = { revision: activeModel.revision, progress_callback: progress => {
         const key = progress.file || progress.name;
         const now = performance.now();
         const frequent = progress.status === 'progress' || progress.status === 'progress_total';
@@ -54,9 +58,9 @@ self.onmessage = async ({ data }) => {
         progressTimes.set(key, now); send('progress', { progress });
       } };
       send('stage', { stage: 'モデル初期化（WebGPU）' });
-      model = await AutoModelForCausalLM.from_pretrained(MODEL_ID, { ...options, device: 'webgpu', dtype: data.dtype });
+      model = await AutoModelForCausalLM.from_pretrained(activeModel.id, { ...options, device: 'webgpu', dtype: data.dtype });
       send('stage', { stage: 'Tokenizerの読み込み' });
-      tokenizer = await AutoTokenizer.from_pretrained(MODEL_ID, options);
+      tokenizer = await AutoTokenizer.from_pretrained(activeModel.id, options);
       // Do not start inference during loading. First-token shader compilation
       // is measured when the user explicitly chooses to generate.
       send('ready', { loadMs: performance.now() - start, dtype: data.dtype });
