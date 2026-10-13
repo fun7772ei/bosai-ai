@@ -1,0 +1,126 @@
+{
+  "model": "onnx-community/Qwen3-0.6B-ONNX",
+  "revision": "1e0a4a196ecabdf9a879664110574563d3f372d3",
+  "transformers": "4.3.1",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+  "secureContext": true,
+  "generatedAt": "2026-10-13T15:28:19.673Z",
+  "previousAttempt": null,
+  "runs": [],
+  "logs": [
+    {
+      "time": "2026-10-13T15:25:58.588Z",
+      "message": "環境",
+      "data": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+        "secureContext": true,
+        "webgpu": true,
+        "shaderF16": true,
+        "limits": {
+          "maxBufferSize": 715827880,
+          "maxStorageBufferBindingSize": 715827880
+        }
+      }
+    },
+    {
+      "time": "2026-10-13T15:25:58.624Z",
+      "message": "保存状態",
+      "data": {
+        "urls": [
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json"
+        ],
+        "estimate": {
+          "quota": 36077725287,
+          "usage": 67259585
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T15:25:58.625Z",
+      "message": "アプリ本体のオフライン保存完了"
+    },
+    {
+      "time": "2026-10-13T15:25:59.865Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T15:26:30.149Z",
+      "message": "ダウンロード開始",
+      "data": {
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T15:26:30.167Z",
+      "message": "モデルファイル",
+      "data": {
+        "file": "tokenizer_config.json",
+        "status": "done",
+        "progress": 100,
+        "reused": true
+      }
+    },
+    {
+      "time": "2026-10-13T15:26:30.183Z",
+      "message": "モデルファイル",
+      "data": {
+        "file": "tokenizer.json",
+        "status": "done",
+        "progress": 100,
+        "reused": true
+      }
+    },
+    {
+      "time": "2026-10-13T15:26:30.185Z",
+      "message": "モデルファイル",
+      "data": {
+        "file": "config.json",
+        "status": "done",
+        "progress": 100,
+        "reused": true
+      }
+    },
+    {
+      "time": "2026-10-13T15:26:30.188Z",
+      "message": "モデルファイル",
+      "data": {
+        "file": "generation_config.json",
+        "status": "done",
+        "progress": 100,
+        "reused": true
+      }
+    },
+    {
+      "time": "2026-10-13T15:26:30.189Z",
+      "message": "モデルファイル",
+      "data": {
+        "file": "onnx/model_q4f16.onnx",
+        "status": "initiate"
+      }
+    },
+    {
+      "time": "2026-10-13T15:27:11.500Z",
+      "message": "実行エラー",
+      "data": {
+        "type": "error",
+        "operation": "download",
+        "message": "Internal error"
+      }
+    },
+    {
+      "time": "2026-10-13T15:28:11.235Z",
+      "message": "保存確認エラー",
+      "data": {
+        "message": "Internal error"
+      }
+    }
+  ],
+  "deviceVerification": "User must record actual device; no iPad verification claimed"
+}
