@@ -1,5 +1,6 @@
 import { AutoTokenizer, AutoModelForCausalLM, TextStreamer, InterruptableStoppingCriteria, env } from '@huggingface/transformers';
 import { MODEL_ID, REVISION, MODEL_CACHE, metrics, pinnedModelUrl } from './config.js';
+import { openModelStore } from './model-storage.js';
 env.allowLocalModels = false;
 env.cacheKey = MODEL_CACHE;
 env.backends.onnx.wasm.numThreads = 1;
@@ -26,7 +27,7 @@ self.onmessage = async ({ data }) => {
       const adapter = await navigator.gpu.requestAdapter();
       if (!adapter) throw new Error('WebGPUアダプターを取得できません。');
       if (data.dtype === 'q4f16' && !adapter.features.has('shader-f16')) throw new Error('shader-f16非対応です。q4を選んで比較してください。');
-      const cache = await caches.open(MODEL_CACHE);
+      const cache = await openModelStore();
       env.useCustomCache = true;
       env.customCache = {
         match: key => cache.match(pinnedModelUrl(key), { ignoreVary: true }),

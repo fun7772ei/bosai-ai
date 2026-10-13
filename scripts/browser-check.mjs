@@ -18,11 +18,36 @@ const environment = await page.locator('#environment').textContent();
 let downloads = 0;
 await page.route('https://huggingface.co/**', async route => {
   downloads++;
-  await route.fulfill({ body: 'fixture', headers: { 'access-control-allow-origin': '*', 'content-length': '7' } });
+  const body = route.request().url().endsWith('.onnx') ? Buffer.alloc(12 * 1024 * 1024 + 123, 7) : Buffer.from('fixture');
+  await route.fulfill({ body, headers: { 'access-control-allow-origin': '*', 'content-length': String(body.length) } });
 });
+await page.getByLabel('4bit形式', { exact: true }).selectOption('q4');
 await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
 await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
 if (downloads !== 5) throw new Error(`Expected 5 fixture downloads; got ${downloads}`);
+await page.reload();
+await page.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4）'));
+if (await page.getByLabel('4bit形式', { exact: true }).inputValue() !== 'q4') throw new Error('Selected format was lost after reload');
+await page.getByText('選択中のq4: 5/5ファイル保存済み', { exact: false }).waitFor();
+await page.getByText('モデル本体: IndexedDB・4分割', { exact: false }).waitFor();
+const stored = await page.evaluate(async () => {
+  const result = req => new Promise((resolve, reject) => { req.onsuccess = () => resolve(req.result); req.onerror = () => reject(req.error); });
+  const db = await result(indexedDB.open('bosai-ai-model-chunks-v1', 1));
+  const files = await result(db.transaction('files').objectStore('files').getAll());
+  const weight = files.find(file => file.url.endsWith('.onnx'));
+  const sizes = [];
+  for (let i = 0; i < weight.chunks; i++) {
+    const chunk = await result(db.transaction('chunks').objectStore('chunks').get([weight.url, i]));
+    if (chunk.some(byte => byte !== 7)) throw new Error('Corrupted chunk');
+    sizes.push(chunk.byteLength);
+  }
+  db.close(); return { bytes: weight.bytes, sizes };
+});
+if (JSON.stringify(stored.sizes) !== JSON.stringify([4194304, 4194304, 4194304, 123])) throw new Error(`Bad chunk sizes: ${JSON.stringify(stored)}`);
+// Simulate an old install that saved q4 before preference persistence existed.
+await page.evaluate(() => localStorage.removeItem('bosai-ai-selected-dtype'));
+await page.reload();
+await page.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4）'));
 await page.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
 await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
 if (downloads !== 5) throw new Error('Saved files were downloaded again');
@@ -49,7 +74,7 @@ if (overflow) throw new Error('Horizontal overflow');
 await page.setViewportSize({ width: 1180, height: 820 });
 mkdirSync('test-results', { recursive: true });
 await page.screenshot({ path: 'test-results/phase1.png', fullPage: true });
-const result = { browser: 'Windows Playwright Chromium (not iPad Safari)', environment, fixtureDownloadAndReuse: true, interruptedStageRecovery: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
+const result = { browser: 'Windows Playwright Chromium (not iPad Safari)', environment, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, savedDtypeRestored: true, legacyCacheDtypeRestored: true, interruptedStageRecovery: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
 writeFileSync('test-results/browser-check.json', JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));
 await browser.close();

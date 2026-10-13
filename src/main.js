@@ -1,9 +1,19 @@
 import './style.css';
-import { MODEL_ID, REVISION, MODEL_CACHE, modelFiles, modelFileUrl } from './config.js';
+import { MODEL_ID, REVISION, MODEL_CACHE } from './config.js';
+import { modelStorageStatus, selectStoredDtype, openModelStore } from './model-storage.js';
 const $ = id => document.getElementById(id);
 const logs = [], runs = [], files = new Map();
 let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype;
 const CHECKPOINT = 'bosai-ai-active-stage';
+const DTYPE_KEY = 'bosai-ai-selected-dtype';
+try {
+  const savedDtype = localStorage.getItem(DTYPE_KEY);
+  if (['q4f16', 'q4'].includes(savedDtype)) $('dtype').value = savedDtype;
+} catch {}
+function saveDtype() {
+  try { localStorage.setItem(DTYPE_KEY, $('dtype').value); } catch {}
+}
+$('dtype').onchange = () => { saveDtype(); inspect(); };
 let previousAttempt;
 try { previousAttempt = JSON.parse(localStorage.getItem(CHECKPOINT) || 'null'); } catch {}
 if (previousAttempt) $('recovery').textContent = `前回は「${previousAttempt.stage}」の完了前にページが終了・再読み込みされました。原因はまだ特定できません。`;
@@ -83,17 +93,30 @@ function makeWorker(download = false) {
     }
   };
 }
-async function inspect() {
+async function inspect(restoreSelection = false) {
+  let cache;
   try {
-    const cache = await caches.open(MODEL_CACHE), keys = await cache.keys();
+    cache = await openModelStore();
+    const keys = await cache.keys();
     const estimate = await navigator.storage?.estimate?.();
     const persisted = await navigator.storage?.persisted?.();
     const weights = keys.filter(key => /\.onnx(?:_data)?$/.test(key.url));
-    $('storage').textContent = `モデル関連の保存: ${keys.length}ファイル（重み${weights.length}）。オリジン使用量: ${estimate?.usage ? (estimate.usage / 1048576).toFixed(1) + ' MB' : '不明'} / 容量 ${estimate?.quota ? (estimate.quota / 1048576).toFixed(0) + ' MB' : '不明'}。永続保存: ${persisted ? '許可' : '未許可'}。再起動・オフライン推論で保存の有効性を確認してください。`;
-    log('保存状態', { urls: keys.map(key => key.url), estimate, persisted });
+    const statuses = await Promise.all(['q4f16', 'q4'].map(dtype => modelStorageStatus(cache, dtype)));
+    if (restoreSelection && !busy && !ready) {
+      const dtype = selectStoredDtype($('dtype').value, statuses);
+      if (dtype !== $('dtype').value) log('保存済み形式を復元', { dtype });
+      $('dtype').value = dtype; saveDtype();
+    }
+    const selected = statuses.find(item => item.dtype === $('dtype').value);
+    const weight = selected.details.find(item => item.file.endsWith('.onnx'));
+    $('storage').textContent = `モデル関連の保存: ${keys.length}ファイル（重み${weights.length}）。選択中の${selected.dtype}: ${selected.present.length}/5ファイル保存済み${selected.complete ? '（必要ファイルあり）' : `。不足: ${selected.missing.join(', ')}`}。モデル本体: ${weight ? `${weight.backend === 'indexeddb-chunks' ? `IndexedDB・${weight.chunks}分割` : '旧Cache API'}${weight.bytes ? ` / ${(weight.bytes / 1048576).toFixed(1)} MB` : ''}` : '未保存'}。オリジン使用量: ${estimate?.usage ? (estimate.usage / 1048576).toFixed(1) + ' MB' : '不明'} / 容量 ${estimate?.quota ? (estimate.quota / 1048576).toFixed(0) + ' MB' : '不明'}。永続保存: ${persisted ? '許可' : '未許可'}。`;
+    if (restoreSelection && !busy && !ready && selected.complete) $('status').textContent = `保存済みモデル（${selected.dtype}）が見つかりました。「モデルを読み込む」で推論を準備できます。`;
+    log('保存状態', { selectedDtype: selected.dtype, statuses, urls: keys.map(key => key.url), estimate, persisted });
   } catch (error) { $('storage').textContent = `保存確認エラー: ${error.message}`; log('保存エラー', { message: error.message }); }
+  finally { cache?.close(); }
 }
 $('download').onclick = () => {
+  saveDtype();
   busy = true; files.clear(); $('progress').replaceChildren(); makeWorker(true); controls();
   checkpoint('ダウンロード・保存'); $('status').textContent = 'ダウンロードして端末に保存中… 推論用の初期化は行いません。';
   log('ダウンロード開始', { dtype: $('dtype').value });
@@ -102,14 +125,13 @@ $('download').onclick = () => {
 $('cachedOnly').onchange = controls;
 $('load').onclick = async () => {
   busy = true; controls();
+  let cache;
   try {
-    const cache = await caches.open(MODEL_CACHE);
-    const missing = [];
-    for (const file of modelFiles($('dtype').value)) {
-      if (!await cache.match(modelFileUrl(file), { ignoreVary: true })) missing.push(file);
-    }
+    cache = await openModelStore();
+    const { missing } = await modelStorageStatus(cache, $('dtype').value);
     if (missing.length) throw new Error(`モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: ${missing.join(', ')}`);
   } catch (error) { busy = false; controls(); $('status').textContent = `エラー: ${error.message}`; log('保存確認エラー', { message: error.message }); return; }
+  finally { cache?.close(); }
   files.clear(); $('progress').replaceChildren(); makeWorker(); controls();
   checkpoint('保存済みモデルの読み込み'); $('status').textContent = '保存済みモデルを読み込み中…';
   log('読み込み開始', { dtype: $('dtype').value, cachedOnly: $('cachedOnly').checked });
@@ -119,9 +141,14 @@ $('generate').onclick = generate;
 $('repeat').onclick = () => { if (!$('prompt').value.trim()) return; repeats = 10; generate(); };
 $('stop').onclick = () => { repeats = 0; worker?.postMessage({ type: 'stop' }); log('停止要求'); };
 $('reset').onclick = () => { reset(); log('Workerを終了'); };
-$('inspect').onclick = inspect;
+$('inspect').onclick = () => inspect();
 $('persist').onclick = async () => { try { log('永続保存リクエスト', { allowed: await navigator.storage?.persist?.() }); await inspect(); } catch (error) { log('永続保存エラー', { message: error.message }); } };
-$('clear').onclick = async () => { try { await caches.delete(MODEL_CACHE); log('モデルキャッシュを削除'); await inspect(); } catch (error) { log('削除エラー', { message: error.message }); } };
+$('clear').onclick = async () => {
+  let cache;
+  try { cache = await openModelStore(); await cache.clear(); log('モデル保存を削除'); await inspect(); }
+  catch (error) { log('削除エラー', { message: error.message }); }
+  finally { cache?.close(); }
+};
 $('export').onclick = () => {
   const result = { model: MODEL_ID, revision: REVISION, transformers: '4.3.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
   const url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }));
@@ -135,7 +162,7 @@ addEventListener('online', connectivity); addEventListener('offline', connectivi
     const info = { userAgent: navigator.userAgent, secureContext: isSecureContext, webgpu: !!adapter, shaderF16: adapter?.features.has('shader-f16'), limits: adapter ? { maxBufferSize: adapter.limits.maxBufferSize, maxStorageBufferBindingSize: adapter.limits.maxStorageBufferBindingSize } : null };
     $('environment').textContent = adapter ? `WebGPU利用可能 / shader-f16: ${info.shaderF16 ? '対応' : '非対応'}` : 'WebGPU利用不可。Safari 26以降とHTTPSを確認してください。'; log('環境', info);
   } catch (error) { $('environment').textContent = `環境確認エラー: ${error.message}`; log('環境エラー', { message: error.message }); }
-  await inspect();
+  await inspect(true);
   if ('serviceWorker' in navigator && import.meta.env.PROD) {
     try {
       await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`);

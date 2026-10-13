@@ -1,7 +1,7 @@
 import { modelFiles, modelFileUrl } from './config.js';
 
-// Do not arrayBuffer(), clone(), or collect weight chunks. CacheStorage consumes
-// this stream directly; the browser may still buffer internally.
+// Do not arrayBuffer(), clone(), or collect weight chunks. The model store consumes
+// this stream in bounded IndexedDB chunks instead of a large Cache API entry.
 export async function downloadModel(cache, dtype, report, fetcher = fetch) {
   for (const file of modelFiles(dtype)) {
     const url = modelFileUrl(file);
