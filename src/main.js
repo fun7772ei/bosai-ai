@@ -25,6 +25,7 @@ function updateMetrics(data) {
   $('count').textContent = `${data.tokens} / ${(data.elapsedMs / 1000).toFixed(2)} 秒`;
 }
 function generate() {
+  if (!ready || busy || !worker) return;
   const prompt = $('prompt').value.trim(); if (!prompt) return;
   activePrompt = prompt; busy = true; $('output').textContent = ''; $('status').textContent = '生成中…';
   controls(); worker.postMessage({ type: 'generate', prompt, maxTokens: Number($('tokens').value) });

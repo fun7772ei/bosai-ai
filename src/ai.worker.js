@@ -46,7 +46,7 @@ self.onmessage = async ({ data }) => {
         const key = progress.file || progress.name;
         const now = performance.now();
         const frequent = progress.status === 'progress' || progress.status === 'progress_total';
-        if (frequent && now - (progressTimes.get(key) || 0) < 200) return;
+        if (frequent && progress.progress !== 100 && now - (progressTimes.get(key) || 0) < 200) return;
         progressTimes.set(key, now); send('progress', { progress });
       } };
       tokenizer = await AutoTokenizer.from_pretrained(MODEL_ID, options);
