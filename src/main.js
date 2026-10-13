@@ -54,7 +54,7 @@ function makeWorker(download = false) {
     switch (data.type) {
       case 'progress': {
         const p = data.progress;
-        if (p.status === 'initiate') checkpoint(`ダウンロード・保存: ${p.file}`);
+        if (download && p.status === 'initiate') checkpoint(`ダウンロード・保存: ${p.file}`);
         files.set(p.file || p.name || 'model', p);
         $('progress').replaceChildren(...Array.from(files, ([name, item]) => {
           const box = document.createElement('div'), label = document.createElement('p'), bar = document.createElement('progress');
