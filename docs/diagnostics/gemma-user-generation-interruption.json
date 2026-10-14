@@ -1,0 +1,214 @@
+{
+  "appBuild": "7912da5965d7",
+  "modelKey": "gemma3",
+  "model": "onnx-community/gemma-3-270m-it-ONNX",
+  "revision": "2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0",
+  "dtype": "q4f16",
+  "modelCatalog": [
+    {
+      "key": "lfm2",
+      "label": "LFM2.5-350M",
+      "id": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "externalData": true,
+      "weightBytes": {
+        "q4f16": 255148587,
+        "q4": 293813394
+      }
+    },
+    {
+      "key": "gemma3",
+      "label": "Gemma 3-270M-it",
+      "id": "onnx-community/gemma-3-270m-it-ONNX",
+      "revision": "2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0",
+      "externalData": true,
+      "weightBytes": {
+        "q4f16": 272956893,
+        "q4": 323175770
+      }
+    },
+    {
+      "key": "qwen3",
+      "label": "Qwen3-0.6B",
+      "id": "onnx-community/Qwen3-0.6B-ONNX",
+      "revision": "1e0a4a196ecabdf9a879664110574563d3f372d3",
+      "externalData": false,
+      "weightBytes": {
+        "q4f16": 569789750,
+        "q4": 919096585
+      }
+    }
+  ],
+  "transformers": "4.3.1",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+  "secureContext": true,
+  "generatedAt": "2026-10-13T23:53:41.917Z",
+  "previousAttempt": {
+    "stage": "日本語生成（初回はシェーダー準備を含む）",
+    "modelKey": "gemma3",
+    "model": "onnx-community/gemma-3-270m-it-ONNX",
+    "revision": "2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0",
+    "dtype": "q4f16",
+    "time": "2026-10-13T23:53:31.344Z"
+  },
+  "runs": [],
+  "logs": [
+    {
+      "time": "2026-10-13T23:53:38.392Z",
+      "message": "環境",
+      "data": {
+        "modelKey": "gemma3",
+        "model": "onnx-community/gemma-3-270m-it-ONNX",
+        "revision": "2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0",
+        "dtype": "q4f16",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+        "secureContext": true,
+        "webgpu": true,
+        "shaderF16": true,
+        "limits": {
+          "maxBufferSize": 715827880,
+          "maxStorageBufferBindingSize": 715827880
+        }
+      }
+    },
+    {
+      "time": "2026-10-13T23:53:38.427Z",
+      "message": "保存状態",
+      "data": {
+        "modelKey": "gemma3",
+        "model": "onnx-community/gemma-3-270m-it-ONNX",
+        "revision": "2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0",
+        "dtype": "q4f16",
+        "selectedDtype": "q4f16",
+        "statuses": [
+          {
+            "modelKey": "gemma3",
+            "dtype": "q4f16",
+            "required": 6,
+            "present": [
+              "tokenizer_config.json",
+              "tokenizer.json",
+              "config.json",
+              "generation_config.json",
+              "onnx/model_q4f16.onnx",
+              "onnx/model_q4f16.onnx_data"
+            ],
+            "missing": [],
+            "details": [
+              {
+                "file": "tokenizer_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 2313,
+                "chunks": 1
+              },
+              {
+                "file": "tokenizer.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 20323013,
+                "chunks": 5
+              },
+              {
+                "file": "config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 1652,
+                "chunks": 1
+              },
+              {
+                "file": "generation_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 202,
+                "chunks": 1
+              },
+              {
+                "file": "onnx/model_q4f16.onnx",
+                "backend": "indexeddb-chunks",
+                "bytes": 330717,
+                "chunks": 1
+              },
+              {
+                "file": "onnx/model_q4f16.onnx_data",
+                "backend": "indexeddb-chunks",
+                "bytes": 272626176,
+                "chunks": 65
+              }
+            ],
+            "complete": true
+          },
+          {
+            "modelKey": "gemma3",
+            "dtype": "q4",
+            "required": 6,
+            "present": [
+              "tokenizer_config.json",
+              "tokenizer.json",
+              "config.json",
+              "generation_config.json"
+            ],
+            "missing": [
+              "onnx/model_q4.onnx",
+              "onnx/model_q4.onnx_data"
+            ],
+            "details": [
+              {
+                "file": "tokenizer_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 2313,
+                "chunks": 1
+              },
+              {
+                "file": "tokenizer.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 20323013,
+                "chunks": 5
+              },
+              {
+                "file": "config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 1652,
+                "chunks": 1
+              },
+              {
+                "file": "generation_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 202,
+                "chunks": 1
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "urls": [
+          "https://fun7772ei.github.io/bosai-ai/runtime/ort-wasm-simd-threaded.asyncify.mjs",
+          "https://fun7772ei.github.io/bosai-ai/runtime/ort-wasm-simd-threaded.asyncify.wasm",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/onnx/model_q4f16.onnx",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/gemma-3-270m-it-ONNX/resolve/2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0/config.json",
+          "https://huggingface.co/onnx-community/gemma-3-270m-it-ONNX/resolve/2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0/generation_config.json",
+          "https://huggingface.co/onnx-community/gemma-3-270m-it-ONNX/resolve/2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0/onnx/model_q4f16.onnx",
+          "https://huggingface.co/onnx-community/gemma-3-270m-it-ONNX/resolve/2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0/onnx/model_q4f16.onnx_data",
+          "https://huggingface.co/onnx-community/gemma-3-270m-it-ONNX/resolve/2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0/tokenizer.json",
+          "https://huggingface.co/onnx-community/gemma-3-270m-it-ONNX/resolve/2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0/tokenizer_config.json"
+        ],
+        "estimate": {
+          "quota": 36721970381,
+          "usage": 1333680301
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T23:53:38.429Z",
+      "message": "アプリ本体のオフライン保存完了",
+      "data": {
+        "modelKey": "gemma3",
+        "model": "onnx-community/gemma-3-270m-it-ONNX",
+        "revision": "2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0",
+        "dtype": "q4f16"
+      }
+    }
+  ],
+  "deviceVerification": "User must record actual device; no iPad verification claimed"
+}

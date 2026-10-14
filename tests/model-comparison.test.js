@@ -99,3 +99,11 @@ test('old Qwen preference migrates without leaking its dtype to Gemma/LFM', () =
   values.set(MODEL_KEY, 'removed-model');
   assert.deepEqual(readSelection(storage), { modelKey: 'qwen3', dtype: 'q4' });
 });
+
+test('fresh installations prefer LFM while an explicit saved model is preserved', () => {
+  const values = new Map();
+  const storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
+  assert.deepEqual(readSelection(storage), { modelKey: 'lfm2', dtype: 'q4f16' });
+  saveSelection(storage, { modelKey: 'gemma3', dtype: 'q4' });
+  assert.deepEqual(readSelection(storage), { modelKey: 'gemma3', dtype: 'q4' });
+});

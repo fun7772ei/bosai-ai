@@ -1,5 +1,5 @@
 import './style.css';
-import { MODELS, DEFAULT_MODEL, getModel } from './config.js';
+import { MODELS, PREFERRED_MODEL, getModel } from './config.js';
 import { readSelection, readDtype, saveSelection } from './model-preferences.js';
 import { modelStorageStatus, selectStoredDtype, openModelStore } from './model-storage.js';
 import { createWorkerClient } from './worker-client.js';
@@ -7,7 +7,7 @@ import { workerError } from './worker-errors.js';
 const $ = id => document.getElementById(id);
 $('build').textContent = `アプリ版: ${__APP_BUILD__}`;
 $('model').replaceChildren(...MODELS.map(model => new Option(model.label, model.key)));
-$('model').value = DEFAULT_MODEL;
+$('model').value = PREFERRED_MODEL;
 const logs = [], runs = [], files = new Map();
 let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype, loadedModel, loadMs;
 const CHECKPOINT = 'bosai-ai-active-stage';
@@ -22,7 +22,12 @@ function selection() {
 }
 function modelInfo() {
   const model = currentModel();
-  $('modelInfo').textContent = `${model.label}: ${$('dtype').value}の重みは約${Math.round(model.weightBytes[$('dtype').value] / 1000000)} MB（Tokenizer等は別）。必要メモリはこの値より大きくなります。${model.key === DEFAULT_MODEL ? 'iPadで初期化中のクラッシュ報告があります。' : 'iPadの保存・推論成功は未確認です。'}`;
+  const notes = {
+    lfm2: '第一候補。ユーザー提供の実機ログでq4f16の短い生成10回完了を確認。長時間・再起動後オフラインは未確認です。',
+    gemma3: 'ユーザーから10回連続テスト中のクラッシュ報告があります。',
+    qwen3: 'iPadで初期化中のクラッシュ報告があります。',
+  };
+  $('modelInfo').textContent = `${model.label}: ${$('dtype').value}の重みは約${Math.round(model.weightBytes[$('dtype').value] / 1000000)} MB（Tokenizer等は別）。必要メモリはこの値より大きくなります。${notes[model.key]}`;
 }
 function saveDtype() {
   try { saveSelection(localStorage, { modelKey: currentModel().key, dtype: $('dtype').value }); } catch {}
