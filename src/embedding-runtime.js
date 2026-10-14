@@ -1,5 +1,5 @@
 import { AutoModel, AutoTokenizer, env } from '@huggingface/transformers';
-import { RURI, installSavedFetch } from './aux-models.js';
+import { RURI, installSavedFetch } from './ruri-models.js';
 const runtime = import.meta.env.DEV ? new URL('/node_modules/onnxruntime-web/dist/',self.location.origin) : new URL('runtime/',self.location.origin+import.meta.env.BASE_URL);
 export async function loadEmbedding(store) {
  await installSavedFetch(env,store);env.backends.onnx.wasm.numThreads=1;

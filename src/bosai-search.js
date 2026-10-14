@@ -17,6 +17,7 @@ const aliases = [
   ['スマホ', 'スマートフォン'], ['バッテリー', '電池'], ['電気が消え', '停電'],
   ['エレベータ', 'エレベーター', '昇降機'], ['ブロック塀', '塀'],
   ['ガラス', '窓ガラス', '窓'], ['雷鳴', '雷'], ['アレルギー', 'アレルギ'],
+  ['到着予定', '到着予報', '到着予想', '到達予報', '到達予想', '到達予想時刻'],
   ['津波の旗', '赤白の旗', '津波フラッグ'], ['引き波', '引き潮'],
 ].map(group => group.map(normalize));
 // Segment both scripts: kana folding before segmentation alone can split katakana nouns.

@@ -39,3 +39,9 @@ test('auxiliary preparation reuses all pre-existing CPU GGUF/tokenizer files wit
  const assets=auxAssets('lfm'),reports=[];const store={match:async url=>{const a=assets.find(a=>a.url===url);return new Response(null,{headers:{'content-length':String(a.bytes)}});},put:()=>{throw Error('Must reuse saved files');}};
  await saveAux(store,'lfm',p=>reports.push(p),()=>{throw Error('Must not download existing weights');});assert.equal(reports.length,3);assert.ok(reports.every(r=>r.reused));
 });
+
+test('singleton and tied retrievers retain their configured fusion contribution',()=>{
+ const one=[{entry:corpus[0],score:8}],other=[{entry:corpus[1],score:.95},{entry:corpus[2],score:.8}];
+ const result=combineSearch(one,other,{method:'score',weight:.75});assert.equal(result[0].entry,corpus[0]);assert.equal(result[0].score,.75);
+ const ties=combineSearch([{entry:corpus[0],score:0},{entry:corpus[1],score:0}],[],{method:'score'});assert.deepEqual(ties.map(r=>r.score),[.5,.5]);assert.equal(combineSearch([],[],{method:'score'}).length,0);
+});
