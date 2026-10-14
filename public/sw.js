@@ -18,7 +18,19 @@ self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     const cache = await caches.open(SHELL);
     if (event.request.mode === 'navigate') {
-      try { return await fetch(event.request); } catch { return await cache.match(new URL('index.html', self.registration.scope), { ignoreVary: true }); }
+      // GitHub Pages cannot configure COOP/COEP itself. Opt in only on
+      // ?voice_iso=1 so existing Ruri pages and offline storage are untouched.
+      let response;
+      try { response = await fetch(event.request); }
+      catch { response = await cache.match(new URL('index.html', self.registration.scope), { ignoreVary: true }); }
+      if (!response) return Response.error();
+      if (new URL(event.request.url).searchParams.get('voice_iso') !== '1' || !response.ok) return response;
+      const headers = new Headers(response.headers);
+      headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+      headers.set('Cross-Origin-Embedder-Policy', 'require-corp');
+      // The body may be streamed; the header from the origin is no longer valid.
+      headers.delete('content-length');
+      return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
     }
     return await cache.match(event.request, { ignoreVary: true }) || fetch(event.request);
   })());
