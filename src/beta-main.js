@@ -27,7 +27,7 @@ function voiceState(message){
   $('voiceStatus').textContent=message;
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
   $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening;
-  $('voiceStop').disabled=!voiceListening;
+  $('voiceStop').disabled=voiceBusy||!voiceListening;
 }
 function voiceFailure(e){
   const message=e?.message||String(e);
