@@ -48,6 +48,18 @@ try {
         if(typeof e==='number'&&core?.getExceptionMessage){
           try{decoded=core.getExceptionMessage(e);}catch{}
         }
+        if(stage==='Japanese tiny streaming manifest'&&core){
+          const available=[];
+          for(const language of ['ja','Japanese']){
+            for(const arch of ['', '0','1','2','3','4','5']){
+              try{
+                const manifest=JSON.parse(core.sttDependencies(language,arch,false));
+                available.push({language,arch:arch||'default',files:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0)});
+              }catch{}
+            }
+          }
+          throw Error('Moonshine native stage '+stage+': '+String(decoded||e)+'; available models='+JSON.stringify(available));
+        }
         throw Error('Moonshine native stage '+stage+': '+String(decoded||e));
       }
     })(),timeout]);
