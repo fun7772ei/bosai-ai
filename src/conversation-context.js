@@ -86,7 +86,9 @@ export function factsIn(input) {
     const deniedAction=/(?:て|で)(?:は|も)?(?:い|おり)?(?:ません|ない|なかった)|(?:え|わ|し)(?:ません(?:でした)?|ない|なかった|ず|ぬ)|(?:つもり|予定|意思)(?:は|が)?(?:ありません|ない)|(?:の)?では(?:ない|ありません|なく)|わけではない/.test(verbTail);
     const questionedAction=/(?:か$|かどうか|不明|分から|わから)/.test(verbTail);
     const directDenied=new RegExp('^'+negativePredicate).test(tail)||/^(?:で(?:は)?|じゃ)(?:ない|ありません|なかった|なく)/.test(tail);
-    if(questionTail.test(directTail)||questionedAction)facts.vehicleChangeQuestion=true;
+    const intendedAction=/(?:たい|つもり|予定|べき|ほうが)/.test(tail);
+    const completedAction=/(?:乗り換え|乗換え|乗り替え)(?:ました|た(?!い|ら)|て(?:います|いる|ます)|済み)/.test(verbTail);
+    if(questionTail.test(directTail)||questionedAction||(!directDenied&&!deniedAction&&(intendedAction||(transition&&!completedAction))))facts.vehicleChangeQuestion=true;
     else if(!directDenied&&!deniedAction)facts.vehicleChanged=true;
   }
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
