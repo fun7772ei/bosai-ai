@@ -30,7 +30,7 @@ export function factsIn(input) {
   const routeNegative=new RegExp(routePrefix+floodTerm+negativePredicate);
   const roadWaterAbsent=new RegExp('^(?:の上)?(?:には|は|に|が)?(?:もう)?水(?:は|が)(?:ありません|ない|無い|なし)');
   const negativeModifier=new RegExp(floodTerm+negativePredicate+'(?:の)?$');
-  const questionFlood=new RegExp(floodTerm+'(?:しています|している|してます|していた|した|です|'+negativePredicate+')(?:(?:の|ん)?(?:です|でしょう|だろう)?(?:か|[?？])|よね[?？]?)');
+  const questionFlood=new RegExp(floodTerm+'(?:しています|している|してます|していた|した|です|'+negativePredicate+')(?:(?:の|ん)?(?:です|でしょう|だろう)?(?:か(?!ら|つ)|[?？])|よね[?？]?)');
   let uncertain=questionFlood.test(text)||uncertainFlood.test(text)||/(?:冠水|浸水)[^、。]{0,15}(?:ない|ません)(?:とは言えない|わけではない|とは限らない)/.test(text);
   uncertainFlood.lastIndex=0;
   const soakedAbsent=/^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)って(?:い)?(?:ない|ません)/;
@@ -42,7 +42,7 @@ export function factsIn(input) {
   const wetPredicate=new RegExp(routePrefix+'(?:冠水|浸水)(?:しています|している|してます|していて|しており|しました|した|です|だ|(?=[、。！？]|$))');
   const soakedPredicate=new RegExp('^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)(?:っています|っている|ってます|っていて|っており|りました|った|る)');
   const wetModifier=/(?:冠水|浸水)(?:した|している|してしまった)?$|水浸しの?$|水に(?:つか|浸か)(?:った|っている)(?:の)?$/;
-  const questionTail=/^(?:の|ん)?(?:です|でしょう|だろう)?(?:か|[?？])/;
+  const questionTail=/^(?:な)?(?:の|ん)?(?:です|でしょう|だろう)?(?:か(?!ら|つ)|[?？])/;
   // Apply the same question test to water-presence predicates, not only 冠水/浸水.
   uncertain ||= routes.some(r=>{
     const suffix=text.slice(r.index+r.word.length);
@@ -67,15 +67,25 @@ export function factsIn(input) {
   if (walk || drive) facts.goal = 'movement';
   if (modes.length) facts.movement = automobile || modes.length>1 ? 'mixed' : modes[0];
   else if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
-  if (new RegExp(vehicleNoun+'[^、。]*水没'+negativePredicate+'|(?:水没|浸水)'+negativePredicate+'(?:の)?'+vehicleNoun+'|(?:水没|浸水)(?:した)?'+vehicleNoun+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)').test(text)) facts.vehicleFlooded = false;
-  else if ((!modes.length || automobile) && new RegExp('水没[^、。]*'+vehicleNoun+'|'+vehicleNoun+'[^、。]*水没|車内[^、。]*水[^、。]*入').test(autoText)) facts.vehicleFlooded = true;
-  // Identity changes, like water conditions, require an affirmative assertion.
+  const vehicleDenial=new RegExp(vehicleNoun+'[^、。]*水没'+negativePredicate+'|(?:水没|浸水)'+negativePredicate+'(?:の)?'+vehicleNoun+'|(?:水没|浸水)(?:した)?'+vehicleNoun+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)');
+  const vehicleAffirmation=new RegExp('水没(?:した|している|してしまった)?'+vehicleNoun+'|'+vehicleNoun+'[^、。]*水没(?:しています|している|してます|していた|した|です)?|車内[^、。]*水[^、。]*入(?:っています|っている|ってます|りました|った|る)');
+  const denial=vehicleDenial.exec(autoText), assertion=vehicleAffirmation.exec(autoText);
+  const vehicleQuestion=[denial,assertion].some(match=>match&&questionTail.test(autoText.slice(match.index+match[0].length)));
+  if(vehicleQuestion) facts.vehicleFlooded=null;
+  else if(denial) facts.vehicleFlooded=false;
+  else if((!modes.length||automobile)&&assertion) facts.vehicleFlooded=true;
+  // Determine polarity of the identity/transition clause, not only its noun suffix.
   const changes=[...autoText.matchAll(new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun,'g'))];
   if (changes.some(change=>{
-    const tail=autoText.slice(change.index+change[0].length);
+    const tail=autoText.slice(change.index+change[0].length).split(/[、。！？?]/)[0];
+    const directTail=autoText.slice(change.index+change[0].length);
+    const transition=/(?:乗り換|乗換|乗り替|変更|変わ)/.exec(tail);
+    const verbTail=transition?tail.slice(transition.index):'';
+    const deniedAction=/(?:て|で)(?:は|も)?(?:い|おり)?(?:ません|ない|なかった)|(?:え|わ|し)(?:ません|ない)|わけではない/.test(verbTail);
+    const questionedAction=/(?:た|る|ます|いる|ません|ない)(?:の|ん)?(?:です|でしょう)?か|かどうか|不明|分から|わから/.test(verbTail);
     return !new RegExp('^'+negativePredicate).test(tail)
       && !/^(?:で(?:は)?|じゃ)(?:ない|ありません|なかった|なく)/.test(tail)
-      && !questionTail.test(tail);
+      && !questionTail.test(directTail)&&!deniedAction&&!questionedAction;
   })) facts.vehicleChanged = true;
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
