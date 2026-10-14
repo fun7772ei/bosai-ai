@@ -30,7 +30,7 @@ export function factsIn(input) {
   const roadWaterAbsent=new RegExp('^(?:の上)?(?:には|は|に|が)?(?:もう)?水(?:は|が)(?:ありません|ない|無い|なし)');
   const negativeModifier=new RegExp(floodTerm+negativePredicate+'(?:の)?$');
   const questionFlood=new RegExp(floodTerm+'(?:しています|している|してます|していた|した|です|'+negativePredicate+')(?:(?:の|ん)?(?:です|でしょう|だろう)?(?:か|[?？])|よね[?？]?)');
-  const uncertain=questionFlood.test(text)||uncertainFlood.test(text)||/(?:冠水|浸水)[^、。]{0,15}(?:ない|ません)(?:とは言えない|わけではない|とは限らない)/.test(text);
+  let uncertain=questionFlood.test(text)||uncertainFlood.test(text)||/(?:冠水|浸水)[^、。]{0,15}(?:ない|ません)(?:とは言えない|わけではない|とは限らない)/.test(text);
   uncertainFlood.lastIndex=0;
   const soakedAbsent=/^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)って(?:い)?(?:ない|ません)/;
   const dry=routes.some(r=>soakedAbsent.test(text.slice(r.index+r.word.length))||routeNegative.test(text.slice(r.index+r.word.length))||roadWaterAbsent.test(text.slice(r.index+r.word.length))||negativeModifier.test(text.slice(0,r.index)));
@@ -41,6 +41,15 @@ export function factsIn(input) {
   const wetPredicate=new RegExp(routePrefix+'(?:冠水|浸水)(?:しています|している|してます|していて|しており|しました|した|です|だ|(?=[、。！？]|$))');
   const soakedPredicate=new RegExp('^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)(?:っています|っている|ってます|っていて|っており|りました|った|る)');
   const wetModifier=/(?:冠水|浸水)(?:した|している|してしまった)?$|水浸しの?$|水に(?:つか|浸か)(?:った|っている)(?:の)?$/;
+  const questionTail=/^(?:の|ん)?(?:です|でしょう|だろう)?(?:か|[?？])/;
+  // Apply the same question test to water-presence predicates, not only 冠水/浸水.
+  uncertain ||= routes.some(r=>{
+    const suffix=text.slice(r.index+r.word.length);
+    return [routeNegative,roadWaterAbsent,soakedAbsent,wetPredicate,soakedPredicate].some(pattern=>{
+      const match=pattern.exec(suffix);
+      return !!match&&questionTail.test(suffix.slice(match[0].length));
+    })||((negativeModifier.test(text.slice(0,r.index))||wetModifier.test(text.slice(0,r.index)))&&questionTail.test(suffix));
+  });
   const wet=routes.some(r=>wetPredicate.test(affirmed.slice(r.index+r.word.length))||soakedPredicate.test(affirmed.slice(r.index+r.word.length))||wetModifier.test(affirmed.slice(0,r.index))||(r.word==='冠水路'&&affirmed.slice(r.index,r.index+3)==='冠水路'&&!/非$/.test(affirmed.slice(0,r.index))));
   if(uncertain||(dry&&wet))facts.floodedRoad=null;
   else if(dry)facts.floodedRoad=false;
