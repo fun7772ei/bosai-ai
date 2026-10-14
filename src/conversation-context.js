@@ -7,22 +7,47 @@ export const hazardPatterns = [
 export const topicsIn = text => hazardPatterns.filter(([, pattern]) => pattern.test(text)).map(([name]) => name);
 const segmenter = new Intl.Segmenter('ja', {granularity:'word'});
 const wordsIn = text => new Set([...segmenter.segment(text.normalize('NFKC'))].filter(s=>s.isWordLike).map(s=>s.segment));
-const automobileNouns = new Set(['車','自動車','乗用車','軽自動車','自家用車','クルマ','くるま']);
+const automobileNouns = new Set(['車','自動車','乗用車','軽自動車','自家用車','クルマ','くるま','車両','マイカー','トラック','バス','タクシー','四輪車']);
+const roadNouns = new Set(['道','道路','路面','経路','歩道','車道','通学路','通勤路','側道','私道','国道','県道','市道','農道','林道','一般道','高速道路','有料道路','幹線道路','生活道路','避難経路','地下道','アンダーパス']);
 const mobilityModes = [['wheelchair',/車椅子|車いす|車イス/],['bicycle',/自転車/],['rail',/電車|列車|鉄道/],['stroller',/ベビーカー|乳母車/]];
-export function factsIn(text) {
-  const facts = {};
-  const road = /道路|冠水路|路面|経路/.test(text) || wordsIn(text).has('道');
-  if (road) facts.road = true;
-  // A shortage of drinking/tap water says nothing about water on a route.
-  const route = '(?:道路|冠水路|路面|経路|道)';
-  const dryRoad = new RegExp(route+'(?:には|では|は|が|に)?(?:まだ|もう)?(?:冠水|浸水)(?:は)?してい(?:ない|ません)');
-  const noRoadWater = new RegExp(route+'(?:の上)?(?:には|は|に|が)?(?:もう)?水[はが]ない');
-  const dry = road && (dryRoad.test(text) || noRoadWater.test(text) || /(?:冠水|浸水)していない(?:道路|道|経路)/.test(text));
-  if (dry) facts.floodedRoad = false;
-  else if (road && /冠水|浸水|水につか|水に浸か|水浸し|膝.*水|ひざ.*水/.test(text)) facts.floodedRoad = true;
+// Predicate polarity is tied to a route mention, not to an arbitrary 'ない' elsewhere.
+const floodTerm = '(?:冠水|浸水|水浸し)';
+const negativePredicate = '(?:(?:は|が|も)?(?:して(?:い|おり)?(?:ません|ない|なかった)|したこと(?:は|が)(?:ありません|ない)|ありません|ない|無い|なし|無し)|(?:では|じゃ)(?:ない|ありません))';
+const negativeFlood = new RegExp(floodTerm+negativePredicate,'g');
+const uncertainFlood = new RegExp(floodTerm+'(?:している|していない|した)?(?:の)?か(?:どうか)?[^、。]{0,8}(?:不明|分から|わから|分かりません|わかりません)','g');
+const mask = (text,pattern) => text.replace(pattern,span=>' '.repeat(span.length));
+export function factsIn(input) {
+  const text=input.normalize('NFKC'), facts={};
+  const roadText=mask(text,/路面電車|電車|列車|鉄道/g);
+  const segments=[...segmenter.segment(roadText)];
+  const boundaries=new Set(segments.flatMap(s=>[s.index,s.index+s.segment.length]));
+  const roadLexicon=new RegExp([...roadNouns,'冠水路'].sort((a,b)=>b.length-a.length).join('|'),'g');
+  const routes=[...roadText.matchAll(roadLexicon)].filter(m=>boundaries.has(m.index)&&boundaries.has(m.index+m[0].length)).map(m=>({index:m.index,word:m[0]}));
+  const road=routes.length>0;
+  if(road)facts.road=true;
+  const routePrefix='^(?:の|には|では|は|が|に|も)?(?:まだ|もう|すでに)?';
+  const routeNegative=new RegExp(routePrefix+floodTerm+negativePredicate);
+  const roadWaterAbsent=new RegExp('^(?:の上)?(?:には|は|に|が)?(?:もう)?水(?:は|が)(?:ありません|ない|無い|なし)');
+  const negativeModifier=new RegExp(floodTerm+negativePredicate+'(?:の)?$');
+  const uncertain=uncertainFlood.test(text)||/(?:冠水|浸水)[^、。]{0,15}(?:ない|ません)(?:とは言えない|わけではない|とは限らない)/.test(text);
+  uncertainFlood.lastIndex=0;
+  const soakedAbsent=/^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)って(?:い)?(?:ない|ません)/;
+  const dry=routes.some(r=>soakedAbsent.test(text.slice(r.index+r.word.length))||routeNegative.test(text.slice(r.index+r.word.length))||roadWaterAbsent.test(text.slice(r.index+r.word.length))||negativeModifier.test(text.slice(0,r.index)));
+  // Mask denied/unknown predicates before looking for explicit affirmative assertions.
+  // Mere occurrence of 冠水/浸水 is no longer enough to manufacture a positive fact.
+  let affirmed=mask(mask(text,negativeFlood),uncertainFlood);
+  affirmed=affirmed.replace(/非(?:冠水|浸水)/g,span=>' '.repeat(span.length));
+  const wetPredicate=new RegExp(routePrefix+'(?:冠水|浸水)(?:しています|している|していて|しており|しました|した|です|だ|(?=[、。！？]|$))');
+  const soakedPredicate=new RegExp('^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)(?:っています|っている|っていて|っており|りました|った|る)');
+  const wetModifier=/(?:冠水|浸水)(?:した|している|してしまった)?$|水浸しの?$|水に(?:つか|浸か)(?:った|っている)(?:の)?$/;
+  const wet=routes.some(r=>wetPredicate.test(affirmed.slice(r.index+r.word.length))||soakedPredicate.test(affirmed.slice(r.index+r.word.length))||wetModifier.test(affirmed.slice(0,r.index))||(r.word==='冠水路'&&affirmed.slice(r.index,r.index+3)==='冠水路'&&!/非$/.test(affirmed.slice(0,r.index))));
+  if(uncertain||(dry&&wet))facts.floodedRoad=null;
+  else if(dry)facts.floodedRoad=false;
+  else if(wet)facts.floodedRoad=true;
+  else if(/冠水|浸水|水浸し|水につか|水に浸か/.test(text))facts.floodedRoad=null;
   const walk = /徒歩|歩く|歩い|歩行|歩き/.test(text);
   // A parked/abandoned vehicle is not the actor's current mode of travel.
-  const leftVehicle = /(?:車|自動車)(?:を|から).*(?:置いて|離れて|降りて)/.test(text);
+  const leftVehicle = new RegExp('(?:'+[...automobileNouns].join('|')+')(?:を|から).*(?:置いて|離れて|降りて)').test(text);
   const modes = mobilityModes.filter(([,pattern])=>pattern.test(text)).map(([mode])=>mode);
   const autoText = text.replace(/車椅子|車いす|車イス|自転車|電車|列車|鉄道|ベビーカー|乳母車/g,'');
   const autoWords = wordsIn(autoText);
@@ -31,7 +56,7 @@ export function factsIn(text) {
   if (walk || drive) facts.goal = 'movement';
   if (modes.length) facts.movement = automobile || modes.length>1 ? 'mixed' : modes[0];
   else if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
-  if (/車.*水没してい(?:ない|ません)|車内.*水.*入ってい(?:ない|ません)/.test(text)) facts.vehicleFlooded = false;
+  if (new RegExp('(?:車|自動車)[^、。]*水没'+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)').test(text)) facts.vehicleFlooded = false;
   else if ((!modes.length || automobile) && /水没.*車|車.*水没|車内.*水.*入/.test(autoText)) facts.vehicleFlooded = true;
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
