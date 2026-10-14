@@ -66,7 +66,7 @@ export function factsIn(input) {
   if (walk || drive) facts.goal = 'movement';
   if (modes.length) facts.movement = automobile || modes.length>1 ? 'mixed' : modes[0];
   else if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
-  if (new RegExp('(?:車|自動車)[^、。]*水没'+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)').test(text)) facts.vehicleFlooded = false;
+  if (new RegExp('(?:車|自動車)[^、。]*水没'+negativePredicate+'|(?:水没|浸水)'+negativePredicate+'(?:の)?(?:車|自動車)|(?:水没|浸水)(?:車|した車)'+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)').test(text)) facts.vehicleFlooded = false;
   else if ((!modes.length || automobile) && /水没.*車|車.*水没|車内.*水.*入/.test(autoText)) facts.vehicleFlooded = true;
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
@@ -80,6 +80,9 @@ export function mergeFacts(previous, current, excluded) {
     for (const key of Object.keys(denied)) delete facts[key];
     if (denied.movement === 'drive') delete facts.vehicleFlooded;
   }
+  // A vehicle-specific scene does not follow a person onto a new travel mode.
+  // An explicitly restated current vehicle condition remains available.
+  if (current.movement && current.movement !== 'drive' && current.vehicleFlooded === undefined) delete facts.vehicleFlooded;
   return {...facts, ...current};
 }
 export function focusFor(topics, facts) {

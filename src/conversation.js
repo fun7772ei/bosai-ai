@@ -61,8 +61,8 @@ export class Conversation {
     if(follow && !this.state.situation)return this.clarify('「それ」が指す状況を具体的に教えてください。');
     const retain=!changed && (follow || parsed.excluded.length || this.state.awaitingContext);
     const incoming=factsIn(parsed.positive);
-    const updatesFrame=retain&&Object.entries(incoming).some(([key,value])=>['floodedRoad','movement','unreachableHeight','vehicleFlooded'].includes(key)&&this.state.facts[key]!==undefined&&this.state.facts[key]!==value);
     const facts=mergeFacts(retain?this.state.facts:{},incoming,parsed.excluded);
+    const updatesFrame=retain&&['floodedRoad','movement','unreachableHeight','vehicleFlooded'].some(key=>this.state.facts[key]!==undefined&&this.state.facts[key]!==facts[key]);
     let topics=explicitTopics.length?explicitTopics:retain?this.state.topics:[];
     if(!topics.length && facts.floodedRoad===true)topics=['大雨・浸水'];
     let query=parsed.positive;
