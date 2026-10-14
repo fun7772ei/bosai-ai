@@ -40,8 +40,8 @@ try {
       let stage='WASM factory',core;
       try{
         core=await lib.loadMoonshineModule();
-        stage='Japanese tiny streaming manifest';
-        const manifest=JSON.parse(core.sttDependencies('ja',String(lib.ModelArch.TinyStreaming),false));
+        stage='Japanese tiny non-streaming manifest';
+        const manifest=JSON.parse(core.sttDependencies('ja',String(lib.ModelArch.Tiny),false));
         return {wasmVersion:core.version(),assets:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0)};
       }catch(e){
         let decoded;
