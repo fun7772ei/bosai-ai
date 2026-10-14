@@ -5,21 +5,34 @@ export const hazardPatterns = [
   ['避難生活', /避難所|在宅避難|車中泊/],
 ];
 export const topicsIn = text => hazardPatterns.filter(([, pattern]) => pattern.test(text)).map(([name]) => name);
+const segmenter = new Intl.Segmenter('ja', {granularity:'word'});
+const wordsIn = text => new Set([...segmenter.segment(text.normalize('NFKC'))].filter(s=>s.isWordLike).map(s=>s.segment));
+const automobileNouns = new Set(['車','自動車','乗用車','軽自動車','自家用車','クルマ','くるま']);
+const mobilityModes = [['wheelchair',/車椅子|車いす|車イス/],['bicycle',/自転車/],['rail',/電車|列車|鉄道/],['stroller',/ベビーカー|乳母車/]];
 export function factsIn(text) {
   const facts = {};
-  const road = /道路|冠水路|路面|道[がはをの]|道.*水につか|水浸し.*道/.test(text);
+  const road = /道路|冠水路|路面|経路/.test(text) || wordsIn(text).has('道');
   if (road) facts.road = true;
-  const dry = /冠水してい(?:ない|ません)|冠水はしていない|浸水してい(?:ない|ません)|水[はが]ない/.test(text);
+  // A shortage of drinking/tap water says nothing about water on a route.
+  const route = '(?:道路|冠水路|路面|経路|道)';
+  const dryRoad = new RegExp(route+'(?:には|では|は|が|に)?(?:まだ|もう)?(?:冠水|浸水)(?:は)?してい(?:ない|ません)');
+  const noRoadWater = new RegExp(route+'(?:の上)?(?:には|は|に|が)?(?:もう)?水[はが]ない');
+  const dry = road && (dryRoad.test(text) || noRoadWater.test(text) || /(?:冠水|浸水)していない(?:道路|道|経路)/.test(text));
   if (dry) facts.floodedRoad = false;
   else if (road && /冠水|浸水|水につか|水に浸か|水浸し|膝.*水|ひざ.*水/.test(text)) facts.floodedRoad = true;
   const walk = /徒歩|歩く|歩い|歩行|歩き/.test(text);
   // A parked/abandoned vehicle is not the actor's current mode of travel.
   const leftVehicle = /(?:車|自動車)(?:を|から).*(?:置いて|離れて|降りて)/.test(text);
-  const drive = /車|自動車|運転|車両/.test(text) && !(walk && leftVehicle);
+  const modes = mobilityModes.filter(([,pattern])=>pattern.test(text)).map(([mode])=>mode);
+  const autoText = text.replace(/車椅子|車いす|車イス|自転車|電車|列車|鉄道|ベビーカー|乳母車/g,'');
+  const autoWords = wordsIn(autoText);
+  const automobile = [...autoWords].some(word=>automobileNouns.has(word));
+  const drive = (automobile || (!modes.length && autoWords.has('運転'))) && !(walk && leftVehicle);
   if (walk || drive) facts.goal = 'movement';
-  if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
+  if (modes.length) facts.movement = automobile || modes.length>1 ? 'mixed' : modes[0];
+  else if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
   if (/車.*水没してい(?:ない|ません)|車内.*水.*入ってい(?:ない|ません)/.test(text)) facts.vehicleFlooded = false;
-  else if (/水没.*車|車.*水没|車内.*水.*入/.test(text)) facts.vehicleFlooded = true;
+  else if ((!modes.length || automobile) && /水没.*車|車.*水没|車内.*水.*入/.test(autoText)) facts.vehicleFlooded = true;
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
   if (/高台.*(?:時間はある|間に合う)|間に合わないわけではない/.test(text)) facts.unreachableHeight = false;
