@@ -1,4 +1,6 @@
 export const DEFAULT_MODEL = 'qwen3';
+// Keep legacy helper defaults/URLs stable; prefer LFM for new UI selections.
+export const PREFERRED_MODEL = 'lfm2';
 export const MODELS = Object.freeze([
   { key: 'lfm2', label: 'LFM2.5-350M', id: 'onnx-community/LFM2.5-350M-ONNX', revision: '7dd4999565b0342c381ba90a3d8fc467d6df19c4', externalData: true, weightBytes: { q4f16: 255148587, q4: 293813394 } },
   { key: 'gemma3', label: 'Gemma 3-270M-it', id: 'onnx-community/gemma-3-270m-it-ONNX', revision: '2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0', externalData: true, weightBytes: { q4f16: 272956893, q4: 323175770 } },

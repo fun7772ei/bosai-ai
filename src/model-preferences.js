@@ -1,4 +1,4 @@
-import { DEFAULT_MODEL, MODELS, getModel } from './config.js';
+import { DEFAULT_MODEL, PREFERRED_MODEL, MODELS, getModel } from './config.js';
 
 export const MODEL_KEY = 'bosai-ai-selected-model';
 export const LEGACY_DTYPE_KEY = 'bosai-ai-selected-dtype';
@@ -10,7 +10,8 @@ export function readDtype(storage, modelKey) {
 }
 export function readSelection(storage) {
   const saved = storage.getItem(MODEL_KEY);
-  const modelKey = MODELS.some(model => model.key === saved) ? saved : DEFAULT_MODEL;
+  const fallback = storage.getItem(LEGACY_DTYPE_KEY) !== null ? DEFAULT_MODEL : PREFERRED_MODEL;
+  const modelKey = MODELS.some(model => model.key === saved) ? saved : fallback;
   return { modelKey, dtype: readDtype(storage, modelKey) };
 }
 export function saveSelection(storage, { modelKey, dtype }) {

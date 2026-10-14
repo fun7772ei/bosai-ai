@@ -1,0 +1,1077 @@
+{
+  "appBuild": "7912da5965d7",
+  "modelKey": "lfm2",
+  "model": "onnx-community/LFM2.5-350M-ONNX",
+  "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+  "dtype": "q4f16",
+  "modelCatalog": [
+    {
+      "key": "lfm2",
+      "label": "LFM2.5-350M",
+      "id": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "externalData": true,
+      "weightBytes": {
+        "q4f16": 255148587,
+        "q4": 293813394
+      }
+    },
+    {
+      "key": "gemma3",
+      "label": "Gemma 3-270M-it",
+      "id": "onnx-community/gemma-3-270m-it-ONNX",
+      "revision": "2dbbfdb1b59bd034eb959428c6a7da9dd7ea27f0",
+      "externalData": true,
+      "weightBytes": {
+        "q4f16": 272956893,
+        "q4": 323175770
+      }
+    },
+    {
+      "key": "qwen3",
+      "label": "Qwen3-0.6B",
+      "id": "onnx-community/Qwen3-0.6B-ONNX",
+      "revision": "1e0a4a196ecabdf9a879664110574563d3f372d3",
+      "externalData": false,
+      "weightBytes": {
+        "q4f16": 569789750,
+        "q4": 919096585
+      }
+    }
+  ],
+  "transformers": "4.3.1",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+  "secureContext": true,
+  "generatedAt": "2026-10-13T23:38:10.272Z",
+  "previousAttempt": null,
+  "runs": [
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1552.9999999999995,
+      "ttftMs": 339.99999999999955,
+      "tokensPerSecond": 23.180940115904708,
+      "decodeTokensPerSecond": 28.854080791426213,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:37:48.601Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1432,
+      "ttftMs": 260,
+      "tokensPerSecond": 25.139664804469273,
+      "decodeTokensPerSecond": 29.863481228668945,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:37:50.293Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1392,
+      "ttftMs": 245,
+      "tokensPerSecond": 25.862068965517242,
+      "decodeTokensPerSecond": 30.51438535309503,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:37:51.947Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1420,
+      "ttftMs": 248,
+      "tokensPerSecond": 25.35211267605634,
+      "decodeTokensPerSecond": 29.863481228668945,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:37:53.661Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1439.9999999999982,
+      "ttftMs": 250.99999999999818,
+      "tokensPerSecond": 25.000000000000032,
+      "decodeTokensPerSecond": 29.436501261564338,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:37:55.365Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1699,
+      "ttftMs": 382,
+      "tokensPerSecond": 21.18893466745144,
+      "decodeTokensPerSecond": 26.57555049354594,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:37:57.332Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1555,
+      "ttftMs": 248,
+      "tokensPerSecond": 23.15112540192926,
+      "decodeTokensPerSecond": 26.778882938026015,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:37:59.147Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1726,
+      "ttftMs": 256,
+      "tokensPerSecond": 20.85747392815759,
+      "decodeTokensPerSecond": 23.80952380952381,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:38:01.139Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1646,
+      "ttftMs": 260,
+      "tokensPerSecond": 21.87120291616039,
+      "decodeTokensPerSecond": 25.252525252525253,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:38:03.051Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2",
+      "model": "onnx-community/LFM2.5-350M-ONNX",
+      "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+      "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+      "tokens": 36,
+      "elapsedMs": 1473,
+      "ttftMs": 277,
+      "tokensPerSecond": 24.439918533604885,
+      "decodeTokensPerSecond": 29.264214046822744,
+      "loadMs": 2879,
+      "prompt": "日本語で、自己紹介を2文で書いてください。",
+      "dtype": "q4f16",
+      "time": "2026-10-13T23:38:04.791Z"
+    }
+  ],
+  "logs": [
+    {
+      "time": "2026-10-13T23:37:38.540Z",
+      "message": "環境",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5.2 Safari/605.1.15",
+        "secureContext": true,
+        "webgpu": true,
+        "shaderF16": true,
+        "limits": {
+          "maxBufferSize": 715827880,
+          "maxStorageBufferBindingSize": 715827880
+        }
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:38.625Z",
+      "message": "保存状態",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "selectedDtype": "q4f16",
+        "statuses": [
+          {
+            "modelKey": "lfm2",
+            "dtype": "q4f16",
+            "required": 6,
+            "present": [
+              "tokenizer_config.json",
+              "tokenizer.json",
+              "config.json",
+              "generation_config.json",
+              "onnx/model_q4f16.onnx",
+              "onnx/model_q4f16.onnx_data"
+            ],
+            "missing": [],
+            "details": [
+              {
+                "file": "tokenizer_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3825,
+                "chunks": 1
+              },
+              {
+                "file": "tokenizer.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3297793,
+                "chunks": 1
+              },
+              {
+                "file": "config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 1443,
+                "chunks": 1
+              },
+              {
+                "file": "generation_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 136,
+                "chunks": 1
+              },
+              {
+                "file": "onnx/model_q4f16.onnx",
+                "backend": "indexeddb-chunks",
+                "bytes": 182827,
+                "chunks": 1
+              },
+              {
+                "file": "onnx/model_q4f16.onnx_data",
+                "backend": "indexeddb-chunks",
+                "bytes": 254965760,
+                "chunks": 61
+              }
+            ],
+            "complete": true
+          },
+          {
+            "modelKey": "lfm2",
+            "dtype": "q4",
+            "required": 6,
+            "present": [
+              "tokenizer_config.json",
+              "tokenizer.json",
+              "config.json",
+              "generation_config.json"
+            ],
+            "missing": [
+              "onnx/model_q4.onnx",
+              "onnx/model_q4.onnx_data"
+            ],
+            "details": [
+              {
+                "file": "tokenizer_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3825,
+                "chunks": 1
+              },
+              {
+                "file": "tokenizer.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3297793,
+                "chunks": 1
+              },
+              {
+                "file": "config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 1443,
+                "chunks": 1
+              },
+              {
+                "file": "generation_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 136,
+                "chunks": 1
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "urls": [
+          "https://fun7772ei.github.io/bosai-ai/runtime/ort-wasm-simd-threaded.asyncify.mjs",
+          "https://fun7772ei.github.io/bosai-ai/runtime/ort-wasm-simd-threaded.asyncify.wasm",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/config.json",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/generation_config.json",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/onnx/model_q4f16.onnx",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/onnx/model_q4f16.onnx_data",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/tokenizer.json",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/onnx/model_q4f16.onnx",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json"
+        ],
+        "estimate": {
+          "quota": 35433480192,
+          "usage": 1005326961
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:38.630Z",
+      "message": "アプリ本体のオフライン保存完了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.218Z",
+      "message": "読み込み開始",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "cachedOnly": false
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.280Z",
+      "message": "Worker起動完了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "kind": "inference"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.283Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "WebGPUの確認"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.287Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "モデル初期化（WebGPU）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.290Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "initiate",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.296Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "download",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.299Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "done",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.304Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "initiate",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.306Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "initiate",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "onnx/model_q4f16.onnx_data"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.308Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "initiate",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "generation_config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.312Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "download",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.314Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "download",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "onnx/model_q4f16.onnx_data"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.316Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "download",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "generation_config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.318Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "done",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "onnx/model_q4f16.onnx"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:43.357Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "done",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "generation_config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:44.356Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "done",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "onnx/model_q4f16.onnx_data"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:45.785Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "Tokenizerの読み込み"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:45.814Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "initiate",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "tokenizer.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:45.817Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "initiate",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "tokenizer_config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:45.837Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "download",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "tokenizer.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:45.851Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "download",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "tokenizer_config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:45.866Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "done",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "tokenizer.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:45.968Z",
+      "message": "モデルファイル",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "status": "done",
+        "name": "onnx-community/LFM2.5-350M-ONNX",
+        "file": "tokenizer_config.json"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:46.162Z",
+      "message": "モデル準備完了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "ready",
+        "loadMs": 2879
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:46.264Z",
+      "message": "保存状態",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "selectedDtype": "q4f16",
+        "statuses": [
+          {
+            "modelKey": "lfm2",
+            "dtype": "q4f16",
+            "required": 6,
+            "present": [
+              "tokenizer_config.json",
+              "tokenizer.json",
+              "config.json",
+              "generation_config.json",
+              "onnx/model_q4f16.onnx",
+              "onnx/model_q4f16.onnx_data"
+            ],
+            "missing": [],
+            "details": [
+              {
+                "file": "tokenizer_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3825,
+                "chunks": 1
+              },
+              {
+                "file": "tokenizer.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3297793,
+                "chunks": 1
+              },
+              {
+                "file": "config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 1443,
+                "chunks": 1
+              },
+              {
+                "file": "generation_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 136,
+                "chunks": 1
+              },
+              {
+                "file": "onnx/model_q4f16.onnx",
+                "backend": "indexeddb-chunks",
+                "bytes": 182827,
+                "chunks": 1
+              },
+              {
+                "file": "onnx/model_q4f16.onnx_data",
+                "backend": "indexeddb-chunks",
+                "bytes": 254965760,
+                "chunks": 61
+              }
+            ],
+            "complete": true
+          },
+          {
+            "modelKey": "lfm2",
+            "dtype": "q4",
+            "required": 6,
+            "present": [
+              "tokenizer_config.json",
+              "tokenizer.json",
+              "config.json",
+              "generation_config.json"
+            ],
+            "missing": [
+              "onnx/model_q4.onnx",
+              "onnx/model_q4.onnx_data"
+            ],
+            "details": [
+              {
+                "file": "tokenizer_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3825,
+                "chunks": 1
+              },
+              {
+                "file": "tokenizer.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 3297793,
+                "chunks": 1
+              },
+              {
+                "file": "config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 1443,
+                "chunks": 1
+              },
+              {
+                "file": "generation_config.json",
+                "backend": "indexeddb-chunks",
+                "bytes": 136,
+                "chunks": 1
+              }
+            ],
+            "complete": false
+          }
+        ],
+        "urls": [
+          "https://fun7772ei.github.io/bosai-ai/runtime/ort-wasm-simd-threaded.asyncify.mjs",
+          "https://fun7772ei.github.io/bosai-ai/runtime/ort-wasm-simd-threaded.asyncify.wasm",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/config.json",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/generation_config.json",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/onnx/model_q4f16.onnx",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/onnx/model_q4f16.onnx_data",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/tokenizer.json",
+          "https://huggingface.co/onnx-community/LFM2.5-350M-ONNX/resolve/7dd4999565b0342c381ba90a3d8fc467d6df19c4/tokenizer_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/generation_config.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/onnx/model_q4f16.onnx",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer.json",
+          "https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX/resolve/1e0a4a196ecabdf9a879664110574563d3f372d3/tokenizer_config.json"
+        ],
+        "estimate": {
+          "quota": 35433480192,
+          "usage": 1005326969
+        },
+        "persisted": false
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:47.048Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:48.601Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1552.9999999999995,
+        "ttftMs": 339.99999999999955,
+        "tokensPerSecond": 23.180940115904708,
+        "decodeTokensPerSecond": 28.854080791426213
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:48.862Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:50.293Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1432,
+        "ttftMs": 260,
+        "tokensPerSecond": 25.139664804469273,
+        "decodeTokensPerSecond": 29.863481228668945
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:50.555Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:51.947Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1392,
+        "ttftMs": 245,
+        "tokensPerSecond": 25.862068965517242,
+        "decodeTokensPerSecond": 30.51438535309503
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:52.241Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:53.661Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1420,
+        "ttftMs": 248,
+        "tokensPerSecond": 25.35211267605634,
+        "decodeTokensPerSecond": 29.863481228668945
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:53.920Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:55.365Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1439.9999999999982,
+        "ttftMs": 250.99999999999818,
+        "tokensPerSecond": 25.000000000000032,
+        "decodeTokensPerSecond": 29.436501261564338
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:55.631Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:57.332Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1699,
+        "ttftMs": 382,
+        "tokensPerSecond": 21.18893466745144,
+        "decodeTokensPerSecond": 26.57555049354594
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:57.592Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:59.148Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1555,
+        "ttftMs": 248,
+        "tokensPerSecond": 23.15112540192926,
+        "decodeTokensPerSecond": 26.778882938026015
+      }
+    },
+    {
+      "time": "2026-10-13T23:37:59.412Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:38:01.139Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1726,
+        "ttftMs": 256,
+        "tokensPerSecond": 20.85747392815759,
+        "decodeTokensPerSecond": 23.80952380952381
+      }
+    },
+    {
+      "time": "2026-10-13T23:38:01.405Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:38:03.051Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1646,
+        "ttftMs": 260,
+        "tokensPerSecond": 21.87120291616039,
+        "decodeTokensPerSecond": 25.252525252525253
+      }
+    },
+    {
+      "time": "2026-10-13T23:38:03.314Z",
+      "message": "処理段階",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "stage": "日本語生成（初回はシェーダー準備を含む）"
+      }
+    },
+    {
+      "time": "2026-10-13T23:38:04.792Z",
+      "message": "生成終了",
+      "data": {
+        "modelKey": "lfm2",
+        "model": "onnx-community/LFM2.5-350M-ONNX",
+        "revision": "7dd4999565b0342c381ba90a3d8fc467d6df19c4",
+        "dtype": "q4f16",
+        "type": "complete",
+        "text": "日本語で自己紹介を2文で書くと、「私は日本語の母国語であり、英語と中国語の両方に堪能です。」のように。",
+        "tokens": 36,
+        "elapsedMs": 1473,
+        "ttftMs": 277,
+        "tokensPerSecond": 24.439918533604885,
+        "decodeTokensPerSecond": 29.264214046822744
+      }
+    }
+  ],
+  "deviceVerification": "User must record actual device; no iPad verification claimed"
+}

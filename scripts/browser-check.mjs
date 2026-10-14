@@ -19,6 +19,8 @@ await page.reload();
 await page.waitForFunction(() => document.querySelector('#environment').textContent !== '環境を確認中…');
 await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
 const environment = await page.locator('#environment').textContent();
+if (await page.locator('#model').inputValue() !== 'lfm2') throw new Error('Fresh installs should prefer LFM');
+await page.getByLabel('比較モデル', { exact: true }).selectOption('qwen3');
 // Fixtures validate saving and resuming only; never treat these bytes as a real model.
 let downloads = 0;
 await page.route('https://huggingface.co/**', async route => {
