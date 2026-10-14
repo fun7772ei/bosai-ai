@@ -1,89 +1,42 @@
-# bosai-ai — Phase 1
+# ぼうさい辞書 AI — Ruri優先ベータ版
 
-端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/GemmaのWebGPU版ではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。CPU版はユーザー提供ログで短時間生成とリセット後の再初期化に成功。ただし回答品質・長時間・PWAオフラインと今回の変更版の実機動作は未確認で、Phase 1成立とは扱わない。88件の原文を探す検索実験を追加した。AIの自由生成を防災判断には使わない。検索の正式なPhase 2統合は未実施。
+**公開URL： https://fun7772ei.github.io/bosai-ai/**
 
+88件の防災情報を自然な日本語で探す、端末内検索のベータ版。既定は軽量検索＋Ruri-v3-30m、Ruri単独・モデル不要の軽量検索も選べる。AIは関連候補を探し、選択した項目の概要・全手順・注意・出典を**原文で表示**する。自由生成した防災回答は公開版で実行しない。
 
-CPUはLFM2.5-350Mに加え、Qwen3.5-0.8B日本語SFT v2・Qwen3-0.6B・LFM2-700MのGGUF Q4_K_Mを比較できる。[4モデルの実測比較・暫定順位](docs/phase1-four-cpu-models.md) を参照。既定はLFM350のまま。Qwen系はthinking無効で、追加3候補のiPad動作は未確認。全候補を取得する必要はなく、選択だけではダウンロードしない。
+現在の災害状況・警報・予報・避難所の開設状況は確認できない。個人の診断や投薬量、安全性を判断するアプリではない。候補が出ても、質問への具体的な答えが収録されている保証はない。iPad第10世代/iPadOS26.5 SafariとオフラインPWAが最終目標だが、実機の安定性・防災上の安全性は未確認で、正式完成ではない。
 
-## 6方式の比較実験（PR #8への積み上げ）
+使い方：
 
-「4. 6方式の比較実験」で、軽量検索・Ruri-v3-30mの実Embedding・併用検索を、それぞれ原文表示またはLFM350根拠付き生成と組み合わせて試せる。モデル不要のAは未保存でも利用可能。B/Cは約43.8MBのRuri、Dは既存LFM350と追加Tokenizer、E/Fは両方の保存が必要。取得は明示ボタンだけで、既存モデル・選択・保存は維持する。88件の文書ベクトルは実モデルで事前計算して同梱し、端末では質問だけを計算する。
+1. 状況を入力して検索し、関連候補を選んで原文と注意事項を見る。
+2. AI検索には「AIモデルを保存」で約44MBを一度明示取得。未保存・保存失敗・初期化失敗時も軽量検索を利用できる。
+3. アプリ本体・辞書・事前計算EmbeddingはPWA cache、RuriはIndexedDBへ保存する。保存済みモデルを再ダウンロードせず使い、解放/更新で旧モデルを自動削除しない。
+4. Safari通常タブとホーム画面PWAは保存状態を別々に確認する。アプリ削除・再インストールは不要。
 
-E/FはEmbeddingを解放してからLFMを初期化し、同時常駐を避ける。512文脈に根拠の概要・全手順・注意が収まらなければ生成せず原文へ戻す。生成上限で切れた出力も完成扱いしない。**正解の原文を渡してもLFM350による否定逆転等の危険回答が出ており、生成内容を防災判断へ使える品質とは確認していない。** 原文と出典を必ず併記する。
+[評価・失敗例・容量/速度/メモリ・実機最小手順](docs/ruri-beta.md) / [引き継ぎ](CLOUD_HANDOFF.md)。未使用80問では併用Top-1 48/52、Top-3 52/52。未収録の明示棄却14/20で限界が残る。Chromiumの成功をiPad Safari成功とは扱わない。
 
-[6方式の実測・評価・再現手順](docs/phase1-six-methods.md) を参照。旧40問で設定を凍結し、新しい64問を最終評価として分離。実モデル推論・Chromium操作・オフライン再読み込みと、iPad Safari実機成功は区別する。今回の版は未マージ・未公開で、iPad実機未確認。正式Phase 2への移行は行わない。
+## 開発と検証
 
-## 自然言語検索の試作
+Node.js24以降。
 
-「3. 防災情報を検索（実験）」で質問を入力する。既定の軽量検索はモデル不要。従来キーワード検索と、軽量検索上位3件を読み込み済みのLFM350/700 CPUで選別する実験も選べる。LLMにはタイトルと質問だけを渡し、原文の概要・手順・注意事項・出典を表示する。自由生成で防災情報を補わない。
+```bash
+npm ci
+npm test
+npm run build
+node scripts/check-public-build.mjs
+npm run preview -- --port 4173 --strictPort
+```
 
-`fun7772ei/bosai-app` の88件を、ユーザーの今回の依頼に従って固定コピー。元リポジトリに変更・動的同期・実行時アクセスは行わない。JSONはJSへ同梱し、PWAのshellキャッシュ対象となる。元データは [固定スナップショット](docs/source/bosai-app-data.js)、変換は `node scripts/import-bosai-data.mjs --check`。全フィールドを元アプリと同じID/順序で照合するテストがある。
+http://localhost:4173/bosai-ai/ 。実Ruriのブラウザ・オフライン・更新試験は上記評価資料を参照。重みは明示取得してGit対象外の`test-results/`へ置く。外部AI APIは使用しない。アプリ配信はGitHub Pages、初回モデル取得はHugging Face。出典を開くと外部サイトへ移動する。
 
-[検索の評価・制約・再現手順](docs/phase1-search-prototype.md) を参照。`scripts/search-cases.mjs` の40問を本番preview上で実際に入力し、`node scripts/search-browser-check.mjs --model=lfm2-cpu` と `--model=lfm2-700m-cpu` で実GGUFを比較する。モデルは `scripts/cpu-comparison-models.mjs` 記載の固定ファイルをGit対象外へ配置する。`--light-only` はGGUF不要。iPad Safariでの今回の検索実験は未確認で、マージ・Pages公開も行わない。
+`fun7772ei/bosai-app`の固定commitの88件をコピーして同梱。元リポジトリ・原文は変更せず、実行時にGitHubへ同期しない。`node scripts/import-bosai-data.mjs --check`で全フィールド・ID・順序を照合する。Ruriのrevision/bytes/SHAは`src/aux-assets.json`、原データの来歴は`docs/source/`。
 
-## 起動
+## 研究用コード
 
-Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作を確認する場合は `npm run build` → `npm run preview` → http://localhost:4173/bosai-ai/ 。WebGPUとService WorkerにはHTTPSまたはlocalhostが必要。iPadからLANのHTTPアドレスを開く方法はWebGPU検証には使えない。
+PR #6〜#9の通常生成・保存・モデル選択・比較コードと、既存GGUF/ONNXの保存は維持する。公開ビルドには実行コード/LLM用WASMを含めない。
 
-公開URL: https://fun7772ei.github.io/bosai-ai/ 。GitHub PagesのSourceは **GitHub Actions** に設定済み。mainへpushすると、`.github/workflows/pages.yml`でテスト・ビルド・公開する。
+- `npm run dev:research`：ローカルの`/bosai-ai/research.html`。
+- `npm run build:research`：`research-dist/`に明示出力。Pages配信対象外。
+- 過去の[6方式](docs/phase1-six-methods.md)・[4モデル](docs/phase1-four-cpu-models.md)・[品質](docs/phase1-cpu-quality.md)・[検索](docs/phase1-search-prototype.md)比較は履歴。現在の公開用方針はRuri＋原文である。
 
-## CPU比較
-
-「LFM2.5-350M（CPU/WASM比較）」を選び、Q4_K_Mを保存→再読み込み→1/1保存済みを確認→読み込む。ONNXの保存とは別の約229MBのGGUFを取得する。1スレッド、文脈512、入力200文字、出力32/64トークンで比較する。既存のモデルを消す必要はない。CPUもメモリを使い、低速になる可能性がある。
-
-wllama/compat 3.8.1を固定し、Safari向けAsyncify/MEMORY32を強制する。同梱WASMもService Workerに保存する。CPUにWebGPUは不要。全体サイズ・GGUFヘッダー・分割キー/サイズを確認するが、本番読込の暗号学的ハッシュ検証は未実装。[結果・再現手順](docs/phase1-cpu-results.md)、[iPad最小手順](docs/ipad-verification.md) を参照。
-
-## 4モデル比較
-
-PR #6を継承した比較で、wllama/compat 3.8.1の更新なしに4モデルが実生成に成功した。既存12問＋架空の防災文4問、32/64上限、配布元推奨設定を評価。LFM2-700Mの厳密遵守率が最高だったが、追加モデルの64 tokens生成は約14〜16秒で、メモリも増えた。いずれも防災回答品質の成立とは扱わない。
-
-開発側比較は `node scripts/cpu-model-comparison.mjs`、`--timing-only` で32/64実生成とメモリ。固定ファイルの場所/SHA256は `scripts/cpu-comparison-models.mjs`。本番previewの追加候補は `node scripts/cpu-inference-check.mjs --model=qwen35-cpu --smoke` 等で保存・停止・リセット・再読込を検証する。モデル本体はGit対象外。測定用Linux/proc・CDPは開発スクリプトだけで、本番アプリには不要。
-
-## 回答品質の比較（PR #6の履歴）
-
-[品質比較結果](docs/phase1-cpu-quality.md) に実GGUFの18条件・108生成を記録。Jinja、system指示、temperature/top_k/top_p/repeat_penalty、32/64上限を比較したが、品質と速度を両立する改善は確認できず、生成設定は維持した。品質比較スクリプトは `node scripts/cpu-quality-check.mjs`。元の6項目と別入力6項目で実出力・採点・速度を保存し、回答を固定文字列へ置換しない。
-
-CPUの診断JSONに `finishReason` と `outputLimitReached` を追加。ネイティブの `length` 終了時には画面で出力上限と途中回答の可能性を表示し、通常終了や停止と区別する。上限は32/64、文脈512のまま。Safari/PWAオフラインの実機検証はユーザー判断で後回し。
-
-## 実装
-
-- LFMの同一入力10回成功の後、入力変更時に3件目前後で落ちるとの報告がある。新規利用の初期選択はCPU版に変更。既存の明示選択・形式・保存は維持し、自動置換しない。
-
-- 「比較モデル」でLFM2.5-350M／Gemma 3-270M-it／Qwen3-0.6Bを選べる。Qwenの既存保存・形式設定を維持し、新モデルの取得は明示操作。現在はCPU版を優先し、WebGPU候補は既存利用・比較用として保持する。モデルを変える前に「実行をリセット」する。
-- LFMとGemmaはONNXグラフ＋外部重み `.onnx_data` を含む6ファイルを分割保存する。Qwenは従来の5ファイル。モデル別の固定revision・形式設定・保存状態・診断を使い、選択モデルを削除してもほかのモデルは残る。[比較モデル・手順・検証限界](docs/phase1-model-comparison.md) を参照。
-
-- Transformers.js 4.3.1とONNX Runtimeはロックファイルで固定。
-- `onnx-community/Qwen3-0.6B-ONNX`のrevision `1e0a4a196ecabdf9a879664110574563d3f372d3`を固定。第一候補q4f16、比較用q4。どちらも4bit重み。q4f16はshader-f16が必要。
-- 専用の取得Workerでレスポンスを4MiBずつIndexedDBへ分割保存。全分割の保存後に完了情報を書き、途中失敗を保存完了として扱わない。JavaScriptで重み全体を収集せず、推論の初期化と別の操作にする。保存後はページを再読み込みしてから「モデルを読み込む」。推論初期化には依然大きなメモリが必要。
-- 推論Workerは保存済みモデルのみ読み込み、Hugging Faceへの未保存ファイル取得を拒否する。`enable_thinking: false`、最大128トークン（64/128/256選択）、履歴なし。生成途中停止とWorkerリセットに対応。読み込み時の自動ウォームアップを廃止し、最初の生成を明示操作にする。
-- 読み込み時間は保存済みモデルの初期化とTokenizer読み込み。初回トークン時間はテンプレート作成・prefill・初回シェーダー準備も含む。画面のtokens/secは生成トークン数÷生成全体の秒数。JSONのdecodeTokensPerSecondは初回トークン後の速度。特殊トークンもトークン数に含まれ、文字数とは異なる。改修前の時間とは測定範囲が異なる。
-- 処理段階をlocalStorageへ記録し、途中終了後の再読み込みで表示。意図的なタブ終了・再読み込みでも未完了として記録されるため、クラッシュの原因を断定する診断ではない。
-- 選択したq4/q4f16を再読み込み後に復元。以前の版で形式が記録されていない場合も、必要ファイルがすべて揃っている形式が一つだけなら、その保存済み形式を選ぶ。保存件数は選択中の形式ごとに表示し、再読み込み後も必要ファイルがあれば保存済みと表示する。ファイル存在確認は推論成功や永続保持の保証ではない。
-- 10回連続生成、最大100件の測定結果、診断ログ、JSONエクスポート。履歴はページ再読込で消える。質問・出力はAPI送信せず、診断JSONに含まれる。
-- モデルは初回にHugging Faceから取得しIndexedDBの`bosai-ai-model-chunks-v1`へ保存。旧Cache APIの`bosai-ai-model-v1`に残る正常なファイルは再利用し、旧キャッシュのInternal errorで新しい保存方式を妨げない。モデルをGitに含めない。JS/WASMはnpmパッケージからビルド成果物へ配置し、CDNへの実行時依存を避ける。
-- Phase 1で再起動・オフラインを試すための最小Service Workerを先行実装。アプリキャッシュはビルドハッシュごとに更新。モデルキャッシュはアプリ更新で削除しない。保存ファイル数は完全性の保証ではなく、再起動後のオフライン生成をもって確認する。
-- 保存済みモデルのみ使用するモードは、Transformers.jsのネットワーク取得を明示的に拒否する。アプリ本体はService Workerから再利用する。未保存・容量不足・Safariのストレージ削除は失敗として確認する。永続保存APIの許可は保持保証ではない。
-
-## 検証
-
-`npm test`、`npm run build`。ブラウザテストは `npx playwright install chromium`、本番preview起動中に `node scripts/browser-check.mjs`。実モデルの取得を伴う任意テストは `node scripts/inference-check.mjs`（WebGPU利用可能な環境が必要）。
-
-今回の結果と限界は [docs/phase1-results.md](docs/phase1-results.md)、iPadでの手順は [docs/ipad-verification.md](docs/ipad-verification.md) に記録。実モデルの比較スクリプトは `node scripts/inference-check.mjs lfm2 q4f16` または `node scripts/inference-check.mjs gemma3 q4f16`。q4比較時は最後の引数をq4とするが、省メモリになる保証はない。成果物をモデル・形式別に保存する。デスクトップChromiumの結果をSafari実機の確認として扱わない。
-
-Cloudでの追加修正と検証は [docs/phase1-cloud-review.md](docs/phase1-cloud-review.md)。Workerの起動待ち・詳細ログ、分割キーとサイズの検証、再保存失敗時の旧データ保持を追加。旧IndexedDB形式とCache API保存を読み続ける。アプリ更新は使用中のタブを強制切替せず、旧タブを閉じた後に有効になる。保存データやSafariのサイトデータを消す必要はない。画面の「アプリ版」と診断JSONの `appBuild` で使用版を識別する。
-
-ブラウザ依存込みの準備は `npx playwright install --with-deps chromium`。Cloudで管理者権限がない場合は失敗しうるため、既存OS依存で起動できるかを `npx playwright install chromium` 後に実行確認する。実モデルスクリプトはq4f16に必要なGPU機能がなければ取得せず終了コード2（未検証）、保存・生成失敗は1、オンラインとオフラインで生成できた場合だけ0を返す。
-
-## 次の段階
-
-今回のユーザー指示により、Phase 1の比較実験として88件の固定コピーと検索プロトタイプを先行実装した。正式なPhase 2の機能統合・RAG・自由生成による回答作成は未着手。精度・速度・iPad実機結果を確認してから判断する。元リポジトリは読み取りのみ。
-
-検索、緊急時の確定情報、3〜5件の根拠付きRAGを独立モジュールとして追加する。AIエラー時も辞書検索を維持する。Phase 3で会話UI・IndexedDB履歴、Phase 4で保存管理・PWA更新・容量不足への対応を仕上げる。iPadのPhase 1結果を判断材料にし、AIが動かない場合は軽量検索を中心に進める。
-
-## 技術参照
-
-- [Qwen3 ONNXモデルカード](https://huggingface.co/onnx-community/Qwen3-0.6B-ONNX)
-- [Transformers.jsのQwen3公式例](https://github.com/huggingface/transformers.js-examples/tree/main/qwen3-webgpu)
-- [WebKit Safari 26.0のWebGPU対応](https://webkit.org/blog/17333/webkit-features-in-safari-26-0/)
-
-アプリコードの再利用ライセンスは未設定。モデルの利用条件は固定revisionの配布元・ベースモデルを確認する。
+RuriはApache-2.0、研究用LFMはLFM Open License。利用条件を混同しない。正式Phase 2への移行は行っていない。

@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-10-14T08:00:24.649761+00:00",
+  "freezeCommit": "87cf7c303a7e55c698d9c014c27bfb88be0d5f83",
+  "questions": 80,
+  "sha256": "803a81d16c65561d255995f2853fc19425ecb34ba8963d857c3101b43d6703be",
+  "counts": {
+    "paraphrase": 16,
+    "absent": 20,
+    "normal": 16,
+    "danger": 12,
+    "ambiguous": 8,
+    "multi": 8
+  },
+  "review": "Source-based hand-authored labels, not an independent disaster-expert benchmark. No tuning to these results."
+}

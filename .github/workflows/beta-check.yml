@@ -1,0 +1,41 @@
+name: Check Ruri public beta
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: node scripts/check-public-build.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: python3 scripts/fetch-ruri-assets.py
+      - name: Real Ruri, regression, offline restart and safe update
+        run: |
+          npm run preview -- --port 4173 --strictPort > /tmp/bosai-preview.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:4173/bosai-ai/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/beta-browser-check.mjs --cases=scripts/evaluation/final-64.json --tag=beta-regression-64
+          node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-final-80
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruri-beta-check
+          path: |
+            test-results/beta-final-80.json
+            test-results/beta-regression-64.json
+            test-results/beta-mobile.png
+            test-results/beta-ipad-layout.png
