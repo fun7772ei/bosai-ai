@@ -21,7 +21,7 @@ for(const text of ['寝ているときに地震が来たら？','高台に間に
 
 // Moonshine Voice Japanese Tiny Streaming is opt-in. Keep text search usable if this fails.
 // The official WASM package is pinned; the microphone and model load only on button press.
-const MOONSHINE_MODULE='https://cdn.jsdelivr.net/npm/@moonshine-ai/moonshine-wasm@0.1.5/dist/index.js';
+const MOONSHINE_MODULE=new URL('moonshine/index.js',location.origin+import.meta.env.BASE_URL).href;
 $('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
 let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceFinal=[],voiceBase='';
 function voiceState(message){
