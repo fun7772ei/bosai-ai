@@ -70,7 +70,7 @@ export class Conversation {
     if(!query || /^(それ|そこ|そう|はい)[？?。]*$/.test(query))return this.clarify('どの状況や行動を指しているか教えてください。');
     this.state.topics=topics; this.state.facts=facts; this.state.situation=query; this.state.excluded=[...new Set([...this.state.excluded,...parsed.excluded])].slice(-12);
     this.state.action=facts.movement==='walk'?'歩行':facts.movement==='drive'?'車の移動':'';
-    if(facts.road && ['wheelchair','bicycle','rail','stroller'].includes(facts.movement))return this.clarify('この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。');
+    if(facts.road && ['wheelchair','bicycle','rail','stroller'].includes(facts.movement))return this.clarify('この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。',{},true);
     if(facts.movement==='mixed')return this.clarify('徒歩と車のどちらの場面を調べますか？',{choices:['徒歩です','車です']},true);
     if(topics.includes('大雨・浸水') && ['walk','drive'].includes(facts.movement) && facts.floodedRoad===undefined && !facts.vehicleFlooded)return this.clarify('移動する道路は冠水していますか？大雨だけでは冠水した状況と判断しません。',{choices:['道路が冠水しています','道路は冠水していません']},true);
     const focus=focusFor(topics,facts), prefix=focus?contextText(topics,facts):'';
