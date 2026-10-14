@@ -33,6 +33,9 @@ try {
   await regular.goto(base, { waitUntil: 'load' });
   const regularIso = await regular.evaluate(() => crossOriginIsolated);
   if (regularIso) throw Error('Regular Ruri page must remain non-isolated');
+  const sdkHead = await regular.request.get(new URL('moonshine/index.js', base).href);
+  const wasmHead = await regular.request.get(new URL('moonshine/moonshine.wasm', base).href, { timeout: 60000 });
+  if (!sdkHead.ok() || !wasmHead.ok()) throw Error('Moonshine same-origin assets missing: ' + sdkHead.status() + '/' + wasmHead.status());
   if (errors.length) throw Error('Page errors: ' + errors.join(' | '));
   console.log(JSON.stringify({ status: 'passed', base, voiceMode: result, regularIsolated: regularIso }));
   await context.close();
