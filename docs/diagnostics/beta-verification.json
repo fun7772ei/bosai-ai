@@ -1,10 +1,10 @@
 {
   "recordedAt": "2026-10-14T10:23:32.950572+00:00",
   "platform": "Node 24.19.0; Linux Chromium 149; CPU/WASM; WebGPU disabled in public browser tests",
-  "publicBuild": "11331e148dbc",
+  "publicBuild": "f41848b50937",
   "npmCi": "passed (NODE_USE_ENV_PROXY=1)",
   "unitTests": {
-    "pass": 75,
+    "pass": 77,
     "fail": 0
   },
   "publicBuildCheck": {
@@ -24,8 +24,11 @@
   "realRuri": {
     "files": 4,
     "bytes": 43778410,
-    "newEvaluation": 80,
-    "regression": 64,
+    "newEvaluation": 60,
+    "regression": [
+      64,
+      80
+    ],
     "methodsPerQuestion": 3,
     "fixtures": "Pinned genuine model bytes streamed from local test server; never pseudo-embedding",
     "tests": [
@@ -46,8 +49,14 @@
   "failedOrLimited": [
     "Local playwright --with-deps requires unavailable su authentication; used existing Chromium; dependency installation is tested separately in GitHub CI",
     "Execution environment temporarily disconnected, then recovered; no publication attempted during disconnection",
-    "New evaluation: six of twenty absent questions still yield related candidates, five of eight ambiguities explicitly clarified",
-    "Physical iPad Safari, installed iPad PWA, long-duration stability and disaster-expert safety review not performed"
+    "Physical iPad Safari, installed iPad PWA, long-duration stability and disaster-expert safety review not performed",
+    "Post-review final60: absent rejection9/16, ambiguity clarification5/8; one dangerous substitute candidate from Ruri-only; original candidates never auto-selected or generated into advice."
   ],
-  "publication": "Tracked in publication PR and docs/ruri-beta.md; hosted check separate from local model fixture tests"
+  "publication": "Tracked in publication PR and docs/ruri-beta.md; hosted check separate from local model fixture tests",
+  "reviewFixes": [
+    "No candidate selectable when scope requires clarification",
+    "Bare current warnings redirect to live official information",
+    "Offered drinking-water choice resolves clarification loop"
+  ],
+  "legacyResearchDummyStorage": "passed, built research-dist on port4186; source browser-check script with base/outDir substitution only; not real inference"
 }

@@ -1,229 +1,184 @@
 {
-  "createdAt": "2026-10-14T10:23:32.992Z",
+  "createdAt": "2026-10-14T10:35:34.478Z",
   "release": "Public beta; not iPad verified",
-  "freezeCommit": "87cf7c3",
+  "freezeCommit": "d7be140",
   "methods": {
     "light": {
-      "queries": 80,
-      "positive": 52,
-      "top1": 43,
-      "top3": 49,
-      "top5": 49,
-      "clearPositive": 52,
-      "clearTop1": 43,
-      "clearTop3": 49,
-      "clearTop5": 49,
+      "queries": 60,
+      "positive": 36,
+      "top1": 26,
+      "top3": 31,
+      "top5": 32,
+      "clearPositive": 36,
+      "clearTop1": 26,
+      "clearTop3": 31,
+      "clearTop5": 32,
       "hardRejectedPositive": 0,
-      "absent": 20,
-      "absentHardRejected": 14,
-      "absentNoCandidates": 14,
-      "absentCandidateReturned": 6,
+      "clarifiedPositive": 0,
+      "absent": 16,
+      "absentHardRejected": 9,
+      "absentNoCandidates": 9,
+      "absentCandidateReturned": 7,
       "ambiguous": 8,
       "clarified": 5,
-      "dangerQueries": 12,
-      "dangerWrongTop1": 0,
+      "dangerQueries": 8,
+      "dangerWrongTop1": 2,
       "dangerousLabelTop1": 0,
-      "multiAllAt5": 5,
+      "multiAllAt5": 4,
       "medianTotalMs": 0.6999999955296516,
       "medianEmbeddingMs": null,
       "failures": [
         {
-          "id": "beta-03",
-          "query": "水道が止まった避難所で、便の処理用の袋を用意するときの手順は？",
+          "id": "review-03",
+          "query": "帰宅途中の地下鉄車内で地震が起きました。出口へ走るべきですか？",
           "ids": [
-            "bosai-18",
-            "bosai-67",
-            "bosai-25",
-            "bosai-12",
-            "bosai-2"
-          ],
-          "expected": [
-            "bosai-17"
-          ]
-        },
-        {
-          "id": "beta-07",
-          "query": "避難生活で血栓ができるのを防ぐため、普段からできることは？",
-          "ids": [
-            "bosai-24",
-            "bosai-59",
-            "bosai-22",
-            "bosai-19",
-            "bosai-36"
-          ],
-          "expected": [
-            "bosai-23"
-          ]
-        },
-        {
-          "id": "beta-09",
-          "query": "避難先で使う入れ歯をなくさず衛生的に置いておくには？",
-          "ids": [
-            "bosai-17",
-            "bosai-26",
-            "bosai-55",
-            "bosai-13",
-            "bosai-87"
-          ],
-          "expected": [
-            "bosai-26"
-          ]
-        },
-        {
-          "id": "beta-19",
-          "query": "調理場で揺れた瞬間、火を消す作業と身を守ることの順番は？",
-          "ids": [
-            "bosai-74",
-            "bosai-38",
-            "bosai-41",
-            "bosai-1"
-          ],
-          "expected": [
-            "bosai-41"
-          ]
-        },
-        {
-          "id": "beta-21",
-          "query": "会社の背の高い棚が倒れてきそうです。デスクにいるときの身の守り方は？",
-          "ids": [
-            "bosai-67",
-            "bosai-2",
-            "bosai-25",
-            "bosai-18",
-            "bosai-0"
-          ],
-          "expected": [
-            "bosai-44"
-          ]
-        },
-        {
-          "id": "beta-28",
-          "query": "車を道路に残して歩いて逃げるなら、鍵と施錠をどうする？",
-          "ids": [
-            "bosai-69",
-            "bosai-55",
             "bosai-54",
-            "bosai-10",
+            "bosai-57",
+            "bosai-41",
+            "bosai-39",
+            "bosai-38"
+          ],
+          "expected": [
+            "bosai-57"
+          ]
+        },
+        {
+          "id": "review-10",
+          "query": "避難所で高齢の祖母の食欲が落ちて、いつもと様子が違います。",
+          "ids": [
+            "bosai-12",
+            "bosai-31",
+            "bosai-24",
+            "bosai-26",
+            "bosai-61"
+          ],
+          "expected": [
+            "bosai-31"
+          ]
+        },
+        {
+          "id": "review-11",
+          "query": "台風の暴風が強くなりました。家のどこで過ごせばよい？",
+          "ids": [
+            "bosai-77",
+            "bosai-85",
+            "bosai-75",
+            "bosai-76",
+            "bosai-69"
+          ],
+          "expected": [
+            "bosai-85"
+          ]
+        },
+        {
+          "id": "review-16",
+          "query": "渓流のそばで地面が揺れました。崖に近づかないほうがいい？",
+          "ids": [
+            "bosai-41",
+            "bosai-3",
+            "bosai-1",
+            "bosai-58",
+            "bosai-40"
+          ],
+          "expected": [
+            "bosai-53"
+          ]
+        },
+        {
+          "id": "review-17",
+          "query": "就寝中の車内生活が続き、座りっぱなしで足が重いです。予防のためにできることは？",
+          "ids": [
+            "bosai-23",
+            "bosai-54",
+            "bosai-71",
+            "bosai-73",
+            "bosai-27"
+          ],
+          "expected": [
+            "bosai-36"
+          ]
+        },
+        {
+          "id": "review-19",
+          "query": "避難中の寝具が湿って体が冷えています。暖を保つには？",
+          "ids": [
+            "bosai-26",
+            "bosai-36",
+            "bosai-67",
+            "bosai-73",
+            "bosai-25"
+          ],
+          "expected": [
+            "bosai-22"
+          ]
+        },
+        {
+          "id": "review-20",
+          "query": "避難所で昼間もずっと横になっています。体力を保つためには？",
+          "ids": [
+            "bosai-26",
+            "bosai-24",
+            "bosai-12",
+            "bosai-25",
             "bosai-67"
           ],
           "expected": [
-            "bosai-55"
-          ]
-        },
-        {
-          "id": "beta-29",
-          "query": "電車の中で足元が大きく揺れたら、立っている人は何をつかむ？",
-          "ids": [
-            "bosai-73",
-            "bosai-56",
-            "bosai-54",
-            "bosai-57",
-            "bosai-14"
-          ],
-          "expected": [
-            "bosai-56"
-          ]
-        },
-        {
-          "id": "beta-32",
-          "query": "大地震のあと自宅を離れます。電気が戻ったときの出火を防ぐには？",
-          "ids": [
-            "bosai-7",
-            "bosai-59",
-            "bosai-38",
-            "bosai-67",
             "bosai-24"
-          ],
-          "expected": [
-            "bosai-59"
           ]
         },
         {
-          "id": "beta-46",
-          "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+          "id": "review-24",
+          "query": "家で避難生活を続けていても配給などの案内を受けられますか？",
           "ids": [
-            "bosai-1",
-            "bosai-33",
-            "bosai-68",
-            "bosai-4",
-            "bosai-53"
+            "bosai-8",
+            "bosai-26",
+            "bosai-24",
+            "bosai-31",
+            "bosai-67"
           ],
           "expected": [
-            "bosai-65",
-            "bosai-68"
+            "bosai-37"
+          ]
+        },
+        {
+          "id": "review-27",
+          "query": "津波に備えて河口の堤防に見物に行ってよいでしょうか？",
+          "ids": [
+            "bosai-52",
+            "bosai-9",
+            "bosai-4",
+            "bosai-1",
+            "bosai-5"
+          ],
+          "expected": [
+            "bosai-9",
+            "bosai-1"
+          ]
+        },
+        {
+          "id": "review-28",
+          "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+          "ids": [
+            "bosai-70",
+            "bosai-82",
+            "bosai-83",
+            "bosai-69",
+            "bosai-86"
+          ],
+          "expected": [
+            "bosai-69"
           ]
         }
       ],
       "unrejectedAbsent": [
         {
-          "id": "beta-66",
-          "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+          "id": "review-39",
+          "query": "今朝の津波は何メートルになりましたか？",
           "ids": [
             "bosai-12",
-            "bosai-67",
-            "bosai-33",
-            "bosai-35",
-            "bosai-34"
-          ],
-          "scope": {
-            "kind": "related",
-            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
-            "choices": [],
-            "code": "candidates-only"
-          }
-        },
-        {
-          "id": "beta-68",
-          "query": "父にインスリンを3単位追加してもよいですか？",
-          "ids": [
-            "bosai-29"
-          ],
-          "scope": {
-            "kind": "related",
-            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
-            "choices": [],
-            "code": "candidates-only"
-          }
-        },
-        {
-          "id": "beta-69",
-          "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
-          "ids": [
-            "bosai-27",
-            "bosai-12",
-            "bosai-87"
-          ],
-          "scope": {
-            "kind": "related",
-            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
-            "choices": [],
-            "code": "candidates-only"
-          }
-        },
-        {
-          "id": "beta-70",
-          "query": "発災後、透析患者の送迎先にする病院名を指定して。",
-          "ids": [
-            "bosai-29",
+            "bosai-14",
+            "bosai-6",
             "bosai-13",
-            "bosai-12",
-            "bosai-2"
-          ],
-          "scope": {
-            "kind": "related",
-            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
-            "choices": [],
-            "code": "candidates-only"
-          }
-        },
-        {
-          "id": "beta-71",
-          "query": "非常食の必要カロリーを体重から計算してください。",
-          "ids": [
-            "bosai-48",
-            "bosai-78",
-            "bosai-81",
-            "bosai-30",
             "bosai-16"
           ],
           "scope": {
@@ -234,13 +189,91 @@
           }
         },
         {
-          "id": "beta-72",
-          "query": "家具の固定金具をどこの店で買えますか？",
+          "id": "review-45",
+          "query": "津波の浸水深を住所から計算してほしい。",
           "ids": [
-            "bosai-38",
-            "bosai-58",
-            "bosai-76",
-            "bosai-42"
+            "bosai-69",
+            "bosai-86",
+            "bosai-0",
+            "bosai-83",
+            "bosai-7"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-46",
+          "query": "乾電池を売っている店の営業時間は？",
+          "ids": [
+            "bosai-78",
+            "bosai-61"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-47",
+          "query": "二日分の飲み水を沸かすには何分必要ですか？",
+          "ids": [
+            "bosai-36",
+            "bosai-11",
+            "bosai-16",
+            "bosai-30",
+            "bosai-81"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-48",
+          "query": "避難所の一食の栄養をグラム単位で計算して。",
+          "ids": [
+            "bosai-15",
+            "bosai-12",
+            "bosai-67",
+            "bosai-19",
+            "bosai-35"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-51",
+          "query": "電気代の減免を申請する用紙を出して。",
+          "ids": [
+            "bosai-59"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-52",
+          "query": "スマホ決済の暗証番号を忘れた。災害時に解除できる？",
+          "ids": [
+            "bosai-78",
+            "bosai-81",
+            "bosai-8",
+            "bosai-64"
           ],
           "scope": {
             "kind": "related",
@@ -252,118 +285,122 @@
       ]
     },
     "ruri": {
-      "queries": 80,
-      "positive": 52,
-      "top1": 48,
-      "top3": 51,
-      "top5": 52,
-      "clearPositive": 52,
-      "clearTop1": 48,
-      "clearTop3": 51,
-      "clearTop5": 52,
+      "queries": 60,
+      "positive": 36,
+      "top1": 32,
+      "top3": 35,
+      "top5": 35,
+      "clearPositive": 36,
+      "clearTop1": 32,
+      "clearTop3": 35,
+      "clearTop5": 35,
       "hardRejectedPositive": 0,
-      "absent": 20,
-      "absentHardRejected": 14,
-      "absentNoCandidates": 15,
-      "absentCandidateReturned": 5,
+      "clarifiedPositive": 0,
+      "absent": 16,
+      "absentHardRejected": 9,
+      "absentNoCandidates": 10,
+      "absentCandidateReturned": 6,
       "ambiguous": 8,
       "clarified": 5,
-      "dangerQueries": 12,
-      "dangerWrongTop1": 0,
-      "dangerousLabelTop1": 0,
-      "multiAllAt5": 7,
-      "medianTotalMs": 20,
-      "medianEmbeddingMs": 18.700000002980232,
+      "dangerQueries": 8,
+      "dangerWrongTop1": 1,
+      "dangerousLabelTop1": 1,
+      "multiAllAt5": 4,
+      "medianTotalMs": 19.149999998509884,
+      "medianEmbeddingMs": 17.699999999254942,
       "failures": [
         {
-          "id": "beta-04",
-          "query": "配られたお弁当をすぐ食べられないとき、避難所ではどう扱う？",
+          "id": "review-03",
+          "query": "帰宅途中の地下鉄車内で地震が起きました。出口へ走るべきですか？",
           "ids": [
-            "bosai-32",
-            "bosai-19",
-            "bosai-30",
-            "bosai-21",
-            "bosai-28",
-            "bosai-35",
-            "bosai-29",
-            "bosai-18",
-            "bosai-17",
-            "bosai-31"
-          ],
-          "expected": [
-            "bosai-19"
-          ]
-        },
-        {
-          "id": "beta-24",
-          "query": "地下のショッピング通路で地震です。階段へ殺到する以外の行動は？",
-          "ids": [
+            "bosai-58",
+            "bosai-57",
+            "bosai-54",
+            "bosai-40",
+            "bosai-56",
+            "bosai-55",
             "bosai-45",
             "bosai-46",
-            "bosai-49",
-            "bosai-48",
-            "bosai-47",
-            "bosai-42",
-            "bosai-58",
-            "bosai-40",
-            "bosai-50",
+            "bosai-14",
+            "bosai-39"
+          ],
+          "expected": [
             "bosai-57"
-          ],
-          "expected": [
-            "bosai-47"
           ]
         },
         {
-          "id": "beta-46",
-          "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+          "id": "review-05",
+          "query": "海の近くのキャンプ場へ行く前に津波への備えを調べたい。",
           "ids": [
+            "bosai-14",
+            "bosai-13",
+            "bosai-12",
+            "bosai-16",
+            "bosai-51",
             "bosai-1",
-            "bosai-33",
-            "bosai-68",
+            "bosai-2",
+            "bosai-3",
             "bosai-4",
-            "bosai-53"
+            "bosai-11"
           ],
           "expected": [
-            "bosai-65",
-            "bosai-68"
+            "bosai-13"
           ]
         },
         {
-          "id": "beta-48",
-          "query": "雷と激しい突風がある屋外です。建物へ入ることと、窓の位置を考えたい。",
+          "id": "review-17",
+          "query": "就寝中の車内生活が続き、座りっぱなしで足が重いです。予防のためにできることは？",
           "ids": [
-            "bosai-85",
-            "bosai-74",
-            "bosai-75",
-            "bosai-73",
-            "bosai-49",
-            "bosai-42",
-            "bosai-76",
-            "bosai-38",
-            "bosai-44",
-            "bosai-50"
+            "bosai-23",
+            "bosai-36",
+            "bosai-24",
+            "bosai-39",
+            "bosai-27",
+            "bosai-56",
+            "bosai-57",
+            "bosai-21",
+            "bosai-20",
+            "bosai-38"
           ],
           "expected": [
-            "bosai-73",
-            "bosai-74"
+            "bosai-36"
+          ]
+        },
+        {
+          "id": "review-28",
+          "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+          "ids": [
+            "bosai-84",
+            "bosai-86",
+            "bosai-68",
+            "bosai-64",
+            "bosai-70",
+            "bosai-69",
+            "bosai-65",
+            "bosai-20",
+            "bosai-66",
+            "bosai-77"
+          ],
+          "expected": [
+            "bosai-69"
           ]
         }
       ],
       "unrejectedAbsent": [
         {
-          "id": "beta-66",
-          "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+          "id": "review-39",
+          "query": "今朝の津波は何メートルになりましたか？",
           "ids": [
-            "bosai-21",
-            "bosai-35",
-            "bosai-34",
-            "bosai-22",
-            "bosai-47",
-            "bosai-37",
+            "bosai-3",
+            "bosai-6",
+            "bosai-11",
+            "bosai-7",
             "bosai-14",
-            "bosai-12",
-            "bosai-28",
-            "bosai-62"
+            "bosai-4",
+            "bosai-9",
+            "bosai-0",
+            "bosai-5",
+            "bosai-1"
           ],
           "scope": {
             "kind": "related",
@@ -373,10 +410,19 @@
           }
         },
         {
-          "id": "beta-68",
-          "query": "父にインスリンを3単位追加してもよいですか？",
+          "id": "review-45",
+          "query": "津波の浸水深を住所から計算してほしい。",
           "ids": [
-            "bosai-29"
+            "bosai-9",
+            "bosai-4",
+            "bosai-3",
+            "bosai-0",
+            "bosai-2",
+            "bosai-52",
+            "bosai-51",
+            "bosai-11",
+            "bosai-1",
+            "bosai-72"
           ],
           "scope": {
             "kind": "related",
@@ -386,12 +432,22 @@
           }
         },
         {
-          "id": "beta-69",
-          "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+          "id": "review-46",
+          "query": "乾電池を売っている店の営業時間は？",
+          "ids": [],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-47",
+          "query": "二日分の飲み水を沸かすには何分必要ですか？",
           "ids": [
             "bosai-79",
-            "bosai-25",
-            "bosai-18"
+            "bosai-20"
           ],
           "scope": {
             "kind": "related",
@@ -401,19 +457,19 @@
           }
         },
         {
-          "id": "beta-70",
-          "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+          "id": "review-48",
+          "query": "避難所の一食の栄養をグラム単位で計算して。",
           "ids": [
-            "bosai-29",
-            "bosai-16",
+            "bosai-32",
+            "bosai-19",
+            "bosai-20",
+            "bosai-21",
+            "bosai-27",
             "bosai-28",
             "bosai-30",
             "bosai-31",
-            "bosai-82",
-            "bosai-21",
-            "bosai-35",
-            "bosai-2",
-            "bosai-32"
+            "bosai-79",
+            "bosai-22"
           ],
           "scope": {
             "kind": "related",
@@ -423,23 +479,37 @@
           }
         },
         {
-          "id": "beta-71",
-          "query": "非常食の必要カロリーを体重から計算してください。",
+          "id": "review-51",
+          "query": "電気代の減免を申請する用紙を出して。",
           "ids": [
-            "bosai-32",
+            "bosai-81",
+            "bosai-59",
+            "bosai-80",
+            "bosai-75",
+            "bosai-78"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-52",
+          "query": "スマホ決済の暗証番号を忘れた。災害時に解除できる？",
+          "ids": [
+            "bosai-8",
+            "bosai-45",
+            "bosai-48",
+            "bosai-58",
+            "bosai-55",
+            "bosai-7",
+            "bosai-47",
+            "bosai-40",
+            "bosai-54",
             "bosai-79"
           ],
-          "scope": {
-            "kind": "related",
-            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
-            "choices": [],
-            "code": "candidates-only"
-          }
-        },
-        {
-          "id": "beta-72",
-          "query": "家具の固定金具をどこの店で買えますか？",
-          "ids": [],
           "scope": {
             "kind": "related",
             "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
@@ -450,97 +520,111 @@
       ]
     },
     "hybrid": {
-      "queries": 80,
-      "positive": 52,
-      "top1": 48,
-      "top3": 52,
-      "top5": 52,
-      "clearPositive": 52,
-      "clearTop1": 48,
-      "clearTop3": 52,
-      "clearTop5": 52,
+      "queries": 60,
+      "positive": 36,
+      "top1": 31,
+      "top3": 35,
+      "top5": 36,
+      "clearPositive": 36,
+      "clearTop1": 31,
+      "clearTop3": 35,
+      "clearTop5": 36,
       "hardRejectedPositive": 0,
-      "absent": 20,
-      "absentHardRejected": 14,
-      "absentNoCandidates": 14,
-      "absentCandidateReturned": 6,
+      "clarifiedPositive": 0,
+      "absent": 16,
+      "absentHardRejected": 9,
+      "absentNoCandidates": 9,
+      "absentCandidateReturned": 7,
       "ambiguous": 8,
       "clarified": 5,
-      "dangerQueries": 12,
-      "dangerWrongTop1": 0,
+      "dangerQueries": 8,
+      "dangerWrongTop1": 1,
       "dangerousLabelTop1": 0,
-      "multiAllAt5": 7,
-      "medianTotalMs": 20.24999999627471,
-      "medianEmbeddingMs": 18.899999998509884,
+      "multiAllAt5": 4,
+      "medianTotalMs": 18.900000002235174,
+      "medianEmbeddingMs": 17.600000001490116,
       "failures": [
         {
-          "id": "beta-03",
-          "query": "水道が止まった避難所で、便の処理用の袋を用意するときの手順は？",
+          "id": "review-03",
+          "query": "帰宅途中の地下鉄車内で地震が起きました。出口へ走るべきですか？",
           "ids": [
-            "bosai-18",
-            "bosai-17",
-            "bosai-67",
-            "bosai-82",
-            "bosai-25"
+            "bosai-54",
+            "bosai-57",
+            "bosai-58",
+            "bosai-40",
+            "bosai-56"
           ],
           "expected": [
-            "bosai-17"
+            "bosai-57"
           ]
         },
         {
-          "id": "beta-07",
-          "query": "避難生活で血栓ができるのを防ぐため、普段からできることは？",
+          "id": "review-16",
+          "query": "渓流のそばで地面が揺れました。崖に近づかないほうがいい？",
           "ids": [
-            "bosai-24",
+            "bosai-41",
+            "bosai-53",
+            "bosai-66",
+            "bosai-1",
+            "bosai-3"
+          ],
+          "expected": [
+            "bosai-53"
+          ]
+        },
+        {
+          "id": "review-17",
+          "query": "就寝中の車内生活が続き、座りっぱなしで足が重いです。予防のためにできることは？",
+          "ids": [
             "bosai-23",
             "bosai-36",
-            "bosai-59",
-            "bosai-20"
+            "bosai-54",
+            "bosai-24",
+            "bosai-27"
           ],
           "expected": [
-            "bosai-23"
+            "bosai-36"
           ]
         },
         {
-          "id": "beta-24",
-          "query": "地下のショッピング通路で地震です。階段へ殺到する以外の行動は？",
+          "id": "review-24",
+          "query": "家で避難生活を続けていても配給などの案内を受けられますか？",
           "ids": [
-            "bosai-45",
-            "bosai-47",
-            "bosai-42",
-            "bosai-44",
-            "bosai-86"
+            "bosai-8",
+            "bosai-37",
+            "bosai-26",
+            "bosai-31",
+            "bosai-24"
           ],
           "expected": [
-            "bosai-47"
+            "bosai-37"
           ]
         },
         {
-          "id": "beta-46",
-          "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+          "id": "review-28",
+          "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
           "ids": [
-            "bosai-1",
-            "bosai-33",
-            "bosai-68",
-            "bosai-4",
-            "bosai-53"
+            "bosai-70",
+            "bosai-86",
+            "bosai-84",
+            "bosai-82",
+            "bosai-69"
           ],
           "expected": [
-            "bosai-65",
-            "bosai-68"
+            "bosai-69"
           ]
         }
       ],
       "unrejectedAbsent": [
         {
-          "id": "beta-66",
-          "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+          "id": "review-39",
+          "query": "今朝の津波は何メートルになりましたか？",
           "ids": [
+            "bosai-14",
+            "bosai-6",
+            "bosai-3",
             "bosai-12",
-            "bosai-21",
-            "bosai-35",
-            "bosai-34",
-            "bosai-67"
+            "bosai-11"
           ],
           "scope": {
             "kind": "related",
@@ -550,10 +634,14 @@
           }
         },
         {
-          "id": "beta-68",
-          "query": "父にインスリンを3単位追加してもよいですか？",
+          "id": "review-45",
+          "query": "津波の浸水深を住所から計算してほしい。",
           "ids": [
-            "bosai-29"
+            "bosai-69",
+            "bosai-9",
+            "bosai-4",
+            "bosai-3",
+            "bosai-0"
           ],
           "scope": {
             "kind": "related",
@@ -563,47 +651,27 @@
           }
         },
         {
-          "id": "beta-69",
-          "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+          "id": "review-46",
+          "query": "乾電池を売っている店の営業時間は？",
           "ids": [
-            "bosai-27",
-            "bosai-79",
-            "bosai-25",
-            "bosai-12",
-            "bosai-18"
-          ],
-          "scope": {
-            "kind": "related",
-            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
-            "choices": [],
-            "code": "candidates-only"
-          }
-        },
-        {
-          "id": "beta-70",
-          "query": "発災後、透析患者の送迎先にする病院名を指定して。",
-          "ids": [
-            "bosai-29",
-            "bosai-13",
-            "bosai-12",
-            "bosai-16",
-            "bosai-28"
-          ],
-          "scope": {
-            "kind": "related",
-            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
-            "choices": [],
-            "code": "candidates-only"
-          }
-        },
-        {
-          "id": "beta-71",
-          "query": "非常食の必要カロリーを体重から計算してください。",
-          "ids": [
-            "bosai-32",
-            "bosai-48",
             "bosai-78",
-            "bosai-81",
+            "bosai-61"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-47",
+          "query": "二日分の飲み水を沸かすには何分必要ですか？",
+          "ids": [
+            "bosai-36",
+            "bosai-79",
+            "bosai-11",
+            "bosai-16",
             "bosai-30"
           ],
           "scope": {
@@ -614,13 +682,48 @@
           }
         },
         {
-          "id": "beta-72",
-          "query": "家具の固定金具をどこの店で買えますか？",
+          "id": "review-48",
+          "query": "避難所の一食の栄養をグラム単位で計算して。",
           "ids": [
-            "bosai-38",
-            "bosai-58",
-            "bosai-76",
-            "bosai-42"
+            "bosai-32",
+            "bosai-15",
+            "bosai-19",
+            "bosai-12",
+            "bosai-67"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-51",
+          "query": "電気代の減免を申請する用紙を出して。",
+          "ids": [
+            "bosai-59",
+            "bosai-81",
+            "bosai-80",
+            "bosai-75",
+            "bosai-78"
+          ],
+          "scope": {
+            "kind": "related",
+            "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+            "choices": [],
+            "code": "candidates-only"
+          }
+        },
+        {
+          "id": "review-52",
+          "query": "スマホ決済の暗証番号を忘れた。災害時に解除できる？",
+          "ids": [
+            "bosai-8",
+            "bosai-78",
+            "bosai-45",
+            "bosai-48",
+            "bosai-58"
           ],
           "scope": {
             "kind": "related",
@@ -645,6 +748,7 @@
         "clearTop3": 48,
         "clearTop5": 49,
         "hardRejectedPositive": 0,
+        "clarifiedPositive": 0,
         "absent": 8,
         "absentHardRejected": 0,
         "absentNoCandidates": 2,
@@ -943,6 +1047,7 @@
         "clearTop3": 52,
         "clearTop5": 52,
         "hardRejectedPositive": 0,
+        "clarifiedPositive": 0,
         "absent": 8,
         "absentHardRejected": 0,
         "absentNoCandidates": 2,
@@ -1120,6 +1225,7 @@
         "clearTop3": 52,
         "clearTop5": 52,
         "hardRejectedPositive": 0,
+        "clarifiedPositive": 0,
         "absent": 8,
         "absentHardRejected": 0,
         "absentNoCandidates": 1,
@@ -1255,14 +1361,15 @@
       "light": {
         "queries": 64,
         "positive": 56,
-        "top1": 41,
-        "top3": 50,
-        "top5": 50,
+        "top1": 39,
+        "top3": 47,
+        "top5": 47,
         "clearPositive": 52,
-        "clearTop1": 40,
-        "clearTop3": 49,
-        "clearTop5": 49,
+        "clearTop1": 39,
+        "clearTop3": 47,
+        "clearTop5": 47,
         "hardRejectedPositive": 0,
+        "clarifiedPositive": 2,
         "absent": 8,
         "absentHardRejected": 8,
         "absentNoCandidates": 8,
@@ -1273,19 +1380,13 @@
         "dangerWrongTop1": 3,
         "dangerousLabelTop1": 0,
         "multiAllAt5": 6,
-        "medianTotalMs": 0.6999999955296516,
+        "medianTotalMs": 0.6499999985098839,
         "medianEmbeddingMs": null,
         "failures": [
           {
             "id": "final-02",
             "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
-            "ids": [
-              "bosai-82",
-              "bosai-13",
-              "bosai-9",
-              "bosai-64",
-              "bosai-1"
-            ],
+            "ids": [],
             "expected": [
               "bosai-9",
               "bosai-52"
@@ -1357,6 +1458,14 @@
             ],
             "expected": [
               "bosai-31"
+            ]
+          },
+          {
+            "id": "final-23",
+            "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+            "ids": [],
+            "expected": [
+              "bosai-35"
             ]
           },
           {
@@ -1447,14 +1556,15 @@
       "ruri": {
         "queries": 64,
         "positive": 56,
-        "top1": 48,
-        "top3": 53,
-        "top5": 53,
+        "top1": 46,
+        "top3": 50,
+        "top5": 50,
         "clearPositive": 52,
-        "clearTop1": 47,
-        "clearTop3": 52,
-        "clearTop5": 52,
+        "clearTop1": 46,
+        "clearTop3": 50,
+        "clearTop5": 50,
         "hardRejectedPositive": 0,
+        "clarifiedPositive": 2,
         "absent": 8,
         "absentHardRejected": 8,
         "absentNoCandidates": 8,
@@ -1465,19 +1575,13 @@
         "dangerWrongTop1": 1,
         "dangerousLabelTop1": 0,
         "multiAllAt5": 6,
-        "medianTotalMs": 19.400000002235174,
-        "medianEmbeddingMs": 18.149999998509884,
+        "medianTotalMs": 20.850000001490116,
+        "medianEmbeddingMs": 19.900000002235174,
         "failures": [
           {
             "id": "final-02",
             "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
-            "ids": [
-              "bosai-82",
-              "bosai-13",
-              "bosai-9",
-              "bosai-64",
-              "bosai-1"
-            ],
+            "ids": [],
             "expected": [
               "bosai-9",
               "bosai-52"
@@ -1541,6 +1645,14 @@
             ]
           },
           {
+            "id": "final-23",
+            "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+            "ids": [],
+            "expected": [
+              "bosai-35"
+            ]
+          },
+          {
             "id": "final-33",
             "query": "地下街が地震で混乱しています。すぐ階段へ駆け上がればよい？",
             "ids": [
@@ -1565,14 +1677,15 @@
       "hybrid": {
         "queries": 64,
         "positive": 56,
-        "top1": 51,
-        "top3": 53,
-        "top5": 53,
+        "top1": 49,
+        "top3": 50,
+        "top5": 50,
         "clearPositive": 52,
-        "clearTop1": 50,
-        "clearTop3": 52,
-        "clearTop5": 52,
+        "clearTop1": 49,
+        "clearTop3": 50,
+        "clearTop5": 50,
         "hardRejectedPositive": 0,
+        "clarifiedPositive": 2,
         "absent": 8,
         "absentHardRejected": 8,
         "absentNoCandidates": 8,
@@ -1583,22 +1696,24 @@
         "dangerWrongTop1": 0,
         "dangerousLabelTop1": 0,
         "multiAllAt5": 6,
-        "medianTotalMs": 19.099999997764826,
-        "medianEmbeddingMs": 17.949999999254942,
+        "medianTotalMs": 19.449999999254942,
+        "medianEmbeddingMs": 18.25,
         "failures": [
           {
             "id": "final-02",
             "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
-            "ids": [
-              "bosai-82",
-              "bosai-13",
-              "bosai-9",
-              "bosai-64",
-              "bosai-1"
-            ],
+            "ids": [],
             "expected": [
               "bosai-9",
               "bosai-52"
+            ]
+          },
+          {
+            "id": "final-23",
+            "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+            "ids": [],
+            "expected": [
+              "bosai-35"
             ]
           },
           {
@@ -1618,12 +1733,627 @@
         ],
         "unrejectedAbsent": []
       }
+    },
+    "previous80": {
+      "light": {
+        "queries": 80,
+        "positive": 52,
+        "top1": 43,
+        "top3": 48,
+        "top5": 48,
+        "clearPositive": 52,
+        "clearTop1": 43,
+        "clearTop3": 48,
+        "clearTop5": 48,
+        "hardRejectedPositive": 0,
+        "clarifiedPositive": 1,
+        "absent": 20,
+        "absentHardRejected": 14,
+        "absentNoCandidates": 14,
+        "absentCandidateReturned": 6,
+        "ambiguous": 8,
+        "clarified": 5,
+        "dangerQueries": 12,
+        "dangerWrongTop1": 0,
+        "dangerousLabelTop1": 0,
+        "multiAllAt5": 5,
+        "medianTotalMs": 0.5999999977648258,
+        "medianEmbeddingMs": null,
+        "failures": [
+          {
+            "id": "beta-03",
+            "query": "水道が止まった避難所で、便の処理用の袋を用意するときの手順は？",
+            "ids": [
+              "bosai-18",
+              "bosai-67",
+              "bosai-25",
+              "bosai-12",
+              "bosai-2"
+            ],
+            "expected": [
+              "bosai-17"
+            ]
+          },
+          {
+            "id": "beta-07",
+            "query": "避難生活で血栓ができるのを防ぐため、普段からできることは？",
+            "ids": [
+              "bosai-24",
+              "bosai-59",
+              "bosai-22",
+              "bosai-19",
+              "bosai-36"
+            ],
+            "expected": [
+              "bosai-23"
+            ]
+          },
+          {
+            "id": "beta-09",
+            "query": "避難先で使う入れ歯をなくさず衛生的に置いておくには？",
+            "ids": [
+              "bosai-17",
+              "bosai-26",
+              "bosai-55",
+              "bosai-13",
+              "bosai-87"
+            ],
+            "expected": [
+              "bosai-26"
+            ]
+          },
+          {
+            "id": "beta-19",
+            "query": "調理場で揺れた瞬間、火を消す作業と身を守ることの順番は？",
+            "ids": [
+              "bosai-74",
+              "bosai-38",
+              "bosai-41",
+              "bosai-1"
+            ],
+            "expected": [
+              "bosai-41"
+            ]
+          },
+          {
+            "id": "beta-21",
+            "query": "会社の背の高い棚が倒れてきそうです。デスクにいるときの身の守り方は？",
+            "ids": [
+              "bosai-67",
+              "bosai-2",
+              "bosai-25",
+              "bosai-18",
+              "bosai-0"
+            ],
+            "expected": [
+              "bosai-44"
+            ]
+          },
+          {
+            "id": "beta-28",
+            "query": "車を道路に残して歩いて逃げるなら、鍵と施錠をどうする？",
+            "ids": [
+              "bosai-69",
+              "bosai-55",
+              "bosai-54",
+              "bosai-10",
+              "bosai-67"
+            ],
+            "expected": [
+              "bosai-55"
+            ]
+          },
+          {
+            "id": "beta-29",
+            "query": "電車の中で足元が大きく揺れたら、立っている人は何をつかむ？",
+            "ids": [
+              "bosai-73",
+              "bosai-56",
+              "bosai-54",
+              "bosai-57",
+              "bosai-14"
+            ],
+            "expected": [
+              "bosai-56"
+            ]
+          },
+          {
+            "id": "beta-32",
+            "query": "大地震のあと自宅を離れます。電気が戻ったときの出火を防ぐには？",
+            "ids": [
+              "bosai-7",
+              "bosai-59",
+              "bosai-38",
+              "bosai-67",
+              "bosai-24"
+            ],
+            "expected": [
+              "bosai-59"
+            ]
+          },
+          {
+            "id": "beta-46",
+            "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+            "ids": [],
+            "expected": [
+              "bosai-65",
+              "bosai-68"
+            ]
+          }
+        ],
+        "unrejectedAbsent": [
+          {
+            "id": "beta-66",
+            "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+            "ids": [
+              "bosai-12",
+              "bosai-67",
+              "bosai-33",
+              "bosai-35",
+              "bosai-34"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-68",
+            "query": "父にインスリンを3単位追加してもよいですか？",
+            "ids": [
+              "bosai-29"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-69",
+            "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+            "ids": [
+              "bosai-27",
+              "bosai-12",
+              "bosai-87"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-70",
+            "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+            "ids": [
+              "bosai-29",
+              "bosai-13",
+              "bosai-12",
+              "bosai-2"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-71",
+            "query": "非常食の必要カロリーを体重から計算してください。",
+            "ids": [
+              "bosai-48",
+              "bosai-78",
+              "bosai-81",
+              "bosai-30",
+              "bosai-16"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-72",
+            "query": "家具の固定金具をどこの店で買えますか？",
+            "ids": [
+              "bosai-38",
+              "bosai-58",
+              "bosai-76",
+              "bosai-42"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          }
+        ]
+      },
+      "ruri": {
+        "queries": 80,
+        "positive": 52,
+        "top1": 48,
+        "top3": 50,
+        "top5": 51,
+        "clearPositive": 52,
+        "clearTop1": 48,
+        "clearTop3": 50,
+        "clearTop5": 51,
+        "hardRejectedPositive": 0,
+        "clarifiedPositive": 1,
+        "absent": 20,
+        "absentHardRejected": 14,
+        "absentNoCandidates": 15,
+        "absentCandidateReturned": 5,
+        "ambiguous": 8,
+        "clarified": 5,
+        "dangerQueries": 12,
+        "dangerWrongTop1": 0,
+        "dangerousLabelTop1": 0,
+        "multiAllAt5": 7,
+        "medianTotalMs": 19.449999999254942,
+        "medianEmbeddingMs": 17.799999997019768,
+        "failures": [
+          {
+            "id": "beta-04",
+            "query": "配られたお弁当をすぐ食べられないとき、避難所ではどう扱う？",
+            "ids": [
+              "bosai-32",
+              "bosai-19",
+              "bosai-30",
+              "bosai-21",
+              "bosai-28",
+              "bosai-35",
+              "bosai-29",
+              "bosai-18",
+              "bosai-17",
+              "bosai-31"
+            ],
+            "expected": [
+              "bosai-19"
+            ]
+          },
+          {
+            "id": "beta-24",
+            "query": "地下のショッピング通路で地震です。階段へ殺到する以外の行動は？",
+            "ids": [
+              "bosai-45",
+              "bosai-46",
+              "bosai-49",
+              "bosai-48",
+              "bosai-47",
+              "bosai-42",
+              "bosai-58",
+              "bosai-40",
+              "bosai-50",
+              "bosai-57"
+            ],
+            "expected": [
+              "bosai-47"
+            ]
+          },
+          {
+            "id": "beta-46",
+            "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+            "ids": [],
+            "expected": [
+              "bosai-65",
+              "bosai-68"
+            ]
+          },
+          {
+            "id": "beta-48",
+            "query": "雷と激しい突風がある屋外です。建物へ入ることと、窓の位置を考えたい。",
+            "ids": [
+              "bosai-85",
+              "bosai-74",
+              "bosai-75",
+              "bosai-73",
+              "bosai-49",
+              "bosai-42",
+              "bosai-76",
+              "bosai-38",
+              "bosai-44",
+              "bosai-50"
+            ],
+            "expected": [
+              "bosai-73",
+              "bosai-74"
+            ]
+          }
+        ],
+        "unrejectedAbsent": [
+          {
+            "id": "beta-66",
+            "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+            "ids": [
+              "bosai-21",
+              "bosai-35",
+              "bosai-34",
+              "bosai-22",
+              "bosai-47",
+              "bosai-37",
+              "bosai-14",
+              "bosai-12",
+              "bosai-28",
+              "bosai-62"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-68",
+            "query": "父にインスリンを3単位追加してもよいですか？",
+            "ids": [
+              "bosai-29"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-69",
+            "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+            "ids": [
+              "bosai-79",
+              "bosai-25",
+              "bosai-18"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-70",
+            "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+            "ids": [
+              "bosai-29",
+              "bosai-16",
+              "bosai-28",
+              "bosai-30",
+              "bosai-31",
+              "bosai-82",
+              "bosai-21",
+              "bosai-35",
+              "bosai-2",
+              "bosai-32"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-71",
+            "query": "非常食の必要カロリーを体重から計算してください。",
+            "ids": [
+              "bosai-32",
+              "bosai-79"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-72",
+            "query": "家具の固定金具をどこの店で買えますか？",
+            "ids": [],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          }
+        ]
+      },
+      "hybrid": {
+        "queries": 80,
+        "positive": 52,
+        "top1": 48,
+        "top3": 51,
+        "top5": 51,
+        "clearPositive": 52,
+        "clearTop1": 48,
+        "clearTop3": 51,
+        "clearTop5": 51,
+        "hardRejectedPositive": 0,
+        "clarifiedPositive": 1,
+        "absent": 20,
+        "absentHardRejected": 14,
+        "absentNoCandidates": 14,
+        "absentCandidateReturned": 6,
+        "ambiguous": 8,
+        "clarified": 5,
+        "dangerQueries": 12,
+        "dangerWrongTop1": 0,
+        "dangerousLabelTop1": 0,
+        "multiAllAt5": 7,
+        "medianTotalMs": 18.949999999254942,
+        "medianEmbeddingMs": 17.899999998509884,
+        "failures": [
+          {
+            "id": "beta-03",
+            "query": "水道が止まった避難所で、便の処理用の袋を用意するときの手順は？",
+            "ids": [
+              "bosai-18",
+              "bosai-17",
+              "bosai-67",
+              "bosai-82",
+              "bosai-25"
+            ],
+            "expected": [
+              "bosai-17"
+            ]
+          },
+          {
+            "id": "beta-07",
+            "query": "避難生活で血栓ができるのを防ぐため、普段からできることは？",
+            "ids": [
+              "bosai-24",
+              "bosai-23",
+              "bosai-36",
+              "bosai-59",
+              "bosai-20"
+            ],
+            "expected": [
+              "bosai-23"
+            ]
+          },
+          {
+            "id": "beta-24",
+            "query": "地下のショッピング通路で地震です。階段へ殺到する以外の行動は？",
+            "ids": [
+              "bosai-45",
+              "bosai-47",
+              "bosai-42",
+              "bosai-44",
+              "bosai-86"
+            ],
+            "expected": [
+              "bosai-47"
+            ]
+          },
+          {
+            "id": "beta-46",
+            "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+            "ids": [],
+            "expected": [
+              "bosai-65",
+              "bosai-68"
+            ]
+          }
+        ],
+        "unrejectedAbsent": [
+          {
+            "id": "beta-66",
+            "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+            "ids": [
+              "bosai-12",
+              "bosai-21",
+              "bosai-35",
+              "bosai-34",
+              "bosai-67"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-68",
+            "query": "父にインスリンを3単位追加してもよいですか？",
+            "ids": [
+              "bosai-29"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-69",
+            "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+            "ids": [
+              "bosai-27",
+              "bosai-79",
+              "bosai-25",
+              "bosai-12",
+              "bosai-18"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-70",
+            "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+            "ids": [
+              "bosai-29",
+              "bosai-13",
+              "bosai-12",
+              "bosai-16",
+              "bosai-28"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-71",
+            "query": "非常食の必要カロリーを体重から計算してください。",
+            "ids": [
+              "bosai-32",
+              "bosai-48",
+              "bosai-78",
+              "bosai-81",
+              "bosai-30"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          },
+          {
+            "id": "beta-72",
+            "query": "家具の固定金具をどこの店で買えますか？",
+            "ids": [
+              "bosai-38",
+              "bosai-58",
+              "bosai-76",
+              "bosai-42"
+            ],
+            "scope": {
+              "kind": "related",
+              "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+              "choices": [],
+              "code": "candidates-only"
+            }
+          }
+        ]
+      }
     }
   },
   "tests": {
-    "beta-final-80": {
+    "beta-review-final-60": {
       "status": "passed",
-      "build": "ベータ版 11331e148dbc / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "build": "ベータ版 f41848b50937 / 辞書 88件 / CPU・WASM / 自由生成なし",
       "offlineRestart": true,
       "safeShellUpdate": true,
       "oldDataPreserved": true,
@@ -1634,73 +2364,73 @@
       },
       "assetRequests": 5,
       "oneIntentionallyAbortedWeightRequest": true,
-      "peakWholeBrowserPssMiB": 811.5166015625,
+      "peakWholeBrowserPssMiB": 817.8759765625,
       "release": [
         {
           "label": "ruri-only",
           "before": {
-            "pssMiB": 678.1728515625,
-            "rssMiB": 896.8046875,
+            "pssMiB": 714.986328125,
+            "rssMiB": 935.69140625,
             "processes": 6,
             "complete": true,
             "unavailableCount": 0,
             "rolePssMiB": {
-              "browser": 50.7578125,
-              "zygote": 20.1142578125,
-              "gpu-process": 34.353515625,
-              "renderer": 549.0908203125,
-              "utility": 23.8564453125
+              "browser": 51.1708984375,
+              "zygote": 20.16796875,
+              "gpu-process": 35.6533203125,
+              "renderer": 584.3203125,
+              "utility": 23.673828125
             },
-            "rendererPssMiB": 549.0908203125
+            "rendererPssMiB": 584.3203125
           },
           "threeSeconds": {
-            "pssMiB": 369.2197265625,
-            "rssMiB": 590.50390625,
+            "pssMiB": 269.9677734375,
+            "rssMiB": 552.2265625,
             "processes": 6,
             "complete": true,
             "unavailableCount": 0,
             "rolePssMiB": {
-              "browser": 49.96875,
-              "zygote": 20.1142578125,
-              "gpu-process": 35.1875,
-              "renderer": 240.0927734375,
-              "utility": 23.8564453125
+              "browser": 33.923828125,
+              "zygote": 14.1015625,
+              "gpu-process": 27.201171875,
+              "renderer": 178.10546875,
+              "utility": 16.6357421875
             },
-            "rendererPssMiB": 240.0927734375
+            "rendererPssMiB": 178.10546875
           }
         }
       ],
       "coldQueryTimings": [
         {
-          "loadMs": 1950.6000000014901,
+          "loadMs": 1904.7999999970198,
           "warm": false,
-          "embeddingMs": 124.70000000298023,
+          "embeddingMs": 129.79999999701977,
           "tokens": 10,
-          "retrievalMs": 0.6000000014901161,
-          "totalMs": 2143.7000000029802
+          "retrievalMs": 0.8999999985098839,
+          "totalMs": 2096.89999999851
         },
         {
-          "loadMs": 1957.1000000014901,
+          "loadMs": 4893.39999999851,
           "warm": false,
-          "embeddingMs": 195.60000000149012,
+          "embeddingMs": 125.30000000447035,
           "tokens": 14,
-          "retrievalMs": 1.1999999955296516,
-          "totalMs": 2225.0999999940395
+          "retrievalMs": 0.9000000059604645,
+          "totalMs": 5107
         },
         {
-          "loadMs": 1896.1999999955297,
+          "loadMs": 2417.7000000029802,
           "warm": false,
-          "embeddingMs": 102.5,
+          "embeddingMs": 163.09999999403954,
           "tokens": 11,
-          "retrievalMs": 2.7999999970197678,
-          "totalMs": 2071.5
+          "retrievalMs": 3,
+          "totalMs": 2759.39999999851
         }
       ],
       "errors": []
     },
     "beta-regression-64": {
       "status": "passed",
-      "build": "ベータ版 11331e148dbc / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "build": "ベータ版 f41848b50937 / 辞書 88件 / CPU・WASM / 自由生成なし",
       "offlineRestart": true,
       "safeShellUpdate": true,
       "oldDataPreserved": true,
@@ -1711,66 +2441,143 @@
       },
       "assetRequests": 5,
       "oneIntentionallyAbortedWeightRequest": true,
-      "peakWholeBrowserPssMiB": 818.62109375,
+      "peakWholeBrowserPssMiB": 776.302734375,
       "release": [
         {
           "label": "ruri-only",
           "before": {
-            "pssMiB": 824.3046875,
-            "rssMiB": 1050.9140625,
+            "pssMiB": 752.875,
+            "rssMiB": 975.8984375,
             "processes": 6,
             "complete": true,
             "unavailableCount": 0,
             "rolePssMiB": {
-              "browser": 50.044921875,
-              "zygote": 20.25,
-              "gpu-process": 36.548828125,
-              "renderer": 693.787109375,
-              "utility": 23.673828125
+              "browser": 49.5888671875,
+              "zygote": 20.6337890625,
+              "gpu-process": 35.640625,
+              "renderer": 623.052734375,
+              "utility": 23.958984375
             },
-            "rendererPssMiB": 693.787109375
+            "rendererPssMiB": 623.052734375
           },
           "threeSeconds": {
-            "pssMiB": 379.40625,
-            "rssMiB": 604.078125,
+            "pssMiB": 371.0546875,
+            "rssMiB": 591.078125,
             "processes": 6,
             "complete": true,
             "unavailableCount": 0,
             "rolePssMiB": {
-              "browser": 50.123046875,
-              "zygote": 20.25,
-              "gpu-process": 35.556640625,
-              "renderer": 249.802734375,
-              "utility": 23.673828125
+              "browser": 49.5927734375,
+              "zygote": 20.6337890625,
+              "gpu-process": 34.64453125,
+              "renderer": 242.224609375,
+              "utility": 23.958984375
             },
-            "rendererPssMiB": 249.802734375
+            "rendererPssMiB": 242.224609375
           }
         }
       ],
       "coldQueryTimings": [
         {
-          "loadMs": 1973.2999999970198,
+          "loadMs": 2124.39999999851,
           "warm": false,
-          "embeddingMs": 195.10000000149012,
+          "embeddingMs": 113.20000000298023,
+          "tokens": 10,
+          "retrievalMs": 0.6999999955296516,
+          "totalMs": 2304.7999999970198
+        },
+        {
+          "loadMs": 2410.10000000149,
+          "warm": false,
+          "embeddingMs": 141.60000000149012,
+          "tokens": 14,
+          "retrievalMs": 1.1999999955296516,
+          "totalMs": 2635.2999999970198
+        },
+        {
+          "loadMs": 2208,
+          "warm": false,
+          "embeddingMs": 108.80000000447035,
+          "tokens": 11,
+          "retrievalMs": 4.100000001490116,
+          "totalMs": 2431.39999999851
+        }
+      ],
+      "errors": []
+    },
+    "beta-review-regression-80": {
+      "status": "passed",
+      "build": "ベータ版 f41848b50937 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "offlineRestart": true,
+      "safeShellUpdate": true,
+      "oldDataPreserved": true,
+      "generationBlocked": true,
+      "stoppedCold": {
+        "ready": false,
+        "worker": false
+      },
+      "assetRequests": 5,
+      "oneIntentionallyAbortedWeightRequest": true,
+      "peakWholeBrowserPssMiB": 848.2001953125,
+      "release": [
+        {
+          "label": "ruri-only",
+          "before": {
+            "pssMiB": 725.61328125,
+            "rssMiB": 944.23828125,
+            "processes": 6,
+            "complete": true,
+            "unavailableCount": 0,
+            "rolePssMiB": {
+              "browser": 50.7509765625,
+              "zygote": 20.3564453125,
+              "gpu-process": 34.1259765625,
+              "renderer": 596.4658203125,
+              "utility": 23.9140625
+            },
+            "rendererPssMiB": 596.4658203125
+          },
+          "threeSeconds": {
+            "pssMiB": 383.5078125,
+            "rssMiB": 602.1484375,
+            "processes": 6,
+            "complete": true,
+            "unavailableCount": 0,
+            "rolePssMiB": {
+              "browser": 49.9853515625,
+              "zygote": 20.3564453125,
+              "gpu-process": 34.1259765625,
+              "renderer": 255.1259765625,
+              "utility": 23.9140625
+            },
+            "rendererPssMiB": 255.1259765625
+          }
+        }
+      ],
+      "coldQueryTimings": [
+        {
+          "loadMs": 1954,
+          "warm": false,
+          "embeddingMs": 95.89999999850988,
           "tokens": 10,
           "retrievalMs": 0.6000000014901161,
-          "totalMs": 2232.89999999851
+          "totalMs": 2111.3000000044703
         },
         {
-          "loadMs": 1629.5,
+          "loadMs": 1926.1000000014901,
           "warm": false,
-          "embeddingMs": 101,
+          "embeddingMs": 125.70000000298023,
           "tokens": 14,
-          "retrievalMs": 1.1000000014901161,
-          "totalMs": 1791.3000000044703
+          "retrievalMs": 1,
+          "totalMs": 2116.10000000149
         },
         {
-          "loadMs": 1922.6000000014901,
+          "loadMs": 2080.5,
           "warm": false,
-          "embeddingMs": 110.70000000298023,
+          "embeddingMs": 112.39999999850988,
           "tokens": 11,
-          "retrievalMs": 6.899999998509884,
-          "totalMs": 2104.5
+          "retrievalMs": 3.1999999955296516,
+          "totalMs": 2346.0999999940395
         }
       ],
       "errors": []
