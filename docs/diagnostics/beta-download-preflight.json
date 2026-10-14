@@ -1,0 +1,38 @@
+{
+  "kind": "Real HF CORS download preflight from HTTPS Pages origin; old app, not new beta E2E",
+  "status": "passed",
+  "assets": [
+    {
+      "file": "config.json",
+      "status": 200,
+      "bytes": 1183,
+      "sha256": "1517ea80eb6af7e181f4ed59827a4ae9de20f383d74a82900227c4cb5d903787",
+      "pass": true,
+      "ms": 520.5
+    },
+    {
+      "file": "onnx/model_quantized.onnx",
+      "status": 200,
+      "bytes": 37048575,
+      "sha256": "bd07545fa4eb8e7765939536944da1138a7e61441d81633adfa1faf218df6bb1",
+      "pass": true,
+      "ms": 6579.89999999851
+    },
+    {
+      "file": "tokenizer.json",
+      "status": 200,
+      "bytes": 6724873,
+      "sha256": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062",
+      "pass": true,
+      "ms": 496.79999999701977
+    },
+    {
+      "file": "tokenizer_config.json",
+      "status": 200,
+      "bytes": 3779,
+      "sha256": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4",
+      "pass": true,
+      "ms": 224.5
+    }
+  ]
+}

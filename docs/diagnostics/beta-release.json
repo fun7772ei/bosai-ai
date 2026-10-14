@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-10-14T10:42:35.180870+00:00",
+  "phase": "Ruri-first public beta; not formal Phase2 or iPad verified",
+  "url": "https://fun7772ei.github.io/bosai-ai/",
+  "integrationPR": "https://github.com/fun7772ei/bosai-ai/pull/10",
+  "mergeCommit": "7c413ab30a217cf289235e06203540bf304bb17e",
+  "appBuild": "f41848b50937",
+  "ci": {
+    "run": "https://github.com/fun7772ei/bosai-ai/actions/runs/38550711298",
+    "conclusion": "success",
+    "unitTests": 77,
+    "realModelOperations": [
+      192,
+      240,
+      180
+    ],
+    "playwrightWithDeps": "success"
+  },
+  "firstBetaDeployment": {
+    "run": "https://github.com/fun7772ei/bosai-ai/actions/runs/38551106889",
+    "conclusion": "success",
+    "build": "success",
+    "deploy": "success"
+  },
+  "hostedVerification": {
+    "script": "scripts/pages-beta-check.mjs",
+    "status": "passed",
+    "https": true,
+    "assetsAndManifestIconsWasm": true,
+    "records": 88,
+    "publicResearchPaths": "404",
+    "savedModelSHA256": true,
+    "offlinePersistentBrowserRestart": true,
+    "onlineReuseWithoutHFRequests": true,
+    "HFRequestsBeforeAndAfterRestart": [
+      7,
+      7
+    ],
+    "errors": [],
+    "httpErrors": [],
+    "scope": "Linux Chromium on live Pages origin; WebGPU disabled; no fixture interception"
+  },
+  "stackIntegration": "One ancestry-preserving merge of PR10; PR6 auto-marked merged; superseded PR7/8/9 closed without deleting their branches. PR1 untouched. No intermediate research UI published.",
+  "unverified": [
+    "iPad10 Safari",
+    "installed iPad PWA storage separation and offline restart",
+    "long-duration memory stability",
+    "disaster-expert safety review"
+  ],
+  "limitations": "OOD/ambiguity and dangerous candidate substitutions remain; no generated or automatically selected answer; see ruri-beta.md",
+  "note": "Subsequent documentation-only publication may have a later deployment run; same app build and shell bytes."
+}

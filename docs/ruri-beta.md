@@ -108,6 +108,15 @@ node scripts/summarize-beta.mjs
 
 診断JSONのuserAgent・standalone・build・保存状態・所要時間を添える。Safari終了/リロードが起きても、保存済み重みが削除されたとは断定しない。
 
-## 公開状態
+## 公開結果（2026-10-14 UTC）
 
-公開用 [PR #10](https://github.com/fun7772ei/bosai-ai/pull/10) でmainへ一括統合予定。公開CI・Pages Actions・公開URLの実モデル検証が成功した場合のみ結果を追記する。環境接続障害中にはpush/merge/deployを行わず、復旧後に作業を再開した。
+**公開済み： https://fun7772ei.github.io/bosai-ai/** — ベータ版 `f41848b50937`。
+
+- [PR #10](https://github.com/fun7772ei/bosai-ai/pull/10) を通常mergeし、PR #6〜#9の祖先を保持したまま `7c413ab` でmainへ一括統合した。中間の生成実験画面は公開していない。#6はGitHubが自動的にmerged扱い、重複する#7〜#9はclosedに整理し、ブランチは残した。無関係な#1は変更しない。
+- [最新headの公開前CI](https://github.com/fun7772ei/bosai-ai/actions/runs/38550711298) は成功。77単体テスト、Playwrightの依存導入、実Ruriの旧64問192操作・80問240操作・新60問180操作をログでも確認した。CI artifactのローカル取得は403だったため、成功ログで確認した（CI試験自体の失敗ではない）。
+- [初回ベータのPages Actions](https://github.com/fun7772ei/bosai-ai/actions/runs/38551106889) のbuild/deployが成功。
+- 公開後に実際のHTTPS originで `pages-beta-check.mjs` が成功。JS内88件、CSS・ORT WASM・manifest/PNGアイコン、SW準備、研究HTML/wllama WASMの404を確認。
+- モデル保存ボタンから実Hugging Faceへ取得し、IndexedDBの分割を組み直した4ファイルのbytes/SHA256が固定manifestと一致した。モデル未保存の軽量→実Ruri併用/単独→オンライン再読込→同じ永続profileのブラウザ終了→オフライン再起動で全3モードが動いた。保存後にHFリクエストは増えていない（初回はredirect込み7件）。入力を送るPOST等は発生していない。
+- 公開画面の原文/注意表示・390px幅・現在の予報を拒否する案内も確認。ページ例外/資産HTTPエラーは0。
+
+[公開検証の生記録](diagnostics/beta-pages-check.json) / [公開証跡](diagnostics/beta-release.json)。公開後の書類追記はアプリのソースやshellを変えない。環境接続障害中にはpush/merge/deployを行わず、復旧後に再開した。iPad Safari・ホーム画面PWAの実機を操作した結果ではなく、正式完成・完全オフライン成立とは扱わない。

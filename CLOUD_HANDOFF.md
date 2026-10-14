@@ -1,6 +1,8 @@
+> 公開済み（2026-10-14 UTC）：https://fun7772ei.github.io/bosai-ai/ 、ベータ版 `f41848b50937`。PR #10を7c413abで一括通常merge、公開CI/Pages/実HF保存・SHA256/Chromiumオフライン再起動が成功。[公開結果](docs/ruri-beta.md#公開結果2026-10-14-utc)・[証跡](docs/diagnostics/beta-release.json)。#7〜#9は統合済み重複のためclosed、元ブランチは保持。iPad Safari実機は未確認。以下の「PR予定」は実装時の経緯。
+
 # Ruri優先・公開ベータへの引き継ぎ（2026-10-14 UTC）
 
-現在の作業は `codex/ruri-public-beta`。PR #6〜#9を継承し、mainをbaseとした一括統合PRを作る。今回のユーザー依頼は、公開用変更のレビュー可能化・必要な検証の成功を条件にmain反映とGitHub Pages公開までを含む。以下の過去の「マージ・公開しない」は当時の依頼の履歴であり、今回の公開方針ではない。
+公開用 `codex/ruri-public-beta` はPR #6〜#9を継承し、mainをbaseとしたPR #10で一括統合済み。公開証跡の追記は `codex/ruri-beta-release-record`。今回のユーザー依頼は、公開用変更のレビュー可能化・必要な検証の成功を条件にmain反映とGitHub Pages公開までを含む。以下の過去の「マージ・公開しない」は当時の依頼の履歴であり、今回の公開方針ではない。
 
 最初に [公開ベータの結果・失敗・再現手順](docs/ruri-beta.md) と [実測集計](docs/diagnostics/beta-summary.json) を読む。公開実施状況・Actions・URLは同資料末尾へ記録する。**iPad Safari実機は未確認。正式完成・安全性確認済みとは扱わない。**
 

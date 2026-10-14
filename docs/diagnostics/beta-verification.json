@@ -52,11 +52,12 @@
     "Physical iPad Safari, installed iPad PWA, long-duration stability and disaster-expert safety review not performed",
     "Post-review final60: absent rejection9/16, ambiguity clarification5/8; one dangerous substitute candidate from Ruri-only; original candidates never auto-selected or generated into advice."
   ],
-  "publication": "Tracked in publication PR and docs/ruri-beta.md; hosted check separate from local model fixture tests",
+  "publication": "PR10 merged; Pages run38551106889 success; live HTTPS real model save/integrity/reuse/offline restart passed; see beta-release.json",
   "reviewFixes": [
     "No candidate selectable when scope requires clarification",
     "Bare current warnings redirect to live official information",
     "Offered drinking-water choice resolves clarification loop"
   ],
-  "legacyResearchDummyStorage": "passed, built research-dist on port4186; source browser-check script with base/outDir substitution only; not real inference"
+  "legacyResearchDummyStorage": "passed, built research-dist on port4186; source browser-check script with base/outDir substitution only; not real inference",
+  "gitHubCI": "run38550711298 success, including --with-deps and real 192/240/180 operations"
 }

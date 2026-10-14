@@ -1,0 +1,30 @@
+{
+  "browser": "linux Playwright Chromium (not iPad Safari)",
+  "environment": "WebGPU利用可能 / shader-f16: 非対応",
+  "candidateModelFixtures": [
+    "lfm2",
+    "gemma3"
+  ],
+  "cpuCandidateFixtures": [
+    "qwen35-cpu",
+    "qwen3-cpu",
+    "lfm2-700m-cpu"
+  ],
+  "externalWeightChunksVerified": true,
+  "selectedModelAndDtypeRestored": true,
+  "modelAttributedDiagnostics": true,
+  "selectedDeletionPreservesOtherModels": true,
+  "indexedDBChunkStorage": true,
+  "fixtureDownloadAndReuse": true,
+  "savedModelSurvivesReload": true,
+  "offlineFixtureReuse": true,
+  "savedDtypeRestored": true,
+  "savedFormatWithoutPreferenceRestored": true,
+  "interruptedStageRecovery": true,
+  "workerImportFailureAndRetry": true,
+  "safeAppUpdatePreservesWorkersAndModels": true,
+  "offlineShell": true,
+  "offlineMissingModel": "エラー: モデル保存が未完了です。先に「ダウンロードして保存」を押してください。不足: tokenizer_config.json, tokenizer.json, config.json, generation_config.json, onnx/model_q4.onnx",
+  "horizontalOverflow": false,
+  "errors": []
+}
