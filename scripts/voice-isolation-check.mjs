@@ -28,13 +28,22 @@ try {
     throw Error('Voice isolation missing: ' + JSON.stringify(result));
   }
   const sdk = await isolated.evaluate(async () => {
-    const lib = await import(new URL('moonshine/index.js', location.origin + '/bosai-ai/').href);
-    const core=await lib.loadMoonshineModule();
-    const manifest=JSON.parse(core.sttDependencies('ja',String(lib.ModelArch.TinyStreaming),false));
-    return { mic: typeof lib.MicTranscriber, arch: typeof lib.ModelArch,
-      wasmVersion:core.version(), groups:manifest.groups?.length,
-      assets:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0) };
-
+    const timeout = new Promise((_, reject) => setTimeout(() => reject(Error('Moonshine WASM/manifest preflight timed out after 60 seconds')), 60000));
+    return await Promise.race([(async () => {
+      const lib = await import(new URL('moonshine/index.js', location.origin + '/bosai-ai/').href);
+      console.log('Moonshine SDK imported');
+      const core = await lib.loadMoonshineModule();
+      console.log('Moonshine WASM instantiated');
+      let manifest;
+      try { manifest = JSON.parse(core.sttDependencies('ja', String(lib.ModelArch.TinyStreaming), false)); }
+      catch (e) {
+        const native = typeof e === 'number' ? core.getExceptionMessage?.(e) : null;
+        throw Error('Japanese model manifest failed: '+String(native || e));
+      }
+      return { mic: typeof lib.MicTranscriber, arch: typeof lib.ModelArch,
+        wasmVersion: core.version(), groups: manifest.groups?.length,
+        assets: manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0) };
+    })(), timeout]);
   });
   if (sdk.mic !== 'function' || sdk.arch !== 'object' || !(sdk.assets>0)) throw Error('Moonshine WASM / Japanese manifest failed: ' + JSON.stringify(sdk));
   await isolated.close();
