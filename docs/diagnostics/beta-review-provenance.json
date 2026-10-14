@@ -1,0 +1,15 @@
+{
+  "createdAt": "2026-10-14T10:31:37.087849+00:00",
+  "freezeCommit": "d7be1409812ca4945482b729ee4c0cfd691495f0",
+  "questions": 60,
+  "sha256": "e45215c306584f8d6e87e6dc4d6d904fc2f9db632c989463baecfccf117f09a4",
+  "counts": {
+    "normal": 12,
+    "paraphrase": 12,
+    "danger": 8,
+    "multi": 4,
+    "absent": 16,
+    "ambiguous": 8
+  },
+  "review": "New source-based hand-authored labels after review freeze; not independent disaster-expert evaluation; never tune to these results"
+}
