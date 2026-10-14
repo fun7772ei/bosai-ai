@@ -10,7 +10,10 @@
     "preview": "vite preview --host 0.0.0.0",
     "test": "node --test",
     "dev:research": "vite --host 0.0.0.0 --open /bosai-ai/research.html",
-    "build:research": "BOSAI_RESEARCH=1 vite build"
+    "build:research": "BOSAI_RESEARCH=1 vite build",
+    "dev:ruri": "vite --config vite.ruri.config.js --host 0.0.0.0 --open /bosai-ai/ruri-study.html",
+    "build:ruri": "vite build --config vite.ruri.config.js",
+    "preview:ruri": "vite preview --config vite.ruri.config.js --host 0.0.0.0"
   },
   "dependencies": {
     "@huggingface/transformers": "4.3.1",

@@ -1,0 +1,6 @@
+export class StudyChannel{
+ constructor(notice=()=>{}){this.worker=new Worker(new URL('./model.worker.js',import.meta.url),{type:'module'});this.pending=new Map();this.id=0;this.worker.onmessage=({data})=>{if(data.disposed){this.closed?.();return;}if(!data.id){notice(data);return;}const p=this.pending.get(data.id);if(!p)return;clearTimeout(p.timer);this.pending.delete(data.id);data.error?p.reject(Error(data.error)):p.resolve(data);};this.worker.onerror=e=>{e.preventDefault();this.kill(Error(e.message||'Ruri Workerの実行に失敗しました。'));};this.worker.onmessageerror=()=>this.kill(Error('Ruriの受信に失敗しました。'));}
+ request(type,args={}){if(this.ended)return Promise.reject(Error('処理は中断されました。'));return new Promise((resolve,reject)=>{const id=++this.id,timer=setTimeout(()=>this.kill(Error('Ruri処理が180秒以内に完了しませんでした。')),180000);this.pending.set(id,{resolve,reject,timer});this.worker.postMessage({type,id,...args});});}
+ kill(error=Error('停止しました。')){this.ended=true;this.worker.terminate();for(const p of this.pending.values()){clearTimeout(p.timer);p.reject(error);}this.pending.clear();this.closed?.();}
+ async dispose(){if(this.ended)return;await new Promise(resolve=>{const timer=setTimeout(()=>{this.kill();resolve();},5000);this.closed=()=>{clearTimeout(timer);this.worker.terminate();this.ended=true;resolve();};this.worker.postMessage({type:'dispose'});});this.kill();}
+}

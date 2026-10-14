@@ -8,3 +8,4 @@ playwright-report/
 *.safetensors
 *.gguf
 research-dist/
+ruri-study-dist/

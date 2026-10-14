@@ -1,3 +1,17 @@
+# 今回の最新方針：Ruriサイズ・検索品質研究
+
+ユーザーは今回は **mainマージ・Pages更新を禁止**。旧公開承認で公開しない。新規PR #14は未マージ。`CLOUD_HANDOFF.md`と`docs/ruri-size-study.md`を先に読む。30Mの公開版と保存を維持し、音声PR #12も保持する。
+
+30/70/130の実q8比較・研究モデル選択・typed coverage/action guardを実装済み。判断は30M維持。ガードには否定長文の誤棄却/別場面選択が残り、公開採用しない。aab6486で凍結後の新80問は最終用で、正解を見て調整してはいけない。次の改善には別の開発・評価問題を用意する。
+
+ユーザーによるiPad10 Safariの30M基本動作は成功報告あり。未確認は長時間/実メモリ/PWA同等性/オフラインactual方式のJSON/70M・130M。開発側の実機操作や全オフライン成立とは扱わず、既存の3問反復を要求しない。
+
+研究入口はruri-study.html、dev:ruri/build:ruri/preview:ruri。公開build/cacheを肥大化させず、原文88件/元bosai-app/旧保存を変えず、外部AI API/重みのGitコミット/自由生成LLMの公開復帰は禁止。詳細と証跡は上記資料。
+
+---
+
+以下は以前の公開時方針の履歴。
+
 # bosai-ai：Ruri優先ベータの継続作業
 
 2026-10-14 UTCにPR #10を通常mergeして公開済み。アプリ版f41848b50937、公開URL https://fun7772ei.github.io/bosai-ai/ 。実HF保存・Chromiumオフライン再起動まで成功、iPad実機は未確認。公開証跡は `docs/diagnostics/beta-release.json`。

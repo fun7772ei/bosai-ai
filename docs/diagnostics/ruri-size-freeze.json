@@ -1,0 +1,36 @@
+{
+  "createdAt": "2026-10-14T13:31:24.175Z",
+  "newFinalSetExists": false,
+  "development": "old40+64+80+60=244 cases (regression only)",
+  "policy": "Model choice and intent/coverage guard tuned only on regression. No retrieval/model/threshold changes after new final labels or results. Execution-only fixes must be logged separately.",
+  "models": [
+    "30m q8",
+    "70m q8",
+    "130m q8"
+  ],
+  "budgets": {
+    "tokens": 512,
+    "threads": 1
+  },
+  "hashes": {
+    "research/ruri/channel.js": "b5d7a3d6e8f98ca2a8c8a3a4c018ca4eb7b8c395ec91b0d42d13640055c5fbab",
+    "research/ruri/controller.js": "37591f117b392d89fe77f8cce6b52c03d3b06e8303bc99664451d8cc928bb030",
+    "research/ruri/corpus-provenance.json": "5af40317fcb0a8a46ab8a1a0dffa4295d5507059fd666794aca1ea5f03685cb0",
+    "research/ruri/facets.json": "e00a820a5fa5efd539dafebbb30427d3d24966deaa4e7abddd916a08742c6709",
+    "research/ruri/improved.js": "029f5b201a752ce8e5ad7f5cd22203a09f5c3008b069a9d8aa6dc06726f7f55c",
+    "research/ruri/intent.js": "72912b1b99393573b550aebbd30a07bd091c7f183f71436845d5bad3a147374a",
+    "research/ruri/main.js": "d477088fa8d7ac9811d83b1750a66453006972f8460495f8658e8a459f204536",
+    "research/ruri/model.worker.js": "5a9d8e0fb230d2ae7f6256c3c953dd93b1d8a81f007f482366939e9c60d319ce",
+    "research/ruri/models.js": "0c5dd526a0d93853ac5da4c4fc6b3b399d9f7a687b704a20be0280fd7de6deb6",
+    "research/ruri/models.json": "896490e6649f18f88eb9dd63c1e48adb9d2abb57d7c7abf2de63e94a14f9cfda",
+    "research/ruri/retrieval.js": "0c16a750a40ffba2b4469d95c194776cf594479c099e9b5fd29ea0bda7492599",
+    "research/ruri/runtime.js": "ef2dc9fe873f0999a413fa9db855b0002e917e4813ccc0df65b13b56feed10b0",
+    "research/ruri/vectors-130m.json": "6e0c369960eb0ac3b65fa8a8d6ff1766577a130fe26c94797f7e5d29b24a0230",
+    "research/ruri/vectors-30m.json": "a52d205408f5a304a011935f722151203bc9927e5962e07aa872f55d5f8cdaa8",
+    "research/ruri/vectors-70m.json": "3712c52be0f3aa548156331a157912a47194fb598c1a5a08058c4ca036e062c3",
+    "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+    "src/query-scope.js": "d4e32acf20a2d1a64e2489f3088e1611e33c1469fed854daa5476d8b8fff9833",
+    "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+    "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891"
+  }
+}
