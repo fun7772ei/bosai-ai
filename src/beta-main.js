@@ -24,7 +24,7 @@ for(const text of ['寝ているときに地震が来たら？','高台に間に
 const MOONSHINE_MODULE=new URL('moonshine/index.js',location.origin+import.meta.env.BASE_URL).href;
 $('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
 let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceFinal=[],voiceBase='';
-let voiceNativeModule=null,voiceStage='未準備',voiceLastError=null;
+let voiceStage='未準備',voiceLastError=null;
 function voiceState(message){
   $('voiceStatus').textContent=message;
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
@@ -37,11 +37,9 @@ function voiceFailure(e){
   if(typeof e==='number'){
     // Embind can throw a C++ exception pointer instead of a JS Error.
     // The decimal number is a WASM memory address, NOT a public error code.
-    try{
-      const native=voiceNativeModule?.getExceptionMessage?.(e);
-      message=Array.isArray(native)?native.join('：'):typeof native==='string'?native:null;
-    }catch{}
-    message ||= 'WASM内部エラー（数値 '+e+' は例外のアドレスです）';
+    // The SDK's C++ exception pointer may belong to a different WASM heap.
+    // Never dereference it through an arbitrary module instance.
+    message='WASM内部例外（数字 '+e+' はエラーコードではありません）';
   }else message=e?.message||String(e);
   voiceLastError={stage:voiceStage,name:e?.name||typeof e,message,numericException:typeof e==='number'?e:null,at:new Date().toISOString()};
   voiceState('音声入力エラー【'+voiceStage+'】：'+message+'。文字入力は引き続き利用できます。');
@@ -86,20 +84,16 @@ $('voiceLoad').onclick=async()=>{
     if(controller.channel)await controller.reset();
     voiceStage='音声ライブラリの読み込み';
     voiceState('準備中：音声ライブラリを読み込んでいます…');
-    const {MicTranscriber,ModelArch,loadMoonshineModule}=await import(/* @vite-ignore */ MOONSHINE_MODULE);
+    const {MicTranscriber,ModelArch}=await import(/* @vite-ignore */ MOONSHINE_MODULE);
     if(generation!==voiceSeq)return;
-    voiceStage='WASMエンジンの初期化';
-    voiceState('準備中：WASMエンジンを初期化しています…');
-    voiceNativeModule=await loadMoonshineModule();
-    voiceStage='日本語モデルの配布情報';
-    voiceState('準備中：日本語モデルの配布情報を確認しています…');
-    const manifest=JSON.parse(voiceNativeModule.sttDependencies('ja',String(ModelArch.TinyStreaming),false));
-    if(!manifest.groups?.some(g=>g.files?.length))throw Error('日本語Tiny Streamingの配布ファイルが見つかりません');
-    if(generation!==voiceSeq)return;
+    // One SDK runtime only: mic.load() owns the Moonshine model and WASM.
+    // The first progress notification separates download from WASM setup.
+    voiceStage='WASM・モデル配布情報の初期化';
+    voiceState('準備中：WASMと日本語モデル情報を確認しています…');
     const mic=new MicTranscriber()
       .language('ja')
       .modelArch(ModelArch.TinyStreaming)
-      .onProgress((fraction,file)=>{if(generation===voiceSeq)voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));})
+      .onProgress((fraction,file)=>{if(generation===voiceSeq){voiceStage='モデル取得・読み込み';voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));}})
       .onText(text=>{if(generation===voiceSeq)$('voiceLive').textContent=text?'認識中：'+text:'';})
       .onLine(line=>{
         if(generation!==voiceSeq)return;
@@ -109,8 +103,6 @@ $('voiceLoad').onclick=async()=>{
       })
       .onError(error=>{if(generation===voiceSeq)voiceFailure(error?.error||error);});
     voiceMic=mic;
-    voiceStage='モデルの取得・推論初期化';
-    voiceState('準備中：日本語音声モデルを取得・初期化しています…');
     await mic.load();
     if(generation!==voiceSeq){await voiceRelease();return;}
     voiceStage='準備完了';
