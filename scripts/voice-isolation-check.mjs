@@ -29,9 +29,14 @@ try {
   }
   const sdk = await isolated.evaluate(async () => {
     const lib = await import(new URL('moonshine/index.js', location.origin + '/bosai-ai/').href);
-    return { mic: typeof lib.MicTranscriber, arch: typeof lib.ModelArch };
+    const core=await lib.loadMoonshineModule();
+    const manifest=JSON.parse(core.sttDependencies('ja',String(lib.ModelArch.TinyStreaming),false));
+    return { mic: typeof lib.MicTranscriber, arch: typeof lib.ModelArch,
+      wasmVersion:core.version(), groups:manifest.groups?.length,
+      assets:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0) };
+
   });
-  if (sdk.mic !== 'function' || sdk.arch !== 'object') throw Error('Moonshine SDK import broken: ' + JSON.stringify(sdk));
+  if (sdk.mic !== 'function' || sdk.arch !== 'object' || !(sdk.assets>0)) throw Error('Moonshine WASM / Japanese manifest failed: ' + JSON.stringify(sdk));
   await isolated.close();
   const regular = await context.newPage();
   regular.on('pageerror', error => errors.push(error.message));
