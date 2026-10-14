@@ -1,5 +1,7 @@
 # 6方式実験の最新状態
 
+[PR #9](https://github.com/fun7772ei/bosai-ai/pull/9) はPR #8をbaseとするOPENの積み上げPR。マージ・Pages公開は未実施。
+
 最新ブランチは `codex/phase1-six-methods`。PR #8 (`codex/phase1-natural-language-search`) へ積み上げる。既存PRを勝手にマージせず、Pages公開・正式Phase 2移行を行わない。[6方式の実測結果](docs/phase1-six-methods.md) と [最新引き継ぎ](CLOUD_HANDOFF.md) を先に読む。
 
 A/D:軽量、B/E:Ruri実Embedding、C/F:併用。A-Cは原文、D-FはLFM350の根拠付き生成＋原文。Ruri文書ベクトル88件は事前計算済み。モデル重みをGitへ入れず、外部AI APIを使わない。既存の選択・保存・停止・リセットと元bosai-app/88件は維持する。

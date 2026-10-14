@@ -1,5 +1,7 @@
 # Phase 1：6方式の実モデル比較
 
+[PR #9](https://github.com/fun7772ei/bosai-ai/pull/9) はPR #8をbaseとするOPENの積み上げPR。マージ・Pages公開は未実施。
+
 対象はiPad第10世代（A14/RAM4GB）・iPadOS26.5 Safari・初回取得後のオフラインPWA。今回実施したのは**開発環境Chromiumでの比較実証**で、今回の版のiPad Safari実機は未確認。PR #8へ積み上げ、マージ・Pages公開・正式Phase2統合は行わない。実験としてEmbedding検索と根拠付き生成を実装したので、過去の「Phase1ではRAGを作らない」という指示の今回の実験範囲は更新する。
 
 ## 方式と画面

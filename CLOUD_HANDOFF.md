@@ -1,5 +1,7 @@
 # bosai-ai: Codex Cloudへの引き継ぎ
 
+[PR #9](https://github.com/fun7772ei/bosai-ai/pull/9) はPR #8をbaseとするOPENの積み上げPR。マージ・Pages公開は未実施。
+
 更新日: 2026-10-14（日本時間）。作業の対象は**Phase 1の安定化と検索プロトタイプの比較実験**。
 
 ## 2026-10-14 6方式の比較実証（最新作業）
