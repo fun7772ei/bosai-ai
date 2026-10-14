@@ -92,7 +92,7 @@ $('voiceLoad').onclick=async()=>{
     voiceState('準備中：WASMと日本語モデル情報を確認しています…');
     const mic=new MicTranscriber()
       .language('ja')
-      .modelArch(ModelArch.TinyStreaming)
+      .modelArch(ModelArch.Tiny)
       .onProgress((fraction,file)=>{if(generation===voiceSeq){voiceStage='モデル取得・読み込み';voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));}})
       .onText(text=>{if(generation===voiceSeq)$('voiceLive').textContent=text?'認識中：'+text:'';})
       .onLine(line=>{
