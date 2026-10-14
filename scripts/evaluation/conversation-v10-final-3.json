@@ -1,0 +1,5 @@
+[
+ {"id":"c01","kind":"clause-negated-transition","turns":[{"text":"水没した車の車内に水が入っています。脱出の原文を見せて。","kind":"confirm","gold":"bosai-71"},{"text":"その後、他の乗用車に乗り換えていません。同じ車から出る情報が必要です。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]},
+ {"id":"c02","kind":"modifier-water-question","turns":[{"text":"水没している乗用車なのですか？","kind":"clarify","facts":{"vehicleFlooded":null},"noPending":true}]},
+ {"id":"c03","kind":"current-water-question-revokes-certainty","turns":[{"text":"水没した車の車内に水が入っています。脱出の情報は？","kind":"confirm","gold":"bosai-71"},{"text":"その車内に水が入っていますか。現在の状態を確認できますか。","kind":"clarify","facts":{"vehicleFlooded":null},"noPending":true}]}
+]
