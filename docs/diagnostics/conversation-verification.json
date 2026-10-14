@@ -1,0 +1,48 @@
+{
+  "createdAt": "2026-10-14T15:37:12.095Z",
+  "baseMain": "6ae5471659499a16fd0c6ad4b7dbc0844b49b151",
+  "publishedBuildAtStart": "d07e478f5f8f",
+  "unitTests": 91,
+  "publicBuild": true,
+  "generativeRuntime": false,
+  "originalRecords": 88,
+  "originalBlob": "881355b4a4b85a1da39515e8578aa5f74bb2644b",
+  "unchangedExistingMainPrefix": true,
+  "voiceIsolationSDKCheck": "passed; recognition and Issue16 not tested or fixed",
+  "iPadConversationVerified": false,
+  "merged": false,
+  "deployed": false,
+  "regression": [
+    {
+      "tag": "phase2-beta-regression-64",
+      "status": "passed",
+      "samples": 192,
+      "errors": [],
+      "offlineRestart": true,
+      "generationBlocked": true,
+      "oldDataPreserved": true
+    },
+    {
+      "tag": "phase2-beta-regression-80",
+      "status": "passed",
+      "samples": 240,
+      "errors": [],
+      "offlineRestart": true,
+      "generationBlocked": true,
+      "oldDataPreserved": true
+    },
+    {
+      "tag": "phase2-beta-regression-60",
+      "status": "passed",
+      "samples": 180,
+      "errors": [],
+      "offlineRestart": true,
+      "generationBlocked": true,
+      "oldDataPreserved": true
+    }
+  ],
+  "environmentFailures": [
+    "initial npm ci: onnxruntime-node direct network failed; NODE_USE_ENV_PROXY=1 npm ci succeeded",
+    "playwright --with-deps: su authentication failed; used existing Chromium149"
+  ]
+}
