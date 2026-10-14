@@ -28,6 +28,7 @@ jobs:
             if curl --fail --silent http://localhost:4173/bosai-ai/ > /dev/null; then break; fi
             sleep 1
           done
+          node scripts/voice-isolation-check.mjs
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/final-64.json --tag=beta-regression-64
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-review-regression-80
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-review-final-60.json --tag=beta-review-final-60
