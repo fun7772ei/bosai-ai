@@ -36,7 +36,7 @@ self.addEventListener('fetch', event => {
     // A module Worker needs COEP on its own top-level script response,
     // not only on the document that spawned it. Limit this to Moonshine SDK
     // assets; ordinary Ruri runtime/files stay byte-for-byte unchanged.
-    if(reqUrl.pathname.startsWith(new URL('moonshine/',self.registration.scope).pathname) && /\\.(?:js|mjs)$/.test(reqUrl.pathname)) {
+    if(reqUrl.pathname.startsWith(new URL('moonshine/',self.registration.scope).pathname) && /\.(?:js|mjs)$/.test(reqUrl.pathname)) {
       const response = await cache.match(event.request, {ignoreVary:true}) || await fetch(event.request);
       if (!response.ok) return response;
       const headers = new Headers(response.headers);
