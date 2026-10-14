@@ -1,0 +1,1249 @@
+{
+  "note": "Only development244 used. Earlier trial metrics include7 ambiguous labelled-relevant questions; final summary excludes them from positive denominator. No final80 used to tune.",
+  "trials": {
+    "baseline-regression": {
+      "30m": {
+        "ruri": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 154,
+          "top3": 165,
+          "top5": 167,
+          "absent": 49,
+          "absentRejected": 32,
+          "absentNoCandidates": 38,
+          "absentOffered": 11,
+          "ambiguous": 23,
+          "clarified": 14,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 4,
+          "dangerWrongTop1": 4,
+          "dangerLabelTop1": 2,
+          "multiAllAt5": 21,
+          "semanticallyRelatedTop1": 155,
+          "expectedEvidenceTop1": 154,
+          "medianEmbeddingMs": 13.5,
+          "medianSearchMs": 0.4307879999999926,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 54,
+              "top3": 59,
+              "top5": 60
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 40,
+              "top3": 42,
+              "top5": 43
+            },
+            "multi": {
+              "count": 22,
+              "top1": 20,
+              "top3": 21,
+              "top5": 21
+            },
+            "danger": {
+              "count": 44,
+              "top1": 40,
+              "top3": 43,
+              "top5": 43
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 158,
+          "top3": 167,
+          "top5": 168,
+          "absent": 49,
+          "absentRejected": 32,
+          "absentNoCandidates": 36,
+          "absentOffered": 13,
+          "ambiguous": 23,
+          "clarified": 14,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 1,
+          "dangerWrongTop1": 1,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "semanticallyRelatedTop1": 160,
+          "expectedEvidenceTop1": 158,
+          "medianEmbeddingMs": 13.5,
+          "medianSearchMs": 0.28387950000001183,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 56,
+              "top3": 60,
+              "top5": 60
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 38,
+              "top3": 43,
+              "top5": 43
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 21,
+              "top5": 21
+            },
+            "danger": {
+              "count": 44,
+              "top1": 43,
+              "top3": 43,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      },
+      "70m": {
+        "ruri": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 151,
+          "top3": 166,
+          "top5": 168,
+          "absent": 49,
+          "absentRejected": 32,
+          "absentNoCandidates": 41,
+          "absentOffered": 8,
+          "ambiguous": 23,
+          "clarified": 14,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 5,
+          "dangerWrongTop1": 5,
+          "dangerLabelTop1": 1,
+          "multiAllAt5": 20,
+          "semanticallyRelatedTop1": 152,
+          "expectedEvidenceTop1": 151,
+          "medianEmbeddingMs": 29.850000008940697,
+          "medianSearchMs": 0.28855750000002445,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 60,
+              "top5": 60
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 38,
+              "top3": 42,
+              "top5": 43
+            },
+            "multi": {
+              "count": 22,
+              "top1": 17,
+              "top3": 21,
+              "top5": 21
+            },
+            "danger": {
+              "count": 44,
+              "top1": 39,
+              "top3": 43,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 158,
+          "top3": 166,
+          "top5": 168,
+          "absent": 49,
+          "absentRejected": 32,
+          "absentNoCandidates": 36,
+          "absentOffered": 13,
+          "ambiguous": 23,
+          "clarified": 14,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 1,
+          "dangerWrongTop1": 1,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 20,
+          "semanticallyRelatedTop1": 160,
+          "expectedEvidenceTop1": 158,
+          "medianEmbeddingMs": 29.850000008940697,
+          "medianSearchMs": 0.34131550000000743,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 56,
+              "top3": 60,
+              "top5": 60
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 38,
+              "top3": 41,
+              "top5": 43
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 21,
+              "top5": 21
+            },
+            "danger": {
+              "count": 44,
+              "top1": 43,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      },
+      "130m": {
+        "ruri": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 148,
+          "top3": 164,
+          "top5": 168,
+          "absent": 49,
+          "absentRejected": 32,
+          "absentNoCandidates": 40,
+          "absentOffered": 9,
+          "ambiguous": 23,
+          "clarified": 14,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 8,
+          "dangerWrongTop1": 8,
+          "dangerLabelTop1": 1,
+          "multiAllAt5": 21,
+          "semanticallyRelatedTop1": 149,
+          "expectedEvidenceTop1": 148,
+          "medianEmbeddingMs": 81.44999999552965,
+          "medianSearchMs": 0.3009305000000211,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 54,
+              "top3": 59,
+              "top5": 60
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 42,
+              "top5": 43
+            },
+            "multi": {
+              "count": 22,
+              "top1": 19,
+              "top3": 21,
+              "top5": 21
+            },
+            "danger": {
+              "count": 44,
+              "top1": 36,
+              "top3": 42,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 155,
+          "top3": 167,
+          "top5": 168,
+          "absent": 49,
+          "absentRejected": 32,
+          "absentNoCandidates": 36,
+          "absentOffered": 13,
+          "ambiguous": 23,
+          "clarified": 14,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 3,
+          "dangerWrongTop1": 3,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "semanticallyRelatedTop1": 157,
+          "expectedEvidenceTop1": 155,
+          "medianEmbeddingMs": 81.44999999552965,
+          "medianSearchMs": 0.3289215000000354,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 54,
+              "top3": 59,
+              "top5": 60
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 43,
+              "top5": 43
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 21,
+              "top5": 21
+            },
+            "danger": {
+              "count": 44,
+              "top1": 41,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      }
+    },
+    "improved-regression": {
+      "30m": {
+        "ruri": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 152,
+          "top3": 160,
+          "top5": 161,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerWrongTop1": 6,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.44240000000000634,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 61,
+              "top5": 61
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 36,
+              "top3": 37,
+              "top5": 38
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 0,
+              "top3": 0,
+              "top5": 0
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 38,
+              "top3": 40,
+              "top5": 40
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 157,
+          "top3": 161,
+          "top5": 161,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerWrongTop1": 4,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.2920775000000049,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 59,
+              "top3": 61,
+              "top5": 61
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 37,
+              "top3": 38,
+              "top5": 38
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 0,
+              "top3": 0,
+              "top5": 0
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 40,
+              "top3": 40,
+              "top5": 40
+            }
+          },
+          "failures": null
+        }
+      },
+      "70m": {
+        "ruri": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 147,
+          "top3": 160,
+          "top5": 161,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerWrongTop1": 7,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "medianSearchMs": 0.2926935000000128,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 59,
+              "top3": 61,
+              "top5": 61
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 33,
+              "top3": 37,
+              "top5": 38
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 0,
+              "top3": 0,
+              "top5": 0
+            },
+            "multi": {
+              "count": 22,
+              "top1": 18,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 37,
+              "top3": 40,
+              "top5": 40
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 156,
+          "top3": 160,
+          "top5": 161,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerWrongTop1": 4,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "medianSearchMs": 0.3026079999999922,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 58,
+              "top3": 61,
+              "top5": 61
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 36,
+              "top3": 37,
+              "top5": 38
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 0,
+              "top3": 0,
+              "top5": 0
+            },
+            "multi": {
+              "count": 22,
+              "top1": 22,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 40,
+              "top3": 40,
+              "top5": 40
+            }
+          },
+          "failures": null
+        }
+      },
+      "130m": {
+        "ruri": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 145,
+          "top3": 159,
+          "top5": 162,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerWrongTop1": 10,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.30412999999998647,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 56,
+              "top3": 60,
+              "top5": 61
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 36,
+              "top3": 37,
+              "top5": 38
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 0,
+              "top3": 1,
+              "top5": 1
+            },
+            "multi": {
+              "count": 22,
+              "top1": 19,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 34,
+              "top3": 39,
+              "top5": 40
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 154,
+          "top3": 161,
+          "top5": 162,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerWrongTop1": 5,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.30355950000000576,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 60,
+              "top5": 61
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 37,
+              "top3": 38,
+              "top5": 38
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 0,
+              "top3": 1,
+              "top5": 1
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 39,
+              "top3": 40,
+              "top5": 40
+            }
+          },
+          "failures": null
+        }
+      }
+    },
+    "improved-regression-v2": {
+      "30m": {
+        "ruri": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 161,
+          "top3": 173,
+          "top5": 175,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 6,
+          "dangerWrongTop1": 2,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.505303000000012,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 61,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 40,
+              "top3": 43,
+              "top5": 44
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 1,
+              "top3": 3,
+              "top5": 3
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 42,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 165,
+          "top3": 175,
+          "top5": 175,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 6,
+          "dangerWrongTop1": 0,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.3267940000000067,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 59,
+              "top3": 62,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 44,
+              "top5": 44
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 2,
+              "top3": 3,
+              "top5": 3
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 44,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      },
+      "70m": {
+        "ruri": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 157,
+          "top3": 173,
+          "top5": 174,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 6,
+          "dangerWrongTop1": 3,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "medianSearchMs": 0.3153264999999976,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 59,
+              "top3": 62,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 38,
+              "top3": 43,
+              "top5": 44
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 1,
+              "top3": 2,
+              "top5": 2
+            },
+            "multi": {
+              "count": 22,
+              "top1": 18,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 41,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 164,
+          "top3": 172,
+          "top5": 174,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 6,
+          "dangerWrongTop1": 0,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "medianSearchMs": 0.3536684999999977,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 58,
+              "top3": 62,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 42,
+              "top5": 44
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 1,
+              "top3": 2,
+              "top5": 2
+            },
+            "multi": {
+              "count": 22,
+              "top1": 22,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 44,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      },
+      "130m": {
+        "ruri": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 153,
+          "top3": 174,
+          "top5": 177,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 6,
+          "dangerWrongTop1": 7,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.34166049999998904,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 61,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 43,
+              "top5": 44
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 1,
+              "top3": 5,
+              "top5": 5
+            },
+            "multi": {
+              "count": 22,
+              "top1": 19,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 37,
+              "top3": 43,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "positive": 179,
+          "top1": 161,
+          "top3": 176,
+          "top5": 177,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 6,
+          "dangerWrongTop1": 2,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "medianSearchMs": 0.3376944999999978,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 61,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 44,
+              "top5": 44
+            },
+            "ambiguous": {
+              "count": 7,
+              "top1": 2,
+              "top3": 5,
+              "top5": 5
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 42,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      }
+    },
+    "improved-regression-v3": {
+      "30m": {
+        "ruri": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 160,
+          "top3": 170,
+          "top5": 172,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 2,
+          "dangerWrongTop1": 2,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "semanticallyRelatedTop1": 160,
+          "expectedEvidenceTop1": 160,
+          "medianEmbeddingMs": 13.5,
+          "medianSearchMs": 0.492699000000016,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 61,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 40,
+              "top3": 43,
+              "top5": 44
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 42,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 163,
+          "top3": 172,
+          "top5": 172,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 0,
+          "dangerWrongTop1": 0,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "semanticallyRelatedTop1": 163,
+          "expectedEvidenceTop1": 163,
+          "medianEmbeddingMs": 13.5,
+          "medianSearchMs": 0.34813999999997236,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 59,
+              "top3": 62,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 44,
+              "top5": 44
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 44,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      },
+      "70m": {
+        "ruri": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 156,
+          "top3": 171,
+          "top5": 172,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 3,
+          "dangerWrongTop1": 3,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "semanticallyRelatedTop1": 156,
+          "expectedEvidenceTop1": 156,
+          "medianEmbeddingMs": 29.850000008940697,
+          "medianSearchMs": 0.3773285000000328,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 59,
+              "top3": 62,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 38,
+              "top3": 43,
+              "top5": 44
+            },
+            "multi": {
+              "count": 22,
+              "top1": 18,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 41,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 163,
+          "top3": 170,
+          "top5": 172,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 0,
+          "dangerWrongTop1": 0,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 21,
+          "semanticallyRelatedTop1": 163,
+          "expectedEvidenceTop1": 163,
+          "medianEmbeddingMs": 29.850000008940697,
+          "medianSearchMs": 0.3535384999999849,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 58,
+              "top3": 62,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 42,
+              "top5": 44
+            },
+            "multi": {
+              "count": 22,
+              "top1": 22,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 44,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      },
+      "130m": {
+        "ruri": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 152,
+          "top3": 169,
+          "top5": 172,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 49,
+          "absentOffered": 0,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 7,
+          "dangerWrongTop1": 7,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "semanticallyRelatedTop1": 152,
+          "expectedEvidenceTop1": 152,
+          "medianEmbeddingMs": 81.44999999552965,
+          "medianSearchMs": 0.36994299999997793,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 61,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 43,
+              "top5": 44
+            },
+            "multi": {
+              "count": 22,
+              "top1": 19,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 37,
+              "top3": 43,
+              "top5": 44
+            }
+          },
+          "failures": null
+        },
+        "hybrid": {
+          "queries": 244,
+          "labelledRelevantIncludingAmbiguous": 179,
+          "positive": 172,
+          "top1": 159,
+          "top3": 171,
+          "top5": 172,
+          "absent": 49,
+          "absentRejected": 44,
+          "absentNoCandidates": 48,
+          "absentOffered": 1,
+          "ambiguous": 23,
+          "clarified": 21,
+          "dangerQueries": 44,
+          "dangerAbstained": 0,
+          "dangerWrongOffered": 2,
+          "dangerWrongTop1": 2,
+          "dangerLabelTop1": 0,
+          "multiAllAt5": 22,
+          "semanticallyRelatedTop1": 159,
+          "expectedEvidenceTop1": 159,
+          "medianEmbeddingMs": 81.44999999552965,
+          "medianSearchMs": 0.3688409999999749,
+          "categories": {
+            "normal": {
+              "count": 62,
+              "top1": 57,
+              "top3": 61,
+              "top5": 62
+            },
+            "paraphrase": {
+              "count": 44,
+              "top1": 39,
+              "top3": 44,
+              "top5": 44
+            },
+            "multi": {
+              "count": 22,
+              "top1": 21,
+              "top3": 22,
+              "top5": 22
+            },
+            "danger": {
+              "count": 44,
+              "top1": 42,
+              "top3": 44,
+              "top5": 44
+            }
+          },
+          "failures": null
+        }
+      }
+    }
+  }
+}

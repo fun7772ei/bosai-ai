@@ -1,0 +1,41 @@
+{
+  "referenceMain": "7709891d706bf3859c2ee717b3e51272fd93c92f",
+  "referenceFiles": 15,
+  "branchFiles": 15,
+  "identical": true,
+  "differences": [],
+  "reference": {
+    "index.html": "d826f09f4a30f4a2616af53a542434a0100782b87a40f7f048bb8b268a4586f6",
+    "sw.js": "6464cfee8ee80be3e0682f73c03e053abccb4b14c5616bfb4b1c55ace41011f4",
+    "manifest.webmanifest": "93c0590f5617e851f7fe906451c7397d9f38ae63ed4af488d853a4de16983253",
+    "icon.svg": "e29dac8e6b12fd08726cae534e71b024a7d9033d93f373b0fb4acce6e1d62c16",
+    "shell.json": "32530626523506184333e09eaca29e5b1ba184d25fb3ea76d207b7658b26f6e9",
+    "apple-touch-icon.png": "e80cda179478d0ff81e66a822a1d94bc874f289e5763902b28e28f244ba43d77",
+    "icon-512.png": "df3330b6aa24475d3c50ac24c1ee275819b03c5c000395330dacce8bd9cb40b4",
+    "model-notices.txt": "d27718a34d51ae285d5bf0429b215f15c151c592d97093fd65b0f0c30d9727ec",
+    "icon-192.png": "a875724eb50bb5e4f3c637d262becaa2979517a05385779c06ae2386e3ca71f7",
+    "assets/ruri.worker-DoZ_2fDz.js": "56a8cb3f8bfb0a99b6a94fba308acf27d19e7847f00e63ec662265108a13bef8",
+    "assets/index-C_SOQjX7.css": "d24005411942c774b13e1a7e4c7d78b906221b61d131fb4e7dab7d4787b63971",
+    "assets/ort-wasm-simd-threaded.asyncify-CxOG5pUO.wasm": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082",
+    "assets/index-CjSC2V9J.js": "90b48963228c2cb5667af02fe4af6f2bcb102efa47e1b794a1b09d66d5461648",
+    "runtime/ort-wasm-simd-threaded.asyncify.mjs": "0966b6105cd936744498aa60df7a22cbd47af3374dbc64a9ab561c08a71e3611",
+    "runtime/ort-wasm-simd-threaded.asyncify.wasm": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082"
+  },
+  "branch": {
+    "icon-192.png": "a875724eb50bb5e4f3c637d262becaa2979517a05385779c06ae2386e3ca71f7",
+    "model-notices.txt": "d27718a34d51ae285d5bf0429b215f15c151c592d97093fd65b0f0c30d9727ec",
+    "icon-512.png": "df3330b6aa24475d3c50ac24c1ee275819b03c5c000395330dacce8bd9cb40b4",
+    "apple-touch-icon.png": "e80cda179478d0ff81e66a822a1d94bc874f289e5763902b28e28f244ba43d77",
+    "shell.json": "32530626523506184333e09eaca29e5b1ba184d25fb3ea76d207b7658b26f6e9",
+    "icon.svg": "e29dac8e6b12fd08726cae534e71b024a7d9033d93f373b0fb4acce6e1d62c16",
+    "manifest.webmanifest": "93c0590f5617e851f7fe906451c7397d9f38ae63ed4af488d853a4de16983253",
+    "sw.js": "6464cfee8ee80be3e0682f73c03e053abccb4b14c5616bfb4b1c55ace41011f4",
+    "index.html": "d826f09f4a30f4a2616af53a542434a0100782b87a40f7f048bb8b268a4586f6",
+    "runtime/ort-wasm-simd-threaded.asyncify.wasm": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082",
+    "runtime/ort-wasm-simd-threaded.asyncify.mjs": "0966b6105cd936744498aa60df7a22cbd47af3374dbc64a9ab561c08a71e3611",
+    "assets/index-CjSC2V9J.js": "90b48963228c2cb5667af02fe4af6f2bcb102efa47e1b794a1b09d66d5461648",
+    "assets/ort-wasm-simd-threaded.asyncify-CxOG5pUO.wasm": "49871f5a4409519797e127440868a6d1923339d9185907f301a5b2a1d90af082",
+    "assets/index-C_SOQjX7.css": "d24005411942c774b13e1a7e4c7d78b906221b61d131fb4e7dab7d4787b63971",
+    "assets/ruri.worker-DoZ_2fDz.js": "56a8cb3f8bfb0a99b6a94fba308acf27d19e7847f00e63ec662265108a13bef8"
+  }
+}

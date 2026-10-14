@@ -1,0 +1,60 @@
+name: Check Ruri model and retrieval study
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - research/ruri/**
+      - scripts/ruri-study/**
+      - scripts/evaluation/ruri-size-final-80.json
+      - tests/ruri-study.test.js
+      - vite.ruri.config.js
+      - ruri-study.html
+      - .github/workflows/ruri-study-check.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: node scripts/check-public-build.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: python3 scripts/ruri-study/fetch-models.py
+      - name: Recompute genuine88 vectors and regression queries
+        run: node scripts/ruri-study/run-models.mjs
+      - name: Genuine held-out queries and frozen comparison
+        run: |
+          node scripts/ruri-study/run-models.mjs --final
+          node scripts/ruri-study/final-evaluate.mjs
+      - run: npm run build:ruri
+      - name: Real model UI, cold stop, saved fallback, switching and offline restart
+        run: |
+          npm run preview:ruri -- --port 4187 --strictPort > /tmp/ruri-preview.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:4187/bosai-ai/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/ruri-study/browser-check.mjs
+          node scripts/ruri-study/report.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ruri-size-study-json-only
+          path: |
+            test-results/ruri-study/model-runs.json
+            test-results/ruri-study/final-model-runs.json
+            test-results/ruri-study/final-baseline.json
+            test-results/ruri-study/final-improved.json
+            test-results/ruri-study/browser-check.json
+            test-results/ruri-study/mobile.png
+            test-results/ruri-study/tablet.png
+            docs/diagnostics/ruri-size-summary.json

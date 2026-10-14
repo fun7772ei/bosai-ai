@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-10-14T13:58:28.323155+00:00",
+  "source": "User text in conversation, not developer-operated device or diagnosticJSON",
+  "device": "iPad10 / A14 / RAM4GB",
+  "browser": "Safari",
+  "osVersionVerified": null,
+  "targetOS": "iPadOS26.5",
+  "appBuildVerified": null,
+  "reported": {
+    "modelLoad": "Ruri-v3-30m succeeded",
+    "searchMsApprox": [
+      25,
+      35
+    ],
+    "distinctQueriesCompleted": 3,
+    "offlineSearch": "reported success",
+    "obviousCrashes": "none reported"
+  },
+  "unverified": [
+    "long or high-volume stability",
+    "actual Safari memory",
+    "Safari/PWA equivalence",
+    "offline actual mode Ruri vs lexical fallback from diagnosticJSON",
+    "70M/130M on iPad"
+  ]
+}
