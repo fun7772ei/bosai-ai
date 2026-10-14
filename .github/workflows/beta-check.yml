@@ -37,7 +37,8 @@ jobs:
           node scripts/conversation-browser-check.mjs
           node scripts/conversation-v2-browser-check.mjs --tag=conversation-v2-dev-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-32.json --tag=conversation-v2-regression32-ci
-          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-24.json --tag=conversation-v2-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-24.json --tag=conversation-v2-regression24-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v3-final-12.json --tag=conversation-v3-final-ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -48,5 +49,7 @@ jobs:
             test-results/beta-regression-64.json
             test-results/beta-mobile.png
             test-results/beta-ipad-layout.png
+            test-results/conversation-v3-*.json
             test-results/conversation-v2-*.json
             test-results/conversation-v2-*-mobile.png
+            test-results/conversation-v3-*-mobile.png

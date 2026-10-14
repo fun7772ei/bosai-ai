@@ -1,0 +1,491 @@
+{
+  "createdAt": "2026-10-14T17:24:23.311Z",
+  "platform": "Linux Chromium149 CPU/WASM, WebGPU disabled; not iPad Safari",
+  "freeze": {
+    "createdAt": "2026-10-14T17:17:19.117Z",
+    "implementationCommit": "482b1fd5af299f53b41e029b54a641dd3dd30986",
+    "baselineCommit": "0e2bd4cbf6f9dd12677f64b5193b19825cdf3ed9",
+    "policy": "Independent review P1/P2 fixes: road-linked negation and non-automobile compounds. Freeze before fresh 12-dialogue authorship. Prior24/32 are regression; no tuning to new12.",
+    "finalSetAuthored": true,
+    "initialCases": "scripts/evaluation/conversation-v2-final-32.json",
+    "initialCasesSha256": "e03ea44584048575fdfdf1b8a81e1e016e3dabdff107f2c76c1dfa612bf51dcc",
+    "oldRegressionSha256": "76bf98bc2407b125ddfaddd0b9d1f0ba4dcf7175da5ea98b96b7cb561f88fc65",
+    "regressionCaseSha256": {
+      "scripts/evaluation/conversation-v2-final-24.json": "81095168ad611dc15ef33d8b9cda19ac2dd803cdcdf61ab58144984bc8088e62"
+    },
+    "coreSha256": {
+      "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+      "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+      "src/query-scope.js": "d4e32acf20a2d1a64e2489f3088e1611e33c1469fed854daa5476d8b8fff9833",
+      "src/beta-search.js": "cf0fec94d3fda690449ae77224c88acee613688d708adf8b1f672a744627c418",
+      "src/beta-controller.js": "b86402fead18e215fb3d69b38c6835109c16ec3e3fbad22fc5f3939deceeb891",
+      "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+      "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+      "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+      "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+      "src/conversation.js": "cac30e40f38252ed40dfd4265c6f713dbc2584d3f8df8894031841205f09e3d2",
+      "src/conversation-context.js": "ccb65082e5007e0052c746ec20e37f39ef6ae2c7f6f240fe10cbde779107227c",
+      "src/conversation-evidence.js": "ff041d12dc6ee7abaf8a9b7afd29fa0a98ed73dbe115a2316f7ec4f0a262b2c0",
+      "src/conversation-ui.js": "6a757f0b8dfd699fc34a483d37e05c3860e9b267dbf44872e6e66cc43782e5ba"
+    },
+    "finalCases": "scripts/evaluation/conversation-v3-final-12.json",
+    "finalAuthoredAt": "2026-10-14T17:19:04.596Z",
+    "finalCasesSha256": "cfdd63acf52440358ba7e8bc1cc9779f33a75600dfd6cb5f715a1c2d7b80b743"
+  },
+  "sets": {
+    "before-final": {
+      "implementation": "0e2bd4cbf6f9dd12677f64b5193b19825cdf3ed9",
+      "build": "ベータ版 a7b64028157d / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 17,
+      "control": {
+        "passed": 9,
+        "total": 17
+      },
+      "kindAgreement": 11,
+      "positive": 5,
+      "top1": 5,
+      "top3": 5,
+      "top5": 5,
+      "needsClarification": 9,
+      "clarified": 3,
+      "labelledBadQueries": 5,
+      "badTop1": 4,
+      "badTop3": 5,
+      "warmMedianMs": 48.8999999910593,
+      "first": {
+        "loadMs": 1976,
+        "warm": false,
+        "embeddingMs": 287.69999998807907,
+        "tokens": 23,
+        "retrievalMs": 9.600000008940697,
+        "totalMs": 2329.2000000029802,
+        "conversationMs": 2329.5999999940395
+      },
+      "peakBrowserPssMiB": 814.9873046875,
+      "releasePssMiB": [
+        662.302734375,
+        292.515625
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [
+        {
+          "id": "r02",
+          "turn": 1,
+          "expected": "clarify",
+          "actual": "confirm",
+          "facts": {
+            "road": true,
+            "floodedRoad": false,
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "r04",
+          "turn": 1,
+          "expected": "clarify",
+          "actual": "confirm",
+          "facts": {
+            "road": true,
+            "floodedRoad": true,
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "r05",
+          "turn": 1,
+          "expected": "clarify",
+          "actual": "confirm",
+          "facts": {
+            "road": true,
+            "floodedRoad": true,
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "r06",
+          "turn": 1,
+          "expected": "confirm",
+          "actual": "confirm",
+          "facts": {
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "r07",
+          "turn": 1,
+          "expected": "clarify",
+          "actual": "confirm",
+          "facts": {
+            "road": true,
+            "floodedRoad": true,
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "r09",
+          "turn": 1,
+          "expected": "clarify",
+          "actual": "confirm",
+          "facts": {
+            "road": true,
+            "floodedRoad": true,
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "r09",
+          "turn": 2,
+          "expected": "confirm",
+          "actual": "confirm",
+          "facts": {
+            "road": true,
+            "floodedRoad": true,
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "r11",
+          "turn": 1,
+          "expected": "clarify",
+          "actual": "confirm",
+          "facts": {
+            "floodedRoad": false,
+            "goal": "movement",
+            "movement": "walk"
+          }
+        }
+      ],
+      "badCases": [
+        {
+          "id": "r02",
+          "input": "その道路は冠水していません。",
+          "first": "bosai-70",
+          "badTop3": [
+            "bosai-70",
+            "bosai-69"
+          ]
+        },
+        {
+          "id": "r04",
+          "input": "大雨で冠水した道路を電動車椅子で渡るときの情報はありますか？",
+          "first": "bosai-70",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "id": "r05",
+          "input": "道路が冠水した所で自転車を運転する際の注意を知りたいです。",
+          "first": "bosai-70",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "id": "r07",
+          "input": "大雨で道路が浸水しています。乳母車を押して避難するときの情報は？",
+          "first": "bosai-70",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "id": "r10",
+          "input": "道路には水がないのですが、家で飲む水もなくなりました。台風の中を車で移動するときは？",
+          "first": "bosai-54",
+          "badTop3": [
+            "bosai-70"
+          ]
+        }
+      ]
+    },
+    "after-final": {
+      "implementation": "482b1fd5af299f53b41e029b54a641dd3dd30986",
+      "build": "ベータ版 e0b90952f9c2 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 17,
+      "control": {
+        "passed": 17,
+        "total": 17
+      },
+      "kindAgreement": 17,
+      "positive": 5,
+      "top1": 5,
+      "top3": 5,
+      "top5": 5,
+      "needsClarification": 9,
+      "clarified": 9,
+      "labelledBadQueries": 5,
+      "badTop1": 1,
+      "badTop3": 2,
+      "warmMedianMs": 39.099999994039536,
+      "first": {
+        "loadMs": 2151.5,
+        "warm": false,
+        "embeddingMs": 94.69999998807907,
+        "tokens": 13,
+        "retrievalMs": 2.1000000089406967,
+        "totalMs": 2306.1000000089407,
+        "conversationMs": 2306.7000000029802
+      },
+      "peakBrowserPssMiB": 752.8232421875,
+      "releasePssMiB": [
+        601.9345703125,
+        292.271484375
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [],
+      "badCases": [
+        {
+          "id": "r02",
+          "input": "その道路は冠水していません。",
+          "first": "bosai-69",
+          "badTop3": [
+            "bosai-69",
+            "bosai-70"
+          ]
+        },
+        {
+          "id": "r10",
+          "input": "道路には水がないのですが、家で飲む水もなくなりました。台風の中を車で移動するときは？",
+          "first": "bosai-54",
+          "badTop3": [
+            "bosai-70"
+          ]
+        }
+      ]
+    },
+    "regression24": {
+      "implementation": "482b1fd5af299f53b41e029b54a641dd3dd30986",
+      "build": "ベータ版 e0b90952f9c2 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 35,
+      "control": {
+        "passed": 34,
+        "total": 35
+      },
+      "kindAgreement": 34,
+      "positive": 18,
+      "top1": 18,
+      "top3": 18,
+      "top5": 18,
+      "needsClarification": 7,
+      "clarified": 7,
+      "labelledBadQueries": 9,
+      "badTop1": 1,
+      "badTop3": 2,
+      "warmMedianMs": 24,
+      "first": {
+        "loadMs": 1818.2000000029802,
+        "warm": false,
+        "embeddingMs": 183.70000000298023,
+        "tokens": 36,
+        "retrievalMs": 5.200000002980232,
+        "totalMs": 2074.4000000059605,
+        "conversationMs": 2078.9000000059605
+      },
+      "peakBrowserPssMiB": 835.0927734375,
+      "releasePssMiB": [
+        678.234375,
+        296.0771484375
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [
+        {
+          "id": "n16",
+          "turn": 1,
+          "expected": "unsupported",
+          "actual": "confirm",
+          "facts": {}
+        }
+      ],
+      "badCases": [
+        {
+          "id": "n02",
+          "input": "水浸しの通学路を歩いて通ろうと思います。足元に棒を差し入れれば大丈夫？",
+          "first": "bosai-69",
+          "badTop3": [
+            "bosai-84"
+          ]
+        },
+        {
+          "id": "n18",
+          "input": "大雨ですが道は冠水していません。車で移動するときに読む一般情報は？",
+          "first": "bosai-70",
+          "badTop3": [
+            "bosai-70",
+            "bosai-69"
+          ]
+        }
+      ]
+    },
+    "original24": {
+      "implementation": "482b1fd5af299f53b41e029b54a641dd3dd30986",
+      "build": "ベータ版 e0b90952f9c2 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 38,
+      "control": {
+        "passed": 36,
+        "total": 38
+      },
+      "kindAgreement": 36,
+      "positive": 15,
+      "top1": 12,
+      "top3": 14,
+      "top5": 14,
+      "needsClarification": 9,
+      "clarified": 9,
+      "labelledBadQueries": 0,
+      "badTop1": 0,
+      "badTop3": 0,
+      "warmMedianMs": 24.700000002980232,
+      "first": {
+        "loadMs": 2235.4000000059605,
+        "warm": false,
+        "embeddingMs": 68.40000000596046,
+        "tokens": 10,
+        "retrievalMs": 3.1000000089406967,
+        "totalMs": 2423.6000000089407,
+        "conversationMs": 2424.199999988079
+      },
+      "peakBrowserPssMiB": 766.564453125,
+      "releasePssMiB": [
+        745.06640625,
+        291.794921875
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [
+        {
+          "id": "c21",
+          "turn": 1,
+          "expected": "confirm",
+          "actual": "clarify",
+          "facts": {
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "id": "c21",
+          "turn": 2,
+          "expected": "confirm",
+          "actual": "clarify",
+          "facts": {
+            "goal": "movement",
+            "movement": "walk"
+          }
+        }
+      ],
+      "badCases": []
+    },
+    "regression32": {
+      "implementation": "482b1fd5af299f53b41e029b54a641dd3dd30986",
+      "build": "ベータ版 e0b90952f9c2 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 46,
+      "control": {
+        "passed": 46,
+        "total": 46
+      },
+      "kindAgreement": 46,
+      "positive": 24,
+      "top1": 20,
+      "top3": 22,
+      "top5": 24,
+      "needsClarification": 11,
+      "clarified": 11,
+      "labelledBadQueries": 10,
+      "badTop1": 0,
+      "badTop3": 0,
+      "warmMedianMs": 24.299999997019768,
+      "first": {
+        "loadMs": 1794.7000000029802,
+        "warm": false,
+        "embeddingMs": 401.29999999701977,
+        "tokens": 40,
+        "retrievalMs": 34.8999999910593,
+        "totalMs": 2288.2999999970198,
+        "conversationMs": 2289.7999999970198
+      },
+      "peakBrowserPssMiB": 839.61328125,
+      "releasePssMiB": [
+        730.04296875,
+        292.685546875
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [],
+      "badCases": []
+    }
+  },
+  "priorFinal24StateRankQueryParity": true,
+  "limitations": [
+    "Fresh12 is a targeted review-fix set, not a general disaster-safety evaluation",
+    "Previous24/32 are regression data now, earlier independent results preserved",
+    "Source Top-1 correctness and answer sufficiency are different",
+    "Known denial/source mismatch and missing earthquake-date rejection remain",
+    "Single-machine, small-run PSS/latency is not iPad Safari memory or stability"
+  ]
+}

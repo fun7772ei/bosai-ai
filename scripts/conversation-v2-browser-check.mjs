@@ -10,11 +10,12 @@ const tag=option('tag','conversation-v2-dev'),casesPath=option('cases','scripts/
 const baseline=process.argv.includes('--baseline');
 const cases=JSON.parse(readFileSync(casesPath));
 const base=option('base','http://localhost:4173/bosai-ai/');
-const freeze=JSON.parse(readFileSync('docs/diagnostics/conversation-v2-freeze.json'));
+const freeze=JSON.parse(readFileSync(option('freeze','docs/diagnostics/conversation-v3-freeze.json')));
 if(!baseline)for(const [path,hash] of Object.entries(freeze.coreSha256))if(createHash('sha256').update(readFileSync(path)).digest('hex')!==hash)throw Error('Frozen v2 implementation changed: '+path);
 if(casesPath===freeze.initialCases&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.initialCasesSha256)throw Error('Initial final/regression cases changed');
 if(casesPath===freeze.finalCases&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.finalCasesSha256)throw Error('Final cases changed');
 if(casesPath.endsWith('conversation-final-24.json')&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.oldRegressionSha256)throw Error('Original 24 cases changed');
+if(freeze.regressionCaseSha256?.[casesPath]&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.regressionCaseSha256[casesPath])throw Error('Regression cases changed');
 const assets=JSON.parse(readFileSync('test-results/ruri-assets.json'));
 const server=createServer((req,res)=>{const a=assets[Number(new URL(req.url,'http://localhost').searchParams.get('id'))];res.writeHead(200,{'content-length':a.bytes,'access-control-allow-origin':'*'});createReadStream(a.localFile).pipe(res);});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
@@ -33,6 +34,7 @@ try{
    const r=await send(turn.text),row={caseId:test.id,category:test.kind,turn:index+1,input:turn.text,expected:turn.kind,...r};row.controlPass=r.kind===turn.kind&&(!turn.queryIncludes||r.diagnostics?.query.includes(turn.queryIncludes))&&(!turn.queryExcludes||!r.diagnostics?.query.includes(turn.queryExcludes));
    const state=await page.evaluate(()=>window.bosaiConversation.state);row.state=state;
    if(turn.noPending)row.controlPass&&=state.pending.length===0&&state.referenceIds.length===0;
+   if(turn.absentFacts)row.controlPass&&=turn.absentFacts.every(k=>state.facts?.[k]===undefined);
    if(turn.facts)row.controlPass&&=Object.entries(turn.facts).every(([k,v])=>state.facts?.[k]===v);
    if(turn.notFocus)row.controlPass&&=r.diagnostics?.evidence?.focus!==turn.notFocus;
    if(turn.rejectPrevious){row.staleEnabled=await page.locator('[data-source-choice]:enabled').count();row.oldChoiceRejected=await page.evaluate(id=>{try{window.bosaiConversation.choose(id);return false;}catch{return true;}},previous);row.controlPass&&=row.staleEnabled===0&&row.oldChoiceRejected;}
