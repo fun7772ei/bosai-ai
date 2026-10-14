@@ -1,0 +1,7 @@
+{
+  "createdAt": "2026-10-14T06:05:51.308016+00:00",
+  "algorithmFreezeCommit": "f9a7ca5",
+  "questions": 64,
+  "sha256": "66f7206cfb9d9faad41e3c0fc48b1f3db3ed83cb1d6afb4f76875f64d2fb9a5c",
+  "policy": "Authored after freeze, before running final questions. No tuning against these labels/results. Labels/rubrics authored against source corpus; not an independent disaster-expert benchmark."
+}

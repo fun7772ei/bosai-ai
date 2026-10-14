@@ -1,0 +1,12 @@
+{
+  "accuracyPolicyChanged": false,
+  "notes": [
+    "After authoring the final set, add only UI diagnostic metadata for resident Worker handles and performance.memory JS heap (not WASM/PSS). This does not alter retrieval, thresholds, grounding, tokenization or generation parameters.",
+    "Final accuracy measurements run the frozen f9a7ca5 build. The final UI build additionally exposes these memory diagnostics; source core hashes remain identical.",
+    "Final accuracy browsers may run two single-thread cases concurrently on the 2-CPU cloud quota. Serial six-browser-check provides the isolated same-question latency/residency comparison. Chromium values are not iPad Safari measurements.",
+    "Add a UI capability notice that current addresses/forecasts and individual drug doses are not in the corpus; no query-specific filters or scoring changes.",
+    "Add epoch/identity guards to reset bookkeeping: a cancelled old acquire/run must not release a newer Worker or clear its busy flag. This changes cancellation diagnostics only, not final retrieval/generation inputs; final evaluation contains no in-case reset except separate E2E regressions.",
+    "Extend the same cancellation epoch guard to download preparation and pending release, with two race regression tests. No frozen core changes.",
+    "After observing dangerous generations, strengthen the generic UI warning for all D-F outputs. No per-query rules, substitutions, semantic filters or model/prompt changes."
+  ]
+}

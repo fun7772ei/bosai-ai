@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "platform": "Linux Chromium, local development only; not Safari",
+  "run": {
+    "query": "地震で台所が揺れたら？",
+    "method": "D",
+    "dual": false,
+    "policy": {
+      "semanticThreshold": 0.8,
+      "fusion": "score",
+      "lightWeight": 0.5,
+      "candidatePool": 10,
+      "outputLimit": 5,
+      "grounding": "top1-full",
+      "contextTokens": 512,
+      "answerTokens": 64,
+      "frozen": true,
+      "groundingStyle": "baseline"
+    },
+    "startedAt": "2026-10-14T07:56:12.021Z",
+    "timings": {
+      "indexMs": 32.19999999552965,
+      "lightMs": 1.5,
+      "fusionMs": 0,
+      "retrievalMs": 1.5,
+      "firstResultsMs": 2.7999999970197678,
+      "releaseMs": 0,
+      "totalMs": 375.20000000298023
+    },
+    "resultIds": [
+      "bosai-41",
+      "bosai-58",
+      "bosai-48",
+      "bosai-40",
+      "bosai-39"
+    ],
+    "evidenceIds": [],
+    "status": "interrupted",
+    "lightIds": [
+      "bosai-41",
+      "bosai-58",
+      "bosai-48",
+      "bosai-40",
+      "bosai-39",
+      "bosai-47",
+      "bosai-51",
+      "bosai-1",
+      "bosai-3",
+      "bosai-38"
+    ],
+    "semanticIds": [],
+    "error": "停止しました。",
+    "residencyAfter": {
+      "embeddingWorker": false,
+      "llmWorker": false
+    },
+    "memoryDiagnostics": {
+      "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+      "supported": true,
+      "usedJSHeapBytes": 10600000,
+      "totalJSHeapBytes": 14300000,
+      "deviceMemoryGiB": 8
+    }
+  }
+}

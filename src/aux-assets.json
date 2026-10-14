@@ -1,0 +1,56 @@
+[
+  {
+    "group": "ruri",
+    "repo": "onnx-community/ruri-v3-30m-ONNX",
+    "revision": "1b41a27f31213fc55a9c4653c067770e39406408",
+    "file": "config.json",
+    "url": "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/config.json",
+    "bytes": 1183,
+    "sha256": "1517ea80eb6af7e181f4ed59827a4ae9de20f383d74a82900227c4cb5d903787"
+  },
+  {
+    "group": "ruri",
+    "repo": "onnx-community/ruri-v3-30m-ONNX",
+    "revision": "1b41a27f31213fc55a9c4653c067770e39406408",
+    "file": "onnx/model_quantized.onnx",
+    "url": "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/onnx/model_quantized.onnx",
+    "bytes": 37048575,
+    "sha256": "bd07545fa4eb8e7765939536944da1138a7e61441d81633adfa1faf218df6bb1"
+  },
+  {
+    "group": "ruri",
+    "repo": "cl-nagoya/ruri-v3-30m",
+    "revision": "24899e5de370b56d179604a007c0d727bf144504",
+    "file": "tokenizer.json",
+    "url": "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer.json",
+    "bytes": 6724873,
+    "sha256": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062"
+  },
+  {
+    "group": "ruri",
+    "repo": "cl-nagoya/ruri-v3-30m",
+    "revision": "24899e5de370b56d179604a007c0d727bf144504",
+    "file": "tokenizer_config.json",
+    "url": "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer_config.json",
+    "bytes": 3779,
+    "sha256": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4"
+  },
+  {
+    "group": "lfm-tokenizer",
+    "repo": "LiquidAI/LFM2.5-350M",
+    "revision": "9e6c6ccf47cd318696e137d381a7ded8fe4df09f",
+    "file": "tokenizer.json",
+    "url": "https://huggingface.co/LiquidAI/LFM2.5-350M/resolve/9e6c6ccf47cd318696e137d381a7ded8fe4df09f/tokenizer.json",
+    "bytes": 4733389,
+    "sha256": "df1d8d5ec5d091b460562ffd545e4a5e91d17d4a0db7ebe733be34ed374377bd"
+  },
+  {
+    "group": "lfm-tokenizer",
+    "repo": "LiquidAI/LFM2.5-350M",
+    "revision": "9e6c6ccf47cd318696e137d381a7ded8fe4df09f",
+    "file": "tokenizer_config.json",
+    "url": "https://huggingface.co/LiquidAI/LFM2.5-350M/resolve/9e6c6ccf47cd318696e137d381a7ded8fe4df09f/tokenizer_config.json",
+    "bytes": 595,
+    "sha256": "3701f370c70034d06e28947ff51c1063983393319f429e3ce58f06a45fae67cc"
+  }
+]

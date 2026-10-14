@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "browser": "Chromium mobile viewport, not iPad",
+  "width": 390,
+  "modelUsed": false,
+  "light": {
+    "query": "寝てるときに地震が来たらどうすればいい？",
+    "method": "light",
+    "modelKey": null,
+    "candidateIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "retrievalMs": 1.8999999985098839,
+    "firstResponseMs": 16,
+    "indexMs": 35.600000001490116,
+    "time": "2026-10-14T05:14:59.731Z",
+    "results": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "outcome": "retrieved",
+    "selectedId": null,
+    "llm": null,
+    "totalMs": 16.200000002980232
+  },
+  "fallback": {
+    "query": "寝てるときに地震が来たらどうすればいい？",
+    "method": "llm",
+    "modelKey": "lfm2-cpu",
+    "candidateIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "retrievalMs": 1.8999999985098839,
+    "firstResponseMs": 13.100000001490116,
+    "indexMs": 35.600000001490116,
+    "time": "2026-10-14T05:14:59.808Z",
+    "results": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "outcome": "fallback-model-not-ready",
+    "selectedId": null,
+    "llm": null,
+    "totalMs": 13.200000002980232
+  },
+  "none": {
+    "query": "今開設中の避難所の住所は？",
+    "method": "light",
+    "modelKey": null,
+    "candidateIds": [],
+    "retrievalMs": 0.10000000149011612,
+    "firstResponseMs": 14.300000004470348,
+    "indexMs": 35.600000001490116,
+    "time": "2026-10-14T05:14:59.889Z",
+    "results": [],
+    "outcome": "no-candidates",
+    "selectedId": null,
+    "llm": null,
+    "totalMs": 14.300000004470348
+  },
+  "escaped": {
+    "query": "<img src=x onerror=\"alert(1)\">地震",
+    "method": "light",
+    "modelKey": null,
+    "candidateIds": [
+      "bosai-38",
+      "bosai-39",
+      "bosai-41"
+    ],
+    "retrievalMs": 0.3999999985098839,
+    "firstResponseMs": 14.200000002980232,
+    "indexMs": 35.600000001490116,
+    "time": "2026-10-14T05:14:59.972Z",
+    "results": [
+      "bosai-38",
+      "bosai-39",
+      "bosai-41"
+    ],
+    "outcome": "retrieved",
+    "selectedId": null,
+    "llm": null,
+    "totalMs": 14.600000001490116
+  },
+  "offline": {
+    "query": "寝てるときに地震が来たらどうすればいい？",
+    "method": "light",
+    "modelKey": null,
+    "candidateIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "retrievalMs": 0.8999999985098839,
+    "firstResponseMs": 14.100000001490116,
+    "indexMs": 31.799999997019768,
+    "time": "2026-10-14T05:15:00.207Z",
+    "results": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "outcome": "retrieved",
+    "selectedId": null,
+    "llm": null,
+    "totalMs": 14.299999997019768
+  },
+  "errors": []
+}

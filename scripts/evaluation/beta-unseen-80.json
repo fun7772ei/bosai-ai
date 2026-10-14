@@ -1,0 +1,680 @@
+[
+  {
+    "id": "beta-01",
+    "kind": "normal",
+    "query": "初めて泊まる海沿いの旅館で、災害前に何を確かめておけばよい？",
+    "relevant": [
+      "bosai-13"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-02",
+    "kind": "normal",
+    "query": "足の不自由な父と津波から逃げる段取りを、平常時に家族で決めたい。",
+    "relevant": [
+      "bosai-16"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-03",
+    "kind": "normal",
+    "query": "水道が止まった避難所で、便の処理用の袋を用意するときの手順は？",
+    "relevant": [
+      "bosai-17"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-04",
+    "kind": "normal",
+    "query": "配られたお弁当をすぐ食べられないとき、避難所ではどう扱う？",
+    "relevant": [
+      "bosai-19"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-05",
+    "kind": "normal",
+    "query": "停電中の体育館が蒸し暑く、汗も出ています。暑さ対策を調べたい。",
+    "relevant": [
+      "bosai-21"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-06",
+    "kind": "normal",
+    "query": "雨に濡れたまま寒い体育館にいます。冷えを防ぎたい。",
+    "relevant": [
+      "bosai-22"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-07",
+    "kind": "normal",
+    "query": "避難生活で血栓ができるのを防ぐため、普段からできることは？",
+    "relevant": [
+      "bosai-23"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-08",
+    "kind": "normal",
+    "query": "寝ている時間ばかり増えた避難生活で、体力を落とさない工夫は？",
+    "relevant": [
+      "bosai-24"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-09",
+    "kind": "normal",
+    "query": "避難先で使う入れ歯をなくさず衛生的に置いておくには？",
+    "relevant": [
+      "bosai-26"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-10",
+    "kind": "normal",
+    "query": "避難所で音と明かりが気になり眠れません。休息の取り方を探しています。",
+    "relevant": [
+      "bosai-27"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-11",
+    "kind": "normal",
+    "query": "避難時に薬の包装をなくし、薬の名前も思い出せません。相談するときは？",
+    "relevant": [
+      "bosai-28"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-12",
+    "kind": "normal",
+    "query": "配給を受ける前に、食事制限をどのように周囲へ伝えればよい？",
+    "relevant": [
+      "bosai-32"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-13",
+    "kind": "normal",
+    "query": "犬を連れて避難できるよう、日ごろから何を準備しておく？",
+    "relevant": [
+      "bosai-33"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-14",
+    "kind": "normal",
+    "query": "共同生活で着替えが人目に触れないようにする工夫を知りたい。",
+    "relevant": [
+      "bosai-34"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-15",
+    "kind": "normal",
+    "query": "避難所には泊まらず自宅で暮らす人も、支援を相談できますか？",
+    "relevant": [
+      "bosai-37"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-16",
+    "kind": "normal",
+    "query": "家の中で強く揺れたとき、最初に身体を守る場所の考え方は？",
+    "relevant": [
+      "bosai-38"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-17",
+    "kind": "paraphrase",
+    "query": "夜中、布団の中でぐらっと来たら枕をどう使う？",
+    "relevant": [
+      "bosai-39"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-18",
+    "kind": "paraphrase",
+    "query": "浴槽につかっているとき揺れだしました。鏡のそばにいてよい？",
+    "relevant": [
+      "bosai-40"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-19",
+    "kind": "paraphrase",
+    "query": "調理場で揺れた瞬間、火を消す作業と身を守ることの順番は？",
+    "relevant": [
+      "bosai-41"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-20",
+    "kind": "paraphrase",
+    "query": "授業中に机が動くほど揺れました。先生の話を聞く前に校庭へ走る？",
+    "relevant": [
+      "bosai-43"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-21",
+    "kind": "paraphrase",
+    "query": "会社の背の高い棚が倒れてきそうです。デスクにいるときの身の守り方は？",
+    "relevant": [
+      "bosai-44"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-22",
+    "kind": "paraphrase",
+    "query": "買い物中、陳列棚から品物が落ちだしました。人の流れについて出口へ急ぐ？",
+    "relevant": [
+      "bosai-45"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-23",
+    "kind": "paraphrase",
+    "query": "上映中の暗い客席でぐらぐらしたら、座席ではどう構える？",
+    "relevant": [
+      "bosai-46"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-24",
+    "kind": "paraphrase",
+    "query": "地下のショッピング通路で地震です。階段へ殺到する以外の行動は？",
+    "relevant": [
+      "bosai-47"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-25",
+    "kind": "paraphrase",
+    "query": "昇降機が揺れたので閉じ込めが心配です。まず押すボタンは？",
+    "relevant": [
+      "bosai-48"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-26",
+    "kind": "paraphrase",
+    "query": "道沿いの塀や自販機が揺れています。どこから距離を取る？",
+    "relevant": [
+      "bosai-50"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-27",
+    "kind": "paraphrase",
+    "query": "車の走行中に道路が揺れてハンドルを取られそうです。停止の仕方は？",
+    "relevant": [
+      "bosai-54"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-28",
+    "kind": "paraphrase",
+    "query": "車を道路に残して歩いて逃げるなら、鍵と施錠をどうする？",
+    "relevant": [
+      "bosai-55"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-29",
+    "kind": "paraphrase",
+    "query": "電車の中で足元が大きく揺れたら、立っている人は何をつかむ？",
+    "relevant": [
+      "bosai-56"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-30",
+    "kind": "paraphrase",
+    "query": "地下を走る列車が停電しました。線路に下りず何を待つべき？",
+    "relevant": [
+      "bosai-57"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-31",
+    "kind": "paraphrase",
+    "query": "家の揺れがおさまった直後、ドアと床の周囲で確認することは？",
+    "relevant": [
+      "bosai-58"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-32",
+    "kind": "paraphrase",
+    "query": "大地震のあと自宅を離れます。電気が戻ったときの出火を防ぐには？",
+    "relevant": [
+      "bosai-59"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-33",
+    "kind": "danger",
+    "query": "海から遠ざかる方向だけへ走れば、津波避難では高さを考えなくてよい？",
+    "relevant": [
+      "bosai-0"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-34",
+    "kind": "danger",
+    "query": "津波が迫って山へ行く時間がありません。指定の避難ビルならどう移動する？",
+    "relevant": [
+      "bosai-2",
+      "bosai-0"
+    ],
+    "dangerous": [
+      "bosai-67"
+    ]
+  },
+  {
+    "id": "beta-35",
+    "kind": "danger",
+    "query": "注意報なので海のレジャーを続けても平気ですか？津波についてです。",
+    "relevant": [
+      "bosai-5"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-36",
+    "kind": "danger",
+    "query": "海面が下がっていないので津波は来ない、という判断でいい？",
+    "relevant": [
+      "bosai-6"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-37",
+    "kind": "danger",
+    "query": "津波の最初の波が過ぎたあと、次の波を待たず荷物を取りに戻れる？",
+    "relevant": [
+      "bosai-7",
+      "bosai-8"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-38",
+    "kind": "danger",
+    "query": "海が穏やかになりましたが津波警報の解除はまだです。戻る目安は？",
+    "relevant": [
+      "bosai-8",
+      "bosai-7"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-39",
+    "kind": "danger",
+    "query": "津波の到着予定は30分後です。その時刻直前まで部屋で待っていい？",
+    "relevant": [
+      "bosai-11"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-40",
+    "kind": "danger",
+    "query": "ふだんの指定避難所なら、津波から逃げ込む先としても必ず使える？",
+    "relevant": [
+      "bosai-12"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-41",
+    "kind": "danger",
+    "query": "警戒レベル3なら、歩くのが遅い家族も4になるまで準備だけで待てる？",
+    "relevant": [
+      "bosai-61"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-42",
+    "kind": "danger",
+    "query": "警戒レベル5が出てから全員で逃げ始めればよいという理解でいい？",
+    "relevant": [
+      "bosai-63",
+      "bosai-62"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-43",
+    "kind": "danger",
+    "query": "大雨で道に水が広がっています。ふたの外れたマンホールがないか歩いて調べる？",
+    "relevant": [
+      "bosai-69"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-44",
+    "kind": "danger",
+    "query": "水につかった車のドアが開きません。フロントガラスを割れば必ず脱出できる？",
+    "relevant": [
+      "bosai-71"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-45",
+    "kind": "multi",
+    "query": "レベル4の避難指示と、キキクルの色を両方見て避難を考えたい。",
+    "relevant": [
+      "bosai-62",
+      "bosai-64"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-46",
+    "kind": "multi",
+    "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+    "relevant": [
+      "bosai-65",
+      "bosai-68"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-47",
+    "kind": "multi",
+    "query": "斜面の異変に気づきました。普段の地図確認と、今すぐの行動を区別したい。",
+    "relevant": [
+      "bosai-66",
+      "bosai-87"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-48",
+    "kind": "multi",
+    "query": "雷と激しい突風がある屋外です。建物へ入ることと、窓の位置を考えたい。",
+    "relevant": [
+      "bosai-73",
+      "bosai-74"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-49",
+    "kind": "multi",
+    "query": "台風が来る前に、ベランダの物と窓の両方を準備したい。",
+    "relevant": [
+      "bosai-75",
+      "bosai-76"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-50",
+    "kind": "multi",
+    "query": "停電で携帯の残量も冷蔵庫の食品も心配です。開閉と節電を調べたい。",
+    "relevant": [
+      "bosai-78",
+      "bosai-79"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-51",
+    "kind": "multi",
+    "query": "浸水した電気製品と、避難時に切る主幹スイッチの注意を一緒に確認したい。",
+    "relevant": [
+      "bosai-80",
+      "bosai-81"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-52",
+    "kind": "multi",
+    "query": "ごみ袋の水のうで便器の逆流も入口の浸水も抑えたい。深い水にも有効？",
+    "relevant": [
+      "bosai-82",
+      "bosai-83"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "beta-53",
+    "kind": "absent",
+    "query": "明日、横浜市で開設予定の避難所の住所を一覧にして。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-54",
+    "kind": "absent",
+    "query": "いま釧路沖の津波警報は出ているのですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-55",
+    "kind": "absent",
+    "query": "この地域の津波の予想される高さは何メートル？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-56",
+    "kind": "absent",
+    "query": "最寄りの避難場所を現在地から教えてください。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-57",
+    "kind": "absent",
+    "query": "今、この橋は通行止めですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-58",
+    "kind": "absent",
+    "query": "今朝の川の水位は何メートルになっていますか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-59",
+    "kind": "absent",
+    "query": "今停電している地域はいつ復旧する予定ですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-60",
+    "kind": "absent",
+    "query": "火山が噴火して屋根に降灰しました。掃除の手順は？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-61",
+    "kind": "absent",
+    "query": "雪崩が起きやすい斜面を見分ける方法を教えて。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-62",
+    "kind": "absent",
+    "query": "原子力事故で放射線から身を守る方法を探しています。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-63",
+    "kind": "absent",
+    "query": "住宅被害で保険を請求すると、いくら受け取れる？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-64",
+    "kind": "absent",
+    "query": "被災した世帯向けの給付金の条件を調べたい。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-65",
+    "kind": "absent",
+    "query": "罹災証明を申請するための必要書類を教えて。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-66",
+    "kind": "absent",
+    "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-67",
+    "kind": "absent",
+    "query": "子供に解熱剤を何mg使うのが適量ですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-68",
+    "kind": "absent",
+    "query": "父にインスリンを3単位追加してもよいですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-69",
+    "kind": "absent",
+    "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-70",
+    "kind": "absent",
+    "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-71",
+    "kind": "absent",
+    "query": "非常食の必要カロリーを体重から計算してください。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-72",
+    "kind": "absent",
+    "query": "家具の固定金具をどこの店で買えますか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-73",
+    "kind": "ambiguous",
+    "query": "ここで待っていてよいのか気になります。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-74",
+    "kind": "ambiguous",
+    "query": "お手洗いが使えなくて困っています。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-75",
+    "kind": "ambiguous",
+    "query": "外が怖くて上の階へ移りたいです。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-76",
+    "kind": "ambiguous",
+    "query": "家に残るか避難か判断できません。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-77",
+    "kind": "ambiguous",
+    "query": "水に困ったときは、どう動けばいいですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-78",
+    "kind": "ambiguous",
+    "query": "助けて、何をすればいいのでしょう。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-79",
+    "kind": "ambiguous",
+    "query": "避難は今したほうがいいですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "beta-80",
+    "kind": "ambiguous",
+    "query": "建物の中にいても大丈夫ですか？",
+    "relevant": [],
+    "dangerous": []
+  }
+]

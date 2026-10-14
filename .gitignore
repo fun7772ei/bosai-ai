@@ -6,3 +6,5 @@ playwright-report/
 *.onnx
 *.onnx_data
 *.safetensors
+*.gguf
+research-dist/

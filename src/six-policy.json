@@ -1,0 +1,12 @@
+{
+  "semanticThreshold": 0.8,
+  "fusion": "score",
+  "lightWeight": 0.5,
+  "candidatePool": 10,
+  "outputLimit": 5,
+  "grounding": "top1-full",
+  "contextTokens": 512,
+  "answerTokens": 64,
+  "frozen": true,
+  "groundingStyle": "baseline"
+}

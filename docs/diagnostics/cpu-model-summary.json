@@ -1,0 +1,570 @@
+[
+  {
+    "key": "lfm2-cpu",
+    "bytes": 229312224,
+    "status": "passed",
+    "groups": {
+      "common32": {
+        "total": 16,
+        "passed": 7,
+        "original12Passed": 4,
+        "disaster4Passed": 3,
+        "medianTtftMs": 2825.099999997765,
+        "medianElapsedMs": 3413.849999997765,
+        "medianTokensPerSecond": 2.189659570086168,
+        "medianDecodeTokensPerSecond": 12.580726609938663,
+        "capped": 0
+      },
+      "common64": {
+        "total": 16,
+        "passed": 7,
+        "original12Passed": 4,
+        "disaster4Passed": 3,
+        "medianTtftMs": 2778.4500000029802,
+        "medianElapsedMs": 3375.199999999255,
+        "medianTokensPerSecond": 2.2454877861431495,
+        "medianDecodeTokensPerSecond": 12.477601280119549,
+        "capped": 0
+      },
+      "recommended32": {
+        "total": 16,
+        "passed": 6,
+        "original12Passed": 4,
+        "disaster4Passed": 2,
+        "medianTtftMs": 2751.449999999255,
+        "medianElapsedMs": 3276.5499999970198,
+        "medianTokensPerSecond": 2.239604155553785,
+        "medianDecodeTokensPerSecond": 12.905315703757072,
+        "capped": 0
+      }
+    },
+    "firstNativeLoadMs": 1691.7999999970198,
+    "reloadNativeLoadMs": 1619.3999999985099,
+    "firstBlobMs": 586.3000000044703,
+    "timingStatus": "passed",
+    "memoryPeak": {
+      "pssMiB": 1128.1572265625,
+      "rssMiB": 1323.14453125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryBaseline": {
+      "pssMiB": 148.978515625,
+      "rssMiB": 332.3515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryIncompleteSamples": 0,
+    "lengths": [
+      {
+        "maxTokens": 32,
+        "id": 3,
+        "text": "以下は架空のピクニックの準備チェックリストです。\n\n1. テントの設置場所と周囲の風向き確認  \n2",
+        "tokens": 32,
+        "elapsedMs": 4858.69999999553,
+        "ttftMs": 2299.1999999955297,
+        "tokensPerSecond": 6.586123860297907,
+        "decodeTokensPerSecond": 12.111740574330925,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 41,
+          "prompt_ms": 2292.301,
+          "prompt_per_token_ms": 55.90978048780487,
+          "prompt_per_second": 17.88595825766337,
+          "predicted_n": 32,
+          "predicted_ms": 2558.7,
+          "predicted_per_token_ms": 82.53870967741935,
+          "predicted_per_second": 12.115527416266074
+        }
+      },
+      {
+        "maxTokens": 64,
+        "id": 4,
+        "text": "以下は架空のピクニックの準備チェックリストです。\n\n1. テントの設置場所と周囲の風向き確認  \n2. 食材の調達と保存方法  \n3. 食器の洗浄と乾燥  \n4. 調理器具の準備",
+        "tokens": 64,
+        "elapsedMs": 7215.89999999851,
+        "ttftMs": 2244.5,
+        "tokensPerSecond": 8.869302512508934,
+        "decodeTokensPerSecond": 12.67248662349014,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 41,
+          "prompt_ms": 2239.5,
+          "prompt_per_token_ms": 54.6219512195122,
+          "prompt_per_second": 18.30765795936593,
+          "predicted_n": 64,
+          "predicted_ms": 4969.8,
+          "predicted_per_token_ms": 78.88571428571429,
+          "predicted_per_second": 12.67656646142702
+        }
+      }
+    ],
+    "stopped": true,
+    "reloaded": true,
+    "thinkingCharacters": 0,
+    "app": {
+      "appBuild": "b49b4010ddff",
+      "status": "passed",
+      "ordinaryGenerations": 9,
+      "loadMs": 2211.60000000149,
+      "browserPssPeakMiB": 1420.654296875,
+      "rendererPssPeakMiB": 819.443359375,
+      "memoryComplete": true,
+      "profileMode": "persistent on workspace disk, no quota override",
+      "loadParams": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false
+      }
+    }
+  },
+  {
+    "key": "qwen35-cpu",
+    "bytes": 529296736,
+    "status": "passed",
+    "groups": {
+      "common32": {
+        "total": 16,
+        "passed": 6,
+        "original12Passed": 5,
+        "disaster4Passed": 1,
+        "medianTtftMs": 5007.25,
+        "medianElapsedMs": 6356.849999997765,
+        "medianTokensPerSecond": 1.1620050579137904,
+        "medianDecodeTokensPerSecond": 5.618711055617565,
+        "capped": 0
+      },
+      "common64": {
+        "total": 16,
+        "passed": 6,
+        "original12Passed": 5,
+        "disaster4Passed": 1,
+        "medianTtftMs": 4999.25,
+        "medianElapsedMs": 6226,
+        "medianTokensPerSecond": 1.1450696772298006,
+        "medianDecodeTokensPerSecond": 5.6616304892705225,
+        "capped": 0
+      },
+      "recommended32": {
+        "total": 16,
+        "passed": 3,
+        "original12Passed": 3,
+        "disaster4Passed": 0,
+        "medianTtftMs": 5104.349999997765,
+        "medianElapsedMs": 7254.199999999255,
+        "medianTokensPerSecond": 1.7996782288837783,
+        "medianDecodeTokensPerSecond": 5.542362275923881,
+        "capped": 1
+      }
+    },
+    "firstNativeLoadMs": 3722,
+    "reloadNativeLoadMs": 3825.1999999955297,
+    "firstBlobMs": 1225.2999999970198,
+    "timingStatus": "passed",
+    "memoryPeak": {
+      "pssMiB": 1809.6025390625,
+      "rssMiB": 2006.828125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryBaseline": {
+      "pssMiB": 149.4072265625,
+      "rssMiB": 336.08984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryIncompleteSamples": 0,
+    "lengths": [
+      {
+        "maxTokens": 32,
+        "id": 3,
+        "text": "1. **天気予報の確認**: 天気が予想通りか確認。\n2. **服装の準備**: 天候や気温に合わせた服装",
+        "tokens": 32,
+        "elapsedMs": 10713.20000000298,
+        "ttftMs": 4935.39999999851,
+        "tokensPerSecond": 2.9869693462262537,
+        "decodeTokensPerSecond": 5.365363979365159,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 43,
+          "prompt_ms": 4910.1,
+          "prompt_per_token_ms": 114.18837209302326,
+          "prompt_per_second": 8.757459114885643,
+          "predicted_n": 32,
+          "predicted_ms": 5777.4,
+          "predicted_per_token_ms": 186.36774193548385,
+          "predicted_per_second": 5.3657354519333955
+        }
+      },
+      {
+        "maxTokens": 64,
+        "id": 4,
+        "text": "1. **天気予報の確認**: 天気が予想通りか確認。\n2. **服装の準備**: 天候や気温に合わせた服装を用意。\n3. **持ち物のリスト作成**: 必要なアイテムをリスト化。\n4. **場所の選定**: 天候や場所",
+        "tokens": 64,
+        "elapsedMs": 16374.19999999553,
+        "ttftMs": 4658.19999999553,
+        "tokensPerSecond": 3.908587900478648,
+        "decodeTokensPerSecond": 5.377261864117447,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 43,
+          "prompt_ms": 4649,
+          "prompt_per_token_ms": 108.11627906976744,
+          "prompt_per_second": 9.249300924930093,
+          "predicted_n": 64,
+          "predicted_ms": 11715.5,
+          "predicted_per_token_ms": 185.96031746031747,
+          "predicted_per_second": 5.3774913576031755
+        }
+      }
+    ],
+    "stopped": true,
+    "reloaded": true,
+    "thinkingCharacters": 0,
+    "app": {
+      "appBuild": "b49b4010ddff",
+      "status": "passed",
+      "ordinaryGenerations": 4,
+      "loadMs": 5597.70000000298,
+      "browserPssPeakMiB": 2088.3349609375,
+      "rendererPssPeakMiB": 1082.50390625,
+      "memoryComplete": true,
+      "profileMode": "persistent on workspace disk, no quota override",
+      "loadParams": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false,
+        "jinja": true,
+        "default_template_kwargs": {
+          "enable_thinking": false
+        }
+      }
+    }
+  },
+  {
+    "key": "qwen3-cpu",
+    "bytes": 484220320,
+    "status": "passed",
+    "groups": {
+      "common32": {
+        "total": 16,
+        "passed": 5,
+        "original12Passed": 5,
+        "disaster4Passed": 0,
+        "medianTtftMs": 5163.44999999553,
+        "medianElapsedMs": 6861.699999999255,
+        "medianTokensPerSecond": 1.432435576020657,
+        "medianDecodeTokensPerSecond": 7.536832309433915,
+        "capped": 0
+      },
+      "common64": {
+        "total": 16,
+        "passed": 5,
+        "original12Passed": 5,
+        "disaster4Passed": 0,
+        "medianTtftMs": 5161.10000000149,
+        "medianElapsedMs": 6373.10000000149,
+        "medianTokensPerSecond": 1.4572443319055144,
+        "medianDecodeTokensPerSecond": 7.649606689999963,
+        "capped": 0
+      },
+      "recommended32": {
+        "total": 16,
+        "passed": 4,
+        "original12Passed": 4,
+        "disaster4Passed": 0,
+        "medianTtftMs": 5216.5,
+        "medianElapsedMs": 6393,
+        "medianTokensPerSecond": 1.4072480574146864,
+        "medianDecodeTokensPerSecond": 7.6940225885931035,
+        "capped": 0
+      }
+    },
+    "firstNativeLoadMs": 3247.89999999851,
+    "reloadNativeLoadMs": 3047.9000000059605,
+    "firstBlobMs": 1155.1999999955297,
+    "timingStatus": "passed",
+    "memoryPeak": {
+      "pssMiB": 1704.978515625,
+      "rssMiB": 1900.296875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryBaseline": {
+      "pssMiB": 149.0400390625,
+      "rssMiB": 332.87109375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryIncompleteSamples": 0,
+    "lengths": [
+      {
+        "maxTokens": 32,
+        "id": 3,
+        "text": "20項目のチェックリスト：  \n1. パンの準備  \n2. キャップの準備  \n3. レシピの",
+        "tokens": 32,
+        "elapsedMs": 9408,
+        "ttftMs": 4865.60000000149,
+        "tokensPerSecond": 3.4013605442176873,
+        "decodeTokensPerSecond": 6.824586121876138,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 45,
+          "prompt_ms": 4680.801,
+          "prompt_per_token_ms": 104.01780000000001,
+          "prompt_per_second": 9.61373918694685,
+          "predicted_n": 32,
+          "predicted_ms": 4696.099,
+          "predicted_per_token_ms": 151.48706451612904,
+          "predicted_per_second": 6.601223696519174
+        }
+      },
+      {
+        "maxTokens": 64,
+        "id": 4,
+        "text": "20項目のチェックリスト：  \n1. パンの準備  \n2. キャップの準備  \n3. レシピの準備  \n4. パンフリーやパンの準備  \n5. パンフリーやパンの準備  \n6. パ",
+        "tokens": 64,
+        "elapsedMs": 13604.09999999404,
+        "ttftMs": 4262,
+        "tokensPerSecond": 4.704464095385071,
+        "decodeTokensPerSecond": 6.74366577108361,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 45,
+          "prompt_ms": 4099.2,
+          "prompt_per_token_ms": 91.09333333333333,
+          "prompt_per_second": 10.977751756440282,
+          "predicted_n": 64,
+          "predicted_ms": 9478.201,
+          "predicted_per_token_ms": 150.4476349206349,
+          "predicted_per_second": 6.646830975625016
+        }
+      }
+    ],
+    "stopped": true,
+    "reloaded": true,
+    "thinkingCharacters": 0,
+    "app": {
+      "appBuild": "b49b4010ddff",
+      "status": "passed",
+      "ordinaryGenerations": 4,
+      "loadMs": 4162.70000000298,
+      "browserPssPeakMiB": 2058.041015625,
+      "rendererPssPeakMiB": 1052.314453125,
+      "memoryComplete": true,
+      "profileMode": "persistent on workspace disk, no quota override",
+      "loadParams": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false,
+        "jinja": true,
+        "default_template_kwargs": {
+          "enable_thinking": false
+        }
+      }
+    }
+  },
+  {
+    "key": "lfm2-700m-cpu",
+    "bytes": 468624320,
+    "status": "passed",
+    "groups": {
+      "common32": {
+        "total": 16,
+        "passed": 9,
+        "original12Passed": 6,
+        "disaster4Passed": 3,
+        "medianTtftMs": 6151.60000000149,
+        "medianElapsedMs": 7863.749999996275,
+        "medianTokensPerSecond": 1.3021699810726322,
+        "medianDecodeTokensPerSecond": 6.34855259322912,
+        "capped": 1
+      },
+      "common64": {
+        "total": 16,
+        "passed": 9,
+        "original12Passed": 6,
+        "disaster4Passed": 3,
+        "medianTtftMs": 6051.050000000745,
+        "medianElapsedMs": 7712.800000000745,
+        "medianTokensPerSecond": 1.3015703062839594,
+        "medianDecodeTokensPerSecond": 6.375100193048014,
+        "capped": 1
+      },
+      "recommended32": {
+        "total": 16,
+        "passed": 7,
+        "original12Passed": 4,
+        "disaster4Passed": 3,
+        "medianTtftMs": 5945,
+        "medianElapsedMs": 7811.699999999255,
+        "medianTokensPerSecond": 1.3348267576585404,
+        "medianDecodeTokensPerSecond": 6.332823044912569,
+        "capped": 1
+      }
+    },
+    "firstNativeLoadMs": 1903.1999999955297,
+    "reloadNativeLoadMs": 2229.39999999851,
+    "firstBlobMs": 1205.6000000014901,
+    "timingStatus": "passed",
+    "memoryPeak": {
+      "pssMiB": 1683.5244140625,
+      "rssMiB": 1877.62890625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryBaseline": {
+      "pssMiB": 150.10546875,
+      "rssMiB": 333.51953125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0
+    },
+    "memoryIncompleteSamples": 0,
+    "lengths": [
+      {
+        "maxTokens": 32,
+        "id": 3,
+        "text": "1. 場所の予約\n2. 天候の確認\n3. 飲み物と飲み具の準備\n4. 食材の",
+        "tokens": 32,
+        "elapsedMs": 9817.19999999553,
+        "ttftMs": 5029.10000000149,
+        "tokensPerSecond": 3.2595852177825213,
+        "decodeTokensPerSecond": 6.474384411361206,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 41,
+          "prompt_ms": 5015.8,
+          "prompt_per_token_ms": 122.33658536585367,
+          "prompt_per_second": 8.174169623988197,
+          "predicted_n": 32,
+          "predicted_ms": 4786.6,
+          "predicted_per_token_ms": 154.40645161290323,
+          "predicted_per_second": 6.476413320519783
+        }
+      },
+      {
+        "maxTokens": 64,
+        "id": 4,
+        "text": "1. 場所の予約\n2. 天候の確認\n3. 飲み物と飲み具の準備\n4. 食材のリスト作成\n5. 食材の購入\n6. 食材の準備（冷蔵庫のチェック）\n7. 食材のカット",
+        "tokens": 64,
+        "elapsedMs": 14704.30000000447,
+        "ttftMs": 4912.39999999851,
+        "tokensPerSecond": 4.35246832559051,
+        "decodeTokensPerSecond": 6.433889234976016,
+        "tokensKnown": true,
+        "stopped": false,
+        "finishReason": "length",
+        "outputLimitReached": true,
+        "reasoningCharacters": 0,
+        "nativeTiming": {
+          "cache_n": 0,
+          "prompt_n": 41,
+          "prompt_ms": 4901.599,
+          "prompt_per_token_ms": 119.55119512195122,
+          "prompt_per_second": 8.364617342218326,
+          "predicted_n": 64,
+          "predicted_ms": 9791,
+          "predicted_per_token_ms": 155.4126984126984,
+          "predicted_per_second": 6.434480645490757
+        }
+      }
+    ],
+    "stopped": true,
+    "reloaded": true,
+    "thinkingCharacters": 0,
+    "app": {
+      "appBuild": "b49b4010ddff",
+      "status": "passed",
+      "ordinaryGenerations": 4,
+      "loadMs": 3442,
+      "browserPssPeakMiB": 1846.130859375,
+      "rendererPssPeakMiB": 928.505859375,
+      "memoryComplete": true,
+      "profileMode": "persistent on workspace disk, no quota override",
+      "loadParams": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false
+      }
+    }
+  }
+]

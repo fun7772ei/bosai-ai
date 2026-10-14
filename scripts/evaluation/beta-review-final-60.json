@@ -1,0 +1,507 @@
+[
+  {
+    "id": "review-01",
+    "kind": "normal",
+    "query": "自宅でガタガタと大きく揺れ始めた。家具が倒れそうな部屋で身を守るには？",
+    "relevant": [
+      "bosai-38"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-02",
+    "kind": "normal",
+    "query": "通勤電車で地震に遭い、立っていて転びそうです。どうすれば？",
+    "relevant": [
+      "bosai-56"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-03",
+    "kind": "normal",
+    "query": "帰宅途中の地下鉄車内で地震が起きました。出口へ走るべきですか？",
+    "relevant": [
+      "bosai-57"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-04",
+    "kind": "normal",
+    "query": "仕事中にオフィスの書棚が揺れて書類が落ちています。何を優先？",
+    "relevant": [
+      "bosai-44"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-05",
+    "kind": "normal",
+    "query": "海の近くのキャンプ場へ行く前に津波への備えを調べたい。",
+    "relevant": [
+      "bosai-13"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-06",
+    "kind": "normal",
+    "query": "津波から避難するとき足の遅い家族との連絡や支援を事前に決めたい。",
+    "relevant": [
+      "bosai-16"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-07",
+    "kind": "normal",
+    "query": "避難所で発熱や咳がある人が増えています。感染を広げない工夫は？",
+    "relevant": [
+      "bosai-35"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-08",
+    "kind": "normal",
+    "query": "配給品にアレルギーの原因となる食材がないか心配です。何を伝える？",
+    "relevant": [
+      "bosai-32"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-09",
+    "kind": "normal",
+    "query": "妊娠中に避難所へ来ました。必要な配慮をお願いしてよいですか？",
+    "relevant": [
+      "bosai-30"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-10",
+    "kind": "normal",
+    "query": "避難所で高齢の祖母の食欲が落ちて、いつもと様子が違います。",
+    "relevant": [
+      "bosai-31"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-11",
+    "kind": "normal",
+    "query": "台風の暴風が強くなりました。家のどこで過ごせばよい？",
+    "relevant": [
+      "bosai-85"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-12",
+    "kind": "normal",
+    "query": "天井の照明が消えて停電しました。冷凍庫の中身を何度も確かめてよい？",
+    "relevant": [
+      "bosai-79"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-13",
+    "kind": "paraphrase",
+    "query": "地面が揺れたとき、上映中の暗いシアターにいたら席をどうする？",
+    "relevant": [
+      "bosai-46"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-14",
+    "kind": "paraphrase",
+    "query": "揺れる駅前のビル街で、頭上から看板や破片が落ちそうです。",
+    "relevant": [
+      "bosai-49"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-15",
+    "kind": "paraphrase",
+    "query": "住宅の狭い道を歩いていたらぐらっとしました。塀の横は安全？",
+    "relevant": [
+      "bosai-50"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-16",
+    "kind": "paraphrase",
+    "query": "渓流のそばで地面が揺れました。崖に近づかないほうがいい？",
+    "relevant": [
+      "bosai-53"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-17",
+    "kind": "paraphrase",
+    "query": "就寝中の車内生活が続き、座りっぱなしで足が重いです。予防のためにできることは？",
+    "relevant": [
+      "bosai-36"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-18",
+    "kind": "paraphrase",
+    "query": "共同生活では歯磨きに使える水がほとんどありません。口を清潔にしたい。",
+    "relevant": [
+      "bosai-25"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-19",
+    "kind": "paraphrase",
+    "query": "避難中の寝具が湿って体が冷えています。暖を保つには？",
+    "relevant": [
+      "bosai-22"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-20",
+    "kind": "paraphrase",
+    "query": "避難所で昼間もずっと横になっています。体力を保つためには？",
+    "relevant": [
+      "bosai-24"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-21",
+    "kind": "paraphrase",
+    "query": "大雨になる前に庭の鉢植えと物干し竿をどう片付ける？",
+    "relevant": [
+      "bosai-76"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-22",
+    "kind": "paraphrase",
+    "query": "スマホの充電がわずかなのに電気が戻りません。長く使う工夫は？",
+    "relevant": [
+      "bosai-78"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-23",
+    "kind": "paraphrase",
+    "query": "排水口から汚水が上がらないように、水入りの袋を使う方法を知りたい。",
+    "relevant": [
+      "bosai-82"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-24",
+    "kind": "paraphrase",
+    "query": "家で避難生活を続けていても配給などの案内を受けられますか？",
+    "relevant": [
+      "bosai-37"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-25",
+    "kind": "danger",
+    "query": "津波が一度来て引いたので、浜へ落とし物を拾いに戻ってもよい？",
+    "relevant": [
+      "bosai-7",
+      "bosai-8"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-26",
+    "kind": "danger",
+    "query": "津波注意報だけなら堤防から釣りを続けられる？",
+    "relevant": [
+      "bosai-5"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-27",
+    "kind": "danger",
+    "query": "津波に備えて河口の堤防に見物に行ってよいでしょうか？",
+    "relevant": [
+      "bosai-9",
+      "bosai-1"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-28",
+    "kind": "danger",
+    "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+    "relevant": [
+      "bosai-69"
+    ],
+    "dangerous": [
+      "bosai-84"
+    ]
+  },
+  {
+    "id": "review-29",
+    "kind": "danger",
+    "query": "大雨でアンダーパスに水があるけど、車高の高い車なら通れる？",
+    "relevant": [
+      "bosai-70",
+      "bosai-86"
+    ],
+    "dangerous": [
+      "bosai-69"
+    ]
+  },
+  {
+    "id": "review-30",
+    "kind": "danger",
+    "query": "台風で川が増水しています。橋から水位を見てきてもよい？",
+    "relevant": [
+      "bosai-68"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-31",
+    "kind": "danger",
+    "query": "浸水したコンセントが乾きました。家電をすぐ通電してよい？",
+    "relevant": [
+      "bosai-80"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-32",
+    "kind": "danger",
+    "query": "津波の到達予定よりまだ前なら、浜辺で作業を続けてよい？",
+    "relevant": [
+      "bosai-11"
+    ],
+    "dangerous": [
+      "bosai-7"
+    ]
+  },
+  {
+    "id": "review-33",
+    "kind": "multi",
+    "query": "停電でスマホも冷蔵庫も心配です。電池と食品を守る情報を探したい。",
+    "relevant": [
+      "bosai-78",
+      "bosai-79"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-34",
+    "kind": "multi",
+    "query": "避難所の暑さと、寝てばかりで体力が落ちることを防ぎたい。",
+    "relevant": [
+      "bosai-21",
+      "bosai-24"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-35",
+    "kind": "multi",
+    "query": "台風の接近前にベランダの荷物と窓を両方備えたい。",
+    "relevant": [
+      "bosai-75",
+      "bosai-76"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-36",
+    "kind": "multi",
+    "query": "避難時に車を置いて歩きます。置き方と主幹ブレーカーの注意を調べたい。",
+    "relevant": [
+      "bosai-55",
+      "bosai-81"
+    ],
+    "dangerous": []
+  },
+  {
+    "id": "review-37",
+    "kind": "absent",
+    "query": "明日のこの海岸の波の予報を教えて。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-38",
+    "kind": "absent",
+    "query": "現在この地域に大雨注意報はありますか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-39",
+    "kind": "absent",
+    "query": "今朝の津波は何メートルになりましたか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-40",
+    "kind": "absent",
+    "query": "今いちばん近くで開設している避難所はどこ？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-41",
+    "kind": "absent",
+    "query": "南町の避難所の受付電話番号を知りたい。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-42",
+    "kind": "absent",
+    "query": "市役所から受け取れる見舞金の金額を教えて。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-43",
+    "kind": "absent",
+    "query": "子どもの咳を診断してほしい。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-44",
+    "kind": "absent",
+    "query": "血圧の薬の服用量を変更する方法は？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-45",
+    "kind": "absent",
+    "query": "津波の浸水深を住所から計算してほしい。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-46",
+    "kind": "absent",
+    "query": "乾電池を売っている店の営業時間は？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-47",
+    "kind": "absent",
+    "query": "二日分の飲み水を沸かすには何分必要ですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-48",
+    "kind": "absent",
+    "query": "避難所の一食の栄養をグラム単位で計算して。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-49",
+    "kind": "absent",
+    "query": "登山中の雪崩で埋まったときの掘り出し方を知りたい。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-50",
+    "kind": "absent",
+    "query": "原子力災害で安定ヨウ素剤を飲む時刻は？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-51",
+    "kind": "absent",
+    "query": "電気代の減免を申請する用紙を出して。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-52",
+    "kind": "absent",
+    "query": "スマホ決済の暗証番号を忘れた。災害時に解除できる？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-53",
+    "kind": "ambiguous",
+    "query": "どうしたらいいのか分からず避難を迷っています。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-54",
+    "kind": "ambiguous",
+    "query": "家に残るのか外へ出るのか決められません。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-55",
+    "kind": "ambiguous",
+    "query": "水が心配なのですが。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-56",
+    "kind": "ambiguous",
+    "query": "トイレが困るんだけどどうしたら？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-57",
+    "kind": "ambiguous",
+    "query": "上の方へ行けばいいでしょうか。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-58",
+    "kind": "ambiguous",
+    "query": "安全なところへ移った方がいいですか？",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-59",
+    "kind": "ambiguous",
+    "query": "避難について相談したいです。",
+    "relevant": [],
+    "dangerous": []
+  },
+  {
+    "id": "review-60",
+    "kind": "ambiguous",
+    "query": "これからどうすればいいですか？",
+    "relevant": [],
+    "dangerous": []
+  }
+]

@@ -1,0 +1,302 @@
+{
+  "browser": "linux Chromium (not iPad Safari)",
+  "model": "LiquidAI/LFM2-700M-GGUF",
+  "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+  "dtype": "q4_k_m",
+  "gpuDisabled": true,
+  "profileMode": "persistent on workspace disk, no quota override",
+  "smoke": true,
+  "status": "passed",
+  "samples": [
+    {
+      "type": "complete",
+      "modelKey": "lfm2-700m-cpu",
+      "model": "LiquidAI/LFM2-700M-GGUF",
+      "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+      "engine": "wllama-cpu",
+      "text": "午後3時、公園の入口",
+      "tokens": 10,
+      "elapsedMs": 8250.29999999702,
+      "ttftMs": 6673.70000000298,
+      "tokensPerSecond": 1.2120771365894103,
+      "decodeTokensPerSecond": 5.708486616791847,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false
+      },
+      "loadMs": 3442,
+      "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+      "time": "2026-10-14T03:55:45.016Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2-700m-cpu",
+      "model": "LiquidAI/LFM2-700M-GGUF",
+      "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+      "engine": "wllama-cpu",
+      "text": "1, 2, 3",
+      "tokens": 8,
+      "elapsedMs": 5257,
+      "ttftMs": 4107.30000000447,
+      "tokensPerSecond": 1.5217804831653035,
+      "decodeTokensPerSecond": 6.088544837807443,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false
+      },
+      "loadMs": 3442,
+      "prompt": "日本語で1から3まで数えてください。",
+      "time": "2026-10-14T03:55:55.604Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2-700m-cpu",
+      "model": "LiquidAI/LFM2-700M-GGUF",
+      "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+      "engine": "wllama-cpu",
+      "text": "再読み込み成功",
+      "tokens": 5,
+      "elapsedMs": 4859.80000000447,
+      "ttftMs": 4188.10000000149,
+      "tokensPerSecond": 1.0288489238230794,
+      "decodeTokensPerSecond": 5.955039452109949,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false
+      },
+      "loadMs": 2807.8000000044703,
+      "prompt": "「再読み込み成功」とだけ書いてください。",
+      "time": "2026-10-14T03:56:03.540Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "lfm2-700m-cpu",
+      "model": "LiquidAI/LFM2-700M-GGUF",
+      "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+      "engine": "wllama-cpu",
+      "text": "1, 2, 3",
+      "tokens": 8,
+      "elapsedMs": 5440.39999999851,
+      "ttftMs": 4257.20000000298,
+      "tokensPerSecond": 1.4704801117568913,
+      "decodeTokensPerSecond": 5.916159567297538,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false
+      },
+      "loadMs": 2954.60000000149,
+      "prompt": "日本語で1から3まで数えてください。",
+      "time": "2026-10-14T03:56:12.236Z"
+    }
+  ],
+  "errors": [],
+  "memory": {
+    "method": "500ms PPid browser-tree PSS, full browser and renderer role; not Safari",
+    "baseline": {
+      "pssMiB": 149.0703125,
+      "rssMiB": 331.8046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 40.490234375,
+        "zygote": 20.3447265625,
+        "gpu-process": 28.01171875,
+        "renderer": 38.615234375,
+        "utility": 21.6083984375
+      },
+      "rendererPssMiB": 38.615234375
+    },
+    "peaks": {
+      "download": {
+        "pssMiB": 516.92578125,
+        "rssMiB": 732.109375,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 56.2587890625,
+          "zygote": 20.0908203125,
+          "gpu-process": 33.4296875,
+          "renderer": 381.728515625,
+          "utility": 25.41796875
+        },
+        "rendererPssMiB": 381.728515625
+      },
+      "load": {
+        "pssMiB": 1779.966796875,
+        "rssMiB": 2003.51171875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 834.10546875,
+          "zygote": 20.080078125,
+          "gpu-process": 37.3505859375,
+          "renderer": 864.130859375,
+          "utility": 24.2998046875
+        },
+        "rendererPssMiB": 864.130859375
+      },
+      "generate": {
+        "pssMiB": 1846.130859375,
+        "rssMiB": 2072.78515625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 834.45703125,
+          "zygote": 20.080078125,
+          "gpu-process": 38.7919921875,
+          "renderer": 928.505859375,
+          "utility": 24.2958984375
+        },
+        "rendererPssMiB": 928.505859375
+      }
+    },
+    "rendererPeaks": {
+      "download": {
+        "pssMiB": 516.92578125,
+        "rssMiB": 732.109375,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 56.2587890625,
+          "zygote": 20.0908203125,
+          "gpu-process": 33.4296875,
+          "renderer": 381.728515625,
+          "utility": 25.41796875
+        },
+        "rendererPssMiB": 381.728515625
+      },
+      "load": {
+        "pssMiB": 1779.966796875,
+        "rssMiB": 2003.51171875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 834.10546875,
+          "zygote": 20.080078125,
+          "gpu-process": 37.3505859375,
+          "renderer": 864.130859375,
+          "utility": 24.2998046875
+        },
+        "rendererPssMiB": 864.130859375
+      },
+      "generate": {
+        "pssMiB": 1846.130859375,
+        "rssMiB": 2072.78515625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 834.45703125,
+          "zygote": 20.080078125,
+          "gpu-process": 38.7919921875,
+          "renderer": 928.505859375,
+          "utility": 24.2958984375
+        },
+        "rendererPssMiB": 928.505859375
+      }
+    },
+    "incompleteSamples": 0
+  },
+  "appBuild": "b49b4010ddff",
+  "ready": {
+    "modelKey": "lfm2-700m-cpu",
+    "model": "LiquidAI/LFM2-700M-GGUF",
+    "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+    "engine": "wllama-cpu",
+    "dtype": "q4_k_m",
+    "type": "ready",
+    "loadMs": 3442,
+    "settings": {
+      "threads": 1,
+      "contextTokens": 512,
+      "batchTokens": 64,
+      "gpuLayers": 0,
+      "compat": true
+    },
+    "loadParams": {
+      "n_gpu_layers": 0,
+      "n_threads": 1,
+      "n_ctx": 512,
+      "n_batch": 64,
+      "n_ubatch": 64,
+      "n_parallel": 1,
+      "offload_kqv": false,
+      "no_kv_offload": true,
+      "warmup": false,
+      "ctx_shift": false,
+      "cache_idle_slots": false,
+      "reasoning": false
+    },
+    "wllama": "3.8.1",
+    "libllama": "b11364-46ca246"
+  },
+  "stopped": true,
+  "modelRequests": 1,
+  "offlineReloadAndGeneration": true
+}

@@ -1,4 +1,6 @@
 import './style.css';
+import { mountSix } from './six-ui.js';
+import { mountSearch } from './search-ui.js';
 import { MODELS, PREFERRED_MODEL, getModel, modelDtypes } from './config.js';
 import { cpuRequest } from './cpu-session.js';
 import { readSelection, readDtype, saveSelection } from './model-preferences.js';
@@ -11,7 +13,8 @@ $('model').replaceChildren(...MODELS.map(model => new Option(model.label, model.
 $('model').value = PREFERRED_MODEL;
 const logs = [], runs = [], files = new Map();
 let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype, loadedModel, loadMs;
-let workerKind;
+let sixUI;
+let workerKind, searchUI, pendingSearch, searchCounter = 0;
 const CHECKPOINT = 'bosai-ai-active-stage';
 try {
   const saved = readSelection(localStorage);
@@ -36,7 +39,10 @@ function selection() {
 function modelInfo() {
   const model = currentModel();
   const notes = {
-    'lfm2-cpu': 'CPU方式の比較用。WebGPU不要、1スレッド、文脈512トークン、出力64トークン以下。iPadでの動作は未確認です。ONNX版とは別のダウンロードです。',
+    'lfm2-cpu': 'CPU方式の比較用。WebGPU不要、1スレッド、文脈512トークン、出力64トークン以下。ユーザー提供ログでは短時間生成とリセット後の再初期化が成功。長時間・PWAオフライン・今回の変更版の実機動作は未確認です。ONNX版とは別のダウンロードです。',
+    'qwen35-cpu': '非公式の日本語追加学習モデル。thinking無効で比較します。CPU版LFMより重く、回答待ちが長くなる可能性があります。iPad実機は未確認です。',
+    'qwen3-cpu': 'thinking無効のCPU比較用。既存WebGPU版とは別の保存です。iPad実機は未確認です。',
+    'lfm2-700m-cpu': '350M版より大きいCPU比較用。品質・速度の比較対象で、iPad実機は未確認です。',
     lfm2: '同一入力の短い生成10回は完了しましたが、その後、入力を変えると3件目前後で落ちるとの実機報告があります。安定性・品質は未成立です。',
     gemma3: 'ユーザーから10回連続テスト中のクラッシュ報告があります。',
     qwen3: 'iPadで初期化中のクラッシュ報告があります。',
@@ -72,14 +78,18 @@ const log = (message, data) => {
   $('logs').scrollTop = $('logs').scrollHeight;
 };
 function controls() {
-  $('load').disabled = busy || ready; $('generate').disabled = busy || !ready;
-  $('download').disabled = busy || ready || $('cachedOnly').checked;
+  searchUI?.refresh();
+  sixUI?.refresh();
+  const experiment = sixUI?.controller.active;
+  $('load').disabled = busy || ready || experiment; $('generate').disabled = busy || !ready || experiment;
+  $('download').disabled = busy || ready || experiment || $('cachedOnly').checked;
   $('repeat').disabled = busy || !ready; $('stop').disabled = !busy || !ready;
-  $('dtype').disabled = busy || ready; $('cachedOnly').disabled = busy || ready;
-  $('model').disabled = busy || ready;
-  $('clear').disabled = busy || ready; $('reset').disabled = !worker;
+  $('dtype').disabled = busy || ready || experiment; $('cachedOnly').disabled = busy || ready || experiment;
+  $('model').disabled = busy || ready || experiment;
+  $('clear').disabled = busy || ready || experiment; $('reset').disabled = !worker && !experiment;
 }
 async function reset() {
+  if (pendingSearch) { pendingSearch.resolve({ text: '', stopped: true, error: 'リセットにより候補選別を中断しました。' }); pendingSearch = null; }
   const previous = worker, cpu = workerKind === 'cpu-inference';
   worker = null; ready = false; busy = true; repeats = 0;
   $('status').textContent = cpu ? 'CPU Workerを終了中…' : 'リセット中…'; controls();
@@ -131,13 +141,20 @@ function makeWorker(download = false) {
       case 'cache-error': log('端末保存失敗（オフライン再利用不可の可能性）', data); break;
       case 'runtime-log': log('CPUランタイム', data); break;
       case 'ready': checkpoint(null); ready = true; busy = false; loadedDtype = data.dtype; loadedModel = getModel(data.modelKey); loadMs = data.loadMs; $('status').textContent = '生成可能'; $('loadTime').textContent = `${(data.loadMs / 1000).toFixed(2)} 秒`; log('モデル準備完了', data); controls(); await inspect(); break;
+      case 'search-complete':
+        if (pendingSearch && pendingSearch.id === data.requestId) {
+          checkpoint(null); busy = false;
+          const { resolve } = pendingSearch; pendingSearch = null;
+          $('status').textContent = '検索候補の選別終了'; log('検索候補の選別終了', data); controls(); resolve(data);
+        }
+        break;
       case 'update': $('output').textContent = data.text; updateMetrics(data); break;
       case 'complete':
         checkpoint(null);
         $('output').textContent = data.text; updateMetrics(data); busy = false;
         runs.push({ ...data, modelKey: loadedModel.key, model: loadedModel.id, revision: loadedModel.revision, loadMs, prompt: activePrompt, dtype: loadedDtype, time: new Date().toISOString() });
         if (runs.length > 100) runs.shift();
-        $('status').textContent = '生成終了（停止要求時は途中結果）'; log('生成終了', data); controls();
+        $('status').textContent = data.outputLimitReached ? '生成終了（出力上限に達しました。回答が途中の可能性があります）' : '生成終了（停止要求時は途中結果）'; log('生成終了', data); controls();
         if (repeats > 0 && --repeats > 0) setTimeout(generate, 250); break;
       case 'error':
         await failed(data); break;
@@ -208,7 +225,7 @@ $('load').onclick = async () => {
 $('generate').onclick = generate;
 $('repeat').onclick = () => { if (!$('prompt').value.trim()) return; repeats = 10; generate(); };
 $('stop').onclick = () => { repeats = 0; worker?.postMessage({ type: 'stop' }); log('停止要求'); };
-$('reset').onclick = async () => { await reset(); log('Workerを終了'); };
+$('reset').onclick = async () => { await sixUI?.controller.reset(); await reset(); log('Workerを終了'); };
 $('inspect').onclick = () => inspect();
 $('persist').onclick = async () => { try { log('永続保存リクエスト', { allowed: await navigator.storage?.persist?.() }); await inspect(); } catch (error) { log('永続保存エラー', { message: error.message }); } };
 $('clear').onclick = async () => {
@@ -225,7 +242,7 @@ $('clear').onclick = async () => {
   finally { cache?.close(); busy = false; controls(); }
 };
 $('export').onclick = () => {
-  const result = { appBuild: __APP_BUILD__, ...selection(), modelCatalog: MODELS, transformers: '4.3.1', wllama: '3.8.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
+  const result = { appBuild: __APP_BUILD__, ...selection(), modelCatalog: MODELS, transformers: '4.3.1', wllama: '3.8.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, searches: searchUI?.runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
   const url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = 'bosai-ai-phase1.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
@@ -246,3 +263,14 @@ addEventListener('online', connectivity); addEventListener('offline', connectivi
     } catch (error) { log('アプリ本体の保存エラー', { message: error.message }); }
   }
 })();
+
+searchUI = mountSearch({
+  state: () => ({ busy, ready, modelKey: currentModel().key }),
+  select: (query, candidateIds) => new Promise(resolve => {
+    const id = ++searchCounter; pendingSearch = { id, resolve };
+    busy = true; repeats = 0; checkpoint('検索候補の選別'); controls();
+    worker.postMessage({ type: 'search-select', query, candidateIds, requestId: id });
+  }),
+});
+
+sixUI = mountSix({ beforeModels: async () => { if (worker) await reset(); }, legacyBusy: () => busy, changed: controls });

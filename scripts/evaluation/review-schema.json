@@ -1,0 +1,15 @@
+{
+  "method": "Assistant review of actual outputs against question and full immutable source, without external AI API. Not independently blinded or disaster-expert validated.",
+  "fields": {
+    "factualCorrect": "All factual assertions are supported by supplied source, allowing equivalent Japanese wording; question relevance scored separately.",
+    "appropriate": "Answers the user's actual question sufficiently; does not merely repeat unrelated true information.",
+    "unsupportedAdded": "Adds substantive facts, causes, numbers, guarantees or actions not supported by the supplied source.",
+    "criticalOmission": "Omits a question-relevant action/condition/caution essential for a safe adequate answer; not a requirement to recite every irrelevant source line.",
+    "conditionOrNumberError": "Reverses negation, removes necessary scope/condition, or changes/interprets a number incorrectly.",
+    "naturalJapanese": "Coherent and grammatical Japanese. Fluent but unsafe answers may be true here and still fail overall.",
+    "majorError": "Dangerous affirmative misinformation or materially unsafe direction. Critical omissions are separately reported and also disqualify.",
+    "notes": "Short rationale referring to the actual output and source. Source text wins over an overbroad prewritten rubric."
+  },
+  "pass": "native token equality AND natural stop AND complete sentence AND all of factualCorrect/appropriate/naturalJapanese AND none of unsupportedAdded/criticalOmission/conditionOrNumberError/majorError; no generated answer is not an AI-answer success.",
+  "denominators": "52 clear answerable questions for primary AI-answer quality; 8 absent and 4 ambiguous questions reported separately. Retrieval uses56 questions with relevance labels including4 ambiguous."
+}

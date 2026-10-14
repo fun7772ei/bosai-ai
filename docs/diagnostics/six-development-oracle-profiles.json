@@ -1,0 +1,521 @@
+{
+  "queries": [],
+  "oracle": [
+    {
+      "caseId": "search-01",
+      "style": "baseline",
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "id": 3,
+      "answer": {
+        "text": "根拠：暗い中で裸足で歩く際は、足元に割れたガラスがあれば避けるべきです。",
+        "tokens": 31,
+        "elapsedMs": 13417.60000000149,
+        "ttftMs": 10814.30000000447,
+        "tokensPerSecond": 2.310398282852116,
+        "decodeTokensPerSecond": 11.523835132345233,
+        "tokensKnown": true,
+        "promptTokens": 187,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 187,
+        "evidenceIds": [
+          "bosai-39"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 13432.90000000596
+    },
+    {
+      "caseId": "search-03",
+      "style": "baseline",
+      "query": "避難所で水が使えないときトイレはどうする？",
+      "id": 4,
+      "answer": {
+        "text": "断水時には、衛生的に袋を敷き凝固剤や吸収材で便器を埋めることが重要です。排泄物の袋は一般ごみに出せないため、避難所の指示に従って保管・廃棄する必要があります。",
+        "tokens": 64,
+        "elapsedMs": 18142.70000000298,
+        "ttftMs": 12652.5,
+        "tokensPerSecond": 3.527589609043279,
+        "decodeTokensPerSecond": 11.474991803571054,
+        "tokensKnown": true,
+        "promptTokens": 219,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 219,
+        "evidenceIds": [
+          "bosai-17"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 18144.60000000149
+    },
+    {
+      "caseId": "search-31",
+      "style": "baseline",
+      "query": "津波は一度来たらもう家に戻っていい？",
+      "id": 5,
+      "answer": {
+        "text": "第1波のあとも戻らない。  \n根拠：津波は繰り返し到達し、後の波がより高くなることもあります。",
+        "tokens": 33,
+        "elapsedMs": 13436.60000000149,
+        "ttftMs": 10753.40000000596,
+        "tokensPerSecond": 2.455978446928266,
+        "decodeTokensPerSecond": 11.926058437706214,
+        "tokensKnown": true,
+        "promptTokens": 191,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 191,
+        "evidenceIds": [
+          "bosai-7"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 13443.5
+    },
+    {
+      "caseId": "search-36",
+      "style": "baseline",
+      "query": "警戒レベル5になるまで避難しなくていい？",
+      "id": 6,
+      "answer": {
+        "text": "根拠：警戒レベル5は災害が発生・切迫している状況であり、すでに安全な避難が難しい可能性がある。  \n注意：緊急安全確保は必ず安全になれる行動ではない。",
+        "tokens": 49,
+        "elapsedMs": 16457.5,
+        "ttftMs": 11973.89999999851,
+        "tokensPerSecond": 2.9773659425793713,
+        "decodeTokensPerSecond": 10.705682933353565,
+        "tokensKnown": true,
+        "promptTokens": 214,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 214,
+        "evidenceIds": [
+          "bosai-63"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 16460.89999999851
+    },
+    {
+      "caseId": "search-37",
+      "style": "baseline",
+      "query": "他人からもらった処方薬を飲んでもいい？",
+      "id": 7,
+      "answer": {
+        "text": "根拠：常用薬が不足している場合、医療機関へ早めに相談することが重要です。  \n注意：自己判断で使用しないでください。",
+        "tokens": 34,
+        "elapsedMs": 14403.89999999851,
+        "ttftMs": 11568.39999999851,
+        "tokensPerSecond": 2.36047181666101,
+        "decodeTokensPerSecond": 11.638159054840415,
+        "tokensKnown": true,
+        "promptTokens": 207,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 207,
+        "evidenceIds": [
+          "bosai-28"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 14406.60000000149
+    },
+    {
+      "caseId": "search-39",
+      "style": "baseline",
+      "query": "トイレの袋はすぐ一般ごみに出していい？",
+      "id": 8,
+      "answer": {
+        "text": "断水時の簡易トイレを衛生的に使う場合、下水設備の被害時は避難所の指示に従って保管・廃棄する必要があります。",
+        "tokens": 42,
+        "elapsedMs": 16234.5,
+        "ttftMs": 12538.70000000298,
+        "tokensPerSecond": 2.587083063845514,
+        "decodeTokensPerSecond": 11.093673900111765,
+        "tokensKnown": true,
+        "promptTokens": 217,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 217,
+        "evidenceIds": [
+          "bosai-17"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 16235.5
+    },
+    {
+      "caseId": "search-01",
+      "style": "action",
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "id": 9,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 11951.5,
+        "ttftMs": 11307.89999999851,
+        "tokensPerSecond": 0.5020290340124671,
+        "decodeTokensPerSecond": 7.768800497185246,
+        "tokensKnown": true,
+        "promptTokens": 194,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 194,
+        "evidenceIds": [
+          "bosai-39"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 11952.90000000596
+    },
+    {
+      "caseId": "search-03",
+      "style": "action",
+      "query": "避難所で水が使えないときトイレはどうする？",
+      "id": 10,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 13664.20000000298,
+        "ttftMs": 13233.20000000298,
+        "tokensPerSecond": 0.4391036430964631,
+        "decodeTokensPerSecond": 11.60092807424594,
+        "tokensKnown": true,
+        "promptTokens": 226,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 226,
+        "evidenceIds": [
+          "bosai-17"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 13664.80000000447
+    },
+    {
+      "caseId": "search-31",
+      "style": "action",
+      "query": "津波は一度来たらもう家に戻っていい？",
+      "id": 11,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 11319.70000000298,
+        "ttftMs": 10914.80000000447,
+        "tokensPerSecond": 0.5300493829340371,
+        "decodeTokensPerSecond": 12.348728081053101,
+        "tokensKnown": true,
+        "promptTokens": 198,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 198,
+        "evidenceIds": [
+          "bosai-7"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 11320.30000000447
+    },
+    {
+      "caseId": "search-36",
+      "style": "action",
+      "query": "警戒レベル5になるまで避難しなくていい？",
+      "id": 12,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 12649.70000000298,
+        "ttftMs": 12231.5,
+        "tokensPerSecond": 0.4743195490801036,
+        "decodeTokensPerSecond": 11.956001912875104,
+        "tokensKnown": true,
+        "promptTokens": 221,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 221,
+        "evidenceIds": [
+          "bosai-63"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 12650.40000000596
+    },
+    {
+      "caseId": "search-37",
+      "style": "action",
+      "query": "他人からもらった処方薬を飲んでもいい？",
+      "id": 13,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 12214.10000000149,
+        "ttftMs": 11800,
+        "tokensPerSecond": 0.4912355392537533,
+        "decodeTokensPerSecond": 12.07437816948082,
+        "tokensKnown": true,
+        "promptTokens": 214,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 214,
+        "evidenceIds": [
+          "bosai-28"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 12214.60000000149
+    },
+    {
+      "caseId": "search-39",
+      "style": "action",
+      "query": "トイレの袋はすぐ一般ごみに出していい？",
+      "id": 14,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 12988,
+        "ttftMs": 12566.39999999851,
+        "tokensPerSecond": 0.4619648906683092,
+        "decodeTokensPerSecond": 11.85958254265258,
+        "tokensKnown": true,
+        "promptTokens": 224,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 224,
+        "evidenceIds": [
+          "bosai-17"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 12988.5
+    },
+    {
+      "caseId": "search-01",
+      "style": "english",
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "id": 15,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 10704.39999999851,
+        "ttftMs": 10305.89999999851,
+        "tokensPerSecond": 0.5605171705094013,
+        "decodeTokensPerSecond": 12.547051442910915,
+        "tokensKnown": true,
+        "promptTokens": 181,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 181,
+        "evidenceIds": [
+          "bosai-39"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 10706
+    },
+    {
+      "caseId": "search-03",
+      "style": "english",
+      "query": "避難所で水が使えないときトイレはどうする？",
+      "id": 16,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 12196.39999999851,
+        "ttftMs": 11778.80000000447,
+        "tokensPerSecond": 0.4919484438031495,
+        "decodeTokensPerSecond": 11.973180076799247,
+        "tokensKnown": true,
+        "promptTokens": 213,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 213,
+        "evidenceIds": [
+          "bosai-17"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 12196.89999999851
+    },
+    {
+      "caseId": "search-31",
+      "style": "english",
+      "query": "津波は一度来たらもう家に戻っていい？",
+      "id": 17,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 11107.30000000447,
+        "ttftMs": 10680.90000000596,
+        "tokensPerSecond": 0.5401852835520411,
+        "decodeTokensPerSecond": 11.72607879929051,
+        "tokensKnown": true,
+        "promptTokens": 185,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 185,
+        "evidenceIds": [
+          "bosai-7"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 11107.89999999851
+    },
+    {
+      "caseId": "search-36",
+      "style": "english",
+      "query": "警戒レベル5になるまで避難しなくていい？",
+      "id": 18,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 12397.20000000298,
+        "ttftMs": 11990.10000000149,
+        "tokensPerSecond": 0.48398025360553654,
+        "decodeTokensPerSecond": 12.281994595877423,
+        "tokensKnown": true,
+        "promptTokens": 208,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 208,
+        "evidenceIds": [
+          "bosai-63"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 12397.80000000447
+    },
+    {
+      "caseId": "search-37",
+      "style": "english",
+      "query": "他人からもらった処方薬を飲んでもいい？",
+      "id": 19,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 11694.10000000149,
+        "ttftMs": 11265.60000000149,
+        "tokensPerSecond": 0.5130792450893387,
+        "decodeTokensPerSecond": 11.668611435239207,
+        "tokensKnown": true,
+        "promptTokens": 201,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 201,
+        "evidenceIds": [
+          "bosai-28"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 11694.60000000149
+    },
+    {
+      "caseId": "search-39",
+      "style": "english",
+      "query": "トイレの袋はすぐ一般ごみに出していい？",
+      "id": 20,
+      "answer": {
+        "text": "根拠不足です。",
+        "tokens": 6,
+        "elapsedMs": 12262.29999999702,
+        "ttftMs": 11848.60000000149,
+        "tokensPerSecond": 0.48930461658917646,
+        "decodeTokensPerSecond": 12.086052695320351,
+        "tokensKnown": true,
+        "promptTokens": 211,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 211,
+        "evidenceIds": [
+          "bosai-17"
+        ],
+        "reason": "generated"
+      },
+      "elapsedMs": 12262.89999999851
+    }
+  ],
+  "runtime": "Chromium CPU/WASM, not Safari",
+  "llmLoad": {
+    "id": 2,
+    "loadMs": 2456.0999999940395,
+    "settings": {
+      "threads": 1,
+      "contextTokens": 512,
+      "batchTokens": 64,
+      "gpuLayers": 0,
+      "compat": true
+    }
+  }
+}

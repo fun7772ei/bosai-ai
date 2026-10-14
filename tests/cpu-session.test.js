@@ -74,3 +74,56 @@ test('failed native load frees its worker and dispose terminates even while gene
   await session.dispose();
   assert.equal(exited, 2);
 });
+
+// A final SSE event may have no content. Do not infer truncation from token count.
+test('native finish reason distinguishes token limit from natural completion', async () => {
+  const fake = engine();
+  const session = new CpuSession(() => fake, blob.size);
+  await session.load(blob);
+  for (const finishReason of ['length', 'stop']) {
+    fake.createChatCompletion = async options => {
+      options.onData({ choices: [{ delta: { content: '出力' }, finish_reason: null }], timings: { predicted_n: 32 } });
+      options.onData({ choices: [{ delta: {}, finish_reason: finishReason }] });
+      options.onData({ choices: [], usage: { completion_tokens: 32 } });
+    };
+    const result = await session.generate('入力', 32, () => {});
+    assert.equal(result.text, '出力');
+    assert.equal(result.tokens, 32);
+    assert.equal(result.finishReason, finishReason);
+    assert.equal(result.outputLimitReached, finishReason === 'length');
+  }
+  await session.dispose();
+});
+
+test('Qwen CPU keeps Jinja thinking disabled at load and each request without changing LFM defaults', async () => {
+  const fake = engine(); let completions = 0;
+  fake.loadModel = async (blobs, params) => {
+    assert.equal(params.jinja, true);
+    assert.deepEqual(params.default_template_kwargs, { enable_thinking: false });
+    assert.equal(params.n_ctx, 512); assert.equal(params.n_threads, 1); assert.equal(params.reasoning, false);
+  };
+  fake.createChatCompletion = async options => {
+    completions++;
+    assert.deepEqual(options.chat_template_kwargs, { enable_thinking: false });
+    assert.equal(options.temperature, 0); assert.equal(options.cache_prompt, false);
+  };
+  const session = new CpuSession(() => fake, blob.size, { noThinking: true });
+  await session.load(blob);
+  await session.generate('最初の入力', 32, () => {});
+  await session.generate('別の入力', 64, () => {});
+  assert.equal(completions, 2);
+  assert.equal(cpuRequest('LFMの入力', 32).chat_template_kwargs, undefined);
+  assert.equal(CPU_LOAD_PARAMS.jinja, undefined);
+  await session.dispose();
+});
+
+test('search selection shares the bounded CPU session but keeps user generation limits and cache isolation', async()=>{
+ const fake=engine();let optionsSeen;
+ fake.createChatCompletion=async options=>{optionsSeen=options;options.onData({choices:[{delta:{content:'2'},finish_reason:'stop'}],usage:{prompt_tokens:180,completion_tokens:2}});};
+ const session=new CpuSession(()=>fake,blob.size);await session.load(blob);
+ const candidates=[{entry:{title:'候補1'}},{entry:{title:'候補2'}}];
+ const result=await session.selectSearch('自然な質問',candidates);
+ assert.equal(result.text,'2');assert.equal(result.promptTokens,180);assert.equal(optionsSeen.max_tokens,8);assert.equal(optionsSeen.temperature,0);assert.equal(optionsSeen.cache_prompt,false);assert.equal(optionsSeen.messages.length,2);
+ await assert.rejects(session.generate('x'.repeat(201),32),/200/);
+ await session.generate('通常の入力',32,()=>{});assert.equal(optionsSeen.messages[1].content,'通常の入力');await session.dispose();
+});

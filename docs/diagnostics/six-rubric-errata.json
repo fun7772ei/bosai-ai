@@ -1,0 +1,7 @@
+{
+  "retrievalLabelsAndAlgorithmsChanged": false,
+  "errata": [
+    {"caseId":"final-08","prewrittenRubricIssue":"The criticalCaution mentions danger to a helper returning to assist, but bosai-16 does not contain that detail.","semanticAuditRule":"Do not require invented information. Judge against the actual bosai-16 warning: planning for the first time after the disaster may delay evacuation.","effectOnRetrievalScores":"none; original questions and labels remain frozen"}
+  ],
+  "scope":"Relevance labels are manually authored, not exhaustive expert consensus; an outside-label item can still contain broadly related information. Semantic grading reads the actual question and supplied full source."
+}

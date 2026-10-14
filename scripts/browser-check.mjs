@@ -1,3 +1,4 @@
+import { MODELS } from '../src/config.js';
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync, readFileSync, unlinkSync } from 'node:fs';
 const browser = await chromium.launch({ args: ['--enable-unsafe-webgpu'] });
@@ -19,14 +20,14 @@ await page.reload();
 await page.waitForFunction(() => document.querySelector('#environment').textContent !== '環境を確認中…');
 await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
 const environment = await page.locator('#environment').textContent();
-if (await page.locator('#model').inputValue() !== 'lfm2') throw new Error('Fresh installs should prefer LFM');
+if (await page.locator('#model').inputValue() !== 'lfm2-cpu') throw new Error('Fresh installs should prefer CPU LFM');
 await page.getByLabel('比較モデル', { exact: true }).selectOption('qwen3');
 // Fixtures validate saving and resuming only; never treat these bytes as a real model.
 let downloads = 0;
 await page.route('https://huggingface.co/**', async route => {
   downloads++;
   const url = route.request().url();
-  const weight = url.endsWith('.onnx_data') || (url.includes('/Qwen3-0.6B-ONNX/') && url.endsWith('.onnx'));
+  const weight = url.endsWith('.gguf') || url.endsWith('.onnx_data') || (url.includes('/Qwen3-0.6B-ONNX/') && url.endsWith('.onnx'));
   const body = weight ? Buffer.alloc(12 * 1024 * 1024 + 123, 7) : Buffer.from('fixture');
   await route.fulfill({ body, headers: { 'access-control-allow-origin': '*', 'content-length': String(body.length) } });
 });
@@ -100,7 +101,7 @@ for (const model of candidateModels) {
   if (JSON.stringify(external) !== JSON.stringify([4194304, 4194304, 4194304, 123])) throw new Error('Wrong external weight layout');
   const [diagnostic] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: '検証結果をJSON保存', exact: true }).click()]);
   const exported = JSON.parse(readFileSync(await diagnostic.path(), 'utf8'));
-  if (exported.model !== model.id || exported.modelKey !== model.key || exported.modelCatalog.length !== 4) throw new Error('Wrong model in diagnostic JSON');
+  if (exported.model !== model.id || exported.modelKey !== model.key || exported.modelCatalog.length !== MODELS.length) throw new Error('Wrong model in diagnostic JSON');
   if (!exported.logs.some(log => log.data?.model === model.id && log.data?.modelKey === model.key)) throw new Error('Logs lost model attribution');
   await context.setOffline(true);
   await page.reload();
@@ -109,6 +110,25 @@ for (const model of candidateModels) {
   await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
   if (downloads !== expectedDownloads) throw new Error('Candidate offline reuse downloaded again');
   await context.setOffline(false);
+}
+// New CPU saves use separate fixed URLs; deleting one must retain ONNX saves.
+const cpuCandidates = MODELS.filter(model => model.engine === 'wllama-cpu' && model.key !== 'lfm2-cpu');
+for (const model of cpuCandidates) {
+  await page.locator('#model').selectOption(model.key);
+  if (await page.locator('#dtype').inputValue() !== 'q4_k_m') throw new Error('CPU dtype mismatch');
+  await page.locator('#download').click();
+  await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+  const count = downloads;
+  await page.reload();
+  await page.waitForFunction(() => document.querySelector('#storage').textContent.includes('1/1ファイル保存済み'));
+  if (await page.locator('#model').inputValue() !== model.key) throw new Error('CPU selection not restored');
+  await context.setOffline(true);
+  await page.locator('#download').click();
+  await page.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
+  if (downloads !== count) throw new Error('CPU dummy fixture was downloaded again');
+  await context.setOffline(false);
+  await page.locator('#clear').click();
+  await page.waitForFunction(() => document.querySelector('#storage').textContent.includes('0/1ファイル保存済み'));
 }
 // Switching back must retain Qwen's old format and all its saved files.
 await page.getByLabel('比較モデル', { exact: true }).selectOption('qwen3');
@@ -167,6 +187,8 @@ await oldPage.goto('http://localhost:4173/bosai-ai/');
 await oldPage.waitForFunction(() => document.querySelector('#logs').textContent.includes('アプリ本体のオフライン保存完了'));
 await oldPage.reload();
 await oldPage.waitForFunction(() => navigator.serviceWorker.controller !== null);
+// Existing explicit ONNX selection must survive an update with a new CPU default.
+await oldPage.locator('#model').selectOption('lfm2');
 await oldPage.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
 await oldPage.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
 await oldPage.evaluate(async () => {
@@ -197,10 +219,11 @@ try {
   if (!shellCaches.includes('bosai-ai-shell-test-update')) throw new Error('Update did not install the new shell cache');
   await newPage.goto('http://localhost:4173/bosai-ai/');
   await newPage.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4f16）'));
+  if (await newPage.locator('#model').inputValue() !== 'lfm2') throw new Error('New CPU default overwrote an existing ONNX selection');
   const legacy = await newPage.evaluate(async () => (await (await caches.open('bosai-ai-model-v1')).match('https://example.org/legacy-sentinel')).text());
   if (legacy !== 'keep-legacy') throw new Error('App update deleted legacy models');
 } finally { unlinkSync(updateScript); await updateContext.close(); }
-const result = { browser: `${process.platform} Playwright Chromium (not iPad Safari)`, environment, candidateModelFixtures: candidateModels.map(model => model.key), externalWeightChunksVerified: true, selectedModelAndDtypeRestored: true, modelAttributedDiagnostics: true, selectedDeletionPreservesOtherModels: true, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, offlineFixtureReuse: true, savedDtypeRestored: true, savedFormatWithoutPreferenceRestored: true, interruptedStageRecovery: true, workerImportFailureAndRetry: true, safeAppUpdatePreservesWorkersAndModels: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
+const result = { browser: `${process.platform} Playwright Chromium (not iPad Safari)`, environment, candidateModelFixtures: candidateModels.map(model => model.key), cpuCandidateFixtures: cpuCandidates.map(model => model.key), externalWeightChunksVerified: true, selectedModelAndDtypeRestored: true, modelAttributedDiagnostics: true, selectedDeletionPreservesOtherModels: true, indexedDBChunkStorage: true, fixtureDownloadAndReuse: true, savedModelSurvivesReload: true, offlineFixtureReuse: true, savedDtypeRestored: true, savedFormatWithoutPreferenceRestored: true, interruptedStageRecovery: true, workerImportFailureAndRetry: true, safeAppUpdatePreservesWorkersAndModels: true, offlineShell: true, offlineMissingModel, horizontalOverflow: overflow, errors };
 writeFileSync('test-results/browser-check.json', JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result, null, 2));
 if (errors.length) process.exitCode = 1;

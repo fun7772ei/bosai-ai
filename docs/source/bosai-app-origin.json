@@ -1,0 +1,15 @@
+{
+  "repository": "fun7772ei/bosai-app",
+  "commit": "e3aabdf0b85732b8d5de9b510fc2461acc59f8f4",
+  "path": "data.js",
+  "gitBlobSha": "881355b4a4b85a1da39515e8578aa5f74bb2644b",
+  "sha256": "f70e8429f8c39eb9783720d87028faeb7e6ce18932769ba904d4ea519edc563f",
+  "importedEntries": 88,
+  "categories": {
+    "津波": 17,
+    "避難所生活": 21,
+    "地震": 22,
+    "台風・大雨・停電": 28
+  },
+  "policy": "User-authorized fixed copy for Phase 1 search prototype; source repository read-only; no runtime synchronization"
+}
