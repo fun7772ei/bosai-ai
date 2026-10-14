@@ -38,7 +38,10 @@ jobs:
           node scripts/conversation-v2-browser-check.mjs --tag=conversation-v2-dev-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-32.json --tag=conversation-v2-regression32-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-24.json --tag=conversation-v2-regression24-ci
-          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v3-final-12.json --tag=conversation-v3-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v3-final-12.json --tag=conversation-v3-regression-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v4-final-12.json --tag=conversation-v4-regression-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v5-final-8.json --tag=conversation-v5-regression-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v6-final-6.json --tag=conversation-v6-final-ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -49,7 +52,13 @@ jobs:
             test-results/beta-regression-64.json
             test-results/beta-mobile.png
             test-results/beta-ipad-layout.png
+            test-results/conversation-v6-*.json
+            test-results/conversation-v5-*.json
+            test-results/conversation-v4-*.json
             test-results/conversation-v3-*.json
             test-results/conversation-v2-*.json
             test-results/conversation-v2-*-mobile.png
             test-results/conversation-v3-*-mobile.png
+            test-results/conversation-v6-*-mobile.png
+            test-results/conversation-v5-*-mobile.png
+            test-results/conversation-v4-*-mobile.png

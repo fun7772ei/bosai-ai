@@ -1,0 +1,8 @@
+[
+ {"id":"w01","kind":"water-absence-question","turns":[{"text":"大雨のあとですが、道路には水がないのでしょうか。車で通る前に知りたいです。","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]},
+ {"id":"w02","kind":"water-presence-question","turns":[{"text":"道路が水に浸かっていますか。徒歩で避難する情報を知りたいです。","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]},
+ {"id":"w03","kind":"modifier-question","turns":[{"text":"水に浸かった道路ですか？車で行こうか迷っています。","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]},
+ {"id":"w04","kind":"affirmed-water","turns":[{"text":"大雨で道が水につかっています。車で通行することの一般情報を探しています。","kind":"confirm","facts":{"floodedRoad":true,"movement":"drive"},"gold":"bosai-70"}]},
+ {"id":"w05","kind":"negative-assertion","turns":[{"text":"道路には水がない。台風の通過後にトラックで移動する情報を調べたいです。","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-drive","badIds":["bosai-69","bosai-70"]}]},
+ {"id":"w06","kind":"vehicle-correction","turns":[{"text":"冠水した車道を車両で通るときの情報を見たい。","kind":"confirm","facts":{"floodedRoad":true,"movement":"drive"},"gold":"bosai-70"},{"text":"車両ではなく徒歩です。","kind":"confirm","facts":{"floodedRoad":true,"movement":"walk"},"gold":"bosai-69"}]}
+]

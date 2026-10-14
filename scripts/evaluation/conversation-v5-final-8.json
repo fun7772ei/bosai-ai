@@ -1,0 +1,10 @@
+[
+ {"id":"z01","kind":"flood-question","turns":[{"text":"大雨の中で出かけようとしています。道路が浸水しているのでしょうか？車で向かいたいです。","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]},
+ {"id":"z02","kind":"negative-question","turns":[{"text":"道の冠水はないのですか？徒歩で出かける予定です。","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]},
+ {"id":"z03","kind":"contracted-assertion","turns":[{"text":"道は冠水してます。車両で通る際の情報を読みたいです。","kind":"confirm","facts":{"floodedRoad":true,"movement":"drive"},"gold":"bosai-70"}]},
+ {"id":"z04","kind":"rail-carriage","turns":[{"text":"地震で止まった新幹線の車両の中にいます。行動の基本を知りたいです。","kind":"confirm","facts":{"movement":"rail"},"gold":"bosai-56"}]},
+ {"id":"z05","kind":"rail-carriage","turns":[{"text":"電車の車両で大きく揺れたらどうするのが一般的？","kind":"confirm","facts":{"movement":"rail"},"gold":"bosai-56","choose":true},{"text":"もっと詳しく","kind":"source"}]},
+ {"id":"z06","kind":"road-vehicle","turns":[{"text":"冠水した県道をマイカーで走るかどうかの一般情報がほしいです。","kind":"confirm","facts":{"road":true,"floodedRoad":true,"movement":"drive"},"gold":"bosai-70"}]},
+ {"id":"z07","kind":"negative-assertion","turns":[{"text":"道路は冠水してません。徒歩で外出する一般情報はありますか。","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-walk","badIds":["bosai-69","bosai-70"]}]},
+ {"id":"z08","kind":"question-after-assertion","turns":[{"text":"道路は水に浸かっています。トラックで通行する情報を教えて。","kind":"confirm","gold":"bosai-70"},{"text":"その道路は冠水していますか？","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]}
+]

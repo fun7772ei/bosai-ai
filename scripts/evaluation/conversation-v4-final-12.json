@@ -1,0 +1,14 @@
+[
+ {"id":"p01","kind":"nominal-negative","turns":[{"text":"昨夜の大雨のあとですが、道路の冠水はありません。乗用車で移動する際の一般情報を知りたい。","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-drive","badIds":["bosai-69","bosai-70"]}]},
+ {"id":"p02","kind":"contracted-negative","turns":[{"text":"台風の雨ですが、道は冠水してません。歩行の一般情報について調べたいです。","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-walk","badIds":["bosai-69","bosai-70"]}]},
+ {"id":"p03","kind":"unknown-correction","turns":[{"text":"道路が冠水しているかどうか不明です。トラックで進んでよいか迷っています。","kind":"clarify","facts":{"floodedRoad":null},"noPending":true},{"text":"その道路は冠水しているそうです。","kind":"confirm","facts":{"floodedRoad":true,"movement":"drive"},"gold":"bosai-70"}]},
+ {"id":"p04","kind":"soaked-negative","turns":[{"text":"道路は水に浸かっていません。台風の雨の中をマイカーで移動する情報を見たいです。","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-drive","badIds":["bosai-69","bosai-70"]}]},
+ {"id":"p05","kind":"sidewalk","turns":[{"text":"冠水した歩道を徒歩で進むことの危険を知りたいです。","kind":"confirm","facts":{"road":true,"floodedRoad":true},"gold":"bosai-69","badIds":["bosai-70","bosai-84"]}]},
+ {"id":"p06","kind":"carriageway","turns":[{"text":"車道が冠水した場合、マイカーで通ってもよいかの一般情報は？","kind":"confirm","gold":"bosai-70","facts":{"movement":"drive"},"badIds":["bosai-69"]}]},
+ {"id":"p07","kind":"vehicle-name","turns":[{"text":"冠水した幹線道路へ車両で入る際に読む情報を探しています。","kind":"confirm","gold":"bosai-70","facts":{"road":true,"movement":"drive"}}]},
+ {"id":"p08","kind":"soaked-road","turns":[{"text":"水に浸かった国道をトラックで通過することについて教えて。","kind":"confirm","gold":"bosai-70","facts":{"floodedRoad":true,"movement":"drive"}}]},
+ {"id":"p09","kind":"road-name","turns":[{"text":"冠水した私道を歩いて抜けようと思います。注意する情報は？","kind":"confirm","gold":"bosai-69","facts":{"road":true}}]},
+ {"id":"p10","kind":"rail-not-road","turns":[{"text":"路面電車で地震にあったときの一般的な行動を確認したいです。","kind":"confirm","gold":"bosai-56","choose":true},{"text":"出典は？","kind":"source"}]},
+ {"id":"p11","kind":"device-regression","turns":[{"text":"冠水道路を車イスで移動したいのですが、どの注意を見ればいいですか。","kind":"clarify","facts":{"movement":"wheelchair"},"noPending":true,"badIds":["bosai-70"]}]},
+ {"id":"p12","kind":"conflicting-routes","turns":[{"text":"車道は冠水してませんが、歩道は冠水しています。徒歩の場合を調べたいです。","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]}
+]
