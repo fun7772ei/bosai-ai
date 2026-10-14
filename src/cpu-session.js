@@ -1,3 +1,4 @@
+import { selectionPrompt } from './bosai-search.js';
 import { metrics } from './config.js';
 
 export const CPU_LOAD_PARAMS = Object.freeze({
@@ -43,17 +44,27 @@ export class CpuSession {
   }
   async generate(prompt, maxTokens, update) {
     const options = cpuRequest(prompt, maxTokens, { noThinking: this.noThinking });
+    return this.complete(options, update);
+  }
+  async selectSearch(query, candidates, update = () => {}) {
+    const prompt = selectionPrompt(query, candidates);
+    const options = { ...cpuRequest('検索候補の選別', 8, { noThinking: this.noThinking }) };
+    options.messages[1].content = prompt;
+    return this.complete(options, update);
+  }
+  async complete(options, update) {
     if (!this.engine || this.disposed) throw new Error('先にCPUモデルを読み込んでください。');
     if (this.generating) throw new Error('CPU生成は一度に1件です。');
     this.generating = true;
     this.abort = new AbortController();
     const started = performance.now();
-    let text = '', first = null, tokens = 0, tokensKnown = false, stopped = false, finishReason = null;
-    const snapshot = () => ({ text, ...metrics(tokens, started, first, performance.now()), tokensKnown, stopped, finishReason, outputLimitReached: !stopped && finishReason === 'length' });
+    let text = '', first = null, tokens = 0, tokensKnown = false, stopped = false, finishReason = null, promptTokens = null;
+    const snapshot = () => ({ text, ...metrics(tokens, started, first, performance.now()), tokensKnown, promptTokens, stopped, finishReason, outputLimitReached: !stopped && finishReason === 'length' });
     try {
       await this.engine.createChatCompletion({ ...options, abortSignal: this.abort.signal, onData: chunk => {
         if (this.disposed) return;
         for (const choice of chunk.choices || []) if (choice.finish_reason) finishReason = choice.finish_reason;
+        promptTokens = chunk.usage?.prompt_tokens ?? chunk.timings?.prompt_n ?? promptTokens;
         const count = chunk.usage?.completion_tokens ?? chunk.timings?.predicted_n;
         if (Number.isInteger(count)) { tokens = count; tokensKnown = true; }
         const delta = chunk.choices?.[0]?.delta?.content || '';

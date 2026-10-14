@@ -1,3 +1,5 @@
+> 2026-10-14更新メモ：ユーザーの追加指示により、88件の固定コピーと自然言語検索をPhase 1の比較実験として先行実装した。正式なPhase 2統合・RAGへの移行ではない。[実験結果・制約](phase1-search-prototype.md) を参照。以下の段階計画は当初の仕様。
+
 > 2026-10-14 Phase 1比較の追補：ユーザー承認でLFM2.5/GemmaのWebGPU候補に加え、LFM2.5-350M GGUF Q4_K_MのCPU/WASM方式を比較する。必須検証対象はiPad第10世代・iPadOS 26.5・Safari・PWAオフライン。既存のQwen/WebGPU・保存は維持し、仕様本文の辞書/RAG等は実装しない。詳細は [CPU比較結果](phase1-cpu-results.md)。
 
 ## 1. プロジェクト概要

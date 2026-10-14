@@ -116,3 +116,14 @@ test('Qwen CPU keeps Jinja thinking disabled at load and each request without ch
   assert.equal(CPU_LOAD_PARAMS.jinja, undefined);
   await session.dispose();
 });
+
+test('search selection shares the bounded CPU session but keeps user generation limits and cache isolation', async()=>{
+ const fake=engine();let optionsSeen;
+ fake.createChatCompletion=async options=>{optionsSeen=options;options.onData({choices:[{delta:{content:'2'},finish_reason:'stop'}],usage:{prompt_tokens:180,completion_tokens:2}});};
+ const session=new CpuSession(()=>fake,blob.size);await session.load(blob);
+ const candidates=[{entry:{title:'候補1'}},{entry:{title:'候補2'}}];
+ const result=await session.selectSearch('自然な質問',candidates);
+ assert.equal(result.text,'2');assert.equal(result.promptTokens,180);assert.equal(optionsSeen.max_tokens,8);assert.equal(optionsSeen.temperature,0);assert.equal(optionsSeen.cache_prompt,false);assert.equal(optionsSeen.messages.length,2);
+ await assert.rejects(session.generate('x'.repeat(201),32),/200/);
+ await session.generate('通常の入力',32,()=>{});assert.equal(optionsSeen.messages[1].content,'通常の入力');await session.dispose();
+});

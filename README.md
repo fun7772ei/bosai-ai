@@ -1,9 +1,17 @@
 # bosai-ai — Phase 1
 
-端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/GemmaのWebGPU版ではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。CPU版はユーザー提供ログで短時間生成とリセット後の再初期化に成功。ただし回答品質・長時間・PWAオフラインと今回の変更版の実機動作は未確認で、Phase 1成立とは扱わない。辞書未統合のため、このページの回答を防災判断には使わない。
+端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/GemmaのWebGPU版ではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。CPU版はユーザー提供ログで短時間生成とリセット後の再初期化に成功。ただし回答品質・長時間・PWAオフラインと今回の変更版の実機動作は未確認で、Phase 1成立とは扱わない。88件の原文を探す検索実験を追加した。AIの自由生成を防災判断には使わない。検索の正式なPhase 2統合は未実施。
 
 
 CPUはLFM2.5-350Mに加え、Qwen3.5-0.8B日本語SFT v2・Qwen3-0.6B・LFM2-700MのGGUF Q4_K_Mを比較できる。[4モデルの実測比較・暫定順位](docs/phase1-four-cpu-models.md) を参照。既定はLFM350のまま。Qwen系はthinking無効で、追加3候補のiPad動作は未確認。全候補を取得する必要はなく、選択だけではダウンロードしない。
+
+## 自然言語検索の試作
+
+「3. 防災情報を検索（実験）」で質問を入力する。既定の軽量検索はモデル不要。従来キーワード検索と、軽量検索上位3件を読み込み済みのLFM350/700 CPUで選別する実験も選べる。LLMにはタイトルと質問だけを渡し、原文の概要・手順・注意事項・出典を表示する。自由生成で防災情報を補わない。
+
+`fun7772ei/bosai-app` の88件を、ユーザーの今回の依頼に従って固定コピー。元リポジトリに変更・動的同期・実行時アクセスは行わない。JSONはJSへ同梱し、PWAのshellキャッシュ対象となる。元データは [固定スナップショット](docs/source/bosai-app-data.js)、変換は `node scripts/import-bosai-data.mjs --check`。全フィールドを元アプリと同じID/順序で照合するテストがある。
+
+[検索の評価・制約・再現手順](docs/phase1-search-prototype.md) を参照。`scripts/search-cases.mjs` の40問を本番preview上で実際に入力し、`node scripts/search-browser-check.mjs --model=lfm2-cpu` と `--model=lfm2-700m-cpu` で実GGUFを比較する。モデルは `scripts/cpu-comparison-models.mjs` 記載の固定ファイルをGit対象外へ配置する。`--light-only` はGGUF不要。iPad Safariでの今回の検索実験は未確認で、マージ・Pages公開も行わない。
 
 ## 起動
 
@@ -60,7 +68,7 @@ Cloudでの追加修正と検証は [docs/phase1-cloud-review.md](docs/phase1-cl
 
 ## 次の段階
 
-Phase 2: `fun7772ei/bosai-app`の`data.js`にある88項目を、内容・優先度・注意事項・出典を維持して移植。元リポジトリは参照のみ。Phase 1では移植しない。参照時のblob SHA: `881355b4a4b85a1da39515e8578aa5f74bb2644b`。元リポジトリはprivateのため、辞書を公開リポジトリに移す際に公開範囲・利用条件を確認する。
+今回のユーザー指示により、Phase 1の比較実験として88件の固定コピーと検索プロトタイプを先行実装した。正式なPhase 2の機能統合・RAG・自由生成による回答作成は未着手。精度・速度・iPad実機結果を確認してから判断する。元リポジトリは読み取りのみ。
 
 検索、緊急時の確定情報、3〜5件の根拠付きRAGを独立モジュールとして追加する。AIエラー時も辞書検索を維持する。Phase 3で会話UI・IndexedDB履歴、Phase 4で保存管理・PWA更新・容量不足への対応を仕上げる。iPadのPhase 1結果を判断材料にし、AIが動かない場合は軽量検索を中心に進める。
 

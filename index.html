@@ -2,7 +2,7 @@
 <html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#146c5b"><link rel="manifest" href="./manifest.webmanifest"><title>防災AI · Phase 1</title></head>
 <body><main>
 <header><span class="badge">BOSAI AI / PHASE 1</span><h1>端末内AIを、確かめる。</h1><p>4bit端末内推論 / WebGPU と CPU・WASMを比較</p><p id="build"></p></header>
-<aside>動作検証用です。防災辞書は未統合で、生成内容は防災判断に使えません。リアルタイムの災害情報は取得しません。</aside>
+<aside>動作検証用です。検索は防災情報88件の原文を表示します。AIの自由生成は防災判断に使えません。リアルタイムの災害情報は取得しません。</aside>
 <div class="layout"><section><h2>1. モデルの準備</h2><p id="connection"></p><p id="environment">環境を確認中…</p>
 <label for="model">比較モデル</label><select id="model"></select><p id="modelInfo"></p>
 <p>新しい比較は「LFM2.5-350M（CPU/WASM比較）」を選択してください。モデルを変更する前に「実行をリセット」してください。別モデルの保存は残ります。</p>
@@ -19,6 +19,14 @@
 <p>思考モードは無効。質問は外部サーバーに送信しません。</p><pre id="output" aria-live="polite">生成結果がここに表示されます。</pre>
 <dl><div><dt>読み込み時間</dt><dd id="loadTime">—</dd></div><div><dt>初回トークン</dt><dd id="ttft">—</dd></div><div><dt>生成速度</dt><dd id="speed">—</dd></div><div><dt>生成数 / 所要時間</dt><dd id="count">—</dd></div></dl>
 </section></div>
+<section aria-labelledby="searchHeading"><h2 id="searchHeading">3. 防災情報を検索（実験）</h2>
+<p>88件のデータから原文を探します。結果は確定した回答ではありません。自治体・気象庁等の最新情報を優先してください。</p>
+<form id="searchForm"><label for="searchQuery">困っている状況（200文字まで）</label><textarea id="searchQuery" maxlength="200" rows="2" required placeholder="寝てるときに地震が来たらどうすればいい？"></textarea>
+<label for="searchMethod">検索方式</label><select id="searchMethod"><option value="light">軽量検索（モデル不要・既定）</option><option value="keyword">従来のキーワード検索</option><option value="llm">軽量検索＋LFM CPUで候補選別（実験）</option></select>
+<p id="searchModelStatus"></p><p>LLM選別は120文字まで・候補3件のタイトルだけを渡します。選別中も上の「途中停止」「実行をリセット」を使えます。</p>
+<button id="searchSubmit" type="submit">検索する</button></form>
+<p id="searchStatus" role="status">未検索</p><p id="searchMetrics"></p><p id="searchTrace"></p><div id="searchResults" aria-live="polite"></div>
+</section>
 <section><div class="actions"><h2>診断ログ</h2><button id="export" class="secondary">検証結果をJSON保存</button></div><p>ログはこの画面内のみ。保存するJSONには入力と出力も含まれます。</p><pre id="logs"></pre></section>
 <footer>LFMのWebGPU版は入力変更時のクラッシュ報告あり。LFM2.5-350M CPU版はユーザー提供ログで短時間生成成功。追加CPU候補のiPad動作、長時間安定性・PWAオフラインは未確認。<a href="https://github.com/fun7772ei/bosai-ai">開発リポジトリ</a></footer>
 </main><script type="module" src="/src/main.js"></script></body></html>

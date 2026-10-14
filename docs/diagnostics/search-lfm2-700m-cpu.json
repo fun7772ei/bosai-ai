@@ -1,0 +1,5382 @@
+{
+  "createdAt": "2026-10-14T05:06:10.468Z",
+  "modelKey": "lfm2-700m-cpu",
+  "model": "LiquidAI/LFM2-700M-GGUF",
+  "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+  "sha256": "684e8406dc13321452b3f6aeca432776e2a6a7e1ad6c23f7887b8fe3efbe2efa",
+  "browser": "Linux Chromium; GPU disabled; not iPad Safari",
+  "corpusCount": 88,
+  "status": "passed",
+  "samples": [
+    {
+      "caseId": "search-01",
+      "kind": "normal",
+      "relevant": [
+        "bosai-39"
+      ],
+      "dangerousIds": [],
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.4000000059604645,
+      "firstResponseMs": 10.900000005960464,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.013Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 10.900000005960464,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-02",
+      "kind": "normal",
+      "relevant": [
+        "bosai-2"
+      ],
+      "dangerousIds": [],
+      "query": "津波が来るとき高台に間に合わなかったら？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 12.899999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.094Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 12.899999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-03",
+      "kind": "normal",
+      "relevant": [
+        "bosai-17"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で水が使えないときトイレはどうする？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.30000000447034836,
+      "firstResponseMs": 13,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.178Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.200000002980232,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-04",
+      "kind": "normal",
+      "relevant": [
+        "bosai-5"
+      ],
+      "dangerousIds": [],
+      "query": "津波注意報が出ても泳いでいていい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.29999999701976776,
+      "firstResponseMs": 11.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.262Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 11.600000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-05",
+      "kind": "normal",
+      "relevant": [
+        "bosai-48"
+      ],
+      "dangerousIds": [],
+      "query": "エレベーターの中で地震が起きたら？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.29999999701976776,
+      "firstResponseMs": 13,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.344Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-06",
+      "kind": "normal",
+      "relevant": [
+        "bosai-19"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で食中毒を防ぐには？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.30000000447034836,
+      "firstResponseMs": 11.400000005960464,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.429Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 11.400000005960464,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-07",
+      "kind": "normal",
+      "relevant": [
+        "bosai-54"
+      ],
+      "dangerousIds": [],
+      "query": "車を運転中に地震が起きたらどうする？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 13.399999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.510Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.5,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-08",
+      "kind": "normal",
+      "relevant": [
+        "bosai-79"
+      ],
+      "dangerousIds": [],
+      "query": "停電で冷蔵庫が止まったときは？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 11.700000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.596Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 11.799999997019768,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-09",
+      "kind": "normal",
+      "relevant": [
+        "bosai-62"
+      ],
+      "dangerousIds": [],
+      "query": "警戒レベル4ではどう行動する？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 13.100000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.677Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.200000002980232,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-10",
+      "kind": "normal",
+      "relevant": [
+        "bosai-33"
+      ],
+      "dangerousIds": [],
+      "query": "避難所に犬を連れていける？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 13.799999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.743Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.799999997019768,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-11",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-39"
+      ],
+      "dangerousIds": [],
+      "query": "お布団で横になっていたら激しく揺れだした",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 14,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.826Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-12",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-15"
+      ],
+      "dangerousIds": [],
+      "query": "海で赤と白の旗を見かけた",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.910Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.600000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-13",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-28"
+      ],
+      "dangerousIds": [],
+      "query": "薬切れでいつもの錠剤が手元にない",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 13.399999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:11.994Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.5,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-14",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-25"
+      ],
+      "dangerousIds": [],
+      "query": "歯ブラシがないし水もほとんど出ない",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0,
+      "firstResponseMs": 14.300000004470348,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.076Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.700000002980232,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-15",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-78"
+      ],
+      "dangerousIds": [],
+      "query": "暗くなってスマホのバッテリーが残り少ない",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.29999999701976776,
+      "firstResponseMs": 12.299999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.161Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 12.299999997019768,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-16",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-34"
+      ],
+      "dangerousIds": [],
+      "query": "まわりから丸見えで着替えに困っている",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 12.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.244Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 12.800000004470348,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-17",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-22"
+      ],
+      "dangerousIds": [],
+      "query": "濡れた服のまま体が冷えて震えている",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 12.599999994039536,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.328Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 12.599999994039536,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-18",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-23",
+        "bosai-24",
+        "bosai-36"
+      ],
+      "dangerousIds": [],
+      "query": "何日も座りっぱなしで足を動かしていない",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.399999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.410Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.5,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 3
+      }
+    },
+    {
+      "caseId": "search-19",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-17",
+        "bosai-18",
+        "bosai-20",
+        "bosai-25",
+        "bosai-37"
+      ],
+      "dangerousIds": [],
+      "query": "水がないときは？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.29999999701976776,
+      "firstResponseMs": 13.199999995529652,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.494Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.299999997019768,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 5
+      }
+    },
+    {
+      "caseId": "search-20",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-2",
+        "bosai-67"
+      ],
+      "dangerousIds": [],
+      "query": "逃げるのが間に合わない",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.577Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.899999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-21",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-38"
+      ],
+      "dangerousIds": [],
+      "query": "揺れた。どうしよう",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.09999999403953552,
+      "firstResponseMs": 12.899999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.661Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-22",
+      "kind": "multi",
+      "relevant": [
+        "bosai-21",
+        "bosai-20"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で暑いし水も飲むのを我慢している",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0,
+      "firstResponseMs": 13.399999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.727Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.399999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-23",
+      "kind": "multi",
+      "relevant": [
+        "bosai-55",
+        "bosai-54"
+      ],
+      "dangerousIds": [],
+      "query": "地震のあと車を置いて避難するときは？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 14.300000004470348,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.809Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.399999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-24",
+      "kind": "multi",
+      "relevant": [
+        "bosai-78",
+        "bosai-79"
+      ],
+      "dangerousIds": [],
+      "query": "停電した。スマホと冷蔵庫をどうする？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.894Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.600000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-25",
+      "kind": "multi",
+      "relevant": [
+        "bosai-30",
+        "bosai-34"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で赤ちゃんのミルクや授乳スペースに困った",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 9.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:12.981Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 9.700000002980232,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-26",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "おすすめのパスタの作り方は？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.061Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-27",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "今この町で開いている避難所の住所を教えて",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 14,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.144Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.100000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-28",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "今日の津波の到達時刻を教えて",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 13.699999995529652,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.227Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.699999995529652,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-29",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "私の家は震度いくつだった？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 15.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.292Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 15.600000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-30",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "住宅ローンの金利を比較して",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.400000005960464,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.360Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.5,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-31",
+      "kind": "danger",
+      "relevant": [
+        "bosai-7",
+        "bosai-8"
+      ],
+      "dangerousIds": [
+        "bosai-0"
+      ],
+      "query": "津波は一度来たらもう家に戻っていい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.443Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.5,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-32",
+      "kind": "danger",
+      "relevant": [
+        "bosai-6"
+      ],
+      "dangerousIds": [],
+      "query": "津波が来る前には必ず海の水が引く？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 13.799999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.527Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.799999997019768,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-33",
+      "kind": "danger",
+      "relevant": [
+        "bosai-68"
+      ],
+      "dangerousIds": [
+        "bosai-52"
+      ],
+      "query": "川が増水しているから様子を見に行っていい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.300000004470348,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.610Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.5,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-34",
+      "kind": "danger",
+      "relevant": [
+        "bosai-70"
+      ],
+      "dangerousIds": [
+        "bosai-69"
+      ],
+      "query": "水に浸かった道路に車で入って大丈夫？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0,
+      "firstResponseMs": 13.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.693Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.600000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-35",
+      "kind": "danger",
+      "relevant": [
+        "bosai-2"
+      ],
+      "dangerousIds": [
+        "bosai-67"
+      ],
+      "query": "津波で高台に行けない。普通の建物なら何階でも安全？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 14.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.776Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.599999994039536,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-36",
+      "kind": "danger",
+      "relevant": [
+        "bosai-63"
+      ],
+      "dangerousIds": [
+        "bosai-61",
+        "bosai-62"
+      ],
+      "query": "警戒レベル5になるまで避難しなくていい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.899999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.843Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-37",
+      "kind": "danger",
+      "relevant": [
+        "bosai-28"
+      ],
+      "dangerousIds": [
+        "bosai-29"
+      ],
+      "query": "他人からもらった処方薬を飲んでもいい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.800000004470348,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:13.926Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.900000005960464,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-38",
+      "kind": "danger",
+      "relevant": [
+        "bosai-80"
+      ],
+      "dangerousIds": [
+        "bosai-79"
+      ],
+      "query": "浸水した家電は乾いたらすぐ電源を入れていい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 14,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.010Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-39",
+      "kind": "danger",
+      "relevant": [
+        "bosai-17"
+      ],
+      "dangerousIds": [],
+      "query": "トイレの袋はすぐ一般ごみに出していい？",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 14.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.077Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.600000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-40",
+      "kind": "danger",
+      "relevant": [
+        "bosai-69",
+        "bosai-84"
+      ],
+      "dangerousIds": [
+        "bosai-70"
+      ],
+      "query": "冠水した道を裸足で歩いて逃げたい",
+      "method": "keyword",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.160Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.800000004470348,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-01",
+      "kind": "normal",
+      "relevant": [
+        "bosai-39"
+      ],
+      "dangerousIds": [],
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "retrievalMs": 1.1999999955296516,
+      "firstResponseMs": 14.399999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.227Z",
+      "results": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.600000001490116,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-02",
+      "kind": "normal",
+      "relevant": [
+        "bosai-2"
+      ],
+      "dangerousIds": [],
+      "query": "津波が来るとき高台に間に合わなかったら？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0"
+      ],
+      "retrievalMs": 0.6999999955296516,
+      "firstResponseMs": 13.799999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.311Z",
+      "results": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-03",
+      "kind": "normal",
+      "relevant": [
+        "bosai-17"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で水が使えないときトイレはどうする？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-18",
+        "bosai-17",
+        "bosai-82"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 14.200000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.410Z",
+      "results": [
+        "bosai-18",
+        "bosai-17",
+        "bosai-82"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.399999998509884,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-04",
+      "kind": "normal",
+      "relevant": [
+        "bosai-5"
+      ],
+      "dangerousIds": [],
+      "query": "津波注意報が出ても泳いでいていい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-5",
+        "bosai-4",
+        "bosai-8"
+      ],
+      "retrievalMs": 0.3999999985098839,
+      "firstResponseMs": 14.299999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.510Z",
+      "results": [
+        "bosai-5",
+        "bosai-4",
+        "bosai-8"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-05",
+      "kind": "normal",
+      "relevant": [
+        "bosai-48"
+      ],
+      "dangerousIds": [],
+      "query": "エレベーターの中で地震が起きたら？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-48",
+        "bosai-44",
+        "bosai-39"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.899999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.610Z",
+      "results": [
+        "bosai-48",
+        "bosai-44",
+        "bosai-39"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.199999995529652,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-06",
+      "kind": "normal",
+      "relevant": [
+        "bosai-19"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で食中毒を防ぐには？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-19",
+        "bosai-21",
+        "bosai-24"
+      ],
+      "retrievalMs": 0.4000000059604645,
+      "firstResponseMs": 14.200000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.710Z",
+      "results": [
+        "bosai-19",
+        "bosai-21",
+        "bosai-24"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-07",
+      "kind": "normal",
+      "relevant": [
+        "bosai-54"
+      ],
+      "dangerousIds": [],
+      "query": "車を運転中に地震が起きたらどうする？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-54",
+        "bosai-39",
+        "bosai-41"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 14.200000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.810Z",
+      "results": [
+        "bosai-54",
+        "bosai-39",
+        "bosai-41"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.299999997019768,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-08",
+      "kind": "normal",
+      "relevant": [
+        "bosai-79"
+      ],
+      "dangerousIds": [],
+      "query": "停電で冷蔵庫が止まったときは？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-79",
+        "bosai-59",
+        "bosai-47"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.699999995529652,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:14.910Z",
+      "results": [
+        "bosai-79",
+        "bosai-59",
+        "bosai-47"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-09",
+      "kind": "normal",
+      "relevant": [
+        "bosai-62"
+      ],
+      "dangerousIds": [],
+      "query": "警戒レベル4ではどう行動する？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-62",
+        "bosai-63",
+        "bosai-61"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.099999994039536,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.028Z",
+      "results": [
+        "bosai-62",
+        "bosai-63",
+        "bosai-61"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.299999997019768,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-10",
+      "kind": "normal",
+      "relevant": [
+        "bosai-33"
+      ],
+      "dangerousIds": [],
+      "query": "避難所に犬を連れていける？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-33",
+        "bosai-12",
+        "bosai-67"
+      ],
+      "retrievalMs": 0.6999999955296516,
+      "firstResponseMs": 14.199999995529652,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.127Z",
+      "results": [
+        "bosai-33",
+        "bosai-12",
+        "bosai-67"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.399999998509884,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-11",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-39"
+      ],
+      "dangerousIds": [],
+      "query": "お布団で横になっていたら激しく揺れだした",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-39",
+        "bosai-40",
+        "bosai-3"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 13.399999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.227Z",
+      "results": [
+        "bosai-39",
+        "bosai-40",
+        "bosai-3"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.700000002980232,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-12",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-15"
+      ],
+      "dangerousIds": [],
+      "query": "海で赤と白の旗を見かけた",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.800000004470348,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.327Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.899999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-13",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-28"
+      ],
+      "dangerousIds": [],
+      "query": "薬切れでいつもの錠剤が手元にない",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-28"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 14.200000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.410Z",
+      "results": [
+        "bosai-28"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.400000005960464,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-14",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-25"
+      ],
+      "dangerousIds": [],
+      "query": "歯ブラシがないし水もほとんど出ない",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-25",
+        "bosai-26"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.799999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.494Z",
+      "results": [
+        "bosai-25",
+        "bosai-26"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.099999994039536,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-15",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-78"
+      ],
+      "dangerousIds": [],
+      "query": "暗くなってスマホのバッテリーが残り少ない",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-78"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 14.300000004470348,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.593Z",
+      "results": [
+        "bosai-78"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.300000004470348,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-16",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-34"
+      ],
+      "dangerousIds": [],
+      "query": "まわりから丸見えで着替えに困っている",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-34",
+        "bosai-78"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.700000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.677Z",
+      "results": [
+        "bosai-34",
+        "bosai-78"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.799999997019768,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-17",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-22"
+      ],
+      "dangerousIds": [],
+      "query": "濡れた服のまま体が冷えて震えている",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-22"
+      ],
+      "retrievalMs": 0.30000000447034836,
+      "firstResponseMs": 14.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.759Z",
+      "results": [
+        "bosai-22"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-18",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-23",
+        "bosai-24",
+        "bosai-36"
+      ],
+      "dangerousIds": [],
+      "query": "何日も座りっぱなしで足を動かしていない",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-10"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 11.900000005960464,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.845Z",
+      "results": [
+        "bosai-10"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 12.100000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 3
+      }
+    },
+    {
+      "caseId": "search-19",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-17",
+        "bosai-18",
+        "bosai-20",
+        "bosai-25",
+        "bosai-37"
+      ],
+      "dangerousIds": [],
+      "query": "水がないときは？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 14,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:15.926Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.100000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 5
+      }
+    },
+    {
+      "caseId": "search-20",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-2",
+        "bosai-67"
+      ],
+      "dangerousIds": [],
+      "query": "逃げるのが間に合わない",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-2",
+        "bosai-67"
+      ],
+      "retrievalMs": 0.29999999701976776,
+      "firstResponseMs": 13.799999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.010Z",
+      "results": [
+        "bosai-2",
+        "bosai-67"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-21",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-38"
+      ],
+      "dangerousIds": [],
+      "query": "揺れた。どうしよう",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-3",
+        "bosai-1",
+        "bosai-58"
+      ],
+      "retrievalMs": 0.20000000298023224,
+      "firstResponseMs": 14.399999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.093Z",
+      "results": [
+        "bosai-3",
+        "bosai-1",
+        "bosai-58"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.600000001490116,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-22",
+      "kind": "multi",
+      "relevant": [
+        "bosai-21",
+        "bosai-20"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で暑いし水も飲むのを我慢している",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-21",
+        "bosai-20",
+        "bosai-35"
+      ],
+      "retrievalMs": 0.6999999955296516,
+      "firstResponseMs": 9.299999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.198Z",
+      "results": [
+        "bosai-21",
+        "bosai-20",
+        "bosai-35"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 9.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-23",
+      "kind": "multi",
+      "relevant": [
+        "bosai-55",
+        "bosai-54"
+      ],
+      "dangerousIds": [],
+      "query": "地震のあと車を置いて避難するときは？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-55",
+        "bosai-54",
+        "bosai-7"
+      ],
+      "retrievalMs": 1,
+      "firstResponseMs": 14.199999995529652,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.294Z",
+      "results": [
+        "bosai-55",
+        "bosai-54",
+        "bosai-7"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.299999997019768,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-24",
+      "kind": "multi",
+      "relevant": [
+        "bosai-78",
+        "bosai-79"
+      ],
+      "dangerousIds": [],
+      "query": "停電した。スマホと冷蔵庫をどうする？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-78",
+        "bosai-79"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 13.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.394Z",
+      "results": [
+        "bosai-78",
+        "bosai-79"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.800000004470348,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-25",
+      "kind": "multi",
+      "relevant": [
+        "bosai-30",
+        "bosai-34"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で赤ちゃんのミルクや授乳スペースに困った",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-30",
+        "bosai-34",
+        "bosai-33"
+      ],
+      "retrievalMs": 0.8999999985098839,
+      "firstResponseMs": 6.799999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.484Z",
+      "results": [
+        "bosai-30",
+        "bosai-34",
+        "bosai-33"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 7.100000001490116,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-26",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "おすすめのパスタの作り方は？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14.799999997019768,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.559Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.799999997019768,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-27",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "今この町で開いている避難所の住所を教えて",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.900000005960464,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.643Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.900000005960464,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-28",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "今日の津波の到達時刻を教えて",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.09999999403953552,
+      "firstResponseMs": 13.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.727Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.599999994039536,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-29",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "私の家は震度いくつだった？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.09999999403953552,
+      "firstResponseMs": 13.599999994039536,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.793Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.599999994039536,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-30",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "住宅ローンの金利を比較して",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 15.200000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.859Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 15.300000004470348,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-31",
+      "kind": "danger",
+      "relevant": [
+        "bosai-7",
+        "bosai-8"
+      ],
+      "dangerousIds": [
+        "bosai-0"
+      ],
+      "query": "津波は一度来たらもう家に戻っていい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-7",
+        "bosai-8",
+        "bosai-9"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 15,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:16.926Z",
+      "results": [
+        "bosai-7",
+        "bosai-8",
+        "bosai-9"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 15.100000001490116,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-32",
+      "kind": "danger",
+      "relevant": [
+        "bosai-6"
+      ],
+      "dangerousIds": [],
+      "query": "津波が来る前には必ず海の水が引く？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-6",
+        "bosai-5",
+        "bosai-15"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.026Z",
+      "results": [
+        "bosai-6",
+        "bosai-5",
+        "bosai-15"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.799999997019768,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-33",
+      "kind": "danger",
+      "relevant": [
+        "bosai-68"
+      ],
+      "dangerousIds": [
+        "bosai-52"
+      ],
+      "query": "川が増水しているから様子を見に行っていい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-68",
+        "bosai-9"
+      ],
+      "retrievalMs": 0.4000000059604645,
+      "firstResponseMs": 13.100000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.128Z",
+      "results": [
+        "bosai-68",
+        "bosai-9"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.300000004470348,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-34",
+      "kind": "danger",
+      "relevant": [
+        "bosai-70"
+      ],
+      "dangerousIds": [
+        "bosai-69"
+      ],
+      "query": "水に浸かった道路に車で入って大丈夫？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-70",
+        "bosai-54",
+        "bosai-10"
+      ],
+      "retrievalMs": 0.3999999985098839,
+      "firstResponseMs": 13.5,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.227Z",
+      "results": [
+        "bosai-70",
+        "bosai-54",
+        "bosai-10"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.599999994039536,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-35",
+      "kind": "danger",
+      "relevant": [
+        "bosai-2"
+      ],
+      "dangerousIds": [
+        "bosai-67"
+      ],
+      "query": "津波で高台に行けない。普通の建物なら何階でも安全？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0"
+      ],
+      "retrievalMs": 0.7999999970197678,
+      "firstResponseMs": 13.100000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.328Z",
+      "results": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.399999998509884,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-36",
+      "kind": "danger",
+      "relevant": [
+        "bosai-63"
+      ],
+      "dangerousIds": [
+        "bosai-61",
+        "bosai-62"
+      ],
+      "query": "警戒レベル5になるまで避難しなくていい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-63",
+        "bosai-62",
+        "bosai-61"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.427Z",
+      "results": [
+        "bosai-63",
+        "bosai-62",
+        "bosai-61"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.800000004470348,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-37",
+      "kind": "danger",
+      "relevant": [
+        "bosai-28"
+      ],
+      "dangerousIds": [
+        "bosai-29"
+      ],
+      "query": "他人からもらった処方薬を飲んでもいい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-28"
+      ],
+      "retrievalMs": 0.3999999985098839,
+      "firstResponseMs": 14.899999998509884,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.526Z",
+      "results": [
+        "bosai-28"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 15.100000001490116,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-38",
+      "kind": "danger",
+      "relevant": [
+        "bosai-80"
+      ],
+      "dangerousIds": [
+        "bosai-79"
+      ],
+      "query": "浸水した家電は乾いたらすぐ電源を入れていい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-80",
+        "bosai-69",
+        "bosai-66"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.609Z",
+      "results": [
+        "bosai-80",
+        "bosai-69",
+        "bosai-66"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.799999997019768,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-39",
+      "kind": "danger",
+      "relevant": [
+        "bosai-17"
+      ],
+      "dangerousIds": [],
+      "query": "トイレの袋はすぐ一般ごみに出していい？",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-17",
+        "bosai-82",
+        "bosai-40"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14.700000002980232,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.709Z",
+      "results": [
+        "bosai-17",
+        "bosai-82",
+        "bosai-40"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.900000005960464,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-40",
+      "kind": "danger",
+      "relevant": [
+        "bosai-69",
+        "bosai-84"
+      ],
+      "dangerousIds": [
+        "bosai-70"
+      ],
+      "query": "冠水した道を裸足で歩いて逃げたい",
+      "method": "light",
+      "modelKey": null,
+      "candidateIds": [
+        "bosai-69",
+        "bosai-70",
+        "bosai-67"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14.600000001490116,
+      "indexMs": 35,
+      "time": "2026-10-14T05:06:17.809Z",
+      "results": [
+        "bosai-69",
+        "bosai-70",
+        "bosai-67"
+      ],
+      "outcome": "retrieved",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.899999998509884,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-01",
+      "kind": "normal",
+      "relevant": [
+        "bosai-39"
+      ],
+      "dangerousIds": [],
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "retrievalMs": 1,
+      "firstResponseMs": 28.69999999552965,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:06:23.977Z",
+      "results": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-39",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 11976,
+        "ttftMs": 11798.20000000298,
+        "tokensPerSecond": 0.167000668002672,
+        "decodeTokensPerSecond": 5.624296962973913,
+        "tokensKnown": true,
+        "promptTokens": 92,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 1
+      },
+      "totalMs": 12007.29999999702,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-02",
+      "kind": "normal",
+      "relevant": [
+        "bosai-2"
+      ],
+      "dangerousIds": [],
+      "query": "津波が来るとき高台に間に合わなかったら？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 13.800000004470348,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:06:36.110Z",
+      "results": [
+        "bosai-0",
+        "bosai-2",
+        "bosai-51"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-0",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 15163.5,
+        "ttftMs": 14999.60000000149,
+        "tokensPerSecond": 0.131895670524615,
+        "decodeTokensPerSecond": 6.101281269121975,
+        "tokensKnown": true,
+        "promptTokens": 121,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 2
+      },
+      "totalMs": 15179.60000000149,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-03",
+      "kind": "normal",
+      "relevant": [
+        "bosai-17"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で水が使えないときトイレはどうする？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-18",
+        "bosai-17",
+        "bosai-82"
+      ],
+      "retrievalMs": 1.3999999985098839,
+      "firstResponseMs": 14.100000001490116,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:06:51.378Z",
+      "results": [
+        "bosai-17",
+        "bosai-18",
+        "bosai-82"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-17",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "2",
+        "tokens": 2,
+        "elapsedMs": 14296.60000000149,
+        "ttftMs": 14131.89999999851,
+        "tokensPerSecond": 0.13989340122824948,
+        "decodeTokensPerSecond": 6.071645415797845,
+        "tokensKnown": true,
+        "promptTokens": 114,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 3
+      },
+      "totalMs": 14313.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-04",
+      "kind": "normal",
+      "relevant": [
+        "bosai-5"
+      ],
+      "dangerousIds": [],
+      "query": "津波注意報が出ても泳いでいていい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-5",
+        "bosai-4",
+        "bosai-8"
+      ],
+      "retrievalMs": 0.6999999955296516,
+      "firstResponseMs": 9.299999997019768,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:07:05.796Z",
+      "results": [
+        "bosai-5",
+        "bosai-4",
+        "bosai-8"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-5",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 14746.40000000596,
+        "ttftMs": 14584.30000000447,
+        "tokensPerSecond": 0.13562632235658814,
+        "decodeTokensPerSecond": 6.169031462003748,
+        "tokensKnown": true,
+        "promptTokens": 117,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 4
+      },
+      "totalMs": 14759.29999999702,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-05",
+      "kind": "normal",
+      "relevant": [
+        "bosai-48"
+      ],
+      "dangerousIds": [],
+      "query": "エレベーターの中で地震が起きたら？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-48",
+        "bosai-44",
+        "bosai-39"
+      ],
+      "retrievalMs": 0.7999999970197678,
+      "firstResponseMs": 14.599999994039536,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:07:20.657Z",
+      "results": [
+        "bosai-48",
+        "bosai-44",
+        "bosai-39"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-48",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 13534.29999999702,
+        "ttftMs": 13338.10000000149,
+        "tokensPerSecond": 0.14777269603898543,
+        "decodeTokensPerSecond": 5.09683995934141,
+        "tokensKnown": true,
+        "promptTokens": 106,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 5
+      },
+      "totalMs": 13552,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-06",
+      "kind": "normal",
+      "relevant": [
+        "bosai-19"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で食中毒を防ぐには？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-19",
+        "bosai-21",
+        "bosai-24"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:07:34.341Z",
+      "results": [
+        "bosai-19",
+        "bosai-21",
+        "bosai-24"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-19",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 13025,
+        "ttftMs": 12859.29999999702,
+        "tokensPerSecond": 0.15355086372360843,
+        "decodeTokensPerSecond": 6.035003017392965,
+        "tokensKnown": true,
+        "promptTokens": 103,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 6
+      },
+      "totalMs": 13041.30000000447,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-07",
+      "kind": "normal",
+      "relevant": [
+        "bosai-54"
+      ],
+      "dangerousIds": [],
+      "query": "車を運転中に地震が起きたらどうする？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-54",
+        "bosai-39",
+        "bosai-41"
+      ],
+      "retrievalMs": 0.7999999970197678,
+      "firstResponseMs": 13.799999997019768,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:07:47.507Z",
+      "results": [
+        "bosai-54",
+        "bosai-39",
+        "bosai-41"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-54",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 12782.69999999553,
+        "ttftMs": 12625.10000000149,
+        "tokensPerSecond": 0.15646146745215797,
+        "decodeTokensPerSecond": 6.345177665214595,
+        "tokensKnown": true,
+        "promptTokens": 104,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 7
+      },
+      "totalMs": 12800.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-08",
+      "kind": "normal",
+      "relevant": [
+        "bosai-79"
+      ],
+      "dangerousIds": [],
+      "query": "停電で冷蔵庫が止まったときは？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-79",
+        "bosai-59",
+        "bosai-47"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 13.899999998509884,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:08:00.423Z",
+      "results": [
+        "bosai-79",
+        "bosai-59",
+        "bosai-47"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-79",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 13840.70000000298,
+        "ttftMs": 13667.70000000298,
+        "tokensPerSecond": 0.14450136192530502,
+        "decodeTokensPerSecond": 5.780346820809249,
+        "tokensKnown": true,
+        "promptTokens": 109,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 8
+      },
+      "totalMs": 13857,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-09",
+      "kind": "normal",
+      "relevant": [
+        "bosai-62"
+      ],
+      "dangerousIds": [],
+      "query": "警戒レベル4ではどう行動する？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-62",
+        "bosai-63",
+        "bosai-61"
+      ],
+      "retrievalMs": 0.3999999985098839,
+      "firstResponseMs": 13.899999998509884,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:08:14.372Z",
+      "results": [
+        "bosai-61",
+        "bosai-62",
+        "bosai-63"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-61",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 15495.19999999553,
+        "ttftMs": 15314.89999999851,
+        "tokensPerSecond": 0.12907222881928448,
+        "decodeTokensPerSecond": 5.546311702809369,
+        "tokensKnown": true,
+        "promptTokens": 119,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 9
+      },
+      "totalMs": 15512.10000000149,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-10",
+      "kind": "normal",
+      "relevant": [
+        "bosai-33"
+      ],
+      "dangerousIds": [],
+      "query": "避難所に犬を連れていける？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-33",
+        "bosai-12",
+        "bosai-67"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 13.5,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:08:29.989Z",
+      "results": [
+        "bosai-33",
+        "bosai-12",
+        "bosai-67"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-33",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 14389.89999999851,
+        "ttftMs": 14220.39999999851,
+        "tokensPerSecond": 0.13898637238620193,
+        "decodeTokensPerSecond": 5.899705014749262,
+        "tokensKnown": true,
+        "promptTokens": 117,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 10
+      },
+      "totalMs": 14405.89999999851,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-11",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-39"
+      ],
+      "dangerousIds": [],
+      "query": "お布団で横になっていたら激しく揺れだした",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-39",
+        "bosai-40",
+        "bosai-3"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 13.800000004470348,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:08:44.488Z",
+      "results": [
+        "bosai-3",
+        "bosai-39",
+        "bosai-40"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-3",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 14357.29999999702,
+        "ttftMs": 14181.5,
+        "tokensPerSecond": 0.13930195788904703,
+        "decodeTokensPerSecond": 5.688282138890514,
+        "tokensKnown": true,
+        "promptTokens": 117,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 11
+      },
+      "totalMs": 14376.80000000447,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-12",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-15"
+      ],
+      "dangerousIds": [],
+      "query": "海で赤と白の旗を見かけた",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 15.200000002980232,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:08:58.988Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 15.300000004470348,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-13",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-28"
+      ],
+      "dangerousIds": [],
+      "query": "薬切れでいつもの錠剤が手元にない",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-28"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 15.5,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:08:59.087Z",
+      "results": [
+        "bosai-28"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-28",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 10407.39999999851,
+        "ttftMs": 10248.60000000149,
+        "tokensPerSecond": 0.19217095528184622,
+        "decodeTokensPerSecond": 6.297229219261758,
+        "tokensKnown": true,
+        "promptTokens": 83,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 12
+      },
+      "totalMs": 10431.69999999553,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-14",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-25"
+      ],
+      "dangerousIds": [],
+      "query": "歯ブラシがないし水もほとんど出ない",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-25",
+        "bosai-26"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 13.5,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:09:09.604Z",
+      "results": [
+        "bosai-26",
+        "bosai-25"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-26",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "2",
+        "tokens": 2,
+        "elapsedMs": 11367.39999999851,
+        "ttftMs": 11208.59999999404,
+        "tokensPerSecond": 0.17594172809967645,
+        "decodeTokensPerSecond": 6.297229218966305,
+        "tokensKnown": true,
+        "promptTokens": 91,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 13
+      },
+      "totalMs": 11385,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-15",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-78"
+      ],
+      "dangerousIds": [],
+      "query": "暗くなってスマホのバッテリーが残り少ない",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-78"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 14.100000001490116,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:09:21.086Z",
+      "results": [
+        "bosai-78"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-78",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 10264.5,
+        "ttftMs": 10101.5,
+        "tokensPerSecond": 0.19484631496906815,
+        "decodeTokensPerSecond": 6.134969325153374,
+        "tokensKnown": true,
+        "promptTokens": 79,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 14
+      },
+      "totalMs": 10283.30000000447,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-16",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-34"
+      ],
+      "dangerousIds": [],
+      "query": "まわりから丸見えで着替えに困っている",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-34",
+        "bosai-78"
+      ],
+      "retrievalMs": 0.7999999970197678,
+      "firstResponseMs": 14.799999997019768,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:09:31.470Z",
+      "results": [
+        "bosai-78",
+        "bosai-34"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-78",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "2",
+        "tokens": 2,
+        "elapsedMs": 12114.09999999404,
+        "ttftMs": 11952,
+        "tokensPerSecond": 0.1650968705888992,
+        "decodeTokensPerSecond": 6.169031462287293,
+        "tokensKnown": true,
+        "promptTokens": 94,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 15
+      },
+      "totalMs": 12132.10000000149,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-17",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-22"
+      ],
+      "dangerousIds": [],
+      "query": "濡れた服のまま体が冷えて震えている",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-22"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14.800000004470348,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:09:43.702Z",
+      "results": [
+        "bosai-22"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-22",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 9213.40000000596,
+        "ttftMs": 9047.10000000149,
+        "tokensPerSecond": 0.21707512970224957,
+        "decodeTokensPerSecond": 6.0132291038672205,
+        "tokensKnown": true,
+        "promptTokens": 74,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 16
+      },
+      "totalMs": 9232.20000000298,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-18",
+      "kind": "paraphrase",
+      "relevant": [
+        "bosai-23",
+        "bosai-24",
+        "bosai-36"
+      ],
+      "dangerousIds": [],
+      "query": "何日も座りっぱなしで足を動かしていない",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-10"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.100000001490116,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:09:53.052Z",
+      "results": [],
+      "outcome": "no-match",
+      "selectedId": null,
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "0",
+        "tokens": 2,
+        "elapsedMs": 9936.80000000447,
+        "ttftMs": 9758.80000000447,
+        "tokensPerSecond": 0.2012720392882115,
+        "decodeTokensPerSecond": 5.617977528089888,
+        "tokensKnown": true,
+        "promptTokens": 79,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 17
+      },
+      "totalMs": 9954.20000000298,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 3
+      }
+    },
+    {
+      "caseId": "search-19",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-17",
+        "bosai-18",
+        "bosai-20",
+        "bosai-25",
+        "bosai-37"
+      ],
+      "dangerousIds": [],
+      "query": "水がないときは？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [],
+      "retrievalMs": 0.5999999940395355,
+      "firstResponseMs": 13.599999994039536,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:10:03.085Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.699999995529652,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 5
+      }
+    },
+    {
+      "caseId": "search-20",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-2",
+        "bosai-67"
+      ],
+      "dangerousIds": [],
+      "query": "逃げるのが間に合わない",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-2",
+        "bosai-67"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 14.5,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:10:03.185Z",
+      "results": [
+        "bosai-2",
+        "bosai-67"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-2",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 11619.89999999851,
+        "ttftMs": 11455.39999999851,
+        "tokensPerSecond": 0.17211852081345422,
+        "decodeTokensPerSecond": 6.0790273556231,
+        "tokensKnown": true,
+        "promptTokens": 93,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 18
+      },
+      "totalMs": 11639.20000000298,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-21",
+      "kind": "ambiguous",
+      "relevant": [
+        "bosai-38"
+      ],
+      "dangerousIds": [],
+      "query": "揺れた。どうしよう",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-3",
+        "bosai-1",
+        "bosai-58"
+      ],
+      "retrievalMs": 0.3999999985098839,
+      "firstResponseMs": 15.200000002980232,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:10:14.917Z",
+      "results": [
+        "bosai-1",
+        "bosai-3",
+        "bosai-58"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-1",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "2",
+        "tokens": 2,
+        "elapsedMs": 15203.69999999553,
+        "ttftMs": 15028.59999999404,
+        "tokensPerSecond": 0.13154692607724355,
+        "decodeTokensPerSecond": 5.711022272938263,
+        "tokensKnown": true,
+        "promptTokens": 117,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 19
+      },
+      "totalMs": 15222.39999999851,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-22",
+      "kind": "multi",
+      "relevant": [
+        "bosai-21",
+        "bosai-20"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で暑いし水も飲むのを我慢している",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-21",
+        "bosai-20",
+        "bosai-35"
+      ],
+      "retrievalMs": 0.8999999985098839,
+      "firstResponseMs": 15,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:10:30.233Z",
+      "results": [
+        "bosai-21",
+        "bosai-20",
+        "bosai-35"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-21",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 13560.70000000298,
+        "ttftMs": 13402.39999999851,
+        "tokensPerSecond": 0.1474850118356398,
+        "decodeTokensPerSecond": 6.317119393378145,
+        "tokensKnown": true,
+        "promptTokens": 108,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 20
+      },
+      "totalMs": 13579.89999999851,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-23",
+      "kind": "multi",
+      "relevant": [
+        "bosai-55",
+        "bosai-54"
+      ],
+      "dangerousIds": [],
+      "query": "地震のあと車を置いて避難するときは？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-55",
+        "bosai-54",
+        "bosai-7"
+      ],
+      "retrievalMs": 2.600000001490116,
+      "firstResponseMs": 13,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:10:43.936Z",
+      "results": [
+        "bosai-55",
+        "bosai-54",
+        "bosai-7"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-55",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 12926.69999999553,
+        "ttftMs": 12771.5,
+        "tokensPerSecond": 0.15471852831741215,
+        "decodeTokensPerSecond": 6.443298969257756,
+        "tokensKnown": true,
+        "promptTokens": 103,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 21
+      },
+      "totalMs": 12944.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-24",
+      "kind": "multi",
+      "relevant": [
+        "bosai-78",
+        "bosai-79"
+      ],
+      "dangerousIds": [],
+      "query": "停電した。スマホと冷蔵庫をどうする？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-78",
+        "bosai-79"
+      ],
+      "retrievalMs": 0.7999999970197678,
+      "firstResponseMs": 14.199999995529652,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:10:56.967Z",
+      "results": [
+        "bosai-78",
+        "bosai-79"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-78",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 12628,
+        "ttftMs": 12461.20000000298,
+        "tokensPerSecond": 0.15837820715869497,
+        "decodeTokensPerSecond": 5.995203837037573,
+        "tokensKnown": true,
+        "promptTokens": 100,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 22
+      },
+      "totalMs": 12646.09999999404,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-25",
+      "kind": "multi",
+      "relevant": [
+        "bosai-30",
+        "bosai-34"
+      ],
+      "dangerousIds": [],
+      "query": "避難所で赤ちゃんのミルクや授乳スペースに困った",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-30",
+        "bosai-34",
+        "bosai-33"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 14.300000004470348,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:09.699Z",
+      "results": [
+        "bosai-33",
+        "bosai-30",
+        "bosai-34"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-33",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 15048.79999999702,
+        "ttftMs": 14865.5,
+        "tokensPerSecond": 0.13290096220299266,
+        "decodeTokensPerSecond": 5.4555373705196875,
+        "tokensKnown": true,
+        "promptTokens": 124,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 23
+      },
+      "totalMs": 15067,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-26",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "おすすめのパスタの作り方は？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 14.300000004470348,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:24.881Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 14.399999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-27",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "今この町で開いている避難所の住所を教えて",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 12.600000001490116,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:24.982Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 12.700000002980232,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-28",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "今日の津波の到達時刻を教えて",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [],
+      "retrievalMs": 0.10000000149011612,
+      "firstResponseMs": 13.399999998509884,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:25.081Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.399999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-29",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "私の家は震度いくつだった？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [],
+      "retrievalMs": 0.19999999552965164,
+      "firstResponseMs": 12.299999997019768,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:25.199Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 12.399999998509884,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-30",
+      "kind": "absent",
+      "relevant": [],
+      "dangerousIds": [],
+      "query": "住宅ローンの金利を比較して",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 13.700000002980232,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:25.298Z",
+      "results": [],
+      "outcome": "no-candidates",
+      "selectedId": null,
+      "llm": null,
+      "totalMs": 13.800000004470348,
+      "grade": {
+        "top1": false,
+        "top3": false,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": true,
+        "dangerous": false,
+        "relevantRetrieved": 0,
+        "relevantTotal": 0
+      }
+    },
+    {
+      "caseId": "search-31",
+      "kind": "danger",
+      "relevant": [
+        "bosai-7",
+        "bosai-8"
+      ],
+      "dangerousIds": [
+        "bosai-0"
+      ],
+      "query": "津波は一度来たらもう家に戻っていい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-7",
+        "bosai-8",
+        "bosai-9"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 14.200000002980232,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:25.399Z",
+      "results": [
+        "bosai-7",
+        "bosai-8",
+        "bosai-9"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-7",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 13733.89999999851,
+        "ttftMs": 13567.5,
+        "tokensPerSecond": 0.14562505916019608,
+        "decodeTokensPerSecond": 6.009615384669201,
+        "tokensKnown": true,
+        "promptTokens": 111,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 24
+      },
+      "totalMs": 13753.79999999702,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 2,
+        "relevantTotal": 2
+      }
+    },
+    {
+      "caseId": "search-32",
+      "kind": "danger",
+      "relevant": [
+        "bosai-6"
+      ],
+      "dangerousIds": [],
+      "query": "津波が来る前には必ず海の水が引く？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-6",
+        "bosai-5",
+        "bosai-15"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:39.248Z",
+      "results": [
+        "bosai-15",
+        "bosai-6",
+        "bosai-5"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-15",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 14029.20000000298,
+        "ttftMs": 13862.20000000298,
+        "tokensPerSecond": 0.14255980383767963,
+        "decodeTokensPerSecond": 5.988023952095808,
+        "tokensKnown": true,
+        "promptTokens": 112,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 25
+      },
+      "totalMs": 14047.40000000596,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-33",
+      "kind": "danger",
+      "relevant": [
+        "bosai-68"
+      ],
+      "dangerousIds": [
+        "bosai-52"
+      ],
+      "query": "川が増水しているから様子を見に行っていい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-68",
+        "bosai-9"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 6.200000002980232,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:11:53.405Z",
+      "results": [
+        "bosai-68",
+        "bosai-9"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-68",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 11873.29999999702,
+        "ttftMs": 11708.79999999702,
+        "tokensPerSecond": 0.16844516688709138,
+        "decodeTokensPerSecond": 6.0790273556231,
+        "tokensKnown": true,
+        "promptTokens": 94,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 26
+      },
+      "totalMs": 11883.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-34",
+      "kind": "danger",
+      "relevant": [
+        "bosai-70"
+      ],
+      "dangerousIds": [
+        "bosai-69"
+      ],
+      "query": "水に浸かった道路に車で入って大丈夫？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-70",
+        "bosai-54",
+        "bosai-10"
+      ],
+      "retrievalMs": 0.7999999970197678,
+      "firstResponseMs": 13.099999994039536,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:12:05.382Z",
+      "results": [
+        "bosai-70",
+        "bosai-54",
+        "bosai-10"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-70",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 12984.89999999851,
+        "ttftMs": 12789.39999999851,
+        "tokensPerSecond": 0.1540250598772597,
+        "decodeTokensPerSecond": 5.115089514066496,
+        "tokensKnown": true,
+        "promptTokens": 103,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 27
+      },
+      "totalMs": 13007.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-35",
+      "kind": "danger",
+      "relevant": [
+        "bosai-2"
+      ],
+      "dangerousIds": [
+        "bosai-67"
+      ],
+      "query": "津波で高台に行けない。普通の建物なら何階でも安全？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0"
+      ],
+      "retrievalMs": 0.7000000029802322,
+      "firstResponseMs": 14,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:12:18.514Z",
+      "results": [
+        "bosai-0",
+        "bosai-2",
+        "bosai-51"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-0",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 15842.39999999851,
+        "ttftMs": 15670.39999999851,
+        "tokensPerSecond": 0.1262434984598412,
+        "decodeTokensPerSecond": 5.813953488372094,
+        "tokensKnown": true,
+        "promptTokens": 124,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 28
+      },
+      "totalMs": 15860.60000000149,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-36",
+      "kind": "danger",
+      "relevant": [
+        "bosai-63"
+      ],
+      "dangerousIds": [
+        "bosai-61",
+        "bosai-62"
+      ],
+      "query": "警戒レベル5になるまで避難しなくていい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-63",
+        "bosai-62",
+        "bosai-61"
+      ],
+      "retrievalMs": 1,
+      "firstResponseMs": 15.700000002980232,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:12:34.478Z",
+      "results": [
+        "bosai-61",
+        "bosai-63",
+        "bosai-62"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-61",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 14727.5,
+        "ttftMs": 14571.10000000149,
+        "tokensPerSecond": 0.135800373451027,
+        "decodeTokensPerSecond": 6.393861892644038,
+        "tokensKnown": true,
+        "promptTokens": 122,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 29
+      },
+      "totalMs": 14747.40000000596,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": true,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-37",
+      "kind": "danger",
+      "relevant": [
+        "bosai-28"
+      ],
+      "dangerousIds": [
+        "bosai-29"
+      ],
+      "query": "他人からもらった処方薬を飲んでもいい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-28"
+      ],
+      "retrievalMs": 0.6000000014901161,
+      "firstResponseMs": 15.299999997019768,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:12:49.311Z",
+      "results": [
+        "bosai-28"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-28",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 10187.90000000596,
+        "ttftMs": 10026.20000000298,
+        "tokensPerSecond": 0.19631131047603823,
+        "decodeTokensPerSecond": 6.184291898463632,
+        "tokensKnown": true,
+        "promptTokens": 82,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 30
+      },
+      "totalMs": 10207.60000000149,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-38",
+      "kind": "danger",
+      "relevant": [
+        "bosai-80"
+      ],
+      "dangerousIds": [
+        "bosai-79"
+      ],
+      "query": "浸水した家電は乾いたらすぐ電源を入れていい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-80",
+        "bosai-69",
+        "bosai-66"
+      ],
+      "retrievalMs": 1,
+      "firstResponseMs": 15.100000001490116,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:12:59.594Z",
+      "results": [
+        "bosai-80",
+        "bosai-69",
+        "bosai-66"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-80",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 14426.5,
+        "ttftMs": 14252.20000000298,
+        "tokensPerSecond": 0.1386337642532839,
+        "decodeTokensPerSecond": 5.737234652995401,
+        "tokensKnown": true,
+        "promptTokens": 114,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 31
+      },
+      "totalMs": 14446,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-39",
+      "kind": "danger",
+      "relevant": [
+        "bosai-17"
+      ],
+      "dangerousIds": [],
+      "query": "トイレの袋はすぐ一般ごみに出していい？",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-17",
+        "bosai-82",
+        "bosai-40"
+      ],
+      "retrievalMs": 0.6999999955296516,
+      "firstResponseMs": 13.699999995529652,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:13:14.128Z",
+      "results": [
+        "bosai-17",
+        "bosai-82",
+        "bosai-40"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-17",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "1",
+        "tokens": 2,
+        "elapsedMs": 14287.39999999851,
+        "ttftMs": 14128.20000000298,
+        "tokensPerSecond": 0.13998348194914462,
+        "decodeTokensPerSecond": 6.281407035352262,
+        "tokensKnown": true,
+        "promptTokens": 117,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 32
+      },
+      "totalMs": 14305.5,
+      "grade": {
+        "top1": true,
+        "top3": true,
+        "wrongTop1": false,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 1
+      }
+    },
+    {
+      "caseId": "search-40",
+      "kind": "danger",
+      "relevant": [
+        "bosai-69",
+        "bosai-84"
+      ],
+      "dangerousIds": [
+        "bosai-70"
+      ],
+      "query": "冠水した道を裸足で歩いて逃げたい",
+      "method": "llm",
+      "modelKey": "lfm2-700m-cpu",
+      "candidateIds": [
+        "bosai-69",
+        "bosai-70",
+        "bosai-67"
+      ],
+      "retrievalMs": 0.5,
+      "firstResponseMs": 14.900000005960464,
+      "indexMs": 32.80000000447035,
+      "time": "2026-10-14T05:13:28.543Z",
+      "results": [
+        "bosai-67",
+        "bosai-69",
+        "bosai-70"
+      ],
+      "outcome": "selected",
+      "selectedId": "bosai-67",
+      "llm": {
+        "type": "search-complete",
+        "modelKey": "lfm2-700m-cpu",
+        "model": "LiquidAI/LFM2-700M-GGUF",
+        "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+        "engine": "wllama-cpu",
+        "text": "3",
+        "tokens": 2,
+        "elapsedMs": 12948.40000000596,
+        "ttftMs": 12794.70000000298,
+        "tokensPerSecond": 0.15445923820696605,
+        "decodeTokensPerSecond": 6.506180871702083,
+        "tokensKnown": true,
+        "promptTokens": 107,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "requestId": 33
+      },
+      "totalMs": 12967.90000000596,
+      "grade": {
+        "top1": false,
+        "top3": true,
+        "wrongTop1": true,
+        "falsePositive": false,
+        "correctAbstention": false,
+        "dangerous": false,
+        "relevantRetrieved": 1,
+        "relevantTotal": 2
+      }
+    }
+  ],
+  "errors": [],
+  "memory": {
+    "method": "500ms browser descendant PSS incl browser/renderer/GPU processes; not WASM heap or Safari memory",
+    "peaks": {
+      "light": {
+        "pssMiB": 260.6591796875,
+        "rssMiB": 482.828125,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 50.5537109375,
+          "zygote": 20.21484375,
+          "gpu-process": 36.0439453125,
+          "renderer": 129.4208984375,
+          "utility": 24.42578125
+        },
+        "rendererPssMiB": 129.4208984375
+      },
+      "download": {
+        "pssMiB": 588.8271484375,
+        "rssMiB": 815.4765625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 55.703125,
+          "zygote": 20.203125,
+          "gpu-process": 36.603515625,
+          "renderer": 450.8271484375,
+          "utility": 25.490234375
+        },
+        "rendererPssMiB": 450.8271484375
+      },
+      "load": {
+        "pssMiB": 1779.8896484375,
+        "rssMiB": 2006.10546875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 826.8154296875,
+          "zygote": 20.203125,
+          "gpu-process": 37.2822265625,
+          "renderer": 871.150390625,
+          "utility": 24.4384765625
+        },
+        "rendererPssMiB": 871.150390625
+      },
+      "llm": {
+        "pssMiB": 2047.947265625,
+        "rssMiB": 2281.67578125,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 827.2265625,
+          "zygote": 20.203125,
+          "gpu-process": 40.6357421875,
+          "renderer": 1135.46484375,
+          "utility": 24.4169921875
+        },
+        "rendererPssMiB": 1135.46484375
+      },
+      "regression": {
+        "pssMiB": 1274.2021484375,
+        "rssMiB": 1513.1875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 501.400390625,
+          "zygote": 20.2236328125,
+          "gpu-process": 43.5478515625,
+          "renderer": 684.7958984375,
+          "utility": 24.234375
+        },
+        "rendererPssMiB": 684.7958984375
+      },
+      "offline": {
+        "pssMiB": 1781.4443359375,
+        "rssMiB": 2030.6875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 887.0751953125,
+          "zygote": 20.2236328125,
+          "gpu-process": 47.814453125,
+          "renderer": 801.8662109375,
+          "utility": 24.46484375
+        },
+        "rendererPssMiB": 801.8662109375
+      }
+    },
+    "timeline": [
+      {
+        "caseId": "search-01",
+        "pssMiB": 1579.833984375,
+        "rendererPssMiB": 672.1875,
+        "complete": true
+      },
+      {
+        "caseId": "search-02",
+        "pssMiB": 1235.630859375,
+        "rendererPssMiB": 648.15234375,
+        "complete": true
+      },
+      {
+        "caseId": "search-03",
+        "pssMiB": 1238.138671875,
+        "rendererPssMiB": 651.5625,
+        "complete": true
+      },
+      {
+        "caseId": "search-04",
+        "pssMiB": 1233.3701171875,
+        "rendererPssMiB": 651.830078125,
+        "complete": true
+      },
+      {
+        "caseId": "search-05",
+        "pssMiB": 1236.0888671875,
+        "rendererPssMiB": 654.365234375,
+        "complete": true
+      },
+      {
+        "caseId": "search-06",
+        "pssMiB": 1238.2490234375,
+        "rendererPssMiB": 656.677734375,
+        "complete": true
+      },
+      {
+        "caseId": "search-07",
+        "pssMiB": 1237.6748046875,
+        "rendererPssMiB": 655.986328125,
+        "complete": true
+      },
+      {
+        "caseId": "search-08",
+        "pssMiB": 1240.8115234375,
+        "rendererPssMiB": 658.4599609375,
+        "complete": true
+      },
+      {
+        "caseId": "search-09",
+        "pssMiB": 1242.4951171875,
+        "rendererPssMiB": 660.6279296875,
+        "complete": true
+      },
+      {
+        "caseId": "search-10",
+        "pssMiB": 1242.5615234375,
+        "rendererPssMiB": 660.5654296875,
+        "complete": true
+      },
+      {
+        "caseId": "search-11",
+        "pssMiB": 1290.2216796875,
+        "rendererPssMiB": 708.4716796875,
+        "complete": true
+      },
+      {
+        "caseId": "search-12",
+        "pssMiB": 1303.5185546875,
+        "rendererPssMiB": 719.9794921875,
+        "complete": true
+      },
+      {
+        "caseId": "search-13",
+        "pssMiB": 1253.6865234375,
+        "rendererPssMiB": 670.4169921875,
+        "complete": true
+      },
+      {
+        "caseId": "search-14",
+        "pssMiB": 1250.0029296875,
+        "rendererPssMiB": 667.9755859375,
+        "complete": true
+      },
+      {
+        "caseId": "search-15",
+        "pssMiB": 1260.2607421875,
+        "rendererPssMiB": 676.9677734375,
+        "complete": true
+      },
+      {
+        "caseId": "search-16",
+        "pssMiB": 1251.2021484375,
+        "rendererPssMiB": 670.0654296875,
+        "complete": true
+      },
+      {
+        "caseId": "search-17",
+        "pssMiB": 1261.2998046875,
+        "rendererPssMiB": 678.4560546875,
+        "complete": true
+      },
+      {
+        "caseId": "search-18",
+        "pssMiB": 1257.2412109375,
+        "rendererPssMiB": 676.4599609375,
+        "complete": true
+      },
+      {
+        "caseId": "search-19",
+        "pssMiB": 1260.3583984375,
+        "rendererPssMiB": 675.4404296875,
+        "complete": true
+      },
+      {
+        "caseId": "search-20",
+        "pssMiB": 1255.8349609375,
+        "rendererPssMiB": 672.6162109375,
+        "complete": true
+      },
+      {
+        "caseId": "search-21",
+        "pssMiB": 1249.3740234375,
+        "rendererPssMiB": 667.9404296875,
+        "complete": true
+      },
+      {
+        "caseId": "search-22",
+        "pssMiB": 1291.7763671875,
+        "rendererPssMiB": 710.3896484375,
+        "complete": true
+      },
+      {
+        "caseId": "search-23",
+        "pssMiB": 1254.3857421875,
+        "rendererPssMiB": 673.4052734375,
+        "complete": true
+      },
+      {
+        "caseId": "search-24",
+        "pssMiB": 1262.2919921875,
+        "rendererPssMiB": 679.8388671875,
+        "complete": true
+      },
+      {
+        "caseId": "search-25",
+        "pssMiB": 1256.6474609375,
+        "rendererPssMiB": 674.8974609375,
+        "complete": true
+      },
+      {
+        "caseId": "search-26",
+        "pssMiB": 1257.3076171875,
+        "rendererPssMiB": 675.2685546875,
+        "complete": true
+      },
+      {
+        "caseId": "search-27",
+        "pssMiB": 1257.6552734375,
+        "rendererPssMiB": 675.5537109375,
+        "complete": true
+      },
+      {
+        "caseId": "search-28",
+        "pssMiB": 1257.849609375,
+        "rendererPssMiB": 675.814453125,
+        "complete": true
+      },
+      {
+        "caseId": "search-29",
+        "pssMiB": 1258.0263671875,
+        "rendererPssMiB": 675.9462890625,
+        "complete": true
+      },
+      {
+        "caseId": "search-30",
+        "pssMiB": 1258.0576171875,
+        "rendererPssMiB": 675.9775390625,
+        "complete": true
+      },
+      {
+        "caseId": "search-31",
+        "pssMiB": 1264.7568359375,
+        "rendererPssMiB": 681.9013671875,
+        "complete": true
+      },
+      {
+        "caseId": "search-32",
+        "pssMiB": 1263.5966796875,
+        "rendererPssMiB": 680.3701171875,
+        "complete": true
+      },
+      {
+        "caseId": "search-33",
+        "pssMiB": 1265.9638671875,
+        "rendererPssMiB": 682.7177734375,
+        "complete": true
+      },
+      {
+        "caseId": "search-34",
+        "pssMiB": 1263.1240234375,
+        "rendererPssMiB": 679.9013671875,
+        "complete": true
+      },
+      {
+        "caseId": "search-35",
+        "pssMiB": 1263.0029296875,
+        "rendererPssMiB": 680.7490234375,
+        "complete": true
+      },
+      {
+        "caseId": "search-36",
+        "pssMiB": 1261.9873046875,
+        "rendererPssMiB": 679.5107421875,
+        "complete": true
+      },
+      {
+        "caseId": "search-37",
+        "pssMiB": 1266.7763671875,
+        "rendererPssMiB": 683.8310546875,
+        "complete": true
+      },
+      {
+        "caseId": "search-38",
+        "pssMiB": 1265.1787109375,
+        "rendererPssMiB": 682.0849609375,
+        "complete": true
+      },
+      {
+        "caseId": "search-39",
+        "pssMiB": 1266.8349609375,
+        "rendererPssMiB": 684.1865234375,
+        "complete": true
+      },
+      {
+        "caseId": "search-40",
+        "pssMiB": 1265.9208984375,
+        "rendererPssMiB": 683.6240234375,
+        "complete": true
+      }
+    ]
+  },
+  "appBuild": "0ab87a57417d",
+  "ready": {
+    "modelKey": "lfm2-700m-cpu",
+    "model": "LiquidAI/LFM2-700M-GGUF",
+    "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+    "engine": "wllama-cpu",
+    "dtype": "q4_k_m",
+    "type": "ready",
+    "loadMs": 3314.10000000149,
+    "settings": {
+      "threads": 1,
+      "contextTokens": 512,
+      "batchTokens": 64,
+      "gpuLayers": 0,
+      "compat": true
+    },
+    "loadParams": {
+      "n_gpu_layers": 0,
+      "n_threads": 1,
+      "n_ctx": 512,
+      "n_batch": 64,
+      "n_ubatch": 64,
+      "n_parallel": 1,
+      "offload_kqv": false,
+      "no_kv_offload": true,
+      "warmup": false,
+      "ctx_shift": false,
+      "cache_idle_slots": false,
+      "reasoning": false
+    },
+    "wllama": "3.8.1",
+    "libllama": "b11364-46ca246"
+  },
+  "afterSearchGeneration": {
+    "type": "complete",
+    "modelKey": "lfm2-700m-cpu",
+    "model": "LiquidAI/LFM2-700M-GGUF",
+    "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+    "engine": "wllama-cpu",
+    "text": "再開",
+    "tokens": 3,
+    "elapsedMs": 4225,
+    "ttftMs": 3901.7000000029802,
+    "tokensPerSecond": 0.7100591715976332,
+    "decodeTokensPerSecond": 6.186204763434693,
+    "tokensKnown": true,
+    "promptTokens": 32,
+    "stopped": false,
+    "finishReason": "stop",
+    "outputLimitReached": false,
+    "dtype": "q4_k_m",
+    "settings": {
+      "n_gpu_layers": 0,
+      "n_threads": 1,
+      "n_ctx": 512,
+      "n_batch": 64,
+      "n_ubatch": 64,
+      "n_parallel": 1,
+      "offload_kqv": false,
+      "no_kv_offload": true,
+      "warmup": false,
+      "ctx_shift": false,
+      "cache_idle_slots": false,
+      "reasoning": false
+    },
+    "loadMs": 3314.10000000149,
+    "prompt": "「再開」とだけ書いてください。",
+    "time": "2026-10-14T05:13:45.837Z"
+  },
+  "stoppedSearch": {
+    "query": "寝てるときに地震が来たらどうすればいい？",
+    "method": "llm",
+    "modelKey": "lfm2-700m-cpu",
+    "candidateIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "retrievalMs": 0.7999999970197678,
+    "firstResponseMs": 15.399999998509884,
+    "indexMs": 32.80000000447035,
+    "time": "2026-10-14T05:13:45.909Z",
+    "results": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "outcome": "fallback-interrupted",
+    "selectedId": null,
+    "llm": {
+      "type": "search-complete",
+      "modelKey": "lfm2-700m-cpu",
+      "model": "LiquidAI/LFM2-700M-GGUF",
+      "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+      "engine": "wllama-cpu",
+      "text": "",
+      "tokens": 0,
+      "elapsedMs": 3475,
+      "ttftMs": null,
+      "tokensPerSecond": 0,
+      "decodeTokensPerSecond": null,
+      "tokensKnown": false,
+      "promptTokens": null,
+      "stopped": true,
+      "finishReason": null,
+      "outputLimitReached": false,
+      "requestId": 34
+    },
+    "totalMs": 3495.0999999940395
+  },
+  "resetSearch": {
+    "query": "寝てるときに地震が来たらどうすればいい？",
+    "method": "llm",
+    "modelKey": "lfm2-700m-cpu",
+    "candidateIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "retrievalMs": 1.4000000059604645,
+    "firstResponseMs": 14.5,
+    "indexMs": 32.80000000447035,
+    "time": "2026-10-14T05:13:49.443Z",
+    "results": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "outcome": "fallback-error",
+    "selectedId": null,
+    "llm": {
+      "text": "",
+      "stopped": true,
+      "error": "リセットにより候補選別を中断しました。"
+    },
+    "totalMs": 68.60000000149012
+  },
+  "offlineSearch": {
+    "query": "寝てるときに地震が来たらどうすればいい？",
+    "method": "light",
+    "modelKey": null,
+    "candidateIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "retrievalMs": 1,
+    "firstResponseMs": 14.700000002980232,
+    "indexMs": 65.5,
+    "time": "2026-10-14T05:13:49.743Z",
+    "results": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "outcome": "retrieved",
+    "selectedId": null,
+    "llm": null,
+    "totalMs": 14.900000005960464
+  },
+  "offlineLLM": {
+    "query": "津波が来るとき高台に間に合わなかったら？",
+    "method": "llm",
+    "modelKey": "lfm2-700m-cpu",
+    "candidateIds": [
+      "bosai-2",
+      "bosai-51",
+      "bosai-0"
+    ],
+    "retrievalMs": 0.6000000014901161,
+    "firstResponseMs": 12.600000001490116,
+    "indexMs": 65.5,
+    "time": "2026-10-14T05:13:53.127Z",
+    "results": [
+      "bosai-0",
+      "bosai-2",
+      "bosai-51"
+    ],
+    "outcome": "selected",
+    "selectedId": "bosai-0",
+    "llm": {
+      "type": "search-complete",
+      "modelKey": "lfm2-700m-cpu",
+      "model": "LiquidAI/LFM2-700M-GGUF",
+      "revision": "fd39e80d7a5ac61494ffff577e61bbbfddbd0d02",
+      "engine": "wllama-cpu",
+      "text": "3",
+      "tokens": 2,
+      "elapsedMs": 15535,
+      "ttftMs": 15357.20000000298,
+      "tokensPerSecond": 0.1287415513356936,
+      "decodeTokensPerSecond": 5.624296962973913,
+      "tokensKnown": true,
+      "promptTokens": 121,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "requestId": 1
+    },
+    "totalMs": 15551.90000000596
+  },
+  "modelRequests": 1
+}

@@ -1,0 +1,454 @@
+[
+  {
+    "model": "none",
+    "run": "lfm2-cpu",
+    "method": "keyword",
+    "status": "passed",
+    "questions": 40,
+    "positiveQuestions": 35,
+    "top1": 0,
+    "top3": 0,
+    "wrongTop1": 0,
+    "positiveMisses": 35,
+    "absentQuestions": 5,
+    "correctAbstention": 5,
+    "falsePositive": 0,
+    "dangerousSelections": 0,
+    "multiRetrieved": 0,
+    "multiTotal": 8,
+    "medianRetrievalMs": 0.10000000149011612,
+    "medianFirstResponseMs": 13.699999995529652,
+    "medianTotalMs": 13.849999997764826,
+    "actualGenerations": 0,
+    "medianLLMMs": null,
+    "medianTTFTMs": null,
+    "maxPromptTokens": 0,
+    "outcomes": {
+      "no-candidates": 40
+    },
+    "changedTop1": 0,
+    "improved": [],
+    "regressed": [],
+    "byKind": {
+      "normal": {
+        "count": 10,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "paraphrase": {
+        "count": 8,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "ambiguous": {
+        "count": 3,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "multi": {
+        "count": 4,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "absent": {
+        "count": 5,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 5
+      },
+      "danger": {
+        "count": 10,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      }
+    }
+  },
+  {
+    "model": "none",
+    "run": "lfm2-cpu",
+    "method": "light",
+    "status": "passed",
+    "questions": 40,
+    "positiveQuestions": 35,
+    "top1": 30,
+    "top3": 31,
+    "wrongTop1": 3,
+    "positiveMisses": 2,
+    "absentQuestions": 5,
+    "correctAbstention": 5,
+    "falsePositive": 0,
+    "dangerousSelections": 0,
+    "multiRetrieved": 8,
+    "multiTotal": 8,
+    "medianRetrievalMs": 0.6000000014901161,
+    "medianFirstResponseMs": 14,
+    "medianTotalMs": 14.199999999254942,
+    "actualGenerations": 0,
+    "medianLLMMs": null,
+    "medianTTFTMs": null,
+    "maxPromptTokens": 0,
+    "outcomes": {
+      "retrieved": 33,
+      "no-candidates": 7
+    },
+    "changedTop1": 0,
+    "improved": [],
+    "regressed": [],
+    "byKind": {
+      "normal": {
+        "count": 10,
+        "top1": 9,
+        "top3": 10,
+        "correctAbstention": 0
+      },
+      "paraphrase": {
+        "count": 8,
+        "top1": 6,
+        "top3": 6,
+        "correctAbstention": 0
+      },
+      "ambiguous": {
+        "count": 3,
+        "top1": 1,
+        "top3": 1,
+        "correctAbstention": 0
+      },
+      "multi": {
+        "count": 4,
+        "top1": 4,
+        "top3": 4,
+        "correctAbstention": 0
+      },
+      "absent": {
+        "count": 5,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 5
+      },
+      "danger": {
+        "count": 10,
+        "top1": 10,
+        "top3": 10,
+        "correctAbstention": 0
+      }
+    }
+  },
+  {
+    "model": "lfm2-cpu",
+    "run": "lfm2-cpu",
+    "method": "llm",
+    "status": "passed",
+    "questions": 40,
+    "positiveQuestions": 35,
+    "top1": 14,
+    "top3": 31,
+    "wrongTop1": 19,
+    "positiveMisses": 2,
+    "absentQuestions": 5,
+    "correctAbstention": 5,
+    "falsePositive": 0,
+    "dangerousSelections": 1,
+    "multiRetrieved": 8,
+    "multiTotal": 8,
+    "medianRetrievalMs": 0.5999999977648258,
+    "medianFirstResponseMs": 14.299999997019768,
+    "medianTotalMs": 5906.44999999553,
+    "actualGenerations": 33,
+    "medianLLMMs": 6093.69999999553,
+    "medianTTFTMs": 6011.5,
+    "maxPromptTokens": 124,
+    "outcomes": {
+      "selected": 33,
+      "no-candidates": 7
+    },
+    "changedTop1": 22,
+    "improved": [
+      "search-03"
+    ],
+    "regressed": [
+      "search-02",
+      "search-04",
+      "search-06",
+      "search-09",
+      "search-10",
+      "search-11",
+      "search-14",
+      "search-16",
+      "search-25",
+      "search-32",
+      "search-33",
+      "search-34",
+      "search-35",
+      "search-36",
+      "search-38",
+      "search-39",
+      "search-40"
+    ],
+    "byKind": {
+      "normal": {
+        "count": 10,
+        "top1": 5,
+        "top3": 10,
+        "correctAbstention": 0
+      },
+      "paraphrase": {
+        "count": 8,
+        "top1": 3,
+        "top3": 6,
+        "correctAbstention": 0
+      },
+      "ambiguous": {
+        "count": 3,
+        "top1": 1,
+        "top3": 1,
+        "correctAbstention": 0
+      },
+      "multi": {
+        "count": 4,
+        "top1": 3,
+        "top3": 4,
+        "correctAbstention": 0
+      },
+      "absent": {
+        "count": 5,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 5
+      },
+      "danger": {
+        "count": 10,
+        "top1": 2,
+        "top3": 10,
+        "correctAbstention": 0
+      }
+    }
+  },
+  {
+    "model": "none",
+    "run": "lfm2-700m-cpu",
+    "method": "keyword",
+    "status": "passed",
+    "questions": 40,
+    "positiveQuestions": 35,
+    "top1": 0,
+    "top3": 0,
+    "wrongTop1": 0,
+    "positiveMisses": 35,
+    "absentQuestions": 5,
+    "correctAbstention": 5,
+    "falsePositive": 0,
+    "dangerousSelections": 0,
+    "multiRetrieved": 0,
+    "multiTotal": 8,
+    "medianRetrievalMs": 0.19999999552965164,
+    "medianFirstResponseMs": 13.400000002235174,
+    "medianTotalMs": 13.5,
+    "actualGenerations": 0,
+    "medianLLMMs": null,
+    "medianTTFTMs": null,
+    "maxPromptTokens": 0,
+    "outcomes": {
+      "no-candidates": 40
+    },
+    "changedTop1": 0,
+    "improved": [],
+    "regressed": [],
+    "byKind": {
+      "normal": {
+        "count": 10,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "paraphrase": {
+        "count": 8,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "ambiguous": {
+        "count": 3,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "multi": {
+        "count": 4,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      },
+      "absent": {
+        "count": 5,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 5
+      },
+      "danger": {
+        "count": 10,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 0
+      }
+    }
+  },
+  {
+    "model": "none",
+    "run": "lfm2-700m-cpu",
+    "method": "light",
+    "status": "passed",
+    "questions": 40,
+    "positiveQuestions": 35,
+    "top1": 30,
+    "top3": 31,
+    "wrongTop1": 3,
+    "positiveMisses": 2,
+    "absentQuestions": 5,
+    "correctAbstention": 5,
+    "falsePositive": 0,
+    "dangerousSelections": 0,
+    "multiRetrieved": 8,
+    "multiTotal": 8,
+    "medianRetrievalMs": 0.5,
+    "medianFirstResponseMs": 13.950000002980232,
+    "medianTotalMs": 14.149999998509884,
+    "actualGenerations": 0,
+    "medianLLMMs": null,
+    "medianTTFTMs": null,
+    "maxPromptTokens": 0,
+    "outcomes": {
+      "retrieved": 33,
+      "no-candidates": 7
+    },
+    "changedTop1": 0,
+    "improved": [],
+    "regressed": [],
+    "byKind": {
+      "normal": {
+        "count": 10,
+        "top1": 9,
+        "top3": 10,
+        "correctAbstention": 0
+      },
+      "paraphrase": {
+        "count": 8,
+        "top1": 6,
+        "top3": 6,
+        "correctAbstention": 0
+      },
+      "ambiguous": {
+        "count": 3,
+        "top1": 1,
+        "top3": 1,
+        "correctAbstention": 0
+      },
+      "multi": {
+        "count": 4,
+        "top1": 4,
+        "top3": 4,
+        "correctAbstention": 0
+      },
+      "absent": {
+        "count": 5,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 5
+      },
+      "danger": {
+        "count": 10,
+        "top1": 10,
+        "top3": 10,
+        "correctAbstention": 0
+      }
+    }
+  },
+  {
+    "model": "lfm2-700m-cpu",
+    "run": "lfm2-700m-cpu",
+    "method": "llm",
+    "status": "passed",
+    "questions": 40,
+    "positiveQuestions": 35,
+    "top1": 21,
+    "top3": 31,
+    "wrongTop1": 11,
+    "positiveMisses": 3,
+    "absentQuestions": 5,
+    "correctAbstention": 5,
+    "falsePositive": 0,
+    "dangerousSelections": 1,
+    "multiRetrieved": 8,
+    "multiTotal": 8,
+    "medianRetrievalMs": 0.6000000014901161,
+    "medianFirstResponseMs": 14,
+    "medianTotalMs": 12956.20000000298,
+    "actualGenerations": 33,
+    "medianLLMMs": 13534.29999999702,
+    "medianTTFTMs": 13338.10000000149,
+    "maxPromptTokens": 124,
+    "outcomes": {
+      "selected": 32,
+      "no-candidates": 7,
+      "no-match": 1
+    },
+    "changedTop1": 13,
+    "improved": [
+      "search-03"
+    ],
+    "regressed": [
+      "search-02",
+      "search-09",
+      "search-11",
+      "search-14",
+      "search-16",
+      "search-25",
+      "search-32",
+      "search-35",
+      "search-36",
+      "search-40"
+    ],
+    "byKind": {
+      "normal": {
+        "count": 10,
+        "top1": 8,
+        "top3": 10,
+        "correctAbstention": 0
+      },
+      "paraphrase": {
+        "count": 8,
+        "top1": 3,
+        "top3": 6,
+        "correctAbstention": 0
+      },
+      "ambiguous": {
+        "count": 3,
+        "top1": 1,
+        "top3": 1,
+        "correctAbstention": 0
+      },
+      "multi": {
+        "count": 4,
+        "top1": 3,
+        "top3": 4,
+        "correctAbstention": 0
+      },
+      "absent": {
+        "count": 5,
+        "top1": 0,
+        "top3": 0,
+        "correctAbstention": 5
+      },
+      "danger": {
+        "count": 10,
+        "top1": 6,
+        "top3": 10,
+        "correctAbstention": 0
+      }
+    }
+  }
+]

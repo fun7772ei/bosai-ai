@@ -1,0 +1,72 @@
+{
+  "createdAt": "2026-10-14T05:16:55.469797+00:00",
+  "appBuild": "0ab87a57417d",
+  "environment": {
+    "node": "24.19.0",
+    "browser": "Linux Chromium 149, WebGPU deliberately disabled in real GGUF search checks",
+    "iPadSafari": "not-verified"
+  },
+  "checks": {
+    "npmCi": "passed with NODE_USE_ENV_PROXY=1",
+    "npmTest": {
+      "passed": 54,
+      "failed": 0
+    },
+    "npmRunBuild": "passed",
+    "dataImportCheck": "88 records; all original fields/IDs/order match pinned blob",
+    "storageBrowserCheck": "passed; dummy weights only; model retention and safe SW update",
+    "searchUiCheck": "passed; model-free fallback, no-match clears old cards, escaped text, 390px no overflow, offline reload",
+    "lightSearchCheck": {
+      "status": "passed",
+      "questions": 40,
+      "methods": [
+        "keyword",
+        "light"
+      ],
+      "offlineCorpusSearch": "passed"
+    },
+    "realGGUF": {
+      "lfm2-cpu": {
+        "status": "passed",
+        "qualityGenerations": 33,
+        "qualityQueries": 40,
+        "modelRequests": 1,
+        "afterSearchGeneration": "再開",
+        "searchStop": "fallback-interrupted",
+        "searchReset": "fallback-error",
+        "offlineReloadAndSelection": "passed (execution, not correctness)",
+        "errors": []
+      },
+      "lfm2-700m-cpu": {
+        "status": "passed",
+        "qualityGenerations": 33,
+        "qualityQueries": 40,
+        "modelRequests": 1,
+        "afterSearchGeneration": "再開",
+        "searchStop": "fallback-interrupted",
+        "searchReset": "fallback-error",
+        "offlineReloadAndSelection": "passed (execution, not correctness)",
+        "errors": []
+      }
+    }
+  },
+  "failuresAndLimitations": [
+    {
+      "command": "npx playwright install --with-deps chromium",
+      "result": "failed",
+      "reason": "root su authentication unavailable",
+      "fallback": "npx playwright install chromium passed; installed Chromium ran all browser checks"
+    },
+    {
+      "trial": "first preview connection",
+      "result": "ERR_CONNECTION_REFUSED before preview start",
+      "resolution": "started production preview on port 4173 and reran"
+    },
+    {
+      "trial": "intermediate 700M browser before segmentation fix",
+      "result": "intentionally terminated before native model load",
+      "resolution": "excluded; both models rerun completely with final build"
+    }
+  ],
+  "safetyScope": "No source repository mutation, no model binaries in Git, no external AI API, no merge/Pages publication; formal Phase 2 not integrated"
+}

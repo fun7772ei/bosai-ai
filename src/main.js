@@ -1,4 +1,5 @@
 import './style.css';
+import { mountSearch } from './search-ui.js';
 import { MODELS, PREFERRED_MODEL, getModel, modelDtypes } from './config.js';
 import { cpuRequest } from './cpu-session.js';
 import { readSelection, readDtype, saveSelection } from './model-preferences.js';
@@ -11,7 +12,7 @@ $('model').replaceChildren(...MODELS.map(model => new Option(model.label, model.
 $('model').value = PREFERRED_MODEL;
 const logs = [], runs = [], files = new Map();
 let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype, loadedModel, loadMs;
-let workerKind;
+let workerKind, searchUI, pendingSearch, searchCounter = 0;
 const CHECKPOINT = 'bosai-ai-active-stage';
 try {
   const saved = readSelection(localStorage);
@@ -75,6 +76,7 @@ const log = (message, data) => {
   $('logs').scrollTop = $('logs').scrollHeight;
 };
 function controls() {
+  searchUI?.refresh();
   $('load').disabled = busy || ready; $('generate').disabled = busy || !ready;
   $('download').disabled = busy || ready || $('cachedOnly').checked;
   $('repeat').disabled = busy || !ready; $('stop').disabled = !busy || !ready;
@@ -83,6 +85,7 @@ function controls() {
   $('clear').disabled = busy || ready; $('reset').disabled = !worker;
 }
 async function reset() {
+  if (pendingSearch) { pendingSearch.resolve({ text: '', stopped: true, error: 'リセットにより候補選別を中断しました。' }); pendingSearch = null; }
   const previous = worker, cpu = workerKind === 'cpu-inference';
   worker = null; ready = false; busy = true; repeats = 0;
   $('status').textContent = cpu ? 'CPU Workerを終了中…' : 'リセット中…'; controls();
@@ -134,6 +137,13 @@ function makeWorker(download = false) {
       case 'cache-error': log('端末保存失敗（オフライン再利用不可の可能性）', data); break;
       case 'runtime-log': log('CPUランタイム', data); break;
       case 'ready': checkpoint(null); ready = true; busy = false; loadedDtype = data.dtype; loadedModel = getModel(data.modelKey); loadMs = data.loadMs; $('status').textContent = '生成可能'; $('loadTime').textContent = `${(data.loadMs / 1000).toFixed(2)} 秒`; log('モデル準備完了', data); controls(); await inspect(); break;
+      case 'search-complete':
+        if (pendingSearch && pendingSearch.id === data.requestId) {
+          checkpoint(null); busy = false;
+          const { resolve } = pendingSearch; pendingSearch = null;
+          $('status').textContent = '検索候補の選別終了'; log('検索候補の選別終了', data); controls(); resolve(data);
+        }
+        break;
       case 'update': $('output').textContent = data.text; updateMetrics(data); break;
       case 'complete':
         checkpoint(null);
@@ -228,7 +238,7 @@ $('clear').onclick = async () => {
   finally { cache?.close(); busy = false; controls(); }
 };
 $('export').onclick = () => {
-  const result = { appBuild: __APP_BUILD__, ...selection(), modelCatalog: MODELS, transformers: '4.3.1', wllama: '3.8.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
+  const result = { appBuild: __APP_BUILD__, ...selection(), modelCatalog: MODELS, transformers: '4.3.1', wllama: '3.8.1', userAgent: navigator.userAgent, secureContext: isSecureContext, generatedAt: new Date().toISOString(), previousAttempt, runs, searches: searchUI?.runs, logs, deviceVerification: 'User must record actual device; no iPad verification claimed' };
   const url = URL.createObjectURL(new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = 'bosai-ai-phase1.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 };
@@ -249,3 +259,12 @@ addEventListener('online', connectivity); addEventListener('offline', connectivi
     } catch (error) { log('アプリ本体の保存エラー', { message: error.message }); }
   }
 })();
+
+searchUI = mountSearch({
+  state: () => ({ busy, ready, modelKey: currentModel().key }),
+  select: (query, candidateIds) => new Promise(resolve => {
+    const id = ++searchCounter; pendingSearch = { id, resolve };
+    busy = true; repeats = 0; checkpoint('検索候補の選別'); controls();
+    worker.postMessage({ type: 'search-select', query, candidateIds, requestId: id });
+  }),
+});
