@@ -40,3 +40,6 @@ iPadでMoonshineが安定してから、CDN依存のWASMを同一originに梱包
 同じPages上で `?voice_iso=1` のナビゲーションだけService WorkerがHTMLレスポンスへCOOP/COEPを付ける研究用切替を用意。通常のRuriタブには分離ヘッダーを適用しない。新SWが待機中なら旧タブを閉じて再起動する必要がある。ブラウザがこの方式で `crossOriginIsolated` を許可するか、外部CDN/モデルがCOEP経由で読み込めるかは別途実ブラウザ検証必須。対応が確認できない場合は単一スレッドWASMのビルドを検討する。
 
 「音声AIを準備」を押すと、分離されていない場合はダウンロードを開始せず理由と切替ボタンを表示する。保存済みRuriやその他のサイトデータは消さない。
+
+## 同一originへのSDK配信
+Safari WebKitのCOEP下でCDNを動的importするWorkerが動かない場合に備え、Moonshine公式npmパッケージv0.1.5の `dist/` 全ファイルをビルド時に取得し、`/bosai-ai/moonshine/` へ同一origin配信する。SDKのモデル重みは同梱しない。Ruriのオフラインshellキャッシュには月光SDKの大型WASMを入れず、音声機能の初回操作まで転送しない。初回ダウンロードではネットワークが必要。
