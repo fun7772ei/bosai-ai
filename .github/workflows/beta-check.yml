@@ -29,13 +29,15 @@ jobs:
             sleep 1
           done
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/final-64.json --tag=beta-regression-64
-          node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-final-80
+          node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-review-regression-80
+          node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-review-final-60.json --tag=beta-review-final-60
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ruri-beta-check
           path: |
-            test-results/beta-final-80.json
+            test-results/beta-review-regression-80.json
+            test-results/beta-review-final-60.json
             test-results/beta-regression-64.json
             test-results/beta-mobile.png
             test-results/beta-ipad-layout.png
