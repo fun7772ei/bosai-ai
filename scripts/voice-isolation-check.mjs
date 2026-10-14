@@ -27,6 +27,11 @@ try {
   if (!result.workerController || !result.isolated || !result.swHeader) {
     throw Error('Voice isolation missing: ' + JSON.stringify(result));
   }
+  const sdk = await isolated.evaluate(async () => {
+    const lib = await import(new URL('moonshine/index.js', location.origin + '/bosai-ai/').href);
+    return { mic: typeof lib.MicTranscriber, arch: typeof lib.ModelArch };
+  });
+  if (sdk.mic !== 'function' || sdk.arch !== 'object') throw Error('Moonshine SDK import broken: ' + JSON.stringify(sdk));
   await isolated.close();
   const regular = await context.newPage();
   regular.on('pageerror', error => errors.push(error.message));
