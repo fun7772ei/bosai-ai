@@ -78,7 +78,9 @@ export function factsIn(input) {
   // answers often omit the noun. A denied event never changes the current vehicle.
   const eventTails=[...autoText.matchAll(new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun,'g'))]
     .map(match=>autoText.slice(match.index+match[0].length));
-  for(const match of autoText.matchAll(/乗り換え|乗換え|乗り替え/g))eventTails.push(autoText.slice(match.index));
+  const transitionVerbs=[...autoText.matchAll(/乗り換え|乗換え|乗り替え/g)];
+  if(transitionVerbs.length)facts.vehicleTransitionMentioned=true;
+  for(const match of transitionVerbs)eventTails.push(autoText.slice(match.index));
   for(const directTail of eventTails){
     const tail=directTail.split(/[、。！？?]/)[0];
     const transition=/(?:乗り換|乗換|乗り替)/.exec(tail);
@@ -107,6 +109,7 @@ export function mergeFacts(previous, current, excluded) {
   // An explicitly restated current vehicle condition remains available.
   if ((current.vehicleChanged || (current.movement && current.movement !== 'drive')) && current.vehicleFlooded === undefined) delete facts.vehicleFlooded;
   const merged = {...facts, ...current};
+  delete merged.vehicleTransitionMentioned;
   delete merged.vehicleChangeQuestion;
   delete merged.vehicleChanged; // An event, not a durable property of this vehicle.
   return merged;

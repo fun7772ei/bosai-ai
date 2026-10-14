@@ -60,11 +60,12 @@ export class Conversation {
     if(subjects.size>1)return this.clarify('複数の人の状況を分けて確認します。まず誰の、どの場面について調べますか？');
     if(explicitTopics.length>1 && !explicitTopics.includes('避難生活'))return this.clarify('複数の災害が含まれています。まずどの場面について調べますか？',{choices:explicitTopics});
     const changed=explicitTopics.length && this.state.topics.length && explicitTopics.some(t=>!this.state.topics.includes(t));
-    const follow=parsed.identityCorrected||/^(それ|その|そこ|この場合|では|じゃあ)/.test(parsed.positive) || (!explicitTopics.length && /^(寝室|室内|屋外|徒歩|車|寝て|寝てい|断水).{0,18}(です|ます|でした)$/.test(parsed.positive) && !!this.state.situation);
+    const incoming=factsIn(parsed.positive);
+    const vehicleScene=this.state.facts.movement==='drive'||this.state.facts.vehicleFlooded!==undefined;
+    const follow=parsed.identityCorrected||(vehicleScene&&incoming.vehicleTransitionMentioned)||/^(それ|その|そこ|この場合|では|じゃあ)/.test(parsed.positive) || (!explicitTopics.length && /^(寝室|室内|屋外|徒歩|車|寝て|寝てい|断水).{0,18}(です|ます|でした)$/.test(parsed.positive) && !!this.state.situation);
     if(changed)this.forget();
     if(follow && !this.state.situation)return this.clarify('「それ」が指す状況を具体的に教えてください。');
     const retain=!changed && (follow || parsed.excluded.length || this.state.awaitingContext);
-    const incoming=factsIn(parsed.positive);
     const facts=mergeFacts(retain?this.state.facts:{},incoming,parsed.excluded);
     const updatesFrame=retain&&['floodedRoad','movement','unreachableHeight','vehicleFlooded'].some(key=>this.state.facts[key]!==undefined&&this.state.facts[key]!==facts[key]);
     let topics=explicitTopics.length?explicitTopics:retain?this.state.topics:[];
@@ -87,7 +88,7 @@ export class Conversation {
     const generation=++this.generation; this.busy=true;
     try {
       const rawRun=await this.search(query,mode,{topics,facts,focus}); if(generation!==this.generation)throw Error('会話を中断しました。');
-      const run=contextualEvidence(rawRun,focus);
+      const run=contextualEvidence(rawRun,focus,facts);
       const diagnostics={actual:run.actual,fallback:run.fallback,timings:{...run.timings,conversationMs:performance.now()-started},query,topics,facts,excluded:this.state.excluded,evidence:run.evidence};
       if(run.scope.kind==='unsupported') { this.forget(); return this.reply('unsupported',run.scope.reason,{answerability:'outside-coverage',diagnostics}); }
       if(run.scope.kind==='clarify')return this.clarify(run.scope.reason,{choices:run.scope.choices,diagnostics},true);
