@@ -16,10 +16,10 @@ export function mountConversation(controller){
  function source(entry,parent){const card=node('article','');card.className='entry';card.dataset.sourceId=entry.id;card.append(node('h3',entry.title),node('p',entry.summary));const warning=node('div','');warning.className='warning';warning.append(node('h4','注意事項'),node('p',entry.warning));const steps=node('ol','');entry.steps.forEach(s=>steps.append(node('li',s)));card.append(warning,node('h4','手順（原文・省略なし）'),steps,node('p',entry.items));for(const s of entry.sources){const a=node('a',s.label);a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';card.append(a,node('br',''));}parent.append(card);}
  function render(){log.replaceChildren();for(const message of engine.history){const bubble=node('div','');bubble.className=`bubble ${message.role}`;bubble.append(node('strong',message.role==='user'?'あなた':'防災辞書'),node('p',message.text));
   if(message.role==='assistant'){
-   for(const c of message.candidates||[]){const b=node('button',`${c.category} · ${c.title}`);b.type='button';b.dataset.sourceChoice=c.id;b.disabled=!engine.state.pending.includes(c.id)||engine.busy;b.onclick=()=>{try{engine.choose(c.id);render();}catch(e){status.textContent=e.message;}};bubble.append(b);}
-   for(const c of message.choices||[]){const b=node('button',c);b.type='button';b.onclick=()=>{input.value=c;form.requestSubmit();};bubble.append(b);}
+   for(const c of message.candidates||[]){const b=node('button',`${c.category} · ${c.title}${c.fit==='scene-and-action'?'（状況・行動の条件に対応／適用は未確認）':c.fit==='related-unverified'?'（関連情報・この質問への適用は未確認）':''}`);b.type='button';b.dataset.sourceChoice=c.id;b.disabled=message.selection!==engine.state.selection||!engine.state.pending.includes(c.id)||engine.busy;b.onclick=()=>{try{engine.choose(c.id,message.selection);render();}catch(e){status.textContent=e.message;}};bubble.append(b);}
+   for(const c of message.choices||[]){const b=node('button',c);b.type='button';b.disabled=message!==engine.history.at(-1)||engine.busy;b.onclick=()=>{input.value=c;form.requestSubmit();};bubble.append(b);}
    for(const e of message.entries||[])source(e,bubble);
-   if(message.entries){for(const text of ['もっと詳しく','ほかの状況なら？']){const b=node('button',text);b.type='button';b.onclick=()=>{input.value=text;form.requestSubmit();};bubble.append(b);}}
+   if(message.entries){for(const text of ['もっと詳しく','ほかの状況なら？']){const b=node('button',text);b.type='button';b.disabled=message!==engine.history.at(-1)||engine.busy;b.onclick=()=>{input.value=text;form.requestSubmit();};bubble.append(b);}}
    if(message.diagnostics){const d=node('details','');d.append(node('summary','検索の診断'),node('pre',JSON.stringify(message.diagnostics,null,2)));bubble.append(d);}
   }log.append(bubble);}
   stop.disabled=!engine.busy;
