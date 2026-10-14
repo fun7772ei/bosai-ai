@@ -1,0 +1,138 @@
+[
+  {
+    "key": "30m",
+    "repo": "onnx-community/ruri-v3-30m-ONNX",
+    "revision": "1b41a27f31213fc55a9c4653c067770e39406408",
+    "tokenizerRepo": "cl-nagoya/ruri-v3-30m",
+    "tokenizerRevision": "24899e5de370b56d179604a007c0d727bf144504",
+    "dimensions": 256,
+    "license": "Apache-2.0",
+    "dtype": "q8",
+    "assets": [
+      {
+        "group": "ruri",
+        "repo": "onnx-community/ruri-v3-30m-ONNX",
+        "revision": "1b41a27f31213fc55a9c4653c067770e39406408",
+        "file": "config.json",
+        "url": "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/config.json",
+        "bytes": 1183,
+        "sha256": "1517ea80eb6af7e181f4ed59827a4ae9de20f383d74a82900227c4cb5d903787"
+      },
+      {
+        "group": "ruri",
+        "repo": "onnx-community/ruri-v3-30m-ONNX",
+        "revision": "1b41a27f31213fc55a9c4653c067770e39406408",
+        "file": "onnx/model_quantized.onnx",
+        "url": "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/onnx/model_quantized.onnx",
+        "bytes": 37048575,
+        "sha256": "bd07545fa4eb8e7765939536944da1138a7e61441d81633adfa1faf218df6bb1"
+      },
+      {
+        "group": "ruri",
+        "repo": "cl-nagoya/ruri-v3-30m",
+        "revision": "24899e5de370b56d179604a007c0d727bf144504",
+        "file": "tokenizer.json",
+        "url": "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer.json",
+        "bytes": 6724873,
+        "sha256": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062"
+      },
+      {
+        "group": "ruri",
+        "repo": "cl-nagoya/ruri-v3-30m",
+        "revision": "24899e5de370b56d179604a007c0d727bf144504",
+        "file": "tokenizer_config.json",
+        "url": "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer_config.json",
+        "bytes": 3779,
+        "sha256": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4"
+      }
+    ]
+  },
+  {
+    "key": "70m",
+    "repo": "sirasagi62/ruri-v3-70m-ONNX",
+    "revision": "1147652205469de118635c994c77ffed39eb915d",
+    "tokenizerRepo": "cl-nagoya/ruri-v3-70m",
+    "tokenizerRevision": "07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc",
+    "dimensions": 384,
+    "license": "Apache-2.0",
+    "dtype": "q8",
+    "assets": [
+      {
+        "file": "config.json",
+        "repo": "sirasagi62/ruri-v3-70m-ONNX",
+        "revision": "1147652205469de118635c994c77ffed39eb915d",
+        "url": "https://huggingface.co/sirasagi62/ruri-v3-70m-ONNX/resolve/1147652205469de118635c994c77ffed39eb915d/config.json",
+        "bytes": 1341,
+        "sha256": "cbbbf603e2336526efe31ceb6720b79e5e1c107719998b6d4ea2c7a2236d3254"
+      },
+      {
+        "file": "onnx/model_quantized.onnx",
+        "repo": "sirasagi62/ruri-v3-70m-ONNX",
+        "revision": "1147652205469de118635c994c77ffed39eb915d",
+        "url": "https://huggingface.co/sirasagi62/ruri-v3-70m-ONNX/resolve/1147652205469de118635c994c77ffed39eb915d/onnx/model_quantized.onnx",
+        "bytes": 70684662,
+        "sha256": "c0d9885f7cdd014518b25404b75b67b2072d93c49d0cc5509263b5e8a1994dfa"
+      },
+      {
+        "file": "tokenizer.json",
+        "repo": "cl-nagoya/ruri-v3-70m",
+        "revision": "07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc",
+        "url": "https://huggingface.co/cl-nagoya/ruri-v3-70m/resolve/07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc/tokenizer.json",
+        "bytes": 6724873,
+        "sha256": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "repo": "cl-nagoya/ruri-v3-70m",
+        "revision": "07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc",
+        "url": "https://huggingface.co/cl-nagoya/ruri-v3-70m/resolve/07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc/tokenizer_config.json",
+        "bytes": 3779,
+        "sha256": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4"
+      }
+    ]
+  },
+  {
+    "key": "130m",
+    "repo": "onnx-community/ruri-v3-130m-ONNX",
+    "revision": "cbd305d39c17cc58375ceb29586996e7d98d48c0",
+    "tokenizerRepo": "cl-nagoya/ruri-v3-130m",
+    "tokenizerRevision": "e3114c6ee10dbab8b4b235fbc6dcf9dd4d5ac1a6",
+    "dimensions": 512,
+    "license": "Apache-2.0",
+    "dtype": "q8",
+    "assets": [
+      {
+        "file": "config.json",
+        "repo": "onnx-community/ruri-v3-130m-ONNX",
+        "revision": "cbd305d39c17cc58375ceb29586996e7d98d48c0",
+        "url": "https://huggingface.co/onnx-community/ruri-v3-130m-ONNX/resolve/cbd305d39c17cc58375ceb29586996e7d98d48c0/config.json",
+        "bytes": 1183,
+        "sha256": "e4d0ab0a4f10607f927c427d07568a377b540aec54c66a1059b777355e794468"
+      },
+      {
+        "file": "onnx/model_quantized.onnx",
+        "repo": "onnx-community/ruri-v3-130m-ONNX",
+        "revision": "cbd305d39c17cc58375ceb29586996e7d98d48c0",
+        "url": "https://huggingface.co/onnx-community/ruri-v3-130m-ONNX/resolve/cbd305d39c17cc58375ceb29586996e7d98d48c0/onnx/model_quantized.onnx",
+        "bytes": 132844476,
+        "sha256": "1cef9144b83bce6d858869a4c6d966356811e353229860d4e0e8183f82cf19d6"
+      },
+      {
+        "file": "tokenizer.json",
+        "repo": "cl-nagoya/ruri-v3-130m",
+        "revision": "e3114c6ee10dbab8b4b235fbc6dcf9dd4d5ac1a6",
+        "url": "https://huggingface.co/cl-nagoya/ruri-v3-130m/resolve/e3114c6ee10dbab8b4b235fbc6dcf9dd4d5ac1a6/tokenizer.json",
+        "bytes": 6724873,
+        "sha256": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062"
+      },
+      {
+        "file": "tokenizer_config.json",
+        "repo": "cl-nagoya/ruri-v3-130m",
+        "revision": "e3114c6ee10dbab8b4b235fbc6dcf9dd4d5ac1a6",
+        "url": "https://huggingface.co/cl-nagoya/ruri-v3-130m/resolve/e3114c6ee10dbab8b4b235fbc6dcf9dd4d5ac1a6/tokenizer_config.json",
+        "bytes": 3779,
+        "sha256": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4"
+      }
+    ]
+  }
+]

@@ -1,0 +1,1768 @@
+[
+  {
+    "id": "bosai-0",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-1",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "coast"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-2",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "vertical"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-3",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-4",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-5",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "sea"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-6",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "sea"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-7",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-8",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-9",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "river"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-10",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [],
+    "actions": [
+      "walk-tsunami"
+    ],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-11",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "arrival"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-12",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "shelter-place"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-13",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "travel"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-14",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "night"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-15",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "flag"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-16",
+    "hazards": [
+      "tsunami"
+    ],
+    "objects": [
+      "family"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-17",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "toilet"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-18",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "hands"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-19",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "food"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-20",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "hydration"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-21",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "heat"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-22",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "cold"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-23",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "body"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-24",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "activity"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-25",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "mouth"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-26",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "denture"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-27",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "sleep"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-28",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "medicine"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-29",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "chronic"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-30",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "baby"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-31",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "elder"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-32",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "diet"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-33",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "pet"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-34",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "privacy"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-35",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "infection"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-36",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "carstay",
+      "car"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-37",
+    "hazards": [
+      "shelter"
+    ],
+    "objects": [
+      "home-support"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-38",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "indoor"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-39",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "sleep"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-40",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "bathroom",
+      "toilet"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-41",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "kitchen"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-42",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "highrise"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-43",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "school"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-44",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "office"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-45",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "shop"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-46",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "theater"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-47",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "underground"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-48",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "elevator"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-49",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "outdoor"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-50",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "wall"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-51",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "coast"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-52",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "river"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-53",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "cliff"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-54",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "car"
+    ],
+    "actions": [
+      "drive-quake"
+    ],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-55",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "car"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-56",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "rail"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-57",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "subway",
+      "rail"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-58",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "exit"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-59",
+    "hazards": [
+      "quake"
+    ],
+    "objects": [
+      "electricity"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-60",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "weather-name"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-61",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "level3"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-62",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "level4"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-63",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "level5"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-64",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "risk-map"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-65",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "rainband"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-66",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "cliff"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-67",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "shelter-in-place"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-68",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "river"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-69",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "road"
+    ],
+    "actions": [
+      "walk-flood"
+    ],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-70",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "road",
+      "car"
+    ],
+    "actions": [
+      "drive-flood"
+    ],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-71",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "car"
+    ],
+    "actions": [
+      "vehicle-escape"
+    ],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-72",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "coast"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-73",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "lightning"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-74",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "tornado"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-75",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "window"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-76",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "loose-items"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-77",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "drain"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-78",
+    "hazards": [
+      "power"
+    ],
+    "objects": [
+      "phone"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-79",
+    "hazards": [
+      "power"
+    ],
+    "objects": [
+      "fridge"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-80",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "electricity"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-81",
+    "hazards": [
+      "power"
+    ],
+    "objects": [
+      "electricity"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-82",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "toilet",
+      "drain"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-83",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "sandbag"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-84",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "footwear"
+    ],
+    "actions": [
+      "choose-footwear"
+    ],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-85",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "window"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-86",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "underground",
+      "road"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  },
+  {
+    "id": "bosai-87",
+    "hazards": [
+      "rain"
+    ],
+    "objects": [
+      "hazardmap"
+    ],
+    "actions": [],
+    "answerKinds": [
+      "general-guidance"
+    ],
+    "sourceFields": [
+      "title",
+      "summary",
+      "steps",
+      "warning",
+      "keywords"
+    ]
+  }
+]

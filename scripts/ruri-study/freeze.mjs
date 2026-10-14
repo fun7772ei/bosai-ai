@@ -1,0 +1,5 @@
+import{readFileSync,writeFileSync,readdirSync,existsSync}from'node:fs';import{createHash}from'node:crypto';
+if(existsSync('scripts/evaluation/ruri-size-final-80.json'))throw Error('Cannot refreeze after held-out questions exist');
+const files=[...readdirSync('research/ruri').filter(f=>/\.(json|js)$/.test(f)).map(f=>'research/ruri/'+f),'src/bosai-search.js','src/query-scope.js','src/semantic-search.js','src/bosai-data.json'];
+const hashes=Object.fromEntries(files.map(p=>[p,createHash('sha256').update(readFileSync(p)).digest('hex')]));
+writeFileSync('docs/diagnostics/ruri-size-freeze.json',JSON.stringify({createdAt:new Date().toISOString(),newFinalSetExists:false,development:'old40+64+80+60=244 cases (regression only)',policy:'Model choice and intent/coverage guard tuned only on regression. No retrieval/model/threshold changes after new final labels or results. Execution-only fixes must be logged separately.',models:['30m q8','70m q8','130m q8'],budgets:{tokens:512,threads:1},hashes},null,2)+'\n');
