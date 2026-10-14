@@ -8,3 +8,6 @@ playwright-report/
 *.safetensors
 *.gguf
 research-dist/
+
+# Output from the separate, unmerged PR #14 research experiment
+ruri-study-dist/
