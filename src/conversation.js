@@ -60,11 +60,13 @@ export class Conversation {
     if(changed)this.forget();
     if(follow && !this.state.situation)return this.clarify('「それ」が指す状況を具体的に教えてください。');
     const retain=!changed && (follow || parsed.excluded.length || this.state.awaitingContext);
-    const facts=mergeFacts(retain?this.state.facts:{},factsIn(parsed.positive),parsed.excluded);
+    const incoming=factsIn(parsed.positive);
+    const updatesFrame=retain&&Object.entries(incoming).some(([key,value])=>['floodedRoad','movement','unreachableHeight','vehicleFlooded'].includes(key)&&this.state.facts[key]!==undefined&&this.state.facts[key]!==value);
+    const facts=mergeFacts(retain?this.state.facts:{},incoming,parsed.excluded);
     let topics=explicitTopics.length?explicitTopics:retain?this.state.topics:[];
     if(!topics.length && facts.floodedRoad===true)topics=['大雨・浸水'];
     let query=parsed.positive;
-    if(parsed.excluded.length && retain)query=`${contextText(topics,facts)}。${parsed.positive}`;
+    if((parsed.excluded.length||updatesFrame) && retain)query=`${contextText(topics,facts)}。${parsed.positive}`;
     else if(follow && !(this.state.awaitingContext && explicitTopics.length))query=`${this.state.situation}。${parsed.positive}`;
     if(query.length>200)return this.clarify('条件が長くなりました。調べたい状況を200文字以内でまとめ直してください。');
     if(!query || /^(それ|そこ|そう|はい)[？?。]*$/.test(query))return this.clarify('どの状況や行動を指しているか教えてください。');
