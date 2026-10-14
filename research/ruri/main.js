@@ -1,7 +1,7 @@
 import{improvedRetrieve}from'./improved.js';import{baselineRetrieve}from'./retrieval.js';
 import'../../src/beta.css';import corpus from'../../src/bosai-data.json';import{models}from'./models.js';import{StudyController}from'./controller.js';
 const $=id=>document.getElementById(id),node=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
-const c=new StudyController({changed:()=>{for(const id of['studyModel','studyMode','studyAlgorithm','studySave','studyLoad','studySearch'])$(id).disabled=c.busy;$('studyStop').disabled=!c.busy;$('studyState').textContent=c.state;$('studySaved').textContent=`${c.selected}: ${c.saved?.complete?'保存済み':'未保存/取得失敗'} / ${models.find(m=>m.key===c.selected).assets.reduce((s,a)=>s+a.bytes,0).toLocaleString()} bytes`;}});let runId=0;
+const c=new StudyController({changed:()=>{if(!c.busy)$('studyModel').value=c.selected;for(const id of['studyModel','studyMode','studyAlgorithm','studySave','studyLoad','studySearch'])$(id).disabled=c.busy;$('studyStop').disabled=!c.busy;$('studyState').textContent=c.state;$('studySaved').textContent=`${c.selected}: ${c.saved?.complete?'保存済み':'未保存/取得失敗'} / ${models.find(m=>m.key===c.selected).assets.reduce((s,a)=>s+a.bytes,0).toLocaleString()} bytes`;}});let runId=0;
 async function action(fn){try{await fn();}catch(e){$('studyMessage').textContent=e.message;}await c.inspect();}
 $('studyAlgorithm').onchange=()=>{c.retrieve=$('studyAlgorithm').value==='baseline'?baselineRetrieve:improvedRetrieve;};
 $('studyModel').onchange=()=>action(()=>c.select($('studyModel').value));$('studySave').onclick=()=>action(()=>c.save());$('studyLoad').onclick=()=>action(()=>c.load());$('studyReset').onclick=()=>{runId++;action(()=>c.reset());};$('studyStop').onclick=()=>{runId++;c.stop();};

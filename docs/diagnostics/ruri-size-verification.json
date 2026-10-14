@@ -13,7 +13,7 @@
     "caseSha256": "6ee9dc8153151fa9de5523c28f6443d45793427a223b8eb5fee8c0b2b5fe45ea"
   },
   "unitTests": {
-    "passed": 86,
+    "passed": 87,
     "failed": 0
   },
   "builds": {
@@ -47,11 +47,29 @@
     "70M first export output name mismatch; inspected graph and supported token_embeddings. Successful rerun used for evaluation.",
     "Local playwright --with-deps failed su authentication, existing Chromium used.",
     "Managed environment transiently disconnected; source and commits preserved. Old preview died, public check connection refused, restarted4173 and full public regression passed.",
-    "Strict initial coverage and broad text evidence trials regressed recall/ambiguity; tuned on old244 only and recorded."
+    "Strict initial coverage and broad text evidence trials regressed recall/ambiguity; tuned on old244 only and recorded.",
+    "CDP worker-target retirement is asynchronous; added bounded5s disappearance polling before testing next loaded model."
   ],
   "unresolved": [
     "Final intent guard false blocks negated requests and picks negated submerged-car scenario. Keep experimental, no public adoption.",
     "Some OOD/ambiguity questions remain offered. No disaster expert validation.",
     "iPad70/130, long-run stability, actual memory and installed PWA not verified. User30M offline actual method has no JSON confirmation."
-  ]
+  ],
+  "pr": "https://github.com/fun7772ei/bosai-ai/pull/14",
+  "reviewFixes": [
+    "Model selector synchronized to actual requested selection after stopped switch",
+    "Index tokenizer repo/revision/dtype and every pinned asset fingerprint validated"
+  ],
+  "reviewValidInputRankingParity": 3888,
+  "reviewRealUI": {
+    "status": "passed",
+    "operations": 34,
+    "stoppedSwitchSelector": true,
+    "releaseBarrier": "Test-only scheduling delay on a genuinely loaded30 worker; all model inference real"
+  },
+  "initialCI": {
+    "public": "https://github.com/fun7772ei/bosai-ai/actions/runs/38578882653",
+    "realModels": "https://github.com/fun7772ei/bosai-ai/actions/runs/38578883192",
+    "status": "both success before review fixes; latest head in PR checks"
+  }
 }

@@ -45,6 +45,6 @@ RuriはApache-2.0、研究用LFMはLFM Open License。利用条件を混同し�
 
 ## Ruriサイズ・検索品質研究（未マージ・未公開）
 
-[30M/70M/130Mの実比較・改善の結果](docs/ruri-size-study.md)。研究版にモデル選択・明示保存・非同時常駐切替・旧条件/意図ガード比較を実装。実測から30Mを維持する判断で、ガードの長文/否定の副作用が残るため公開版の既定は変更しない。今回mainへの反映・Pages更新は行わない。
+[PR #14](https://github.com/fun7772ei/bosai-ai/pull/14) / [30M/70M/130Mの実比較・改善の結果](docs/ruri-size-study.md)。研究版にモデル選択・明示保存・非同時常駐切替・旧条件/意図ガード比較を実装。実測から30Mを維持する判断で、ガードの長文/否定の副作用が残るため公開版の既定は変更しない。今回mainへの反映・Pages更新は行わない。
 
 `npm run dev:ruri` / `npm run build:ruri` / `npm run preview:ruri -- --port 4187 --strictPort`。`ruri-study-dist/`はPages対象外。既存の音声入力PR #12を保持する。新モデルは選んで明示取得し、全モデルのiPad取得や同じ3問の再検証は求めない。

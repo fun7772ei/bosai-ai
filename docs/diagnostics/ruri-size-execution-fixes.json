@@ -4,9 +4,17 @@
     {
       "file": "research/ruri/main.js",
       "before": "d477088fa8d7ac9811d83b1750a66453006972f8460495f8658e8a459f204536",
-      "after": "6495af48e1275d1ad0492a93dc3b56b1fee399f1e4bac1d461b8768c0319c069",
-      "type": "presentation-only",
-      "reason": "Display the already-computed scope.reason, including no-supported-match, instead of a generic candidate message. Does not alter query processing, embedding, filtering, ranking, thresholds, labels or measured controller timings."
+      "after": "bbc98c75d49f6ac5732a744c3258f4eaca3ea2346e309e25587c8ef0dc9b1486",
+      "type": "ui-state-only",
+      "reason": "Display the already-computed scope.reason, including no-supported-match, instead of a generic candidate message. Does not alter query processing, embedding, filtering, ranking, thresholds, labels or measured controller timings. PR14 review: synchronize disabled selector to the actual selected model after cancellation; inference/ranking unchanged."
+    },
+    {
+      "file": "research/ruri/retrieval.js",
+      "before": "0c16a750a40ffba2b4469d95c194776cf594479c099e9b5fd29ea0bda7492599",
+      "after": "3d230c67fe8e5042b3eb5dc8c8e1bee1b798df588777a00e3a8e4a6d4c6f331d",
+      "type": "index-integrity-only",
+      "reason": "PR14 review: reject mismatched tokenizer repository/revision, dtype and every pinned asset fingerprint. Valid original indexes and all ranking/filtering functions unchanged."
     }
-  ]
+  ],
+  "updatedAt": "2026-10-14T14:22:49.074042+00:00"
 }
