@@ -14,7 +14,8 @@ self.addEventListener('activate', event => event.waitUntil((async () => {
   await self.clients.claim();
 })()));
 self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+  const reqUrl = new URL(event.request.url);
+  if (event.request.method !== 'GET' || reqUrl.origin !== self.location.origin) return;
   event.respondWith((async () => {
     const cache = await caches.open(SHELL);
     if (event.request.mode === 'navigate') {
@@ -31,6 +32,18 @@ self.addEventListener('fetch', event => {
       // The body may be streamed; the header from the origin is no longer valid.
       headers.delete('content-length');
       return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+    }
+    // A module Worker needs COEP on its own top-level script response,
+    // not only on the document that spawned it. Limit this to Moonshine SDK
+    // assets; ordinary Ruri runtime/files stay byte-for-byte unchanged.
+    if(reqUrl.pathname.startsWith(new URL('moonshine/',self.registration.scope).pathname) && /\.(?:js|mjs)$/.test(reqUrl.pathname)) {
+      const response = await cache.match(event.request, {ignoreVary:true}) || await fetch(event.request);
+      if (!response.ok) return response;
+      const headers = new Headers(response.headers);
+      headers.set('Cross-Origin-Embedder-Policy','require-corp');
+      headers.set('Cross-Origin-Resource-Policy','same-origin');
+      headers.delete('content-length');
+      return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
     }
     return await cache.match(event.request, { ignoreVary: true }) || fetch(event.request);
   })());

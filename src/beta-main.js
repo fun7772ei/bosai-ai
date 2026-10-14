@@ -24,6 +24,7 @@ for(const text of ['寝ているときに地震が来たら？','高台に間に
 const MOONSHINE_MODULE=new URL('moonshine/index.js',location.origin+import.meta.env.BASE_URL).href;
 $('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
 let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceFinal=[],voiceBase='';
+let voiceStage='未準備',voiceLastError=null;
 function voiceState(message){
   $('voiceStatus').textContent=message;
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
@@ -32,8 +33,16 @@ function voiceState(message){
   refresh();
 }
 function voiceFailure(e){
-  const message=e?.message||String(e);
-  voiceState('音声入力エラー：'+message+'。文字入力は引き続き利用できます。');
+  let message;
+  if(typeof e==='number'){
+    // Embind can throw a C++ exception pointer instead of a JS Error.
+    // The decimal number is a WASM memory address, NOT a public error code.
+    // The SDK's C++ exception pointer may belong to a different WASM heap.
+    // Never dereference it through an arbitrary module instance.
+    message='WASM内部例外（数字 '+e+' はエラーコードではありません）';
+  }else message=e?.message||String(e);
+  voiceLastError={stage:voiceStage,name:e?.name||typeof e,message,numericException:typeof e==='number'?e:null,at:new Date().toISOString()};
+  voiceState('音声入力エラー【'+voiceStage+'】：'+message+'。文字入力は引き続き利用できます。');
 }
 function voiceApply(){
   const finalText=voiceFinal.join(' ').trim();
@@ -73,12 +82,18 @@ $('voiceLoad').onclick=async()=>{
     // Avoid keeping the Ruri inference runtime and speech model loaded together on iPad.
     if(controller.busy)throw Error('Ruriの処理終了後にもう一度お試しください');
     if(controller.channel)await controller.reset();
+    voiceStage='音声ライブラリの読み込み';
+    voiceState('準備中：音声ライブラリを読み込んでいます…');
     const {MicTranscriber,ModelArch}=await import(/* @vite-ignore */ MOONSHINE_MODULE);
     if(generation!==voiceSeq)return;
+    // One SDK runtime only: mic.load() owns the Moonshine model and WASM.
+    // The first progress notification separates download from WASM setup.
+    voiceStage='WASM・モデル配布情報の初期化';
+    voiceState('準備中：WASMと日本語モデル情報を確認しています…');
     const mic=new MicTranscriber()
       .language('ja')
-      .modelArch(ModelArch.TinyStreaming)
-      .onProgress((fraction,file)=>{if(generation===voiceSeq)voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));})
+      .modelArch(ModelArch.Tiny)
+      .onProgress((fraction,file)=>{if(generation===voiceSeq){voiceStage='モデル取得・読み込み';voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));}})
       .onText(text=>{if(generation===voiceSeq)$('voiceLive').textContent=text?'認識中：'+text:'';})
       .onLine(line=>{
         if(generation!==voiceSeq)return;
@@ -90,13 +105,15 @@ $('voiceLoad').onclick=async()=>{
     voiceMic=mic;
     await mic.load();
     if(generation!==voiceSeq){await voiceRelease();return;}
+    voiceStage='準備完了';
+    voiceLastError=null;
     voiceState('準備完了。マイク開始を押して日本語で話してください。');
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
 };
 $('voiceListen').onclick=async()=>{
   if(voiceBusy||!voiceMic||voiceListening)return;
-  voiceBusy=true;voiceBase=$('question').value.trim();voiceFinal=[];
+  voiceBusy=true;voiceStage='マイク開始';voiceBase=$('question').value.trim();voiceFinal=[];
   $('voiceLive').textContent='';
   voiceState('マイクの許可を確認しています…');
   try{
@@ -109,7 +126,7 @@ $('voiceListen').onclick=async()=>{
 };
 $('voiceStop').onclick=async()=>{
   if(!voiceMic)return;
-  voiceBusy=true;
+  voiceBusy=true;voiceStage='録音終了';
   voiceState('録音を終了しています…');
   try{
     await voiceMic.stop();
@@ -124,7 +141,7 @@ addEventListener('pagehide',()=>{voiceSeq++;const m=voiceMic;voiceMic=null;try{P
 try{$('mode').value=localStorage.getItem('bosai-beta-mode')||'hybrid';}catch{}if(!$('mode').value)$('mode').value='hybrid';$('mode').onchange=()=>{try{localStorage.setItem('bosai-beta-mode',$('mode').value);}catch{}};
 $('build').textContent=`ベータ版 ${__APP_BUILD__} / 辞書 ${corpus.length}件 / CPU・WASM / 自由生成なし`;
 try{const previous=localStorage.getItem('bosai-beta-stage');if(previous&&!/完了|利用可能|解放|停止/.test(previous))$('recovery').textContent=`前回の記録：${previous}。終了理由は未確定です。保存は削除していません。`;}catch{}
-$('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({build:__APP_BUILD__,userAgent:navigator.userAgent,standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,origin:location.origin,saved:controller.saved,storageError:controller.storageError,state:controller.state,runs:controller.runs,deviceVerification:'Not automatically iPad verified'},null,2)],{type:'application/json'}));const a=el('a','');a.href=url;a.download='bosai-ruri-beta.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({build:__APP_BUILD__,userAgent:navigator.userAgent,standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,origin:location.origin,saved:controller.saved,storageError:controller.storageError,state:controller.state,runs:controller.runs,deviceVerification:'Not automatically iPad verified',voice:{stage:voiceStage,error:voiceLastError,crossOriginIsolated,mode:new URL(location.href).searchParams.get('voice_iso')==='1'}},null,2)],{type:'application/json'}));const a=el('a','');a.href=url;a.download='bosai-ruri-beta.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 const online=()=>$('connection').textContent=navigator.onLine?'オンライン':'オフライン';addEventListener('online',online);addEventListener('offline',online);online();
 if(['localhost','127.0.0.1'].includes(location.hostname))Object.defineProperty(window,'bosaiBeta',{value:controller});
 controller.inspect();refresh();

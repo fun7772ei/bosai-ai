@@ -8,7 +8,7 @@ iPad 第10世代 Safariで、Ruri-30Mの意味検索に追加するローカル�
 ## 実装
 - 既存の質問フォームの中に、任意起動の「音声入力を試す」を追加。既存の軽量検索・Ruri検索と互換。
 - 公式 `@moonshine-ai/moonshine-wasm@0.1.5` の `MicTranscriber` を **明示タップ時のみ** pinned jsDelivr ESMから動的読み込み。自動ロードしない。
-- 日本語 `ja`、`ModelArch.TinyStreaming` を使用。現行のピン留めSDKでは `MicTranscriber.options()` が存在しないため、日本語向けの `max_tokens_per_second` は未設定。音声の反復・欠落を実機で確認する。
+- 日本語 `ja`、`ModelArch.Tiny`（通常版・非Streaming）を互換版として使用。現行のピン留めSDKでは `MicTranscriber.options()` が存在しないため、日本語向けの `max_tokens_per_second` は未設定。音声の反復・欠落を実機で確認する。
 - 明示的な「音声AIを準備」と「マイク開始」を分離し、Safariのユーザー操作に紐づくマイク開始を維持。
 - 認識途中テキストは参考表示のみ。確定した `onLine` のテキストだけ入力欄へ反映。自動送信しない。
 - 停止時に音声モデル・マイクを解放。通常の検索に戻る場合も音声モデルを解放。Ruriの保存データはそのまま。
@@ -43,3 +43,14 @@ iPadでMoonshineが安定してから、CDN依存のWASMを同一originに梱包
 
 ## 同一originへのSDK配信
 Safari WebKitのCOEP下でCDNを動的importするWorkerが動かない場合に備え、Moonshine公式npmパッケージv0.1.5の `dist/` 全ファイルをビルド時に取得し、`/bosai-ai/moonshine/` へ同一origin配信する。SDKのモデル重みは同梱しない。Ruriのオフラインshellキャッシュには月光SDKの大型WASMを入れず、音声機能の初回操作まで転送しない。初回ダウンロードではネットワークが必要。
+
+## 2026-10-14 Safari実機：音声入力エラー「12121416」
+使用者からモデル準備中に8桁の数値のみのエラー報告。公式 `errors.ts` によれば、embind上のC++例外がWASMメモリ上のポインター（JS number）として投げられる場合があり、数値を通常のエラーコードと見なさない。直接原因は未確定。準備ステージ表示と `getExceptionMessage` のネイティブ例外復号を加える。
+またCIで、従来のSDK importに加え、実WASMの初期化と日本語Tiny Streamingの配布マニフェスト生成を検査する。モデル全ファイルのダウンロード・推論、iPad Safariでの成功を意味しない。
+
+### PR #15レビューP2対応
+単独の `loadMoonshineModule()` による事前WASM起動を廃止。SDK管理の `mic.load()` だけがWASMを保有する。モデル進捗イベントの有無で「WASM・配布情報」/「モデル取得・読み込み」を分ける。ネイティブ数値例外は別のWASMインスタンスに属する可能性があるため、誤ったheapでデコードせず「内部例外、数字はエラーコードではない」と説明・記録する。
+
+## 2026-10-14 原因確定（配布WASM側のモデル対応表）
+Linux Chromium上でv0.1.5の実WASMを起動し、日本語モデルのマニフェストを列挙。提供WASMは `ja` に対してモデルarch 0（Tiny通常）とarch 1（Base通常）のみ有効。arch 2（Tiny Streaming）と4（Small Streaming）は `moonshine:-3:Invalid argument` を返す。したがって旧指定の `ModelArch.TinyStreaming` は現在の同梱WASMとは非互換であり、以前の数値例外（WASM内C++例外ポインタ）に一致する。
+今回、利用可能な `ModelArch.Tiny` に変更する。**これは当初の34M Tiny Streamingとは異なるモデル**。対応モデルの実際の日本語認識速度・精度、ストリーミング時の挙動、iPad Safari上の完全初期化は再検証する必要がある。現在のPagesでの実動作が確定するまでは音声は実験扱い。

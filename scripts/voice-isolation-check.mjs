@@ -27,11 +27,47 @@ try {
   if (!result.workerController || !result.isolated || !result.swHeader) {
     throw Error('Voice isolation missing: ' + JSON.stringify(result));
   }
-  const sdk = await isolated.evaluate(async () => {
-    const lib = await import(new URL('moonshine/index.js', location.origin + '/bosai-ai/').href);
-    return { mic: typeof lib.MicTranscriber, arch: typeof lib.ModelArch };
-  });
-  if (sdk.mic !== 'function' || sdk.arch !== 'object') throw Error('Moonshine SDK import broken: ' + JSON.stringify(sdk));
+  // The published threaded SDK currently hangs at native WASM initialization
+  // in Linux Chromium (confirmed 60s timeout). Do not make the unrelated Ruri
+  // regression suite wait for the speech engine. Keep an explicit opt-in probe.
+  const nativeProbe = process.env.BOSAI_MOONSHINE_NATIVE_PROBE === '1';
+  const sdk = await isolated.evaluate(async ({nativeProbe}) => {
+    const lib=await import(new URL('moonshine/index.js',location.origin+'/bosai-ai/').href);
+    const result={mic:typeof lib.MicTranscriber,arch:typeof lib.ModelArch};
+    if(!nativeProbe)return result;
+    const timeout=new Promise((_,reject)=>setTimeout(()=>reject(Error('Native Moonshine WASM did not finish within 60s')),60000));
+    const native=await Promise.race([(async()=>{
+      let stage='WASM factory',core;
+      try{
+        core=await lib.loadMoonshineModule();
+        stage='Japanese tiny non-streaming manifest';
+        const manifest=JSON.parse(core.sttDependencies('ja',String(lib.ModelArch.Tiny),false));
+        return {wasmVersion:core.version(),assets:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0)};
+      }catch(e){
+        let decoded;
+        if(typeof e==='number'&&core?.getExceptionMessage){
+          try{decoded=core.getExceptionMessage(e);}catch{}
+        }
+        if(stage==='Japanese tiny streaming manifest'&&core){
+          const available=[];
+          for(const language of ['ja','Japanese']){
+            for(const arch of ['', '0','1','2','3','4','5']){
+              try{
+                const manifest=JSON.parse(core.sttDependencies(language,arch,false));
+                available.push({language,arch:arch||'default',files:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0)});
+              }catch{}
+            }
+          }
+          throw Error('Moonshine native stage '+stage+': '+String(decoded||e)+'; available models='+JSON.stringify(available));
+        }
+        throw Error('Moonshine native stage '+stage+': '+String(decoded||e));
+      }
+    })(),timeout]);
+    return {...result,...native};
+  },{nativeProbe});
+  if(sdk.mic!=='function'||sdk.arch!=='object'||(nativeProbe&&!(sdk.assets>0))){
+    throw Error('Moonshine SDK/WASM smoke check failed: '+JSON.stringify(sdk));
+  }
   await isolated.close();
   const regular = await context.newPage();
   regular.on('pageerror', error => errors.push(error.message));
