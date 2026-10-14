@@ -1,0 +1,4 @@
+[
+ {"id":"r01","kind":"directional-particle-ellipsis","turns":[{"text":"水没した車の車内に水が入っています。脱出の原文は？","kind":"confirm","gold":"bosai-71"},{"text":"その車は他のトラックへ乗り換えたのではなく、同じです。脱出の注意を見たいです。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]},
+ {"id":"r02","kind":"nominalized-contrast","turns":[{"text":"水没した車の車内に水が入っています。脱出の一般情報は？","kind":"confirm","gold":"bosai-71"},{"text":"その車は違う乗用車に乗り換えたんじゃなく、元の車です。脱出の原文を教えて。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]}
+]

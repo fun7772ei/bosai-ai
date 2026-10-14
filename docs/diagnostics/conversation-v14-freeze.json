@@ -1,0 +1,42 @@
+{
+  "createdAt": "2026-10-14T23:44:36.984131+00:00",
+  "implementationCommit": "1586ae9dd43c79dacbcb5036bb0094ec29dd097a",
+  "baselineCommit": "3472a7c6b91bb18ccc2cd67bdd0c7cf79d0b9f9a",
+  "policy": "Freeze identity grammar generalization before fresh2; previous sets are regression.",
+  "finalSetAuthored": true,
+  "initialCases": "scripts/evaluation/conversation-v2-final-32.json",
+  "initialCasesSha256": "e03ea44584048575fdfdf1b8a81e1e016e3dabdff107f2c76c1dfa612bf51dcc",
+  "oldRegressionSha256": "76bf98bc2407b125ddfaddd0b9d1f0ba4dcf7175da5ea98b96b7cb561f88fc65",
+  "regressionCaseSha256": {
+    "scripts/evaluation/conversation-v2-final-24.json": "81095168ad611dc15ef33d8b9cda19ac2dd803cdcdf61ab58144984bc8088e62",
+    "scripts/evaluation/conversation-v3-final-12.json": "cfdd63acf52440358ba7e8bc1cc9779f33a75600dfd6cb5f715a1c2d7b80b743",
+    "scripts/evaluation/conversation-v4-final-12.json": "33f1a44ee06cae4bf228e5d5ea9a90f9d5496284d73e7e8f7eaadc33e15cdf88",
+    "scripts/evaluation/conversation-v5-final-8.json": "ee04f12555ed8133f382e607a586a60311e2261f8a81c5cfc7a0af06bea9382b",
+    "scripts/evaluation/conversation-v6-final-6.json": "96c81ba7b6cd16c7776d9a7bf00df00c08a7f3ca0dec572ad6b6cdead9b0a9fd",
+    "scripts/evaluation/conversation-v7-final-4.json": "6e5608e686f7400fb36fa38218c45e8a6e7a47c83fba315ac3764432a48ea7ab",
+    "scripts/evaluation/conversation-v8-final-2.json": "2efc919d3b70f9d026a4199e5cfd1be5a2b51f7a179f54d82114cd39eab6d371",
+    "scripts/evaluation/conversation-v9-final-2.json": "0019e5a80ba0cac5d578f7139721e2901a76dd796bc89f0d6ed604b59710ab81",
+    "scripts/evaluation/conversation-v10-final-3.json": "990c632a6757df4fe7e67f935886d8316e66366d8ef5074d5ca9adf28943b56a",
+    "scripts/evaluation/conversation-v11-final-2.json": "ba59b4944d3721803ef8edff8230888705dbf12a13dc332006d050194c8cc3f3",
+    "scripts/evaluation/conversation-v12-final-2.json": "8cf8c03d2addf6721e78f252b4411c6af813caa7e93ff7c5fb26d80d52ad8ea4",
+    "scripts/evaluation/conversation-v13-final-2.json": "100b037469c6cecd9483837b6fb8fbab2dd5026dc0c1672df745efecad41df93"
+  },
+  "coreSha256": {
+    "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+    "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+    "src/query-scope.js": "d4e32acf20a2d1a64e2489f3088e1611e33c1469fed854daa5476d8b8fff9833",
+    "src/beta-search.js": "cf0fec94d3fda690449ae77224c88acee613688d708adf8b1f672a744627c418",
+    "src/beta-controller.js": "b86402fead18e215fb3d69b38c6835109c16ec3e3fbad22fc5f3939deceeb891",
+    "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+    "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+    "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+    "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+    "src/conversation.js": "3f3324fb6fbd54496819b7b7e0aff8adc234d0e8eb2ecdb2248555c8e6d80184",
+    "src/conversation-context.js": "32651c3226f1b50f3a377d4f3107c541a9e091b64b7423ab6a4165310179fb16",
+    "src/conversation-evidence.js": "ff041d12dc6ee7abaf8a9b7afd29fa0a98ed73dbe115a2316f7ec4f0a262b2c0",
+    "src/conversation-ui.js": "6a757f0b8dfd699fc34a483d37e05c3860e9b267dbf44872e6e66cc43782e5ba"
+  },
+  "finalCases": "scripts/evaluation/conversation-v14-final-2.json",
+  "finalAuthoredAt": "2026-10-14T23:44:55.502115+00:00",
+  "finalCasesSha256": "0c13cea59baab808e5228ee1dd5f34e8479948a91be5a8b176bb8c293d7ca33a"
+}
