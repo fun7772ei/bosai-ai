@@ -65,3 +65,17 @@ test('synchronous creation and message decoding failures are recoverable', () =>
   assert.match(f.failures[0].message, /詳細を取得できません/);
   assert.equal(f.terminated, true);
 });
+
+test('CPU shutdown waits for child-worker disposal and suppresses late generation', async () => {
+  const f = fixture();
+  const client = createWorkerClient(() => f.raw, 'cpu-inference', event => f.received.push(event.data), error => f.failures.push(error));
+  f.raw.onmessage({ data: { type: 'worker-ready' } });
+  const disposed = client.shutdown();
+  assert.deepEqual(f.sent.at(-1), { type: 'dispose' });
+  assert.equal(f.terminated, false);
+  f.raw.onmessage({ data: { type: 'complete' } });
+  assert.equal(f.received.length, 1);
+  f.raw.onmessage({ data: { type: 'disposed' } });
+  await disposed;
+  assert.equal(f.terminated, true);
+});

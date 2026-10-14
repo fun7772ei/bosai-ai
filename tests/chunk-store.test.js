@@ -154,6 +154,20 @@ test('concurrent writes in one realm commit a single complete generation', async
   db.close(); first.close(); second.close();
 });
 
+test('GGUF Blob reads exact saved chunks and rejects corruption without full arrayBuffer assembly', async () => {
+  const name = 'blob-read', store = await openChunkStore(name, 4);
+  await store.put(url, new Response('GGUFabcdefghij'));
+  store.close();
+  const reopened = await openChunkStore(name, 4);
+  assert.equal(await (await reopened.blob(url)).text(), 'GGUFabcdefghij');
+  await edit(name, tx => {
+    const request = tx.objectStore('files').get(url);
+    request.onsuccess = () => tx.objectStore('chunks').put(new Uint8Array([1]), [url, request.result.generation, 1]);
+  });
+  await assert.rejects(reopened.blob(url), /サイズが一致/);
+  reopened.close();
+});
+
 test('quota failure cancels the source and preserves an existing completed file', async () => {
   const name = 'quota-failure', store = await openChunkStore(name, 4);
   await store.put(url, new Response('original'));

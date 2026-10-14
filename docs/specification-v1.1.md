@@ -1,3 +1,5 @@
+> 2026-10-14 Phase 1比較の追補：ユーザー承認でLFM2.5/GemmaのWebGPU候補に加え、LFM2.5-350M GGUF Q4_K_MのCPU/WASM方式を比較する。必須検証対象はiPad第10世代・iPadOS 26.5・Safari・PWAオフライン。既存のQwen/WebGPU・保存は維持し、仕様本文の辞書/RAG等は実装しない。詳細は [CPU比較結果](phase1-cpu-results.md)。
+
 ## 1. プロジェクト概要
 
 **プロジェクト名：** bosai-ai（仮称）  

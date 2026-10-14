@@ -1,6 +1,6 @@
 # bosai-ai — Phase 1
 
-仕様書v1.1の最初の段階として、端末内LLMの単独推論を検証するページ。Qwen3-0.6Bに加え、ユーザーの指定でLFM2.5-350MとGemma 3-270M-itを比較する。iPad第10世代・iPadOS 26以降のSafariを優先する。**Qwen3ではモデル読み込み時のSafari終了／ページ再読み込みが報告された。両候補のiPad動作は未確認。** 辞書未統合のため、このページの回答を防災判断には使わない。
+端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/Gemmaではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。iPadでのCPU版成功は未確認で、Phase 1成立とは扱わない。辞書未統合のため、このページの回答を防災判断には使わない。
 
 ## 起動
 
@@ -8,9 +8,15 @@ Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作�
 
 公開URL: https://fun7772ei.github.io/bosai-ai/ 。GitHub PagesのSourceは **GitHub Actions** に設定済み。mainへpushすると、`.github/workflows/pages.yml`でテスト・ビルド・公開する。
 
+## CPU比較
+
+「LFM2.5-350M（CPU/WASM比較）」を選び、Q4_K_Mを保存→再読み込み→1/1保存済みを確認→読み込む。ONNXの保存とは別の約229MBのGGUFを取得する。1スレッド、文脈512、入力200文字、出力32/64トークンで比較する。既存のモデルを消す必要はない。CPUもメモリを使い、低速になる可能性がある。
+
+wllama/compat 3.8.1を固定し、Safari向けAsyncify/MEMORY32を強制する。同梱WASMもService Workerに保存する。CPUにWebGPUは不要。全体サイズ・GGUFヘッダー・分割キー/サイズを確認するが、本番読込の暗号学的ハッシュ検証は未実装。[結果・再現手順](docs/phase1-cpu-results.md)、[iPad最小手順](docs/ipad-verification.md) を参照。
+
 ## 実装
 
-- ユーザー提供ログでLFM2.5-350M / q4f16の初期化と短い生成10回完了を確認し、第一候補として仮採用。新規利用はLFMを初期選択にし、既存の選択・Qwen旧設定・保存は維持する。Gemmaは連続生成中のクラッシュ報告。回答品質・長時間・再起動後オフラインは未確認。[実機報告の分析](docs/phase1-user-results.md) を参照。
+- LFMの同一入力10回成功の後、入力変更時に3件目前後で落ちるとの報告がある。新規利用の既存初期選択と保存は維持。CPU比較を試す場合は手動で「LFM2.5-350M（CPU/WASM比較）」を選ぶ。
 
 - 「比較モデル」でLFM2.5-350M／Gemma 3-270M-it／Qwen3-0.6Bを選べる。Qwenの既存保存・形式設定を維持し、新モデルの取得は明示操作。LFM→Gemmaの順に比較する。モデルを変える前に「実行をリセット」する。
 - LFMとGemmaはONNXグラフ＋外部重み `.onnx_data` を含む6ファイルを分割保存する。Qwenは従来の5ファイル。モデル別の固定revision・形式設定・保存状態・診断を使い、選択モデルを削除してもほかのモデルは残る。[比較モデル・手順・検証限界](docs/phase1-model-comparison.md) を参照。

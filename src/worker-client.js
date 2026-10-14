@@ -4,17 +4,30 @@ export function createWorkerClient(factory, kind, onMessage, onFailure, timeoutM
   let raw, started = false, ended = false;
   const pending = [];
   let timer;
+  let closing = false, closeTimer, closePromise, closeResolve;
   const client = {
     postMessage(data) {
-      if (ended) return;
+      if (ended || closing) return;
       try { if (started) raw.postMessage(data); else pending.push(data); }
       catch (error) { fail(error, 'Workerメッセージの送信'); }
     },
-    terminate() { ended = true; clearTimeout(timer); pending.length = 0; raw?.terminate(); },
+    terminate() { ended = true; clearTimeout(timer); clearTimeout(closeTimer); pending.length = 0; raw?.terminate(); closeResolve?.(); },
+    shutdown() {
+      if (ended) return Promise.resolve();
+      if (!started) { client.terminate(); return Promise.resolve(); }
+      if (closePromise) return closePromise;
+      closing = true;
+      closePromise = new Promise(resolve => { closeResolve = resolve; });
+      closeTimer = setTimeout(() => client.terminate(), 5000);
+      try { raw.postMessage({ type: 'dispose' }); } catch { client.terminate(); }
+      return closePromise;
+    },
   };
   const fail = (error, stage) => {
     if (ended) return;
+    const wasClosing = closing;
     client.terminate();
+    if (wasClosing) return;
     onFailure(workerError(error, { kind, stage }));
   };
   try {
@@ -23,6 +36,7 @@ export function createWorkerClient(factory, kind, onMessage, onFailure, timeoutM
     raw.onmessageerror = event => fail(event, 'Workerメッセージの受信');
     raw.onmessage = event => {
       if (ended) return;
+      if (closing) { if (event.data.type === 'disposed') client.terminate(); return; }
       if (event.data.type === 'worker-ready') {
         started = true; clearTimeout(timer);
         onMessage(event);

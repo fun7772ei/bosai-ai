@@ -70,8 +70,28 @@ export async function openChunkStore(name = MODEL_DB, chunkBytes = CHUNK_BYTES) 
       };
     });
   }
+  async function readChunk(file, position) {
+    const chunk = await requestValue(db.transaction('chunks').objectStore('chunks').get(key(file, position)));
+    if (!(chunk instanceof Uint8Array) || !chunk.byteLength) throw new Error(`保存データが不足しています: ${file.url}`);
+    if (file.chunkBytes && chunk.byteLength !== Math.min(file.chunkBytes, file.bytes - position * file.chunkBytes)) throw new Error(`保存データのサイズが一致しません: ${file.url}`);
+    return chunk;
+  }
   return {
     close: () => db.close(),
+    async blob(url) {
+      const file = await metadata(String(url));
+      if (!file) return undefined;
+      const parts = []; let received = 0;
+      for (let index = 0; index < file.chunks; index++) {
+        const chunk = await readChunk(file, index);
+        received += chunk.byteLength;
+        parts.push(new Blob([chunk]));
+      }
+      if (received !== file.bytes) throw new Error(`保存データのサイズが一致しません: ${url}`);
+      // Retain Blob parts rather than assembling a full-size JS ArrayBuffer.
+      // Native Blob backing and the WASM weights still consume memory.
+      return new Blob(parts, { type: 'application/octet-stream' });
+    },
     async delete(url) { await exclusive(lock, () => write(db, ['files', 'chunks'], tx => { tx.objectStore('files').delete(String(url)); tx.objectStore('chunks').delete(range(String(url))); })); },
     async keys() { return (await requestValue(db.transaction('files').objectStore('files').getAll())).map(file => new Request(file.url)); },
     async clear() { await exclusive(lock, () => write(db, ['files', 'chunks'], tx => { tx.objectStore('files').clear(); tx.objectStore('chunks').clear(); })); },
@@ -88,9 +108,7 @@ export async function openChunkStore(name = MODEL_DB, chunkBytes = CHUNK_BYTES) 
               controller.close(); return;
             }
             const position = index++;
-            const chunk = await requestValue(db.transaction('chunks').objectStore('chunks').get(key(file, position)));
-            if (!(chunk instanceof Uint8Array) || !chunk.byteLength) throw new Error(`保存データが不足しています: ${url}`);
-            if (file.chunkBytes && chunk.byteLength !== Math.min(file.chunkBytes, file.bytes - position * file.chunkBytes)) throw new Error(`保存データのサイズが一致しません: ${url}`);
+            const chunk = await readChunk(file, position);
             received += chunk.byteLength;
             controller.enqueue(chunk);
           } catch (error) { controller.error(error); }

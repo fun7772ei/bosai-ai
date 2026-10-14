@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#146c5b"><link rel="manifest" href="./manifest.webmanifest"><title>防災AI · Phase 1</title></head>
 <body><main>
-<header><span class="badge">BOSAI AI / PHASE 1</span><h1>端末内AIを、確かめる。</h1><p>LFM2.5 · Gemma 3 · Qwen3 / 4bit · Transformers.js + WebGPU</p><p id="build"></p></header>
+<header><span class="badge">BOSAI AI / PHASE 1</span><h1>端末内AIを、確かめる。</h1><p>4bit端末内推論 / WebGPU と CPU・WASMを比較</p><p id="build"></p></header>
 <aside>動作検証用です。防災辞書は未統合で、生成内容は防災判断に使えません。リアルタイムの災害情報は取得しません。</aside>
 <div class="layout"><section><h2>1. モデルの準備</h2><p id="connection"></p><p id="environment">環境を確認中…</p>
 <label for="model">比較モデル</label><select id="model"></select><p id="modelInfo"></p>
-<p>第一候補はLFM2.5。モデルを変更する前に「実行をリセット」してください。別モデルの保存は残ります。</p>
+<p>新しい比較は「LFM2.5-350M（CPU/WASM比較）」を選択してください。モデルを変更する前に「実行をリセット」してください。別モデルの保存は残ります。</p>
 <label for="dtype">4bit形式</label><select id="dtype"><option value="q4f16">q4f16（FP16演算）</option><option value="q4">q4（FP32演算・比較用）</option></select>
 <p>先に取得・保存し、その後に推論用の読み込みを行います。保存済みなら再取得は不要です。</p>
 <label class="check"><input id="cachedOnly" type="checkbox"> 保存済みモデルのみ使用（ネットワーク取得なし）</label>
@@ -13,12 +13,12 @@
 <p id="recovery" role="status"></p>
 <p id="status" role="status">未読み込み</p><div id="progress"></div><p id="storage">保存状態を確認中…</p>
 <div class="actions"><button id="inspect" class="secondary">保存状態を更新</button><button id="persist" class="secondary">永続保存をリクエスト</button><button id="clear" class="secondary">選択モデルの保存を削除</button></div>
-</section><section><h2>2. 日本語で生成</h2><label for="prompt">テスト入力（最大500文字）</label><textarea id="prompt" maxlength="500" rows="4">日本語で、自己紹介を2文で書いてください。</textarea>
+</section><section><h2>2. 日本語で生成</h2><label id="promptLabel" for="prompt">テスト入力（最大500文字）</label><textarea id="prompt" maxlength="500" rows="4">日本語で、自己紹介を2文で書いてください。</textarea>
 <label for="tokens">最大生成トークン数</label><select id="tokens"><option selected>64</option><option>128</option><option>256</option></select>
 <div class="actions"><button id="generate" disabled>生成する</button><button id="stop" class="secondary" disabled>途中停止</button><button id="repeat" class="secondary" disabled>10回連続テスト</button></div>
 <p>思考モードは無効。質問は外部サーバーに送信しません。</p><pre id="output" aria-live="polite">生成結果がここに表示されます。</pre>
 <dl><div><dt>読み込み時間</dt><dd id="loadTime">—</dd></div><div><dt>初回トークン</dt><dd id="ttft">—</dd></div><div><dt>生成速度</dt><dd id="speed">—</dd></div><div><dt>生成数 / 所要時間</dt><dd id="count">—</dd></div></dl>
 </section></div>
 <section><div class="actions"><h2>診断ログ</h2><button id="export" class="secondary">検証結果をJSON保存</button></div><p>ログはこの画面内のみ。保存するJSONには入力と出力も含まれます。</p><pre id="logs"></pre></section>
-<footer>LFM2.5はユーザー実機ログで短い生成10回完了。長時間安定性・再起動後オフライン利用は未確認。<a href="https://github.com/fun7772ei/bosai-ai">開発リポジトリ</a></footer>
+<footer>LFMのWebGPU版は入力変更時のクラッシュ報告あり。CPU比較版のiPad実機動作・PWA再起動後のオフライン利用は未確認。<a href="https://github.com/fun7772ei/bosai-ai">開発リポジトリ</a></footer>
 </main><script type="module" src="/src/main.js"></script></body></html>
