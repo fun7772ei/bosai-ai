@@ -1,0 +1,12 @@
+{
+  "createdAt": "2026-10-14T13:44:53.174332+00:00",
+  "changes": [
+    {
+      "file": "research/ruri/main.js",
+      "before": "d477088fa8d7ac9811d83b1750a66453006972f8460495f8658e8a459f204536",
+      "after": "6495af48e1275d1ad0492a93dc3b56b1fee399f1e4bac1d461b8768c0319c069",
+      "type": "presentation-only",
+      "reason": "Display the already-computed scope.reason, including no-supported-match, instead of a generic candidate message. Does not alter query processing, embedding, filtering, ranking, thresholds, labels or measured controller timings."
+    }
+  ]
+}

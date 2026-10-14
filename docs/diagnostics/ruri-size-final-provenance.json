@@ -1,0 +1,16 @@
+{
+  "createdAt": "2026-10-14T13:34:56.589703+00:00",
+  "freezeCommit": "aab6486966c95e3ed32af1a7f56c4c61d0470c8b",
+  "questions": 80,
+  "counts": {
+    "normal": 12,
+    "paraphrase": 12,
+    "danger": 12,
+    "long": 8,
+    "multi": 8,
+    "absent": 18,
+    "ambiguous": 10
+  },
+  "sha256": "6ee9dc8153151fa9de5523c28f6443d45793427a223b8eb5fee8c0b2b5fe45ea",
+  "labels": "Source-based synthetic labels; relevant=expected direct evidence, related=semantic relation only. Independent disaster expert review not performed. Never tune after evaluating this set."
+}

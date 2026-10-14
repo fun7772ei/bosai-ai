@@ -1,0 +1,419 @@
+{
+  "purpose": "Pinned sources, graph shape and official model-card cosine sanity check; not independent full FP32 parity or disaster evaluation",
+  "models": {
+    "30m": {
+      "officialModel": "cl-nagoya/ruri-v3-30m",
+      "officialRevision": "24899e5de370b56d179604a007c0d727bf144504",
+      "cardURL": "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/README.md",
+      "cardSha256": "99ed37d027742a41691a862a1646ece9be68ff63d1184ad3bb7c0bfc0844c414",
+      "onnxRepo": "onnx-community/ruri-v3-30m-ONNX",
+      "onnxRevision": "1b41a27f31213fc55a9c4653c067770e39406408",
+      "license": "Apache-2.0",
+      "quantization": "q8 / model_quantized.onnx, dynamic int8 export",
+      "outputShapes": {
+        "last_hidden_state": [
+          "batch_size",
+          "sequence_length",
+          256
+        ]
+      },
+      "operatorCounts": {
+        "Constant": 517,
+        "Shape": 58,
+        "Gather": 46,
+        "Unsqueeze": 76,
+        "DequantizeLinear": 1,
+        "Cast": 118,
+        "LayerNormalization": 21,
+        "Concat": 45,
+        "Range": 2,
+        "DynamicQuantizeLinear": 40,
+        "Reshape": 23,
+        "Mul": 197,
+        "MatMulInteger": 40,
+        "ConstantOfShape": 3,
+        "Equal": 3,
+        "Transpose": 33,
+        "Where": 5,
+        "Split": 10,
+        "Expand": 3,
+        "Squeeze": 30,
+        "Sub": 2,
+        "Div": 50,
+        "Slice": 70,
+        "MatMul": 22,
+        "Neg": 20,
+        "Cos": 2,
+        "Sin": 2,
+        "Abs": 1,
+        "LessOrEqual": 1,
+        "Add": 70,
+        "Not": 1,
+        "Sqrt": 30,
+        "Softmax": 10,
+        "Erf": 10
+      },
+      "prefixes": {
+        "query": "検索クエリ: ",
+        "document": "検索文書: "
+      },
+      "pooling": "attention-mask mean incl prompt and special tokens, then L2 (cosine)",
+      "officialMaxTokens": 8192,
+      "researchTokenBudget": 512,
+      "silentTruncation": false,
+      "officialCardCosines": [
+        [
+          1.0,
+          0.954,
+          0.8512,
+          0.7322,
+          0.7274
+        ],
+        [
+          0.954,
+          1.0,
+          0.8531,
+          0.7437,
+          0.7305
+        ],
+        [
+          0.8512,
+          0.8531,
+          1.0,
+          0.891,
+          0.8649
+        ],
+        [
+          0.7322,
+          0.7437,
+          0.891,
+          1.0,
+          0.9479
+        ],
+        [
+          0.7274,
+          0.7305,
+          0.8649,
+          0.9479,
+          1.0
+        ]
+      ],
+      "observedCosines": [
+        [
+          0.9999999999999999,
+          0.948115264974767,
+          0.8443088770107692,
+          0.7234109634340012,
+          0.7138742466165858
+        ],
+        [
+          0.948115264974767,
+          1.0000000000000002,
+          0.8482847859184967,
+          0.7366474194077887,
+          0.7195094408941288
+        ],
+        [
+          0.8443088770107692,
+          0.8482847859184967,
+          0.9999999999999996,
+          0.8742103085603261,
+          0.8488670240035598
+        ],
+        [
+          0.7234109634340012,
+          0.7366474194077887,
+          0.8742103085603261,
+          1.0000000000000004,
+          0.9395841365649094
+        ],
+        [
+          0.7138742466165858,
+          0.7195094408941288,
+          0.8488670240035598,
+          0.9395841365649094,
+          0.9999999999999999
+        ]
+      ],
+      "maxAbsoluteCardCosineError": 0.016789691439673904
+    },
+    "70m": {
+      "officialModel": "cl-nagoya/ruri-v3-70m",
+      "officialRevision": "07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc",
+      "cardURL": "https://huggingface.co/cl-nagoya/ruri-v3-70m/resolve/07a8b0aba47d29d2ca21f89b915c1efe2c23d1cc/README.md",
+      "cardSha256": "3ba99cadeda898ac568621b16f3c0a0a9164145704c09dafd5c5cd9158d0fd4a",
+      "onnxRepo": "sirasagi62/ruri-v3-70m-ONNX",
+      "onnxRevision": "1147652205469de118635c994c77ffed39eb915d",
+      "license": "Apache-2.0",
+      "quantization": "q8 / model_quantized.onnx, dynamic int8 export",
+      "outputShapes": {
+        "token_embeddings": [
+          "batch_size",
+          "sequence_length",
+          384
+        ],
+        "sentence_embedding": [
+          "batch_size",
+          384
+        ]
+      },
+      "operatorCounts": {
+        "Shape": 17,
+        "Gather": 20,
+        "Unsqueeze": 26,
+        "DequantizeLinear": 1,
+        "ReduceMean": 54,
+        "Sub": 29,
+        "Range": 2,
+        "Concat": 56,
+        "Pow": 27,
+        "Equal": 2,
+        "Cast": 56,
+        "Add": 105,
+        "Where": 4,
+        "MatMul": 28,
+        "Sqrt": 27,
+        "Expand": 2,
+        "Transpose": 42,
+        "Div": 41,
+        "Mul": 249,
+        "Cos": 2,
+        "Sin": 2,
+        "DynamicQuantizeLinear": 52,
+        "MatMulInteger": 52,
+        "Reshape": 26,
+        "Split": 13,
+        "Squeeze": 39,
+        "Slice": 78,
+        "Abs": 1,
+        "Neg": 26,
+        "LessOrEqual": 1,
+        "Not": 1,
+        "Softmax": 13,
+        "Erf": 13,
+        "ReduceSum": 2,
+        "Clip": 1
+      },
+      "prefixes": {
+        "query": "検索クエリ: ",
+        "document": "検索文書: "
+      },
+      "pooling": "attention-mask mean incl prompt and special tokens, then L2 (cosine)",
+      "officialMaxTokens": 8192,
+      "researchTokenBudget": 512,
+      "silentTruncation": false,
+      "officialCardCosines": [
+        [
+          1.0,
+          0.9555,
+          0.843,
+          0.6772,
+          0.7077
+        ],
+        [
+          0.9555,
+          1.0,
+          0.8333,
+          0.6636,
+          0.6971
+        ],
+        [
+          0.843,
+          0.8333,
+          1.0,
+          0.8554,
+          0.8639
+        ],
+        [
+          0.6772,
+          0.6636,
+          0.8554,
+          1.0,
+          0.95
+        ],
+        [
+          0.7077,
+          0.6971,
+          0.8639,
+          0.95,
+          1.0
+        ]
+      ],
+      "observedCosines": [
+        [
+          0.9999999999999998,
+          0.9517725195626235,
+          0.8402907307611155,
+          0.6752141050029842,
+          0.6893033876520671
+        ],
+        [
+          0.9517725195626235,
+          0.9999999999999998,
+          0.8413148195434562,
+          0.6569342842639075,
+          0.6740229551570497
+        ],
+        [
+          0.8402907307611155,
+          0.8413148195434562,
+          0.9999999999999992,
+          0.8073322684715651,
+          0.8023838626071489
+        ],
+        [
+          0.6752141050029842,
+          0.6569342842639075,
+          0.8073322684715651,
+          1.0000000000000007,
+          0.9424613698943238
+        ],
+        [
+          0.6893033876520671,
+          0.6740229551570497,
+          0.8023838626071489,
+          0.9424613698943238,
+          0.9999999999999998
+        ]
+      ],
+      "maxAbsoluteCardCosineError": 0.06151613739285111,
+      "distributionNote": "Community conversion via onnx-community space, not official ONNX. The exact q8 SHA c0d9885f7cdd014518b25404b75b67b2072d93c49d0cc5509263b5e8a1994dfa is also independently hosted at mochiya98/ruri-v3-70m-onnx b026e28b1cac69eddb2f59f0393bac994c442750. Graph token_embeddings alias required; JS mean agrees with provided sentence_embedding at cosine >= .99999."
+    },
+    "130m": {
+      "officialModel": "cl-nagoya/ruri-v3-130m",
+      "officialRevision": "e3114c6ee10dbab8b4b235fbc6dcf9dd4d5ac1a6",
+      "cardURL": "https://huggingface.co/cl-nagoya/ruri-v3-130m/resolve/e3114c6ee10dbab8b4b235fbc6dcf9dd4d5ac1a6/README.md",
+      "cardSha256": "721a4b0d69181869de6c80d23d26144bd647b12ae6099b4ed105d3e969176892",
+      "onnxRepo": "onnx-community/ruri-v3-130m-ONNX",
+      "onnxRevision": "cbd305d39c17cc58375ceb29586996e7d98d48c0",
+      "license": "Apache-2.0",
+      "quantization": "q8 / model_quantized.onnx, dynamic int8 export",
+      "outputShapes": {
+        "last_hidden_state": [
+          "batch_size",
+          "sequence_length",
+          512
+        ]
+      },
+      "operatorCounts": {
+        "Constant": 940,
+        "Shape": 103,
+        "Gather": 82,
+        "Unsqueeze": 130,
+        "DequantizeLinear": 1,
+        "Cast": 208,
+        "LayerNormalization": 39,
+        "Concat": 81,
+        "Range": 2,
+        "DynamicQuantizeLinear": 76,
+        "Reshape": 41,
+        "Mul": 368,
+        "MatMulInteger": 76,
+        "ConstantOfShape": 3,
+        "Equal": 3,
+        "Transpose": 60,
+        "Where": 5,
+        "Split": 19,
+        "Expand": 3,
+        "Squeeze": 57,
+        "Sub": 2,
+        "Div": 95,
+        "Slice": 133,
+        "MatMul": 40,
+        "Neg": 38,
+        "Cos": 2,
+        "Sin": 2,
+        "Abs": 1,
+        "LessOrEqual": 1,
+        "Add": 133,
+        "Not": 1,
+        "Sqrt": 57,
+        "Softmax": 19,
+        "Erf": 19
+      },
+      "prefixes": {
+        "query": "検索クエリ: ",
+        "document": "検索文書: "
+      },
+      "pooling": "attention-mask mean incl prompt and special tokens, then L2 (cosine)",
+      "officialMaxTokens": 8192,
+      "researchTokenBudget": 512,
+      "silentTruncation": false,
+      "officialCardCosines": [
+        [
+          1.0,
+          0.9564,
+          0.8183,
+          0.7,
+          0.7108
+        ],
+        [
+          0.9564,
+          1.0,
+          0.8112,
+          0.6994,
+          0.7117
+        ],
+        [
+          0.8183,
+          0.8112,
+          1.0,
+          0.8788,
+          0.8514
+        ],
+        [
+          0.7,
+          0.6994,
+          0.8788,
+          1.0,
+          0.9448
+        ],
+        [
+          0.7108,
+          0.7117,
+          0.8514,
+          0.9448,
+          1.0
+        ]
+      ],
+      "observedCosines": [
+        [
+          0.9999999999999997,
+          0.9473835000653458,
+          0.8215370100829585,
+          0.696042362564058,
+          0.6902961043397969
+        ],
+        [
+          0.9473835000653458,
+          0.9999999999999998,
+          0.8219500994616187,
+          0.7038827740142019,
+          0.6966930773110707
+        ],
+        [
+          0.8215370100829585,
+          0.8219500994616187,
+          1,
+          0.8770953040759873,
+          0.8460403530370356
+        ],
+        [
+          0.696042362564058,
+          0.7038827740142019,
+          0.8770953040759873,
+          0.9999999999999992,
+          0.9438241957246853
+        ],
+        [
+          0.6902961043397969,
+          0.6966930773110707,
+          0.8460403530370356,
+          0.9438241957246853,
+          0.9999999999999997
+        ]
+      ],
+      "maxAbsoluteCardCosineError": 0.020503895660203053
+    }
+  }
+}

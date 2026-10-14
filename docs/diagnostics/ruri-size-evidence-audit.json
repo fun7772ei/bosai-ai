@@ -1,0 +1,1808 @@
+{
+  "scope": "All20 final danger/long questions,12 conditions; manual source-text assessment by developer, not independent disaster-expert review. Gold IDs never modified. Other32 positive questions and OOD are not covered by this qualitative audit.",
+  "conditions": {
+    "baseline/30m/ruri": {
+      "count": 20,
+      "counts": {
+        "related-incomplete": 2,
+        "warning-present-intent-mismatch": 1,
+        "supported-direct": 13,
+        "abstained-answerable": 2,
+        "supported-equivalent": 1,
+        "intent-mismatch": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-68",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-8",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-6",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-86",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-56",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": "bosai-29",
+          "label": "intent-mismatch"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-55",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": "bosai-24",
+          "label": "supported-direct"
+        }
+      ]
+    },
+    "baseline/30m/hybrid": {
+      "count": 20,
+      "counts": {
+        "related-incomplete": 2,
+        "warning-present-intent-mismatch": 1,
+        "supported-direct": 13,
+        "supported-equivalent": 1,
+        "abstained-answerable": 2,
+        "intent-mismatch": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-68",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-7",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-67",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": "bosai-28",
+          "label": "intent-mismatch"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-55",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": "bosai-24",
+          "label": "supported-direct"
+        }
+      ]
+    },
+    "baseline/70m/ruri": {
+      "count": 20,
+      "counts": {
+        "related-incomplete": 3,
+        "warning-present-intent-mismatch": 2,
+        "supported-direct": 11,
+        "supported-equivalent": 1,
+        "abstained-answerable": 2,
+        "intent-mismatch": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-68",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-7",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-7",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-68",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": "bosai-29",
+          "label": "intent-mismatch"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-55",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": "bosai-24",
+          "label": "supported-direct"
+        }
+      ]
+    },
+    "baseline/70m/hybrid": {
+      "count": 20,
+      "counts": {
+        "related-incomplete": 2,
+        "warning-present-intent-mismatch": 2,
+        "supported-direct": 12,
+        "supported-equivalent": 1,
+        "abstained-answerable": 2,
+        "intent-mismatch": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-68",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-7",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-67",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": "bosai-28",
+          "label": "intent-mismatch"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-55",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": "bosai-24",
+          "label": "supported-direct"
+        }
+      ]
+    },
+    "baseline/130m/ruri": {
+      "count": 20,
+      "counts": {
+        "related-incomplete": 1,
+        "warning-present-intent-mismatch": 3,
+        "supported-direct": 12,
+        "supported-equivalent": 2,
+        "abstained-answerable": 2
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-86",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-6",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-56",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": "bosai-27",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-55",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": "bosai-24",
+          "label": "supported-direct"
+        }
+      ]
+    },
+    "baseline/130m/hybrid": {
+      "count": 20,
+      "counts": {
+        "related-incomplete": 2,
+        "warning-present-intent-mismatch": 1,
+        "supported-direct": 13,
+        "supported-equivalent": 1,
+        "abstained-answerable": 2,
+        "intent-mismatch": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-86",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-6",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-67",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": "bosai-28",
+          "label": "intent-mismatch"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-55",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": "bosai-24",
+          "label": "supported-direct"
+        }
+      ]
+    },
+    "improved/30m/ruri": {
+      "count": 20,
+      "counts": {
+        "supported-direct": 14,
+        "related-incomplete": 1,
+        "abstained-answerable": 4,
+        "intent-mismatch-risk": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-8",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-6",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-86",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-71",
+          "label": "intent-mismatch-risk"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        }
+      ]
+    },
+    "improved/30m/hybrid": {
+      "count": 20,
+      "counts": {
+        "supported-direct": 13,
+        "supported-equivalent": 1,
+        "related-incomplete": 1,
+        "abstained-answerable": 4,
+        "intent-mismatch-risk": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-7",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-67",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-71",
+          "label": "intent-mismatch-risk"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        }
+      ]
+    },
+    "improved/70m/ruri": {
+      "count": 20,
+      "counts": {
+        "supported-direct": 12,
+        "supported-equivalent": 1,
+        "related-incomplete": 2,
+        "abstained-answerable": 4,
+        "intent-mismatch-risk": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-7",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-7",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-68",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-71",
+          "label": "intent-mismatch-risk"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        }
+      ]
+    },
+    "improved/70m/hybrid": {
+      "count": 20,
+      "counts": {
+        "supported-direct": 13,
+        "supported-equivalent": 1,
+        "related-incomplete": 1,
+        "abstained-answerable": 4,
+        "intent-mismatch-risk": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-7",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-67",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-71",
+          "label": "intent-mismatch-risk"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        }
+      ]
+    },
+    "improved/130m/ruri": {
+      "count": 20,
+      "counts": {
+        "supported-direct": 13,
+        "supported-equivalent": 1,
+        "warning-present-intent-mismatch": 1,
+        "abstained-answerable": 4,
+        "intent-mismatch-risk": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-6",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-84",
+          "label": "warning-present-intent-mismatch"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-71",
+          "label": "intent-mismatch-risk"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        }
+      ]
+    },
+    "improved/130m/hybrid": {
+      "count": 20,
+      "counts": {
+        "supported-direct": 13,
+        "supported-equivalent": 1,
+        "related-incomplete": 1,
+        "abstained-answerable": 4,
+        "intent-mismatch-risk": 1
+      },
+      "rows": [
+        {
+          "caseId": "size-25",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-26",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-27",
+          "sourceId": "bosai-70",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-28",
+          "sourceId": "bosai-71",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-29",
+          "sourceId": "bosai-6",
+          "label": "supported-equivalent"
+        },
+        {
+          "caseId": "size-30",
+          "sourceId": "bosai-5",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-31",
+          "sourceId": "bosai-0",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-32",
+          "sourceId": "bosai-67",
+          "label": "related-incomplete"
+        },
+        {
+          "caseId": "size-33",
+          "sourceId": "bosai-80",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-34",
+          "sourceId": "bosai-41",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-35",
+          "sourceId": "bosai-6",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-36",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-37",
+          "sourceId": "bosai-45",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-38",
+          "sourceId": "bosai-42",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-39",
+          "sourceId": "bosai-57",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-40",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-41",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        },
+        {
+          "caseId": "size-42",
+          "sourceId": "bosai-71",
+          "label": "intent-mismatch-risk"
+        },
+        {
+          "caseId": "size-43",
+          "sourceId": "bosai-69",
+          "label": "supported-direct"
+        },
+        {
+          "caseId": "size-44",
+          "sourceId": null,
+          "label": "abstained-answerable"
+        }
+      ]
+    }
+  },
+  "pairs": {
+    "size-25/bosai-68": {
+      "query": "川沿いが大雨で水浸しです。水が太ももまで来る道を徒歩で渡る判断を知りたい。",
+      "sourceId": "bosai-68",
+      "label": "related-incomplete",
+      "note": "River observation is discouraged, but deep flooded-road walking is not directly addressed.",
+      "title": "川の水位が上がる前に避難判断をする",
+      "steps": [
+        "川の防災情報や自治体情報を確認します。",
+        "危険な場所にいる場合は早めに避難します。",
+        "川の様子を見に行きません。"
+      ],
+      "warning": "川沿いや橋へ確認に行く行為は危険です。"
+    },
+    "size-26/bosai-84": {
+      "query": "洪水で歩道が冠水しました。運動靴を履けば歩いて進んでよいのでしょうか。",
+      "sourceId": "bosai-84",
+      "label": "warning-present-intent-mismatch",
+      "note": "The source DOES warn against deep/fast flooded walking and says shoes do not remove danger. Its footwear focus is a poor primary selection for permission to walk. Not fabricated source misinformation.",
+      "title": "浸水避難では履き慣れた運動靴を選ぶ",
+      "steps": [
+        "サンダルや脱げやすい靴を避けます。",
+        "長靴は水が入ると歩きにくくなる点に注意します。",
+        "深い・流れの強い冠水路は歩きません。"
+      ],
+      "warning": "靴を選んでも冠水路そのものの危険はなくなりません。"
+    },
+    "size-27/bosai-70": {
+      "query": "道路が水で隠れています。四輪駆動車なら進入を試してもいい？",
+      "sourceId": "bosai-70",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "冠水した道路へ車で入らない",
+      "steps": [
+        "前方が冠水していたら引き返します。",
+        "アンダーパスなど低い場所を避けます。",
+        "道路規制や警察・道路管理者の案内に従います。"
+      ],
+      "warning": "見た目が浅くても路面状況や水深は判断できません。"
+    },
+    "size-28/bosai-71": {
+      "query": "車内に水が入り始めました。水没しきるまでドアを開けずに待つ？",
+      "sourceId": "bosai-71",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "車が水没し始めたら早めに脱出する",
+      "steps": [
+        "ドアが開くうちに車外へ出ます。",
+        "ドアが開かなければ窓を開けます。",
+        "窓も開かない場合は車両のガラス仕様に対応した脱出用具を使います。"
+      ],
+      "warning": "フロントガラスなど合わせガラスは一般的な脱出用ハンマーで割れない場合があります。"
+    },
+    "size-29/bosai-8": {
+      "query": "津波警報が続いているけど波が落ち着きました。海を見に戻ってよい？",
+      "sourceId": "bosai-8",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "津波警報・注意報が解除されるまで避難を続ける",
+      "steps": [
+        "安全な場所で公式情報を確認します。",
+        "家・車・荷物を取りに戻りません。",
+        "解除後も道路損傷や浸水に注意し、自治体の案内に従います。"
+      ],
+      "warning": "自己判断で早く戻らないでください。"
+    },
+    "size-30/bosai-5": {
+      "query": "津波注意報の発表だけなら、サーフィンをもう少し続けてもいい？",
+      "sourceId": "bosai-5",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "津波注意報でも海から上がり海岸から離れる",
+      "steps": [
+        "海の中にいる場合はただちに海から上がります。",
+        "海岸・防波堤・磯などから離れます。",
+        "注意報が解除されるまで海に入ったり海岸へ近づいたりしません。"
+      ],
+      "warning": "津波注意報は『何もしなくてよい』という意味ではありません。"
+    },
+    "size-31/bosai-6": {
+      "query": "津波が来るなら、海岸から遠い平地へ逃げるだけで十分でしょうか？",
+      "sourceId": "bosai-6",
+      "label": "related-incomplete",
+      "note": "Continuing evacuation is stated, but required higher ground instead of merely distance is missing.",
+      "title": "津波は引き潮から始まるとは限らない",
+      "steps": [
+        "地震後に海の様子を確認しに行きません。",
+        "潮が引いていなくても必要な避難を続けます。",
+        "撮影や確認のために海岸へ戻りません。"
+      ],
+      "warning": "海面の見た目から津波の到達時刻や大きさを判断しないでください。"
+    },
+    "size-32/bosai-86": {
+      "query": "洪水が怖くて避難中です。地下道を近道にして駅へ抜けてよい？",
+      "sourceId": "bosai-86",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "大雨のとき地下・アンダーパスへ近づかない",
+      "steps": [
+        "大雨時は低い道路や地下空間を避けます。",
+        "冠水表示や通行止めに従います。",
+        "浸水が始まったら安全な高い場所へ移動します。"
+      ],
+      "warning": "車でも徒歩でも『少しなら通れる』と進入しないでください。"
+    },
+    "size-33/bosai-80": {
+      "query": "コンセントまで浸水した家電を、乾かしただけで使い直すのは安全？",
+      "sourceId": "bosai-80",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "浸水・停電後の家電はすぐ再使用しない",
+      "steps": [
+        "水濡れした機器へ電源を入れません。",
+        "焦げ臭さ・変形・配線損傷を確認します。",
+        "不明な場合はメーカーや電気工事業者等へ相談します。"
+      ],
+      "warning": "復電したからといって家電を一斉に使用しないでください。"
+    },
+    "size-34/bosai-41": {
+      "query": "調理中に地震で揺れたら、熱い鍋を手で押さえる方がよい？",
+      "sourceId": "bosai-41",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "台所で地震が起きたとき",
+      "steps": [
+        "揺れが強い間は落下物から身を守ります。",
+        "揺れが収まってから安全にできる場合は火気を止めます。",
+        "出火した場合は周囲へ知らせ、危険なら避難します。"
+      ],
+      "warning": "揺れている最中に無理にコンロへ手を伸ばさないでください。"
+    },
+    "size-35/bosai-6": {
+      "query": "津波が起こる前には必ず海水が引くと聞きました。引いていなければ大丈夫？",
+      "sourceId": "bosai-6",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "津波は引き潮から始まるとは限らない",
+      "steps": [
+        "地震後に海の様子を確認しに行きません。",
+        "潮が引いていなくても必要な避難を続けます。",
+        "撮影や確認のために海岸へ戻りません。"
+      ],
+      "warning": "海面の見た目から津波の到達時刻や大きさを判断しないでください。"
+    },
+    "size-36/null": {
+      "query": "豪雨で川の色が変わり、流木も増えています。堤防の上まで確認に行く？",
+      "sourceId": null,
+      "label": "abstained-answerable",
+      "note": "Expected source exists, but no primary candidate was returned."
+    },
+    "size-37/bosai-45": {
+      "query": "休日に家族で商業施設へ来て、食料品の売場を見ていたところ、突然床が大きく揺れ始めました。電車の中でも地下街でもありません。背の高い棚が並び、頭の上から品物が落ちてきそうです。家族とは少し離れているのですが、今いる売場で最初に身を守る方法を探しています。",
+      "sourceId": "bosai-45",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "スーパー・商業施設で地震にあったとき",
+      "steps": [
+        "商品棚・ガラスケース・吊り下げ物から離れます。",
+        "頭を守り姿勢を低くします。",
+        "揺れが収まったら館内放送や係員の誘導に従います。"
+      ],
+      "warning": "出口やエスカレーターへ一斉に殺到しないでください。"
+    },
+    "size-38/bosai-42": {
+      "query": "高いマンションの上の階で生活しています。地震で建物がゆっくり大きく揺れており、窓のそばには家具やガラス製品があります。階下へ移動することも考えていますが、揺れている最中に急ぐべきか分かりません。エレベーターのかごの中に閉じ込められているという話ではなく、部屋での対応を調べたいです。",
+      "sourceId": "bosai-42",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "マンション・高層階で地震にあったとき",
+      "steps": [
+        "丈夫な机の下などで身を守ります。",
+        "窓や大型家具から離れます。",
+        "揺れが収まったら非常口や避難経路を確認します。"
+      ],
+      "warning": "避難時はエレベーターを使用しないでください。"
+    },
+    "size-39/bosai-56": {
+      "query": "通勤の途中で地下鉄に乗っていたら地震が発生しました。私はつり革のある車内に立っています。自動車の運転中ではなく、駅の地上へ出る階段でもありません。周囲の人も驚いているため、扉を開けたり線路へ降りたりする前に、車内で取るべき対応を知りたいです。",
+      "sourceId": "bosai-56",
+      "label": "supported-equivalent",
+      "note": "Rail guidance includes standing handholds, crew instructions and no self-opening doors/track entry. Gold expected subway57, but this overlapping source covers the asked actions.",
+      "title": "電車・鉄道で地震にあったとき",
+      "steps": [
+        "座っている場合は低い姿勢で頭を守ります。",
+        "立っている場合は手すり・つり革を握ります。",
+        "停車後は乗務員の指示に従います。"
+      ],
+      "warning": "勝手にドアを開けたり線路へ降りたりしないでください。"
+    },
+    "size-40/null": {
+      "query": "自分の家には大きな損傷がなかったので、避難所に泊まらず家で生活することにしました。しかし水や食料の案内がどこから来るのか分からず、避難所にいる人だけが対象なのか心配しています。現在開いている施設の名前や電話番号ではなく、在宅で避難生活をする人が支援情報を確認するという一般的な考え方を探しています。",
+      "sourceId": null,
+      "label": "abstained-answerable",
+      "note": "Expected source exists, but no primary candidate was returned."
+    },
+    "size-41/bosai-29": {
+      "query": "体育館で避難生活をしています。最近は人目や明かり、話し声が気になって夜に十分眠れていません。薬の処方や個人の病気の診断をお願いしているわけではありません。共同生活の場で休息を取り、必要なら困りごとを伝えるための一般的な情報を見たいです。",
+      "sourceId": "bosai-29",
+      "label": "intent-mismatch",
+      "note": "Chronic disease/treatment information does not address requested sleep and rest; treatment/diagnosis is explicitly disclaimed in query.",
+      "title": "持病がある人は早めに相談する",
+      "steps": [
+        "持病・治療内容・薬をスタッフへ伝えます。",
+        "透析、酸素、インスリンなど継続が重要な治療は早めに相談します。",
+        "体調の変化を我慢せず伝えます。"
+      ],
+      "warning": "薬や治療を自己判断で中断しないでください。"
+    },
+    "size-42/bosai-55": {
+      "query": "災害で車を使って移動してきましたが、ここからは徒歩で避難する必要があります。車をその場に置いて離れるとき、緊急車両の邪魔にならないように気をつけたいです。浸水した車から脱出する場面ではなく、地震の避難に伴って車を置く際の扱いを調べています。",
+      "sourceId": "bosai-55",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "車を置いて避難するとき",
+      "steps": [
+        "道路左側へ寄せてエンジンを切ります。",
+        "窓を閉め、キーは車内に残しドアをロックしません。",
+        "貴重品を持って徒歩で避難します。"
+      ],
+      "warning": "警察や道路管理者から指示がある場合はその指示を優先してください。"
+    },
+    "size-43/bosai-69": {
+      "query": "大雨で家の前の道に水がたまり、側溝との境目が見えません。普段は子どもの送り迎えで歩く道ですが、今日は路面の状態がいつもと違います。持っている靴の種類を選ぶ話ではなく、このような冠水した道を歩行して避難してよいかという情報を調べています。",
+      "sourceId": "bosai-69",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "冠水した道路を歩かない",
+      "steps": [
+        "冠水する前に避難します。",
+        "別の安全な経路があれば冠水路を避けます。",
+        "すでに移動が危険なら上階などで安全を確保します。"
+      ],
+      "warning": "棒で確認しても冠水路の安全が保証されるわけではありません。"
+    },
+    "size-44/bosai-24": {
+      "query": "避難所で生活していて、毎日寝て過ごす時間が長くなっています。足が痛いとか突然胸が苦しくなったという症状の相談ではありません。普段できていた動作ができなくならないよう、活動量を保つことについて一般的な情報を見たいです。特定の運動回数や消費カロリーの計算を求めているわけではありません。",
+      "sourceId": "bosai-24",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "生活不活発を防ぐ",
+      "steps": [
+        "体調に合わせて立つ・歩く・軽く体を動かします。",
+        "座ったままでも足首や膝を動かします。",
+        "無理のない範囲で日中の活動を続けます。"
+      ],
+      "warning": "けがや持病がある場合は無理せず医療・福祉スタッフに相談してください。"
+    },
+    "size-29/bosai-7": {
+      "query": "津波警報が続いているけど波が落ち着きました。海を見に戻ってよい？",
+      "sourceId": "bosai-7",
+      "label": "supported-equivalent",
+      "note": "Step3 explicitly forbids approaching coast/river until warning/advisory cancellation. Gold expected8; this source also answers the question.",
+      "title": "第1波のあとも戻らない",
+      "steps": [
+        "第1波が過ぎても避難場所から戻りません。",
+        "気象庁や自治体の情報を継続して確認します。",
+        "警報・注意報が解除されるまで海岸や川沿いへ近づきません。"
+      ],
+      "warning": "波が一度引いたことは安全のサインではありません。"
+    },
+    "size-31/bosai-0": {
+      "query": "津波が来るなら、海岸から遠い平地へ逃げるだけで十分でしょうか？",
+      "sourceId": "bosai-0",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "津波からの避難：「遠く」だけでなく「より高く」",
+      "steps": [
+        "強い揺れ、または弱くても長い揺れを感じたら避難を始めます。",
+        "高台・津波避難場所・津波避難ビルなど地域で定められた場所を目指します。",
+        "避難後も警報・注意報が解除されるまで安全な場所にとどまります。"
+      ],
+      "warning": "「何階なら必ず安全」という全国共通の基準はありません。地域の浸水想定と避難計画を優先してください。"
+    },
+    "size-32/bosai-67": {
+      "query": "洪水が怖くて避難中です。地下道を近道にして駅へ抜けてよい？",
+      "sourceId": "bosai-67",
+      "label": "related-incomplete",
+      "note": "Last-resort vertical shelter does not explicitly address a proposed underground shortcut.",
+      "title": "外へ逃げる方が危険なときの緊急安全確保",
+      "steps": [
+        "洪水・高潮では浸水しにくい上階へ移動します。",
+        "土砂災害では崖や沢から離れた部屋へ移動します。",
+        "窓や外壁からもできるだけ離れます。"
+      ],
+      "warning": "これは最後の手段であり、早めの立退き避難が基本です。"
+    },
+    "size-39/bosai-57": {
+      "query": "通勤の途中で地下鉄に乗っていたら地震が発生しました。私はつり革のある車内に立っています。自動車の運転中ではなく、駅の地上へ出る階段でもありません。周囲の人も驚いているため、扉を開けたり線路へ降りたりする前に、車内で取るべき対応を知りたいです。",
+      "sourceId": "bosai-57",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "地下鉄で地震にあったとき",
+      "steps": [
+        "座っている場合は姿勢を低くし頭を守ります。",
+        "立っている場合は手すり・つり革を握ります。",
+        "停電しても勝手に線路へ降りず誘導を待ちます。"
+      ],
+      "warning": "線路脇に高圧設備がある場合があり、自力で線路へ降りるのは危険です。"
+    },
+    "size-41/bosai-28": {
+      "query": "体育館で避難生活をしています。最近は人目や明かり、話し声が気になって夜に十分眠れていません。薬の処方や個人の病気の診断をお願いしているわけではありません。共同生活の場で休息を取り、必要なら困りごとを伝えるための一般的な情報を見たいです。",
+      "sourceId": "bosai-28",
+      "label": "intent-mismatch",
+      "note": "Medicine shortage information does not address requested sleep and rest.",
+      "title": "薬が足りない・薬の名前が分からないとき",
+      "steps": [
+        "お薬手帳や薬の包装、スマホ内の記録があれば提示します。",
+        "自己判断で量を増減・中断せず相談します。",
+        "アレルギーや持病も伝えます。"
+      ],
+      "warning": "処方薬を他人から分けてもらうなど自己判断で使用しないでください。"
+    },
+    "size-30/bosai-7": {
+      "query": "津波注意報の発表だけなら、サーフィンをもう少し続けてもいい？",
+      "sourceId": "bosai-7",
+      "label": "related-incomplete",
+      "note": "After-first-wave return guidance does not explicitly provide immediate exit-from-sea guidance before a wave.",
+      "title": "第1波のあとも戻らない",
+      "steps": [
+        "第1波が過ぎても避難場所から戻りません。",
+        "気象庁や自治体の情報を継続して確認します。",
+        "警報・注意報が解除されるまで海岸や川沿いへ近づきません。"
+      ],
+      "warning": "波が一度引いたことは安全のサインではありません。"
+    },
+    "size-32/bosai-68": {
+      "query": "洪水が怖くて避難中です。地下道を近道にして駅へ抜けてよい？",
+      "sourceId": "bosai-68",
+      "label": "related-incomplete",
+      "note": "River observation/pre-evacuation is not the proposed underground route.",
+      "title": "川の水位が上がる前に避難判断をする",
+      "steps": [
+        "川の防災情報や自治体情報を確認します。",
+        "危険な場所にいる場合は早めに避難します。",
+        "川の様子を見に行きません。"
+      ],
+      "warning": "川沿いや橋へ確認に行く行為は危険です。"
+    },
+    "size-43/bosai-84": {
+      "query": "大雨で家の前の道に水がたまり、側溝との境目が見えません。普段は子どもの送り迎えで歩く道ですが、今日は路面の状態がいつもと違います。持っている靴の種類を選ぶ話ではなく、このような冠水した道を歩行して避難してよいかという情報を調べています。",
+      "sourceId": "bosai-84",
+      "label": "warning-present-intent-mismatch",
+      "note": "Warning is present, but the footwear focus is explicitly disclaimed by this walking-permission question.",
+      "title": "浸水避難では履き慣れた運動靴を選ぶ",
+      "steps": [
+        "サンダルや脱げやすい靴を避けます。",
+        "長靴は水が入ると歩きにくくなる点に注意します。",
+        "深い・流れの強い冠水路は歩きません。"
+      ],
+      "warning": "靴を選んでも冠水路そのものの危険はなくなりません。"
+    },
+    "size-25/bosai-86": {
+      "query": "川沿いが大雨で水浸しです。水が太ももまで来る道を徒歩で渡る判断を知りたい。",
+      "sourceId": "bosai-86",
+      "label": "related-incomplete",
+      "note": "Low roads/underground entry is forbidden, but the specific deep walking situation is broader than this source scope.",
+      "title": "大雨のとき地下・アンダーパスへ近づかない",
+      "steps": [
+        "大雨時は低い道路や地下空間を避けます。",
+        "冠水表示や通行止めに従います。",
+        "浸水が始まったら安全な高い場所へ移動します。"
+      ],
+      "warning": "車でも徒歩でも『少しなら通れる』と進入しないでください。"
+    },
+    "size-29/bosai-6": {
+      "query": "津波警報が続いているけど波が落ち着きました。海を見に戻ってよい？",
+      "sourceId": "bosai-6",
+      "label": "supported-equivalent",
+      "note": "Step3 forbids returning to coast to observe or photograph. Sufficient for the asked return-to-watch action.",
+      "title": "津波は引き潮から始まるとは限らない",
+      "steps": [
+        "地震後に海の様子を確認しに行きません。",
+        "潮が引いていなくても必要な避難を続けます。",
+        "撮影や確認のために海岸へ戻りません。"
+      ],
+      "warning": "海面の見た目から津波の到達時刻や大きさを判断しないでください。"
+    },
+    "size-32/bosai-84": {
+      "query": "洪水が怖くて避難中です。地下道を近道にして駅へ抜けてよい？",
+      "sourceId": "bosai-84",
+      "label": "warning-present-intent-mismatch",
+      "note": "Footwear and flooded-road warning do not directly cover underground entry.",
+      "title": "浸水避難では履き慣れた運動靴を選ぶ",
+      "steps": [
+        "サンダルや脱げやすい靴を避けます。",
+        "長靴は水が入ると歩きにくくなる点に注意します。",
+        "深い・流れの強い冠水路は歩きません。"
+      ],
+      "warning": "靴を選んでも冠水路そのものの危険はなくなりません。"
+    },
+    "size-41/bosai-27": {
+      "query": "体育館で避難生活をしています。最近は人目や明かり、話し声が気になって夜に十分眠れていません。薬の処方や個人の病気の診断をお願いしているわけではありません。共同生活の場で休息を取り、必要なら困りごとを伝えるための一般的な情報を見たいです。",
+      "sourceId": "bosai-27",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "避難所で睡眠・休息を確保する",
+      "steps": [
+        "床の硬さや冷えを減らします。",
+        "可能なら昼夜の生活リズムを整えます。",
+        "眠れない状態や体調不良が続く場合はスタッフへ相談します。"
+      ],
+      "warning": "睡眠不足が続くと体調を崩しやすくなります。"
+    },
+    "size-25/bosai-69": {
+      "query": "川沿いが大雨で水浸しです。水が太ももまで来る道を徒歩で渡る判断を知りたい。",
+      "sourceId": "bosai-69",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "冠水した道路を歩かない",
+      "steps": [
+        "冠水する前に避難します。",
+        "別の安全な経路があれば冠水路を避けます。",
+        "すでに移動が危険なら上階などで安全を確保します。"
+      ],
+      "warning": "棒で確認しても冠水路の安全が保証されるわけではありません。"
+    },
+    "size-26/bosai-69": {
+      "query": "洪水で歩道が冠水しました。運動靴を履けば歩いて進んでよいのでしょうか。",
+      "sourceId": "bosai-69",
+      "label": "supported-direct",
+      "note": "Selected expected direct source.",
+      "title": "冠水した道路を歩かない",
+      "steps": [
+        "冠水する前に避難します。",
+        "別の安全な経路があれば冠水路を避けます。",
+        "すでに移動が危険なら上階などで安全を確保します。"
+      ],
+      "warning": "棒で確認しても冠水路の安全が保証されるわけではありません。"
+    },
+    "size-41/null": {
+      "query": "体育館で避難生活をしています。最近は人目や明かり、話し声が気になって夜に十分眠れていません。薬の処方や個人の病気の診断をお願いしているわけではありません。共同生活の場で休息を取り、必要なら困りごとを伝えるための一般的な情報を見たいです。",
+      "sourceId": null,
+      "label": "abstained-answerable",
+      "note": "Expected source exists, but no primary candidate was returned."
+    },
+    "size-42/bosai-71": {
+      "query": "災害で車を使って移動してきましたが、ここからは徒歩で避難する必要があります。車をその場に置いて離れるとき、緊急車両の邪魔にならないように気をつけたいです。浸水した車から脱出する場面ではなく、地震の避難に伴って車を置く際の扱いを調べています。",
+      "sourceId": "bosai-71",
+      "label": "intent-mismatch-risk",
+      "note": "Submerged-car escape is explicitly negated by the query; it does not support parking/leaving a vehicle for earthquake evacuation.",
+      "title": "車が水没し始めたら早めに脱出する",
+      "steps": [
+        "ドアが開くうちに車外へ出ます。",
+        "ドアが開かなければ窓を開けます。",
+        "窓も開かない場合は車両のガラス仕様に対応した脱出用具を使います。"
+      ],
+      "warning": "フロントガラスなど合わせガラスは一般的な脱出用ハンマーで割れない場合があります。"
+    },
+    "size-44/null": {
+      "query": "避難所で生活していて、毎日寝て過ごす時間が長くなっています。足が痛いとか突然胸が苦しくなったという症状の相談ではありません。普段できていた動作ができなくならないよう、活動量を保つことについて一般的な情報を見たいです。特定の運動回数や消費カロリーの計算を求めているわけではありません。",
+      "sourceId": null,
+      "label": "abstained-answerable",
+      "note": "Expected source exists, but no primary candidate was returned."
+    }
+  }
+}
