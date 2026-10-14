@@ -1,0 +1,2622 @@
+{
+  "createdAt": "2026-10-14T17:01:26.224Z",
+  "platform": "Linux Chromium149 CPU/WASM 1 thread, WebGPU disabled; not iPad Safari",
+  "freeze": {
+    "createdAt": "2026-10-14T16:49:37.568Z",
+    "implementationCommit": "5bc2c645ee08143710def354c4cc6c9d77abe742",
+    "baselineCommit": "9e85e753bd3913286b329d240292dbd449ca0628",
+    "development": "scripts/evaluation/conversation-v2-dev.json; original24 now regression",
+    "finalSetAuthored": true,
+    "policy": "Freeze engine/retrieval/scene capabilities before new final dialogue authorship. No tuning against final labels. Model/corpus/vectors unchanged.",
+    "coreSha256": {
+      "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+      "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+      "src/query-scope.js": "d4e32acf20a2d1a64e2489f3088e1611e33c1469fed854daa5476d8b8fff9833",
+      "src/beta-search.js": "cf0fec94d3fda690449ae77224c88acee613688d708adf8b1f672a744627c418",
+      "src/beta-controller.js": "b86402fead18e215fb3d69b38c6835109c16ec3e3fbad22fc5f3939deceeb891",
+      "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+      "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+      "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+      "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+      "src/conversation.js": "906f772203479b6781585caf71d8fc3368219bfd544b0e71cc97cceaee3a4c29",
+      "src/conversation-context.js": "9192b743671037a4fa5c25beefe0605a21d4fc87aff91e45804a4378f9d99c18",
+      "src/conversation-evidence.js": "ff041d12dc6ee7abaf8a9b7afd29fa0a98ed73dbe115a2316f7ec4f0a262b2c0",
+      "src/conversation-ui.js": "6a757f0b8dfd699fc34a483d37e05c3860e9b267dbf44872e6e66cc43782e5ba"
+    },
+    "oldRegressionSha256": "76bf98bc2407b125ddfaddd0b9d1f0ba4dcf7175da5ea98b96b7cb561f88fc65",
+    "initialEvaluation": "conversation-v2-final-32.json is now regression/development after observing action/subject/prediction failures. Keep its initial results and freeze separately.",
+    "initialCases": "scripts/evaluation/conversation-v2-final-32.json",
+    "initialCasesSha256": "e03ea44584048575fdfdf1b8a81e1e016e3dabdff107f2c76c1dfa612bf51dcc",
+    "finalCases": "scripts/evaluation/conversation-v2-final-24.json",
+    "finalAuthoredAt": "2026-10-14T16:50:56.390Z",
+    "finalCasesSha256": "81095168ad611dc15ef33d8b9cda19ac2dd803cdcdf61ab58144984bc8088e62"
+  },
+  "sets": {
+    "before-dev": {
+      "build": "ベータ版 5e5afc805c41 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "questions": 16,
+      "turns": 29,
+      "responseKindAgreement": 22,
+      "stateAndConditionAgreement": 17,
+      "positiveQueries": 10,
+      "top1": 5,
+      "top3": 8,
+      "top5": 8,
+      "retrievedBeforeCapabilityTop1": 0,
+      "inappropriateLabelledQueries": 4,
+      "inappropriateTop1Queries": 1,
+      "inappropriateTop3Queries": 3,
+      "unsupported": {
+        "total": 2,
+        "rejected": 2,
+        "candidatePresentations": []
+      },
+      "clarification": {
+        "total": 9,
+        "matched": 2
+      },
+      "explicitFactChecks": 0,
+      "completeMultiEvidence": [],
+      "warmSearchMedianMs": 17.299999997019768,
+      "warmConversationMedianMs": null,
+      "firstModel": {
+        "loadMs": 1812.7000000029802,
+        "warm": false,
+        "embeddingMs": 190.8999999910593,
+        "tokens": 11,
+        "retrievalMs": 3.2999999970197678,
+        "totalMs": 2071.7999999970198
+      },
+      "peakBrowserPssMiB": 818.4404296875,
+      "releasePssMiB": [
+        709.6328125,
+        293.4150390625
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true
+      },
+      "controlFailures": [
+        {
+          "caseId": "d01",
+          "turn": 3,
+          "input": "そのとき注意することは？",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-39",
+              "title": "寝ているときに地震が起きたら",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-42",
+              "title": "マンション・高層階で地震にあったとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-38",
+              "title": "自宅・室内で地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-40",
+              "title": "お風呂・トイレで地震にあったとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "d02",
+          "turn": 2,
+          "input": "私は徒歩で友人は車です",
+          "kind": "clarify",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "d02",
+          "turn": 3,
+          "input": "もっと詳しく",
+          "kind": "source",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "d03",
+          "turn": 2,
+          "input": "私は徒歩で家族は車です",
+          "kind": "clarify",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "d03",
+          "turn": 3,
+          "input": "注意事項は？",
+          "kind": "source",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "d05",
+          "turn": 2,
+          "input": "車ではなく徒歩です",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-83",
+              "title": "簡易水のうは浅い初期浸水だけの応急対策",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "d08",
+          "turn": 1,
+          "input": "大雨で車を運転しています",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "d08",
+          "turn": 2,
+          "input": "車ではなく徒歩です",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-83",
+              "title": "簡易水のうは浅い初期浸水だけの応急対策",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "d09",
+          "turn": 1,
+          "input": "大雨ですが道路は冠水していません。車で移動するときは？",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "d10",
+          "turn": 3,
+          "input": "そのときの手順は？",
+          "kind": "unsupported",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "d11",
+          "turn": 2,
+          "input": "友人は車で私は歩いています",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-36",
+              "title": "車中泊では定期的に体を動かす",
+              "category": "避難所生活"
+            },
+            {
+              "id": "bosai-73",
+              "title": "雷が近づいたら建物や車の中へ避難する",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "d14",
+          "turn": 2,
+          "input": "徒歩ではなく車で移動します",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震"
+            }
+          ]
+        }
+      ],
+      "rankingFailures": [
+        {
+          "caseId": "d04",
+          "turn": 1,
+          "input": "激しい雨で道が膝の高さまで水につかりました。棒で足元を調べつつ徒歩で進んでもいい？",
+          "rank": 3,
+          "candidates": [
+            {
+              "id": "bosai-74",
+              "title": "竜巻・激しい突風から身を守る",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "d05",
+          "turn": 2,
+          "input": "車ではなく徒歩です",
+          "rank": null,
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-83",
+              "title": "簡易水のうは浅い初期浸水だけの応急対策",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "d06",
+          "turn": 1,
+          "input": "津波で高い場所まで行く時間がありません",
+          "rank": null,
+          "candidates": [
+            {
+              "id": "bosai-0",
+              "title": "津波からの避難：「遠く」だけでなく「より高く」",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-6",
+              "title": "津波は引き潮から始まるとは限らない",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-3",
+              "title": "揺れが弱くても長く続いたら津波を警戒",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-1",
+              "title": "海岸・川の近くで揺れを感じたらすぐ避難",
+              "category": "津波"
+            }
+          ]
+        },
+        {
+          "caseId": "d14",
+          "turn": 1,
+          "input": "道路が浸水している中を徒歩で移動したい",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "d14",
+          "turn": 2,
+          "input": "徒歩ではなく車で移動します",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震"
+            }
+          ]
+        }
+      ],
+      "inappropriateUpper": [
+        {
+          "caseId": "d04",
+          "input": "激しい雨で道が膝の高さまで水につかりました。棒で足元を調べつつ徒歩で進んでもいい？",
+          "top1": "bosai-74",
+          "badTop3": [
+            "bosai-74",
+            "bosai-84"
+          ]
+        },
+        {
+          "caseId": "d05",
+          "input": "車ではなく徒歩です",
+          "top1": "bosai-86",
+          "badTop3": [
+            "bosai-84"
+          ]
+        },
+        {
+          "caseId": "d13",
+          "input": "冠水した道路を自動車で通行してよい？",
+          "top1": "bosai-70",
+          "badTop3": [
+            "bosai-69"
+          ]
+        }
+      ]
+    },
+    "initial-before": {
+      "implementation": "9e85e753bd3913286b329d240292dbd449ca0628",
+      "build": "ベータ版 5e5afc805c41 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "questions": 32,
+      "turns": 46,
+      "responseKindAgreement": 40,
+      "stateAndConditionAgreement": 34,
+      "positiveQueries": 24,
+      "top1": 17,
+      "top3": 22,
+      "top5": 24,
+      "retrievedBeforeCapabilityTop1": 17,
+      "inappropriateLabelledQueries": 10,
+      "inappropriateTop1Queries": 0,
+      "inappropriateTop3Queries": 7,
+      "unsupported": {
+        "total": 6,
+        "rejected": 4,
+        "candidatePresentations": [
+          "f28",
+          "f29"
+        ]
+      },
+      "clarification": {
+        "total": 11,
+        "matched": 7
+      },
+      "explicitFactChecks": 0,
+      "completeMultiEvidence": [
+        {
+          "caseId": "f14",
+          "allFound": true
+        }
+      ],
+      "warmSearchMedianMs": 21.900000005960464,
+      "warmConversationMedianMs": null,
+      "firstModel": {
+        "loadMs": 2279.0999999940395,
+        "warm": false,
+        "embeddingMs": 225.79999999701977,
+        "tokens": 25,
+        "retrievalMs": 34.599999994039536,
+        "totalMs": 2601.2999999970198
+      },
+      "peakBrowserPssMiB": 838.6318359375,
+      "releasePssMiB": [
+        674.07421875,
+        293.380859375
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true
+      },
+      "controlFailures": [
+        {
+          "caseId": "f06",
+          "turn": 2,
+          "input": "車ではなく歩いて移動します。",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-68",
+              "title": "川の水位が上がる前に避難判断をする",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f07",
+          "turn": 2,
+          "input": "徒歩じゃなく車です。",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f15",
+          "turn": 1,
+          "input": "大雨ですが道路は冠水していません。車で移動するときに気をつける情報はある？",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "f16",
+          "turn": 3,
+          "input": "そのときの行動を教えて。",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-39",
+              "title": "寝ているときに地震が起きたら",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-38",
+              "title": "自宅・室内で地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-58",
+              "title": "揺れが収まったら出口と周囲の危険を確認",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-42",
+              "title": "マンション・高層階で地震にあったとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f17",
+          "turn": 2,
+          "input": "私は徒歩ですが家族は車で別々に避難しています。",
+          "kind": "clarify",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "f17",
+          "turn": 3,
+          "input": "もっと詳しく",
+          "kind": "source",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "f18",
+          "turn": 2,
+          "input": "私は室内で友人は外です。誰の話をすべき？",
+          "kind": "clarify",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "f18",
+          "turn": 3,
+          "input": "出典は？",
+          "kind": "source",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "f27",
+          "turn": 1,
+          "input": "台風の雨の中を車で移動します。",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-75",
+              "title": "窓ガラスは台風が来る前に対策する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-85",
+              "title": "暴風中は窓から離れて過ごす",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-73",
+              "title": "雷が近づいたら建物や車の中へ避難する",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f27",
+          "turn": 2,
+          "input": "道路が冠水しています",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-68",
+              "title": "川の水位が上がる前に避難判断をする",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f28",
+          "turn": 1,
+          "input": "冠水した道路を歩くとき、水深は何センチまでなら安全ですか。",
+          "kind": "confirm",
+          "expected": "unsupported",
+          "candidates": [
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-50",
+              "title": "住宅地ではブロック塀・自動販売機から離れる",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "f29",
+          "turn": 1,
+          "input": "この町で明日の地震が何時に起きるか教えてください。",
+          "kind": "confirm",
+          "expected": "unsupported",
+          "candidates": [
+            {
+              "id": "bosai-11",
+              "title": "第一波到達予想時刻を『避難の締切』にしない",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-87",
+              "title": "ハザードマップは災害が起きる前に確認する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-23",
+              "title": "エコノミークラス症候群を予防する",
+              "category": "避難所生活"
+            },
+            {
+              "id": "bosai-53",
+              "title": "山・崖の近くで地震にあったとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-1",
+              "title": "海岸・川の近くで揺れを感じたらすぐ避難",
+              "category": "津波"
+            }
+          ]
+        }
+      ],
+      "rankingFailures": [
+        {
+          "caseId": "f05",
+          "turn": 1,
+          "input": "豪雨で通りが水浸しです。徒歩で渡るか迷っています。",
+          "rank": 4,
+          "candidates": [
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-82",
+              "title": "トイレ・排水口の逆流を簡易水のうで抑える",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f06",
+          "turn": 2,
+          "input": "車ではなく歩いて移動します。",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-68",
+              "title": "川の水位が上がる前に避難判断をする",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f07",
+          "turn": 2,
+          "input": "徒歩じゃなく車です。",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f10",
+          "turn": 1,
+          "input": "津波が一度来て引いたので、忘れ物を取りに戻りたいのですが。",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-8",
+              "title": "津波警報・注意報が解除されるまで避難を続ける",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-7",
+              "title": "第1波のあとも戻らない",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-6",
+              "title": "津波は引き潮から始まるとは限らない",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波"
+            }
+          ]
+        },
+        {
+          "caseId": "f24",
+          "turn": 1,
+          "input": "地震で会社にいるときの対応は？",
+          "rank": 4,
+          "candidates": [
+            {
+              "id": "bosai-18",
+              "title": "水が少ないときの手指衛生",
+              "category": "避難所生活"
+            },
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-25",
+              "title": "水が少ないときの口腔ケア",
+              "category": "避難所生活"
+            },
+            {
+              "id": "bosai-44",
+              "title": "職場・オフィスで地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "f25",
+          "turn": 1,
+          "input": "津波避難の高台に間に合う時間はあります。徒歩で避難する一般的な注意は？",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-0",
+              "title": "津波からの避難：「遠く」だけでなく「より高く」",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "f27",
+          "turn": 2,
+          "input": "道路が冠水しています",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-68",
+              "title": "川の水位が上がる前に避難判断をする",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        }
+      ],
+      "inappropriateUpper": [
+        {
+          "caseId": "f01",
+          "input": "雨が強く、道路が水で覆われています。膝まで水があるけど歩いて向こうへ渡りたいです。",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-84"
+          ]
+        },
+        {
+          "caseId": "f02",
+          "input": "冠水路を徒歩で通り抜けても大丈夫でしょうか。杖で探りながらなら行けますか。",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "caseId": "f03",
+          "input": "道路が水に浸かっています。家族を迎えに歩いて進むとき、どう気をつければいい？",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "caseId": "f04",
+          "input": "前の道路は冠水しています。自動車の車高が高ければそのまま通過しても問題ないですか。",
+          "top1": "bosai-70",
+          "badTop3": [
+            "bosai-69"
+          ]
+        },
+        {
+          "caseId": "f06",
+          "input": "車ではなく歩いて移動します。",
+          "top1": "bosai-86",
+          "badTop3": [
+            "bosai-84"
+          ]
+        },
+        {
+          "caseId": "f12",
+          "input": "道路が冠水しているときの避難の履物は、長靴と運動靴のどちらを選ぶの？",
+          "top1": "bosai-84",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "caseId": "f14",
+          "input": "道路が冠水しています。徒歩で外へ出る方が危険な場合と、冠水路を歩く危険を両方教えて。",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-70"
+          ]
+        }
+      ]
+    },
+    "initial-after": {
+      "implementation": "71acf5946c5cb53b64f4772f09b124ed12692423",
+      "build": "ベータ版 b4802db1d057 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "questions": 32,
+      "turns": 46,
+      "responseKindAgreement": 43,
+      "stateAndConditionAgreement": 43,
+      "positiveQueries": 24,
+      "top1": 19,
+      "top3": 21,
+      "top5": 23,
+      "retrievedBeforeCapabilityTop1": 19,
+      "inappropriateLabelledQueries": 10,
+      "inappropriateTop1Queries": 0,
+      "inappropriateTop3Queries": 0,
+      "unsupported": {
+        "total": 6,
+        "rejected": 5,
+        "candidatePresentations": [
+          "f29"
+        ]
+      },
+      "clarification": {
+        "total": 11,
+        "matched": 10
+      },
+      "explicitFactChecks": 21,
+      "completeMultiEvidence": [
+        {
+          "caseId": "f14",
+          "allFound": true
+        }
+      ],
+      "warmSearchMedianMs": 23.899999991059303,
+      "warmConversationMedianMs": 24.200000002980232,
+      "firstModel": {
+        "loadMs": 1925,
+        "warm": false,
+        "embeddingMs": 128.79999999701977,
+        "tokens": 40,
+        "retrievalMs": 3.2999999970197678,
+        "totalMs": 2115.0999999940395,
+        "conversationMs": 2115.9000000059605
+      },
+      "peakBrowserPssMiB": 806.5234375,
+      "releasePssMiB": [
+        682.232421875,
+        293.9755859375
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true
+      },
+      "controlFailures": [
+        {
+          "caseId": "f13",
+          "turn": 1,
+          "input": "水没した車ではなく、地震のあと自動車を置いて歩いて避難する手順についてです。",
+          "kind": "clarify",
+          "expected": "confirm"
+        },
+        {
+          "caseId": "f26",
+          "turn": 1,
+          "input": "道路が冠水しています。母は歩けず、私は車です。どうしたらいい？",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電",
+              "fit": "scene-and-action",
+              "provenance": "retrieval-and-capability"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電",
+              "fit": "related-unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震",
+              "fit": "related-unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "f29",
+          "turn": 1,
+          "input": "この町で明日の地震が何時に起きるか教えてください。",
+          "kind": "confirm",
+          "expected": "unsupported",
+          "candidates": [
+            {
+              "id": "bosai-11",
+              "title": "第一波到達予想時刻を『避難の締切』にしない",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-87",
+              "title": "ハザードマップは災害が起きる前に確認する",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-23",
+              "title": "エコノミークラス症候群を予防する",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-53",
+              "title": "山・崖の近くで地震にあったとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-1",
+              "title": "海岸・川の近くで揺れを感じたらすぐ避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        }
+      ],
+      "rankingFailures": [
+        {
+          "caseId": "f05",
+          "turn": 1,
+          "input": "豪雨で通りが水浸しです。徒歩で渡るか迷っています。",
+          "rank": 4,
+          "candidates": [
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-82",
+              "title": "トイレ・排水口の逆流を簡易水のうで抑える",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "f10",
+          "turn": 1,
+          "input": "津波が一度来て引いたので、忘れ物を取りに戻りたいのですが。",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-8",
+              "title": "津波警報・注意報が解除されるまで避難を続ける",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-7",
+              "title": "第1波のあとも戻らない",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-6",
+              "title": "津波は引き潮から始まるとは限らない",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "f13",
+          "turn": 1,
+          "input": "水没した車ではなく、地震のあと自動車を置いて歩いて避難する手順についてです。",
+          "rank": null
+        },
+        {
+          "caseId": "f24",
+          "turn": 1,
+          "input": "地震で会社にいるときの対応は？",
+          "rank": 4,
+          "candidates": [
+            {
+              "id": "bosai-18",
+              "title": "水が少ないときの手指衛生",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-25",
+              "title": "水が少ないときの口腔ケア",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-44",
+              "title": "職場・オフィスで地震が起きたとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "f25",
+          "turn": 1,
+          "input": "津波避難の高台に間に合う時間はあります。徒歩で避難する一般的な注意は？",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-0",
+              "title": "津波からの避難：「遠く」だけでなく「より高く」",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        }
+      ],
+      "inappropriateUpper": []
+    },
+    "before-final": {
+      "implementation": "9e85e753bd3913286b329d240292dbd449ca0628",
+      "build": "ベータ版 5e5afc805c41 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "questions": 24,
+      "turns": 35,
+      "responseKindAgreement": 29,
+      "stateAndConditionAgreement": 26,
+      "positiveQueries": 18,
+      "top1": 14,
+      "top3": 17,
+      "top5": 17,
+      "retrievedBeforeCapabilityTop1": 14,
+      "inappropriateLabelledQueries": 9,
+      "inappropriateTop1Queries": 1,
+      "inappropriateTop3Queries": 6,
+      "unsupported": {
+        "total": 5,
+        "rejected": 2,
+        "candidatePresentations": [
+          "n16",
+          "n17",
+          "n22"
+        ]
+      },
+      "clarification": {
+        "total": 7,
+        "matched": 4
+      },
+      "explicitFactChecks": 0,
+      "completeMultiEvidence": [
+        {
+          "caseId": "n20",
+          "allFound": true
+        }
+      ],
+      "warmSearchMedianMs": 24.400000005960464,
+      "warmConversationMedianMs": null,
+      "firstModel": {
+        "loadMs": 2209,
+        "warm": false,
+        "embeddingMs": 136.5,
+        "tokens": 21,
+        "retrievalMs": 4,
+        "totalMs": 2412.2000000029802
+      },
+      "peakBrowserPssMiB": 830.9013671875,
+      "releasePssMiB": [
+        769.0439453125,
+        292.6376953125
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": false
+      },
+      "controlFailures": [
+        {
+          "caseId": "n05",
+          "turn": 2,
+          "input": "自動車ではなく歩いて避難します。",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "n06",
+          "turn": 2,
+          "input": "歩行ではなく自動車です。",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "n11",
+          "turn": 2,
+          "input": "父は徒歩で私は車です。両方の避難の相談です。",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-16",
+              "title": "家族・支援が必要な人の津波避難を平時に決める",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-37",
+              "title": "在宅避難でも支援情報を確認する",
+              "category": "避難所生活"
+            }
+          ]
+        },
+        {
+          "caseId": "n12",
+          "turn": 3,
+          "input": "その場合どう行動する？",
+          "kind": "unsupported",
+          "expected": "clarify"
+        },
+        {
+          "caseId": "n13",
+          "turn": 2,
+          "input": "家族は室内、私は外にいます。どちらも気になります。",
+          "kind": "confirm",
+          "expected": "clarify",
+          "candidates": [
+            {
+              "id": "bosai-38",
+              "title": "自宅・室内で地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-85",
+              "title": "暴風中は窓から離れて過ごす",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-37",
+              "title": "在宅避難でも支援情報を確認する",
+              "category": "避難所生活"
+            },
+            {
+              "id": "bosai-50",
+              "title": "住宅地ではブロック塀・自動販売機から離れる",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-34",
+              "title": "避難所でプライバシーを確保する",
+              "category": "避難所生活"
+            }
+          ]
+        },
+        {
+          "caseId": "n16",
+          "turn": 1,
+          "input": "次の地震の発生日を指定して教えてもらえますか。",
+          "kind": "confirm",
+          "expected": "unsupported",
+          "candidates": [
+            {
+              "id": "bosai-48",
+              "title": "エレベーター内で地震にあったとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-53",
+              "title": "山・崖の近くで地震にあったとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-45",
+              "title": "スーパー・商業施設で地震にあったとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-3",
+              "title": "揺れが弱くても長く続いたら津波を警戒",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-11",
+              "title": "第一波到達予想時刻を『避難の締切』にしない",
+              "category": "津波"
+            }
+          ]
+        },
+        {
+          "caseId": "n17",
+          "turn": 1,
+          "input": "地震はいつ起きるのか時刻を知りたいです。",
+          "kind": "confirm",
+          "expected": "unsupported",
+          "candidates": [
+            {
+              "id": "bosai-11",
+              "title": "第一波到達予想時刻を『避難の締切』にしない",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-87",
+              "title": "ハザードマップは災害が起きる前に確認する",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-39",
+              "title": "寝ているときに地震が起きたら",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-58",
+              "title": "揺れが収まったら出口と周囲の危険を確認",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-59",
+              "title": "避難時の通電火災を防ぐ",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "n18",
+          "turn": 1,
+          "input": "大雨ですが道は冠水していません。車で移動するときに読む一般情報は？",
+          "kind": "confirm",
+          "expected": "confirm",
+          "candidates": [
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-68",
+              "title": "川の水位が上がる前に避難判断をする",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-65",
+              "title": "線状降水帯の情報を見たら早めに備える",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "n22",
+          "turn": 1,
+          "input": "水につかった道路は水深が何センチなら歩行して安全なのですか。",
+          "kind": "confirm",
+          "expected": "unsupported",
+          "candidates": [
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-5",
+              "title": "津波注意報でも海から上がり海岸から離れる",
+              "category": "津波"
+            }
+          ]
+        }
+      ],
+      "rankingFailures": [
+        {
+          "caseId": "n05",
+          "turn": 2,
+          "input": "自動車ではなく歩いて避難します。",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-84",
+              "title": "浸水避難では履き慣れた運動靴を選ぶ",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震"
+            }
+          ]
+        },
+        {
+          "caseId": "n06",
+          "turn": 2,
+          "input": "歩行ではなく自動車です。",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-70",
+              "title": "冠水した道路へ車で入らない",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-54",
+              "title": "車を運転中に地震が起きたとき",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-77",
+              "title": "側溝・排水口の掃除は雨が強くなる前に",
+              "category": "台風・大雨・停電"
+            },
+            {
+              "id": "bosai-71",
+              "title": "車が水没し始めたら早めに脱出する",
+              "category": "台風・大雨・停電"
+            }
+          ]
+        },
+        {
+          "caseId": "n07",
+          "turn": 1,
+          "input": "津波のとき高い所に行く時間がない場合、どの情報を見ればいい？",
+          "rank": 3,
+          "candidates": [
+            {
+              "id": "bosai-15",
+              "title": "津波フラッグを見たら海から離れる",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-3",
+              "title": "揺れが弱くても長く続いたら津波を警戒",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-0",
+              "title": "津波からの避難：「遠く」だけでなく「より高く」",
+              "category": "津波"
+            }
+          ]
+        },
+        {
+          "caseId": "n08",
+          "turn": 1,
+          "input": "津波が来たとして、丘へ向かう時間が足りません。対処の一般情報はある？",
+          "rank": null,
+          "candidates": [
+            {
+              "id": "bosai-16",
+              "title": "家族・支援が必要な人の津波避難を平時に決める",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-11",
+              "title": "第一波到達予想時刻を『避難の締切』にしない",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震"
+            },
+            {
+              "id": "bosai-15",
+              "title": "津波フラッグを見たら海から離れる",
+              "category": "津波"
+            },
+            {
+              "id": "bosai-3",
+              "title": "揺れが弱くても長く続いたら津波を警戒",
+              "category": "津波"
+            }
+          ]
+        }
+      ],
+      "inappropriateUpper": [
+        {
+          "caseId": "n01",
+          "input": "大雨のあと、冠水した道路を歩いて避難先へ行ってよいか知りたいです。",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "caseId": "n02",
+          "input": "水浸しの通学路を歩いて通ろうと思います。足元に棒を差し入れれば大丈夫？",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-84"
+          ]
+        },
+        {
+          "caseId": "n03",
+          "input": "冠水している道路へ軽自動車で入る際の一般的な注意を知りたい。",
+          "top1": "bosai-70",
+          "badTop3": [
+            "bosai-69"
+          ]
+        },
+        {
+          "caseId": "n18",
+          "input": "大雨ですが道は冠水していません。車で移動するときに読む一般情報は？",
+          "top1": "bosai-70",
+          "badTop3": [
+            "bosai-70",
+            "bosai-69"
+          ]
+        },
+        {
+          "caseId": "n20",
+          "input": "冠水した道路を徒歩で進む危険と、外の移動が危ないときの建物内での行動を知りたいです。",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-70"
+          ]
+        },
+        {
+          "caseId": "n21",
+          "input": "冠水した道路で避難するとき、どんな靴を選ぶのが一般的ですか。",
+          "top1": "bosai-84",
+          "badTop3": [
+            "bosai-70"
+          ]
+        }
+      ]
+    },
+    "after-final": {
+      "implementation": "5bc2c645ee08143710def354c4cc6c9d77abe742",
+      "build": "ベータ版 a7b64028157d / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "questions": 24,
+      "turns": 35,
+      "responseKindAgreement": 34,
+      "stateAndConditionAgreement": 34,
+      "positiveQueries": 18,
+      "top1": 18,
+      "top3": 18,
+      "top5": 18,
+      "retrievedBeforeCapabilityTop1": 17,
+      "inappropriateLabelledQueries": 9,
+      "inappropriateTop1Queries": 1,
+      "inappropriateTop3Queries": 2,
+      "unsupported": {
+        "total": 5,
+        "rejected": 4,
+        "candidatePresentations": [
+          "n16"
+        ]
+      },
+      "clarification": {
+        "total": 7,
+        "matched": 7
+      },
+      "explicitFactChecks": 16,
+      "completeMultiEvidence": [
+        {
+          "caseId": "n20",
+          "allFound": true
+        }
+      ],
+      "warmSearchMedianMs": 25.299999997019768,
+      "warmConversationMedianMs": 25.5,
+      "firstModel": {
+        "loadMs": 2367.7000000029802,
+        "warm": false,
+        "embeddingMs": 187.6000000089407,
+        "tokens": 36,
+        "retrievalMs": 3.5999999940395355,
+        "totalMs": 2626.0999999940395,
+        "conversationMs": 2630.9000000059605
+      },
+      "peakBrowserPssMiB": 810.46875,
+      "releasePssMiB": [
+        585.109375,
+        293.1923828125
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "controlFailures": [
+        {
+          "caseId": "n16",
+          "turn": 1,
+          "input": "次の地震の発生日を指定して教えてもらえますか。",
+          "kind": "confirm",
+          "expected": "unsupported",
+          "candidates": [
+            {
+              "id": "bosai-48",
+              "title": "エレベーター内で地震にあったとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-53",
+              "title": "山・崖の近くで地震にあったとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-45",
+              "title": "スーパー・商業施設で地震にあったとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-3",
+              "title": "揺れが弱くても長く続いたら津波を警戒",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-11",
+              "title": "第一波到達予想時刻を『避難の締切』にしない",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        }
+      ],
+      "rankingFailures": [],
+      "inappropriateUpper": [
+        {
+          "caseId": "n02",
+          "input": "水浸しの通学路を歩いて通ろうと思います。足元に棒を差し入れれば大丈夫？",
+          "top1": "bosai-69",
+          "badTop3": [
+            "bosai-84"
+          ]
+        },
+        {
+          "caseId": "n18",
+          "input": "大雨ですが道は冠水していません。車で移動するときに読む一般情報は？",
+          "top1": "bosai-70",
+          "badTop3": [
+            "bosai-70",
+            "bosai-69"
+          ]
+        }
+      ]
+    },
+    "regression": {
+      "implementation": "5bc2c645ee08143710def354c4cc6c9d77abe742",
+      "build": "ベータ版 a7b64028157d / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "questions": 24,
+      "turns": 38,
+      "responseKindAgreement": 36,
+      "stateAndConditionAgreement": 36,
+      "positiveQueries": 15,
+      "top1": 12,
+      "top3": 14,
+      "top5": 14,
+      "retrievedBeforeCapabilityTop1": 11,
+      "inappropriateLabelledQueries": 0,
+      "inappropriateTop1Queries": 0,
+      "inappropriateTop3Queries": 0,
+      "unsupported": {
+        "total": 6,
+        "rejected": 6,
+        "candidatePresentations": []
+      },
+      "clarification": {
+        "total": 9,
+        "matched": 9
+      },
+      "explicitFactChecks": 6,
+      "completeMultiEvidence": [],
+      "warmSearchMedianMs": 20.700000002980232,
+      "warmConversationMedianMs": 21,
+      "firstModel": {
+        "loadMs": 2229.5,
+        "warm": false,
+        "embeddingMs": 73.6000000089407,
+        "tokens": 10,
+        "retrievalMs": 3.7999999970197678,
+        "totalMs": 2373.199999988079,
+        "conversationMs": 2373.5999999940395
+      },
+      "peakBrowserPssMiB": 828.162109375,
+      "releasePssMiB": [
+        715.3486328125,
+        292.9228515625
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "controlFailures": [
+        {
+          "caseId": "c21",
+          "turn": 1,
+          "input": "大雨で車を運転しています",
+          "kind": "clarify",
+          "expected": "confirm"
+        },
+        {
+          "caseId": "c21",
+          "turn": 2,
+          "input": "車ではなく徒歩です",
+          "kind": "clarify",
+          "expected": "confirm"
+        }
+      ],
+      "rankingFailures": [
+        {
+          "caseId": "c05",
+          "turn": 1,
+          "input": "診断を求めていない、避難生活でいつもの薬が尽きたら誰に相談する？",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-29",
+              "title": "持病がある人は早めに相談する",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-28",
+              "title": "薬が足りない・薬の名前が分からないとき",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-24",
+              "title": "生活不活発を防ぐ",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-30",
+              "title": "妊産婦・乳幼児は必要な支援を早めに伝える",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-37",
+              "title": "在宅避難でも支援情報を確認する",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "c19",
+          "turn": 1,
+          "input": "夜中に津波で避難するときの注意は？",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-8",
+              "title": "津波警報・注意報が解除されるまで避難を続ける",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-9",
+              "title": "川沿い・河口でも津波に注意する",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-52",
+              "title": "川べりで地震にあったら津波・堤防に注意",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "c21",
+          "turn": 2,
+          "input": "車ではなく徒歩です",
+          "rank": null
+        }
+      ],
+      "inappropriateUpper": []
+    },
+    "regression-32": {
+      "implementation": "5bc2c645ee08143710def354c4cc6c9d77abe742",
+      "build": "ベータ版 a7b64028157d / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "questions": 32,
+      "turns": 46,
+      "responseKindAgreement": 46,
+      "stateAndConditionAgreement": 46,
+      "positiveQueries": 24,
+      "top1": 20,
+      "top3": 22,
+      "top5": 24,
+      "retrievedBeforeCapabilityTop1": 20,
+      "inappropriateLabelledQueries": 10,
+      "inappropriateTop1Queries": 0,
+      "inappropriateTop3Queries": 0,
+      "unsupported": {
+        "total": 6,
+        "rejected": 6,
+        "candidatePresentations": []
+      },
+      "clarification": {
+        "total": 11,
+        "matched": 11
+      },
+      "explicitFactChecks": 20,
+      "completeMultiEvidence": [
+        {
+          "caseId": "f14",
+          "allFound": true
+        }
+      ],
+      "warmSearchMedianMs": 24.899999991059303,
+      "warmConversationMedianMs": 25.200000002980232,
+      "firstModel": {
+        "loadMs": 2281.2999999970198,
+        "warm": false,
+        "embeddingMs": 129.69999998807907,
+        "tokens": 40,
+        "retrievalMs": 12.600000008940697,
+        "totalMs": 2484,
+        "conversationMs": 2484.9000000059605
+      },
+      "peakBrowserPssMiB": 743.634765625,
+      "releasePssMiB": [
+        767.611328125,
+        291.1513671875
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "controlFailures": [],
+      "rankingFailures": [
+        {
+          "caseId": "f05",
+          "turn": 1,
+          "input": "豪雨で通りが水浸しです。徒歩で渡るか迷っています。",
+          "rank": 4,
+          "candidates": [
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-86",
+              "title": "大雨のとき地下・アンダーパスへ近づかない",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-55",
+              "title": "車を置いて避難するとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-69",
+              "title": "冠水した道路を歩かない",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-82",
+              "title": "トイレ・排水口の逆流を簡易水のうで抑える",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "f10",
+          "turn": 1,
+          "input": "津波が一度来て引いたので、忘れ物を取りに戻りたいのですが。",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-8",
+              "title": "津波警報・注意報が解除されるまで避難を続ける",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-7",
+              "title": "第1波のあとも戻らない",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-6",
+              "title": "津波は引き潮から始まるとは限らない",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "f24",
+          "turn": 1,
+          "input": "地震で会社にいるときの対応は？",
+          "rank": 4,
+          "candidates": [
+            {
+              "id": "bosai-18",
+              "title": "水が少ないときの手指衛生",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-25",
+              "title": "水が少ないときの口腔ケア",
+              "category": "避難所生活",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-44",
+              "title": "職場・オフィスで地震が起きたとき",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-67",
+              "title": "外へ逃げる方が危険なときの緊急安全確保",
+              "category": "台風・大雨・停電",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        },
+        {
+          "caseId": "f25",
+          "turn": 1,
+          "input": "津波避難の高台に間に合う時間はあります。徒歩で避難する一般的な注意は？",
+          "rank": 2,
+          "candidates": [
+            {
+              "id": "bosai-2",
+              "title": "高台まで間に合わないときの垂直避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-10",
+              "title": "津波避難は徒歩を基本にする",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-0",
+              "title": "津波からの避難：「遠く」だけでなく「より高く」",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-14",
+              "title": "夜間の津波避難",
+              "category": "津波",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            },
+            {
+              "id": "bosai-51",
+              "title": "海岸で地震にあったら津波を優先して避難",
+              "category": "地震",
+              "fit": "unverified",
+              "provenance": "retrieval"
+            }
+          ]
+        }
+      ],
+      "inappropriateUpper": []
+    }
+  },
+  "policy": "Initial32 was observed, corrected and moved to regression. Final24 was authored only after 5bc2c64 freeze. No tuning after Final24. Top-k is complete conversation retrieval, including query reconstruction and curated source capabilities; not Ruri-only accuracy. Baseline has no structured facts, counted absent in state assertions; response-kind metric is separate. Runtime status passed is not a perfect semantic-quality score.",
+  "limitations": [
+    "Hand-authored small sets; no independent disaster-expert evaluation",
+    "Invalid source IDs are a query-specific labelled subset, not exhaustive safety audit",
+    "No generated advice; original source selection does not certify question sufficiency",
+    "Single Linux PSS sample series, not Safari/model-only RAM or proof of long-running stability"
+  ],
+  "measurementRepeat": {
+    "reason": "Baseline known stale-candidate failure must be recorded false, not hidden by baseline bypass. Corrected harness and reran both sides, no implementation/label changes.",
+    "runs": {
+      "before": {
+        "firstWarmMedianMs": 21.899999991059303,
+        "semanticParity": true
+      },
+      "after": {
+        "firstWarmMedianMs": 33.30000001192093,
+        "semanticParity": true
+      }
+    }
+  }
+}

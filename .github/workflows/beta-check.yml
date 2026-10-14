@@ -33,7 +33,11 @@ jobs:
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-review-regression-80
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-review-final-60.json --tag=beta-review-final-60
       - name: Text conversation with real Ruri and offline restart
-        run: node scripts/conversation-browser-check.mjs
+        run: |
+          node scripts/conversation-browser-check.mjs
+          node scripts/conversation-v2-browser-check.mjs --tag=conversation-v2-dev-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-32.json --tag=conversation-v2-regression32-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-24.json --tag=conversation-v2-final-ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -44,5 +48,5 @@ jobs:
             test-results/beta-regression-64.json
             test-results/beta-mobile.png
             test-results/beta-ipad-layout.png
-            test-results/conversation-browser.json
-            test-results/conversation-mobile.png
+            test-results/conversation-v2-*.json
+            test-results/conversation-v2-*-mobile.png

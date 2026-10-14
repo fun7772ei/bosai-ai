@@ -1,3 +1,5 @@
+> PR #18の継続改善：[会話の文脈・対象行動の評価結果](docs/phase2-conversation-improvement.md)。P1/P2を修正し、実Ruriで別の未使用会話を評価。否定した場面の候補や未収録の誤提示は残っており、公開・安全性完成とは扱いません。main/Pages未反映、Moonshineは今回変更なし。
+
 > 開発中：Phase 2 αの[文字会話試作と評価](docs/phase2-conversation-alpha.md)。既存検索から切替、文脈/聞き返し/原文参照に対応。新規PRでレビュー中、main/公開Pagesには未反映。自由生成なし。検索の危険な取り違えは未解決で、正式完成ではありません。MoonshineのIssue #16は別トラック・未修正です。
 
 # ぼうさい辞書 AI — Ruri優先ベータ版
