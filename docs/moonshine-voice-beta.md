@@ -8,7 +8,7 @@ iPad 第10世代 Safariで、Ruri-30Mの意味検索に追加するローカル�
 ## 実装
 - 既存の質問フォームの中に、任意起動の「音声入力を試す」を追加。既存の軽量検索・Ruri検索と互換。
 - 公式 `@moonshine-ai/moonshine-wasm@0.1.5` の `MicTranscriber` を **明示タップ時のみ** pinned jsDelivr ESMから動的読み込み。自動ロードしない。
-- 日本語 `ja`、`ModelArch.TinyStreaming`、`max_tokens_per_second=13.0`。日本語で誤った連続反復を抑える公式推奨設定。
+- 日本語 `ja`、`ModelArch.TinyStreaming` を使用。現行のピン留めSDKでは `MicTranscriber.options()` が存在しないため、日本語向けの `max_tokens_per_second` は未設定。音声の反復・欠落を実機で確認する。
 - 明示的な「音声AIを準備」と「マイク開始」を分離し、Safariのユーザー操作に紐づくマイク開始を維持。
 - 認識途中テキストは参考表示のみ。確定した `onLine` のテキストだけ入力欄へ反映。自動送信しない。
 - 停止時に音声モデル・マイクを解放。通常の検索に戻る場合も音声モデルを解放。Ruriの保存データはそのまま。
