@@ -69,7 +69,14 @@ export function factsIn(input) {
   else if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
   if (new RegExp(vehicleNoun+'[^、。]*水没'+negativePredicate+'|(?:水没|浸水)'+negativePredicate+'(?:の)?'+vehicleNoun+'|(?:水没|浸水)(?:した)?'+vehicleNoun+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)').test(text)) facts.vehicleFlooded = false;
   else if ((!modes.length || automobile) && new RegExp('水没[^、。]*'+vehicleNoun+'|'+vehicleNoun+'[^、。]*水没|車内[^、。]*水[^、。]*入').test(autoText)) facts.vehicleFlooded = true;
-  if (new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun).test(autoText)) facts.vehicleChanged = true;
+  // Identity changes, like water conditions, require an affirmative assertion.
+  const changes=[...autoText.matchAll(new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun,'g'))];
+  if (changes.some(change=>{
+    const tail=autoText.slice(change.index+change[0].length);
+    return !new RegExp('^'+negativePredicate).test(tail)
+      && !/^(?:で(?:は)?|じゃ)(?:ない|ありません|なかった|なく)/.test(tail)
+      && !questionTail.test(tail);
+  })) facts.vehicleChanged = true;
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
   if (/高台.*(?:時間はある|間に合う)|間に合わないわけではない/.test(text)) facts.unreachableHeight = false;
