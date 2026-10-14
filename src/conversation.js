@@ -11,11 +11,12 @@ export function conditions(text) {
   // Prefer a typed contrast argument so '道路が冠水、車ではなく徒歩' keeps the scene.
   // Identity contrasts deny a different vehicle, not the current automobile mode.
   const identityContrast=new RegExp('(?:別の|他の|違う|新しい)?'+vehicleNoun+'(?:(?:に|へ)?(?:乗り換え|乗換え|乗り替え)(?:た|る|ました|ている)(?:の|わけ|ん)?)?(?:ではなく|じゃなく)(?:て)?[、,]?((?:同じ|元の|以前の)(?:'+vehicleNoun+'|(?=で|だ|な|[、。！？?]|$)))','g');
-  let positive = text.replace(identityContrast,(_,same)=>new RegExp(vehicleNoun+'$').test(same)?same:same+'車');
+  let identityCorrected=false;
+  let positive = text.replace(identityContrast,(_,same)=>{identityCorrected=true;return new RegExp(vehicleNoun+'$').test(same)?same:same+'車';});
   positive = positive.replace(/(水没した車|水没車|車椅子|車いす|車イス|自転車|電車|列車|ベビーカー|乳母車|自動車|車|運転|徒歩|歩行|津波|地震|電話番号|カロリー計算)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span));
   positive = positive.replace(/([^、。！？!?]{1,60}?)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span))
     .replace(/(?:診断|電話番号|カロリー計算)(?:を)?(?:求めていない|聞いていない|必要としていない)[、。]?/g, remove);
-  return {positive:positive.trim(), excluded};
+  return {positive:positive.trim(), excluded, ...(identityCorrected?{identityCorrected:true}:{})};
 }
 export function coverage(text) {
   if (/(?:今|現在|今日|近所|近く|ここ|この場所).*(?:安全|開設|開い|満員|営業|何人|人数|警報|水位)|(?:避難所|薬局).*(?:定員|収容人数|営業時間)/.test(text)) return '現在地や施設の最新状況は確認できません。自治体・気象庁などの最新情報を確認してください。';
@@ -59,7 +60,7 @@ export class Conversation {
     if(subjects.size>1)return this.clarify('複数の人の状況を分けて確認します。まず誰の、どの場面について調べますか？');
     if(explicitTopics.length>1 && !explicitTopics.includes('避難生活'))return this.clarify('複数の災害が含まれています。まずどの場面について調べますか？',{choices:explicitTopics});
     const changed=explicitTopics.length && this.state.topics.length && explicitTopics.some(t=>!this.state.topics.includes(t));
-    const follow=/^(それ|その|そこ|この場合|では|じゃあ)/.test(parsed.positive) || (!explicitTopics.length && /^(寝室|室内|屋外|徒歩|車|寝て|寝てい|断水).{0,18}(です|ます|でした)$/.test(parsed.positive) && !!this.state.situation);
+    const follow=parsed.identityCorrected||/^(それ|その|そこ|この場合|では|じゃあ)/.test(parsed.positive) || (!explicitTopics.length && /^(寝室|室内|屋外|徒歩|車|寝て|寝てい|断水).{0,18}(です|ます|でした)$/.test(parsed.positive) && !!this.state.situation);
     if(changed)this.forget();
     if(follow && !this.state.situation)return this.clarify('「それ」が指す状況を具体的に教えてください。');
     const retain=!changed && (follow || parsed.excluded.length || this.state.awaitingContext);
@@ -69,7 +70,7 @@ export class Conversation {
     let topics=explicitTopics.length?explicitTopics:retain?this.state.topics:[];
     if(!topics.length && facts.floodedRoad===true)topics=['大雨・浸水'];
     let query=parsed.positive;
-    if((parsed.excluded.length||updatesFrame) && retain)query=`${contextText(topics,facts)}。${parsed.positive}`;
+    if((parsed.identityCorrected||parsed.excluded.length||updatesFrame) && retain)query=`${contextText(topics,facts)}。${parsed.positive}`;
     else if(follow && !(this.state.awaitingContext && explicitTopics.length))query=`${this.state.situation}。${parsed.positive}`;
     if(query.length>200)return this.clarify('条件が長くなりました。調べたい状況を200文字以内でまとめ直してください。');
     if(!query || /^(それ|そこ|そう|はい)[？?。]*$/.test(query))return this.clarify('どの状況や行動を指しているか教えてください。');

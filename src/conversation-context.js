@@ -83,11 +83,11 @@ export function factsIn(input) {
     const tail=directTail.split(/[、。！？?]/)[0];
     const transition=/(?:乗り換|乗換|乗り替)/.exec(tail);
     const verbTail=transition?tail.slice(transition.index):'';
-    const deniedAction=/(?:て|で)(?:は|も)?(?:い|おり)?(?:ません|ない|なかった)|(?:え|わ|し)(?:ません(?:でした)?|ない|なかった|ず|ぬ)|(?:つもり|予定|意思)(?:は|が)?(?:ありません|ない)|(?:の)?では(?:ない|ありません|なく)|わけではない/.test(verbTail);
+    const deniedAction=/(?:て|で)(?:は|も)?(?:い|おり)?(?:ません|ない|なかった)|(?:え|わ|し)(?:ません(?:でした)?|ない|なかった|ず|ぬ)|たく(?:は|も)?(?:ない|ありません|なかった|なく)|(?:つもり|予定|意思)(?:は|が)?(?:ありません|ない)|(?:の)?では(?:ない|ありません|なく)|わけではない/.test(verbTail);
     const questionedAction=/(?:か$|かどうか|不明|分から|わから)/.test(verbTail);
     const directDenied=new RegExp('^'+negativePredicate).test(tail)||/^(?:で(?:は)?|じゃ)(?:ない|ありません|なかった|なく)/.test(tail);
-    const intendedAction=/(?:たい|つもり|予定|べき|ほうが)/.test(tail);
-    const completedAction=/(?:乗り換え|乗換え|乗り替え)(?:ました|た(?!い|ら)|て(?:います|いる|ます)|済み)/.test(verbTail);
+    const intendedAction=/(?:たい|たく|たかった|つもり|予定|べき|ほうが)/.test(tail);
+    const completedAction=/(?:乗り換え|乗換え|乗り替え)(?:ました|た(?!い|く|か|ら)|て(?:います|いる|ます)|済み)/.test(verbTail);
     if(questionTail.test(directTail)||questionedAction||(!directDenied&&!deniedAction&&(intendedAction||(transition&&!completedAction))))facts.vehicleChangeQuestion=true;
     else if(!directDenied&&!deniedAction)facts.vehicleChanged=true;
   }
