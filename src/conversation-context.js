@@ -29,7 +29,7 @@ export function factsIn(input) {
   const routeNegative=new RegExp(routePrefix+floodTerm+negativePredicate);
   const roadWaterAbsent=new RegExp('^(?:の上)?(?:には|は|に|が)?(?:もう)?水(?:は|が)(?:ありません|ない|無い|なし)');
   const negativeModifier=new RegExp(floodTerm+negativePredicate+'(?:の)?$');
-  const questionFlood=new RegExp(floodTerm+'(?:しています|している|してます|していた|した|です|'+negativePredicate+')(?:の)?(?:か|[?？])');
+  const questionFlood=new RegExp(floodTerm+'(?:しています|している|してます|していた|した|です|'+negativePredicate+')(?:(?:の|ん)?(?:です|でしょう|だろう)?(?:か|[?？])|よね[?？]?)');
   const uncertain=questionFlood.test(text)||uncertainFlood.test(text)||/(?:冠水|浸水)[^、。]{0,15}(?:ない|ません)(?:とは言えない|わけではない|とは限らない)/.test(text);
   uncertainFlood.lastIndex=0;
   const soakedAbsent=/^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)って(?:い)?(?:ない|ません)/;
@@ -38,8 +38,8 @@ export function factsIn(input) {
   // Mere occurrence of 冠水/浸水 is no longer enough to manufacture a positive fact.
   let affirmed=mask(mask(text,negativeFlood),uncertainFlood);
   affirmed=affirmed.replace(/非(?:冠水|浸水)/g,span=>' '.repeat(span.length));
-  const wetPredicate=new RegExp(routePrefix+'(?:冠水|浸水)(?:しています|している|していて|しており|しました|した|です|だ|(?=[、。！？]|$))');
-  const soakedPredicate=new RegExp('^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)(?:っています|っている|っていて|っており|りました|った|る)');
+  const wetPredicate=new RegExp(routePrefix+'(?:冠水|浸水)(?:しています|している|してます|していて|しており|しました|した|です|だ|(?=[、。！？]|$))');
+  const soakedPredicate=new RegExp('^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)(?:っています|っている|ってます|っていて|っており|りました|った|る)');
   const wetModifier=/(?:冠水|浸水)(?:した|している|してしまった)?$|水浸しの?$|水に(?:つか|浸か)(?:った|っている)(?:の)?$/;
   const wet=routes.some(r=>wetPredicate.test(affirmed.slice(r.index+r.word.length))||soakedPredicate.test(affirmed.slice(r.index+r.word.length))||wetModifier.test(affirmed.slice(0,r.index))||(r.word==='冠水路'&&affirmed.slice(r.index,r.index+3)==='冠水路'&&!/非$/.test(affirmed.slice(0,r.index))));
   if(uncertain||(dry&&wet))facts.floodedRoad=null;
