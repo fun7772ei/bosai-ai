@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-10-14T07:12:11.908978+00:00",
+  "node": "24.19.0",
+  "npm": "11.9.0",
+  "npmCi": "passed: NODE_USE_ENV_PROXY=1 npm ci",
+  "unitTests": {
+    "passed": 64,
+    "failed": 0
+  },
+  "productionBuild": "passed",
+  "previewPort": 4173,
+  "browserDependencyInstall": {
+    "command": "npx playwright install --with-deps chromium",
+    "result": "failed",
+    "reason": "su authentication failure; no root password available",
+    "fallback": "npx playwright install chromium passed; installed Chromium149/Playwright1228 used"
+  },
+  "sourceImport": "88 entries; source blob 881355b4a4b85a1da39515e8578aa5f74bb2644b; unchanged",
+  "nativeRuntime": "CPU/WASM single thread; GPU disabled in all actual six-method/native tests; no WebGPU inference tested",
+  "heldOutBrowserCases": {
+    "methods": 6,
+    "queriesEach": 64,
+    "methodQueries": 384,
+    "oracleQueries": 64,
+    "totalNativeGgufGenerations": 242,
+    "actualEmbeddingQueries": 256,
+    "status": "passed",
+    "unreviewedUniqueTexts": 0,
+    "semanticJudgments": 104
+  },
+  "finalUIBrowser": "passed:19 DOM form runs plus Oracle/overflow/stop/reset/legacy checks; actual pinned assets; offline A-F; downloads7",
+  "storageBrowser": "passed: dummy bytes only; update, selection, old layouts, partial-save and offline compatibility; not real model success",
+  "residentRelease": "Dedicated Worker ended and actual Linux whole-browser PSS sampled before/after1s/3s. Not Safari or proof of zero retained memory.",
+  "iPadSafari": "not tested",
+  "merge": "not performed",
+  "pages": "not published",
+  "modelBinariesInGit": false,
+  "accuracyAppBuild": "アプリ版: a4552b88bde8",
+  "finalUiAppBuild": "fcb0a25359b4"
+}

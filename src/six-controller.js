@@ -20,13 +20,13 @@ export class SixController {
  async check(group){const store=await openModelStore();try{const s=await auxStatus(store,group);if(!s.complete)throw Error(`${group==='ruri'?'Embedding':'LFM350/Tokenizer'}が未保存です。モデル不要の方式Aは利用できます。`);}finally{store.close();}}
  async release(kind){const channel=this[kind];if(!channel)return 0;this[kind]=null;const start=performance.now();this.phase(kind+'-releasing');await channel.dispose();const ms=performance.now()-start;this.phase(kind+'-released',{elapsedMs:ms});return ms;}
  async acquire(kind,dual,timings){
-  const acquiredAt=performance.now();await this.beforeModels();if(!dual)timings.releaseMs=(timings.releaseMs||0)+await this.release(kind==='embedding'?'llm':'embedding');
+  const epoch=this.epoch,acquiredAt=performance.now();await this.beforeModels();if(epoch!==this.epoch)throw Error('リセットにより中断しました。');if(!dual)timings.releaseMs=(timings.releaseMs||0)+await this.release(kind==='embedding'?'llm':'embedding');if(epoch!==this.epoch)throw Error('リセットにより中断しました。');
   if(this[kind]){timings[kind+'AcquireMs']=performance.now()-acquiredAt;timings[kind+'Warm']=true;return;}
-  await this.check(kind==='embedding'?'ruri':'lfm');
+  await this.check(kind==='embedding'?'ruri':'lfm');if(epoch!==this.epoch)throw Error('リセットにより中断しました。');
   const channel=new ExperimentChannel(data=>this.notice(data));this[kind]=channel;this.phase(kind+'-loading');
-  try{const ready=await channel.request(kind==='embedding'?'load-embedding':'load-llm');timings[kind+'LoadMs']=ready.loadMs;timings[kind+'Settings']=ready.settings;timings[kind+'AcquireMs']=performance.now()-acquiredAt;timings[kind+'Warm']=false;this.phase(kind+'-ready',ready);}catch(e){await this.release(kind);throw e;}
+  try{const ready=await channel.request(kind==='embedding'?'load-embedding':'load-llm');if(epoch!==this.epoch)throw Error('リセットにより中断しました。');timings[kind+'LoadMs']=ready.loadMs;timings[kind+'Settings']=ready.settings;timings[kind+'AcquireMs']=performance.now()-acquiredAt;timings[kind+'Warm']=false;this.phase(kind+'-ready',ready);}catch(e){if(this[kind]===channel)await this.release(kind);else await channel.dispose();throw e;}
  }
- async download(group){if(this.busy)throw Error('別の実験処理中です。');this.busy=true;this.changed();let channel;try{await this.beforeModels();await this.release('embedding');await this.release('llm');channel=new ExperimentChannel(data=>this.notice(data));this.transfer=channel;await channel.request('download',{group});}finally{await channel?.dispose();this.transfer=null;this.busy=false;this.phase('complete');this.changed();}}
+ async download(group){if(this.busy)throw Error('別の実験処理中です。');const epoch=this.epoch;this.busy=true;this.changed();let channel;try{await this.beforeModels();if(epoch!==this.epoch)throw Error('リセットにより中断しました。');await this.release('embedding');await this.release('llm');if(epoch!==this.epoch)throw Error('リセットにより中断しました。');channel=new ExperimentChannel(data=>this.notice(data));this.transfer=channel;await channel.request('download',{group});}finally{await channel?.dispose();if(this.transfer===channel)this.transfer=null;if(epoch===this.epoch){this.busy=false;this.phase('complete');this.changed();}}}
  stop(){if(this.transfer){this.transfer.kill(Error('停止しました。'));this.transfer=null;}else if(this.llm)this.llm.stop();else if(this.embedding){this.embedding.kill(Error('停止しました。'));this.embedding=null;}this.notice({phase:'stop-requested'});}
  async reset(){this.epoch++;await Promise.all([this.release('embedding'),this.release('llm'),this.release('transfer')]);this.busy=false;try{localStorage.removeItem(CHECKPOINT);}catch{}this.changed();}
  async run(query,method,{oracleIds,dual=false}={}){
@@ -42,7 +42,7 @@ export class SixController {
     let semantic=[],light=[];const retrievalStart=performance.now();
     if(['A','C','D','F'].includes(method)){const t=performance.now();light=this.light(query,policy.candidatePool);timings.lightMs=performance.now()-t;}
     if(['B','C','E','F'].includes(method)){
-     await this.acquire('embedding',dual,timings);this.phase('embedding-query');const q=await this.embedding.request('embed',{text:query});timings.embeddingMs=q.elapsedMs;timings.embeddingTokens=q.tokens;
+     await this.acquire('embedding',dual,timings);if(epoch!==this.epoch)throw Error('リセットにより中断しました。');this.phase('embedding-query');const q=await this.embedding.request('embed',{text:query});timings.embeddingMs=q.elapsedMs;timings.embeddingTokens=q.tokens;
      const t=performance.now();semantic=semanticSearch(corpus,vectors.vectors,q.vector,query,{threshold:policy.semanticThreshold,limit:policy.candidatePool});timings.vectorSearchMs=performance.now()-t;
     }
     const t=performance.now();results=['C','F'].includes(method)?combineSearch(light,semantic,{method:policy.fusion,weight:policy.lightWeight,limit:5}):(['B','E'].includes(method)?semantic:light).slice(0,5);timings.fusionMs=performance.now()-t;timings.retrievalMs=performance.now()-retrievalStart;
@@ -53,7 +53,7 @@ export class SixController {
    if(['E','F'].includes(method)&&!dual)timings.releaseMs=(timings.releaseMs||0)+await this.release('embedding');
    if(epoch!==this.epoch)throw Error('リセットにより中断しました。');
    if(['D','E','F','Oracle'].includes(method)&&results.length){
-    await this.acquire('llm',dual,timings);timings.switchToLlmMs=performance.now()-switchStarted;this.phase('llm-answer');
+    await this.acquire('llm',dual,timings);if(epoch!==this.epoch)throw Error('リセットにより中断しました。');timings.switchToLlmMs=performance.now()-switchStarted;this.phase('llm-answer');
     // Top-1 full evidence, never snippets. Oracle may require more than one full entry.
     const evidence=method==='Oracle'?results.map(r=>r.entry):[results[0].entry];run.evidenceIds=evidence.map(e=>e.id);
     const answer=await this.llm.request('answer',{query,entries:evidence});run.answer=answer.answer;timings.answerMs=answer.elapsedMs;
@@ -61,7 +61,7 @@ export class SixController {
    if(epoch!==this.epoch)throw Error('リセットにより中断しました。');
    run.status=!results.length?'no-match':run.answer?(run.answer.usable?'generated':'original-fallback'):'original';
   }catch(error){run.status=/停止|中断|リセット/.test(error.message)?'interrupted':'unavailable';run.error=error.message;}
-  finally{timings.totalMs=performance.now()-start;this.busy=false;this.changed();}
-  this.runs.push(run);if(this.runs.length>500)this.runs.shift();this.phase('complete',{run});return run;
+  finally{timings.totalMs=performance.now()-start;run.residencyAfter={embeddingWorker:!!this.embedding,llmWorker:!!this.llm};const memory=performance.memory;run.memoryDiagnostics={source:'performance.memory (JS heap only; excludes WASM/model/OS memory)',supported:!!memory,usedJSHeapBytes:memory?.usedJSHeapSize??null,totalJSHeapBytes:memory?.totalJSHeapSize??null,deviceMemoryGiB:navigator.deviceMemory??null};if(epoch===this.epoch){this.busy=false;this.changed();}}
+  this.runs.push(run);if(this.runs.length>500)this.runs.shift();if(epoch===this.epoch)this.phase('complete',{run});return run;
  }
 }

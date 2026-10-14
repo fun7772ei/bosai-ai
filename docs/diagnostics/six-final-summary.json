@@ -1,0 +1,1987 @@
+{
+  "createdAt": "2026-10-14T07:14:56.855Z",
+  "freezeCommit": "f9a7ca5",
+  "scope": "64 held-out queries per method; 56 retrieval-positive, 52 clear answerable, 8 absent, 4 ambiguous",
+  "retrievalEquivalence": "A=D B=E C=F verified on all64 actual outputs",
+  "semanticReview": "Assistant semantic audit; source-grounded; no external AI API; not independent expert validation",
+  "warning": "Accuracy timings overlap two single-thread browsers on 2-CPU quota; use serial E2E for isolated residency latency. Linux Chromium PSS is not Safari memory.",
+  "methods": {
+    "A": {
+      "queries": 64,
+      "retrieval": {
+        "denominator": 56,
+        "top1": 39,
+        "top3": 49,
+        "top5": 50,
+        "absentCorrect": 2,
+        "absentFalsePositive": 6,
+        "dangerousLabelTop1": 0,
+        "dangerQueryWrongTop1": 4,
+        "paraphraseTop1": 6,
+        "ambiguousTop1": 1
+      },
+      "ai": null,
+      "timingsContended": {
+        "medianTotalMs": 1.5,
+        "medianNativeAnswerMs": null,
+        "medianTtftMs": null,
+        "medianEndToEndTokensSec": null,
+        "medianDecodeTokensSec": null,
+        "medianRetrievalMs": 0.7000000029802322,
+        "medianEmbeddingMs": null
+      },
+      "statusCounts": {
+        "original": 61,
+        "no-match": 3
+      }
+    },
+    "B": {
+      "queries": 64,
+      "retrieval": {
+        "denominator": 56,
+        "top1": 49,
+        "top3": 56,
+        "top5": 56,
+        "absentCorrect": 2,
+        "absentFalsePositive": 6,
+        "dangerousLabelTop1": 0,
+        "dangerQueryWrongTop1": 1,
+        "paraphraseTop1": 6,
+        "ambiguousTop1": 2
+      },
+      "ai": null,
+      "timingsContended": {
+        "medianTotalMs": 19.699999999254942,
+        "medianNativeAnswerMs": null,
+        "medianTtftMs": null,
+        "medianEndToEndTokensSec": null,
+        "medianDecodeTokensSec": null,
+        "medianRetrievalMs": 18.850000001490116,
+        "medianEmbeddingMs": 17.849999997764826
+      },
+      "statusCounts": {
+        "original": 62,
+        "no-match": 2
+      }
+    },
+    "C": {
+      "queries": 64,
+      "retrieval": {
+        "denominator": 56,
+        "top1": 52,
+        "top3": 55,
+        "top5": 55,
+        "absentCorrect": 1,
+        "absentFalsePositive": 7,
+        "dangerousLabelTop1": 0,
+        "dangerQueryWrongTop1": 1,
+        "paraphraseTop1": 8,
+        "ambiguousTop1": 2
+      },
+      "ai": null,
+      "timingsContended": {
+        "medianTotalMs": 21.349999997764826,
+        "medianNativeAnswerMs": null,
+        "medianTtftMs": null,
+        "medianEndToEndTokensSec": null,
+        "medianDecodeTokensSec": null,
+        "medianRetrievalMs": 20,
+        "medianEmbeddingMs": 18.400000002235174
+      },
+      "statusCounts": {
+        "original": 63,
+        "no-match": 1
+      }
+    },
+    "D": {
+      "queries": 64,
+      "retrieval": {
+        "denominator": 56,
+        "top1": 39,
+        "top3": 49,
+        "top5": 50,
+        "absentCorrect": 2,
+        "absentFalsePositive": 6,
+        "dangerousLabelTop1": 0,
+        "dangerQueryWrongTop1": 4,
+        "paraphraseTop1": 6,
+        "ambiguousTop1": 1
+      },
+      "ai": {
+        "primaryDenominator": 52,
+        "nativeGeneratedPrimary": 52,
+        "semanticPassPrimary": 12,
+        "structuralCompletePrimary": 48,
+        "contextOverflowPrimary": 0,
+        "noGenerationPrimary": 0,
+        "truncatedPrimary": 4,
+        "semanticPrimary": {
+          "factualCorrect": 38,
+          "appropriate": 18,
+          "unsupportedAdded": 14,
+          "criticalOmission": 35,
+          "conditionOrNumberError": 12,
+          "naturalJapanese": 46,
+          "majorError": 5
+        },
+        "totalNativeGenerated": 61,
+        "absentNoRetrieval": 2,
+        "absentGenerated": 6,
+        "absentAppropriate": 0,
+        "ambiguousAppropriate": 0,
+        "majorErrorsAll": 6,
+        "majorStructurallyAdopted": 6,
+        "majorExamples": [
+          {
+            "caseId": "final-10",
+            "query": "全国どこでも建物の3階に上がれば津波から必ず安全になりますか？",
+            "evidenceIds": [
+              "bosai-9"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：津波は川をさかのぼって内陸へ到達することがありますが、海岸から少し離れた場所でも避難が可能である。",
+            "notes": "「海岸から少し離れた場所でも避難が可能」は、原文の離れているだけで安全とは限らない条件を落とし、安全階数にも答えていない。"
+          },
+          {
+            "caseId": "final-24",
+            "query": "閉め切った場所で車中泊しています。暖房のためエンジンをかけ続けてよい？",
+            "evidenceIds": [
+              "bosai-36"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：車中泊では定期的に体を動かすため、血栓や体調悪化のリスクが高まります。\n\n注意：密閉した場所でエンジンをかけ続けると一酸化炭素中毒の危険があります。",
+            "notes": "密閉エンジンの一酸化炭素注意は正しいが、「体を動かすため血栓リスクが高まる」は原文と逆の危険な説明。"
+          },
+          {
+            "caseId": "final-27",
+            "query": "料理中に揺れたら、まず火元に走ってコンロを消した方がよい？",
+            "evidenceIds": [
+              "bosai-41"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：台所で地震が起きたとき、揺れたら火元に走ってコンロを消すことが最も安全です。",
+            "notes": "正しい台所項目が渡っているのに、揺れ中に火元へ走ることを最も安全と勧める重大な否定逆転。"
+          },
+          {
+            "caseId": "final-30",
+            "query": "オフィスの背の高い書庫が揺れて、書類や物が落ちています。",
+            "evidenceIds": [
+              "bosai-49"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：地震時の建物の倒壊は、窓ガラスや外壁の破損が主な原因である。  \n注意：入口に駆け込む際は、落下物に近づかないように注意する。",
+            "notes": "窓や外壁の破損が建物倒壊の主因との創作に加え、入口へ駆け込む条件を容認し、落下物からの離隔を誤る。"
+          },
+          {
+            "caseId": "final-34",
+            "query": "地震でエレベーターに閉じ込められました。扉をこじ開けてよい？",
+            "evidenceIds": [
+              "bosai-48"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：揺れを感じた際の階のボタンを押すことが地震の影響で停止を可能にする。\n\n注意：ドアや天井の脱出口は自力でこじ開けなければならない。",
+            "notes": "扉や脱出口を自力でこじ開けなければならないと、正しい根拠の禁止事項を逆転。"
+          },
+          {
+            "caseId": "final-62",
+            "query": "トイレが心配です。何をすればいいですか？",
+            "evidenceIds": [
+              "bosai-40"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：地震の際は避難所や地下室に移動し、ドアを開けて出口を確保することが重要です。\n\n注意：濡れた床で慌てて立ち上がると転倒しやすくなります。",
+            "notes": "浴室の根拠にない地下室への地震避難を勧める。状況を確認せず危険な移動先を創作。"
+          }
+        ]
+      },
+      "timingsContended": {
+        "medianTotalMs": 20004.5,
+        "medianNativeAnswerMs": 20001.60000000149,
+        "medianTtftMs": 15248.70000000298,
+        "medianEndToEndTokensSec": 2.1466466312981076,
+        "medianDecodeTokensSec": 9.482821504131687,
+        "medianRetrievalMs": 0.8000000044703484,
+        "medianEmbeddingMs": null
+      },
+      "statusCounts": {
+        "generated": 55,
+        "original-fallback": 6,
+        "no-match": 3
+      }
+    },
+    "E": {
+      "queries": 64,
+      "retrieval": {
+        "denominator": 56,
+        "top1": 49,
+        "top3": 56,
+        "top5": 56,
+        "absentCorrect": 2,
+        "absentFalsePositive": 6,
+        "dangerousLabelTop1": 0,
+        "dangerQueryWrongTop1": 1,
+        "paraphraseTop1": 6,
+        "ambiguousTop1": 2
+      },
+      "ai": {
+        "primaryDenominator": 52,
+        "nativeGeneratedPrimary": 52,
+        "semanticPassPrimary": 14,
+        "structuralCompletePrimary": 45,
+        "contextOverflowPrimary": 0,
+        "noGenerationPrimary": 0,
+        "truncatedPrimary": 7,
+        "semanticPrimary": {
+          "factualCorrect": 40,
+          "appropriate": 21,
+          "unsupportedAdded": 12,
+          "criticalOmission": 32,
+          "conditionOrNumberError": 10,
+          "naturalJapanese": 44,
+          "majorError": 4
+        },
+        "totalNativeGenerated": 62,
+        "absentNoRetrieval": 2,
+        "absentGenerated": 6,
+        "absentAppropriate": 0,
+        "ambiguousAppropriate": 2,
+        "majorErrorsAll": 5,
+        "majorStructurallyAdopted": 4,
+        "majorExamples": [
+          {
+            "caseId": "final-04",
+            "query": "津波の到着予報はあと20分です。20分になるまでは荷造りを続けていい？",
+            "evidenceIds": [
+              "bosai-14"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "夜間の避難は明るくなるまで待つ必要があります。懐中電灯や荷物を探す際は、避難開始を大きく遅らせないでください。",
+            "notes": "「明るくなるまで待つ必要」は原文の「待たずに避難」を逆転させる重大な危険回答。"
+          },
+          {
+            "caseId": "final-24",
+            "query": "閉め切った場所で車中泊しています。暖房のためエンジンをかけ続けてよい？",
+            "evidenceIds": [
+              "bosai-36"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：車中泊では定期的に体を動かすため、血栓や体調悪化のリスクが高まります。\n\n注意：密閉した場所でエンジンをかけ続けると一酸化炭素中毒の危険があります。",
+            "notes": "密閉エンジンの一酸化炭素注意は正しいが、「体を動かすため血栓リスクが高まる」は原文と逆の危険な説明。"
+          },
+          {
+            "caseId": "final-27",
+            "query": "料理中に揺れたら、まず火元に走ってコンロを消した方がよい？",
+            "evidenceIds": [
+              "bosai-41"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：台所で地震が起きたとき、揺れたら火元に走ってコンロを消すことが最も安全です。",
+            "notes": "正しい台所項目が渡っているのに、揺れ中に火元へ走ることを最も安全と勧める重大な否定逆転。"
+          },
+          {
+            "caseId": "final-34",
+            "query": "地震でエレベーターに閉じ込められました。扉をこじ開けてよい？",
+            "evidenceIds": [
+              "bosai-48"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：揺れを感じた際の階のボタンを押すことが地震の影響で停止を可能にする。\n\n注意：ドアや天井の脱出口は自力でこじ開けなければならない。",
+            "notes": "扉や脱出口を自力でこじ開けなければならないと、正しい根拠の禁止事項を逆転。"
+          },
+          {
+            "caseId": "final-53",
+            "query": "この町で今夜予想される津波の高さをメートル単位で教えて。",
+            "evidenceIds": [
+              "bosai-4"
+            ],
+            "usable": false,
+            "reason": "output-limit",
+            "text": "根拠：大津波警報が出たとき、沿岸部や川沿いの住民は避難場所を早めに確保すべきである。  \n注意：予想される高さは地域内のすべての地点で同じになるため、個別の避難場所の違いは考慮されない",
+            "notes": "予想高さが地域内の全地点で同じと原文の条件を逆転。個別の今夜の予報が未収録とも伝えず上限で切れた。"
+          }
+        ]
+      },
+      "timingsContended": {
+        "medianTotalMs": 25929.25,
+        "medianNativeAnswerMs": 18278.150000002235,
+        "medianTtftMs": 14070.599999997765,
+        "medianEndToEndTokensSec": 2.4148287138382947,
+        "medianDecodeTokensSec": 10.056216908595193,
+        "medianRetrievalMs": 3360.39999999851,
+        "medianEmbeddingMs": 214.35000000149012
+      },
+      "statusCounts": {
+        "generated": 54,
+        "original-fallback": 8,
+        "no-match": 2
+      }
+    },
+    "F": {
+      "queries": 64,
+      "retrieval": {
+        "denominator": 56,
+        "top1": 52,
+        "top3": 55,
+        "top5": 55,
+        "absentCorrect": 1,
+        "absentFalsePositive": 7,
+        "dangerousLabelTop1": 0,
+        "dangerQueryWrongTop1": 1,
+        "paraphraseTop1": 8,
+        "ambiguousTop1": 2
+      },
+      "ai": {
+        "primaryDenominator": 52,
+        "nativeGeneratedPrimary": 52,
+        "semanticPassPrimary": 16,
+        "structuralCompletePrimary": 48,
+        "contextOverflowPrimary": 0,
+        "noGenerationPrimary": 0,
+        "truncatedPrimary": 4,
+        "semanticPrimary": {
+          "factualCorrect": 39,
+          "appropriate": 22,
+          "unsupportedAdded": 13,
+          "criticalOmission": 31,
+          "conditionOrNumberError": 13,
+          "naturalJapanese": 46,
+          "majorError": 3
+        },
+        "totalNativeGenerated": 63,
+        "absentNoRetrieval": 1,
+        "absentGenerated": 7,
+        "absentAppropriate": 0,
+        "ambiguousAppropriate": 0,
+        "majorErrorsAll": 4,
+        "majorStructurallyAdopted": 4,
+        "majorExamples": [
+          {
+            "caseId": "final-24",
+            "query": "閉め切った場所で車中泊しています。暖房のためエンジンをかけ続けてよい？",
+            "evidenceIds": [
+              "bosai-36"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：車中泊では定期的に体を動かすため、血栓や体調悪化のリスクが高まります。\n\n注意：密閉した場所でエンジンをかけ続けると一酸化炭素中毒の危険があります。",
+            "notes": "密閉エンジンの一酸化炭素注意は正しいが、「体を動かすため血栓リスクが高まる」は原文と逆の危険な説明。"
+          },
+          {
+            "caseId": "final-27",
+            "query": "料理中に揺れたら、まず火元に走ってコンロを消した方がよい？",
+            "evidenceIds": [
+              "bosai-41"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：台所で地震が起きたとき、揺れたら火元に走ってコンロを消すことが最も安全です。",
+            "notes": "正しい台所項目が渡っているのに、揺れ中に火元へ走ることを最も安全と勧める重大な否定逆転。"
+          },
+          {
+            "caseId": "final-34",
+            "query": "地震でエレベーターに閉じ込められました。扉をこじ開けてよい？",
+            "evidenceIds": [
+              "bosai-48"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：揺れを感じた際の階のボタンを押すことが地震の影響で停止を可能にする。\n\n注意：ドアや天井の脱出口は自力でこじ開けなければならない。",
+            "notes": "扉や脱出口を自力でこじ開けなければならないと、正しい根拠の禁止事項を逆転。"
+          },
+          {
+            "caseId": "final-62",
+            "query": "トイレが心配です。何をすればいいですか？",
+            "evidenceIds": [
+              "bosai-40"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：地震の際は避難所や地下室に移動し、ドアを開けて出口を確保することが重要です。\n\n注意：濡れた床で慌てて立ち上がると転倒しやすくなります。",
+            "notes": "浴室の根拠にない地下室への地震避難を勧める。状況を確認せず危険な移動先を創作。"
+          }
+        ]
+      },
+      "timingsContended": {
+        "medianTotalMs": 23244.5,
+        "medianNativeAnswerMs": 17380.40000000596,
+        "medianTtftMs": 13250.69999999553,
+        "medianEndToEndTokensSec": 2.5022639531008686,
+        "medianDecodeTokensSec": 10.73564746177803,
+        "medianRetrievalMs": 2597.5000000037253,
+        "medianEmbeddingMs": 180.95000000298023
+      },
+      "statusCounts": {
+        "generated": 58,
+        "original-fallback": 5,
+        "no-match": 1
+      }
+    },
+    "Oracle": {
+      "queries": 64,
+      "retrieval": {
+        "denominator": 56,
+        "top1": 56,
+        "top3": 56,
+        "top5": 56,
+        "absentCorrect": 8,
+        "absentFalsePositive": 0,
+        "dangerousLabelTop1": 0,
+        "dangerQueryWrongTop1": 0,
+        "paraphraseTop1": 8,
+        "ambiguousTop1": 4
+      },
+      "ai": {
+        "primaryDenominator": 52,
+        "nativeGeneratedPrimary": 52,
+        "semanticPassPrimary": 16,
+        "structuralCompletePrimary": 46,
+        "contextOverflowPrimary": 0,
+        "noGenerationPrimary": 0,
+        "truncatedPrimary": 6,
+        "semanticPrimary": {
+          "factualCorrect": 37,
+          "appropriate": 23,
+          "unsupportedAdded": 13,
+          "criticalOmission": 30,
+          "conditionOrNumberError": 13,
+          "naturalJapanese": 43,
+          "majorError": 4
+        },
+        "totalNativeGenerated": 56,
+        "absentNoRetrieval": 8,
+        "absentGenerated": 0,
+        "absentAppropriate": 0,
+        "ambiguousAppropriate": 2,
+        "majorErrorsAll": 4,
+        "majorStructurallyAdopted": 4,
+        "majorExamples": [
+          {
+            "caseId": "final-04",
+            "query": "津波の到着予報はあと20分です。20分になるまでは荷造りを続けていい？",
+            "evidenceIds": [
+              "bosai-11"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：到達予想時刻までは安全という意味で、個々の場所の安全時刻を保証するものではない。",
+            "notes": "正解根拠でも「到達予想時刻までは安全という意味」と禁止条件を逆転。後半の保証しないと矛盾し、避難先延ばしを防げない。"
+          },
+          {
+            "caseId": "final-24",
+            "query": "閉め切った場所で車中泊しています。暖房のためエンジンをかけ続けてよい？",
+            "evidenceIds": [
+              "bosai-36"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：車中泊では定期的に体を動かすため、血栓や体調悪化のリスクが高まります。\n\n注意：密閉した場所でエンジンをかけ続けると一酸化炭素中毒の危険があります。",
+            "notes": "密閉エンジンの一酸化炭素注意は正しいが、「体を動かすため血栓リスクが高まる」は原文と逆の危険な説明。"
+          },
+          {
+            "caseId": "final-27",
+            "query": "料理中に揺れたら、まず火元に走ってコンロを消した方がよい？",
+            "evidenceIds": [
+              "bosai-41"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：台所で地震が起きたとき、揺れたら火元に走ってコンロを消すことが最も安全です。",
+            "notes": "正しい台所項目が渡っているのに、揺れ中に火元へ走ることを最も安全と勧める重大な否定逆転。"
+          },
+          {
+            "caseId": "final-34",
+            "query": "地震でエレベーターに閉じ込められました。扉をこじ開けてよい？",
+            "evidenceIds": [
+              "bosai-48"
+            ],
+            "usable": true,
+            "reason": "generated",
+            "text": "根拠：揺れを感じた際の階のボタンを押すことが地震の影響で停止を可能にする。\n\n注意：ドアや天井の脱出口は自力でこじ開けなければならない。",
+            "notes": "扉や脱出口を自力でこじ開けなければならないと、正しい根拠の禁止事項を逆転。"
+          }
+        ]
+      },
+      "timingsContended": {
+        "medianTotalMs": 19574.050000000745,
+        "medianNativeAnswerMs": 19783.500000003725,
+        "medianTtftMs": 15159.600000005215,
+        "medianEndToEndTokensSec": 1.9786421870076636,
+        "medianDecodeTokensSec": 9.593914587513082,
+        "medianRetrievalMs": null,
+        "medianEmbeddingMs": null
+      },
+      "statusCounts": {
+        "generated": 50,
+        "original-fallback": 6,
+        "no-match": 8
+      }
+    }
+  },
+  "serialBrowser": {
+    "createdAt": "2026-10-14T07:01:24.441Z",
+    "platform": "Linux Chromium, GPU disabled, not iPad Safari",
+    "runs": [
+      {
+        "method": "A",
+        "query": "寝てるときに地震が来たらどうすればいい？",
+        "status": "original",
+        "timings": {
+          "indexMs": 30.799999997019768,
+          "releaseMs": 0,
+          "lightMs": 0.8999999985098839,
+          "fusionMs": 0,
+          "retrievalMs": 0.8999999985098839,
+          "firstResultsMs": 2.7000000029802322,
+          "totalMs": 2.7000000029802322
+        },
+        "browserPssPeakMiB": 245.4755859375,
+        "rendererPssPeakMiB": 115.3603515625
+      },
+      {
+        "method": "B",
+        "query": "寝てるときに地震が来たらどうすればいい？",
+        "status": "unavailable",
+        "timings": {
+          "indexMs": 30.799999997019768,
+          "releaseMs": 0,
+          "totalMs": 16.900000005960464
+        },
+        "browserPssPeakMiB": 246.6328125,
+        "rendererPssPeakMiB": 116.5078125
+      },
+      {
+        "method": "B",
+        "query": "寝てるときに地震が来たらどうすればいい？",
+        "status": "original",
+        "timings": {
+          "indexMs": 30.799999997019768,
+          "releaseMs": 0,
+          "embeddingLoadMs": 2022,
+          "embeddingAcquireMs": 2098.89999999851,
+          "embeddingWarm": false,
+          "embeddingMs": 141.69999999552965,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 2,
+          "fusionMs": 0,
+          "retrievalMs": 2245.60000000149,
+          "firstResultsMs": 2246.5,
+          "totalMs": 2246.5
+        },
+        "browserPssPeakMiB": 750.056640625,
+        "rendererPssPeakMiB": 618.7958984375
+      },
+      {
+        "method": "C",
+        "query": "寝てるときに地震が来たらどうすればいい？",
+        "status": "original",
+        "timings": {
+          "indexMs": 30.799999997019768,
+          "lightMs": 0.7000000029802322,
+          "releaseMs": 0,
+          "embeddingAcquireMs": 0,
+          "embeddingWarm": true,
+          "embeddingMs": 34.899999998509884,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 0.20000000298023224,
+          "fusionMs": 0.6999999955296516,
+          "retrievalMs": 38,
+          "firstResultsMs": 45.69999999552965,
+          "totalMs": 45.69999999552965
+        },
+        "browserPssPeakMiB": 800.970703125,
+        "rendererPssPeakMiB": 669.6669921875
+      },
+      {
+        "method": "D",
+        "query": "寝てるときに地震が来たらどうすればいい？",
+        "status": "generated",
+        "timings": {
+          "indexMs": 30.799999997019768,
+          "lightMs": 0.5,
+          "fusionMs": 0,
+          "retrievalMs": 0.5,
+          "firstResultsMs": 1.6000000014901161,
+          "releaseMs": 0,
+          "llmLoadMs": 2734.2000000029802,
+          "llmSettings": {
+            "threads": 1,
+            "contextTokens": 512,
+            "batchTokens": 64,
+            "gpuLayers": 0,
+            "compat": true
+          },
+          "llmAcquireMs": 2819.3000000044703,
+          "llmWarm": false,
+          "switchToLlmMs": 2819.5,
+          "answerMs": 13567.69999999553,
+          "totalMs": 16394.10000000149
+        },
+        "answer": {
+          "text": "根拠：暗い中で裸足で歩く際は、足元に割れたガラスがあれば避けるべきです。",
+          "tokens": 31,
+          "elapsedMs": 13530.70000000298,
+          "ttftMs": 10979.30000000447,
+          "tokensPerSecond": 2.291086196574691,
+          "decodeTokensPerSecond": 11.758250372351464,
+          "tokensKnown": true,
+          "promptTokens": 187,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "usable": true,
+          "tokenCountMatches": true,
+          "completeSentence": true,
+          "inputTokens": 187,
+          "evidenceIds": [
+            "bosai-39"
+          ],
+          "reason": "generated"
+        },
+        "browserPssPeakMiB": 1403.7841796875,
+        "rendererPssPeakMiB": 812.89453125
+      },
+      {
+        "method": "E",
+        "query": "寝てるときに地震が来たらどうすればいい？",
+        "status": "generated",
+        "timings": {
+          "indexMs": 30.799999997019768,
+          "releaseMs": 39,
+          "embeddingLoadMs": 1790,
+          "embeddingAcquireMs": 1932.8000000044703,
+          "embeddingWarm": false,
+          "embeddingMs": 120.19999999552965,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 0.19999999552965164,
+          "fusionMs": 0,
+          "retrievalMs": 2054.5,
+          "firstResultsMs": 2055.5,
+          "llmLoadMs": 2334.7000000029802,
+          "llmSettings": {
+            "threads": 1,
+            "contextTokens": 512,
+            "batchTokens": 64,
+            "gpuLayers": 0,
+            "compat": true
+          },
+          "llmAcquireMs": 2511.60000000149,
+          "llmWarm": false,
+          "switchToLlmMs": 2538.1999999955297,
+          "answerMs": 13739.5,
+          "totalMs": 18333.79999999702
+        },
+        "answer": {
+          "text": "根拠：暗い中で裸足で歩く際は、足元に割れたガラスがあれば避けるべきです。",
+          "tokens": 31,
+          "elapsedMs": 13728.19999999553,
+          "ttftMs": 11013.39999999851,
+          "tokensPerSecond": 2.2581256100588636,
+          "decodeTokensPerSecond": 11.050537792851383,
+          "tokensKnown": true,
+          "promptTokens": 187,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "usable": true,
+          "tokenCountMatches": true,
+          "completeSentence": true,
+          "inputTokens": 187,
+          "evidenceIds": [
+            "bosai-39"
+          ],
+          "reason": "generated"
+        },
+        "browserPssPeakMiB": 1210.1083984375,
+        "rendererPssPeakMiB": 618.03125
+      },
+      {
+        "method": "F",
+        "query": "寝てるときに地震が来たらどうすればいい？",
+        "status": "generated",
+        "timings": {
+          "indexMs": 30.799999997019768,
+          "lightMs": 1,
+          "releaseMs": 22.599999994039536,
+          "embeddingLoadMs": 2233.6999999955297,
+          "embeddingAcquireMs": 2317.89999999851,
+          "embeddingWarm": false,
+          "embeddingMs": 137.89999999850988,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 0.10000000149011612,
+          "fusionMs": 0.10000000149011612,
+          "retrievalMs": 2461.2999999970198,
+          "firstResultsMs": 2462.3000000044703,
+          "llmLoadMs": 3275,
+          "llmSettings": {
+            "threads": 1,
+            "contextTokens": 512,
+            "batchTokens": 64,
+            "gpuLayers": 0,
+            "compat": true
+          },
+          "llmAcquireMs": 3656.4000000059605,
+          "llmWarm": false,
+          "switchToLlmMs": 3668,
+          "answerMs": 13547.90000000596,
+          "totalMs": 19679.60000000149
+        },
+        "answer": {
+          "text": "根拠：暗い中で裸足で歩く際は、足元に割れたガラスがあれば避けるべきです。",
+          "tokens": 31,
+          "elapsedMs": 13534.29999999702,
+          "ttftMs": 10788.29999999702,
+          "tokensPerSecond": 2.2904767886042743,
+          "decodeTokensPerSecond": 10.924981791697014,
+          "tokensKnown": true,
+          "promptTokens": 187,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "usable": true,
+          "tokenCountMatches": true,
+          "completeSentence": true,
+          "inputTokens": 187,
+          "evidenceIds": [
+            "bosai-39"
+          ],
+          "reason": "generated"
+        },
+        "browserPssPeakMiB": 1148.4208984375,
+        "rendererPssPeakMiB": 623.5205078125
+      }
+    ],
+    "warmD": {
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "method": "D",
+      "dual": false,
+      "policy": {
+        "semanticThreshold": 0.8,
+        "fusion": "score",
+        "lightWeight": 0.5,
+        "candidatePool": 10,
+        "outputLimit": 5,
+        "grounding": "top1-full",
+        "contextTokens": 512,
+        "answerTokens": 64,
+        "frozen": true,
+        "groundingStyle": "baseline"
+      },
+      "startedAt": "2026-10-14T07:02:47.414Z",
+      "timings": {
+        "indexMs": 30.799999997019768,
+        "lightMs": 0.6000000014901161,
+        "fusionMs": 0,
+        "retrievalMs": 0.6000000014901161,
+        "firstResultsMs": 1.6999999955296516,
+        "releaseMs": 0,
+        "llmAcquireMs": 0,
+        "llmWarm": true,
+        "switchToLlmMs": 0.10000000149011612,
+        "answerMs": 13394.59999999404,
+        "totalMs": 13398.89999999851
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "evidenceIds": [
+        "bosai-39"
+      ],
+      "status": "generated",
+      "lightIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "semanticIds": [],
+      "answer": {
+        "text": "根拠：暗い中で裸足で歩く際は、足元に割れたガラスがあれば避けるべきです。",
+        "tokens": 31,
+        "elapsedMs": 13393.60000000149,
+        "ttftMs": 10775.89999999851,
+        "tokensPerSecond": 2.31453828694276,
+        "decodeTokensPerSecond": 11.460442373062552,
+        "tokensKnown": true,
+        "promptTokens": 187,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 187,
+        "evidenceIds": [
+          "bosai-39"
+        ],
+        "reason": "generated"
+      },
+      "residencyAfter": {
+        "embeddingWorker": false,
+        "llmWorker": true
+      },
+      "memoryDiagnostics": {
+        "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+        "supported": true,
+        "usedJSHeapBytes": 10000000,
+        "totalJSHeapBytes": 10000000,
+        "deviceMemoryGiB": 8
+      },
+      "browserPssPeakMiB": 1038.0185546875,
+      "rendererPssPeakMiB": 450.12109375
+    },
+    "dualColdF": {
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "method": "F",
+      "dual": true,
+      "policy": {
+        "semanticThreshold": 0.8,
+        "fusion": "score",
+        "lightWeight": 0.5,
+        "candidatePool": 10,
+        "outputLimit": 5,
+        "grounding": "top1-full",
+        "contextTokens": 512,
+        "answerTokens": 64,
+        "frozen": true,
+        "groundingStyle": "baseline"
+      },
+      "startedAt": "2026-10-14T07:03:04.080Z",
+      "timings": {
+        "indexMs": 30.799999997019768,
+        "lightMs": 1,
+        "embeddingLoadMs": 1829.3000000044703,
+        "embeddingAcquireMs": 1927.6000000014901,
+        "embeddingWarm": false,
+        "embeddingMs": 107.60000000149012,
+        "embeddingTokens": 12,
+        "vectorSearchMs": 0.10000000149011612,
+        "fusionMs": 0,
+        "retrievalMs": 2037.6000000014901,
+        "firstResultsMs": 2038.3999999985099,
+        "llmLoadMs": 3303.60000000149,
+        "llmSettings": {
+          "threads": 1,
+          "contextTokens": 512,
+          "batchTokens": 64,
+          "gpuLayers": 0,
+          "compat": true
+        },
+        "llmAcquireMs": 3637.7000000029802,
+        "llmWarm": false,
+        "switchToLlmMs": 3638,
+        "answerMs": 13719.89999999851,
+        "totalMs": 19397.70000000298
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-40",
+        "bosai-42"
+      ],
+      "evidenceIds": [
+        "bosai-39"
+      ],
+      "status": "generated",
+      "lightIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "semanticIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-40",
+        "bosai-42",
+        "bosai-56",
+        "bosai-45",
+        "bosai-51",
+        "bosai-14",
+        "bosai-46"
+      ],
+      "answer": {
+        "text": "根拠：暗い中で裸足で歩く際は、足元に割れたガラスがあれば避けるべきです。",
+        "tokens": 31,
+        "elapsedMs": 13701.09999999404,
+        "ttftMs": 11050.89999999851,
+        "tokensPerSecond": 2.2625920546535307,
+        "decodeTokensPerSecond": 11.319900384895707,
+        "tokensKnown": true,
+        "promptTokens": 187,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 187,
+        "evidenceIds": [
+          "bosai-39"
+        ],
+        "reason": "generated"
+      },
+      "residencyAfter": {
+        "embeddingWorker": true,
+        "llmWorker": true
+      },
+      "memoryDiagnostics": {
+        "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+        "supported": true,
+        "usedJSHeapBytes": 10000000,
+        "totalJSHeapBytes": 10000000,
+        "deviceMemoryGiB": 8
+      },
+      "browserPssPeakMiB": 1459.9765625,
+      "rendererPssPeakMiB": 870.4716796875
+    },
+    "dualWarmF": {
+      "query": "寝てるときに地震が来たらどうすればいい？",
+      "method": "F",
+      "dual": true,
+      "policy": {
+        "semanticThreshold": 0.8,
+        "fusion": "score",
+        "lightWeight": 0.5,
+        "candidatePool": 10,
+        "outputLimit": 5,
+        "grounding": "top1-full",
+        "contextTokens": 512,
+        "answerTokens": 64,
+        "frozen": true,
+        "groundingStyle": "baseline"
+      },
+      "startedAt": "2026-10-14T07:03:23.581Z",
+      "timings": {
+        "indexMs": 30.799999997019768,
+        "lightMs": 0.6000000014901161,
+        "embeddingAcquireMs": 0,
+        "embeddingWarm": true,
+        "embeddingMs": 15.200000002980232,
+        "embeddingTokens": 12,
+        "vectorSearchMs": 0.10000000149011612,
+        "fusionMs": 0.20000000298023224,
+        "retrievalMs": 19.900000005960464,
+        "firstResultsMs": 20.700000002980232,
+        "llmAcquireMs": 0,
+        "llmWarm": true,
+        "switchToLlmMs": 0.09999999403953552,
+        "answerMs": 13773.09999999404,
+        "totalMs": 13801.79999999702
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-40",
+        "bosai-42"
+      ],
+      "evidenceIds": [
+        "bosai-39"
+      ],
+      "status": "generated",
+      "lightIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "semanticIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-40",
+        "bosai-42",
+        "bosai-56",
+        "bosai-45",
+        "bosai-51",
+        "bosai-14",
+        "bosai-46"
+      ],
+      "answer": {
+        "text": "根拠：暗い中で裸足で歩く際は、足元に割れたガラスがあれば避けるべきです。",
+        "tokens": 31,
+        "elapsedMs": 13772.29999999702,
+        "ttftMs": 11143.20000000298,
+        "tokensPerSecond": 2.25089491225189,
+        "decodeTokensPerSecond": 11.410748925513678,
+        "tokensKnown": true,
+        "promptTokens": 187,
+        "stopped": false,
+        "finishReason": "stop",
+        "outputLimitReached": false,
+        "usable": true,
+        "tokenCountMatches": true,
+        "completeSentence": true,
+        "inputTokens": 187,
+        "evidenceIds": [
+          "bosai-39"
+        ],
+        "reason": "generated"
+      },
+      "residencyAfter": {
+        "embeddingWorker": true,
+        "llmWorker": true
+      },
+      "memoryDiagnostics": {
+        "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+        "supported": true,
+        "usedJSHeapBytes": 10000000,
+        "totalJSHeapBytes": 10000000,
+        "deviceMemoryGiB": 8
+      },
+      "browserPssPeakMiB": 1390.41015625,
+      "rendererPssPeakMiB": 802.2529296875
+    },
+    "releaseSamples": [
+      {
+        "label": "embedding-only",
+        "before": {
+          "pssMiB": 770.642578125,
+          "rssMiB": 993.2734375,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 52.044921875,
+            "zygote": 20.3662109375,
+            "gpu-process": 34.7412109375,
+            "renderer": 639.4013671875,
+            "utility": 24.0888671875
+          },
+          "rendererPssMiB": 639.4013671875
+        },
+        "after": {
+          "pssMiB": 524.080078125,
+          "rssMiB": 746.7109375,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 52.001953125,
+            "zygote": 20.3662109375,
+            "gpu-process": 34.7412109375,
+            "renderer": 392.8818359375,
+            "utility": 24.0888671875
+          },
+          "rendererPssMiB": 392.8818359375
+        },
+        "oneSecond": {
+          "pssMiB": 511.1025390625,
+          "rssMiB": 733.8125,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 52.1162109375,
+            "zygote": 20.3603515625,
+            "gpu-process": 34.740234375,
+            "renderer": 379.77734375,
+            "utility": 24.1083984375
+          },
+          "rendererPssMiB": 379.77734375
+        },
+        "threeSeconds": {
+          "pssMiB": 322.1552734375,
+          "rssMiB": 543.22265625,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 52.0595703125,
+            "zygote": 20.3603515625,
+            "gpu-process": 33.921875,
+            "renderer": 191.7099609375,
+            "utility": 24.103515625
+          },
+          "rendererPssMiB": 191.7099609375
+        }
+      },
+      {
+        "label": "sequential-EF-after-LLM",
+        "before": {
+          "pssMiB": 1036.3505859375,
+          "rssMiB": 1254.90234375,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 511.119140625,
+            "zygote": 20.388671875,
+            "gpu-process": 32.193359375,
+            "renderer": 448.68359375,
+            "utility": 23.9658203125
+          },
+          "rendererPssMiB": 448.68359375
+        },
+        "after": {
+          "pssMiB": 286.2060546875,
+          "rssMiB": 504.7578125,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 54.310546875,
+            "zygote": 20.388671875,
+            "gpu-process": 32.193359375,
+            "renderer": 155.34375,
+            "utility": 23.9697265625
+          },
+          "rendererPssMiB": 155.34375
+        },
+        "oneSecond": {
+          "pssMiB": 285.6513671875,
+          "rssMiB": 504.203125,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 54.310546875,
+            "zygote": 20.388671875,
+            "gpu-process": 32.193359375,
+            "renderer": 154.7890625,
+            "utility": 23.9697265625
+          },
+          "rendererPssMiB": 154.7890625
+        },
+        "threeSeconds": {
+          "pssMiB": 285.2685546875,
+          "rssMiB": 503.8203125,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 54.314453125,
+            "zygote": 20.388671875,
+            "gpu-process": 32.193359375,
+            "renderer": 154.40234375,
+            "utility": 23.9697265625
+          },
+          "rendererPssMiB": 154.40234375
+        }
+      },
+      {
+        "label": "lfm-only",
+        "before": {
+          "pssMiB": 1033.9296875,
+          "rssMiB": 1251.75390625,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 511.0361328125,
+            "zygote": 20.388671875,
+            "gpu-process": 31.7939453125,
+            "renderer": 446.7373046875,
+            "utility": 23.9736328125
+          },
+          "rendererPssMiB": 446.7373046875
+        },
+        "after": {
+          "pssMiB": 286.4296875,
+          "rssMiB": 504.29296875,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 54.5244140625,
+            "zygote": 20.388671875,
+            "gpu-process": 31.8134765625,
+            "renderer": 155.7255859375,
+            "utility": 23.9775390625
+          },
+          "rendererPssMiB": 155.7255859375
+        },
+        "oneSecond": {
+          "pssMiB": 286.4296875,
+          "rssMiB": 504.29296875,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 54.5244140625,
+            "zygote": 20.388671875,
+            "gpu-process": 31.8134765625,
+            "renderer": 155.7255859375,
+            "utility": 23.9775390625
+          },
+          "rendererPssMiB": 155.7255859375
+        },
+        "threeSeconds": {
+          "pssMiB": 285.03515625,
+          "rssMiB": 502.8984375,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 53.6259765625,
+            "zygote": 20.388671875,
+            "gpu-process": 31.8134765625,
+            "renderer": 155.2294921875,
+            "utility": 23.9775390625
+          },
+          "rendererPssMiB": 155.2294921875
+        }
+      },
+      {
+        "label": "dual",
+        "before": {
+          "pssMiB": 1023.3740234375,
+          "rssMiB": 1241.796875,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 275.6865234375,
+            "zygote": 20.3828125,
+            "gpu-process": 32.3955078125,
+            "renderer": 671.00390625,
+            "utility": 23.9052734375
+          },
+          "rendererPssMiB": 671.00390625
+        },
+        "after": {
+          "pssMiB": 313.8974609375,
+          "rssMiB": 532.359375,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 54.1826171875,
+            "zygote": 20.3828125,
+            "gpu-process": 32.4150390625,
+            "renderer": 183.0078125,
+            "utility": 23.9091796875
+          },
+          "rendererPssMiB": 183.0078125
+        },
+        "oneSecond": {
+          "pssMiB": 312.7802734375,
+          "rssMiB": 531.2421875,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 54.1826171875,
+            "zygote": 20.3828125,
+            "gpu-process": 32.4150390625,
+            "renderer": 181.890625,
+            "utility": 23.9091796875
+          },
+          "rendererPssMiB": 181.890625
+        },
+        "threeSeconds": {
+          "pssMiB": 310.5771484375,
+          "rssMiB": 529.0390625,
+          "processes": 6,
+          "complete": true,
+          "unavailableCount": 0,
+          "rolePssMiB": {
+            "browser": 53.1630859375,
+            "zygote": 20.3828125,
+            "gpu-process": 32.3408203125,
+            "renderer": 180.78515625,
+            "utility": 23.9052734375
+          },
+          "rendererPssMiB": 180.78515625
+        }
+      }
+    ],
+    "pssPeak": 1459.9765625,
+    "phasePeaks": {
+      "page": 232.8486328125,
+      "retrieved": 1389,
+      "complete": 1379.88671875,
+      "embedding-loading": 733.4404296875,
+      "embedding-ready": 727.3076171875,
+      "embedding-query": 1382.49609375,
+      "embedding-releasing": 837.4013671875,
+      "embedding-released": 615.3466796875,
+      "llm-loading": 1287.46484375,
+      "llm-ready": 1459.9765625,
+      "llm-answer": 1459.46875,
+      "llm-releasing": 1054.8583984375,
+      "llm-released": 1055.8974609375,
+      "stop-requested": 1029.3701171875
+    },
+    "offlineRuns": [
+      {
+        "query": "津波は一度来たら戻っていい？",
+        "method": "A",
+        "dual": false,
+        "policy": {
+          "semanticThreshold": 0.8,
+          "fusion": "score",
+          "lightWeight": 0.5,
+          "candidatePool": 10,
+          "outputLimit": 5,
+          "grounding": "top1-full",
+          "contextTokens": 512,
+          "answerTokens": 64,
+          "frozen": true,
+          "groundingStyle": "baseline"
+        },
+        "startedAt": "2026-10-14T07:04:13.314Z",
+        "timings": {
+          "indexMs": 28.799999997019768,
+          "releaseMs": 0,
+          "lightMs": 0.7000000029802322,
+          "fusionMs": 0,
+          "retrievalMs": 0.7000000029802322,
+          "firstResultsMs": 1.7000000029802322,
+          "totalMs": 1.7000000029802322
+        },
+        "resultIds": [
+          "bosai-7",
+          "bosai-9",
+          "bosai-6",
+          "bosai-8",
+          "bosai-3"
+        ],
+        "evidenceIds": [],
+        "status": "original",
+        "lightIds": [
+          "bosai-7",
+          "bosai-9",
+          "bosai-6",
+          "bosai-8",
+          "bosai-3",
+          "bosai-15",
+          "bosai-51",
+          "bosai-52",
+          "bosai-10",
+          "bosai-0"
+        ],
+        "semanticIds": [],
+        "residencyAfter": {
+          "embeddingWorker": false,
+          "llmWorker": false
+        },
+        "memoryDiagnostics": {
+          "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+          "supported": true,
+          "usedJSHeapBytes": 10000000,
+          "totalJSHeapBytes": 10000000,
+          "deviceMemoryGiB": 8
+        },
+        "browserPssPeakMiB": 324.5185546875,
+        "rendererPssPeakMiB": 185.33984375
+      },
+      {
+        "query": "津波は一度来たら戻っていい？",
+        "method": "B",
+        "dual": false,
+        "policy": {
+          "semanticThreshold": 0.8,
+          "fusion": "score",
+          "lightWeight": 0.5,
+          "candidatePool": 10,
+          "outputLimit": 5,
+          "grounding": "top1-full",
+          "contextTokens": 512,
+          "answerTokens": 64,
+          "frozen": true,
+          "groundingStyle": "baseline"
+        },
+        "startedAt": "2026-10-14T07:04:13.431Z",
+        "timings": {
+          "indexMs": 28.799999997019768,
+          "releaseMs": 0,
+          "embeddingLoadMs": 1954.1999999955297,
+          "embeddingAcquireMs": 2027.8000000044703,
+          "embeddingWarm": false,
+          "embeddingMs": 132.20000000298023,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 0.5999999940395355,
+          "fusionMs": 0,
+          "retrievalMs": 2164.39999999851,
+          "firstResultsMs": 2165.5,
+          "totalMs": 2165.5
+        },
+        "resultIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-51",
+          "bosai-3"
+        ],
+        "evidenceIds": [],
+        "status": "original",
+        "lightIds": [],
+        "semanticIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-51",
+          "bosai-3",
+          "bosai-5",
+          "bosai-9",
+          "bosai-1",
+          "bosai-58",
+          "bosai-11"
+        ],
+        "residencyAfter": {
+          "embeddingWorker": true,
+          "llmWorker": false
+        },
+        "memoryDiagnostics": {
+          "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+          "supported": true,
+          "usedJSHeapBytes": 10000000,
+          "totalJSHeapBytes": 10000000,
+          "deviceMemoryGiB": 8
+        },
+        "browserPssPeakMiB": 785.1669921875,
+        "rendererPssPeakMiB": 644.90234375
+      },
+      {
+        "query": "津波は一度来たら戻っていい？",
+        "method": "C",
+        "dual": false,
+        "policy": {
+          "semanticThreshold": 0.8,
+          "fusion": "score",
+          "lightWeight": 0.5,
+          "candidatePool": 10,
+          "outputLimit": 5,
+          "grounding": "top1-full",
+          "contextTokens": 512,
+          "answerTokens": 64,
+          "frozen": true,
+          "groundingStyle": "baseline"
+        },
+        "startedAt": "2026-10-14T07:04:16.000Z",
+        "timings": {
+          "indexMs": 28.799999997019768,
+          "lightMs": 0.6000000014901161,
+          "releaseMs": 0,
+          "embeddingAcquireMs": 0,
+          "embeddingWarm": true,
+          "embeddingMs": 87.70000000298023,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 0.30000000447034836,
+          "fusionMs": 0.19999999552965164,
+          "retrievalMs": 89.39999999850988,
+          "firstResultsMs": 91.59999999403954,
+          "totalMs": 91.69999999552965
+        },
+        "resultIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-9",
+          "bosai-51"
+        ],
+        "evidenceIds": [],
+        "status": "original",
+        "lightIds": [
+          "bosai-7",
+          "bosai-9",
+          "bosai-6",
+          "bosai-8",
+          "bosai-3",
+          "bosai-15",
+          "bosai-51",
+          "bosai-52",
+          "bosai-10",
+          "bosai-0"
+        ],
+        "semanticIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-51",
+          "bosai-3",
+          "bosai-5",
+          "bosai-9",
+          "bosai-1",
+          "bosai-58",
+          "bosai-11"
+        ],
+        "residencyAfter": {
+          "embeddingWorker": true,
+          "llmWorker": false
+        },
+        "memoryDiagnostics": {
+          "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+          "supported": true,
+          "usedJSHeapBytes": 10000000,
+          "totalJSHeapBytes": 10000000,
+          "deviceMemoryGiB": 8
+        },
+        "browserPssPeakMiB": 817.4873046875,
+        "rendererPssPeakMiB": 677.22265625
+      },
+      {
+        "query": "津波は一度来たら戻っていい？",
+        "method": "D",
+        "dual": false,
+        "policy": {
+          "semanticThreshold": 0.8,
+          "fusion": "score",
+          "lightWeight": 0.5,
+          "candidatePool": 10,
+          "outputLimit": 5,
+          "grounding": "top1-full",
+          "contextTokens": 512,
+          "answerTokens": 64,
+          "frozen": true,
+          "groundingStyle": "baseline"
+        },
+        "startedAt": "2026-10-14T07:04:16.502Z",
+        "timings": {
+          "indexMs": 28.799999997019768,
+          "lightMs": 0.29999999701976776,
+          "fusionMs": 0,
+          "retrievalMs": 0.3999999985098839,
+          "firstResultsMs": 1.2999999970197678,
+          "releaseMs": 59.900000005960464,
+          "llmLoadMs": 2693.39999999851,
+          "llmSettings": {
+            "threads": 1,
+            "contextTokens": 512,
+            "batchTokens": 64,
+            "gpuLayers": 0,
+            "compat": true
+          },
+          "llmAcquireMs": 2951.7000000029802,
+          "llmWarm": false,
+          "switchToLlmMs": 2952,
+          "answerMs": 14019.60000000149,
+          "totalMs": 16973
+        },
+        "resultIds": [
+          "bosai-7",
+          "bosai-9",
+          "bosai-6",
+          "bosai-8",
+          "bosai-3"
+        ],
+        "evidenceIds": [
+          "bosai-7"
+        ],
+        "status": "generated",
+        "lightIds": [
+          "bosai-7",
+          "bosai-9",
+          "bosai-6",
+          "bosai-8",
+          "bosai-3",
+          "bosai-15",
+          "bosai-51",
+          "bosai-52",
+          "bosai-10",
+          "bosai-0"
+        ],
+        "semanticIds": [],
+        "answer": {
+          "text": "第1波のあとも戻らないという条件は、津波が一度到達したとしても避難場所から戻らないという重要な注意点です。",
+          "tokens": 34,
+          "elapsedMs": 14009.19999999553,
+          "ttftMs": 11021.39999999851,
+          "tokensPerSecond": 2.4269765582624885,
+          "decodeTokensPerSecond": 11.044915991710596,
+          "tokensKnown": true,
+          "promptTokens": 188,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "usable": true,
+          "tokenCountMatches": true,
+          "completeSentence": true,
+          "inputTokens": 188,
+          "evidenceIds": [
+            "bosai-7"
+          ],
+          "reason": "generated"
+        },
+        "residencyAfter": {
+          "embeddingWorker": false,
+          "llmWorker": true
+        },
+        "memoryDiagnostics": {
+          "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+          "supported": true,
+          "usedJSHeapBytes": 10000000,
+          "totalJSHeapBytes": 10000000,
+          "deviceMemoryGiB": 8
+        },
+        "browserPssPeakMiB": 1165.1982421875,
+        "rendererPssPeakMiB": 698.1953125
+      },
+      {
+        "query": "津波は一度来たら戻っていい？",
+        "method": "E",
+        "dual": false,
+        "policy": {
+          "semanticThreshold": 0.8,
+          "fusion": "score",
+          "lightWeight": 0.5,
+          "candidatePool": 10,
+          "outputLimit": 5,
+          "grounding": "top1-full",
+          "contextTokens": 512,
+          "answerTokens": 64,
+          "frozen": true,
+          "groundingStyle": "baseline"
+        },
+        "startedAt": "2026-10-14T07:04:33.577Z",
+        "timings": {
+          "indexMs": 28.799999997019768,
+          "releaseMs": 60.5,
+          "embeddingLoadMs": 2029.5,
+          "embeddingAcquireMs": 2128.89999999851,
+          "embeddingWarm": false,
+          "embeddingMs": 193,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 0.30000000447034836,
+          "fusionMs": 0,
+          "retrievalMs": 2327,
+          "firstResultsMs": 2328.5,
+          "llmLoadMs": 2371.2999999970198,
+          "llmSettings": {
+            "threads": 1,
+            "contextTokens": 512,
+            "batchTokens": 64,
+            "gpuLayers": 0,
+            "compat": true
+          },
+          "llmAcquireMs": 2611.10000000149,
+          "llmWarm": false,
+          "switchToLlmMs": 2655.8000000044703,
+          "answerMs": 13899.5,
+          "totalMs": 18884.30000000447
+        },
+        "resultIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-51",
+          "bosai-3"
+        ],
+        "evidenceIds": [
+          "bosai-7"
+        ],
+        "status": "generated",
+        "lightIds": [],
+        "semanticIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-51",
+          "bosai-3",
+          "bosai-5",
+          "bosai-9",
+          "bosai-1",
+          "bosai-58",
+          "bosai-11"
+        ],
+        "answer": {
+          "text": "第1波のあとも戻らないという条件は、津波が一度到達したとしても避難場所から戻らないという重要な注意点です。",
+          "tokens": 34,
+          "elapsedMs": 13890.10000000149,
+          "ttftMs": 11047.89999999851,
+          "tokensPerSecond": 2.4477865530123144,
+          "decodeTokensPerSecond": 11.610724086962703,
+          "tokensKnown": true,
+          "promptTokens": 188,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "usable": true,
+          "tokenCountMatches": true,
+          "completeSentence": true,
+          "inputTokens": 188,
+          "evidenceIds": [
+            "bosai-7"
+          ],
+          "reason": "generated"
+        },
+        "residencyAfter": {
+          "embeddingWorker": false,
+          "llmWorker": true
+        },
+        "memoryDiagnostics": {
+          "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+          "supported": true,
+          "usedJSHeapBytes": 10000000,
+          "totalJSHeapBytes": 10000000,
+          "deviceMemoryGiB": 8
+        },
+        "browserPssPeakMiB": 1170.8935546875,
+        "rendererPssPeakMiB": 594.109375
+      },
+      {
+        "query": "津波は一度来たら戻っていい？",
+        "method": "F",
+        "dual": false,
+        "policy": {
+          "semanticThreshold": 0.8,
+          "fusion": "score",
+          "lightWeight": 0.5,
+          "candidatePool": 10,
+          "outputLimit": 5,
+          "grounding": "top1-full",
+          "contextTokens": 512,
+          "answerTokens": 64,
+          "frozen": true,
+          "groundingStyle": "baseline"
+        },
+        "startedAt": "2026-10-14T07:04:52.593Z",
+        "timings": {
+          "indexMs": 28.799999997019768,
+          "lightMs": 0.4000000059604645,
+          "releaseMs": 18.400000005960464,
+          "embeddingLoadMs": 1947,
+          "embeddingAcquireMs": 2067.8000000044703,
+          "embeddingWarm": false,
+          "embeddingMs": 107.60000000149012,
+          "embeddingTokens": 12,
+          "vectorSearchMs": 0.19999999552965164,
+          "fusionMs": 0,
+          "retrievalMs": 2177,
+          "firstResultsMs": 2181.89999999851,
+          "llmLoadMs": 2723.7999999970198,
+          "llmSettings": {
+            "threads": 1,
+            "contextTokens": 512,
+            "batchTokens": 64,
+            "gpuLayers": 0,
+            "compat": true
+          },
+          "llmAcquireMs": 2902.89999999851,
+          "llmWarm": false,
+          "switchToLlmMs": 2917.5,
+          "answerMs": 14510.20000000298,
+          "totalMs": 19610.70000000298
+        },
+        "resultIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-9",
+          "bosai-51"
+        ],
+        "evidenceIds": [
+          "bosai-7"
+        ],
+        "status": "generated",
+        "lightIds": [
+          "bosai-7",
+          "bosai-9",
+          "bosai-6",
+          "bosai-8",
+          "bosai-3",
+          "bosai-15",
+          "bosai-51",
+          "bosai-52",
+          "bosai-10",
+          "bosai-0"
+        ],
+        "semanticIds": [
+          "bosai-7",
+          "bosai-6",
+          "bosai-8",
+          "bosai-51",
+          "bosai-3",
+          "bosai-5",
+          "bosai-9",
+          "bosai-1",
+          "bosai-58",
+          "bosai-11"
+        ],
+        "answer": {
+          "text": "第1波のあとも戻らないという条件は、津波が一度到達したとしても避難場所から戻らないという重要な注意点です。",
+          "tokens": 34,
+          "elapsedMs": 14492.19999999553,
+          "ttftMs": 11635,
+          "tokensPerSecond": 2.3460896206242317,
+          "decodeTokensPerSecond": 11.549769004637978,
+          "tokensKnown": true,
+          "promptTokens": 188,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "usable": true,
+          "tokenCountMatches": true,
+          "completeSentence": true,
+          "inputTokens": 188,
+          "evidenceIds": [
+            "bosai-7"
+          ],
+          "reason": "generated"
+        },
+        "residencyAfter": {
+          "embeddingWorker": false,
+          "llmWorker": true
+        },
+        "memoryDiagnostics": {
+          "source": "performance.memory (JS heap only; excludes WASM/model/OS memory)",
+          "supported": true,
+          "usedJSHeapBytes": 10000000,
+          "totalJSHeapBytes": 10000000,
+          "deviceMemoryGiB": 8
+        },
+        "browserPssPeakMiB": 1150.8583984375,
+        "rendererPssPeakMiB": 559.390625
+      }
+    ],
+    "errors": [],
+    "assetRequests": 7
+  },
+  "longRunMemory": {
+    "A": {
+      "peak": {
+        "pssMiB": 270.638671875,
+        "rssMiB": 492.015625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 52.337890625,
+          "zygote": 20.470703125,
+          "gpu-process": 35.5634765625,
+          "renderer": 138.4609375,
+          "utility": 23.8056640625
+        },
+        "rendererPssMiB": 138.4609375
+      },
+      "first5MedianPssMiB": 255.123046875,
+      "last5MedianPssMiB": 267.912109375,
+      "samples": 64,
+      "warning": "500ms sampled whole browser PSS during final multi-query run; other native evaluation browser may overlap. Not Safari, not isolated per-model allocation or proof of absence of leaks."
+    },
+    "B": {
+      "peak": {
+        "pssMiB": 873.427734375,
+        "rssMiB": 1093.3828125,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 52.837890625,
+          "zygote": 20.4677734375,
+          "gpu-process": 34.4951171875,
+          "renderer": 741.830078125,
+          "utility": 23.796875
+        },
+        "rendererPssMiB": 741.830078125
+      },
+      "first5MedianPssMiB": 783.1494140625,
+      "last5MedianPssMiB": 627.544921875,
+      "samples": 64,
+      "warning": "500ms sampled whole browser PSS during final multi-query run; other native evaluation browser may overlap. Not Safari, not isolated per-model allocation or proof of absence of leaks."
+    },
+    "C": {
+      "peak": {
+        "pssMiB": 769.900390625,
+        "rssMiB": 991.26171875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 53.037109375,
+          "zygote": 20.4677734375,
+          "gpu-process": 35.1494140625,
+          "renderer": 637.4482421875,
+          "utility": 23.7978515625
+        },
+        "rendererPssMiB": 637.4482421875
+      },
+      "first5MedianPssMiB": 663.251953125,
+      "last5MedianPssMiB": 609.978515625,
+      "samples": 64,
+      "warning": "500ms sampled whole browser PSS during final multi-query run; other native evaluation browser may overlap. Not Safari, not isolated per-model allocation or proof of absence of leaks."
+    },
+    "D": {
+      "peak": {
+        "pssMiB": 1335.375,
+        "rssMiB": 1621.09375,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 494.5595703125,
+          "zygote": 14.197265625,
+          "gpu-process": 24.44140625,
+          "renderer": 785.4814453125,
+          "utility": 16.6953125
+        },
+        "rendererPssMiB": 785.4814453125
+      },
+      "first5MedianPssMiB": 728.2734375,
+      "last5MedianPssMiB": 757.5302734375,
+      "samples": 64,
+      "warning": "500ms sampled whole browser PSS during final multi-query run; other native evaluation browser may overlap. Not Safari, not isolated per-model allocation or proof of absence of leaks."
+    },
+    "Oracle": {
+      "peak": {
+        "pssMiB": 1050.671875,
+        "rssMiB": 1337.140625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 493.9150390625,
+          "zygote": 14.224609375,
+          "gpu-process": 23.9091796875,
+          "renderer": 502.0947265625,
+          "utility": 16.5283203125
+        },
+        "rendererPssMiB": 502.0947265625
+      },
+      "first5MedianPssMiB": 732.189453125,
+      "last5MedianPssMiB": 753.7666015625,
+      "samples": 64,
+      "warning": "500ms sampled whole browser PSS during final multi-query run; other native evaluation browser may overlap. Not Safari, not isolated per-model allocation or proof of absence of leaks."
+    },
+    "E": {
+      "peak": {
+        "pssMiB": 1601.8125,
+        "rssMiB": 1889.33203125,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 955.6396484375,
+          "zygote": 14.1806640625,
+          "gpu-process": 24.7646484375,
+          "renderer": 590.3388671875,
+          "utility": 16.888671875
+        },
+        "rendererPssMiB": 590.3388671875
+      },
+      "first5MedianPssMiB": 963.7626953125,
+      "last5MedianPssMiB": 1031.412109375,
+      "samples": 64,
+      "warning": "500ms sampled whole browser PSS during final multi-query run; other native evaluation browser may overlap. Not Safari, not isolated per-model allocation or proof of absence of leaks."
+    },
+    "F": {
+      "peak": {
+        "pssMiB": 1212.50390625,
+        "rssMiB": 1433.10546875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 516.6123046875,
+          "zygote": 20.2958984375,
+          "gpu-process": 34.6875,
+          "renderer": 616.5263671875,
+          "utility": 24.3818359375
+        },
+        "rendererPssMiB": 616.5263671875
+      },
+      "first5MedianPssMiB": 1020.6484375,
+      "last5MedianPssMiB": 1098.203125,
+      "samples": 64,
+      "warning": "500ms sampled whole browser PSS during final multi-query run; other native evaluation browser may overlap. Not Safari, not isolated per-model allocation or proof of absence of leaks."
+    }
+  }
+}

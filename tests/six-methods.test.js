@@ -34,3 +34,8 @@ test('fusion preserves original records and supports distinct score/rank policie
  for(const method of ['score','rrf']){const result=combineSearch(a,b,{method,limit:5});assert.equal(result.length,3);for(const r of result)assert.ok(corpus.includes(r.entry));}
  assert.throws(()=>cosine([1],[1,2]),/dimension/);
 });
+
+test('auxiliary preparation reuses all pre-existing CPU GGUF/tokenizer files without fetching or deleting them',async()=>{
+ const assets=auxAssets('lfm'),reports=[];const store={match:async url=>{const a=assets.find(a=>a.url===url);return new Response(null,{headers:{'content-length':String(a.bytes)}});},put:()=>{throw Error('Must reuse saved files');}};
+ await saveAux(store,'lfm',p=>reports.push(p),()=>{throw Error('Must not download existing weights');});assert.equal(reports.length,3);assert.ok(reports.every(r=>r.reused));
+});

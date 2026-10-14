@@ -1,3 +1,15 @@
+# 6方式実験の最新状態
+
+最新ブランチは `codex/phase1-six-methods`。PR #8 (`codex/phase1-natural-language-search`) へ積み上げる。既存PRを勝手にマージせず、Pages公開・正式Phase 2移行を行わない。[6方式の実測結果](docs/phase1-six-methods.md) と [最新引き継ぎ](CLOUD_HANDOFF.md) を先に読む。
+
+A/D:軽量、B/E:Ruri実Embedding、C/F:併用。A-Cは原文、D-FはLFM350の根拠付き生成＋原文。Ruri文書ベクトル88件は事前計算済み。モデル重みをGitへ入れず、外部AI APIを使わない。既存の選択・保存・停止・リセットと元bosai-app/88件は維持する。
+
+検索・根拠・設定はf9a7ca5で凍結済み。新規最終64問の正解/結果を使って調整しない。次の改善実験には別の評価セットを用意する。RuriのApache-2.0とLFM Open Licenseを混同しない。実行時は保存済みモデルだけを使う。
+
+E/FはEmbedding解放→LFMロード。512文脈と64生成の正確なtoken数を検査し、手順/注意を黙って落とさず、収まらなければ原文へ戻す。OracleでもLFM350の否定逆転・重要行動の欠落が残り、生成完了は意味的正解を保証しない。iPad Safariは未確認。Chromium実推論・オフライン再読み込み・PSS測定を実機成功へ言い換えない。
+
+以下はPR #8以前の履歴・背景。
+
 # 検索実験の最新状態
 
 今回の作業ブランチは `codex/phase1-natural-language-search`。PR #7 (`codex/phase1-cpu-model-comparison`) を継承する積み上げPR。PR #6/#7/今回のPRを勝手にマージせず、Pagesも公開しないでください。[検索比較結果](docs/phase1-search-prototype.md) とCLOUD_HANDOFF.mdの最新節を先に読んでください。

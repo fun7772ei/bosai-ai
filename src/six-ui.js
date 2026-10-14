@@ -7,7 +7,7 @@ export function mountSix({beforeModels,legacyBusy,changed}){
  let lastQuery='',sequence=0;
  const render=ids=>{
   $('sixResults').replaceChildren();for(const id of ids){const entry=corpus.find(e=>e.id===id);if(!entry)continue;const card=node('article','');card.className='search-card';card.dataset.sixEntryId=id;
-   card.append(node('h3',entry.title),node('p',entry.summary),node('h4','手順'));const ol=node('ol','');for(const s of entry.steps)ol.append(node('li',s));card.append(ol,node('h4','注意事項'),node('p',entry.warning),node('h4','出典'));const ul=node('ul','');for(const s of entry.sources){const li=node('li',''),a=node('a',s.label);a.href=s.url;a.rel='noopener noreferrer';a.target='_blank';li.append(a);ul.append(li);}card.append(ul);$('sixResults').append(card);
+   card.append(node('h3',entry.title),node('p',`${entry.category} / 優先度 ${entry.priority} / ${entry.id}`),node('p',entry.summary),node('h4','準備するもの'),node('p',entry.items),node('h4','手順')); const ol=node('ol','');for(const s of entry.steps)ol.append(node('li',s));card.append(ol,node('h4','注意事項'),node('p',entry.warning),node('h4','出典'));const ul=node('ul','');for(const s of entry.sources){const li=node('li',''),a=node('a',s.label);a.href=s.url;a.rel='noopener noreferrer';a.target='_blank';li.append(a);ul.append(li);}card.append(ul,node('p',`キーワード: ${entry.keywords.join('、')}`));$('sixResults').append(card);
   }
  };
  const controller=new SixController({beforeModels,changed:()=>{refresh();changed();},notice:data=>{
@@ -26,8 +26,9 @@ export function mountSix({beforeModels,legacyBusy,changed}){
   const current=++sequence;lastQuery=query;$('sixAnswer').textContent='';$('sixRaw').textContent='';$('sixState').textContent='検索中…';
   const run=await controller.run(query,$('sixMethod').value,{dual:dev&&$('sixDual').checked});
   if(current!==sequence)return;render(run.resultIds);
-  $('sixAnswer').textContent=run.answer?.usable?`実験生成（内容の正確性は未検証）:\n${run.answer.text}`:run.answer?`生成を採用せず原文を表示: ${run.answer.reason}`:run.status==='unavailable'?run.error:run.resultIds.length?'原文を表示しています。':'該当項目を確認できません。状況を具体的にしてください。';
-  $('sixRaw').textContent=JSON.stringify(run,null,2);$('sixState').textContent=`完了: ${run.status}`;
+  $('sixAnswer').textContent=run.answer?.usable?`実験生成（危険な誤回答が出るため原文を確認）:\n${run.answer.text}`:run.answer?`生成を採用せず原文を表示: ${run.answer.reason}`:run.status==='unavailable'?run.error:run.resultIds.length?'原文を表示しています。':'該当項目を確認できません。状況を具体的にしてください。';
+  $('sixRaw').textContent=JSON.stringify(run,null,2);
+  const memory=run.memoryDiagnostics;$('sixMemory').textContent=`常駐Worker: Embedding ${run.residencyAfter?.embeddingWorker?'あり':'なし'} / LFM ${run.residencyAfter?.llmWorker?'あり':'なし'}。${memory?.supported?`JSヒープ ${(memory.usedJSHeapBytes/1048576).toFixed(1)} MiB（WASM/モデル/OSメモリを含まない）`:'JSヒープ取得不可。WASM/モデル/OSメモリは画面では測定できません。'}`;$('sixState').textContent=`完了: ${run.status}`;
   $('sixTimings').textContent=`検索 ${run.timings.retrievalMs?.toFixed(1)??'—'} ms / Embedding初期化 ${run.timings.embeddingLoadMs?.toFixed(1)??'再利用/なし'} ms / 質問Embedding ${run.timings.embeddingMs?.toFixed(1)??'—'} ms / 解放 ${run.timings.releaseMs?.toFixed(1)??'—'} ms / LFM初期化 ${run.timings.llmLoadMs?.toFixed(1)??'再利用/なし'} ms / 切替 ${run.timings.switchToLlmMs?.toFixed(1)??'—'} ms / 生成 ${run.timings.answerMs?.toFixed(1)??'—'} ms / 合計 ${run.timings.totalMs.toFixed(1)} ms`;
   $('sixResults').dataset.run=JSON.stringify(run);await inspect();
  };
