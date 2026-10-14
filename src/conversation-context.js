@@ -8,6 +8,7 @@ export const topicsIn = text => hazardPatterns.filter(([, pattern]) => pattern.t
 const segmenter = new Intl.Segmenter('ja', {granularity:'word'});
 const wordsIn = text => new Set([...segmenter.segment(text.normalize('NFKC'))].filter(s=>s.isWordLike).map(s=>s.segment));
 const automobileNouns = new Set(['車','自動車','乗用車','軽自動車','自家用車','クルマ','くるま','車両','マイカー','トラック','バス','タクシー','四輪車']);
+const vehicleNoun = '(?:'+[...automobileNouns].sort((a,b)=>b.length-a.length).join('|')+')';
 const roadNouns = new Set(['道','道路','路面','経路','歩道','車道','通学路','通勤路','側道','私道','国道','県道','市道','農道','林道','一般道','高速道路','有料道路','幹線道路','生活道路','避難経路','地下道','アンダーパス']);
 const mobilityModes = [['wheelchair',/車椅子|車いす|車イス/],['bicycle',/自転車/],['rail',/電車|列車|鉄道|新幹線|地下鉄|汽車/],['stroller',/ベビーカー|乳母車/]];
 // Predicate polarity is tied to a route mention, not to an arbitrary 'ない' elsewhere.
@@ -66,8 +67,9 @@ export function factsIn(input) {
   if (walk || drive) facts.goal = 'movement';
   if (modes.length) facts.movement = automobile || modes.length>1 ? 'mixed' : modes[0];
   else if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
-  if (new RegExp('(?:車|自動車)[^、。]*水没'+negativePredicate+'|(?:水没|浸水)'+negativePredicate+'(?:の)?(?:車|自動車)|(?:水没|浸水)(?:車|した車)'+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)').test(text)) facts.vehicleFlooded = false;
-  else if ((!modes.length || automobile) && /水没.*車|車.*水没|車内.*水.*入/.test(autoText)) facts.vehicleFlooded = true;
+  if (new RegExp(vehicleNoun+'[^、。]*水没'+negativePredicate+'|(?:水没|浸水)'+negativePredicate+'(?:の)?'+vehicleNoun+'|(?:水没|浸水)(?:した)?'+vehicleNoun+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)').test(text)) facts.vehicleFlooded = false;
+  else if ((!modes.length || automobile) && new RegExp('水没[^、。]*'+vehicleNoun+'|'+vehicleNoun+'[^、。]*水没|車内[^、。]*水[^、。]*入').test(autoText)) facts.vehicleFlooded = true;
+  if (new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun).test(autoText)) facts.vehicleChanged = true;
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
   if (/高台.*(?:時間はある|間に合う)|間に合わないわけではない/.test(text)) facts.unreachableHeight = false;
@@ -82,8 +84,10 @@ export function mergeFacts(previous, current, excluded) {
   }
   // A vehicle-specific scene does not follow a person onto a new travel mode.
   // An explicitly restated current vehicle condition remains available.
-  if (current.movement && current.movement !== 'drive' && current.vehicleFlooded === undefined) delete facts.vehicleFlooded;
-  return {...facts, ...current};
+  if ((current.vehicleChanged || (current.movement && current.movement !== 'drive')) && current.vehicleFlooded === undefined) delete facts.vehicleFlooded;
+  const merged = {...facts, ...current};
+  delete merged.vehicleChanged; // An event, not a durable property of this vehicle.
+  return merged;
 }
 export function focusFor(topics, facts) {
   if (topics.includes('津波') && facts.unreachableHeight === true) return 'tsunami-time';
