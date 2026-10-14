@@ -1,6 +1,6 @@
 export const DEFAULT_MODEL = 'qwen3';
-// Keep legacy helper defaults/URLs stable; prefer LFM for new UI selections.
-export const PREFERRED_MODEL = 'lfm2';
+// Keep legacy helper defaults/URLs stable; prefer CPU LFM for new UI selections.
+export const PREFERRED_MODEL = 'lfm2-cpu';
 export const MODELS = Object.freeze([
   { key: 'lfm2-cpu', label: 'LFM2.5-350M（CPU/WASM比較）', id: 'LiquidAI/LFM2.5-350M-GGUF', revision: '657e078c94084481950a2d555a941481f715536b', engine: 'wllama-cpu', dtypes: ['q4_k_m'], file: 'LFM2.5-350M-Q4_K_M.gguf', weightBytes: { q4_k_m: 229312224 } },
   { key: 'lfm2', label: 'LFM2.5-350M', id: 'onnx-community/LFM2.5-350M-ONNX', revision: '7dd4999565b0342c381ba90a3d8fc467d6df19c4', externalData: true, weightBytes: { q4f16: 255148587, q4: 293813394 } },

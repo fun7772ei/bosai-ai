@@ -104,12 +104,14 @@ test('old Qwen preference migrates without leaking its dtype to Gemma/LFM', () =
   assert.deepEqual(readSelection(storage), { modelKey: 'qwen3', dtype: 'q4' });
 });
 
-test('fresh installations prefer LFM while an explicit saved model is preserved', () => {
+test('fresh installations prefer CPU LFM while existing model selections are preserved', () => {
   const values = new Map();
   const storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
-  assert.deepEqual(readSelection(storage), { modelKey: 'lfm2', dtype: 'q4f16' });
-  saveSelection(storage, { modelKey: 'gemma3', dtype: 'q4' });
-  assert.deepEqual(readSelection(storage), { modelKey: 'gemma3', dtype: 'q4' });
+  assert.deepEqual(readSelection(storage), { modelKey: 'lfm2-cpu', dtype: 'q4_k_m' });
+  for (const modelKey of ['lfm2', 'gemma3', 'qwen3']) {
+    saveSelection(storage, { modelKey, dtype: 'q4' });
+    assert.deepEqual(readSelection(storage), { modelKey, dtype: 'q4' });
+  }
 });
 
 test('CPU selection has its own GGUF format and preserves WebGPU preferences', () => {

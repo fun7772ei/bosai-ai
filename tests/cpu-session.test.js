@@ -74,3 +74,23 @@ test('failed native load frees its worker and dispose terminates even while gene
   await session.dispose();
   assert.equal(exited, 2);
 });
+
+// A final SSE event may have no content. Do not infer truncation from token count.
+test('native finish reason distinguishes token limit from natural completion', async () => {
+  const fake = engine();
+  const session = new CpuSession(() => fake, blob.size);
+  await session.load(blob);
+  for (const finishReason of ['length', 'stop']) {
+    fake.createChatCompletion = async options => {
+      options.onData({ choices: [{ delta: { content: '出力' }, finish_reason: null }], timings: { predicted_n: 32 } });
+      options.onData({ choices: [{ delta: {}, finish_reason: finishReason }] });
+      options.onData({ choices: [], usage: { completion_tokens: 32 } });
+    };
+    const result = await session.generate('入力', 32, () => {});
+    assert.equal(result.text, '出力');
+    assert.equal(result.tokens, 32);
+    assert.equal(result.finishReason, finishReason);
+    assert.equal(result.outputLimitReached, finishReason === 'length');
+  }
+  await session.dispose();
+});

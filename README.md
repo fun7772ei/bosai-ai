@@ -1,6 +1,6 @@
 # bosai-ai — Phase 1
 
-端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/Gemmaではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。iPadでのCPU版成功は未確認で、Phase 1成立とは扱わない。辞書未統合のため、このページの回答を防災判断には使わない。
+端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/Gemmaではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。CPU版はユーザー提供ログで短時間生成とリセット後の再初期化に成功。ただし回答品質・長時間・PWAオフラインと今回の変更版の実機動作は未確認で、Phase 1成立とは扱わない。辞書未統合のため、このページの回答を防災判断には使わない。
 
 ## 起動
 
@@ -14,11 +14,17 @@ Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作�
 
 wllama/compat 3.8.1を固定し、Safari向けAsyncify/MEMORY32を強制する。同梱WASMもService Workerに保存する。CPUにWebGPUは不要。全体サイズ・GGUFヘッダー・分割キー/サイズを確認するが、本番読込の暗号学的ハッシュ検証は未実装。[結果・再現手順](docs/phase1-cpu-results.md)、[iPad最小手順](docs/ipad-verification.md) を参照。
 
+## 回答品質の比較
+
+[品質比較結果](docs/phase1-cpu-quality.md) に実GGUFの18条件・108生成を記録。Jinja、system指示、temperature/top_k/top_p/repeat_penalty、32/64上限を比較したが、品質と速度を両立する改善は確認できず、生成設定は維持した。品質比較スクリプトは `node scripts/cpu-quality-check.mjs`。元の6項目と別入力6項目で実出力・採点・速度を保存し、回答を固定文字列へ置換しない。
+
+CPUの診断JSONに `finishReason` と `outputLimitReached` を追加。ネイティブの `length` 終了時には画面で出力上限と途中回答の可能性を表示し、通常終了や停止と区別する。上限は32/64、文脈512のまま。Safari/PWAオフラインの実機検証はユーザー判断で後回し。
+
 ## 実装
 
-- LFMの同一入力10回成功の後、入力変更時に3件目前後で落ちるとの報告がある。新規利用の既存初期選択と保存は維持。CPU比較を試す場合は手動で「LFM2.5-350M（CPU/WASM比較）」を選ぶ。
+- LFMの同一入力10回成功の後、入力変更時に3件目前後で落ちるとの報告がある。新規利用の初期選択はCPU版に変更。既存の明示選択・形式・保存は維持し、自動置換しない。
 
-- 「比較モデル」でLFM2.5-350M／Gemma 3-270M-it／Qwen3-0.6Bを選べる。Qwenの既存保存・形式設定を維持し、新モデルの取得は明示操作。LFM→Gemmaの順に比較する。モデルを変える前に「実行をリセット」する。
+- 「比較モデル」でLFM2.5-350M／Gemma 3-270M-it／Qwen3-0.6Bを選べる。Qwenの既存保存・形式設定を維持し、新モデルの取得は明示操作。現在はCPU版を優先し、WebGPU候補は既存利用・比較用として保持する。モデルを変える前に「実行をリセット」する。
 - LFMとGemmaはONNXグラフ＋外部重み `.onnx_data` を含む6ファイルを分割保存する。Qwenは従来の5ファイル。モデル別の固定revision・形式設定・保存状態・診断を使い、選択モデルを削除してもほかのモデルは残る。[比較モデル・手順・検証限界](docs/phase1-model-comparison.md) を参照。
 
 - Transformers.js 4.3.1とONNX Runtimeはロックファイルで固定。

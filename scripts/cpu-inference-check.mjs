@@ -71,6 +71,11 @@ try {
     '次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」',
     '「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。',
   ]) { await generate(prompt); console.log(`sample ${result.samples.length}:`, result.samples.at(-1).text); }
+  // A deliberately long response must identify the native length limit in the UI.
+  await generate('架空のピクニックに持っていく物を、理由付きで20個挙げてください。');
+  const limited = result.samples.at(-1);
+  if (limited.finishReason !== 'length' || !limited.outputLimitReached || !(await page.locator('#status').textContent()).includes('出力上限')) throw new Error('Native output limit was not surfaced');
+  result.outputLimitWarning = true;
   // Stop mid-stream, then request again in the same native context.
   await page.locator('#tokens').selectOption('64');
   await page.locator('#prompt').fill('架空のピクニックの準備を20項目のチェックリストにしてください。');

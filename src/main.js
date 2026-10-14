@@ -36,7 +36,7 @@ function selection() {
 function modelInfo() {
   const model = currentModel();
   const notes = {
-    'lfm2-cpu': 'CPU方式の比較用。WebGPU不要、1スレッド、文脈512トークン、出力64トークン以下。iPadでの動作は未確認です。ONNX版とは別のダウンロードです。',
+    'lfm2-cpu': 'CPU方式の比較用。WebGPU不要、1スレッド、文脈512トークン、出力64トークン以下。ユーザー提供ログでは短時間生成とリセット後の再初期化が成功。長時間・PWAオフライン・今回の変更版の実機動作は未確認です。ONNX版とは別のダウンロードです。',
     lfm2: '同一入力の短い生成10回は完了しましたが、その後、入力を変えると3件目前後で落ちるとの実機報告があります。安定性・品質は未成立です。',
     gemma3: 'ユーザーから10回連続テスト中のクラッシュ報告があります。',
     qwen3: 'iPadで初期化中のクラッシュ報告があります。',
@@ -137,7 +137,7 @@ function makeWorker(download = false) {
         $('output').textContent = data.text; updateMetrics(data); busy = false;
         runs.push({ ...data, modelKey: loadedModel.key, model: loadedModel.id, revision: loadedModel.revision, loadMs, prompt: activePrompt, dtype: loadedDtype, time: new Date().toISOString() });
         if (runs.length > 100) runs.shift();
-        $('status').textContent = '生成終了（停止要求時は途中結果）'; log('生成終了', data); controls();
+        $('status').textContent = data.outputLimitReached ? '生成終了（出力上限に達しました。回答が途中の可能性があります）' : '生成終了（停止要求時は途中結果）'; log('生成終了', data); controls();
         if (repeats > 0 && --repeats > 0) setTimeout(generate, 250); break;
       case 'error':
         await failed(data); break;

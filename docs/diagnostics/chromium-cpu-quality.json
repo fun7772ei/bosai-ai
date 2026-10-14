@@ -1,0 +1,2400 @@
+{
+  "model": "LiquidAI/LFM2.5-350M-GGUF",
+  "revision": "657e078c94084481950a2d555a941481f715536b",
+  "wllama": "3.8.1",
+  "baselineCommit": "b8422348734797879e0b9417b0d097ab4fcaafb1",
+  "browser": "Linux Chromium, CPU compat, not iPad Safari",
+  "modelSha256": "7e6f72643caafc9a68256686638c4d7916f2cec76d1df478d4c3ddcd95a6aed4",
+  "template": "{{- bos_token -}}\n{%- set keep_past_thinking = keep_past_thinking | default(false) -%}\n{%- set ns = namespace(system_prompt=\"\") -%}\n{%- if messages[0][\"role\"] == \"system\" -%}\n    {%- set sys_content = messages[0][\"content\"] -%}\n    {%- if sys_content is not string -%}\n        {%- for item in sys_content -%}\n            {%- if item[\"type\"] == \"text\" -%}\n                {%- set ns.system_prompt = ns.system_prompt + item[\"text\"] -%}\n            {%- endif -%}\n        {%- endfor -%}\n    {%- else -%}\n        {%- set ns.system_prompt = sys_content -%}\n    {%- endif -%}\n    {%- set messages = messages[1:] -%}\n{%- endif -%}\n{%- if tools -%}\n    {%- set ns.system_prompt = ns.system_prompt + (\"\\n\" if ns.system_prompt else \"\") + \"List of tools: [\" -%}\n    {%- for tool in tools -%}\n        {%- if tool is not string -%}\n            {%- set tool = tool | tojson -%}\n        {%- endif -%}\n        {%- set ns.system_prompt = ns.system_prompt + tool -%}\n        {%- if not loop.last -%}\n            {%- set ns.system_prompt = ns.system_prompt + \", \" -%}\n        {%- endif -%}\n    {%- endfor -%}\n    {%- set ns.system_prompt = ns.system_prompt + \"]\" -%}\n{%- endif -%}\n{%- if ns.system_prompt -%}\n    {{- \"<|im_start|>system\\n\" + ns.system_prompt + \"<|im_end|>\\n\" -}}\n{%- endif -%}\n{%- set ns.last_assistant_index = -1 -%}\n{%- for message in messages -%}\n    {%- if message[\"role\"] == \"assistant\" -%}\n        {%- set ns.last_assistant_index = loop.index0 -%}\n    {%- endif -%}\n{%- endfor -%}\n{%- for message in messages -%}\n    {{- \"<|im_start|>\" + message[\"role\"] + \"\\n\" -}}\n    {%- set content = message[\"content\"] -%}\n    {%- if content is not string -%}\n        {%- set ns.content = \"\" -%}\n        {%- for item in content -%}\n            {%- if item[\"type\"] == \"image\" -%}\n                {%- set ns.content = ns.content + \"<image>\" -%}\n            {%- elif item[\"type\"] == \"text\" -%}\n                {%- set ns.content = ns.content + item[\"text\"] -%}\n            {%- else -%}\n                {%- set ns.content = ns.content + item | tojson -%}\n            {%- endif -%}\n        {%- endfor -%}\n        {%- set content = ns.content -%}\n    {%- endif -%}\n    {%- if message[\"role\"] == \"assistant\" and not keep_past_thinking and loop.index0 != ns.last_assistant_index -%}\n        {%- if \"</think>\" in content -%}\n            {%- set content = content.split(\"</think>\")[-1] | trim -%}\n        {%- endif -%}\n    {%- endif -%}\n    {{- content + \"<|im_end|>\\n\" -}}\n{%- endfor -%}\n{%- if add_generation_prompt -%}\n    {{- \"<|im_start|>assistant\\n\" -}}\n{%- endif -%}",
+  "createdAt": [
+    "2026-10-14T02:27:07.880Z",
+    "2026-10-14T02:31:58.308Z",
+    "2026-10-14T02:34:34.962Z",
+    "2026-10-14T02:42:24.258Z"
+  ],
+  "grading": "Copy/lines/absent require the requested exact content/format; summary requires time and place in one line; food permits only the food item; extraction accepts equivalent time notation, separators, and terminal copula. Small synthetic test set, not general accuracy.",
+  "groups": [
+    {
+      "variant": {
+        "id": "baseline",
+        "maxTokens": 32
+      },
+      "loadMs": 1590,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 2957.5,
+          "ttftMs": 2612.10000000149,
+          "tokensPerSecond": 1.6906170752324599,
+          "decodeTokensPerSecond": 11.580775912036064,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 3940.10000000149,
+          "ttftMs": 2535,
+          "tokensPerSecond": 4.822212634195278,
+          "decodeTokensPerSecond": 12.810476122682308,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3448.5,
+          "ttftMs": 2845.5,
+          "tokensPerSecond": 2.609830361026533,
+          "decodeTokensPerSecond": 13.266998341625207,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンとタオル",
+          "tokens": 6,
+          "elapsedMs": 2784.6999999955297,
+          "ttftMs": 2355.10000000149,
+          "tokensPerSecond": 2.154630660397756,
+          "decodeTokensPerSecond": 11.638733705934293,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3568,
+          "ttftMs": 2870.7999999970198,
+          "tokensPerSecond": 2.802690582959641,
+          "decodeTokensPerSecond": 12.908777968963754,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3266.2999999970198,
+          "ttftMs": 2872.60000000149,
+          "tokensPerSecond": 1.8369408811209853,
+          "decodeTokensPerSecond": 12.700025400195006,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "jinja-on",
+        "load": {
+          "jinja": true
+        },
+        "maxTokens": 32
+      },
+      "loadMs": 1795.7999999970198,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 3041.39999999851,
+          "ttftMs": 2693.89999999851,
+          "tokensPerSecond": 1.6439797461703327,
+          "decodeTokensPerSecond": 11.510791366906476,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 3942.39999999851,
+          "ttftMs": 2486.2000000029802,
+          "tokensPerSecond": 4.819399350651173,
+          "decodeTokensPerSecond": 12.360939431434732,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3499.7999999970198,
+          "ttftMs": 2861.39999999851,
+          "tokensPerSecond": 2.571575518603253,
+          "decodeTokensPerSecond": 12.531328320831253,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンとタオル",
+          "tokens": 6,
+          "elapsedMs": 2732.60000000149,
+          "ttftMs": 2349.2000000029802,
+          "tokensPerSecond": 2.195711044425356,
+          "decodeTokensPerSecond": 13.041210224359501,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3424,
+          "ttftMs": 2748.7000000029802,
+          "tokensPerSecond": 2.9205607476635516,
+          "decodeTokensPerSecond": 13.327410040041048,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3258.60000000149,
+          "ttftMs": 2864.2000000029802,
+          "tokensPerSecond": 1.8412815319453926,
+          "decodeTokensPerSecond": 12.677484787066154,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "official-system",
+        "system": "You are a helpful assistant trained by Liquid AI.",
+        "maxTokens": 32
+      },
+      "loadMs": 1611.2000000029802,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "「今日は晴れです。」",
+          "tokens": 9,
+          "elapsedMs": 3305.2000000029802,
+          "ttftMs": 2649.2000000029802,
+          "tokensPerSecond": 2.7229819678058464,
+          "decodeTokensPerSecond": 12.195121951219512,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "```json\n| 行 | りんご | みかん | バナナ |\n|----|--------|------|------|\n",
+          "tokens": 32,
+          "elapsedMs": 4857.60000000149,
+          "ttftMs": 2413.2000000029802,
+          "tokensPerSecond": 6.587615283265436,
+          "decodeTokensPerSecond": 12.682048764530721,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "length",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "集合は午前9時に図書館の入口です。",
+          "tokens": 16,
+          "elapsedMs": 4141,
+          "ttftMs": 2966.5,
+          "tokensPerSecond": 3.863801014247766,
+          "decodeTokensPerSecond": 12.771392081736908,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "水パンタオル",
+          "tokens": 6,
+          "elapsedMs": 2728.4000000059605,
+          "ttftMs": 2326.9000000059605,
+          "tokensPerSecond": 2.19909104236435,
+          "decodeTokensPerSecond": 12.453300124533001,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口です",
+          "tokens": 11,
+          "elapsedMs": 3731.7000000029802,
+          "ttftMs": 2873.8000000044703,
+          "tokensPerSecond": 2.9477181981379035,
+          "decodeTokensPerSecond": 11.656370206338,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "はい、集合時刻があれば「記載なし」と答えてください。",
+          "tokens": 17,
+          "elapsedMs": 4086.10000000149,
+          "ttftMs": 2862.5,
+          "tokensPerSecond": 4.1604463914230685,
+          "decodeTokensPerSecond": 13.07616868256008,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "variant": {
+        "id": "precise-system",
+        "system": "日本語でユーザーの指示を正確に実行してください。指定された文章は変更せず、時刻・場所・数値を省略しないでください。指定の行数・形式・回答文を守り、前置きや説明を加えないでください。抽出では条件に合う項目だけを返し、記載のない情報を推測しないでください。",
+        "maxTokens": 32
+      },
+      "loadMs": 1636.7000000029802,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです",
+          "tokens": 4,
+          "elapsedMs": 7242.30000000447,
+          "ttftMs": 6992.80000000447,
+          "tokensPerSecond": 0.5523107300163664,
+          "decodeTokensPerSecond": 12.024048096192384,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんごは1行、みかんは2行、バナナは3行",
+          "tokens": 21,
+          "elapsedMs": 8060.39999999851,
+          "ttftMs": 6389.60000000149,
+          "tokensPerSecond": 2.605329760310144,
+          "decodeTokensPerSecond": 11.970313622238253,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "午前9時、図書館の入口",
+          "tokens": 12,
+          "elapsedMs": 8189.89999999851,
+          "ttftMs": 7272.5,
+          "tokensPerSecond": 1.4652193555479536,
+          "decodeTokensPerSecond": 11.990407673880387,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "水パンタオル",
+          "tokens": 6,
+          "elapsedMs": 6696.60000000149,
+          "ttftMs": 6305.80000000447,
+          "tokensPerSecond": 0.8959770629869881,
+          "decodeTokensPerSecond": 12.794268167958368,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 7642.4000000059605,
+          "ttftMs": 6911.70000000298,
+          "tokensPerSecond": 1.3084894797435622,
+          "decodeTokensPerSecond": 12.316956343182282,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合場所は公園です。",
+          "tokens": 8,
+          "elapsedMs": 7464.39999999851,
+          "ttftMs": 6889.69999999553,
+          "tokensPerSecond": 1.0717539252989654,
+          "decodeTokensPerSecond": 12.180267965832085,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "variant": {
+        "id": "temperature-0.1",
+        "sampling": {
+          "temperature": 0.1
+        },
+        "maxTokens": 32
+      },
+      "loadMs": 1682.1000000014901,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 2960.8000000044703,
+          "ttftMs": 2623.60000000149,
+          "tokensPerSecond": 1.688732774923146,
+          "decodeTokensPerSecond": 11.862396203928373,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 3840.5,
+          "ttftMs": 2435.89999999851,
+          "tokensPerSecond": 4.947272490561125,
+          "decodeTokensPerSecond": 12.815036309255946,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3560.10000000149,
+          "ttftMs": 2902.39999999851,
+          "tokensPerSecond": 2.528018875873215,
+          "decodeTokensPerSecond": 12.163600425670898,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンと水",
+          "tokens": 4,
+          "elapsedMs": 2630.2000000029802,
+          "ttftMs": 2396.7000000029802,
+          "tokensPerSecond": 1.5207968975726058,
+          "decodeTokensPerSecond": 12.84796573875803,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3560.39999999851,
+          "ttftMs": 2823,
+          "tokensPerSecond": 2.808673182789626,
+          "decodeTokensPerSecond": 12.20504475185542,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3204.89999999851,
+          "ttftMs": 2820.6999999955297,
+          "tokensPerSecond": 1.8721332958915378,
+          "decodeTokensPerSecond": 13.014055179493011,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "top-k-50",
+        "sampling": {
+          "temperature": 0.1,
+          "top_k": 50
+        },
+        "maxTokens": 32
+      },
+      "loadMs": 1628.1000000014901,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 2900.8000000044703,
+          "ttftMs": 2571.60000000149,
+          "tokensPerSecond": 1.723662437945496,
+          "decodeTokensPerSecond": 12.150668286645773,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 3955.2000000029802,
+          "ttftMs": 2458.89999999851,
+          "tokensPerSecond": 4.803802588993144,
+          "decodeTokensPerSecond": 12.029673193842292,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3595.6999999955297,
+          "ttftMs": 2938,
+          "tokensPerSecond": 2.502989682123422,
+          "decodeTokensPerSecond": 12.16360042580869,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンと水",
+          "tokens": 4,
+          "elapsedMs": 2691.2000000029802,
+          "ttftMs": 2459.5,
+          "tokensPerSecond": 1.4863258026142876,
+          "decodeTokensPerSecond": 12.94777729806393,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3658.60000000149,
+          "ttftMs": 2919.60000000149,
+          "tokensPerSecond": 2.7332859563756426,
+          "decodeTokensPerSecond": 12.178619756427604,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3131.2999999970198,
+          "ttftMs": 2741.1999999955297,
+          "tokensPerSecond": 1.9161370676733978,
+          "decodeTokensPerSecond": 12.81722635216842,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "baseline-64",
+        "maxTokens": 64
+      },
+      "loadMs": 1681.3999999985099,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 3228.39999999851,
+          "ttftMs": 2862.2000000029802,
+          "tokensPerSecond": 1.5487548011405985,
+          "decodeTokensPerSecond": 10.922992900187957,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 3837.1999999955297,
+          "ttftMs": 2463.1999999955297,
+          "tokensPerSecond": 4.951527155223115,
+          "decodeTokensPerSecond": 13.100436681222707,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3489.5999999940395,
+          "ttftMs": 2871.39999999851,
+          "tokensPerSecond": 2.57909215956424,
+          "decodeTokensPerSecond": 12.940795859038904,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンとタオル",
+          "tokens": 6,
+          "elapsedMs": 2676,
+          "ttftMs": 2292.39999999851,
+          "tokensPerSecond": 2.242152466367713,
+          "decodeTokensPerSecond": 13.034410844579188,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3375.4000000059605,
+          "ttftMs": 2706.3000000044703,
+          "tokensPerSecond": 2.9626118385916755,
+          "decodeTokensPerSecond": 13.450904199641244,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3019.60000000149,
+          "ttftMs": 2636.60000000149,
+          "tokensPerSecond": 1.9870181480981055,
+          "decodeTokensPerSecond": 13.054830287206267,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "precise-english",
+        "system": "Follow the user’s instructions exactly. Answer in Japanese. Preserve the original wording when copying. Keep times, places and numbers when summarizing. Obey the requested format and exact response. For extraction, include only items matching the requested category. Do not invent missing information. Output only the answer, without explanations.",
+        "maxTokens": 32
+      },
+      "loadMs": 1725.3000000044703,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです",
+          "tokens": 4,
+          "elapsedMs": 6191.80000000447,
+          "ttftMs": 5917,
+          "tokensPerSecond": 0.6460156981809995,
+          "decodeTokensPerSecond": 10.917030567507995,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご、みかん、バナナはそれぞれ別の行に書かれています。",
+          "tokens": 22,
+          "elapsedMs": 7336.60000000149,
+          "ttftMs": 5581,
+          "tokensPerSecond": 2.9986642313872274,
+          "decodeTokensPerSecond": 11.961722488028125,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です",
+          "tokens": 8,
+          "elapsedMs": 6550.5999999940395,
+          "ttftMs": 5989.29999999702,
+          "tokensPerSecond": 1.221262174458413,
+          "decodeTokensPerSecond": 12.471049349790071,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "水パンタオル",
+          "tokens": 6,
+          "elapsedMs": 5638.10000000149,
+          "ttftMs": 5255.79999999702,
+          "tokensPerSecond": 1.0641882903812303,
+          "decodeTokensPerSecond": 13.078733978397944,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 6559.60000000149,
+          "ttftMs": 5836.39999999851,
+          "tokensPerSecond": 1.5244832001947877,
+          "decodeTokensPerSecond": 12.444690265435442,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 6447.29999999702,
+          "ttftMs": 6038.29999999702,
+          "tokensPerSecond": 0.9306221208882437,
+          "decodeTokensPerSecond": 12.224938875305623,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "precise-short",
+        "system": "指示された内容だけを日本語で出力してください。コピーは原文のまま。時刻と場所は省略しない。指定の形式と回答文を守る。抽出条件に合わない項目や説明は加えない。",
+        "maxTokens": 32
+      },
+      "loadMs": 1635.8999999985099,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 5521,
+          "ttftMs": 5185.29999999702,
+          "tokensPerSecond": 0.9056330374932078,
+          "decodeTokensPerSecond": 11.915400655241255,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんごは左上、みかんは右上、バナナは下左に配置します。",
+          "tokens": 25,
+          "elapsedMs": 6728.5,
+          "ttftMs": 4800.69999999553,
+          "tokensPerSecond": 3.7155383815114806,
+          "decodeTokensPerSecond": 12.449424214101228,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "午前9時、図書館の入口",
+          "tokens": 12,
+          "elapsedMs": 6419.60000000149,
+          "ttftMs": 5504.4000000059605,
+          "tokensPerSecond": 1.8692753442577752,
+          "decodeTokensPerSecond": 12.019230769289477,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "水、パン、タオル",
+          "tokens": 8,
+          "elapsedMs": 5409.5999999940395,
+          "ttftMs": 4859.79999999702,
+          "tokensPerSecond": 1.4788524105310585,
+          "decodeTokensPerSecond": 12.731902510072652,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 6278.60000000149,
+          "ttftMs": 5545.80000000447,
+          "tokensPerSecond": 1.592711751026921,
+          "decodeTokensPerSecond": 12.281659388696237,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻がなければ「記載なし」",
+          "tokens": 11,
+          "elapsedMs": 6111.70000000298,
+          "ttftMs": 5331.60000000149,
+          "tokensPerSecond": 1.799826562166768,
+          "decodeTokensPerSecond": 12.818869375696575,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "variant": {
+        "id": "repeat-native-1.05",
+        "sampling": {
+          "temperature": 0.1,
+          "top_k": 50,
+          "repeat_penalty": 1.05
+        },
+        "maxTokens": 32
+      },
+      "loadMs": 1731.3000000044703,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 2939.10000000149,
+          "ttftMs": 2607.7999999970198,
+          "tokensPerSecond": 1.701201047938983,
+          "decodeTokensPerSecond": 12.073649260326068,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナ\n\n",
+          "tokens": 13,
+          "elapsedMs": 3707.0999999940395,
+          "ttftMs": 2617.2999999970198,
+          "tokensPerSecond": 3.506784278821964,
+          "decodeTokensPerSecond": 11.011194714656648,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3813.39999999851,
+          "ttftMs": 3047.0999999940395,
+          "tokensPerSecond": 2.3600985996757533,
+          "decodeTokensPerSecond": 10.439775544764885,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンと水",
+          "tokens": 4,
+          "elapsedMs": 2988.89999999851,
+          "ttftMs": 2688.5,
+          "tokensPerSecond": 1.3382849877888168,
+          "decodeTokensPerSecond": 9.986684420821843,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3824.7000000029802,
+          "ttftMs": 3113.10000000149,
+          "tokensPerSecond": 2.614584150388843,
+          "decodeTokensPerSecond": 12.647554806044342,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3183,
+          "ttftMs": 2778.5,
+          "tokensPerSecond": 1.885014137606032,
+          "decodeTokensPerSecond": 12.360939431396785,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "top-p-native-0.9",
+        "sampling": {
+          "temperature": 0.1,
+          "top_k": 50,
+          "repeat_penalty": 1.05,
+          "top_p": 0.9
+        },
+        "maxTokens": 32
+      },
+      "loadMs": 1703.4000000059605,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 2873,
+          "ttftMs": 2545.89999999851,
+          "tokensPerSecond": 1.7403411068569439,
+          "decodeTokensPerSecond": 12.228676245740683,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナ\n\n",
+          "tokens": 13,
+          "elapsedMs": 3401.5,
+          "ttftMs": 2429,
+          "tokensPerSecond": 3.821843304424519,
+          "decodeTokensPerSecond": 12.339331619537274,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3537,
+          "ttftMs": 2924.39999999851,
+          "tokensPerSecond": 2.544529262086514,
+          "decodeTokensPerSecond": 13.059092393046917,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンと水",
+          "tokens": 4,
+          "elapsedMs": 2566.39999999851,
+          "ttftMs": 2332.39999999851,
+          "tokensPerSecond": 1.5586034912727253,
+          "decodeTokensPerSecond": 12.82051282051282,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3641,
+          "ttftMs": 2887.5,
+          "tokensPerSecond": 2.7464982147761603,
+          "decodeTokensPerSecond": 11.944260119442601,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3333.10000000149,
+          "ttftMs": 2900.60000000149,
+          "tokensPerSecond": 1.8001260088198126,
+          "decodeTokensPerSecond": 11.560693641618498,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "baseline-holdout",
+        "holdout": true,
+        "maxTokens": 32
+      },
+      "loadMs": 1702.2999999970198,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy-alt",
+          "prompt": "「明日は雨です。」を一字も変えずに書いてください。前置きは不要です。",
+          "expected": "明日は雨です。",
+          "text": "雨です",
+          "tokens": 3,
+          "elapsedMs": 3414,
+          "ttftMs": 3204,
+          "tokensPerSecond": 0.8787346221441125,
+          "decodeTokensPerSecond": 9.523809523809524,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "lines-alt",
+          "prompt": "赤、青、緑を1行に1つずつ書いてください。説明は不要です。",
+          "expected": "赤\n青\n緑",
+          "text": "赤青緑",
+          "tokens": 5,
+          "elapsedMs": 3053.7000000029802,
+          "ttftMs": 2719.4000000059605,
+          "tokensPerSecond": 1.6373579591954417,
+          "decodeTokensPerSecond": 11.965300628284952,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "summary-alt",
+          "prompt": "「受付は午後2時、体育館の正面入口です。」を、時刻と場所を残して1文で短くしてください。",
+          "required": [
+            "午後2時",
+            "体育館の正面入口"
+          ],
+          "text": "午後2時、体育館の正面入口です。",
+          "tokens": 15,
+          "elapsedMs": 4558.70000000298,
+          "ttftMs": 3397.60000000149,
+          "tokensPerSecond": 3.290411740186938,
+          "decodeTokensPerSecond": 12.057531651005108,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true
+        },
+        {
+          "id": "food-alt",
+          "prompt": "「石けん、おにぎり、靴下」から食べ物だけを書いてください。",
+          "expected": "おにぎり",
+          "text": "おにぎりと靴下",
+          "tokens": 8,
+          "elapsedMs": 3139.39999999851,
+          "ttftMs": 2572.89999999851,
+          "tokensPerSecond": 2.548257628847486,
+          "decodeTokensPerSecond": 12.35657546337158,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "extract-alt",
+          "prompt": "「受付は午前10時、駅の西口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午前10時、駅の西口",
+          "text": "10:00 駅西口",
+          "tokens": 8,
+          "elapsedMs": 3354.5,
+          "ttftMs": 2817.39999999851,
+          "tokensPerSecond": 2.3848561633626475,
+          "decodeTokensPerSecond": 13.032954756992327,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true,
+          "alternatives": [
+            "10:00 駅西口",
+            "10:00 駅の西口",
+            "午前10時 駅西口",
+            "10時、駅の西口"
+          ]
+        },
+        {
+          "id": "absent-alt",
+          "prompt": "「集合場所は図書館です。」に時刻がなければ「記載なし」とだけ答えてください。",
+          "expected": "記載なし",
+          "text": "記載なし",
+          "tokens": 3,
+          "elapsedMs": 2926.6999999955297,
+          "ttftMs": 2760.5999999940395,
+          "tokensPerSecond": 1.0250452728344492,
+          "decodeTokensPerSecond": 12.040939193149052,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true
+        }
+      ],
+      "passed": 3
+    },
+    {
+      "variant": {
+        "id": "precise-holdout",
+        "system": "日本語でユーザーの指示を正確に実行してください。指定された文章は変更せず、時刻・場所・数値を省略しないでください。指定の行数・形式・回答文を守り、前置きや説明を加えないでください。抽出では条件に合う項目だけを返し、記載のない情報を推測しないでください。",
+        "holdout": true,
+        "maxTokens": 32
+      },
+      "loadMs": 1612.7000000029802,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy-alt",
+          "prompt": "「明日は雨です。」を一字も変えずに書いてください。前置きは不要です。",
+          "expected": "明日は雨です。",
+          "text": "雨が降る",
+          "tokens": 5,
+          "elapsedMs": 7612.39999999851,
+          "ttftMs": 7265,
+          "tokensPerSecond": 0.656823078135802,
+          "decodeTokensPerSecond": 11.51410477840287,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "lines-alt",
+          "prompt": "赤、青、緑を1行に1つずつ書いてください。説明は不要です。",
+          "expected": "赤\n青\n緑",
+          "text": "赤青緑",
+          "tokens": 5,
+          "elapsedMs": 7094.70000000298,
+          "ttftMs": 6771.89999999851,
+          "tokensPerSecond": 0.7047514341688725,
+          "decodeTokensPerSecond": 12.391573729692086,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "summary-alt",
+          "prompt": "「受付は午後2時、体育館の正面入口です。」を、時刻と場所を残して1文で短くしてください。",
+          "required": [
+            "午後2時",
+            "体育館の正面入口"
+          ],
+          "text": "午後2時、体育館の正面入口",
+          "tokens": 13,
+          "elapsedMs": 8687.30000000447,
+          "ttftMs": 7651.30000000447,
+          "tokensPerSecond": 1.4964373280528256,
+          "decodeTokensPerSecond": 11.583011583011583,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true
+        },
+        {
+          "id": "food-alt",
+          "prompt": "「石けん、おにぎり、靴下」から食べ物だけを書いてください。",
+          "expected": "おにぎり",
+          "text": "石けんは冷たいおにぎりで、靴下は冷たいお弁当に使用される。",
+          "tokens": 25,
+          "elapsedMs": 8818.60000000149,
+          "ttftMs": 6858.20000000298,
+          "tokensPerSecond": 2.8349171070233115,
+          "decodeTokensPerSecond": 12.242399510313327,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "extract-alt",
+          "prompt": "「受付は午前10時、駅の西口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午前10時、駅の西口",
+          "text": "10:00 駅の西口",
+          "tokens": 9,
+          "elapsedMs": 7734.60000000149,
+          "ttftMs": 7095.20000000298,
+          "tokensPerSecond": 1.1636025133812047,
+          "decodeTokensPerSecond": 12.51172974666663,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true,
+          "alternatives": [
+            "10:00 駅西口",
+            "10:00 駅の西口",
+            "午前10時 駅西口",
+            "10時、駅の西口"
+          ]
+        },
+        {
+          "id": "absent-alt",
+          "prompt": "「集合場所は図書館です。」に時刻がなければ「記載なし」とだけ答えてください。",
+          "expected": "記載なし",
+          "text": "",
+          "tokens": 1,
+          "elapsedMs": 7092.10000000149,
+          "ttftMs": 7091.60000000149,
+          "tokensPerSecond": 0.14100195992721337,
+          "decodeTokensPerSecond": null,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "variant": {
+        "id": "short-holdout",
+        "system": "指示された内容だけを日本語で出力してください。コピーは原文のまま。時刻と場所は省略しない。指定の形式と回答文を守る。抽出条件に合わない項目や説明は加えない。",
+        "holdout": true,
+        "maxTokens": 32
+      },
+      "loadMs": 1592,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy-alt",
+          "prompt": "「明日は雨です。」を一字も変えずに書いてください。前置きは不要です。",
+          "expected": "明日は雨です。",
+          "text": "明日は雨です",
+          "tokens": 5,
+          "elapsedMs": 6003.80000000447,
+          "ttftMs": 5675.70000000298,
+          "tokensPerSecond": 0.8328058896026312,
+          "decodeTokensPerSecond": 12.19140505937773,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "lines-alt",
+          "prompt": "赤、青、緑を1行に1つずつ書いてください。説明は不要です。",
+          "expected": "赤\n青\n緑",
+          "text": "赤青緑\n\n",
+          "tokens": 6,
+          "elapsedMs": 5345.5,
+          "ttftMs": 4950.89999999851,
+          "tokensPerSecond": 1.1224394350388176,
+          "decodeTokensPerSecond": 12.671059300509677,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "summary-alt",
+          "prompt": "「受付は午後2時、体育館の正面入口です。」を、時刻と場所を残して1文で短くしてください。",
+          "required": [
+            "午後2時",
+            "体育館の正面入口"
+          ],
+          "text": "午後2時、体育館の正面入口",
+          "tokens": 13,
+          "elapsedMs": 6777.30000000447,
+          "ttftMs": 5833.80000000447,
+          "tokensPerSecond": 1.9181680020054335,
+          "decodeTokensPerSecond": 12.718600953895072,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true
+        },
+        {
+          "id": "food-alt",
+          "prompt": "「石けん、おにぎり、靴下」から食べ物だけを書いてください。",
+          "expected": "おにぎり",
+          "text": "石けん、おにぎり、靴下\n\n",
+          "tokens": 12,
+          "elapsedMs": 5946.5,
+          "ttftMs": 4925.30000000447,
+          "tokensPerSecond": 2.017993777852518,
+          "decodeTokensPerSecond": 10.771641206470967,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "extract-alt",
+          "prompt": "「受付は午前10時、駅の西口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午前10時、駅の西口",
+          "text": "午前10時、駅の西口",
+          "tokens": 10,
+          "elapsedMs": 6449.4000000059605,
+          "ttftMs": 5742.4000000059605,
+          "tokensPerSecond": 1.5505318324170867,
+          "decodeTokensPerSecond": 12.72984441301273,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true,
+          "alternatives": [
+            "10:00 駅西口",
+            "10:00 駅の西口",
+            "午前10時 駅西口",
+            "10時、駅の西口"
+          ]
+        },
+        {
+          "id": "absent-alt",
+          "prompt": "「集合場所は図書館です。」に時刻がなければ「記載なし」とだけ答えてください。",
+          "expected": "記載なし",
+          "text": "",
+          "tokens": 1,
+          "elapsedMs": 5262.39999999851,
+          "ttftMs": 5262.10000000149,
+          "tokensPerSecond": 0.1900273639404612,
+          "decodeTokensPerSecond": null,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        }
+      ],
+      "passed": 2
+    },
+    {
+      "variant": {
+        "id": "recommended-seed43",
+        "sampling": {
+          "temperature": 0.1,
+          "top_k": 50,
+          "repeat_penalty": 1.05
+        },
+        "maxTokens": 32,
+        "seed": 43
+      },
+      "loadMs": 1610,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 3025.10000000149,
+          "ttftMs": 2679.7999999970198,
+          "tokensPerSecond": 1.6528379227124845,
+          "decodeTokensPerSecond": 11.58412974210314,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナ\n\n",
+          "tokens": 13,
+          "elapsedMs": 3594.5,
+          "ttftMs": 2562.10000000149,
+          "tokensPerSecond": 3.616636528028933,
+          "decodeTokensPerSecond": 11.623401782271717,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3697.6999999955297,
+          "ttftMs": 3070.5,
+          "tokensPerSecond": 2.4339454255377344,
+          "decodeTokensPerSecond": 12.755102040907238,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンとタオル",
+          "tokens": 6,
+          "elapsedMs": 2648.8000000044703,
+          "ttftMs": 2260.60000000149,
+          "tokensPerSecond": 2.2651766837775122,
+          "decodeTokensPerSecond": 12.879958784033011,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3575.6999999955297,
+          "ttftMs": 2871.2999999970198,
+          "tokensPerSecond": 2.7966552003838414,
+          "decodeTokensPerSecond": 12.776831345853264,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時間なし",
+          "tokens": 5,
+          "elapsedMs": 3053,
+          "ttftMs": 2749.7999999970198,
+          "tokensPerSecond": 1.6377333770062235,
+          "decodeTokensPerSecond": 13.192612137073493,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "recommended-seed44",
+        "sampling": {
+          "temperature": 0.1,
+          "top_k": 50,
+          "repeat_penalty": 1.05
+        },
+        "maxTokens": 32,
+        "seed": 44
+      },
+      "loadMs": 1666.5,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 2948.3000000044703,
+          "ttftMs": 2626.2000000029802,
+          "tokensPerSecond": 1.6958925482455716,
+          "decodeTokensPerSecond": 12.418503570262324,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナ\n\n",
+          "tokens": 13,
+          "elapsedMs": 3574.7999999970198,
+          "ttftMs": 2607.60000000149,
+          "tokensPerSecond": 3.6365670806788737,
+          "decodeTokensPerSecond": 12.406947890876204,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3508.5,
+          "ttftMs": 2891.2000000029802,
+          "tokensPerSecond": 2.5651988029072252,
+          "decodeTokensPerSecond": 12.959663048823298,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンと水",
+          "tokens": 4,
+          "elapsedMs": 2529.7999999970198,
+          "ttftMs": 2291.7999999970198,
+          "tokensPerSecond": 1.5811526602912134,
+          "decodeTokensPerSecond": 12.605042016806724,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3598.3000000044703,
+          "ttftMs": 2863.3000000044703,
+          "tokensPerSecond": 2.77909012588933,
+          "decodeTokensPerSecond": 12.244897959183673,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時間なし",
+          "tokens": 5,
+          "elapsedMs": 3178.5999999940395,
+          "ttftMs": 2867.2999999970198,
+          "tokensPerSecond": 1.5730195683663801,
+          "decodeTokensPerSecond": 12.849341471372611,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "retained-production",
+        "maxTokens": 32
+      },
+      "loadMs": 1643.1000000014901,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 3039.8000000044703,
+          "ttftMs": 2701.7000000029802,
+          "tokensPerSecond": 1.644845055593344,
+          "decodeTokensPerSecond": 11.830819284183292,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 3744.7999999970198,
+          "ttftMs": 2370.7999999970198,
+          "tokensPerSecond": 5.073702200388571,
+          "decodeTokensPerSecond": 13.100436681222707,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3454.2999999970198,
+          "ttftMs": 2835.2999999970198,
+          "tokensPerSecond": 2.605448281853853,
+          "decodeTokensPerSecond": 12.924071082390954,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンとタオル",
+          "tokens": 6,
+          "elapsedMs": 2673.7000000029802,
+          "ttftMs": 2288.10000000149,
+          "tokensPerSecond": 2.2440812357382325,
+          "decodeTokensPerSecond": 12.966804979203003,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3486.2000000029802,
+          "ttftMs": 2759.7000000029802,
+          "tokensPerSecond": 2.868452756580647,
+          "decodeTokensPerSecond": 12.388162422573984,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true,
+          "alternatives": [
+            "15時、公園の入口",
+            "15:00、公園の入口"
+          ]
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3261.2000000029802,
+          "ttftMs": 2859.60000000149,
+          "tokensPerSecond": 1.8398135655570087,
+          "decodeTokensPerSecond": 12.450199203141056,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "official-holdout",
+        "system": "You are a helpful assistant trained by Liquid AI.",
+        "holdout": true,
+        "maxTokens": 32
+      },
+      "loadMs": 1556.8999999985099,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy-alt",
+          "prompt": "「明日は雨です。」を一字も変えずに書いてください。前置きは不要です。",
+          "expected": "明日は雨です。",
+          "text": "雨です",
+          "tokens": 3,
+          "elapsedMs": 2927.5999999940395,
+          "ttftMs": 2754,
+          "tokensPerSecond": 1.024730154394763,
+          "decodeTokensPerSecond": 11.520737327584499,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "lines-alt",
+          "prompt": "赤、青、緑を1行に1つずつ書いてください。説明は不要です。",
+          "expected": "赤\n青\n緑",
+          "text": "赤青緑",
+          "tokens": 5,
+          "elapsedMs": 2963,
+          "ttftMs": 2638.5,
+          "tokensPerSecond": 1.6874789065136686,
+          "decodeTokensPerSecond": 12.326656394453003,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "summary-alt",
+          "prompt": "「受付は午後2時、体育館の正面入口です。」を、時刻と場所を残して1文で短くしてください。",
+          "required": [
+            "午後2時",
+            "体育館の正面入口"
+          ],
+          "text": "午後2時、体育館の正面入口です。",
+          "tokens": 15,
+          "elapsedMs": 4372.5,
+          "ttftMs": 3277.6999999955297,
+          "tokensPerSecond": 3.430531732418525,
+          "decodeTokensPerSecond": 12.787723785114023,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true
+        },
+        {
+          "id": "food-alt",
+          "prompt": "「石けん、おにぎり、靴下」から食べ物だけを書いてください。",
+          "expected": "おにぎり",
+          "text": "「石けん」「おにぎり」「靴下」から食べ物だけを書きます。",
+          "tokens": 22,
+          "elapsedMs": 4619,
+          "ttftMs": 2627,
+          "tokensPerSecond": 4.762935700368045,
+          "decodeTokensPerSecond": 10.542168674698795,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        },
+        {
+          "id": "extract-alt",
+          "prompt": "「受付は午前10時、駅の西口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午前10時、駅の西口",
+          "alternatives": [
+            "10:00 駅西口",
+            "10:00 駅の西口",
+            "午前10時 駅西口",
+            "10時、駅の西口"
+          ],
+          "text": "午前10時、駅の西口です",
+          "tokens": 11,
+          "elapsedMs": 3665.5,
+          "ttftMs": 2908.7999999970198,
+          "tokensPerSecond": 3.0009548492702223,
+          "decodeTokensPerSecond": 13.21527685999817,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": true
+        },
+        {
+          "id": "absent-alt",
+          "prompt": "「集合場所は図書館です。」に時刻がなければ「記載なし」とだけ答えてください。",
+          "expected": "記載なし",
+          "text": "「記載なし」",
+          "tokens": 5,
+          "elapsedMs": 3010.60000000149,
+          "ttftMs": 2697.2000000029802,
+          "tokensPerSecond": 1.6607985119237114,
+          "decodeTokensPerSecond": 12.763241863493997,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "outputLimitReached": false,
+          "pass": false
+        }
+      ],
+      "passed": 2
+    }
+  ],
+  "excludedPilotGroups": [
+    {
+      "variant": {
+        "id": "repeat-1.05",
+        "sampling": {
+          "temperature": 0.1,
+          "top_k": 50,
+          "penalty_repeat": 1.05
+        },
+        "maxTokens": 32
+      },
+      "loadMs": 1855.7999999970198,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 3358.5,
+          "ttftMs": 2980.39999999851,
+          "tokensPerSecond": 1.4887598630340926,
+          "decodeTokensPerSecond": 10.579211848675577,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 4187.89999999851,
+          "ttftMs": 2700.8000000044703,
+          "tokensPerSecond": 4.536880059219839,
+          "decodeTokensPerSecond": 12.104095218930903,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3689.89999999851,
+          "ttftMs": 2956.39999999851,
+          "tokensPerSecond": 2.4390904902581734,
+          "decodeTokensPerSecond": 10.906612133605998,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンと水",
+          "tokens": 4,
+          "elapsedMs": 2680.7999999970198,
+          "ttftMs": 2453.5,
+          "tokensPerSecond": 1.492091912863491,
+          "decodeTokensPerSecond": 13.198416190230244,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3493.89999999851,
+          "ttftMs": 2809.39999999851,
+          "tokensPerSecond": 2.8621311428501857,
+          "decodeTokensPerSecond": 13.148283418553689,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3127.7999999970198,
+          "ttftMs": 2745.6999999955297,
+          "tokensPerSecond": 1.9182812200286836,
+          "decodeTokensPerSecond": 13.085579691129288,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    },
+    {
+      "variant": {
+        "id": "top-p-0.9",
+        "sampling": {
+          "temperature": 0.1,
+          "top_k": 50,
+          "penalty_repeat": 1.05,
+          "top_p": 0.9
+        },
+        "maxTokens": 32
+      },
+      "loadMs": 1715.5,
+      "settings": {
+        "threads": 1,
+        "contextTokens": 512,
+        "batchTokens": 64,
+        "gpuLayers": 0,
+        "compat": true
+      },
+      "samples": [
+        {
+          "id": "copy",
+          "prompt": "「今日は晴れです。」をそのまま書いてください。説明は不要です。",
+          "expected": "今日は晴れです。",
+          "text": "晴れです。",
+          "tokens": 5,
+          "elapsedMs": 2984.10000000149,
+          "ttftMs": 2618.6999999955297,
+          "tokensPerSecond": 1.6755470661162506,
+          "decodeTokensPerSecond": 10.946907498453069,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "lines",
+          "prompt": "りんご、みかん、バナナを、それぞれ別の行に書いてください。",
+          "expected": "りんご\nみかん\nバナナ",
+          "text": "りんご・みかん・バナナをそれぞれ行に書きます。",
+          "tokens": 19,
+          "elapsedMs": 4011.60000000149,
+          "ttftMs": 2489.60000000149,
+          "tokensPerSecond": 4.736264831985478,
+          "decodeTokensPerSecond": 11.826544021024967,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "summary",
+          "prompt": "次の文章を1文で短くしてください。「集合は午前9時、図書館の入口です。」",
+          "required": [
+            "午前9時",
+            "図書館の入口"
+          ],
+          "text": "図書館の入口です。",
+          "tokens": 9,
+          "elapsedMs": 3597.2999999970198,
+          "ttftMs": 2943.1999999955297,
+          "tokensPerSecond": 2.501876407307552,
+          "decodeTokensPerSecond": 12.230545788077931,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "food",
+          "prompt": "「水、パン、タオル」から、食べ物だけを書いてください。",
+          "expected": "パン",
+          "text": "パンと水",
+          "tokens": 4,
+          "elapsedMs": 2608.10000000149,
+          "ttftMs": 2375.8000000044703,
+          "tokensPerSecond": 1.5336835244038627,
+          "decodeTokensPerSecond": 12.914334911917726,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        },
+        {
+          "id": "extract",
+          "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+          "expected": "午後3時、公園の入口",
+          "text": "午後3時、公園の入口",
+          "tokens": 10,
+          "elapsedMs": 3483.5,
+          "ttftMs": 2788.89999999851,
+          "tokensPerSecond": 2.870676044208411,
+          "decodeTokensPerSecond": 12.957097610107533,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": true
+        },
+        {
+          "id": "absent",
+          "prompt": "「集合場所は公園です。」この文に集合時刻がなければ「記載なし」と答えてください。",
+          "expected": "記載なし",
+          "text": "集合時刻なし",
+          "tokens": 6,
+          "elapsedMs": 3524.5,
+          "ttftMs": 3058.8000000044703,
+          "tokensPerSecond": 1.7023691303731026,
+          "decodeTokensPerSecond": 10.73652566039939,
+          "tokensKnown": true,
+          "stopped": false,
+          "finishReason": "stop",
+          "pass": false
+        }
+      ],
+      "passed": 1
+    }
+  ],
+  "excludedReason": "penalty_repeat is a wllama legacy SamplingParams name; the native chat endpoint consumes repeat_penalty. These two pilot groups are excluded and were rerun with the native name.",
+  "status": "passed",
+  "errors": []
+}

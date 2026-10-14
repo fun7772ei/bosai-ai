@@ -44,11 +44,12 @@ export class CpuSession {
     this.generating = true;
     this.abort = new AbortController();
     const started = performance.now();
-    let text = '', first = null, tokens = 0, tokensKnown = false, stopped = false;
-    const snapshot = () => ({ text, ...metrics(tokens, started, first, performance.now()), tokensKnown, stopped });
+    let text = '', first = null, tokens = 0, tokensKnown = false, stopped = false, finishReason = null;
+    const snapshot = () => ({ text, ...metrics(tokens, started, first, performance.now()), tokensKnown, stopped, finishReason, outputLimitReached: !stopped && finishReason === 'length' });
     try {
       await this.engine.createChatCompletion({ ...options, abortSignal: this.abort.signal, onData: chunk => {
         if (this.disposed) return;
+        for (const choice of chunk.choices || []) if (choice.finish_reason) finishReason = choice.finish_reason;
         const count = chunk.usage?.completion_tokens ?? chunk.timings?.predicted_n;
         if (Number.isInteger(count)) { tokens = count; tokensKnown = true; }
         const delta = chunk.choices?.[0]?.delta?.content || '';

@@ -19,7 +19,7 @@ await page.reload();
 await page.waitForFunction(() => document.querySelector('#environment').textContent !== '環境を確認中…');
 await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
 const environment = await page.locator('#environment').textContent();
-if (await page.locator('#model').inputValue() !== 'lfm2') throw new Error('Fresh installs should prefer LFM');
+if (await page.locator('#model').inputValue() !== 'lfm2-cpu') throw new Error('Fresh installs should prefer CPU LFM');
 await page.getByLabel('比較モデル', { exact: true }).selectOption('qwen3');
 // Fixtures validate saving and resuming only; never treat these bytes as a real model.
 let downloads = 0;
@@ -167,6 +167,8 @@ await oldPage.goto('http://localhost:4173/bosai-ai/');
 await oldPage.waitForFunction(() => document.querySelector('#logs').textContent.includes('アプリ本体のオフライン保存完了'));
 await oldPage.reload();
 await oldPage.waitForFunction(() => navigator.serviceWorker.controller !== null);
+// Existing explicit ONNX selection must survive an update with a new CPU default.
+await oldPage.locator('#model').selectOption('lfm2');
 await oldPage.getByRole('button', { name: 'ダウンロードして保存', exact: true }).click();
 await oldPage.waitForFunction(() => document.querySelector('#status').textContent.startsWith('ダウンロード・保存完了'));
 await oldPage.evaluate(async () => {
@@ -197,6 +199,7 @@ try {
   if (!shellCaches.includes('bosai-ai-shell-test-update')) throw new Error('Update did not install the new shell cache');
   await newPage.goto('http://localhost:4173/bosai-ai/');
   await newPage.waitForFunction(() => document.querySelector('#status').textContent.includes('保存済みモデル（q4f16）'));
+  if (await newPage.locator('#model').inputValue() !== 'lfm2') throw new Error('New CPU default overwrote an existing ONNX selection');
   const legacy = await newPage.evaluate(async () => (await (await caches.open('bosai-ai-model-v1')).match('https://example.org/legacy-sentinel')).text());
   if (legacy !== 'keep-legacy') throw new Error('App update deleted legacy models');
 } finally { unlinkSync(updateScript); await updateContext.close(); }
