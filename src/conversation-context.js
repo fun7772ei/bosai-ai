@@ -9,7 +9,7 @@ const segmenter = new Intl.Segmenter('ja', {granularity:'word'});
 const wordsIn = text => new Set([...segmenter.segment(text.normalize('NFKC'))].filter(s=>s.isWordLike).map(s=>s.segment));
 const automobileNouns = new Set(['車','自動車','乗用車','軽自動車','自家用車','クルマ','くるま','車両','マイカー','トラック','バス','タクシー','四輪車']);
 const roadNouns = new Set(['道','道路','路面','経路','歩道','車道','通学路','通勤路','側道','私道','国道','県道','市道','農道','林道','一般道','高速道路','有料道路','幹線道路','生活道路','避難経路','地下道','アンダーパス']);
-const mobilityModes = [['wheelchair',/車椅子|車いす|車イス/],['bicycle',/自転車/],['rail',/電車|列車|鉄道/],['stroller',/ベビーカー|乳母車/]];
+const mobilityModes = [['wheelchair',/車椅子|車いす|車イス/],['bicycle',/自転車/],['rail',/電車|列車|鉄道|新幹線|地下鉄|汽車/],['stroller',/ベビーカー|乳母車/]];
 // Predicate polarity is tied to a route mention, not to an arbitrary 'ない' elsewhere.
 const floodTerm = '(?:冠水|浸水|水浸し)';
 const negativePredicate = '(?:(?:は|が|も)?(?:して(?:い|おり)?(?:ません|ない|なかった)|したこと(?:は|が)(?:ありません|ない)|ありません|ない|無い|なし|無し)|(?:では|じゃ)(?:ない|ありません))';
@@ -18,7 +18,7 @@ const uncertainFlood = new RegExp(floodTerm+'(?:している|していない|し
 const mask = (text,pattern) => text.replace(pattern,span=>' '.repeat(span.length));
 export function factsIn(input) {
   const text=input.normalize('NFKC'), facts={};
-  const roadText=mask(text,/路面電車|電車|列車|鉄道/g);
+  const roadText=mask(text,/路面電車|電車|列車|鉄道|新幹線|地下鉄|汽車/g);
   const segments=[...segmenter.segment(roadText)];
   const boundaries=new Set(segments.flatMap(s=>[s.index,s.index+s.segment.length]));
   const roadLexicon=new RegExp([...roadNouns,'冠水路'].sort((a,b)=>b.length-a.length).join('|'),'g');
@@ -29,7 +29,8 @@ export function factsIn(input) {
   const routeNegative=new RegExp(routePrefix+floodTerm+negativePredicate);
   const roadWaterAbsent=new RegExp('^(?:の上)?(?:には|は|に|が)?(?:もう)?水(?:は|が)(?:ありません|ない|無い|なし)');
   const negativeModifier=new RegExp(floodTerm+negativePredicate+'(?:の)?$');
-  const uncertain=uncertainFlood.test(text)||/(?:冠水|浸水)[^、。]{0,15}(?:ない|ません)(?:とは言えない|わけではない|とは限らない)/.test(text);
+  const questionFlood=new RegExp(floodTerm+'(?:しています|している|してます|していた|した|です|'+negativePredicate+')(?:の)?(?:か|[?？])');
+  const uncertain=questionFlood.test(text)||uncertainFlood.test(text)||/(?:冠水|浸水)[^、。]{0,15}(?:ない|ません)(?:とは言えない|わけではない|とは限らない)/.test(text);
   uncertainFlood.lastIndex=0;
   const soakedAbsent=/^(?:(?:は|が|には)[^、。！？]{0,16})?水に(?:つか|浸か)って(?:い)?(?:ない|ません)/;
   const dry=routes.some(r=>soakedAbsent.test(text.slice(r.index+r.word.length))||routeNegative.test(text.slice(r.index+r.word.length))||roadWaterAbsent.test(text.slice(r.index+r.word.length))||negativeModifier.test(text.slice(0,r.index)));
@@ -49,9 +50,9 @@ export function factsIn(input) {
   // A parked/abandoned vehicle is not the actor's current mode of travel.
   const leftVehicle = new RegExp('(?:'+[...automobileNouns].join('|')+')(?:を|から).*(?:置いて|離れて|降りて)').test(text);
   const modes = mobilityModes.filter(([,pattern])=>pattern.test(text)).map(([mode])=>mode);
-  const autoText = text.replace(/車椅子|車いす|車イス|自転車|電車|列車|鉄道|ベビーカー|乳母車/g,'');
+  const autoText = text.replace(/車椅子|車いす|車イス|自転車|電車|列車|鉄道|新幹線|地下鉄|汽車|ベビーカー|乳母車/g,'');
   const autoWords = wordsIn(autoText);
-  const automobile = [...autoWords].some(word=>automobileNouns.has(word));
+  const automobile = [...autoWords].some(word=>automobileNouns.has(word)&&!(word==='車両'&&modes.includes('rail')));
   const drive = (automobile || (!modes.length && autoWords.has('運転'))) && !(walk && leftVehicle);
   if (walk || drive) facts.goal = 'movement';
   if (modes.length) facts.movement = automobile || modes.length>1 ? 'mixed' : modes[0];
