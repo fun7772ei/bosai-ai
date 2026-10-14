@@ -8,7 +8,7 @@ export const topicsIn = text => hazardPatterns.filter(([, pattern]) => pattern.t
 const segmenter = new Intl.Segmenter('ja', {granularity:'word'});
 const wordsIn = text => new Set([...segmenter.segment(text.normalize('NFKC'))].filter(s=>s.isWordLike).map(s=>s.segment));
 const automobileNouns = new Set(['車','自動車','乗用車','軽自動車','自家用車','クルマ','くるま','車両','マイカー','トラック','バス','タクシー','四輪車']);
-const vehicleNoun = '(?:'+[...automobileNouns].sort((a,b)=>b.length-a.length).join('|')+')';
+export const vehicleNoun = '(?:'+[...automobileNouns].sort((a,b)=>b.length-a.length).join('|')+')';
 const roadNouns = new Set(['道','道路','路面','経路','歩道','車道','通学路','通勤路','側道','私道','国道','県道','市道','農道','林道','一般道','高速道路','有料道路','幹線道路','生活道路','避難経路','地下道','アンダーパス']);
 const mobilityModes = [['wheelchair',/車椅子|車いす|車イス/],['bicycle',/自転車/],['rail',/電車|列車|鉄道|新幹線|地下鉄|汽車/],['stroller',/ベビーカー|乳母車/]];
 // Predicate polarity is tied to a route mention, not to an arbitrary 'ない' elsewhere.
@@ -82,7 +82,8 @@ export function factsIn(input) {
     const transition=/(?:乗り換|乗換|乗り替|変更|変わ)/.exec(tail);
     const verbTail=transition?tail.slice(transition.index):'';
     const deniedAction=/(?:て|で)(?:は|も)?(?:い|おり)?(?:ません|ない|なかった)|(?:え|わ|し)(?:ません|ない)|わけではない/.test(verbTail);
-    const questionedAction=/(?:た|る|ます|いる|ません|ない)(?:の|ん)?(?:です|でしょう)?か|かどうか|不明|分から|わから/.test(verbTail);
+    const questionedAction=/(?:か$|かどうか|不明|分から|わから)/.test(verbTail);
+    if(questionTail.test(directTail)||questionedAction) facts.vehicleChangeQuestion=true;
     return !new RegExp('^'+negativePredicate).test(tail)
       && !/^(?:で(?:は)?|じゃ)(?:ない|ありません|なかった|なく)/.test(tail)
       && !questionTail.test(directTail)&&!deniedAction&&!questionedAction;
@@ -103,6 +104,7 @@ export function mergeFacts(previous, current, excluded) {
   // An explicitly restated current vehicle condition remains available.
   if ((current.vehicleChanged || (current.movement && current.movement !== 'drive')) && current.vehicleFlooded === undefined) delete facts.vehicleFlooded;
   const merged = {...facts, ...current};
+  delete merged.vehicleChangeQuestion;
   delete merged.vehicleChanged; // An event, not a durable property of this vehicle.
   return merged;
 }

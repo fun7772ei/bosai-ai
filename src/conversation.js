@@ -1,6 +1,6 @@
 // Deterministic, bounded dialogue. No language generation or safety certification.
 import {corpus} from './beta-search.js';
-import {topicsIn, factsIn, mergeFacts, focusFor, contextText} from './conversation-context.js';
+import {topicsIn, factsIn, mergeFacts, focusFor, contextText, vehicleNoun} from './conversation-context.js';
 import {contextualEvidence} from './conversation-evidence.js';
 export const HISTORY_LIMIT = 40;
 const emptyState = () => ({topics:[], facts:{}, situation:'', action:'', excluded:[], confirmed:[], referenceIds:[], pending:[], awaitingContext:false, selection:null});
@@ -9,7 +9,10 @@ export function conditions(text) {
   const excluded = [];
   const remove = span => { excluded.push(span); return ''; };
   // Prefer a typed contrast argument so '道路が冠水、車ではなく徒歩' keeps the scene.
-  let positive = text.replace(/(水没した車|水没車|車椅子|車いす|車イス|自転車|電車|列車|ベビーカー|乳母車|自動車|車|運転|徒歩|歩行|津波|地震|電話番号|カロリー計算)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span));
+  // Identity contrasts deny a different vehicle, not the current automobile mode.
+  const identityContrast=new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun+'(?:ではなく|じゃなく)(?:て)?[、,]?((?:同じ|元の|以前の)'+vehicleNoun+')','g');
+  let positive = text.replace(identityContrast,(_,same)=>same);
+  positive = positive.replace(/(水没した車|水没車|車椅子|車いす|車イス|自転車|電車|列車|ベビーカー|乳母車|自動車|車|運転|徒歩|歩行|津波|地震|電話番号|カロリー計算)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span));
   positive = positive.replace(/([^、。！？!?]{1,60}?)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span))
     .replace(/(?:診断|電話番号|カロリー計算)(?:を)?(?:求めていない|聞いていない|必要としていない)[、。]?/g, remove);
   return {positive:positive.trim(), excluded};
@@ -72,6 +75,7 @@ export class Conversation {
     if(!query || /^(それ|そこ|そう|はい)[？?。]*$/.test(query))return this.clarify('どの状況や行動を指しているか教えてください。');
     this.state.topics=topics; this.state.facts=facts; this.state.situation=query; this.state.excluded=[...new Set([...this.state.excluded,...parsed.excluded])].slice(-12);
     this.state.action=facts.movement==='walk'?'歩行':facts.movement==='drive'?'車の移動':'';
+    if(incoming.vehicleChangeQuestion)return this.clarify('乗り換えは既に行った状況ですか、それとも検討中ですか？現在どの車の中にいるかを確認します。乗り換えの安全性はこの辞書では判断できません。',{},true);
     if(facts.vehicleFlooded===null)return this.clarify('この辞書は車内の現在の浸水状態を確認できません。分かっている車の状況と、調べたい一般情報を教えてください。',{},true);
     if(facts.road && ['wheelchair','bicycle','rail','stroller'].includes(facts.movement))return this.clarify('この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。',{},true);
     if(facts.movement==='mixed')return this.clarify('徒歩と車のどちらの場面を調べますか？',{choices:['徒歩です','車です']},true);
