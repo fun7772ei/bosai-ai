@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-14T13:30:13.835Z",
+  "createdAt": "2026-10-14T13:31:24.175Z",
   "newFinalSetExists": false,
   "development": "old40+64+80+60=244 cases (regression only)",
   "policy": "Model choice and intent/coverage guard tuned only on regression. No retrieval/model/threshold changes after new final labels or results. Execution-only fixes must be logged separately.",
@@ -14,7 +14,7 @@
   },
   "hashes": {
     "research/ruri/channel.js": "b5d7a3d6e8f98ca2a8c8a3a4c018ca4eb7b8c395ec91b0d42d13640055c5fbab",
-    "research/ruri/controller.js": "a3e0c524f87f0d884005e5cb59420931adb11a7832a4a80cb0ec17dc3d39a18e",
+    "research/ruri/controller.js": "37591f117b392d89fe77f8cce6b52c03d3b06e8303bc99664451d8cc928bb030",
     "research/ruri/corpus-provenance.json": "5af40317fcb0a8a46ab8a1a0dffa4295d5507059fd666794aca1ea5f03685cb0",
     "research/ruri/facets.json": "e00a820a5fa5efd539dafebbb30427d3d24966deaa4e7abddd916a08742c6709",
     "research/ruri/improved.js": "029f5b201a752ce8e5ad7f5cd22203a09f5c3008b069a9d8aa6dc06726f7f55c",
