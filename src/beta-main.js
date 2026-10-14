@@ -4,7 +4,7 @@ import {corpus} from './beta-search.js';
 const $=id=>document.getElementById(id),el=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
 let uiRun=0,currentQuery='',lastRun;
 const controller=new BetaController({changed:refresh});
-function refresh(){const busy=controller.busy;for(const id of ['search','saveModel','loadModel','mode'])$(id).disabled=busy;$('stop').disabled=!busy;$('resetModel').disabled=!controller.channel&&!busy;$('modelState').textContent=controller.state;$('saved').textContent=controller.storageError?'端末保存を利用できません。軽量検索をご利用ください。':controller.saved?.complete?'AIモデル：保存済み（4 / 4）':`AIモデル：未保存（${controller.saved?.files?.filter(f=>f.present).length||0} / 4）`;$('loadModel').disabled=busy||!controller.saved?.complete;}
+function refresh(){const busy=controller.busy,voiceActive=voiceBusy||!!voiceMic||voiceListening;$('search').disabled=busy||voiceBusy||voiceListening;for(const id of ['saveModel','loadModel','mode'])$(id).disabled=busy||voiceActive;$('stop').disabled=!busy;$('resetModel').disabled=voiceActive||(!controller.channel&&!busy);$('modelState').textContent=controller.state;$('saved').textContent=controller.storageError?'端末保存を利用できません。軽量検索をご利用ください。':controller.saved?.complete?'AIモデル：保存済み（4 / 4）':`AIモデル：未保存（${controller.saved?.files?.filter(f=>f.present).length||0} / 4）`;$('loadModel').disabled=busy||voiceActive||!controller.saved?.complete;}
 function selectEntry(id){const item=corpus.find(e=>e.id===id);if(!item)return;const card=$('entry');card.hidden=false;card.replaceChildren(el('span',`${item.category} · 辞書の原文`),el('h2',item.title),el('p',item.summary));const warning=el('div','');warning.className='warning';warning.append(el('h3','注意事項'),el('p',item.warning));card.append(warning,el('h3','手順'));const list=el('ol','');for(const step of item.steps)list.append(el('li',step));card.append(list,el('h3','準備するもの'),el('p',item.items),el('h3','情報源'));const sources=el('ul','');for(const s of item.sources){const li=el('li',''),a=el('a',s.label);a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';li.append(a);sources.append(li);}card.append(sources,el('p',`優先度 ${item.priority} / ${item.id}`));card.dataset.entryId=id;for(const b of $('candidates').querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.entryId===id));}
 function render(run){lastRun=run;$('candidates').replaceChildren();$('clarify').replaceChildren();$('entry').hidden=true;$('entry').replaceChildren();delete $('entry').dataset.entryId;$('empty').hidden=!!run.resultIds.length||run.scope.kind!=='related';$('resultCount').textContent=run.resultIds.length?`${run.resultIds.length}件の候補`:'';
  $('message').textContent=run.scope.kind==='unsupported'?run.scope.reason:run.scope.kind==='clarify'?run.scope.reason:run.resultIds.length?'関連する一般情報の候補です。状況に合う項目を選び、原文の条件・注意事項を確認してください。':'関連情報を確認できませんでした。別の言葉や具体的な状況で検索してください。';$('message').className='message '+(run.scope.kind==='unsupported'?'unavailable':'');
@@ -28,6 +28,7 @@ function voiceState(message){
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
   $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening;
   $('voiceStop').disabled=voiceBusy||!voiceListening;
+  refresh();
 }
 function voiceFailure(e){
   const message=e?.message||String(e);
@@ -60,7 +61,6 @@ $('voiceLoad').onclick=async()=>{
     const mic=new MicTranscriber()
       .language('ja')
       .modelArch(ModelArch.TinyStreaming)
-      .options({max_tokens_per_second:'13.0'})
       .onProgress((fraction,file)=>{if(generation===voiceSeq)voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));})
       .onText(text=>{if(generation===voiceSeq)$('voiceLive').textContent=text?'認識中：'+text:'';})
       .onLine(line=>{
