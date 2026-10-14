@@ -18,6 +18,7 @@ export function coverage(text) {
   if (/(?:今|現在|今日|近所|近く|ここ|この場所).*(?:安全|開設|開い|満員|営業|何人|人数|警報|水位)|(?:避難所|薬局).*(?:定員|収容人数|営業時間)/.test(text)) return '現在地や施設の最新状況は確認できません。自治体・気象庁などの最新情報を確認してください。';
   if (/(?:薬|インスリン).*(?:増や|追加|減ら|何錠|何単位)|(?:診断|処方)して/.test(text)) return '個人の薬の増減や診断は判断できません。医療者の指示を確認してください。';
   if (/何(?:cm|センチ|メートル|分|秒)|水深.*(?:まで|なら|限界)|(?:絶対|必ず).*安全/.test(text)) return '個別の数値限界や安全の保証は、この一般情報から判断できません。';
+  if(/地震.*(?:何時に|いつ).*(?:起き|発生)|地震[がは].*(?:いつ|何時)|(?:いつ|何時).*地震.*(?:起き|発生)|地震.*(?:発生|起き).*(?:日時|日付|時刻)/.test(text)) return '地震の発生日時は予測できません。この辞書は一般的な備えと行動の参照用です。';
   return null;
 }
 export class Conversation {
@@ -51,7 +52,7 @@ export class Conversation {
     const parsed=conditions(text), explicitTopics=topicsIn(parsed.positive), unavailable=coverage(parsed.positive);
     // P1: every unsupported branch revokes both selection AND pronoun context.
     if(unavailable) { this.forget(); return this.reply('unsupported',unavailable,{answerability:'outside-coverage'}); }
-    const subjects=new Set(parsed.positive.match(/私は|自分は|友人は|家族は|子どもは|子供は|相手は/g)||[]);
+    const subjects=new Set((parsed.positive.match(/(?:私|自分|友人|家族|子ども|子供|相手|祖母|祖父|母|父|兄|姉|弟|妹)(?:は|が)/g)||[]).map(s=>s.slice(0,-1).replace(/^自分$/,'私')));
     if(subjects.size>1)return this.clarify('複数の人の状況を分けて確認します。まず誰の、どの場面について調べますか？');
     if(explicitTopics.length>1 && !explicitTopics.includes('避難生活'))return this.clarify('複数の災害が含まれています。まずどの場面について調べますか？',{choices:explicitTopics});
     const changed=explicitTopics.length && this.state.topics.length && explicitTopics.some(t=>!this.state.topics.includes(t));

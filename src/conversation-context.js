@@ -12,7 +12,10 @@ export function factsIn(text) {
   const dry = /冠水してい(?:ない|ません)|冠水はしていない|浸水してい(?:ない|ません)|水[はが]ない/.test(text);
   if (dry) facts.floodedRoad = false;
   else if (road && /冠水|浸水|水につか|水に浸か|水浸し|膝.*水|ひざ.*水/.test(text)) facts.floodedRoad = true;
-  const walk = /徒歩|歩く|歩い|歩行|歩き/.test(text), drive = /車|自動車|運転|車両/.test(text);
+  const walk = /徒歩|歩く|歩い|歩行|歩き/.test(text);
+  // A parked/abandoned vehicle is not the actor's current mode of travel.
+  const leftVehicle = /(?:車|自動車)(?:を|から).*(?:置いて|離れて|降りて)/.test(text);
+  const drive = /車|自動車|運転|車両/.test(text) && !(walk && leftVehicle);
   if (walk || drive) facts.goal = 'movement';
   if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
   if (/車.*水没してい(?:ない|ません)|車内.*水.*入ってい(?:ない|ません)/.test(text)) facts.vehicleFlooded = false;
