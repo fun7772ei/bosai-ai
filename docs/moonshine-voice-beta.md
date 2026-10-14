@@ -43,3 +43,7 @@ iPadでMoonshineが安定してから、CDN依存のWASMを同一originに梱包
 
 ## 同一originへのSDK配信
 Safari WebKitのCOEP下でCDNを動的importするWorkerが動かない場合に備え、Moonshine公式npmパッケージv0.1.5の `dist/` 全ファイルをビルド時に取得し、`/bosai-ai/moonshine/` へ同一origin配信する。SDKのモデル重みは同梱しない。Ruriのオフラインshellキャッシュには月光SDKの大型WASMを入れず、音声機能の初回操作まで転送しない。初回ダウンロードではネットワークが必要。
+
+## 2026-10-14 Safari実機：音声入力エラー「12121416」
+使用者からモデル準備中に8桁の数値のみのエラー報告。公式 `errors.ts` によれば、embind上のC++例外がWASMメモリ上のポインター（JS number）として投げられる場合があり、数値を通常のエラーコードと見なさない。直接原因は未確定。準備ステージ表示と `getExceptionMessage` のネイティブ例外復号を加える。
+またCIで、従来のSDK importに加え、実WASMの初期化と日本語Tiny Streamingの配布マニフェスト生成を検査する。モデル全ファイルのダウンロード・推論、iPad Safariでの成功を意味しない。
