@@ -22,6 +22,7 @@ for(const text of ['寝ているときに地震が来たら？','高台に間に
 // Moonshine Voice Japanese Tiny Streaming is opt-in. Keep text search usable if this fails.
 // The official WASM package is pinned; the microphone and model load only on button press.
 const MOONSHINE_MODULE='https://cdn.jsdelivr.net/npm/@moonshine-ai/moonshine-wasm@0.1.5/dist/index.js';
+$('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
 let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceFinal=[],voiceBase='';
 function voiceState(message){
   $('voiceStatus').textContent=message;
@@ -48,8 +49,24 @@ async function voiceRelease(){
   $('voiceListen').disabled=true;
   $('voiceStop').disabled=true;
 }
+if(!crossOriginIsolated){
+  $('voiceEnableIso').hidden=false;
+  $('voiceStatus').textContent=location.search.includes('voice_iso=1')
+    ? 'Moonshineの準備に必要なブラウザ分離がまだ有効ではありません。古いタブを閉じて、音声実験モードを開き直してください。'
+    : '音声AIには分離モードが必要です。「音声実験モードを有効化」を押してください。';
+}else{
+  $('voiceStatus').textContent='音声実験モードが有効です。音声AIを準備できます。';
+}
 $('voiceLoad').onclick=async()=>{
   if(voiceBusy||voiceMic)return;
+  if(!crossOriginIsolated){
+    $('voiceEnableIso').hidden=false;
+    voiceState(location.search.includes('voice_iso=1')
+      ? '音声実験モードでもブラウザ分離が有効ではありません。タブを閉じて開き直してください。Safari側が非対応の可能性もあります。'
+      : 'Moonshineの標準WASMにはブラウザ分離が必要です。「音声実験モードを有効化」を押して同じページを開き直してください。');
+    return;
+  }
+  $('voiceEnableIso').hidden=true;
   const generation=++voiceSeq;voiceBusy=true;
   voiceState('準備中。必要なモデルを取得・初期化しています…');
   try{
