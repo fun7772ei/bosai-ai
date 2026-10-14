@@ -1,3 +1,5 @@
+> 開発中：Phase 2 αの[文字会話試作と評価](docs/phase2-conversation-alpha.md)。既存検索から切替、文脈/聞き返し/原文参照に対応。新規PRでレビュー中、main/公開Pagesには未反映。自由生成なし。検索の危険な取り違えは未解決で、正式完成ではありません。MoonshineのIssue #16は別トラック・未修正です。
+
 # ぼうさい辞書 AI — Ruri優先ベータ版
 
 **公開URL： https://fun7772ei.github.io/bosai-ai/**

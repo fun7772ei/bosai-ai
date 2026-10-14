@@ -7,8 +7,9 @@ export function mountConversation(controller){
  const heading=node('h2','文字で相談する · Phase 2 α'),note=node('p','自由生成なしの会話試作です。条件を確認し、辞書の原文を参照します。会話はこの画面のメモリ内のみ（最大40メッセージ）。再読み込みで消えます。現在の警報・安全性・個人の診断は判断できません。');
  const log=node('div','');log.id='conversationLog';log.setAttribute('role','log');log.setAttribute('aria-label','会話履歴');log.setAttribute('aria-live','polite');
  const form=node('form',''),label=node('label','状況を入力'),input=node('textarea','');input.id='chatQuestion';input.maxLength=200;input.required=true;input.rows=3;label.htmlFor=input.id;
+ const stop=node('button','検索を停止');stop.id='chatStop';stop.type='button';stop.disabled=true;
  const send=node('button','送信'),clear=node('button','会話をリセット'),back=node('button','通常検索に戻る');send.id='chatSend';send.type='submit';clear.id='chatClear';clear.type=back.type='button';
- const status=node('p',''),controls=node('div','');status.id='chatStatus';status.setAttribute('role','status');controls.className='actions';controls.append(send,clear,back);form.append(label,input,controls,status);
+ const status=node('p',''),controls=node('div','');status.id='chatStatus';status.setAttribute('role','status');controls.className='actions';controls.append(send,stop,clear,back);form.append(label,input,controls,status);
  panel.append(heading,note,log,form);main.insertBefore(panel,workspace);
  const toggle=node('button','会話モードを試す（文字入力）');toggle.type='button';toggle.id='chatToggle';toggle.className='tonal';main.insertBefore(toggle,workspace);
  const engine=new Conversation((q,m)=>controller.search(q,m));let epoch=0;
@@ -21,9 +22,11 @@ export function mountConversation(controller){
    if(message.entries){for(const text of ['もっと詳しく','ほかの状況なら？']){const b=node('button',text);b.type='button';b.onclick=()=>{input.value=text;form.requestSubmit();};bubble.append(b);}}
    if(message.diagnostics){const d=node('details','');d.append(node('summary','検索の診断'),node('pre',JSON.stringify(message.diagnostics,null,2)));bubble.append(d);}
   }log.append(bubble);}
+  stop.disabled=!engine.busy;
   panel.dataset.state=JSON.stringify({history:engine.history.map(({entries,...m})=>({...m,entryIds:entries?.map(e=>e.id)})),state:engine.state});
  }
  toggle.onclick=()=>{panel.hidden=false;workspace.hidden=true;toggle.hidden=true;input.focus();};
+ stop.onclick=()=>{epoch++;controller.stop();engine.cancel();send.disabled=false;status.textContent='会話の検索を停止しました。入力と履歴は残しています。';render();};
  back.onclick=()=>{epoch++;if(engine.busy){controller.stop();engine.cancel();}panel.hidden=true;workspace.hidden=false;toggle.hidden=false;send.disabled=false;};
  clear.onclick=()=>{epoch++;if(engine.busy)controller.stop();engine.clear();send.disabled=false;status.textContent='会話の文脈を解除しました。モデル保存は維持しています。';render();};
  form.onsubmit=async event=>{event.preventDefault();if(engine.busy)return;

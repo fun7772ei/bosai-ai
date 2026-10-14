@@ -1,3 +1,5 @@
+> **現在の作業：Phase 2 α（文字会話試作）。** Issue [#17](https://github.com/fun7772ei/bosai-ai/issues/17)全文と最新main `6ae5471` を基準に開始。新規PRまで。**mainマージ・Pages更新は禁止（今回未実施）。** [実装・評価・失敗・次の手順](docs/phase2-conversation-alpha.md)を先に読む。PR #14はOPEN・ガード未採用。MoonshineはPR #12/#13/#15で日本語Tiny通常版まで実装済み、ユーザーの基本認識成功報告あり、Issue #16の反映停止/誤認識は未解決・今回未修正。自由生成なし、30M/88原文/既存保存と音声導線を維持。以下は過去の経緯であり、「今回公開する」「音声未着手」「iPad基本動作未確認」等を現在の方針と混同しない。
+
 # bosai-ai：Ruri優先ベータの継続作業
 
 2026-10-14 UTCにPR #10を通常mergeして公開済み。アプリ版f41848b50937、公開URL https://fun7772ei.github.io/bosai-ai/ 。実HF保存・Chromiumオフライン再起動まで成功、iPad実機は未確認。公開証跡は `docs/diagnostics/beta-release.json`。
