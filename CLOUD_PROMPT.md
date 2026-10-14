@@ -1,5 +1,7 @@
 # bosai-ai：Ruri優先ベータの継続作業
 
+2026-10-14 UTCにPR #10を通常mergeして公開済み。アプリ版f41848b50937、公開URL https://fun7772ei.github.io/bosai-ai/ 。実HF保存・Chromiumオフライン再起動まで成功、iPad実機は未確認。公開証跡は `docs/diagnostics/beta-release.json`。
+
 `fun7772ei/bosai-ai` の [CLOUD_HANDOFF.md](CLOUD_HANDOFF.md)、[README.md](README.md)、[公開ベータ検証](docs/ruri-beta.md) を先に読んでください。過去のCPU品質/6方式比較は履歴として残っています。
 
 公開版は88件の原文を参照する防災辞書です。既定は軽量＋Ruri-v3-30m q8 CPU/WASM、Ruri単独も利用可能、未保存や失敗時は軽量検索へ戻ります。候補と質問の答えを同一視せず、状況を確認して原文・注意・出典を表示します。現在の災害/警報・開設状況や個別医療判断は提供できません。未収録判定には取りこぼしがあり、正式な安全性確認済みではありません。

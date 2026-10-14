@@ -1,0 +1,439 @@
+{
+  "createdAt": "2026-10-14T10:40:28.861Z",
+  "url": "https://fun7772ei.github.io/bosai-ai/",
+  "status": "passed",
+  "platform": "Linux Chromium CPU/WASM; not iPad Safari or installed iPad PWA",
+  "requests": [
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "huggingface.co",
+      "path": "/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/config.json",
+      "method": "GET"
+    },
+    {
+      "host": "huggingface.co",
+      "path": "/api/resolve-cache/models/onnx-community/ruri-v3-30m-ONNX/1b41a27f31213fc55a9c4653c067770e39406408/config.json",
+      "method": "GET"
+    },
+    {
+      "host": "huggingface.co",
+      "path": "/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/onnx/model_quantized.onnx",
+      "method": "GET"
+    },
+    {
+      "host": "us.aws.cdn.hf.co",
+      "method": "GET"
+    },
+    {
+      "host": "huggingface.co",
+      "path": "/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer.json",
+      "method": "GET"
+    },
+    {
+      "host": "huggingface.co",
+      "path": "/api/resolve-cache/models/cl-nagoya/ruri-v3-30m/24899e5de370b56d179604a007c0d727bf144504/tokenizer.json",
+      "method": "GET"
+    },
+    {
+      "host": "huggingface.co",
+      "path": "/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer_config.json",
+      "method": "GET"
+    },
+    {
+      "host": "huggingface.co",
+      "path": "/api/resolve-cache/models/cl-nagoya/ruri-v3-30m/24899e5de370b56d179604a007c0d727bf144504/tokenizer_config.json",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    },
+    {
+      "host": "fun7772ei.github.io",
+      "method": "GET"
+    }
+  ],
+  "httpErrors": [],
+  "errors": [],
+  "runs": [
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": "モデル未保存",
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "scores": [
+        55.41615153585045,
+        19.43990391929703
+      ],
+      "timings": {
+        "retrievalMs": 1.6000000014901161,
+        "totalMs": 11.399999998509884
+      },
+      "ready": false,
+      "time": "2026-10-14T10:40:33.075Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-42",
+        "bosai-40"
+      ],
+      "scores": [
+        1,
+        0.25737857837486333,
+        0.1808354335150015,
+        0.12195425544765175,
+        0.11128645119626926
+      ],
+      "timings": {
+        "loadMs": 1928.7000000029802,
+        "warm": false,
+        "embeddingMs": 101.59999999403954,
+        "tokens": 11,
+        "retrievalMs": 6.299999997019768,
+        "totalMs": 2104.1999999955297
+      },
+      "ready": true,
+      "time": "2026-10-14T10:40:43.379Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "ruri",
+      "actual": "ruri",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-42",
+        "bosai-40",
+        "bosai-56",
+        "bosai-14",
+        "bosai-45",
+        "bosai-51",
+        "bosai-57"
+      ],
+      "scores": [
+        0.9150787545465016,
+        0.8852850071523553,
+        0.8758855604446701,
+        0.8686549913800851,
+        0.8673449921929277,
+        0.8595491503088327,
+        0.8563902943066213,
+        0.8548031040556603,
+        0.854300811730474,
+        0.8536790908346565
+      ],
+      "timings": {
+        "warm": true,
+        "embeddingMs": 51.899999998509884,
+        "tokens": 11,
+        "retrievalMs": 1.2000000029802322,
+        "totalMs": 53.600000001490116
+      },
+      "ready": true,
+      "time": "2026-10-14T10:40:43.852Z"
+    },
+    {
+      "query": "津波の高台に間に合わなかったら？",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0",
+        "bosai-16",
+        "bosai-1"
+      ],
+      "scores": [
+        1,
+        0.4001767152632427,
+        0.3424824263852669,
+        0.2120434252083102,
+        0.169635846793422
+      ],
+      "timings": {
+        "loadMs": 2009.1999999955297,
+        "warm": false,
+        "embeddingMs": 139.60000000149012,
+        "tokens": 14,
+        "retrievalMs": 3.2000000029802322,
+        "totalMs": 2245.9000000059605
+      },
+      "ready": true,
+      "time": "2026-10-14T10:40:46.557Z"
+    },
+    {
+      "query": "避難所で水が使えないときのトイレは？",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-17",
+        "bosai-18",
+        "bosai-25",
+        "bosai-82",
+        "bosai-20"
+      ],
+      "scores": [
+        0.8078197143678023,
+        0.7598139087798608,
+        0.48309298787987653,
+        0.28563108169105733,
+        0.1817783236118407
+      ],
+      "timings": {
+        "loadMs": 1964.7999999970198,
+        "warm": false,
+        "embeddingMs": 104.89999999850988,
+        "tokens": 14,
+        "retrievalMs": 2.7000000029802322,
+        "totalMs": 2152.5
+      },
+      "ready": true,
+      "time": "2026-10-14T10:40:49.762Z"
+    },
+    {
+      "query": "避難所で水が使えないときのトイレは？",
+      "requested": "ruri",
+      "actual": "ruri",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-17",
+        "bosai-18",
+        "bosai-20",
+        "bosai-25",
+        "bosai-21",
+        "bosai-82",
+        "bosai-35",
+        "bosai-22",
+        "bosai-40",
+        "bosai-34"
+      ],
+      "scores": [
+        0.923340956943647,
+        0.8922192847178175,
+        0.8821079669008169,
+        0.8812450570956883,
+        0.8703882090876285,
+        0.8700571591443746,
+        0.8642324589705491,
+        0.8623732196191863,
+        0.8618330490877201,
+        0.8585543740325963
+      ],
+      "timings": {
+        "warm": true,
+        "embeddingMs": 25.799999997019768,
+        "tokens": 14,
+        "retrievalMs": 1,
+        "totalMs": 27.399999998509884
+      },
+      "ready": true,
+      "time": "2026-10-14T10:40:50.602Z"
+    },
+    {
+      "query": "避難所で水が使えないときのトイレは？",
+      "requested": "light",
+      "actual": "light",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-18",
+        "bosai-25",
+        "bosai-17",
+        "bosai-82",
+        "bosai-40"
+      ],
+      "scores": [
+        80.0890332129374,
+        59.414936502279076,
+        59.39829355491742,
+        47.45165698292028,
+        41.6373172328815
+      ],
+      "timings": {
+        "retrievalMs": 12.5,
+        "totalMs": 12.600000001490116
+      },
+      "ready": true,
+      "time": "2026-10-14T10:40:50.927Z"
+    },
+    {
+      "query": "今夜の津波の予想は何メートル？",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": null,
+      "scope": {
+        "kind": "unsupported",
+        "reason": "現在の警報・予報・避難所の開設や、あなたの場所の安全性は確認できません。気象庁・自治体の最新の発表を確認してください。",
+        "code": "live-local",
+        "choices": []
+      },
+      "resultIds": [],
+      "scores": [],
+      "timings": {
+        "retrievalMs": 0,
+        "totalMs": 0.10000000149011612
+      },
+      "ready": true,
+      "time": "2026-10-14T10:40:51.115Z"
+    }
+  ],
+  "build": "ベータ版 f41848b50937 / 辞書 88件 / CPU・WASM / 自由生成なし",
+  "https": true,
+  "corpus88": true,
+  "researchAbsent": true,
+  "pwaAssets": true,
+  "realSaved": true,
+  "integrity": [
+    {
+      "file": "config.json",
+      "bytes": 1183,
+      "sha256": "1517ea80eb6af7e181f4ed59827a4ae9de20f383d74a82900227c4cb5d903787",
+      "pass": true
+    },
+    {
+      "file": "onnx/model_quantized.onnx",
+      "bytes": 37048575,
+      "sha256": "bd07545fa4eb8e7765939536944da1138a7e61441d81633adfa1faf218df6bb1",
+      "pass": true
+    },
+    {
+      "file": "tokenizer.json",
+      "bytes": 6724873,
+      "sha256": "0a94ac9a0a02c067bdef25b72ae9f4ee33f48f552e55988d444f6d25eeb1d062",
+      "pass": true
+    },
+    {
+      "file": "tokenizer_config.json",
+      "bytes": 3779,
+      "sha256": "34004511993472f15c7202074284c57788c161fb6567de164b8e0c0266f155e4",
+      "pass": true
+    }
+  ],
+  "onlineReuse": true,
+  "offlineRestart": true,
+  "hfRequestsBeforeRestart": 7,
+  "hfRequestsAfterRestart": 7
+}
