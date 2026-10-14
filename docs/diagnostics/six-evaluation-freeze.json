@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-10-14T06:01:43.618634+00:00",
+  "parentPR": 8,
+  "finalQuestionsExistAtFreeze": false,
+  "developmentSet": "scripts/search-cases.mjs (40 questions)",
+  "selection": "semantic threshold0.8; normalized score fusion light weight0.5; candidate pool10; top5 display; top1 full evidence; 512 context/64 answer; baseline Japanese grounding system",
+  "selectionReason": "Development sweep compared144 threshold/fusion/weight combinations. Best score fusion has B30/35,C34/35 Top1; rank fusion also evaluated. Oracle development18 actual generations across3 styles: baseline has substantive responses but safety failures; action/English all insufficient-reference refusals. Baseline retained for experimental comparison, no production recommendation.",
+  "coreSha256": {
+    "src/bosai-search.js": "8e1418d5d08c1557fbd988cda4e1db265f47283efed6dceac6e02def0d2d9baf",
+    "src/semantic-search.js": "65ef635ef499de7462dd3320649ade5de21572fbfc0401ff81de5dafa30cac81",
+    "src/grounded-answer.js": "d76a4ac9bb80248385d0f7267583aa6cfa0b200bbeb3c057f09a18ab1445bcfc",
+    "src/six-policy.json": "f7713c5865f3cf67aa69ac2b2e5b4f00709943b5565d6c0b6ccdf94a196ae2aa",
+    "src/aux-assets.json": "a536f4fc9f090b981b4ab4c26eff40486088f406756e0cb248ec0d553b3c64df",
+    "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+    "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4"
+  },
+  "rule": "No changes to retrieval, thresholds, fusion, prompt or evidence packing after viewing final labels/results. Any execution-only fixes must be documented separately."
+}

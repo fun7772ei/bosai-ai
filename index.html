@@ -27,6 +27,15 @@
 <button id="searchSubmit" type="submit">検索する</button></form>
 <p id="searchStatus" role="status">未検索</p><p id="searchMetrics"></p><p id="searchTrace"></p><div id="searchResults" aria-live="polite"></div>
 </section>
+<section aria-labelledby="sixHeading"><h2 id="sixHeading">4. 6方式の比較実験</h2>
+<p>A〜Cは原文を表示。D〜Fは先頭1件の概要・全手順・注意事項を根拠にLFM350が回答します。検索結果5件と出典も表示します。生成は内容未検証の実験です。</p>
+<p>Embedding使用後はWorkerを終了してからLFMを読み込みます。既存の推論Workerも比較時にリセットし、モデル保存・選択は維持します。文脈512に根拠全文＋64生成tokensが入らない場合や、回答が途中で切れた場合は原文へ戻します。</p>
+<p id="sixSaved"></p><div class="actions"><button id="sixSaveEmbedding" class="secondary">Embeddingを保存（約44MB）</button><button id="sixSaveLfm" class="secondary">LFM350とTokenizerを保存（約234MB）</button></div>
+<form id="sixForm"><label for="sixQuestion">質問（200文字まで）</label><textarea id="sixQuestion" rows="2" maxlength="200" required placeholder="寝てるときに地震が来たらどうすればいい？"></textarea><label for="sixMethod">比較方式</label><select id="sixMethod"></select>
+<label id="sixDualArea" class="check" hidden><input id="sixDual" type="checkbox">開発端末限定：両モデル常駐の測定</label><button id="sixSubmit" type="submit">この方式で実行</button></form>
+<div class="actions"><button id="sixStop" class="secondary" disabled>実験の途中停止</button><button id="sixReset" class="secondary" disabled>実験をリセット</button><button id="sixExport" class="secondary">比較JSONを保存</button></div>
+<p id="sixRecovery" role="status"></p><p id="sixState" role="status">未実行</p><p id="sixTimings"></p><pre id="sixAnswer" aria-live="polite"></pre><div id="sixResults" aria-live="polite"></div><details><summary>実行診断（未採用の生成出力も含む）</summary><pre id="sixRaw"></pre></details>
+</section>
 <section><div class="actions"><h2>診断ログ</h2><button id="export" class="secondary">検証結果をJSON保存</button></div><p>ログはこの画面内のみ。保存するJSONには入力と出力も含まれます。</p><pre id="logs"></pre></section>
 <footer>LFMのWebGPU版は入力変更時のクラッシュ報告あり。LFM2.5-350M CPU版はユーザー提供ログで短時間生成成功。追加CPU候補のiPad動作、長時間安定性・PWAオフラインは未確認。<a href="https://github.com/fun7772ei/bosai-ai">開発リポジトリ</a></footer>
 </main><script type="module" src="/src/main.js"></script></body></html>

@@ -1,0 +1,1058 @@
+[
+  {
+    "threshold": 0.8,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 62
+  },
+  {
+    "threshold": 0.8,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 62
+  },
+  {
+    "threshold": 0.82,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 62
+  },
+  {
+    "threshold": 0.82,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 62
+  },
+  {
+    "threshold": 0.8,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 61
+  },
+  {
+    "threshold": 0.82,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 61
+  },
+  {
+    "threshold": 0.8,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 60
+  },
+  {
+    "threshold": 0.82,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 60
+  },
+  {
+    "threshold": 0.84,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 29,
+      "top3": 31,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 60
+  },
+  {
+    "threshold": 0.84,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 29,
+      "top3": 31,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 60
+  },
+  {
+    "threshold": 0.84,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 29,
+      "top3": 31,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 60
+  },
+  {
+    "threshold": 0.8,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 33,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 59
+  },
+  {
+    "threshold": 0.82,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 33,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 59
+  },
+  {
+    "threshold": 0.84,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 29,
+      "top3": 31,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 59
+  },
+  {
+    "threshold": 0.84,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 29,
+      "top3": 31,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 58
+  },
+  {
+    "threshold": 0.78,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 0
+    },
+    "objective": 56
+  },
+  {
+    "threshold": 0.78,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 0
+    },
+    "objective": 56
+  },
+  {
+    "threshold": 0.8,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 30,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "objective": 56
+  },
+  {
+    "threshold": 0.82,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 30,
+      "top3": 33,
+      "top5": 33,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "objective": 56
+  },
+  {
+    "threshold": 0.84,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 29,
+      "top3": 31,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "objective": 56
+  },
+  {
+    "threshold": 0.78,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 0
+    },
+    "objective": 55
+  },
+  {
+    "threshold": 0.78,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 0
+    },
+    "objective": 54
+  },
+  {
+    "threshold": 0.86,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 24,
+      "top3": 26,
+      "top5": 27,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 32,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 54
+  },
+  {
+    "threshold": 0.86,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 24,
+      "top3": 26,
+      "top5": 27,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 32,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 54
+  },
+  {
+    "threshold": 0.86,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 24,
+      "top3": 26,
+      "top5": 27,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 32,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 54
+  },
+  {
+    "threshold": 0.78,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 33,
+      "top5": 34,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 0
+    },
+    "objective": 53
+  },
+  {
+    "threshold": 0.86,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 24,
+      "top3": 26,
+      "top5": 27,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 32,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 53
+  },
+  {
+    "threshold": 0.86,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 24,
+      "top3": 26,
+      "top5": 27,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 0
+    },
+    "objective": 52
+  },
+  {
+    "threshold": 0,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 50
+  },
+  {
+    "threshold": 0,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 50
+  },
+  {
+    "threshold": 0.7,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 50
+  },
+  {
+    "threshold": 0.7,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 50
+  },
+  {
+    "threshold": 0.75,
+    "fusion": "score",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 50
+  },
+  {
+    "threshold": 0.75,
+    "fusion": "score",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 34,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 50
+  },
+  {
+    "threshold": 0.78,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 1
+    },
+    "c": {
+      "top1": 30,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 1,
+      "abstain": 4,
+      "danger": 1
+    },
+    "objective": 50
+  },
+  {
+    "threshold": 0,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 49
+  },
+  {
+    "threshold": 0.7,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 49
+  },
+  {
+    "threshold": 0.75,
+    "fusion": "rrf",
+    "weight": 0.5,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 33,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 49
+  },
+  {
+    "threshold": 0.86,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 24,
+      "top3": 26,
+      "top5": 27,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "c": {
+      "top1": 29,
+      "top3": 32,
+      "top5": 32,
+      "falsePositive": 0,
+      "abstain": 5,
+      "danger": 1
+    },
+    "objective": 49
+  },
+  {
+    "threshold": 0,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 48
+  },
+  {
+    "threshold": 0.7,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 48
+  },
+  {
+    "threshold": 0.75,
+    "fusion": "rrf",
+    "weight": 0.75,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 32,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 48
+  },
+  {
+    "threshold": 0,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 33,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 47
+  },
+  {
+    "threshold": 0.7,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 33,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 47
+  },
+  {
+    "threshold": 0.75,
+    "fusion": "score",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 31,
+      "top3": 33,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 0
+    },
+    "objective": 47
+  },
+  {
+    "threshold": 0,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 30,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "objective": 44
+  },
+  {
+    "threshold": 0.7,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 30,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "objective": 44
+  },
+  {
+    "threshold": 0.75,
+    "fusion": "rrf",
+    "weight": 0.25,
+    "b": {
+      "top1": 30,
+      "top3": 32,
+      "top5": 33,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "c": {
+      "top1": 30,
+      "top3": 34,
+      "top5": 34,
+      "falsePositive": 2,
+      "abstain": 3,
+      "danger": 1
+    },
+    "objective": 44
+  }
+]

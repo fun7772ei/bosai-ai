@@ -1,5 +1,5 @@
-import { Wllama, CacheManager } from '@wllama/wllama/esm/index.js';
-import compatCode from '@wllama/wllama-compat/wasm/wllama.js?raw';
+import { Wllama } from '@wllama/wllama/esm/index.js';
+import { createEngine } from './cpu-runtime.js';
 import corpus from './bosai-data.json';
 import { SEARCH_MODELS } from './bosai-search.js';
 import { CpuSession } from './cpu-session.js';
@@ -7,21 +7,6 @@ import { getModel, modelFileUrl } from './config.js';
 import { openModelStore } from './model-storage.js';
 import { workerError } from './worker-errors.js';
 
-const wasm = import.meta.env.DEV
-  ? new URL('/node_modules/@wllama/wllama-compat/wasm/wllama.wasm', self.location.origin).href
-  : new URL('runtime/wllama-compat/wllama.wasm', self.location.origin + import.meta.env.BASE_URL).href;
-
-// Force the same local Asyncify/MEMORY32 path on Safari and Chromium tests.
-// getWorkerResources() is a public method; this overrides resource selection,
-// not private native state. No CDN or OPFS model download is used.
-class CpuWllama extends Wllama {
-  getWorkerResources() { return { wasmPath: wasm, jsPath: { code: compatCode }, compat: true, noWebGPU: true }; }
-}
-const blocked = async () => { throw new Error('CPU推論時のモデル取得は許可されていません。先に保存してください。'); };
-function createEngine() {
-  const cacheManager = new CacheManager([{ isSupported: () => true, read: blocked, write: blocked, list: blocked, delete: blocked, getSize: blocked }]);
-  return new CpuWllama({ default: wasm }, { cacheManager, suppressNativeLog: true, logger: { debug() {}, log() {}, warn() {}, error(...args) { send('runtime-log', { message: args.map(String).join(' ').slice(0, 1500) }); } } });
-}
 let session, activeModel, busy = false, disposed = false, stage;
 function send(type, data = {}) {
   if (disposed) return;
@@ -47,7 +32,7 @@ self.onmessage = async ({ data }) => {
       store = await openModelStore();
       const blob = await store.blob(modelFileUrl(activeModel.file, activeModel.key));
       store.close(); store = null;
-      session = new CpuSession(createEngine, activeModel.weightBytes.q4_k_m, { noThinking: activeModel.noThinking === true });
+      session = new CpuSession(() => createEngine(message => send('runtime-log', { message })), activeModel.weightBytes.q4_k_m, { noThinking: activeModel.noThinking === true });
       send('stage', { stage: 'CPUモデル初期化（WASM・1スレッド）' });
       const settings = await session.load(blob);
       send('ready', { loadMs: performance.now() - started, dtype: 'q4_k_m', settings, loadParams: session.loadParams, wllama: '3.8.1', libllama: Wllama.getLibllamaVersion() });

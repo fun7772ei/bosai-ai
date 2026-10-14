@@ -1,4 +1,5 @@
 import './style.css';
+import { mountSix } from './six-ui.js';
 import { mountSearch } from './search-ui.js';
 import { MODELS, PREFERRED_MODEL, getModel, modelDtypes } from './config.js';
 import { cpuRequest } from './cpu-session.js';
@@ -12,6 +13,7 @@ $('model').replaceChildren(...MODELS.map(model => new Option(model.label, model.
 $('model').value = PREFERRED_MODEL;
 const logs = [], runs = [], files = new Map();
 let worker, ready = false, busy = false, repeats = 0, activePrompt = '', loadedDtype, loadedModel, loadMs;
+let sixUI;
 let workerKind, searchUI, pendingSearch, searchCounter = 0;
 const CHECKPOINT = 'bosai-ai-active-stage';
 try {
@@ -77,12 +79,14 @@ const log = (message, data) => {
 };
 function controls() {
   searchUI?.refresh();
-  $('load').disabled = busy || ready; $('generate').disabled = busy || !ready;
-  $('download').disabled = busy || ready || $('cachedOnly').checked;
+  sixUI?.refresh();
+  const experiment = sixUI?.controller.active;
+  $('load').disabled = busy || ready || experiment; $('generate').disabled = busy || !ready || experiment;
+  $('download').disabled = busy || ready || experiment || $('cachedOnly').checked;
   $('repeat').disabled = busy || !ready; $('stop').disabled = !busy || !ready;
-  $('dtype').disabled = busy || ready; $('cachedOnly').disabled = busy || ready;
-  $('model').disabled = busy || ready;
-  $('clear').disabled = busy || ready; $('reset').disabled = !worker;
+  $('dtype').disabled = busy || ready || experiment; $('cachedOnly').disabled = busy || ready || experiment;
+  $('model').disabled = busy || ready || experiment;
+  $('clear').disabled = busy || ready || experiment; $('reset').disabled = !worker && !experiment;
 }
 async function reset() {
   if (pendingSearch) { pendingSearch.resolve({ text: '', stopped: true, error: 'リセットにより候補選別を中断しました。' }); pendingSearch = null; }
@@ -221,7 +225,7 @@ $('load').onclick = async () => {
 $('generate').onclick = generate;
 $('repeat').onclick = () => { if (!$('prompt').value.trim()) return; repeats = 10; generate(); };
 $('stop').onclick = () => { repeats = 0; worker?.postMessage({ type: 'stop' }); log('停止要求'); };
-$('reset').onclick = async () => { await reset(); log('Workerを終了'); };
+$('reset').onclick = async () => { await sixUI?.controller.reset(); await reset(); log('Workerを終了'); };
 $('inspect').onclick = () => inspect();
 $('persist').onclick = async () => { try { log('永続保存リクエスト', { allowed: await navigator.storage?.persist?.() }); await inspect(); } catch (error) { log('永続保存エラー', { message: error.message }); } };
 $('clear').onclick = async () => {
@@ -268,3 +272,5 @@ searchUI = mountSearch({
     worker.postMessage({ type: 'search-select', query, candidateIds, requestId: id });
   }),
 });
+
+sixUI = mountSix({ beforeModels: async () => { if (worker) await reset(); }, legacyBusy: () => busy, changed: controls });
