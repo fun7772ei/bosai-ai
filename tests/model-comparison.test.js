@@ -1,3 +1,4 @@
+import { comparisonModels } from '../scripts/cpu-comparison-models.mjs';
 import 'fake-indexeddb/auto';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -60,7 +61,7 @@ test('interrupted external-weight download preserves other files and resumes by 
   } finally { store.close(); }
 });
 
-test('all four saves coexist and selected-model deletion preserves the other models', async () => {
+test('all registered model saves coexist and selected-model deletion preserves the other models', async () => {
   const original = globalThis.caches;
   const legacy = new Map([
     [modelFileUrl('legacy-extra.json', 'qwen3'), new Response('qwen-legacy')],
@@ -123,4 +124,31 @@ test('CPU selection has its own GGUF format and preserves WebGPU preferences', (
   assert.equal(readDtype(storage, 'lfm2'), 'q4f16');
   assert.throws(() => modelFiles('q4f16', 'lfm2-cpu'), /Unsupported dtype/);
   assert.deepEqual(modelFiles('q4_k_m', 'lfm2-cpu'), ['LFM2.5-350M-Q4_K_M.gguf']);
+});
+
+test('new CPU candidates pin Q4_K_M independently and retain explicit choices', () => {
+  const values = new Map();
+  const storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
+  for (const key of ['qwen35-cpu', 'qwen3-cpu', 'lfm2-700m-cpu']) {
+    const model = getModel(key);
+    assert.equal(model.engine, 'wllama-cpu');
+    assert.match(model.revision, /^[a-f0-9]{40}$/);
+    assert.match(model.sha256, /^[a-f0-9]{64}$/);
+    assert.deepEqual(modelFiles('q4_k_m', key), [model.file]);
+    assert.equal(model.noThinking === true, key.startsWith('qwen'));
+    saveSelection(storage, { modelKey: key, dtype: 'q4_k_m' });
+    assert.deepEqual(readSelection(storage), { modelKey: key, dtype: 'q4_k_m' });
+  }
+});
+
+test('app CPU candidates use exactly the GGUF revisions and files measured by the benchmark', () => {
+  for (const measured of comparisonModels) {
+    const shipped = getModel(measured.key);
+    assert.equal(shipped.id, measured.id);
+    assert.equal(shipped.revision, measured.revision);
+    assert.equal(shipped.file, measured.file);
+    assert.equal(shipped.sha256, measured.sha256);
+    assert.equal(shipped.weightBytes.q4_k_m, measured.bytes);
+    assert.equal(shipped.noThinking === true, measured.noThinking === true);
+  }
 });

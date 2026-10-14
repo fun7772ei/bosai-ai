@@ -94,3 +94,25 @@ test('native finish reason distinguishes token limit from natural completion', a
   }
   await session.dispose();
 });
+
+test('Qwen CPU keeps Jinja thinking disabled at load and each request without changing LFM defaults', async () => {
+  const fake = engine(); let completions = 0;
+  fake.loadModel = async (blobs, params) => {
+    assert.equal(params.jinja, true);
+    assert.deepEqual(params.default_template_kwargs, { enable_thinking: false });
+    assert.equal(params.n_ctx, 512); assert.equal(params.n_threads, 1); assert.equal(params.reasoning, false);
+  };
+  fake.createChatCompletion = async options => {
+    completions++;
+    assert.deepEqual(options.chat_template_kwargs, { enable_thinking: false });
+    assert.equal(options.temperature, 0); assert.equal(options.cache_prompt, false);
+  };
+  const session = new CpuSession(() => fake, blob.size, { noThinking: true });
+  await session.load(blob);
+  await session.generate('最初の入力', 32, () => {});
+  await session.generate('別の入力', 64, () => {});
+  assert.equal(completions, 2);
+  assert.equal(cpuRequest('LFMの入力', 32).chat_template_kwargs, undefined);
+  assert.equal(CPU_LOAD_PARAMS.jinja, undefined);
+  await session.dispose();
+});

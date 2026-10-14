@@ -1,0 +1,322 @@
+{
+  "browser": "linux Chromium (not iPad Safari)",
+  "model": "Takenoko12345678/Qwen3.5-0.8B-Japanese-SFT-v2-GGUF",
+  "revision": "a5c9ba2dd9220a0163e82af3a08e2ab4e77c343b",
+  "dtype": "q4_k_m",
+  "gpuDisabled": true,
+  "profileMode": "persistent on workspace disk, no quota override",
+  "smoke": true,
+  "status": "passed",
+  "samples": [
+    {
+      "type": "complete",
+      "modelKey": "qwen35-cpu",
+      "model": "Takenoko12345678/Qwen3.5-0.8B-Japanese-SFT-v2-GGUF",
+      "revision": "a5c9ba2dd9220a0163e82af3a08e2ab4e77c343b",
+      "engine": "wllama-cpu",
+      "text": "午後3時、公園の入口",
+      "tokens": 8,
+      "elapsedMs": 6742.80000000447,
+      "ttftMs": 5401.39999999851,
+      "tokensPerSecond": 1.1864507326325409,
+      "decodeTokensPerSecond": 5.218428507506259,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false,
+        "jinja": true,
+        "default_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "loadMs": 5597.70000000298,
+      "prompt": "「集合は午後3時、公園の入口です。」から、時刻と場所だけを書いてください。",
+      "time": "2026-10-14T03:53:32.334Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "qwen35-cpu",
+      "model": "Takenoko12345678/Qwen3.5-0.8B-Japanese-SFT-v2-GGUF",
+      "revision": "a5c9ba2dd9220a0163e82af3a08e2ab4e77c343b",
+      "engine": "wllama-cpu",
+      "text": "1、2、3",
+      "tokens": 6,
+      "elapsedMs": 4961.5,
+      "ttftMs": 4065.9000000059605,
+      "tokensPerSecond": 1.2093117000906983,
+      "decodeTokensPerSecond": 5.582849486415003,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false,
+        "jinja": true,
+        "default_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "loadMs": 5597.70000000298,
+      "prompt": "日本語で1から3まで数えてください。",
+      "time": "2026-10-14T03:53:42.298Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "qwen35-cpu",
+      "model": "Takenoko12345678/Qwen3.5-0.8B-Japanese-SFT-v2-GGUF",
+      "revision": "a5c9ba2dd9220a0163e82af3a08e2ab4e77c343b",
+      "engine": "wllama-cpu",
+      "text": "再読み込み成功",
+      "tokens": 5,
+      "elapsedMs": 4668.5,
+      "ttftMs": 3968.6999999955297,
+      "tokensPerSecond": 1.071007818357074,
+      "decodeTokensPerSecond": 5.715918833916044,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false,
+        "jinja": true,
+        "default_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "loadMs": 4596.4000000059605,
+      "prompt": "「再読み込み成功」とだけ書いてください。",
+      "time": "2026-10-14T03:53:51.856Z"
+    },
+    {
+      "type": "complete",
+      "modelKey": "qwen35-cpu",
+      "model": "Takenoko12345678/Qwen3.5-0.8B-Japanese-SFT-v2-GGUF",
+      "revision": "a5c9ba2dd9220a0163e82af3a08e2ab4e77c343b",
+      "engine": "wllama-cpu",
+      "text": "1、2、3",
+      "tokens": 6,
+      "elapsedMs": 4843.80000000447,
+      "ttftMs": 3941.60000000149,
+      "tokensPerSecond": 1.2386968908696607,
+      "decodeTokensPerSecond": 5.542008423834497,
+      "tokensKnown": true,
+      "stopped": false,
+      "finishReason": "stop",
+      "outputLimitReached": false,
+      "dtype": "q4_k_m",
+      "settings": {
+        "n_gpu_layers": 0,
+        "n_threads": 1,
+        "n_ctx": 512,
+        "n_batch": 64,
+        "n_ubatch": 64,
+        "n_parallel": 1,
+        "offload_kqv": false,
+        "no_kv_offload": true,
+        "warmup": false,
+        "ctx_shift": false,
+        "cache_idle_slots": false,
+        "reasoning": false,
+        "jinja": true,
+        "default_template_kwargs": {
+          "enable_thinking": false
+        }
+      },
+      "loadMs": 5029.0999999940395,
+      "prompt": "日本語で1から3まで数えてください。",
+      "time": "2026-10-14T03:54:02.062Z"
+    }
+  ],
+  "errors": [],
+  "memory": {
+    "method": "500ms PPid browser-tree PSS, full browser and renderer role; not Safari",
+    "baseline": {
+      "pssMiB": 149.42578125,
+      "rssMiB": 333.70703125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 40.0244140625,
+        "zygote": 20.857421875,
+        "gpu-process": 27.7197265625,
+        "renderer": 39.19921875,
+        "utility": 21.625
+      },
+      "rendererPssMiB": 39.19921875
+    },
+    "peaks": {
+      "download": {
+        "pssMiB": 553.6328125,
+        "rssMiB": 771.34765625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 55.609375,
+          "zygote": 20.607421875,
+          "gpu-process": 33.240234375,
+          "renderer": 418.970703125,
+          "utility": 25.205078125
+        },
+        "rendererPssMiB": 418.970703125
+      },
+      "load": {
+        "pssMiB": 2088.3349609375,
+        "rssMiB": 2306.08203125,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 924.001953125,
+          "zygote": 20.5908203125,
+          "gpu-process": 37.2392578125,
+          "renderer": 1082.50390625,
+          "utility": 23.9990234375
+        },
+        "rendererPssMiB": 1082.50390625
+      },
+      "generate": {
+        "pssMiB": 2056.861328125,
+        "rssMiB": 2280.859375,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 924.802734375,
+          "zygote": 20.5908203125,
+          "gpu-process": 36.2236328125,
+          "renderer": 1051.25390625,
+          "utility": 23.990234375
+        },
+        "rendererPssMiB": 1051.25390625
+      }
+    },
+    "rendererPeaks": {
+      "download": {
+        "pssMiB": 553.6328125,
+        "rssMiB": 771.34765625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 55.609375,
+          "zygote": 20.607421875,
+          "gpu-process": 33.240234375,
+          "renderer": 418.970703125,
+          "utility": 25.205078125
+        },
+        "rendererPssMiB": 418.970703125
+      },
+      "load": {
+        "pssMiB": 2088.3349609375,
+        "rssMiB": 2306.08203125,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 924.001953125,
+          "zygote": 20.5908203125,
+          "gpu-process": 37.2392578125,
+          "renderer": 1082.50390625,
+          "utility": 23.9990234375
+        },
+        "rendererPssMiB": 1082.50390625
+      },
+      "generate": {
+        "pssMiB": 2056.861328125,
+        "rssMiB": 2280.859375,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 924.802734375,
+          "zygote": 20.5908203125,
+          "gpu-process": 36.2236328125,
+          "renderer": 1051.25390625,
+          "utility": 23.990234375
+        },
+        "rendererPssMiB": 1051.25390625
+      }
+    },
+    "incompleteSamples": 0
+  },
+  "appBuild": "b49b4010ddff",
+  "ready": {
+    "modelKey": "qwen35-cpu",
+    "model": "Takenoko12345678/Qwen3.5-0.8B-Japanese-SFT-v2-GGUF",
+    "revision": "a5c9ba2dd9220a0163e82af3a08e2ab4e77c343b",
+    "engine": "wllama-cpu",
+    "dtype": "q4_k_m",
+    "type": "ready",
+    "loadMs": 5597.70000000298,
+    "settings": {
+      "threads": 1,
+      "contextTokens": 512,
+      "batchTokens": 64,
+      "gpuLayers": 0,
+      "compat": true
+    },
+    "loadParams": {
+      "n_gpu_layers": 0,
+      "n_threads": 1,
+      "n_ctx": 512,
+      "n_batch": 64,
+      "n_ubatch": 64,
+      "n_parallel": 1,
+      "offload_kqv": false,
+      "no_kv_offload": true,
+      "warmup": false,
+      "ctx_shift": false,
+      "cache_idle_slots": false,
+      "reasoning": false,
+      "jinja": true,
+      "default_template_kwargs": {
+        "enable_thinking": false
+      }
+    },
+    "wllama": "3.8.1",
+    "libllama": "b11364-46ca246"
+  },
+  "stopped": true,
+  "modelRequests": 1,
+  "offlineReloadAndGeneration": true
+}

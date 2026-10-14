@@ -1,12 +1,12 @@
 # Codex Cloudに貼り付けるプロンプト
 
-対象リポジトリは `fun7772ei/bosai-ai`、開始点は最新の `main`。以下を新しいCloudチャットの依頼文として使ってください。
+対象リポジトリは `fun7772ei/bosai-ai`、開始点は最新の `main` と未マージPRの状態を確認して決めてください。比較ブランチは `codex/phase1-cpu-model-comparison`、依存するPR #6は勝手にマージしないでください。以下を新しいCloudチャットの依頼文として使ってください。
 
 ---
 
-防災AIチャットボット `bosai-ai` のPhase 1を引き継いでください。最初に `CLOUD_HANDOFF.md`、`README.md`、`docs/specification-v1.1.md`、`docs/phase1-results.md`、`docs/phase1-cpu-results.md`、`docs/phase1-cpu-quality.md`、`docs/ipad-verification.md` を読んでください。古い記述は履歴として扱い、最新の比較結果とユーザー指示を優先してください。
+防災AIチャットボット `bosai-ai` のPhase 1を引き継いでください。最初に `CLOUD_HANDOFF.md`、`README.md`、`docs/specification-v1.1.md`、`docs/phase1-results.md`、`docs/phase1-cpu-results.md`、`docs/phase1-cpu-quality.md`、`docs/phase1-four-cpu-models.md`、`docs/ipad-verification.md` を読んでください。古い記述は履歴として扱い、最新の比較結果とユーザー指示を優先してください。
 
-現在の有力候補は **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版**。wllama/compat 3.8.1、1スレッド、GPUなし、文脈512、入力200文字、出力32/64、履歴なしを維持します。Qwen/WebGPUは互換性のため残っていますが、第一候補ではありません。新しいモデルはユーザーの依頼なしに追加しないでください。
+現在の有力候補は **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版**。wllama/compat 3.8.1、1スレッド、GPUなし、文脈512、入力200文字、出力32/64、履歴なしを維持します。CPUの比較候補としてQwen3.5-0.8B日本語SFT v2、Qwen3-0.6B、LFM2-700Mもあります。Qwen系はJinjaとenable_thinking:falseを明示します。旧WebGPUも互換性のため残しますが、第一候補ではありません。新しいモデルはユーザーの依頼なしに追加しないでください。
 
 必須対象は **iPad第10世代・iPadOS 26.5・Safari**、最終的にPWAで初回取得後のオフライン利用に対応することです。ユーザー判断でオフライン/PWAの実機テストは後回し。Safari通常タブでの安定性と回答品質を優先し、同じ入力の反復やサイトデータ/アプリ消去を求めないでください。
 
@@ -18,6 +18,6 @@ WebGPU版ではQwenの初期化、Gemmaの連続生成、LFMの入力変更時�
 
 質問や回答を外部AI APIへ送信せず、モデル本体をGitやPages成果物へ含めないでください。`fun7772ei/bosai-app`は辞書の参照元のみで、一切変更しないでください。
 
-Node.js 24以降で `npm ci`、`npm test`、`npm run build`。Cloudでは必要に応じてNode 24のプロキシ対応を `NODE_USE_ENV_PROXY=1` で有効にします。ブラウザ準備は `npx playwright install --with-deps chromium`。本番previewをport 4173で起動し `node scripts/browser-check.mjs`（ダミー保存）と `node scripts/cpu-inference-check.mjs`（実GGUF）を実行してください。品質比較は `node scripts/cpu-quality-check.mjs`。モデルはGit対象外のローカルファイルを使用します。ダミーデータ、Chromium実モデル、ユーザー提供実機ログを区別してください。
+Node.js 24以降で `npm ci`、`npm test`、`npm run build`。Cloudでは必要に応じてNode 24のプロキシ対応を `NODE_USE_ENV_PROXY=1` で有効にします。ブラウザ準備は `npx playwright install --with-deps chromium`。本番previewをport 4173で起動し `node scripts/browser-check.mjs`（ダミー保存）と `node scripts/cpu-inference-check.mjs`（実GGUF）を実行してください。品質調整の比較は `node scripts/cpu-quality-check.mjs`。4モデルの比較は `node scripts/cpu-model-comparison.mjs`、32/64実生成とメモリは `--timing-only`。アプリ経路の追加CPUは `node scripts/cpu-inference-check.mjs --model=lfm2-700m-cpu --smoke` 等。モデルはGit対象外のローカルファイルを使用します。ダミーデータ、Chromium実モデル、ユーザー提供実機ログを区別してください。
 
 `codex/`で始まるブランチで作業し、比較結果・失敗・未確認事項・最小限のiPad手順を日本語で資料に記録して、レビュー可能なPRを作成してください。今回の依頼がPRまでの場合は自動マージ/公開しないでください。「iPad確認済み」「完全オフライン完成」と一括して報告せず、どの環境・範囲の検証が成立したかを明記してください。

@@ -1,6 +1,6 @@
 import { Wllama, CacheManager } from '@wllama/wllama/esm/index.js';
 import compatCode from '@wllama/wllama-compat/wasm/wllama.js?raw';
-import { CpuSession, CPU_LOAD_PARAMS } from './cpu-session.js';
+import { CpuSession } from './cpu-session.js';
 import { getModel, modelFileUrl } from './config.js';
 import { openModelStore } from './model-storage.js';
 import { workerError } from './worker-errors.js';
@@ -45,15 +45,15 @@ self.onmessage = async ({ data }) => {
       store = await openModelStore();
       const blob = await store.blob(modelFileUrl(activeModel.file, activeModel.key));
       store.close(); store = null;
-      session = new CpuSession(createEngine, activeModel.weightBytes.q4_k_m);
+      session = new CpuSession(createEngine, activeModel.weightBytes.q4_k_m, { noThinking: activeModel.noThinking === true });
       send('stage', { stage: 'CPUモデル初期化（WASM・1スレッド）' });
       const settings = await session.load(blob);
-      send('ready', { loadMs: performance.now() - started, dtype: 'q4_k_m', settings, loadParams: CPU_LOAD_PARAMS, wllama: '3.8.1', libllama: Wllama.getLibllamaVersion() });
+      send('ready', { loadMs: performance.now() - started, dtype: 'q4_k_m', settings, loadParams: session.loadParams, wllama: '3.8.1', libllama: Wllama.getLibllamaVersion() });
     } else if (data.type === 'generate') {
       send('stage', { stage: '日本語生成（CPU・履歴なし）' });
       if (!session) throw new Error('先にCPUモデルを読み込んでください。');
       const result = await session.generate(data.prompt, data.maxTokens, result => send('update', result));
-      send('complete', { ...result, dtype: 'q4_k_m', settings: CPU_LOAD_PARAMS });
+      send('complete', { ...result, dtype: 'q4_k_m', settings: session.loadParams });
     }
   } catch (error) {
     await session?.dispose().catch(() => {});

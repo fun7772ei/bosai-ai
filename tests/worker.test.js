@@ -79,3 +79,13 @@ test('CPU shutdown waits for child-worker disposal and suppresses late generatio
   await disposed;
   assert.equal(f.terminated, true);
 });
+
+test('empty quota exceptions retain the storage cause instead of claiming Worker startup failed', () => {
+  for (const error of [new DOMException('', 'QuotaExceededError'), { error: new DOMException('', 'QuotaExceededError') }]) {
+    const details = workerError(error, { operation: 'download' });
+    assert.equal(details.name, 'QuotaExceededError');
+    assert.equal(details.operation, 'download');
+    assert.match(details.message, /保存領域.*容量制限/);
+    assert.doesNotMatch(details.message, /Workerが起動/);
+  }
+});

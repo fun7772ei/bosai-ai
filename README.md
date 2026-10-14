@@ -1,6 +1,9 @@
 # bosai-ai — Phase 1
 
-端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/Gemmaではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。CPU版はユーザー提供ログで短時間生成とリセット後の再初期化に成功。ただし回答品質・長時間・PWAオフラインと今回の変更版の実機動作は未確認で、Phase 1成立とは扱わない。辞書未統合のため、このページの回答を防災判断には使わない。
+端末内LLMの保存・読み込み・推論を比較するPhase 1ページ。必須対象はiPad第10世代・iPadOS 26.5のSafariとPWAオフライン利用。Qwen/GemmaのWebGPU版ではクラッシュ、LFMも入力変更時のクラッシュと品質不足のユーザー報告がある。対策比較として **LFM2.5-350M GGUF Q4_K_MのCPU/WASM版** を追加した。CPU版はユーザー提供ログで短時間生成とリセット後の再初期化に成功。ただし回答品質・長時間・PWAオフラインと今回の変更版の実機動作は未確認で、Phase 1成立とは扱わない。辞書未統合のため、このページの回答を防災判断には使わない。
+
+
+CPUはLFM2.5-350Mに加え、Qwen3.5-0.8B日本語SFT v2・Qwen3-0.6B・LFM2-700MのGGUF Q4_K_Mを比較できる。[4モデルの実測比較・暫定順位](docs/phase1-four-cpu-models.md) を参照。既定はLFM350のまま。Qwen系はthinking無効で、追加3候補のiPad動作は未確認。全候補を取得する必要はなく、選択だけではダウンロードしない。
 
 ## 起動
 
@@ -14,7 +17,13 @@ Node.js 24以降で `npm ci` → `npm run dev`。本番とオフライン動作�
 
 wllama/compat 3.8.1を固定し、Safari向けAsyncify/MEMORY32を強制する。同梱WASMもService Workerに保存する。CPUにWebGPUは不要。全体サイズ・GGUFヘッダー・分割キー/サイズを確認するが、本番読込の暗号学的ハッシュ検証は未実装。[結果・再現手順](docs/phase1-cpu-results.md)、[iPad最小手順](docs/ipad-verification.md) を参照。
 
-## 回答品質の比較
+## 4モデル比較
+
+PR #6を継承した比較で、wllama/compat 3.8.1の更新なしに4モデルが実生成に成功した。既存12問＋架空の防災文4問、32/64上限、配布元推奨設定を評価。LFM2-700Mの厳密遵守率が最高だったが、追加モデルの64 tokens生成は約14〜16秒で、メモリも増えた。いずれも防災回答品質の成立とは扱わない。
+
+開発側比較は `node scripts/cpu-model-comparison.mjs`、`--timing-only` で32/64実生成とメモリ。固定ファイルの場所/SHA256は `scripts/cpu-comparison-models.mjs`。本番previewの追加候補は `node scripts/cpu-inference-check.mjs --model=qwen35-cpu --smoke` 等で保存・停止・リセット・再読込を検証する。モデル本体はGit対象外。測定用Linux/proc・CDPは開発スクリプトだけで、本番アプリには不要。
+
+## 回答品質の比較（PR #6の履歴）
 
 [品質比較結果](docs/phase1-cpu-quality.md) に実GGUFの18条件・108生成を記録。Jinja、system指示、temperature/top_k/top_p/repeat_penalty、32/64上限を比較したが、品質と速度を両立する改善は確認できず、生成設定は維持した。品質比較スクリプトは `node scripts/cpu-quality-check.mjs`。元の6項目と別入力6項目で実出力・採点・速度を保存し、回答を固定文字列へ置換しない。
 
