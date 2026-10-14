@@ -74,20 +74,21 @@ export function factsIn(input) {
   if(vehicleQuestion) facts.vehicleFlooded=null;
   else if(denial) facts.vehicleFlooded=false;
   else if((!modes.length||automobile)&&assertion) facts.vehicleFlooded=true;
-  // Determine polarity of the identity/transition clause, not only its noun suffix.
-  const changes=[...autoText.matchAll(new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun,'g'))];
-  if (changes.some(change=>{
-    const tail=autoText.slice(change.index+change[0].length).split(/[、。！？?]/)[0];
-    const directTail=autoText.slice(change.index+change[0].length);
-    const transition=/(?:乗り換|乗換|乗り替|変更|変わ)/.exec(tail);
+  // Identity nouns and transition verbs are independent event cues: conversational
+  // answers often omit the noun. A denied event never changes the current vehicle.
+  const eventTails=[...autoText.matchAll(new RegExp('(?:別の|他の|違う|新しい)'+vehicleNoun,'g'))]
+    .map(match=>autoText.slice(match.index+match[0].length));
+  for(const match of autoText.matchAll(/乗り換え|乗換え|乗り替え/g))eventTails.push(autoText.slice(match.index));
+  for(const directTail of eventTails){
+    const tail=directTail.split(/[、。！？?]/)[0];
+    const transition=/(?:乗り換|乗換|乗り替)/.exec(tail);
     const verbTail=transition?tail.slice(transition.index):'';
-    const deniedAction=/(?:て|で)(?:は|も)?(?:い|おり)?(?:ません|ない|なかった)|(?:え|わ|し)(?:ません|ない)|わけではない/.test(verbTail);
+    const deniedAction=/(?:て|で)(?:は|も)?(?:い|おり)?(?:ません|ない|なかった)|(?:え|わ|し)(?:ません(?:でした)?|ない|なかった|ず|ぬ)|(?:つもり|予定|意思)(?:は|が)?(?:ありません|ない)|(?:の)?では(?:ない|ありません|なく)|わけではない/.test(verbTail);
     const questionedAction=/(?:か$|かどうか|不明|分から|わから)/.test(verbTail);
-    if(questionTail.test(directTail)||questionedAction) facts.vehicleChangeQuestion=true;
-    return !new RegExp('^'+negativePredicate).test(tail)
-      && !/^(?:で(?:は)?|じゃ)(?:ない|ありません|なかった|なく)/.test(tail)
-      && !questionTail.test(directTail)&&!deniedAction&&!questionedAction;
-  })) facts.vehicleChanged = true;
+    const directDenied=new RegExp('^'+negativePredicate).test(tail)||/^(?:で(?:は)?|じゃ)(?:ない|ありません|なかった|なく)/.test(tail);
+    if(questionTail.test(directTail)||questionedAction)facts.vehicleChangeQuestion=true;
+    else if(!directDenied&&!deniedAction)facts.vehicleChanged=true;
+  }
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
   if (/高台.*(?:時間はある|間に合う)|間に合わないわけではない/.test(text)) facts.unreachableHeight = false;
