@@ -1,0 +1,4 @@
+[
+ {"id":"s01","kind":"same-vehicle-contrast","turns":[{"text":"水没した車の車内に水が入っています。脱出の原文は？","kind":"confirm","gold":"bosai-71"},{"text":"その車は他のトラックではなく元のトラックです。脱出の注意が必要です。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]},
+ {"id":"s02","kind":"proposal-and-current-scene","turns":[{"text":"水没した車の車内に水が入っています。脱出情報を見たい。","kind":"confirm","gold":"bosai-71"},{"text":"その後、新しい乗用車に乗り換えましょうか？","kind":"clarify","facts":{"vehicleFlooded":true},"absentFacts":["vehicleChanged","vehicleChangeQuestion"],"noPending":true},{"text":"まだ水没した元の車内にいます。脱出する手順を見せて。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]}
+]
