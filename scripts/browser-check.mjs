@@ -100,7 +100,7 @@ for (const model of candidateModels) {
   if (JSON.stringify(external) !== JSON.stringify([4194304, 4194304, 4194304, 123])) throw new Error('Wrong external weight layout');
   const [diagnostic] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: '検証結果をJSON保存', exact: true }).click()]);
   const exported = JSON.parse(readFileSync(await diagnostic.path(), 'utf8'));
-  if (exported.model !== model.id || exported.modelKey !== model.key || exported.modelCatalog.length !== 3) throw new Error('Wrong model in diagnostic JSON');
+  if (exported.model !== model.id || exported.modelKey !== model.key || exported.modelCatalog.length !== 4) throw new Error('Wrong model in diagnostic JSON');
   if (!exported.logs.some(log => log.data?.model === model.id && log.data?.modelKey === model.key)) throw new Error('Logs lost model attribution');
   await context.setOffline(true);
   await page.reload();

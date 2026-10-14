@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { MODELS, getModel, modelFiles, modelFileUrl, pinnedModelUrl } from '../src/config.js';
+import { MODELS, getModel, modelFiles, modelDtypes, modelFileUrl, pinnedModelUrl } from '../src/config.js';
 import { downloadModel } from '../src/download.js';
 import { openChunkStore } from '../src/chunk-store.js';
 import { openModelStore, modelStorageStatus } from '../src/model-storage.js';
@@ -12,10 +12,10 @@ test('new models require external weights and pin metadata lookup to their own r
     const root = `https://huggingface.co/${model.id}/resolve/`;
     assert.equal(pinnedModelUrl(new Request(root + 'main/tokenizer_config.json')), root + model.revision + '/tokenizer_config.json');
     assert.equal(pinnedModelUrl(root + 'other-revision/config.json'), root + 'other-revision/config.json');
-    for (const dtype of ['q4f16', 'q4']) {
+    for (const dtype of modelDtypes(model.key)) {
       const files = modelFiles(dtype, model.key);
-      assert.equal(files.length, model.key === 'qwen3' ? 5 : 6);
-      assert.equal(files.includes(`onnx/model_${dtype}.onnx_data`), model.key !== 'qwen3');
+      assert.equal(files.length, model.engine === 'wllama-cpu' ? 1 : model.key === 'qwen3' ? 5 : 6);
+      assert.equal(files.includes(`onnx/model_${dtype}.onnx_data`), !!model.externalData);
     }
   }
   assert.throws(() => getModel('unknown'), /Unsupported model/);
@@ -60,7 +60,7 @@ test('interrupted external-weight download preserves other files and resumes by 
   } finally { store.close(); }
 });
 
-test('all three saves coexist and selected-model deletion preserves Qwen and the other candidate', async () => {
+test('all four saves coexist and selected-model deletion preserves the other models', async () => {
   const original = globalThis.caches;
   const legacy = new Map([
     [modelFileUrl('legacy-extra.json', 'qwen3'), new Response('qwen-legacy')],
@@ -72,13 +72,17 @@ test('all three saves coexist and selected-model deletion preserves Qwen and the
   let store;
   try {
     store = await openModelStore();
-    for (const model of MODELS) await downloadModel(store, 'q4f16', () => {}, async () => new Response(`fixture-${model.key}`), model.key);
+    for (const model of MODELS) await downloadModel(store, modelDtypes(model.key)[0], () => {}, async () => new Response(`fixture-${model.key}`), model.key);
     store.close(); store = await openModelStore();
-    for (const model of MODELS) assert.equal((await modelStorageStatus(store, 'q4f16', model.key)).complete, true);
+    for (const model of MODELS) assert.equal((await modelStorageStatus(store, modelDtypes(model.key)[0], model.key)).complete, true);
     await store.clear('gemma3');
     assert.equal((await modelStorageStatus(store, 'q4f16', 'gemma3')).complete, false);
     assert.equal((await modelStorageStatus(store, 'q4f16', 'lfm2')).complete, true);
     assert.equal((await modelStorageStatus(store, 'q4f16', 'qwen3')).complete, true);
+    assert.equal((await modelStorageStatus(store, 'q4_k_m', 'lfm2-cpu')).complete, true);
+    await store.clear('lfm2-cpu');
+    assert.equal((await modelStorageStatus(store, 'q4_k_m', 'lfm2-cpu')).complete, false);
+    assert.equal((await modelStorageStatus(store, 'q4f16', 'lfm2')).complete, true);
     assert.equal(legacy.has(modelFileUrl('legacy-extra.json', 'gemma3')), false);
     assert.equal(legacy.has(modelFileUrl('legacy-extra.json', 'qwen3')), true);
   } finally { store?.close(); globalThis.caches = original; }
@@ -106,4 +110,15 @@ test('fresh installations prefer LFM while an explicit saved model is preserved'
   assert.deepEqual(readSelection(storage), { modelKey: 'lfm2', dtype: 'q4f16' });
   saveSelection(storage, { modelKey: 'gemma3', dtype: 'q4' });
   assert.deepEqual(readSelection(storage), { modelKey: 'gemma3', dtype: 'q4' });
+});
+
+test('CPU selection has its own GGUF format and preserves WebGPU preferences', () => {
+  const values = new Map();
+  const storage = { getItem: key => values.get(key) ?? null, setItem: (key, value) => values.set(key, value) };
+  saveSelection(storage, { modelKey: 'lfm2', dtype: 'q4f16' });
+  saveSelection(storage, { modelKey: 'lfm2-cpu', dtype: 'q4_k_m' });
+  assert.deepEqual(readSelection(storage), { modelKey: 'lfm2-cpu', dtype: 'q4_k_m' });
+  assert.equal(readDtype(storage, 'lfm2'), 'q4f16');
+  assert.throws(() => modelFiles('q4f16', 'lfm2-cpu'), /Unsupported dtype/);
+  assert.deepEqual(modelFiles('q4_k_m', 'lfm2-cpu'), ['LFM2.5-350M-Q4_K_M.gguf']);
 });

@@ -5,4 +5,5 @@ import { bootWorker } from './worker-bootstrap.js';
 self.onmessage = ({ data }) => bootWorker(data.kind, {
   download: () => import('./download.worker.js'),
   inference: () => import('./ai.worker.js'),
+  'cpu-inference': () => import('./cpu.worker.js'),
 });

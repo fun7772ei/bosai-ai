@@ -1,4 +1,4 @@
-import { modelFiles, modelFileUrl, MODEL_CACHE, pinnedModelUrl } from './config.js';
+import { modelFiles, modelDtypes, modelFileUrl, MODEL_CACHE, pinnedModelUrl } from './config.js';
 import { openChunkStore } from './chunk-store.js';
 
 export async function openModelStore() {
@@ -7,6 +7,7 @@ export async function openModelStore() {
   try { legacy = await caches.open(MODEL_CACHE); } catch {}
   return {
     close: chunks.close,
+    blob: key => chunks.blob(pinnedModelUrl(key)),
     async match(key) {
       key = pinnedModelUrl(key);
       const saved = await chunks.match(key);
@@ -27,7 +28,7 @@ export async function openModelStore() {
     },
     async clear(modelKey) {
       if (modelKey === undefined) { await chunks.clear(); await caches.delete(MODEL_CACHE); return; }
-      const urls = new Set(['q4f16', 'q4'].flatMap(dtype => modelFiles(dtype, modelKey).map(file => modelFileUrl(file, modelKey))));
+      const urls = new Set(modelDtypes(modelKey).flatMap(dtype => modelFiles(dtype, modelKey).map(file => modelFileUrl(file, modelKey))));
       for (const url of urls) await chunks.delete(url);
       try {
         const prefix = modelFileUrl('', modelKey);

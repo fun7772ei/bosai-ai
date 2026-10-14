@@ -13,6 +13,8 @@ export default defineConfig({
     name: 'offline-runtime',
     closeBundle() {
       mkdirSync('dist/runtime', { recursive: true });
+      mkdirSync('dist/runtime/wllama-compat', { recursive: true });
+      copyFileSync('node_modules/@wllama/wllama-compat/wasm/wllama.wasm', 'dist/runtime/wllama-compat/wllama.wasm');
       for (const name of readdirSync('node_modules/onnxruntime-web/dist')) {
         if (/^ort-wasm-simd-threaded\.asyncify\.(wasm|mjs)$/.test(name)) copyFileSync(`node_modules/onnxruntime-web/dist/${name}`, `dist/runtime/${name}`);
       }
