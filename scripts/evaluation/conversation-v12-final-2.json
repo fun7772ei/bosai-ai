@@ -1,0 +1,4 @@
+[
+ {"id":"t01","kind":"nounless-proposal-then-completion","turns":[{"text":"水没した車の車内に水が入っています。脱出の原文は？","kind":"confirm","gold":"bosai-71"},{"text":"その後、乗り換えるべきでしょうか？","kind":"clarify","facts":{"vehicleFlooded":true},"noPending":true},{"text":"もう乗り換えました。","kind":"clarify","absentFacts":["vehicleFlooded","vehicleChanged","vehicleChangeQuestion"],"noPending":true}]},
+ {"id":"t02","kind":"verbal-identity-negation","turns":[{"text":"水没した車の車内に水が入っています。脱出の情報を知りたい。","kind":"confirm","gold":"bosai-71"},{"text":"その車は別の軽自動車に乗り換えたのではなく、元の軽自動車です。脱出する注意を知りたい。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]}
+]
