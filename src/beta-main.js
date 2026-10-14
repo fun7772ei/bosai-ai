@@ -14,7 +14,7 @@ function render(run){lastRun=run;$('candidates').replaceChildren();$('clarify').
  $('metrics').textContent=`初期化 ${run.timings.loadMs?.toFixed(1)??'なし/再利用'} ms / 質問Embedding ${run.timings.embeddingMs?.toFixed(1)??'なし'} ms / 検索 ${run.timings.retrievalMs.toFixed(1)} ms / 合計 ${run.timings.totalMs.toFixed(1)} ms${run.fallback?` / 切替理由: ${run.fallback}`:''}`;$('candidates').dataset.run=JSON.stringify({...run,results:undefined});
 }
 $('question').oninput=()=>$('count').textContent=`${$('question').value.length} / 200`;
-$('searchForm').onsubmit=async event=>{event.preventDefault();if(controller.busy)return;const seq=++uiRun;currentQuery=$('question').value.trim();$('message').textContent='関連する情報を検索しています…';try{const run=await controller.search(currentQuery,$('mode').value);if(seq===uiRun)render(run);}catch(e){if(seq===uiRun)$('message').textContent=e.message;}};
+$('searchForm').onsubmit=async event=>{event.preventDefault();if(controller.busy)return;if(voiceListening){$('message').textContent='先に「録音停止」を押し、認識結果を確認してください。';return;}if(voiceMic){await voiceRelease();voiceState('音声モデルを解放しました。Ruri検索に切り替えます。');}const seq=++uiRun;currentQuery=$('question').value.trim();$('message').textContent='関連する情報を検索しています…';try{const run=await controller.search(currentQuery,$('mode').value);if(seq===uiRun)render(run);}catch(e){if(seq===uiRun)$('message').textContent=e.message;}};
 async function modelAction(action){const seq=++uiRun;try{await controller[action]();}catch(e){if(seq===uiRun)controller.phase(`処理を完了できませんでした：${e.message}。軽量検索は利用できます。`);}if(seq===uiRun)await controller.inspect();}
 $('saveModel').onclick=()=>modelAction('save');$('loadModel').onclick=()=>modelAction('load');$('stop').onclick=()=>{uiRun++;controller.stop();$('message').textContent='処理を停止しました。軽量検索または再試行をご利用ください。';controller.inspect();};$('resetModel').onclick=async()=>{uiRun++;await controller.reset();$('message').textContent='モデルを解放しました。保存済みデータと表示中の原文は維持しています。';};
 for(const text of ['寝ているときに地震が来たら？','高台に間に合わない津波の避難は？','避難所で水が使えないときのトイレは？']){const b=el('button',text);b.type='button';b.onclick=()=>{$('question').value=text;$('question').dispatchEvent(new Event('input'));$('searchForm').requestSubmit();};$('examples').append(b);}
@@ -92,9 +92,7 @@ $('voiceListen').onclick=async()=>{
 };
 $('voiceStop').onclick=async()=>{
   if(!voiceMic)return;
-  ++voiceSeq;voiceBusy=true;
-  // Keep callbacks for final lines active until stop() flushes its last segment.
-  --voiceSeq;
+  voiceBusy=true;
   voiceState('録音を終了しています…');
   try{
     await voiceMic.stop();
@@ -104,7 +102,7 @@ $('voiceStop').onclick=async()=>{
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
 };
-addEventListener('pagehide',()=>{voiceSeq++;voiceMic?.stop().catch?.(()=>{});voiceMic?.close().catch?.(()=>{});});
+addEventListener('pagehide',()=>{voiceSeq++;const m=voiceMic;voiceMic=null;try{Promise.resolve(m?.stop()).catch(()=>{});}catch{}try{Promise.resolve(m?.close()).catch(()=>{});}catch{}});
 
 try{$('mode').value=localStorage.getItem('bosai-beta-mode')||'hybrid';}catch{}if(!$('mode').value)$('mode').value='hybrid';$('mode').onchange=()=>{try{localStorage.setItem('bosai-beta-mode',$('mode').value);}catch{}};
 $('build').textContent=`ベータ版 ${__APP_BUILD__} / 辞書 ${corpus.length}件 / CPU・WASM / 自由生成なし`;
