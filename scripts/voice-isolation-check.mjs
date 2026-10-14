@@ -37,9 +37,19 @@ try {
     if(!nativeProbe)return result;
     const timeout=new Promise((_,reject)=>setTimeout(()=>reject(Error('Native Moonshine WASM did not finish within 60s')),60000));
     const native=await Promise.race([(async()=>{
-      const core=await lib.loadMoonshineModule();
-      const manifest=JSON.parse(core.sttDependencies('ja',String(lib.ModelArch.TinyStreaming),false));
-      return {wasmVersion:core.version(),assets:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0)};
+      let stage='WASM factory',core;
+      try{
+        core=await lib.loadMoonshineModule();
+        stage='Japanese tiny streaming manifest';
+        const manifest=JSON.parse(core.sttDependencies('ja',String(lib.ModelArch.TinyStreaming),false));
+        return {wasmVersion:core.version(),assets:manifest.groups?.reduce((n,g)=>n+(g.files?.length||0),0)};
+      }catch(e){
+        let decoded;
+        if(typeof e==='number'&&core?.getExceptionMessage){
+          try{decoded=core.getExceptionMessage(e);}catch{}
+        }
+        throw Error('Moonshine native stage '+stage+': '+String(decoded||e));
+      }
     })(),timeout]);
     return {...result,...native};
   },{nativeProbe});
