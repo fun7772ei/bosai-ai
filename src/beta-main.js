@@ -24,6 +24,7 @@ for(const text of ['寝ているときに地震が来たら？','高台に間に
 // The official WASM package is pinned; the microphone and model load only on button press.
 const MOONSHINE_MODULE=new URL('moonshine/index.js',location.origin+import.meta.env.BASE_URL).href;
 $('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
+const voiceUnload=el('button','音声モデルを解放');voiceUnload.type='button';voiceUnload.id='voiceUnload';voiceUnload.className='outlined';$('voiceStop').after(voiceUnload);voiceUnload.disabled=true;
 let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceTarget=null;
 const voiceDraft=new VoiceDraft(),voiceEvents=[];
 let voiceStage='未準備',voiceLastError=null;
@@ -35,6 +36,7 @@ function voiceState(message){
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
   $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening;
   $('voiceStop').disabled=voiceBusy||!voiceListening;
+  voiceUnload.disabled=voiceBusy||!voiceMic||voiceListening;
   refresh();
 }
 function voiceFailure(e){
@@ -118,6 +120,7 @@ $('voiceLoad').onclick=async()=>{
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
 };
+voiceUnload.onclick=async()=>{if(voiceBusy||voiceListening||!voiceMic)return;voiceBusy=true;voiceStage='モデル解放';voiceState('音声モデルを解放しています…');try{await voiceRelease();voiceLog('release');voiceState('音声モデルを解放しました。Ruriへ戻れます。');}catch(e){voiceFailure(e);}finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}};
 $('voiceListen').onclick=async()=>{
   if(voiceBusy||!voiceMic||voiceListening)return;
   voiceBusy=true;voiceStage='マイク開始';voiceTarget=voiceInput();voiceDraft.begin(voiceTarget.value.trim());
