@@ -39,6 +39,8 @@ User text / optional Moonshine transcript
 
 Keep the model worker, storage/cache, and microphone adapters isolated from the conversation policy. One typed result should travel through the pipeline rather than re-running similar regex rules at each boundary.
 
+Detailed implementation contract: [Conversation-engine rewrite brief](conversation-rewrite-brief.md).
+
 ## A practical rewrite sequence
 
 - **First:** freeze a compact behavior-based acceptance suite: ordinary queries, multi-turn corrections, negation, missing facts, unsupported live questions, 88-source integrity, offline restart, stop/retry, voice isolation. Preserve originals of existing tests.

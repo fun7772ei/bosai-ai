@@ -19,6 +19,8 @@ The fixed offline dictionary cannot check current alarms, road safety, shelter a
 **Start at [AGENTS.md](AGENTS.md)** for the active product constraints **and explicit permission to replace legacy architecture**. Past PR task instructions are not current requirements.
 
 - [Architecture map and potential replacement](docs/architecture-current.md)
+- [Conversation rewrite: concrete design and acceptance](docs/conversation-rewrite-brief.md)
+- [Short Codex implementation task](docs/codex-task.md)
 - [Development workflow: draft/quick vs ready/full CI](docs/development-workflow.md)
 - [Historical handoffs](docs/history/) and [diagnostic results](docs/diagnostics/) — read only for relevant investigations
 - [iPad verification notes](docs/ipad-verification.md)
