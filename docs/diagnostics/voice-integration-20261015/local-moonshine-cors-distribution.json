@@ -1,0 +1,105 @@
+{
+  "createdAt": "2026-10-15T05:29:52.263Z",
+  "sdk": "0.1.5",
+  "platform": "Linux Chromium; NOT iPad Safari",
+  "models": {
+    "tiny": {
+      "arch": 0,
+      "manifest": {
+        "groups": [
+          {
+            "base_url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja",
+            "files": [
+              {
+                "name": "encoder_model.ort",
+                "url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/encoder_model.ort",
+                "size": 13238184,
+                "checksum": "UJX6fA==",
+                "checksum_type": "crc32c",
+                "checksumVerified": true,
+                "corsVerified": true,
+                "localFile": "test-results/moonshine-assets/tiny/encoder_model.ort",
+                "sha256": "86ece73812604b9b5f1274b4d1e6eec0d783b96088ff46d49e30a53f881cad73",
+                "responseHeaders": "HTTP/1.1 200 OK\ndate: Thu, 15 Oct 2026 05:45:27 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Thu, 15 Oct 2026 05:45:28 GMT\ncontent-type: application/octet-stream\ncontent-length: 13238184\nvary: Origin\naccess-control-expose-headers: content-length,content-range,accept-ranges,etag\naccept-ranges: bytes\naccess-control-allow-origin: *\ncache-control: public, max-age=2592000\netag: \"439f4912f50561e5e1691b8a5751eed5\"\nlast-modified: Sat, 01 Aug 2026 00:53:40 GMT\nserver: envoy\ncf-cache-status: DYNAMIC\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=olmpsQUZ4s9yweQLe7eokxdDcz%2Fj5s1ouLZC7bvmqmK58yOxFfY3bS1ds0DtDWfn6yvG1OE6vdXxE0YlVduRyXXCbP9an3OBgwQWBTBAm%2F%2BxcZ4GtfQFvnrPlkxFLK3H59jarHDa4Iw%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\ncf-ray: a4ac848d394fa1ef-MSP\nx-envoy-upstream-service-time: 229\n\n"
+              },
+              {
+                "name": "decoder_model_merged.ort",
+                "url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/decoder_model_merged.ort",
+                "size": 58327272,
+                "checksum": "yiH1qg==",
+                "checksum_type": "crc32c",
+                "checksumVerified": true,
+                "corsVerified": true,
+                "localFile": "test-results/moonshine-assets/tiny/decoder_model_merged.ort",
+                "sha256": "9fcd9b71323a496b307e20dd305c4e9a1b533c7bedd6e4f660e974967dd60bb6",
+                "responseHeaders": "HTTP/1.1 200 OK\ndate: Thu, 15 Oct 2026 05:45:29 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Thu, 15 Oct 2026 05:45:29 GMT\ncontent-type: application/octet-stream\ncontent-length: 58327272\nvary: Origin\naccess-control-expose-headers: content-length,content-range,accept-ranges,etag\naccept-ranges: bytes\naccess-control-allow-origin: *\ncache-control: public, max-age=2592000\netag: \"ec007143b9521a8cce90722ff48ab17a\"\nlast-modified: Sat, 01 Aug 2026 00:53:39 GMT\nserver: envoy\ncf-cache-status: DYNAMIC\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=mbSKxs6p63F5UoEOi8j5pSQEJ83swcJNn4YqkCiN8ucs4FpOvYmpXe5vDZ7lb2IrwTcUQnX8jeljtAHqHPUjR5dBkpcdXm8ChfzZMNmn09lkHhGAts0Ql%2Fre6fY7z%2BFzYp%2FE0GuLSq0%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\ncf-ray: a4ac8497baa7acdb-MSP\nx-envoy-upstream-service-time: 183\n\n"
+              },
+              {
+                "name": "tokenizer.bin",
+                "url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/tokenizer.bin",
+                "size": 249974,
+                "checksum": "B7s10Q==",
+                "checksum_type": "crc32c",
+                "checksumVerified": true,
+                "corsVerified": true,
+                "localFile": "test-results/moonshine-assets/tiny/tokenizer.bin",
+                "sha256": "6884b35fd6377d4c4d32336a0bc152f36b64d1e45b6503683cdc238250a8472d",
+                "responseHeaders": "HTTP/1.1 200 OK\ndate: Thu, 15 Oct 2026 05:45:35 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Thu, 15 Oct 2026 05:45:35 GMT\ncontent-type: application/octet-stream\ncontent-length: 249974\nvary: Origin\naccess-control-expose-headers: content-length,content-range,accept-ranges,etag\naccept-ranges: bytes\naccess-control-allow-origin: *\ncache-control: public, max-age=2592000\netag: \"1373d5894cf6669c03c31e8ed141f969\"\nlast-modified: Sat, 01 Aug 2026 00:53:37 GMT\nserver: envoy\ncf-cache-status: DYNAMIC\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=IwhwhY4%2BQzZDc2ZSpRa8Rj7FYp7rHXVVRHhwwC%2FkD9yH7LpJAl2AnTwYHJLRAIiiW5SgTkJTLerwMV%2FF10iCW5gdyzsohRK3%2B69YRcaG4k%2F8Stjn5g3SRxiFhBXdyAiqOcg0%2BFmXlGU%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\ncf-ray: a4ac84bd4c316a43-MSP\nx-envoy-upstream-service-time: 204\n\n"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "base": {
+      "arch": 1,
+      "manifest": {
+        "groups": [
+          {
+            "base_url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja",
+            "files": [
+              {
+                "name": "encoder_model.ort",
+                "url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja/encoder_model.ort",
+                "size": 31326816,
+                "checksum": "LErsPw==",
+                "checksum_type": "crc32c",
+                "checksumVerified": true,
+                "corsVerified": true,
+                "localFile": "test-results/moonshine-assets/base/encoder_model.ort",
+                "sha256": "3230cafb84d5f08800e60de6f932aad7c69c649a37fa6997fe04fe25f808b56b",
+                "responseHeaders": "HTTP/1.1 200 OK\ndate: Thu, 15 Oct 2026 05:45:35 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Thu, 15 Oct 2026 05:45:36 GMT\ncontent-type: application/octet-stream\ncontent-length: 31326816\nvary: Origin\naccess-control-expose-headers: content-length,content-range,accept-ranges,etag\naccept-ranges: bytes\naccess-control-allow-origin: *\ncache-control: public, max-age=2592000\netag: \"864aa080ad998afc672138e97d8686ec\"\nlast-modified: Sat, 01 Aug 2026 00:53:40 GMT\nserver: envoy\ncf-cache-status: DYNAMIC\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=yoDaKaJbOgmRDvque4FVmV5eZouzwJHxiioW5zdEJDFxp3Ku5%2BW8ANp87An84iZ7hUL7%2BBW8IlnH5TPccG%2FFm8MlyPCJW37lIF1T3R%2FSO8pPTGffrjJmbDFXyaFzT%2BeE5DUNyDy9ycw%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\ncf-ray: a4ac84bf291fa1ef-MSP\nx-envoy-upstream-service-time: 259\n\n"
+              },
+              {
+                "name": "decoder_model_merged.ort",
+                "url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja/decoder_model_merged.ort",
+                "size": 109424424,
+                "checksum": "FLBs0A==",
+                "checksum_type": "crc32c",
+                "checksumVerified": true,
+                "corsVerified": true,
+                "localFile": "test-results/moonshine-assets/base/decoder_model_merged.ort",
+                "sha256": "35a522052d2d8695d0dd2870666f088d633111e08cfbed0418f61c4122b4ba25",
+                "responseHeaders": "HTTP/1.1 200 OK\ndate: Thu, 15 Oct 2026 05:45:38 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Thu, 15 Oct 2026 05:45:39 GMT\ncontent-type: application/octet-stream\ncontent-length: 109424424\nvary: Origin\naccess-control-expose-headers: content-length,content-range,accept-ranges,etag\naccept-ranges: bytes\naccess-control-allow-origin: *\ncache-control: public, max-age=2592000\netag: \"b1e8ac664dd9e3f9812ec1eba1d2934f-4\"\nlast-modified: Sat, 01 Aug 2026 01:25:35 GMT\nserver: envoy\ncf-cache-status: DYNAMIC\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=j%2BH86GN4ljTV60qpRDJTTfZhLob%2BQFjTm4gUMkdW%2F%2FKKMhb8OinL1bTsvY06fZ5kXnUEIxLtMP2rTmMs6TQDC9JDxa%2BBQ5ivjGF3p5M4ge%2Fv9WaASptYaJ742ZTXykb6sdHLMC91yFA%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\ncf-ray: a4ac84d1ce516abb-MSP\nx-envoy-upstream-service-time: 242\n\n"
+              },
+              {
+                "name": "tokenizer.bin",
+                "url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja/tokenizer.bin",
+                "size": 249974,
+                "checksum": "B7s10Q==",
+                "checksum_type": "crc32c",
+                "checksumVerified": true,
+                "corsVerified": true,
+                "localFile": "test-results/moonshine-assets/base/tokenizer.bin",
+                "sha256": "6884b35fd6377d4c4d32336a0bc152f36b64d1e45b6503683cdc238250a8472d",
+                "responseHeaders": "HTTP/1.1 200 OK\ndate: Thu, 15 Oct 2026 05:45:49 GMT\nserver: envoy\n\nHTTP/2 200 \ndate: Thu, 15 Oct 2026 05:45:50 GMT\ncontent-type: application/octet-stream\ncontent-length: 249974\nvary: Origin\naccess-control-expose-headers: content-length,content-range,accept-ranges,etag\naccept-ranges: bytes\naccess-control-allow-origin: *\ncache-control: public, max-age=2592000\netag: \"1373d5894cf6669c03c31e8ed141f969\"\nlast-modified: Sat, 01 Aug 2026 00:53:40 GMT\nserver: envoy\ncf-cache-status: DYNAMIC\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=H3uCf9yx5HV62JB3j%2BoSwagrKvv9Hizo8jcedOV%2BW0jm1Zu5VWCBKDqjTAVuyw7Cam6oaOzNaoyki2FXLgATojXYxRS1OnjA8S2kn1Cku1N0zGvrkNmNv7KBDMyipBwktwY5FFiQMFY%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\ncf-ray: a4ac8516d894a1ef-MSP\nx-envoy-upstream-service-time: 165\n\n"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "isolated": true,
+  "status": "passed"
+}

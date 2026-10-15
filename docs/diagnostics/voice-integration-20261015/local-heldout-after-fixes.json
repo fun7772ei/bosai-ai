@@ -1,0 +1,2503 @@
+{
+  "createdAt": "2026-10-15T05:33:37.547Z",
+  "platform": "Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari",
+  "baseline": false,
+  "casesPath": "scripts/evaluation/voice-integration-heldout.json",
+  "implementation": "37af2dca3bae208c00eedb18ad537cde201b76c9",
+  "workingTreeDirty": true,
+  "coreSha256": {
+    "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+    "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+    "src/query-scope.js": "7a5797bf85f1eb783b38689e19e051596727c9cec3a79026762f772266c97008",
+    "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+    "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef",
+    "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+    "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+    "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+    "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+    "src/conversation.js": "7cb7ddc7cb8e024fc8c32a6bb40c3c6f940ea4f9136270def63c5d7fec3aa0bb",
+    "src/conversation-context.js": "5c78814d04cd337ec9bdf648439d2c622211d2c8f08c6046018acb3da0189e4b",
+    "src/conversation-evidence.js": "2988025b897c911863d44e8bf722ad4599f00e115e6a6f060c5065ae648145f8",
+    "src/conversation-ui.js": "1f077d8b30c1cc728237649e235821dce27293d31cdeb277ae6d39583f774052",
+    "src/conversation-applicability.js": "5cccecd3958abcd9101620e8c9e5ae62b5e86275fe81b8c23f70d269b7f5aaff",
+    "src/conversation-applicability.json": "16cfdae894688d030b5784964d85a1cdf2e42d6274d94852186ef8954bda7a95",
+    "src/question-intent.js": "9036359c5dfab915a3b228dd86aab9eb3981ac5ff3e87948973ef2f69d7282b8",
+    "src/voice-draft.js": "52fc303d435c9fcf5a259a00646b6d29737d86085b4f3b75f691fca7c8d880d4",
+    "src/conversation.css": "2c0836a37f2a4253905886ef52ec282d7624c887cb522e3b6107d06ded04fc25",
+    "src/beta-main.js": "43508f057b9449996872da6c94a3f01dd8694be2def7480864157bea312755cd",
+    "src/request-scope.js": "0c2db49b39413a9a475e48aa5c074a02b75a15e20528e5b816cfca6c0b051248",
+    "src/request-facts.js": "ef9bd2f8207dcb41fc25dba9ca83186b82d3a336b12302e2d74fc6185df2a210",
+    "src/request-understanding.js": "a72a51f9081387cc89d9608dc8c8ce7b40443febb3afaa35a66fa573468aad46"
+  },
+  "casesSha256": "6d5b917870de04cb44cf3776d8a45dd0f203ee1c9d7937ae0a48a5a9977784da",
+  "rows": [
+    {
+      "caseId": "vi01",
+      "category": "vehicle-unknown",
+      "turn": 1,
+      "input": "乗用車が浸水したのですか？避難について調べたい。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "この辞書は車内の現在の浸水状態を確認できません。分かっている車の状況と、調べたい一般情報を教えてください。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 34.60266999999976,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": null
+        },
+        "assertions": {
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "drive",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "vehicleFlooded": {
+            "value": null,
+            "polarity": "unknown",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          }
+        },
+        "subject": null,
+        "situation": "乗用車が浸水したのですか？避難について調べたい。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "vi02",
+      "category": "vehicle-negative",
+      "turn": 1,
+      "input": "道路は冠水しています。乗用車は浸水していません。徒歩で移動します。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-69",
+          "title": "冠水した道路を歩かない",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability",
+          "applicability": {
+            "id": "bosai-69",
+            "status": "candidate",
+            "reason": "確認された状況・対象行動と原文用途が整合します。現在の安全性や質問全体への回答を保証しません。"
+          }
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        }
+      ],
+      "selection": 9,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "loadMs": 2322.7000000000116,
+          "warm": false,
+          "embeddingMs": 405.20000000001164,
+          "tokens": 41,
+          "retrievalMs": 24.099999999976717,
+          "totalMs": 2823.5,
+          "conversationMs": 2838.2000000000116
+        },
+        "query": "大雨・浸水。道路。道路が冠水しています。徒歩で移動。車内は浸水していません。道路は冠水しています。乗用車は浸水していません。徒歩で移動します。",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk",
+          "vehicleFlooded": false
+        },
+        "excluded": [],
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "floodedRoad": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "vehicleFlooded": {
+            "value": false,
+            "polarity": "denied",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          }
+        },
+        "evidence": {
+          "focus": "flood-walk",
+          "originalResultIds": [
+            "bosai-70",
+            "bosai-69",
+            "bosai-86",
+            "bosai-55",
+            "bosai-84"
+          ],
+          "policy": "explicit-scene-capability",
+          "relatedIds": [
+            "bosai-86"
+          ],
+          "excludedIds": [
+            "bosai-70",
+            "bosai-55",
+            "bosai-84"
+          ],
+          "exclusions": [
+            {
+              "id": "bosai-70",
+              "reason": "different-scene-or-action"
+            },
+            {
+              "id": "bosai-55",
+              "reason": "different-hazard"
+            },
+            {
+              "id": "bosai-84",
+              "reason": "different-scene-or-action"
+            }
+          ],
+          "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+        },
+        "applicability": [
+          {
+            "id": "bosai-70",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-scene-or-action"
+          },
+          {
+            "id": "bosai-69",
+            "status": "candidate",
+            "reason": "確認された状況・対象行動と原文用途が整合します。現在の安全性や質問全体への回答を保証しません。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-55",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-hazard"
+          },
+          {
+            "id": "bosai-84",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-scene-or-action"
+          }
+        ],
+        "excludedIds": [
+          "bosai-70",
+          "bosai-55",
+          "bosai-84"
+        ]
+      },
+      "wallMs": 3259.3982570000003,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk",
+          "vehicleFlooded": false
+        },
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "floodedRoad": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "vehicleFlooded": {
+            "value": false,
+            "polarity": "denied",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          }
+        },
+        "subject": null,
+        "situation": "道路は冠水しています。乗用車は浸水していません。徒歩で移動します。",
+        "action": "歩行",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-69",
+          "bosai-86"
+        ],
+        "awaitingContext": false,
+        "selection": 9
+      },
+      "badTop3": [],
+      "gold": "bosai-69",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 2,
+      "provenance": "retrieval-and-capability"
+    },
+    {
+      "caseId": "vi03",
+      "category": "short-correction",
+      "turn": 1,
+      "input": "私は道路が冠水した場所を徒歩で移動します",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-69",
+          "title": "冠水した道路を歩かない",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability",
+          "applicability": {
+            "id": "bosai-69",
+            "status": "candidate",
+            "reason": "確認された状況・対象行動と原文用途が整合します。現在の安全性や質問全体への回答を保証しません。"
+          }
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        }
+      ],
+      "selection": 12,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 269.70000000001164,
+          "tokens": 31,
+          "retrievalMs": 2.7999999999883585,
+          "totalMs": 274,
+          "conversationMs": 284.30000000004657
+        },
+        "query": "大雨・浸水。道路。道路が冠水しています。徒歩で移動。私は道路が冠水した場所を徒歩で移動します",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "excluded": [],
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "floodedRoad": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "evidence": {
+          "focus": "flood-walk",
+          "originalResultIds": [
+            "bosai-69",
+            "bosai-70",
+            "bosai-86",
+            "bosai-84",
+            "bosai-52"
+          ],
+          "policy": "explicit-scene-capability",
+          "relatedIds": [
+            "bosai-86"
+          ],
+          "excludedIds": [
+            "bosai-70",
+            "bosai-84",
+            "bosai-52"
+          ],
+          "exclusions": [
+            {
+              "id": "bosai-70",
+              "reason": "different-scene-or-action"
+            },
+            {
+              "id": "bosai-84",
+              "reason": "different-scene-or-action"
+            },
+            {
+              "id": "bosai-52",
+              "reason": "different-hazard"
+            }
+          ],
+          "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+        },
+        "applicability": [
+          {
+            "id": "bosai-69",
+            "status": "candidate",
+            "reason": "確認された状況・対象行動と原文用途が整合します。現在の安全性や質問全体への回答を保証しません。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-70",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-scene-or-action"
+          },
+          {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-84",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-scene-or-action"
+          },
+          {
+            "id": "bosai-52",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-hazard"
+          }
+        ],
+        "excludedIds": [
+          "bosai-70",
+          "bosai-84",
+          "bosai-52"
+        ]
+      },
+      "wallMs": 554.8064429999995,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "floodedRoad": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "subject": "私",
+        "situation": "私は道路が冠水した場所を徒歩で移動します",
+        "action": "歩行",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-69",
+          "bosai-86"
+        ],
+        "awaitingContext": false,
+        "selection": 12
+      }
+    },
+    {
+      "caseId": "vi03",
+      "category": "short-correction",
+      "turn": 2,
+      "input": "道路は冠水していません",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-84",
+          "title": "浸水避難では履き慣れた運動靴を選ぶ",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-84",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-77",
+          "title": "側溝・排水口の掃除は雨が強くなる前に",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-77",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        }
+      ],
+      "selection": 14,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 156.5,
+          "tokens": 26,
+          "retrievalMs": 17.699999999953434,
+          "totalMs": 186,
+          "conversationMs": 187.30000000004657
+        },
+        "query": "大雨・浸水。道路。道路は冠水していません。徒歩で移動。道路は冠水していません",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": false,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "excluded": [],
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 2
+          },
+          "floodedRoad": {
+            "value": false,
+            "polarity": "denied",
+            "subject": "私",
+            "sourceTurn": 2
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "evidence": {
+          "focus": null,
+          "originalResultIds": [
+            "bosai-69",
+            "bosai-70",
+            "bosai-86",
+            "bosai-84",
+            "bosai-77"
+          ],
+          "policy": "filtered-explicit-conditions",
+          "relatedIds": [
+            "bosai-86",
+            "bosai-84",
+            "bosai-77"
+          ],
+          "excludedIds": [
+            "bosai-69",
+            "bosai-70"
+          ],
+          "exclusions": [
+            {
+              "id": "bosai-69",
+              "reason": "contradictory-prerequisite"
+            },
+            {
+              "id": "bosai-70",
+              "reason": "contradictory-prerequisite"
+            }
+          ],
+          "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+        },
+        "applicability": [
+          {
+            "id": "bosai-69",
+            "status": "not-applicable",
+            "reason": "原文が必要とする「冠水した道路」の条件と質問の明示条件が矛盾します。",
+            "exclusion": "contradictory-prerequisite"
+          },
+          {
+            "id": "bosai-70",
+            "status": "not-applicable",
+            "reason": "原文が必要とする「冠水した道路」の条件と質問の明示条件が矛盾します。",
+            "exclusion": "contradictory-prerequisite"
+          },
+          {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-84",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-77",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          }
+        ],
+        "excludedIds": [
+          "bosai-69",
+          "bosai-70"
+        ]
+      },
+      "wallMs": 585.6420840000001,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": false,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 2
+          },
+          "floodedRoad": {
+            "value": false,
+            "polarity": "denied",
+            "subject": "私",
+            "sourceTurn": 2
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "subject": "私",
+        "situation": "大雨・浸水。道路。道路は冠水していません。徒歩で移動。道路は冠水していません",
+        "action": "歩行",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-86",
+          "bosai-84",
+          "bosai-77"
+        ],
+        "awaitingContext": false,
+        "selection": 14
+      },
+      "badTop3": []
+    },
+    {
+      "caseId": "vi04",
+      "category": "location",
+      "turn": 1,
+      "input": "私は寝室で地震にあいました",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-39",
+          "title": "寝ているときに地震が起きたら",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-39",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-38",
+          "title": "自宅・室内で地震が起きたとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-38",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-42",
+          "title": "マンション・高層階で地震にあったとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-42",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-44",
+          "title": "職場・オフィスで地震が起きたとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-44",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-40",
+          "title": "お風呂・トイレで地震にあったとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-40",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        }
+      ],
+      "selection": 17,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 22.599999999976717,
+          "tokens": 13,
+          "retrievalMs": 1.5,
+          "totalMs": 25.600000000034925,
+          "conversationMs": 26.399999999965075
+        },
+        "query": "私は寝室で地震にあいました",
+        "topics": [
+          "地震"
+        ],
+        "facts": {
+          "location": "寝室"
+        },
+        "excluded": [],
+        "assertions": {
+          "location": {
+            "value": "寝室",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "evidence": {
+          "focus": null,
+          "originalResultIds": [
+            "bosai-39",
+            "bosai-38",
+            "bosai-42",
+            "bosai-44",
+            "bosai-40"
+          ],
+          "policy": "retrieval-only",
+          "relatedIds": [
+            "bosai-39",
+            "bosai-38",
+            "bosai-42",
+            "bosai-44",
+            "bosai-40"
+          ],
+          "excludedIds": [],
+          "exclusions": [],
+          "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+        },
+        "applicability": [
+          {
+            "id": "bosai-39",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-38",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-42",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-44",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-40",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          }
+        ],
+        "excludedIds": []
+      },
+      "wallMs": 88.57058499999948,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "地震"
+        ],
+        "facts": {
+          "location": "寝室"
+        },
+        "assertions": {
+          "location": {
+            "value": "寝室",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "subject": "私",
+        "situation": "私は寝室で地震にあいました",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-39",
+          "bosai-38",
+          "bosai-42",
+          "bosai-44",
+          "bosai-40"
+        ],
+        "awaitingContext": false,
+        "selection": 17
+      }
+    },
+    {
+      "caseId": "vi04",
+      "category": "location",
+      "turn": 2,
+      "input": "そのときの注意点は？",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-39",
+          "title": "寝ているときに地震が起きたら",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-39",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-38",
+          "title": "自宅・室内で地震が起きたとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-38",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-67",
+          "title": "外へ逃げる方が危険なときの緊急安全確保",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-67",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-42",
+          "title": "マンション・高層階で地震にあったとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-42",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-40",
+          "title": "お風呂・トイレで地震にあったとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-40",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        }
+      ],
+      "selection": 19,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 51.199999999953434,
+          "tokens": 14,
+          "retrievalMs": 1,
+          "totalMs": 56.899999999965075,
+          "conversationMs": 57.600000000034925
+        },
+        "query": "地震。寝室。そのときの注意点は？",
+        "topics": [
+          "地震"
+        ],
+        "facts": {
+          "location": "寝室"
+        },
+        "excluded": [],
+        "assertions": {
+          "location": {
+            "value": "寝室",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "evidence": {
+          "focus": null,
+          "originalResultIds": [
+            "bosai-39",
+            "bosai-38",
+            "bosai-67",
+            "bosai-42",
+            "bosai-40"
+          ],
+          "policy": "retrieval-only",
+          "relatedIds": [
+            "bosai-39",
+            "bosai-38",
+            "bosai-67",
+            "bosai-42",
+            "bosai-40"
+          ],
+          "excludedIds": [],
+          "exclusions": [],
+          "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+        },
+        "applicability": [
+          {
+            "id": "bosai-39",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-38",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-67",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-42",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-40",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          }
+        ],
+        "excludedIds": []
+      },
+      "wallMs": 184.80063299999983,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "地震"
+        ],
+        "facts": {
+          "location": "寝室"
+        },
+        "assertions": {
+          "location": {
+            "value": "寝室",
+            "polarity": "asserted",
+            "subject": "私",
+            "sourceTurn": 1
+          }
+        },
+        "subject": "私",
+        "situation": "地震。寝室。そのときの注意点は？",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-39",
+          "bosai-38",
+          "bosai-67",
+          "bosai-42",
+          "bosai-40"
+        ],
+        "awaitingContext": false,
+        "selection": 19
+      }
+    },
+    {
+      "caseId": "vi04",
+      "category": "location",
+      "turn": 3,
+      "input": "その場合、友達はどうしますか",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "前の人の状況を引き継がず、誰のどの場面かを確認します。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 69.54445200000009,
+      "controlPass": true,
+      "state": {
+        "topics": [],
+        "facts": {},
+        "assertions": {},
+        "subject": null,
+        "situation": "",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": false,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "vi05",
+      "category": "duration",
+      "turn": 1,
+      "input": "飲料水を沸騰させる時間は何分ですか",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-78",
+          "title": "停電時にスマートフォンの電池を長持ちさせる",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-78",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-79",
+          "title": "停電時は冷蔵庫・冷凍庫をなるべく開けない",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-79",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-11",
+          "title": "第一波到達予想時刻を『避難の締切』にしない",
+          "category": "津波",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-11",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-61",
+          "title": "警戒レベル3では避難に時間がかかる人は早めに避難",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-61",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-36",
+          "title": "車中泊では定期的に体を動かす",
+          "category": "避難所生活",
+          "fit": "unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-36",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        }
+      ],
+      "selection": 24,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 12.599999999976717,
+          "tokens": 14,
+          "retrievalMs": 0.7999999999883585,
+          "totalMs": 16.399999999965075,
+          "conversationMs": 17.20000000001164
+        },
+        "query": "飲料水を沸騰させる時間は何分ですか",
+        "topics": [],
+        "facts": {},
+        "excluded": [],
+        "assertions": {},
+        "evidence": {
+          "focus": null,
+          "originalResultIds": [
+            "bosai-78",
+            "bosai-79",
+            "bosai-11",
+            "bosai-61",
+            "bosai-36"
+          ],
+          "policy": "retrieval-only",
+          "relatedIds": [
+            "bosai-78",
+            "bosai-79",
+            "bosai-11",
+            "bosai-61",
+            "bosai-36"
+          ],
+          "excludedIds": [],
+          "exclusions": [],
+          "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+        },
+        "applicability": [
+          {
+            "id": "bosai-78",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-79",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-11",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-61",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-36",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          }
+        ],
+        "excludedIds": []
+      },
+      "wallMs": 107.31449499999962,
+      "controlPass": true,
+      "state": {
+        "topics": [],
+        "facts": {},
+        "assertions": {},
+        "subject": null,
+        "situation": "飲料水を沸騰させる時間は何分ですか",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-78",
+          "bosai-79",
+          "bosai-11",
+          "bosai-61",
+          "bosai-36"
+        ],
+        "awaitingContext": false,
+        "selection": 24
+      }
+    },
+    {
+      "caseId": "vi06",
+      "category": "live",
+      "turn": 1,
+      "input": "今日の津波警報は解除されていますか",
+      "expected": "unsupported",
+      "role": "assistant",
+      "text": "現在の警報・予報・避難所の開設や、あなたの場所の安全性は確認できません。気象庁・自治体の最新の発表を確認してください。",
+      "kind": "unsupported",
+      "answerability": "outside-coverage",
+      "wallMs": 46.09563900000103,
+      "controlPass": true,
+      "state": {
+        "topics": [],
+        "facts": {},
+        "assertions": {},
+        "subject": null,
+        "situation": "",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": false,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "vi07",
+      "category": "covered-road",
+      "turn": 1,
+      "input": "道路が水で覆われています。歩いて渡りたいです。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-69",
+          "title": "冠水した道路を歩かない",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability",
+          "applicability": {
+            "id": "bosai-69",
+            "status": "candidate",
+            "reason": "確認された状況・対象行動と原文用途が整合します。現在の安全性や質問全体への回答を保証しません。"
+          }
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        },
+        {
+          "id": "bosai-77",
+          "title": "側溝・排水口の掃除は雨が強くなる前に",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval",
+          "applicability": {
+            "id": "bosai-77",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+          }
+        }
+      ],
+      "selection": 30,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 48.20000000001164,
+          "tokens": 31,
+          "retrievalMs": 1.5,
+          "totalMs": 50.70000000001164,
+          "conversationMs": 51.600000000034925
+        },
+        "query": "大雨・浸水。道路。道路が冠水しています。徒歩で移動。道路が水で覆われています。歩いて渡りたいです。",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "excluded": [],
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "floodedRoad": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          }
+        },
+        "evidence": {
+          "focus": "flood-walk",
+          "originalResultIds": [
+            "bosai-69",
+            "bosai-70",
+            "bosai-86",
+            "bosai-52",
+            "bosai-77"
+          ],
+          "policy": "explicit-scene-capability",
+          "relatedIds": [
+            "bosai-86",
+            "bosai-77"
+          ],
+          "excludedIds": [
+            "bosai-70",
+            "bosai-52"
+          ],
+          "exclusions": [
+            {
+              "id": "bosai-70",
+              "reason": "different-scene-or-action"
+            },
+            {
+              "id": "bosai-52",
+              "reason": "different-hazard"
+            }
+          ],
+          "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+        },
+        "applicability": [
+          {
+            "id": "bosai-69",
+            "status": "candidate",
+            "reason": "確認された状況・対象行動と原文用途が整合します。現在の安全性や質問全体への回答を保証しません。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-70",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-scene-or-action"
+          },
+          {
+            "id": "bosai-86",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          },
+          {
+            "id": "bosai-52",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": "different-hazard"
+          },
+          {
+            "id": "bosai-77",
+            "status": "needs-confirmation",
+            "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+            "exclusion": null
+          }
+        ],
+        "excludedIds": [
+          "bosai-70",
+          "bosai-52"
+        ]
+      },
+      "wallMs": 97.52031900000111,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "assertions": {
+          "road": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "floodedRoad": {
+            "value": true,
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "goal": {
+            "value": "movement",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          },
+          "movement": {
+            "value": "walk",
+            "polarity": "asserted",
+            "subject": "unspecified",
+            "sourceTurn": 1
+          }
+        },
+        "subject": null,
+        "situation": "道路が水で覆われています。歩いて渡りたいです。",
+        "action": "歩行",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-69",
+          "bosai-86",
+          "bosai-77"
+        ],
+        "awaitingContext": false,
+        "selection": 30
+      },
+      "badTop3": [],
+      "gold": "bosai-69",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval-and-capability"
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "config.json",
+    "onnx/model_quantized.onnx",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "memory": [
+    {
+      "pssMiB": 122.7470703125,
+      "rssMiB": 389.99609375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 28.181640625,
+        "zygote": 13.990234375,
+        "gpu-process": 21.2802734375,
+        "renderer": 42.68359375,
+        "utility": 16.611328125
+      },
+      "rendererPssMiB": 42.68359375
+    },
+    {
+      "pssMiB": 150.2763671875,
+      "rssMiB": 434.73828125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 31.0390625,
+        "zygote": 13.9873046875,
+        "gpu-process": 23.5107421875,
+        "renderer": 65.0986328125,
+        "utility": 16.640625
+      },
+      "rendererPssMiB": 65.0986328125
+    },
+    {
+      "pssMiB": 219.7958984375,
+      "rssMiB": 522.86328125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 35.849609375,
+        "zygote": 13.986328125,
+        "gpu-process": 30.958984375,
+        "renderer": 121.27734375,
+        "utility": 17.7236328125
+      },
+      "rendererPssMiB": 121.27734375
+    },
+    {
+      "pssMiB": 218.3857421875,
+      "rssMiB": 522.47265625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.76953125,
+        "zygote": 13.9853515625,
+        "gpu-process": 32.1494140625,
+        "renderer": 122.7373046875,
+        "utility": 16.744140625
+      },
+      "rendererPssMiB": 122.7373046875
+    },
+    {
+      "pssMiB": 417.7255859375,
+      "rssMiB": 722.34765625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.34765625,
+        "zygote": 13.9853515625,
+        "gpu-process": 32.126953125,
+        "renderer": 322.5146484375,
+        "utility": 16.7509765625
+      },
+      "rendererPssMiB": 322.5146484375
+    },
+    {
+      "pssMiB": 485.763671875,
+      "rssMiB": 790.515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.4951171875,
+        "zygote": 13.9853515625,
+        "gpu-process": 32.126953125,
+        "renderer": 390.4052734375,
+        "utility": 16.7509765625
+      },
+      "rendererPssMiB": 390.4052734375
+    },
+    {
+      "pssMiB": 547.478515625,
+      "rssMiB": 852.2890625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.5498046875,
+        "zygote": 13.9853515625,
+        "gpu-process": 32.126953125,
+        "renderer": 452.0576171875,
+        "utility": 16.7587890625
+      },
+      "rendererPssMiB": 452.0576171875
+    },
+    {
+      "pssMiB": 567.615234375,
+      "rssMiB": 872.42578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.5498046875,
+        "zygote": 13.9853515625,
+        "gpu-process": 32.126953125,
+        "renderer": 472.1943359375,
+        "utility": 16.7587890625
+      },
+      "rendererPssMiB": 472.1943359375
+    },
+    {
+      "pssMiB": 599.6064453125,
+      "rssMiB": 904.48046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.5498046875,
+        "zygote": 13.9873046875,
+        "gpu-process": 32.126953125,
+        "renderer": 504.18359375,
+        "utility": 16.7587890625
+      },
+      "rendererPssMiB": 504.18359375
+    },
+    {
+      "pssMiB": 592.2080078125,
+      "rssMiB": 897.08203125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.5498046875,
+        "zygote": 13.9873046875,
+        "gpu-process": 32.126953125,
+        "renderer": 496.78515625,
+        "utility": 16.7587890625
+      },
+      "rendererPssMiB": 496.78515625
+    },
+    {
+      "pssMiB": 603.271484375,
+      "rssMiB": 908.2421875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.5771484375,
+        "zygote": 13.9873046875,
+        "gpu-process": 32.14453125,
+        "renderer": 507.794921875,
+        "utility": 16.767578125
+      },
+      "rendererPssMiB": 507.794921875
+    },
+    {
+      "pssMiB": 622.4375,
+      "rssMiB": 927.984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.5341796875,
+        "zygote": 13.9873046875,
+        "gpu-process": 32.2138671875,
+        "renderer": 526.9462890625,
+        "utility": 16.755859375
+      },
+      "rendererPssMiB": 526.9462890625
+    },
+    {
+      "pssMiB": 621.8984375,
+      "rssMiB": 925.859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6357421875,
+        "zygote": 13.9873046875,
+        "gpu-process": 31.3505859375,
+        "renderer": 527.1689453125,
+        "utility": 16.755859375
+      },
+      "rendererPssMiB": 527.1689453125
+    },
+    {
+      "pssMiB": 668.025390625,
+      "rssMiB": 970.65625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.541015625,
+        "zygote": 13.986328125,
+        "gpu-process": 30.486328125,
+        "renderer": 574.2646484375,
+        "utility": 16.7470703125
+      },
+      "rendererPssMiB": 574.2646484375
+    },
+    {
+      "pssMiB": 641.7314453125,
+      "rssMiB": 946.9375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.556640625,
+        "zygote": 13.986328125,
+        "gpu-process": 31.755859375,
+        "renderer": 546.685546875,
+        "utility": 16.7470703125
+      },
+      "rendererPssMiB": 546.685546875
+    },
+    {
+      "pssMiB": 658.3037109375,
+      "rssMiB": 967.3046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.580078125,
+        "zygote": 13.98828125,
+        "gpu-process": 33.658203125,
+        "renderer": 561.330078125,
+        "utility": 16.7470703125
+      },
+      "rendererPssMiB": 561.330078125
+    },
+    {
+      "pssMiB": 435.7607421875,
+      "rssMiB": 745.78515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.533203125,
+        "zygote": 13.98828125,
+        "gpu-process": 34.216796875,
+        "renderer": 338.419921875,
+        "utility": 16.6025390625
+      },
+      "rendererPssMiB": 338.419921875
+    },
+    {
+      "pssMiB": 290.9775390625,
+      "rssMiB": 601.12109375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 33.255859375,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 192.8271484375,
+        "utility": 16.65234375
+      },
+      "rendererPssMiB": 192.8271484375
+    },
+    {
+      "pssMiB": 410.3486328125,
+      "rssMiB": 720.4921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.564453125,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 312.8896484375,
+        "utility": 16.65234375
+      },
+      "rendererPssMiB": 312.8896484375
+    },
+    {
+      "pssMiB": 491.0400390625,
+      "rssMiB": 801.18359375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.564453125,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 393.5810546875,
+        "utility": 16.65234375
+      },
+      "rendererPssMiB": 393.5810546875
+    },
+    {
+      "pssMiB": 511.0361328125,
+      "rssMiB": 821.22265625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6181640625,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 413.509765625,
+        "utility": 16.666015625
+      },
+      "rendererPssMiB": 413.509765625
+    },
+    {
+      "pssMiB": 550.3876953125,
+      "rssMiB": 860.57421875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6181640625,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 452.861328125,
+        "utility": 16.666015625
+      },
+      "rendererPssMiB": 452.861328125
+    },
+    {
+      "pssMiB": 591.5595703125,
+      "rssMiB": 901.74609375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6181640625,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 494.033203125,
+        "utility": 16.666015625
+      },
+      "rendererPssMiB": 494.033203125
+    },
+    {
+      "pssMiB": 603.6376953125,
+      "rssMiB": 913.82421875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6181640625,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 506.111328125,
+        "utility": 16.666015625
+      },
+      "rendererPssMiB": 506.111328125
+    },
+    {
+      "pssMiB": 649.6689453125,
+      "rssMiB": 959.85546875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6181640625,
+        "zygote": 13.98828125,
+        "gpu-process": 34.25390625,
+        "renderer": 552.142578125,
+        "utility": 16.666015625
+      },
+      "rendererPssMiB": 552.142578125
+    },
+    {
+      "pssMiB": 682.4306640625,
+      "rssMiB": 987.9140625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6630859375,
+        "zygote": 13.98828125,
+        "gpu-process": 29.1884765625,
+        "renderer": 589.9267578125,
+        "utility": 16.6640625
+      },
+      "rendererPssMiB": 589.9267578125
+    },
+    {
+      "pssMiB": 756.1025390625,
+      "rssMiB": 1057.0859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.6669921875,
+        "zygote": 13.98828125,
+        "gpu-process": 31.4384765625,
+        "renderer": 661.3447265625,
+        "utility": 16.6640625
+      },
+      "rendererPssMiB": 661.3447265625
+    },
+    {
+      "pssMiB": 771.529296875,
+      "rssMiB": 1075.0234375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 36.9501953125,
+        "zygote": 13.986328125,
+        "gpu-process": 35.5087890625,
+        "renderer": 668.435546875,
+        "utility": 16.6484375
+      },
+      "rendererPssMiB": 668.435546875
+    },
+    {
+      "pssMiB": 120.6474609375,
+      "rssMiB": 388.578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 29.826171875,
+        "zygote": 14.0078125,
+        "gpu-process": 19.365234375,
+        "renderer": 42.1240234375,
+        "utility": 15.32421875
+      },
+      "rendererPssMiB": 42.1240234375
+    },
+    {
+      "pssMiB": 254.171875,
+      "rssMiB": 547.34375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 31.849609375,
+        "zygote": 14.029296875,
+        "gpu-process": 27.33203125,
+        "renderer": 165.6640625,
+        "utility": 15.296875
+      },
+      "rendererPssMiB": 165.6640625
+    },
+    {
+      "pssMiB": 420.955078125,
+      "rssMiB": 714.80859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.1865234375,
+        "zygote": 14.0283203125,
+        "gpu-process": 27.328125,
+        "renderer": 332.099609375,
+        "utility": 15.3125
+      },
+      "rendererPssMiB": 332.099609375
+    },
+    {
+      "pssMiB": 527.916015625,
+      "rssMiB": 821.890625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.181640625,
+        "zygote": 14.0283203125,
+        "gpu-process": 27.330078125,
+        "renderer": 439.0556640625,
+        "utility": 15.3203125
+      },
+      "rendererPssMiB": 439.0556640625
+    },
+    {
+      "pssMiB": 543.5625,
+      "rssMiB": 838.85546875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2490234375,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.318359375,
+        "renderer": 454.255859375,
+        "utility": 15.712890625
+      },
+      "rendererPssMiB": 454.255859375
+    },
+    {
+      "pssMiB": 564.43359375,
+      "rssMiB": 859.78125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2333984375,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.318359375,
+        "renderer": 475.142578125,
+        "utility": 15.712890625
+      },
+      "rendererPssMiB": 475.142578125
+    },
+    {
+      "pssMiB": 583.35546875,
+      "rssMiB": 878.703125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2333984375,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.318359375,
+        "renderer": 494.064453125,
+        "utility": 15.712890625
+      },
+      "rendererPssMiB": 494.064453125
+    },
+    {
+      "pssMiB": 598.4609375,
+      "rssMiB": 893.80859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2333984375,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.318359375,
+        "renderer": 509.169921875,
+        "utility": 15.712890625
+      },
+      "rendererPssMiB": 509.169921875
+    },
+    {
+      "pssMiB": 618.83203125,
+      "rssMiB": 914.1796875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2333984375,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.318359375,
+        "renderer": 529.541015625,
+        "utility": 15.712890625
+      },
+      "rendererPssMiB": 529.541015625
+    },
+    {
+      "pssMiB": 580.17578125,
+      "rssMiB": 875.5234375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2333984375,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.322265625,
+        "renderer": 490.880859375,
+        "utility": 15.712890625
+      },
+      "rendererPssMiB": 490.880859375
+    },
+    {
+      "pssMiB": 610.298828125,
+      "rssMiB": 905.68359375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2314453125,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.322265625,
+        "renderer": 521.001953125,
+        "utility": 15.716796875
+      },
+      "rendererPssMiB": 521.001953125
+    },
+    {
+      "pssMiB": 655.58984375,
+      "rssMiB": 951.08984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2861328125,
+        "zygote": 14.0263671875,
+        "gpu-process": 27.4306640625,
+        "renderer": 566.130859375,
+        "utility": 15.7158203125
+      },
+      "rendererPssMiB": 566.130859375
+    },
+    {
+      "pssMiB": 629.083984375,
+      "rssMiB": 926.65234375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.3212890625,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1982421875,
+        "renderer": 538.8310546875,
+        "utility": 15.70703125
+      },
+      "rendererPssMiB": 538.8310546875
+    },
+    {
+      "pssMiB": 410.44140625,
+      "rssMiB": 708.19921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2353515625,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1923828125,
+        "renderer": 320.2841796875,
+        "utility": 15.703125
+      },
+      "rendererPssMiB": 320.2841796875
+    },
+    {
+      "pssMiB": 231.7763671875,
+      "rssMiB": 529.55859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.23046875,
+        "zygote": 14.0166015625,
+        "gpu-process": 28.1884765625,
+        "renderer": 141.642578125,
+        "utility": 15.6982421875
+      },
+      "rendererPssMiB": 141.642578125
+    },
+    {
+      "pssMiB": 231.80078125,
+      "rssMiB": 529.55859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2353515625,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1923828125,
+        "renderer": 141.6435546875,
+        "utility": 15.703125
+      },
+      "rendererPssMiB": 141.6435546875
+    },
+    {
+      "pssMiB": 231.80078125,
+      "rssMiB": 529.55859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2353515625,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1923828125,
+        "renderer": 141.6435546875,
+        "utility": 15.703125
+      },
+      "rendererPssMiB": 141.6435546875
+    },
+    {
+      "pssMiB": 231.7890625,
+      "rssMiB": 529.5703125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2236328125,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1923828125,
+        "renderer": 141.6435546875,
+        "utility": 15.703125
+      },
+      "rendererPssMiB": 141.6435546875
+    },
+    {
+      "pssMiB": 231.7890625,
+      "rssMiB": 529.5703125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2236328125,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1923828125,
+        "renderer": 141.6435546875,
+        "utility": 15.703125
+      },
+      "rendererPssMiB": 141.6435546875
+    },
+    {
+      "pssMiB": 231.7890625,
+      "rssMiB": 529.5703125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2236328125,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1923828125,
+        "renderer": 141.6435546875,
+        "utility": 15.703125
+      },
+      "rendererPssMiB": 141.6435546875
+    }
+  ],
+  "checks": {
+    "dictionaryDefault": true,
+    "settingsRoute": true,
+    "offlineCatalog": true,
+    "unsavedFallback": true,
+    "stoppedCold": true,
+    "resetDuringLoad": true,
+    "recoveredReal": true,
+    "mobileNoOverflow": true,
+    "offlineReal": true,
+    "noRedownload": true,
+    "memoryOnlyHistory": true,
+    "offlineCatalogRestart": true,
+    "voiceIntact": true,
+    "workerReleased": true,
+    "noStaleCandidateSelection": true
+  },
+  "build": "ベータ版 c69e699cc038 / 辞書 88件 / CPU・WASM / 自由生成なし",
+  "offline": {
+    "role": "assistant",
+    "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+    "kind": "confirm",
+    "candidates": [
+      {
+        "id": "bosai-79",
+        "title": "停電時は冷蔵庫・冷凍庫をなるべく開けない",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval",
+        "applicability": {
+          "id": "bosai-79",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+        }
+      },
+      {
+        "id": "bosai-80",
+        "title": "浸水・停電後の家電はすぐ再使用しない",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval",
+        "applicability": {
+          "id": "bosai-80",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+        }
+      },
+      {
+        "id": "bosai-81",
+        "title": "避難時に主幹ブレーカーを切る",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval",
+        "applicability": {
+          "id": "bosai-81",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+        }
+      },
+      {
+        "id": "bosai-78",
+        "title": "停電時にスマートフォンの電池を長持ちさせる",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval",
+        "applicability": {
+          "id": "bosai-78",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+        }
+      },
+      {
+        "id": "bosai-59",
+        "title": "避難時の通電火災を防ぐ",
+        "category": "地震",
+        "fit": "unverified",
+        "provenance": "retrieval",
+        "applicability": {
+          "id": "bosai-59",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。"
+        }
+      }
+    ],
+    "selection": 3,
+    "answerability": "unverified-candidates",
+    "diagnostics": {
+      "actual": "hybrid",
+      "fallback": null,
+      "timings": {
+        "loadMs": 3791,
+        "warm": false,
+        "embeddingMs": 367.29999999998836,
+        "tokens": 12,
+        "retrievalMs": 194.89999999996508,
+        "totalMs": 4526.5,
+        "conversationMs": 4608.099999999977
+      },
+      "query": "停電中は冷蔵庫を開けてよいですか",
+      "topics": [],
+      "facts": {},
+      "excluded": [],
+      "assertions": {},
+      "evidence": {
+        "focus": null,
+        "originalResultIds": [
+          "bosai-79",
+          "bosai-80",
+          "bosai-81",
+          "bosai-78",
+          "bosai-59"
+        ],
+        "policy": "retrieval-only",
+        "relatedIds": [
+          "bosai-79",
+          "bosai-80",
+          "bosai-81",
+          "bosai-78",
+          "bosai-59"
+        ],
+        "excludedIds": [],
+        "exclusions": [],
+        "caution": "原文用途と明示条件の整合のみを確認します。不明な前提・未確認の適用範囲・現在の安全性は判断しません。"
+      },
+      "applicability": [
+        {
+          "id": "bosai-79",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+          "exclusion": null
+        },
+        {
+          "id": "bosai-80",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+          "exclusion": null
+        },
+        {
+          "id": "bosai-81",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+          "exclusion": null
+        },
+        {
+          "id": "bosai-78",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+          "exclusion": null
+        },
+        {
+          "id": "bosai-59",
+          "status": "needs-confirmation",
+          "reason": "関連記事ですが、原文が質問へ直接適用できるかは未確認です。",
+          "exclusion": null
+        }
+      ],
+      "excludedIds": []
+    },
+    "wallMs": 5294.699587000001
+  },
+  "release": {
+    "before": {
+      "pssMiB": 628.720703125,
+      "rssMiB": 926.2890625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.3212890625,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1982421875,
+        "renderer": 538.4677734375,
+        "utility": 15.70703125
+      },
+      "rendererPssMiB": 538.4677734375
+    },
+    "after": {
+      "pssMiB": 231.7890625,
+      "rssMiB": 529.5703125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 32.2236328125,
+        "zygote": 14.0263671875,
+        "gpu-process": 28.1923828125,
+        "renderer": 141.6435546875,
+        "utility": 15.703125
+      },
+      "rendererPssMiB": 141.6435546875
+    }
+  },
+  "control": {
+    "passed": 10,
+    "total": 10
+  },
+  "semantic": {
+    "control": {
+      "passed": 10,
+      "total": 10
+    },
+    "kindAgreement": 10,
+    "badTop3Queries": 0,
+    "failures": []
+  },
+  "status": "passed"
+}

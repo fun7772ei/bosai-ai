@@ -1,25 +1,25 @@
 # Architecture map and redesign boundaries
 
-Snapshot: 2026-10-15, `main` after PR #18 (`782ccdce`). This is a **map**, not a mandate to preserve the existing structure.
+Snapshot: 2026-10-15, `main` after merged PR #20 (`4995f552`). This is a **map**, not a mandate to preserve the existing structure. The table below reflects the integrated request pipeline; earlier redesign commentary is retained as rationale.
 
 ## Currently shipped paths
 
 | Area | Current entry points | Current responsibility |
 | --- | --- | --- |
 | Public app shell | `index.html`, `src/beta-main.js`, `src/conversation-ui.js` | Navigation, dictionary, chat UI, voice controls |
-| Dialogue | `src/conversation.js`, `src/conversation-context.js` | Turn state, regex-based situation extraction, follow-up context, clarification |
-| Request boundaries | `src/question-intent.js`, `src/query-scope.js`, `conversation.js:coverage()` | Overlapping detection of unsupported/current-status questions |
+| Dialogue | `src/conversation.js`, `src/request-understanding.js`, `src/request-facts.js` | Turn state, typed scene extraction, follow-up context, clarification |
+| Request boundaries | `src/request-scope.js` | Shared dictionary/chat scope triage; old entry points are compatibility re-exports |
 | Retrieval | `src/beta-controller.js`, `src/beta-search.js`, `src/bosai-search.js`, `src/semantic-search.js` | Ruri + lexical search, fallback and ranking |
-| Evidence matching | `src/conversation-evidence.js`, `src/conversation-applicability.js`, `src/conversation-applicability.json` | Capability promotion, contradiction filtering, 88 sidecars; only 4 entries have verified prerequisite annotations |
+| Evidence matching | `src/conversation-applicability.js`, `src/conversation-applicability.json` | Single evidence evaluator and source-bound prerequisite checks; only 4/88 verified |
 | Embeddings | `src/ruri-client.js`, `src/ruri.worker.js`, `src/embedding-runtime.js` | Isolated local CPU/WASM model and query vectors |
 | Local data | `src/bosai-data.json`, `src/bosai-vectors.json`, `src/model-storage.js`, `public/sw.js` | 88 unchanged originals, vectors, offline downloads/cache |
 | Speech | `src/beta-main.js` Moonshine integration, `src/voice-draft.js` | Optional microphone; excludes simultaneous Ruri model residency |
 | Historical research | `research.html`, `src/main.js`, `src/six-*.js`, `src/cpu-*.js` | Legacy generation / experiment path; not public advice |
 | Tests | `tests/*.test.js`, `scripts/*browser-check.mjs`, `.github/workflows/beta-check.yml` | Fast unit checks + real-Ruri browser regression |
 
-## Why today's structure slows development
+## Historical bottlenecks (mostly prior to merged PR #20)
 
-1. Scope checks are split among three entry points. Negative/question interpretation and capability checks occur in several passes, so a new case can require changes in multiple files.
+1. Historically scope checks were split among three entry points; PR #20 replaced the duplicated handlers. Negative/question interpretation and capability checks occur in several passes, so a new case can require changes in multiple files.
 2. Multiple historic test suites (`conversation-v2` through `v16`) are rerun even for a small iteration; they are necessary as evidence, not necessarily as the inner-loop development tool.
 3. Historical `CLOUD_*.md` instructions describe now-merged branches as not merged. Treat those as immutable history, not live constraints.
 4. The 88-entry sidecar is not a complete semantic audit. The existing confirmation UI is cautious but is **not** an authoritative answerability checker.

@@ -1,0 +1,9 @@
+[
+ {"id":"vi01","kind":"vehicle-unknown","turns":[{"text":"乗用車が浸水したのですか？避難について調べたい。","kind":"clarify","facts":{"vehicleFlooded":null},"absentFacts":["floodedRoad"]}]},
+ {"id":"vi02","kind":"vehicle-negative","turns":[{"text":"道路は冠水しています。乗用車は浸水していません。徒歩で移動します。","kind":"confirm","gold":"bosai-69","facts":{"floodedRoad":true,"vehicleFlooded":false},"badIds":["bosai-71","bosai-84","bosai-70"]}]},
+ {"id":"vi03","kind":"short-correction","turns":[{"text":"私は道路が冠水した場所を徒歩で移動します","kind":"confirm"},{"text":"道路は冠水していません","kind":"confirm","facts":{"movement":"walk","floodedRoad":false},"badIds":["bosai-69","bosai-70"]}]},
+ {"id":"vi04","kind":"location","turns":[{"text":"私は寝室で地震にあいました","kind":"confirm"},{"text":"そのときの注意点は？","kind":"confirm","queryIncludes":"寝室"},{"text":"その場合、友達はどうしますか","kind":"clarify","noPending":true}]},
+ {"id":"vi05","kind":"duration","turns":[{"text":"飲料水を沸騰させる時間は何分ですか","kind":"confirm"}]},
+ {"id":"vi06","kind":"live","turns":[{"text":"今日の津波警報は解除されていますか","kind":"unsupported","noPending":true}]},
+ {"id":"vi07","kind":"covered-road","turns":[{"text":"道路が水で覆われています。歩いて渡りたいです。","kind":"confirm","gold":"bosai-69","badIds":["bosai-84","bosai-70"]}]}
+]

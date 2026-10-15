@@ -2,6 +2,9 @@ import './beta.css';
 import {BetaController} from './beta-controller.js';
 import {corpus} from './beta-search.js';
 import {VoiceDraft} from './voice-draft.js';
+import {releaseVoiceResources} from './voice-lifecycle.js';
+import {correctionReview,applyCorrection} from './voice-review.js';
+import {mountVoiceEvaluation} from './voice-evaluation-ui.js';
 const $=id=>document.getElementById(id),el=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
 let uiRun=0,currentQuery='',lastRun;
 const controller=new BetaController({changed:refresh});
@@ -10,24 +13,40 @@ function selectEntry(id){const item=corpus.find(e=>e.id===id);if(!item)return;co
 function render(run){lastRun=run;$('candidates').replaceChildren();$('clarify').replaceChildren();$('entry').hidden=true;$('entry').replaceChildren();delete $('entry').dataset.entryId;$('empty').hidden=!!run.resultIds.length||run.scope.kind!=='related';$('resultCount').textContent=run.resultIds.length?`${run.resultIds.length}件の候補`:'';
  $('message').textContent=run.scope.kind==='unsupported'?run.scope.reason:run.scope.kind==='clarify'?run.scope.reason:run.resultIds.length?'関連する一般情報の候補です。状況に合う項目を選び、原文の条件・注意事項を確認してください。':'関連情報を確認できませんでした。別の言葉や具体的な状況で検索してください。';$('message').className='message '+(run.scope.kind==='unsupported'?'unavailable':'');
  for(const choice of run.scope.choices){const b=el('button',choice);b.type='button';b.onclick=()=>{$('question').value=`${choice}、${currentQuery}`.slice(0,200);$('question').dispatchEvent(new Event('input'));$('searchForm').requestSubmit();};$('clarify').append(b);}
- for(const id of run.resultIds){const item=corpus.find(e=>e.id===id),b=el('button','');b.type='button';b.dataset.entryId=id;b.setAttribute('aria-pressed','false');b.append(el('span',item.category),el('strong',item.title));b.onclick=()=>selectEntry(id);$('candidates').append(b);}
+ for(const id of run.resultIds){const item=corpus.find(e=>e.id===id),b=el('button','');b.type='button';b.dataset.entryId=id;b.setAttribute('aria-pressed','false');b.append(el('span',item.category),el('strong',item.title));const assessment=run.results?.find(r=>r.entry.id===id)?.assessment;if(assessment)b.append(el('small',assessment.status==='candidate'?'状況・行動の候補（安全性未確認）':'適用条件は要確認'));b.onclick=()=>selectEntry(id);$('candidates').append(b);}
  $('methodInfo').textContent=run.scope.kind==='unsupported'?'この質問への答えは、この辞書では提供できません。':`${run.actual==='hybrid'?'軽量＋Ruri AI':run.actual==='ruri'?'Ruri AI':'軽量検索'} · ${run.timings.totalMs.toFixed(0)} ms${run.fallback?' · AIが未保存または利用できないため軽量検索へ切り替えました。':''}`;
  $('metrics').textContent=`初期化 ${run.timings.loadMs?.toFixed(1)??'なし/再利用'} ms / 質問Embedding ${run.timings.embeddingMs?.toFixed(1)??'なし'} ms / 検索 ${run.timings.retrievalMs.toFixed(1)} ms / 合計 ${run.timings.totalMs.toFixed(1)} ms${run.fallback?` / 切替理由: ${run.fallback}`:''}`;$('candidates').dataset.run=JSON.stringify({...run,results:undefined});
 }
 $('question').oninput=()=>$('count').textContent=`${$('question').value.length} / 200`;
-$('searchForm').onsubmit=async event=>{event.preventDefault();if(controller.busy)return;if(voiceListening){$('message').textContent='先に「録音停止」を押し、認識結果を確認してください。';return;}if(voiceMic){await voiceRelease();voiceState('音声モデルを解放しました。Ruri検索に切り替えます。');}const seq=++uiRun;currentQuery=$('question').value.trim();$('message').textContent='関連する情報を検索しています…';try{const run=await controller.search(currentQuery,$('mode').value);if(seq===uiRun)render(run);}catch(e){if(seq===uiRun)$('message').textContent=e.message;}};
+$('searchForm').onsubmit=async event=>{event.preventDefault();if(controller.busy)return;if(voiceListening){$('message').textContent='先に「録音停止」を押し、認識結果を確認してください。';return;}if(voiceMic){if(!await voiceRelease())return;voiceState('音声モデルを解放しました。Ruri検索に切り替えます。');}const seq=++uiRun;currentQuery=$('question').value.trim();$('message').textContent='関連する情報を検索しています…';try{const run=await controller.search(currentQuery,$('mode').value);if(seq===uiRun)render(run);}catch(e){if(seq===uiRun)$('message').textContent=e.message;}};
 async function modelAction(action){const seq=++uiRun;try{await controller[action]();}catch(e){if(seq===uiRun)controller.phase(`処理を完了できませんでした：${e.message}。軽量検索は利用できます。`);}if(seq===uiRun)await controller.inspect();}
 $('saveModel').onclick=()=>modelAction('save');$('loadModel').onclick=()=>modelAction('load');$('stop').onclick=()=>{uiRun++;controller.stop();$('message').textContent='処理を停止しました。軽量検索または再試行をご利用ください。';controller.inspect();};$('resetModel').onclick=async()=>{uiRun++;await controller.reset();$('message').textContent='モデルを解放しました。保存済みデータと表示中の原文は維持しています。';};
 for(const text of ['寝ているときに地震が来たら？','高台に間に合わない津波の避難は？','避難所で水が使えないときのトイレは？']){const b=el('button',text);b.type='button';b.onclick=()=>{$('question').value=text;$('question').dispatchEvent(new Event('input'));$('searchForm').requestSubmit();};$('examples').append(b);}
 
 // Moonshine Voice Japanese Tiny (non-streaming) is opt-in. Keep text search usable if this fails.
 // The official WASM package is pinned; the microphone and model load only on button press.
+// Base is available only through an explicit evaluation route, pending iPad approval.
+const voiceModel=new URL(location.href).searchParams.get('voice_eval')==='base'?'base':'tiny';
 const MOONSHINE_MODULE=new URL('moonshine/index.js',location.origin+import.meta.env.BASE_URL).href;
 $('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
 const voiceUnload=el('button','音声モデルを解放');voiceUnload.type='button';voiceUnload.id='voiceUnload';voiceUnload.className='outlined';$('voiceStop').after(voiceUnload);voiceUnload.disabled=true;
-let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceTarget=null;
+let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceTarget=null,voiceReleaseFailed=false;
 const voiceDraft=new VoiceDraft(),voiceEvents=[];
-let voiceStage='未準備',voiceLastError=null;
+document.querySelector('.voice-lab-tag').textContent='Powered by Moonshine AI · 日本語'+(voiceModel==='base'?'Base（実機評価専用・未検証）':'Tiny');
+const modelEvaluation=el('details',''),modelSummary=el('summary','Tiny / Base の実機比較について'),modelNote=el('p','通常はTinyを使用します。BaseはiPad未検証の評価専用です。下の選択でページを開き直すと、この画面の入力・会話・評価記録は消えます。必要な記録を先に書き出してください。保存済みモデルは維持します。'),modelChoice=el('a',voiceModel==='base'?'Tinyに戻る':'Baseの評価画面を開く（任意・未検証）');
+const modelUrl=new URL(location.href);modelUrl.searchParams.set('voice_iso','1');if(voiceModel==='base')modelUrl.searchParams.delete('voice_eval');else modelUrl.searchParams.set('voice_eval','base');modelChoice.href=modelUrl.href;modelEvaluation.append(modelSummary,modelNote,modelChoice);document.querySelector('.voice-lab').append(modelEvaluation);
+let voiceStage='未準備',voiceLastError=null,voiceAttempt=null,voiceAttemptId=0;
+const committedView=el('p','');committedView.id='voiceCommitted';committedView.className='voice-live';committedView.setAttribute('aria-live','polite');$('voiceLive').after(committedView);
+const correctionPanel=el('div','');correctionPanel.id='voiceCorrections';correctionPanel.setAttribute('aria-label','確定文の補正候補');committedView.after(correctionPanel);
+mountVoiceEvaluation(document.querySelector('.voice-lab'),{model:()=>voiceModel,getCommitted:()=>voiceAttempt,isStopped:()=>!voiceBusy&&!voiceListening&&!voiceMic});
+function reviewVoice(){
+  correctionPanel.replaceChildren();
+  for(const candidate of correctionReview(voiceDraft.committed,voiceTarget?.value||'',{edited:voiceDraft.edited,provisional:voiceDraft.provisionalAtStop})){
+    const row=el('div',''),why=el('p',candidate.reason),preview=el('p',candidate.text),accept=el('button','「'+candidate.from+'」→「'+candidate.to+'」を採用');accept.type='button';
+    const target=voiceTarget;accept.onclick=()=>{if(!applyCorrection(target,candidate))voiceState('入力が変わったため補正を適用しませんでした。現在の入力を確認してください。');correctionPanel.replaceChildren();};
+    row.append(el('strong','補正候補（未適用）'),why,preview,accept);correctionPanel.append(row);
+  }
+}
 function voiceLog(type,text=''){voiceEvents.push({type,at:Date.now(),characters:String(text).length,stage:voiceStage});if(voiceEvents.length>120)voiceEvents.shift();}
 function voiceInput(){const chat=$('conversation');return chat&&!chat.hidden?$('chatQuestion'):$('question');}
 document.addEventListener('input',event=>{if(voiceTarget===event.target&&voiceListening)voiceDraft.noteManualChange(voiceTarget.value);});
@@ -35,7 +54,7 @@ function voiceState(message){
   $('voiceStatus').textContent=message;
   const lab=document.querySelector('.voice-lab');if(lab)lab.dataset.active=String(voiceBusy||voiceListening||!!voiceMic);
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
-  $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening;
+  $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening||voiceReleaseFailed;
   $('voiceStop').disabled=voiceBusy||!voiceListening;
   voiceUnload.disabled=voiceBusy||!voiceMic||voiceListening;
   refresh();
@@ -60,13 +79,16 @@ function voiceApply(){
 }
 async function voiceRelease(alreadyStopped=false){
   const mic=voiceMic;voiceMic=null;voiceListening=false;
-  if(!alreadyStopped)try{await mic?.stop();}catch{}
-  // Accept any onLine delivered during stop before invalidating callbacks.
+  const released=await releaseVoiceResources(mic,{alreadyStopped});
+  // Accept any onLine delivered during stop/close before invalidating callbacks.
   voiceSeq++;
-  try{await mic?.close();}catch{}
-  $('voiceLoad').disabled=voiceBusy;
+  voiceReleaseFailed=!released.closed;
+  if(!released.closed)voiceMic=mic; // Keep the handle for a retry; Ruri remains gated.
+  $('voiceLoad').disabled=voiceBusy||!!voiceMic;
   $('voiceListen').disabled=true;
   $('voiceStop').disabled=true;
+  if(!released.ok)voiceFailure(Error('音声の停止・解放を確認できません：'+released.errors.join('; ')));
+  return released.ok;
 }
 if(!crossOriginIsolated){
   $('voiceEnableIso').hidden=false;
@@ -102,14 +124,14 @@ $('voiceLoad').onclick=async()=>{
     voiceState('準備中：WASMと日本語モデル情報を確認しています…');
     const mic=new MicTranscriber()
       .language('ja')
-      .modelArch(ModelArch.Tiny)
+      .modelArch(voiceModel==='base'?ModelArch.Base:ModelArch.Tiny)
       .onProgress((fraction,file)=>{if(generation===voiceSeq){voiceStage='モデル取得・読み込み';voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));}})
       .onText(text=>{if(generation!==voiceSeq)return;voiceDraft.interim(text);voiceLog('onText',text);voiceApply();$('voiceLive').textContent=text?'認識中（暫定）：'+text:'';})
       .onLine(line=>{
         if(generation!==voiceSeq)return;
         const t=String(line?.text||'').trim();if(!t)return;
         voiceDraft.commit(line);voiceLog('onLine',t);voiceApply();
-        $('voiceLive').textContent='確定：'+voiceDraft.committed;
+        committedView.textContent='確定：'+voiceDraft.committed;$('voiceLive').textContent='';
       })
       .onError(error=>{if(generation===voiceSeq)voiceFailure(error?.error||error);});
     voiceMic=mic;
@@ -121,18 +143,18 @@ $('voiceLoad').onclick=async()=>{
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
 };
-voiceUnload.onclick=async()=>{if(voiceBusy||voiceListening||!voiceMic)return;voiceBusy=true;voiceStage='モデル解放';voiceState('音声モデルを解放しています…');try{await voiceRelease();voiceLog('release');voiceState('音声モデルを解放しました。Ruriへ戻れます。');}catch(e){voiceFailure(e);}finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}};
+voiceUnload.onclick=async()=>{if(voiceBusy||voiceListening||!voiceMic)return;voiceBusy=true;voiceStage='モデル解放';voiceState('音声モデルを解放しています…');try{if(await voiceRelease()){voiceLog('release');voiceState('音声モデルを解放しました。Ruriへ戻れます。');}}catch(e){voiceFailure(e);}finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}};
 $('voiceListen').onclick=async()=>{
-  if(voiceBusy||!voiceMic||voiceListening)return;
+  if(voiceBusy||!voiceMic||voiceListening||voiceReleaseFailed)return;
   voiceBusy=true;voiceStage='マイク開始';voiceTarget=voiceInput();voiceDraft.begin(voiceTarget.value.trim());
-  $('voiceLive').textContent='';voiceLog('start');
+  $('voiceLive').textContent='';committedView.textContent='';correctionPanel.replaceChildren();voiceAttempt=null;voiceLog('start');
   voiceState('マイクの許可を確認しています…');
   try{
     // start() is only called from a direct tap, required by Safari microphone gating.
     await voiceMic.start();
     voiceListening=true;
     voiceState('録音中。話し終わったら「録音停止」を押してください。');
-  }catch(e){voiceFailure(e);}
+  }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
 };
 $('voiceStop').onclick=async()=>{
@@ -142,7 +164,9 @@ $('voiceStop').onclick=async()=>{
   try{
     await voiceMic.stop();
     const ended=voiceDraft.stop();voiceLog('stop',ended.text);voiceApply();
-    await voiceRelease(true);
+    voiceAttempt={id:++voiceAttemptId,text:voiceDraft.committed,provisional:ended.provisional};
+    reviewVoice();
+    if(!await voiceRelease(true))return;
     voiceState(ended.manuallyEdited?'録音終了。手入力での修正を保持しました。認識結果との違いを確認してください。':ended.provisional?'録音終了。末尾は暫定認識のため、入力欄を必ず確認・修正してから送信してください。':ended.text?'文字起こし完了。入力欄を確認・修正してから送信してください。':'録音を終了しました。文字が認識されていません。');
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
@@ -152,7 +176,7 @@ addEventListener('pagehide',()=>{voiceSeq++;const m=voiceMic;voiceMic=null;try{P
 try{$('mode').value=localStorage.getItem('bosai-beta-mode')||'hybrid';}catch{}if(!$('mode').value)$('mode').value='hybrid';$('mode').onchange=()=>{try{localStorage.setItem('bosai-beta-mode',$('mode').value);}catch{}};
 $('build').textContent=`ベータ版 ${__APP_BUILD__} / 辞書 ${corpus.length}件 / CPU・WASM / 自由生成なし`;
 try{const previous=localStorage.getItem('bosai-beta-stage');if(previous&&!/完了|利用可能|解放|停止/.test(previous))$('recovery').textContent=`前回の記録：${previous}。終了理由は未確定です。保存は削除していません。`;}catch{}
-$('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({build:__APP_BUILD__,userAgent:navigator.userAgent,standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,origin:location.origin,saved:controller.saved,storageError:controller.storageError,state:controller.state,runs:controller.runs,deviceVerification:'Not automatically iPad verified',voice:{stage:voiceStage,error:voiceLastError,crossOriginIsolated,mode:new URL(location.href).searchParams.get('voice_iso')==='1',events:voiceEvents,provisionalAtStop:voiceDraft.provisionalAtStop,manuallyEdited:voiceDraft.edited}},null,2)],{type:'application/json'}));const a=el('a','');a.href=url;a.download='bosai-ruri-beta.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({build:__APP_BUILD__,userAgent:navigator.userAgent,standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,origin:location.origin,saved:controller.saved,storageError:controller.storageError,state:controller.state,runs:controller.runs,deviceVerification:'Not automatically iPad verified',voice:{model:voiceModel,stage:voiceStage,error:voiceLastError,crossOriginIsolated,mode:new URL(location.href).searchParams.get('voice_iso')==='1',events:voiceEvents,provisionalAtStop:voiceDraft.provisionalAtStop,manuallyEdited:voiceDraft.edited}},null,2)],{type:'application/json'}));const a=el('a','');a.href=url;a.download='bosai-ruri-beta.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 const online=()=>$('connection').textContent=navigator.onLine?'オンライン':'オフライン';addEventListener('online',online);addEventListener('offline',online);online();
 if(['localhost','127.0.0.1'].includes(location.hostname))Object.defineProperty(window,'bosaiBeta',{value:controller});
 controller.inspect();refresh();

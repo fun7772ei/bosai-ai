@@ -1,0 +1,16 @@
+{
+  "platform": "Linux Chromium",
+  "sdk": "test double; UI only",
+  "checks": {
+    "committed": true,
+    "noAutoRewrite": true,
+    "closed": true,
+    "confirmedOnly": true,
+    "rawCapture": true,
+    "editsPreserved": true,
+    "baseExplicit": true,
+    "releaseFailureVisible": true,
+    "settingsAfterRelease": true
+  },
+  "status": "passed"
+}

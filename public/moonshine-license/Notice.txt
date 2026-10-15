@@ -1,0 +1,4 @@
+This Moonshine AI Model is licensed under the Moonshine AI Community License, Copyright © Moonshine AI Ltd. All Rights Reserved
+
+Japanese legacy non-streaming Tiny and Base model weights are downloaded from Moonshine on explicit request and are not bundled in this application. Model files are unmodified. SDK: @moonshine-ai/moonshine-wasm 0.1.5.
+License source: https://github.com/moonshine-ai/moonshine/blob/main/LICENSE (retrieved 2026-10-15).

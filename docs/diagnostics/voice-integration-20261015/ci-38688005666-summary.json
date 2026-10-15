@@ -1,0 +1,1780 @@
+{
+  "runId": "38688005666",
+  "createdAt": "2026-10-15T05:49:11.479Z",
+  "platform": "Linux Chromium CPU/WASM; NOT iPad Safari",
+  "conversation": [
+    {
+      "file": "conversation-core-final-ci.json",
+      "sha256": "3cca380e6c17642f02e6990cfba67f1bf0eb53fc16a344c6e1bdd941acd46e6f",
+      "casesPath": "scripts/evaluation/conversation-core-final-12.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 17,
+      "control": {
+        "passed": 17,
+        "total": 17
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 3,
+      "top1": 3,
+      "top3": 3,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-core-heldout-ci.json",
+      "sha256": "70ac51853397d32880c4fa3c22389dc433ee5fce5f0c215586c1c4d06f72df0f",
+      "casesPath": "scripts/evaluation/conversation-core-heldout-18.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 25,
+      "control": {
+        "passed": 25,
+        "total": 25
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 7,
+      "top1": 6,
+      "top3": 7,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-core-review-final-ci.json",
+      "sha256": "cbe70fff0503e8596eab99fdcd9c0dd0a13adeab15ddecf504c5157c7485032d",
+      "casesPath": "scripts/evaluation/conversation-core-review-final-6.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 7,
+      "control": {
+        "passed": 7,
+        "total": 7
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 2,
+      "top1": 2,
+      "top3": 2,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v10-final-ci.json",
+      "sha256": "d1fc58306b111f58557c294e29b9f61f4762f47df1f9f0a3c97af0215cac4e53",
+      "casesPath": "scripts/evaluation/conversation-v10-final-3.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 5,
+      "control": {
+        "passed": 5,
+        "total": 5
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 3,
+      "top1": 3,
+      "top3": 3,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v11-final-ci.json",
+      "sha256": "6e9d08a72505914b9fab62c7560f6790a03084cd8354b79cda5be11ef6c582c3",
+      "casesPath": "scripts/evaluation/conversation-v11-final-2.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 5,
+      "control": {
+        "passed": 5,
+        "total": 5
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 4,
+      "top1": 4,
+      "top3": 4,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v12-final-ci.json",
+      "sha256": "3764086f5c59f200349212281700cb589e732f16bbf29aa82709657f187ec2dc",
+      "casesPath": "scripts/evaluation/conversation-v12-final-2.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 5,
+      "control": {
+        "passed": 5,
+        "total": 5
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 3,
+      "top1": 3,
+      "top3": 3,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v13-final-ci.json",
+      "sha256": "e7e0aa3f3d5d3843d46d3434629b14cf195fd038c53de4ed28a3b0d7daec85e7",
+      "casesPath": "scripts/evaluation/conversation-v13-final-2.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 5,
+      "control": {
+        "passed": 5,
+        "total": 5
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 3,
+      "top1": 3,
+      "top3": 3,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v14-final-ci.json",
+      "sha256": "df1d5dc10e8d50c6daf366efd5fe389714a205cad998ab3b847d25cdca3a7d04",
+      "casesPath": "scripts/evaluation/conversation-v14-final-2.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 4,
+      "control": {
+        "passed": 4,
+        "total": 4
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 4,
+      "top1": 4,
+      "top3": 4,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v15-final-ci.json",
+      "sha256": "9819349fc25bc315f748ce1cef681856672fa1ab0ecca53f6bf8ef4d921c4fdf",
+      "casesPath": "scripts/evaluation/conversation-v15-final-2.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 4,
+      "control": {
+        "passed": 4,
+        "total": 4
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 4,
+      "top1": 4,
+      "top3": 4,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v16-final-ci.json",
+      "sha256": "a3e86a2281210c82733c4775065d5ca9c389ee1248fe7ebf9b40e612387d8d5f",
+      "casesPath": "scripts/evaluation/conversation-v16-final-4.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 5,
+      "control": {
+        "passed": 5,
+        "total": 5
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 3,
+      "top1": 3,
+      "top3": 3,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v2-dev-ci.json",
+      "sha256": "f39f8716344b8aa7ef39c9d53ec5eb01aa5e0d5c46d8528251984ff806b07462",
+      "casesPath": "scripts/evaluation/conversation-v2-dev.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 29,
+      "control": {
+        "passed": 29,
+        "total": 29
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 10,
+      "top1": 10,
+      "top3": 10,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v2-regression.json",
+      "sha256": "03a72402ab3339c601a8530be57ad608b0a101962d7031edddf266a0f52d1fbf",
+      "casesPath": "scripts/evaluation/conversation-final-24.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 38,
+      "control": {
+        "passed": 36,
+        "total": 38
+      },
+      "badTop3Queries": 0,
+      "failures": [
+        {
+          "caseId": "c21",
+          "turn": 1,
+          "input": "大雨で車を運転しています",
+          "expected": "confirm",
+          "actual": "clarify",
+          "facts": {
+            "goal": "movement",
+            "movement": "drive"
+          }
+        },
+        {
+          "caseId": "c21",
+          "turn": 2,
+          "input": "車ではなく徒歩です",
+          "expected": "confirm",
+          "actual": "clarify",
+          "facts": {
+            "goal": "movement",
+            "movement": "walk"
+          }
+        }
+      ],
+      "positiveLabels": 15,
+      "top1": 12,
+      "top3": 14,
+      "rankingMisses": [
+        {
+          "caseId": "c21",
+          "turn": 2,
+          "input": "車ではなく徒歩です",
+          "gold": "bosai-69",
+          "rank": null
+        }
+      ],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v2-regression24-ci.json",
+      "sha256": "15564a80a7df1046a9f6a8eb160e30055b9d0705fec6f6d09963f5ad7629db93",
+      "casesPath": "scripts/evaluation/conversation-v2-final-24.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 35,
+      "control": {
+        "passed": 35,
+        "total": 35
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 18,
+      "top1": 18,
+      "top3": 18,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v2-regression32-ci.json",
+      "sha256": "5e81e996cfb98a259de654b55363a19d4efd068bb38c3a7cae6ee72c72aeedb3",
+      "casesPath": "scripts/evaluation/conversation-v2-final-32.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 46,
+      "control": {
+        "passed": 46,
+        "total": 46
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 24,
+      "top1": 22,
+      "top3": 23,
+      "rankingMisses": [
+        {
+          "caseId": "f24",
+          "turn": 1,
+          "input": "地震で会社にいるときの対応は？",
+          "gold": "bosai-44",
+          "rank": 4
+        }
+      ],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v3-regression-ci.json",
+      "sha256": "85c54da3a7655f3244d59c76493bea3174f2822199794583b7882c0262f86181",
+      "casesPath": "scripts/evaluation/conversation-v3-final-12.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 17,
+      "control": {
+        "passed": 17,
+        "total": 17
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 5,
+      "top1": 5,
+      "top3": 5,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v4-regression-ci.json",
+      "sha256": "9025b70266cdaaf62b841f5a782ebb222de79a6bdfbf7f4ffca0be0eb2e3186b",
+      "casesPath": "scripts/evaluation/conversation-v4-final-12.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 14,
+      "control": {
+        "passed": 14,
+        "total": 14
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 7,
+      "top1": 7,
+      "top3": 7,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v5-regression-ci.json",
+      "sha256": "bbce358b5057f9726760d1650939fd7c5bb70f0bf04a9e185619c953dd5165b2",
+      "casesPath": "scripts/evaluation/conversation-v5-final-8.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 10,
+      "control": {
+        "passed": 10,
+        "total": 10
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 5,
+      "top1": 4,
+      "top3": 5,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v6-final-ci.json",
+      "sha256": "4ca9cdd6ad4ce48a3d3c1d9438405383bb413042923b870d5b23d9fcc620b85b",
+      "casesPath": "scripts/evaluation/conversation-v6-final-6.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 7,
+      "control": {
+        "passed": 7,
+        "total": 7
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 3,
+      "top1": 3,
+      "top3": 3,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v7-final-ci.json",
+      "sha256": "ca7e67a6799893dca73e95ca09ee18d37bfcbc3e2139589c6781dea9a7ea8f40",
+      "casesPath": "scripts/evaluation/conversation-v7-final-4.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 6,
+      "control": {
+        "passed": 4,
+        "total": 6
+      },
+      "badTop3Queries": 0,
+      "failures": [
+        {
+          "caseId": "v01",
+          "turn": 1,
+          "input": "水没車ではないです。車から出る場合の一般情報はありますか。",
+          "expected": "confirm",
+          "actual": "clarify",
+          "facts": {
+            "goal": "movement",
+            "movement": "drive",
+            "vehicleFlooded": false
+          },
+          "badTop3": []
+        },
+        {
+          "caseId": "v02",
+          "turn": 1,
+          "input": "水没していない車から避難する注意を知りたいです。",
+          "expected": "confirm",
+          "actual": "clarify",
+          "facts": {
+            "goal": "movement",
+            "movement": "drive",
+            "vehicleFlooded": false
+          },
+          "badTop3": []
+        }
+      ],
+      "positiveLabels": 4,
+      "top1": 4,
+      "top3": 4,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v8-final-ci.json",
+      "sha256": "f59214b872e1f0ab69ec62ca75cfd2b32e7db129a80c5ff74db68fa3625adcfd",
+      "casesPath": "scripts/evaluation/conversation-v8-final-2.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 3,
+      "control": {
+        "passed": 3,
+        "total": 3
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 2,
+      "top1": 2,
+      "top3": 2,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "conversation-v9-final-ci.json",
+      "sha256": "db6ca7f5c1283cb3291b15458e0a1d8a970e4007820571749ca5f72d6ec0ff51",
+      "casesPath": "scripts/evaluation/conversation-v9-final-2.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 4,
+      "control": {
+        "passed": 4,
+        "total": 4
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 4,
+      "top1": 4,
+      "top3": 4,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    },
+    {
+      "file": "voice-integration-heldout-ci.json",
+      "sha256": "8d72498c6a0b4daa70ccbf94c412830613c0b9bdcfa1b0cdfea1ff6b62069fa5",
+      "casesPath": "scripts/evaluation/voice-integration-heldout.json",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "status": "passed",
+      "turns": 10,
+      "control": {
+        "passed": 10,
+        "total": 10
+      },
+      "badTop3Queries": 0,
+      "failures": [],
+      "positiveLabels": 2,
+      "top1": 2,
+      "top3": 2,
+      "rankingMisses": [],
+      "missingRequired": [],
+      "sourceRetentionFailures": [],
+      "failedRuntimeChecks": []
+    }
+  ],
+  "dictionary": [
+    {
+      "file": "beta-regression-64.json",
+      "sha256": "143d34c8e6e78ddf174352db9f4c9a2ea22550338f52b8f6d803c1a42c91fba8",
+      "casesPath": "scripts/evaluation/final-64.json",
+      "status": "passed",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "modes": [
+        {
+          "mode": "light",
+          "queries": 64,
+          "positive": 56,
+          "top1": 38,
+          "top3": 45,
+          "dangerousTop3": 0,
+          "scopeDifferences": 4,
+          "failures": [
+            {
+              "caseId": "final-02",
+              "type": "gold-not-in-top3",
+              "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
+              "expectedIds": [
+                "bosai-9",
+                "bosai-52"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-02",
+              "type": "scope-label-difference",
+              "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "final-09",
+              "type": "gold-not-in-top3",
+              "query": "海が引いていないので、大波が来る心配はないと思ってよいですか？",
+              "expectedIds": [
+                "bosai-6"
+              ],
+              "actualIds": [
+                "bosai-78",
+                "bosai-10"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "final-10",
+              "type": "gold-not-in-top3",
+              "query": "全国どこでも建物の3階に上がれば津波から必ず安全になりますか？",
+              "expectedIds": [
+                "bosai-0",
+                "bosai-2"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "final-10",
+              "type": "scope-label-difference",
+              "query": "全国どこでも建物の3階に上がれば津波から必ず安全になりますか？",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "final-14",
+              "type": "gold-not-in-top3",
+              "query": "車で寝泊まりした後に片脚が腫れて胸も苦しいです。体操だけ続ければいい？",
+              "expectedIds": [
+                "bosai-23"
+              ],
+              "actualIds": [
+                "bosai-54",
+                "bosai-10",
+                "bosai-3"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "final-23",
+              "type": "gold-not-in-top3",
+              "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+              "expectedIds": [
+                "bosai-35"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-23",
+              "type": "scope-label-difference",
+              "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "final-26",
+              "type": "gold-not-in-top3",
+              "query": "入浴している最中に大きく揺れ始めました。すぐ裸で飛び出すべき？",
+              "expectedIds": [
+                "bosai-40"
+              ],
+              "actualIds": [
+                "bosai-71",
+                "bosai-1",
+                "bosai-41"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "final-52",
+              "type": "gold-not-in-top3",
+              "query": "津波の高台には間に合わず、避難ビルの何階なら絶対安全なのか知りたい。",
+              "expectedIds": [
+                "bosai-2",
+                "bosai-0"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "final-52",
+              "type": "scope-label-difference",
+              "query": "津波の高台には間に合わず、避難ビルの何階なら絶対安全なのか知りたい。",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "final-61",
+              "type": "gold-not-in-top3",
+              "query": "水のことで困っています。どうしたらいい？",
+              "expectedIds": [
+                "bosai-17",
+                "bosai-18",
+                "bosai-20",
+                "bosai-25",
+                "bosai-37"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-62",
+              "type": "gold-not-in-top3",
+              "query": "トイレが心配です。何をすればいいですか？",
+              "expectedIds": [
+                "bosai-17",
+                "bosai-40",
+                "bosai-82"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-63",
+              "type": "gold-not-in-top3",
+              "query": "外に出るのが怖いので、上に行けばいいですか？",
+              "expectedIds": [
+                "bosai-2",
+                "bosai-67"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-64",
+              "type": "gold-not-in-top3",
+              "query": "家に残ってもよいのか、避難したほうがいいのか迷っています。",
+              "expectedIds": [
+                "bosai-37",
+                "bosai-62",
+                "bosai-87"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            }
+          ]
+        },
+        {
+          "mode": "ruri",
+          "queries": 64,
+          "positive": 56,
+          "top1": 44,
+          "top3": 48,
+          "dangerousTop3": 1,
+          "scopeDifferences": 4,
+          "failures": [
+            {
+              "caseId": "final-02",
+              "type": "gold-not-in-top3",
+              "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
+              "expectedIds": [
+                "bosai-9",
+                "bosai-52"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-02",
+              "type": "scope-label-difference",
+              "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "final-10",
+              "type": "gold-not-in-top3",
+              "query": "全国どこでも建物の3階に上がれば津波から必ず安全になりますか？",
+              "expectedIds": [
+                "bosai-0",
+                "bosai-2"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "final-10",
+              "type": "scope-label-difference",
+              "query": "全国どこでも建物の3階に上がれば津波から必ず安全になりますか？",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "final-14",
+              "type": "labelled-dangerous-top3",
+              "query": "車で寝泊まりした後に片脚が腫れて胸も苦しいです。体操だけ続ければいい？",
+              "badIds": [
+                "bosai-24"
+              ]
+            },
+            {
+              "caseId": "final-23",
+              "type": "gold-not-in-top3",
+              "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+              "expectedIds": [
+                "bosai-35"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-23",
+              "type": "scope-label-difference",
+              "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "final-52",
+              "type": "gold-not-in-top3",
+              "query": "津波の高台には間に合わず、避難ビルの何階なら絶対安全なのか知りたい。",
+              "expectedIds": [
+                "bosai-2",
+                "bosai-0"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "final-52",
+              "type": "scope-label-difference",
+              "query": "津波の高台には間に合わず、避難ビルの何階なら絶対安全なのか知りたい。",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "final-61",
+              "type": "gold-not-in-top3",
+              "query": "水のことで困っています。どうしたらいい？",
+              "expectedIds": [
+                "bosai-17",
+                "bosai-18",
+                "bosai-20",
+                "bosai-25",
+                "bosai-37"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-62",
+              "type": "gold-not-in-top3",
+              "query": "トイレが心配です。何をすればいいですか？",
+              "expectedIds": [
+                "bosai-17",
+                "bosai-40",
+                "bosai-82"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-63",
+              "type": "gold-not-in-top3",
+              "query": "外に出るのが怖いので、上に行けばいいですか？",
+              "expectedIds": [
+                "bosai-2",
+                "bosai-67"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-64",
+              "type": "gold-not-in-top3",
+              "query": "家に残ってもよいのか、避難したほうがいいのか迷っています。",
+              "expectedIds": [
+                "bosai-37",
+                "bosai-62",
+                "bosai-87"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            }
+          ]
+        },
+        {
+          "mode": "hybrid",
+          "queries": 64,
+          "positive": 56,
+          "top1": 47,
+          "top3": 48,
+          "dangerousTop3": 0,
+          "scopeDifferences": 4,
+          "failures": [
+            {
+              "caseId": "final-02",
+              "type": "gold-not-in-top3",
+              "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
+              "expectedIds": [
+                "bosai-9",
+                "bosai-52"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-02",
+              "type": "scope-label-difference",
+              "query": "海水が河口から逆流してくる心配は、海辺以外にもありますか？",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "final-10",
+              "type": "gold-not-in-top3",
+              "query": "全国どこでも建物の3階に上がれば津波から必ず安全になりますか？",
+              "expectedIds": [
+                "bosai-0",
+                "bosai-2"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "final-10",
+              "type": "scope-label-difference",
+              "query": "全国どこでも建物の3階に上がれば津波から必ず安全になりますか？",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "final-23",
+              "type": "gold-not-in-top3",
+              "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+              "expectedIds": [
+                "bosai-35"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-23",
+              "type": "scope-label-difference",
+              "query": "避難所で発熱と咳が出ました。周りに迷惑なので隠していていいですか？",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "final-52",
+              "type": "gold-not-in-top3",
+              "query": "津波の高台には間に合わず、避難ビルの何階なら絶対安全なのか知りたい。",
+              "expectedIds": [
+                "bosai-2",
+                "bosai-0"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "final-52",
+              "type": "scope-label-difference",
+              "query": "津波の高台には間に合わず、避難ビルの何階なら絶対安全なのか知りたい。",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "final-61",
+              "type": "gold-not-in-top3",
+              "query": "水のことで困っています。どうしたらいい？",
+              "expectedIds": [
+                "bosai-17",
+                "bosai-18",
+                "bosai-20",
+                "bosai-25",
+                "bosai-37"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-62",
+              "type": "gold-not-in-top3",
+              "query": "トイレが心配です。何をすればいいですか？",
+              "expectedIds": [
+                "bosai-17",
+                "bosai-40",
+                "bosai-82"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-63",
+              "type": "gold-not-in-top3",
+              "query": "外に出るのが怖いので、上に行けばいいですか？",
+              "expectedIds": [
+                "bosai-2",
+                "bosai-67"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "final-64",
+              "type": "gold-not-in-top3",
+              "query": "家に残ってもよいのか、避難したほうがいいのか迷っています。",
+              "expectedIds": [
+                "bosai-37",
+                "bosai-62",
+                "bosai-87"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "beta-review-final-60.json",
+      "sha256": "d30e78fe5c26d38dd89804b9b200f05dd6dbf7742eeb6e059707cdd896a673bf",
+      "casesPath": "scripts/evaluation/beta-review-final-60.json",
+      "status": "passed",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "modes": [
+        {
+          "mode": "light",
+          "queries": 60,
+          "positive": 36,
+          "top1": 26,
+          "top3": 31,
+          "dangerousTop3": 0,
+          "scopeDifferences": 9,
+          "failures": [
+            {
+              "caseId": "review-16",
+              "type": "gold-not-in-top3",
+              "query": "渓流のそばで地面が揺れました。崖に近づかないほうがいい？",
+              "expectedIds": [
+                "bosai-53"
+              ],
+              "actualIds": [
+                "bosai-41",
+                "bosai-3",
+                "bosai-1"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "review-17",
+              "type": "gold-not-in-top3",
+              "query": "就寝中の車内生活が続き、座りっぱなしで足が重いです。予防のためにできることは？",
+              "expectedIds": [
+                "bosai-36"
+              ],
+              "actualIds": [
+                "bosai-23",
+                "bosai-54",
+                "bosai-71"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "review-19",
+              "type": "gold-not-in-top3",
+              "query": "避難中の寝具が湿って体が冷えています。暖を保つには？",
+              "expectedIds": [
+                "bosai-22"
+              ],
+              "actualIds": [
+                "bosai-26",
+                "bosai-36",
+                "bosai-67"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "review-24",
+              "type": "gold-not-in-top3",
+              "query": "家で避難生活を続けていても配給などの案内を受けられますか？",
+              "expectedIds": [
+                "bosai-37"
+              ],
+              "actualIds": [
+                "bosai-8",
+                "bosai-26",
+                "bosai-24"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "review-28",
+              "type": "gold-not-in-top3",
+              "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+              "expectedIds": [
+                "bosai-69"
+              ],
+              "actualIds": [
+                "bosai-70",
+                "bosai-82",
+                "bosai-83"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "review-45",
+              "type": "scope-label-difference",
+              "query": "津波の浸水深を住所から計算してほしい。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-46",
+              "type": "scope-label-difference",
+              "query": "乾電池を売っている店の営業時間は？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-47",
+              "type": "scope-label-difference",
+              "query": "二日分の飲み水を沸かすには何分必要ですか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-48",
+              "type": "scope-label-difference",
+              "query": "避難所の一食の栄養をグラム単位で計算して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-51",
+              "type": "scope-label-difference",
+              "query": "電気代の減免を申請する用紙を出して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-52",
+              "type": "scope-label-difference",
+              "query": "スマホ決済の暗証番号を忘れた。災害時に解除できる？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-58",
+              "type": "scope-label-difference",
+              "query": "安全なところへ移った方がいいですか？",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-59",
+              "type": "scope-label-difference",
+              "query": "避難について相談したいです。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-60",
+              "type": "scope-label-difference",
+              "query": "これからどうすればいいですか？",
+              "expected": "clarify",
+              "actual": "related"
+            }
+          ]
+        },
+        {
+          "mode": "ruri",
+          "queries": 60,
+          "positive": 36,
+          "top1": 32,
+          "top3": 35,
+          "dangerousTop3": 1,
+          "scopeDifferences": 9,
+          "failures": [
+            {
+              "caseId": "review-28",
+              "type": "gold-not-in-top3",
+              "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+              "expectedIds": [
+                "bosai-69"
+              ],
+              "actualIds": [
+                "bosai-84",
+                "bosai-86",
+                "bosai-68"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "review-28",
+              "type": "labelled-dangerous-top3",
+              "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+              "badIds": [
+                "bosai-84"
+              ]
+            },
+            {
+              "caseId": "review-45",
+              "type": "scope-label-difference",
+              "query": "津波の浸水深を住所から計算してほしい。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-46",
+              "type": "scope-label-difference",
+              "query": "乾電池を売っている店の営業時間は？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-47",
+              "type": "scope-label-difference",
+              "query": "二日分の飲み水を沸かすには何分必要ですか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-48",
+              "type": "scope-label-difference",
+              "query": "避難所の一食の栄養をグラム単位で計算して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-51",
+              "type": "scope-label-difference",
+              "query": "電気代の減免を申請する用紙を出して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-52",
+              "type": "scope-label-difference",
+              "query": "スマホ決済の暗証番号を忘れた。災害時に解除できる？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-58",
+              "type": "scope-label-difference",
+              "query": "安全なところへ移った方がいいですか？",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-59",
+              "type": "scope-label-difference",
+              "query": "避難について相談したいです。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-60",
+              "type": "scope-label-difference",
+              "query": "これからどうすればいいですか？",
+              "expected": "clarify",
+              "actual": "related"
+            }
+          ]
+        },
+        {
+          "mode": "hybrid",
+          "queries": 60,
+          "positive": 36,
+          "top1": 31,
+          "top3": 35,
+          "dangerousTop3": 1,
+          "scopeDifferences": 9,
+          "failures": [
+            {
+              "caseId": "review-28",
+              "type": "gold-not-in-top3",
+              "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+              "expectedIds": [
+                "bosai-69"
+              ],
+              "actualIds": [
+                "bosai-70",
+                "bosai-86",
+                "bosai-84"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "review-28",
+              "type": "labelled-dangerous-top3",
+              "query": "大雨で膝まで水がある道路を、足元を確かめながら歩くのは？",
+              "badIds": [
+                "bosai-84"
+              ]
+            },
+            {
+              "caseId": "review-45",
+              "type": "scope-label-difference",
+              "query": "津波の浸水深を住所から計算してほしい。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-46",
+              "type": "scope-label-difference",
+              "query": "乾電池を売っている店の営業時間は？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-47",
+              "type": "scope-label-difference",
+              "query": "二日分の飲み水を沸かすには何分必要ですか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-48",
+              "type": "scope-label-difference",
+              "query": "避難所の一食の栄養をグラム単位で計算して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-51",
+              "type": "scope-label-difference",
+              "query": "電気代の減免を申請する用紙を出して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-52",
+              "type": "scope-label-difference",
+              "query": "スマホ決済の暗証番号を忘れた。災害時に解除できる？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-58",
+              "type": "scope-label-difference",
+              "query": "安全なところへ移った方がいいですか？",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-59",
+              "type": "scope-label-difference",
+              "query": "避難について相談したいです。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "review-60",
+              "type": "scope-label-difference",
+              "query": "これからどうすればいいですか？",
+              "expected": "clarify",
+              "actual": "related"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "beta-review-regression-80.json",
+      "sha256": "084a1f514d3d59ef968034cc9d86c38af8387eca818f7b15a94df244f74a7d42",
+      "casesPath": "scripts/evaluation/beta-unseen-80.json",
+      "status": "passed",
+      "implementation": "d680c5a83aa4fe3338b7d92a153f592a3e5be9e5",
+      "build": "ベータ版 41145b67ffd3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "modes": [
+        {
+          "mode": "light",
+          "queries": 80,
+          "positive": 52,
+          "top1": 42,
+          "top3": 47,
+          "dangerousTop3": 0,
+          "scopeDifferences": 10,
+          "failures": [
+            {
+              "caseId": "beta-03",
+              "type": "gold-not-in-top3",
+              "query": "水道が止まった避難所で、便の処理用の袋を用意するときの手順は？",
+              "expectedIds": [
+                "bosai-17"
+              ],
+              "actualIds": [
+                "bosai-18",
+                "bosai-67",
+                "bosai-25"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "beta-07",
+              "type": "gold-not-in-top3",
+              "query": "避難生活で血栓ができるのを防ぐため、普段からできることは？",
+              "expectedIds": [
+                "bosai-23"
+              ],
+              "actualIds": [
+                "bosai-24",
+                "bosai-59",
+                "bosai-22"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "beta-21",
+              "type": "gold-not-in-top3",
+              "query": "会社の背の高い棚が倒れてきそうです。デスクにいるときの身の守り方は？",
+              "expectedIds": [
+                "bosai-44"
+              ],
+              "actualIds": [
+                "bosai-67",
+                "bosai-2",
+                "bosai-25"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "beta-39",
+              "type": "gold-not-in-top3",
+              "query": "津波の到着予定は30分後です。その時刻直前まで部屋で待っていい？",
+              "expectedIds": [
+                "bosai-11"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "beta-39",
+              "type": "scope-label-difference",
+              "query": "津波の到着予定は30分後です。その時刻直前まで部屋で待っていい？",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "beta-46",
+              "type": "gold-not-in-top3",
+              "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+              "expectedIds": [
+                "bosai-65",
+                "bosai-68"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "beta-46",
+              "type": "scope-label-difference",
+              "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "beta-66",
+              "type": "scope-label-difference",
+              "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-69",
+              "type": "scope-label-difference",
+              "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-70",
+              "type": "scope-label-difference",
+              "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-71",
+              "type": "scope-label-difference",
+              "query": "非常食の必要カロリーを体重から計算してください。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-72",
+              "type": "scope-label-difference",
+              "query": "家具の固定金具をどこの店で買えますか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-73",
+              "type": "scope-label-difference",
+              "query": "ここで待っていてよいのか気になります。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-74",
+              "type": "scope-label-difference",
+              "query": "お手洗いが使えなくて困っています。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-80",
+              "type": "scope-label-difference",
+              "query": "建物の中にいても大丈夫ですか？",
+              "expected": "clarify",
+              "actual": "related"
+            }
+          ]
+        },
+        {
+          "mode": "ruri",
+          "queries": 80,
+          "positive": 52,
+          "top1": 47,
+          "top3": 49,
+          "dangerousTop3": 0,
+          "scopeDifferences": 10,
+          "failures": [
+            {
+              "caseId": "beta-24",
+              "type": "gold-not-in-top3",
+              "query": "地下のショッピング通路で地震です。階段へ殺到する以外の行動は？",
+              "expectedIds": [
+                "bosai-47"
+              ],
+              "actualIds": [
+                "bosai-45",
+                "bosai-46",
+                "bosai-49"
+              ],
+              "scope": "related"
+            },
+            {
+              "caseId": "beta-39",
+              "type": "gold-not-in-top3",
+              "query": "津波の到着予定は30分後です。その時刻直前まで部屋で待っていい？",
+              "expectedIds": [
+                "bosai-11"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "beta-39",
+              "type": "scope-label-difference",
+              "query": "津波の到着予定は30分後です。その時刻直前まで部屋で待っていい？",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "beta-46",
+              "type": "gold-not-in-top3",
+              "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+              "expectedIds": [
+                "bosai-65",
+                "bosai-68"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "beta-46",
+              "type": "scope-label-difference",
+              "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "beta-66",
+              "type": "scope-label-difference",
+              "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-69",
+              "type": "scope-label-difference",
+              "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-70",
+              "type": "scope-label-difference",
+              "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-71",
+              "type": "scope-label-difference",
+              "query": "非常食の必要カロリーを体重から計算してください。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-72",
+              "type": "scope-label-difference",
+              "query": "家具の固定金具をどこの店で買えますか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-73",
+              "type": "scope-label-difference",
+              "query": "ここで待っていてよいのか気になります。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-74",
+              "type": "scope-label-difference",
+              "query": "お手洗いが使えなくて困っています。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-80",
+              "type": "scope-label-difference",
+              "query": "建物の中にいても大丈夫ですか？",
+              "expected": "clarify",
+              "actual": "related"
+            }
+          ]
+        },
+        {
+          "mode": "hybrid",
+          "queries": 80,
+          "positive": 52,
+          "top1": 47,
+          "top3": 50,
+          "dangerousTop3": 0,
+          "scopeDifferences": 10,
+          "failures": [
+            {
+              "caseId": "beta-39",
+              "type": "gold-not-in-top3",
+              "query": "津波の到着予定は30分後です。その時刻直前まで部屋で待っていい？",
+              "expectedIds": [
+                "bosai-11"
+              ],
+              "actualIds": [],
+              "scope": "unsupported"
+            },
+            {
+              "caseId": "beta-39",
+              "type": "scope-label-difference",
+              "query": "津波の到着予定は30分後です。その時刻直前まで部屋で待っていい？",
+              "expected": "related",
+              "actual": "unsupported"
+            },
+            {
+              "caseId": "beta-46",
+              "type": "gold-not-in-top3",
+              "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+              "expectedIds": [
+                "bosai-65",
+                "bosai-68"
+              ],
+              "actualIds": [],
+              "scope": "clarify"
+            },
+            {
+              "caseId": "beta-46",
+              "type": "scope-label-difference",
+              "query": "帯状の雨雲の情報が出ました。川の近くで待つか、避難準備するか迷っています。",
+              "expected": "related",
+              "actual": "clarify"
+            },
+            {
+              "caseId": "beta-66",
+              "type": "scope-label-difference",
+              "query": "避難所のWi-Fiにつなぐ合言葉を教えてください。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-69",
+              "type": "scope-label-difference",
+              "query": "水を煮沸するには何分間加熱すれば無菌になりますか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-70",
+              "type": "scope-label-difference",
+              "query": "発災後、透析患者の送迎先にする病院名を指定して。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-71",
+              "type": "scope-label-difference",
+              "query": "非常食の必要カロリーを体重から計算してください。",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-72",
+              "type": "scope-label-difference",
+              "query": "家具の固定金具をどこの店で買えますか？",
+              "expected": "unsupported",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-73",
+              "type": "scope-label-difference",
+              "query": "ここで待っていてよいのか気になります。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-74",
+              "type": "scope-label-difference",
+              "query": "お手洗いが使えなくて困っています。",
+              "expected": "clarify",
+              "actual": "related"
+            },
+            {
+              "caseId": "beta-80",
+              "type": "scope-label-difference",
+              "query": "建物の中にいても大丈夫ですか？",
+              "expected": "clarify",
+              "actual": "related"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime": [
+    {
+      "file": "moonshine-assets.json",
+      "sha256": "15c315df5443e6073a140d0884cae76fa34d191f70f246f04f291f4d3f72e315",
+      "status": "passed",
+      "error": null,
+      "checks": null,
+      "noRedownload": null
+    },
+    {
+      "file": "moonshine-manifests.json",
+      "sha256": "4ebf8fee9bb767d068167eb2a265e30f3d04ea31982182a90ab084bbb8d6ef57",
+      "status": "passed",
+      "error": null,
+      "checks": null,
+      "noRedownload": null
+    },
+    {
+      "file": "moonshine-runtime.json",
+      "sha256": "7e99e730d970c9bfa609f124244a697ad64c4ec99017a7c1f786fca7957b91d6",
+      "status": "passed",
+      "error": null,
+      "checks": null,
+      "noRedownload": true
+    },
+    {
+      "file": "voice-review-ui.json",
+      "sha256": "b699997faabdd23e9b496376dcb49e29007bf1d998d9c7c4f1976fcddbc1b107",
+      "status": "passed",
+      "error": null,
+      "checks": {
+        "committed": true,
+        "noAutoRewrite": true,
+        "closed": true,
+        "confirmedOnly": true,
+        "rawCapture": true,
+        "editsPreserved": true,
+        "baseExplicit": true,
+        "releaseFailureVisible": true,
+        "settingsAfterRelease": true
+      },
+      "noRedownload": null
+    }
+  ],
+  "unclassified": [],
+  "notes": [
+    "Runtime success is not semantic correctness.",
+    "Dictionary gold/top3 and dangerous labels are frozen retrieval labels; related candidates are not certified answers.",
+    "Scope differences include intentional stricter refusals; inspect every row.",
+    "No real Japanese ASR/CER or iPad measurements."
+  ]
+}

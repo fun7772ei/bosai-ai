@@ -5,7 +5,7 @@ const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;r
 export function mountConversation(controller){
  const main=document.querySelector('main'),workspace=document.querySelector('.workspace');
  const panel=node('section','');panel.className='surface conversation';panel.id='conversation';panel.hidden=true;
- const heading=node('h2','防災AIに相談する · 統合ベータ'),note=node('p','自由生成なしの会話試作です。条件を確認し、辞書の原文を参照します。会話はこの画面のメモリ内のみ（最大40メッセージ）。再読み込みで消えます。現在の警報・安全性・個人の診断は判断できません。');
+ const heading=node('h2','状況を整理して原文を探す'),note=node('p','自由生成なしの会話試作です。条件を確認し、辞書の原文を参照します。会話はこの画面のメモリ内のみ（最大40メッセージ）。再読み込みで消えます。現在の警報・安全性・個人の診断は判断できません。');
  const log=node('div','');log.id='conversationLog';log.setAttribute('role','log');log.setAttribute('aria-label','会話履歴');log.setAttribute('aria-live','polite');
  const form=node('form',''),label=node('label','状況を入力'),input=node('textarea','');input.id='chatQuestion';input.maxLength=200;input.required=true;input.rows=3;label.htmlFor=input.id;
  const stop=node('button','検索を停止');stop.id='chatStop';stop.type='button';stop.disabled=true;
@@ -20,7 +20,7 @@ export function mountConversation(controller){
  // Three independent routes share the same Ruri controller and existing controls.
  // Keep the dictionary as the initial route until the new chat has iPad validation.
  const navigation=node('nav','');navigation.id='appNavigation';navigation.setAttribute('aria-label','アプリ内の画面切替');
- const navChat=node('button','会話AI'),navDictionary=node('button','辞書検索'),navSettings=node('button','設定・準備');
+ const navChat=node('button','会話'),navDictionary=node('button','辞書検索'),navSettings=node('button','設定・準備');
  const navButtons={chat:navChat,dictionary:navDictionary,settings:navSettings};
  for(const [name,button] of Object.entries(navButtons)){button.type='button';button.dataset.view=name;navigation.append(button);}
  const settings=node('section','');settings.className='app-settings';settings.id='appSettings';settings.hidden=true;settings.setAttribute('aria-label','モデルとアプリの設定');
@@ -118,9 +118,9 @@ export function mountConversation(controller){
  back.onclick=()=>showView('dictionary');
  clear.onclick=()=>{epoch++;if(engine.busy)controller.stop();engine.clear();send.disabled=false;status.textContent='会話の文脈を解除しました。モデル保存は維持しています。';render();};
  form.onsubmit=async event=>{event.preventDefault();if(engine.busy)return;
-  // The existing button is the single authority for Moonshine busy/listening gating.
+  // The shared lifecycle state also gates failed-close handles, not just listening.
   // Do not initialise a second speech/runtime path or change recognition callbacks.
-  if(document.querySelector('#search').disabled||!document.querySelector('#voiceListen').disabled){status.textContent='通常検索に戻り、音声AIの停止・解放または処理終了後に送信してください。';return;}
+  if(document.querySelector('#search').disabled||voiceActive()){status.textContent='音声入力の停止・モデル解放または検索処理の終了後に送信してください。';return;}
   const seq=++epoch;send.disabled=true;status.textContent='条件を確認しています…';try{const text=input.value;const pending=engine.send(text,document.querySelector('#mode').value);render();await pending;if(seq===epoch){input.value='';status.textContent='';render();}}catch(e){if(seq===epoch)status.textContent=e.message;}finally{if(seq===epoch)send.disabled=false;}
  };
  document.querySelector('#stop').addEventListener('click',()=>{epoch++;engine.cancel();send.disabled=false;status.textContent='会話の検索を停止しました。再送信できます。';render();});

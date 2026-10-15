@@ -1,5 +1,7 @@
 import {retrieve} from './beta-search.js';
 import {assessRequestScope} from './request-scope.js';
+import {conditions,factsIn,topicsIn,focusFor} from './request-facts.js';
+import {evaluateEvidence} from './conversation-applicability.js';
 import {RuriChannel} from './ruri-client.js';
 import {openModelStore} from './model-storage.js';
 import {ruriStatus} from './ruri-models.js';
@@ -19,6 +21,12 @@ export class BetaController{
   return this.action(async epoch=>{const t=performance.now(),timings={};const scope=request.scope||assessRequestScope(query);let vector,actual='light',fallback=null;
    if(mode!=='light'&&scope.kind==='related')try{await this.ensure(epoch,timings);this.valid(epoch);this.phase('質問の意味を検索中…');const r=await this.channel.request('embed',{query});this.valid(epoch);vector=r.vector;timings.embeddingMs=r.elapsedMs;timings.tokens=r.tokens;actual=mode;}catch(e){this.valid(epoch);fallback=e.message;const c=this.channel;this.channel=null;this.ready=false;c?.kill();}
    this.valid(epoch);const begin=performance.now(),{results,scope:assessed}=retrieve(query,actual,vector,scope);timings.retrievalMs=performance.now()-begin;timings.totalMs=performance.now()-t;
-   const run={query,requested:mode,actual,fallback,scope:assessed,resultIds:results.map(r=>r.entry.id),scores:results.map(r=>r.score),timings,ready:this.ready,time:new Date().toISOString()};this.runs.push(run);if(this.runs.length>100)this.runs.shift();this.phase(fallback?'軽量検索で表示しています。':'検索完了');return{...run,results};});
+   const run={query,requested:mode,actual,fallback,scope:assessed,resultIds:results.map(r=>r.entry.id),scores:results.map(r=>r.score),timings,ready:this.ready,time:new Date().toISOString()};// Conversation already supplies a typed request and evaluates its evidence once.
+   // Stateless dictionary searches use the same facts/evaluator, without inheriting chat state.
+   let evaluated={...run,results};
+   if(!request.scope){const positive=conditions(query).positive,facts=factsIn(positive),topics=topicsIn(positive);evaluated=evaluateEvidence(evaluated,focusFor(topics,facts),facts,topics);}
+   const visible={...run,resultIds:evaluated.results.map(r=>r.entry.id),scores:evaluated.results.map(r=>r.score),evidence:evaluated.evidence,applicability:evaluated.applicability};
+   timings.totalMs=performance.now()-t;
+   this.runs.push(visible);if(this.runs.length>100)this.runs.shift();this.phase(fallback?'軽量検索で表示しています。':'検索完了');return{...visible,results:evaluated.results};});
  }
 }
