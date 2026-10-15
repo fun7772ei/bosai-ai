@@ -4,17 +4,19 @@ const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;r
 export function mountConversation(controller){
  const main=document.querySelector('main'),workspace=document.querySelector('.workspace');
  const panel=node('section','');panel.className='surface conversation';panel.id='conversation';panel.hidden=true;
- const heading=node('h2','文字で相談する · Phase 2 α'),note=node('p','自由生成なしの会話試作です。条件を確認し、辞書の原文を参照します。会話はこの画面のメモリ内のみ（最大40メッセージ）。再読み込みで消えます。現在の警報・安全性・個人の診断は判断できません。');
+ const heading=node('h2','防災AIに相談する · 統合ベータ'),note=node('p','自由生成なしの会話試作です。条件を確認し、辞書の原文を参照します。会話はこの画面のメモリ内のみ（最大40メッセージ）。再読み込みで消えます。現在の警報・安全性・個人の診断は判断できません。');
  const log=node('div','');log.id='conversationLog';log.setAttribute('role','log');log.setAttribute('aria-label','会話履歴');log.setAttribute('aria-live','polite');
  const form=node('form',''),label=node('label','状況を入力'),input=node('textarea','');input.id='chatQuestion';input.maxLength=200;input.required=true;input.rows=3;label.htmlFor=input.id;
  const stop=node('button','検索を停止');stop.id='chatStop';stop.type='button';stop.disabled=true;
  const send=node('button','送信'),clear=node('button','会話をリセット'),back=node('button','通常検索に戻る');send.id='chatSend';send.type='submit';clear.id='chatClear';clear.type=back.type='button';
- const status=node('p',''),controls=node('div','');status.id='chatStatus';status.setAttribute('role','status');controls.className='actions';controls.append(send,stop,clear,back);form.append(label,input,controls,status);
+ const status=node('p',''),controls=node('div',''),voiceDock=node('div','');status.id='chatStatus';status.setAttribute('role','status');voiceDock.id='chatVoiceDock';controls.className='actions';controls.append(send,stop,clear,back);form.append(label,input,voiceDock,controls,status);
+ const voiceLab=document.querySelector('.voice-lab'),voiceParent=voiceLab?.parentNode,voiceAnchor=voiceLab?.nextSibling;
+ function voiceActive(){return !document.querySelector('#voiceStop')?.disabled||!document.querySelector('#voiceListen')?.disabled;}
  panel.append(heading,note,log,form);main.insertBefore(panel,workspace);
  const toggle=node('button','会話モードを試す（文字入力）');toggle.type='button';toggle.id='chatToggle';toggle.className='tonal';main.insertBefore(toggle,workspace);
  const engine=new Conversation((q,m)=>controller.search(q,m));let epoch=0;
  function source(entry,parent){const card=node('article','');card.className='entry';card.dataset.sourceId=entry.id;card.append(node('h3',entry.title),node('p',entry.summary));const warning=node('div','');warning.className='warning';warning.append(node('h4','注意事項'),node('p',entry.warning));const steps=node('ol','');entry.steps.forEach(s=>steps.append(node('li',s)));card.append(warning,node('h4','手順（原文・省略なし）'),steps,node('p',entry.items));for(const s of entry.sources){const a=node('a',s.label);a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';card.append(a,node('br',''));}parent.append(card);}
- function render(){log.replaceChildren();for(const message of engine.history){const bubble=node('div','');bubble.className=`bubble ${message.role}`;bubble.append(node('strong',message.role==='user'?'あなた':'防災辞書'),node('p',message.text));
+ function render(){const nearBottom=log.scrollHeight-log.clientHeight-log.scrollTop<100,top=log.scrollTop;log.replaceChildren();for(const message of engine.history){const bubble=node('div','');bubble.className=`bubble ${message.role}`;bubble.append(node('strong',message.role==='user'?'あなた':'防災辞書'),node('p',message.text));
   if(message.role==='assistant'){
    for(const c of message.candidates||[]){const fitStatus={candidate:'適用候補（安全性未確認）','needs-confirmation':'要確認','not-applicable':'適用外'}[c.applicability?.status]||'関連情報・適用未確認';const b=node('button',`${c.category} · ${c.title}（${fitStatus}）`);b.type='button';b.dataset.sourceChoice=c.id;b.disabled=message.selection!==engine.state.selection||!engine.state.pending.includes(c.id)||engine.busy;b.onclick=()=>{try{engine.choose(c.id,message.selection);render();}catch(e){status.textContent=e.message;}};bubble.append(b);}
    for(const c of message.choices||[]){const b=node('button',c);b.type='button';b.disabled=message!==engine.history.at(-1)||engine.busy;b.onclick=()=>{input.value=c;form.requestSubmit();};bubble.append(b);}
@@ -23,11 +25,12 @@ export function mountConversation(controller){
    if(message.diagnostics){const d=node('details','');d.append(node('summary','検索の診断'),node('pre',JSON.stringify(message.diagnostics,null,2)));bubble.append(d);}
   }log.append(bubble);}
   stop.disabled=!engine.busy;
+  if(nearBottom)log.scrollTop=log.scrollHeight;else log.scrollTop=top;
   panel.dataset.state=JSON.stringify({history:engine.history.map(({entries,...m})=>({...m,entryIds:entries?.map(e=>e.id)})),state:engine.state});
  }
- toggle.onclick=()=>{panel.hidden=false;workspace.hidden=true;toggle.hidden=true;input.focus();};
+ toggle.onclick=()=>{if(voiceActive()){document.querySelector('#voiceStatus').textContent='音声入力を停止してから会話画面へ切り替えてください。';return;}panel.hidden=false;workspace.hidden=true;toggle.hidden=true;if(voiceLab)voiceDock.append(voiceLab);input.focus();};
  stop.onclick=()=>{epoch++;controller.stop();engine.cancel();send.disabled=false;status.textContent='会話の検索を停止しました。入力と履歴は残しています。';render();};
- back.onclick=()=>{epoch++;if(engine.busy){controller.stop();engine.cancel();}panel.hidden=true;workspace.hidden=false;toggle.hidden=false;send.disabled=false;};
+ back.onclick=()=>{if(voiceActive()){status.textContent='音声を停止・解放してから辞書検索へ戻ってください。';return;}epoch++;if(engine.busy){controller.stop();engine.cancel();}if(voiceLab&&voiceParent)voiceParent.insertBefore(voiceLab,voiceAnchor);panel.hidden=true;workspace.hidden=false;toggle.hidden=false;send.disabled=false;};
  clear.onclick=()=>{epoch++;if(engine.busy)controller.stop();engine.clear();send.disabled=false;status.textContent='会話の文脈を解除しました。モデル保存は維持しています。';render();};
  form.onsubmit=async event=>{event.preventDefault();if(engine.busy)return;
   // The existing button is the single authority for Moonshine busy/listening gating.
