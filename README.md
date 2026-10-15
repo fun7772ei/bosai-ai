@@ -1,52 +1,42 @@
-> **現行：PR #18の継続改善（Phase 2 α）、固定c768c10、135単体。** [最新の実装・比較・失敗・再現・iPad判断](docs/phase2-conversation-improvement.md)を先に読む。P1/P2と再レビュー追加指摘を修正し、複数ラウンドで固定後の未使用会話を実Ruriで評価。旧セットは回帰へ移行し、成績/失敗を保持。極性/対象/質問の扱いは改善したが、原文の適用・否定した場面の記事・発生日の未収録等は未解決。安全性完成ではない。main6ae5471と既存公開版を維持し、**マージ/Pages公開/新規PR作成はしない**。Ruri30 q8/既存保存/原文88件/通常検索/SW/DBを維持。Moonshineは既存Tiny通常版、Issue #16は今回未修正。iPad実機未操作。
+# ぼうさい辞書 AI (bosai-ai)
 
----
+Offline-oriented disaster-information dictionary and conversation beta for iPad 10 / Safari. [Public GitHub Pages beta](https://fun7772ei.github.io/bosai-ai/).
 
-以下はPR #18初版以前の履歴で、現在の方針/評価と混同しない。
+**Status (2026-10-15):** PR #18 was merged to `main` (commit `782ccdce`); the Pages deployment for that merge completed. The app now has conversation UI, 88-entry original-text browsing, and optional Moonshine voice-input integration. This remains **a beta**, not verified disaster guidance; meaningful applicability/negation edge cases, long voice transcription and actual iPad behavior still need review.
 
-> 開発中：Phase 2 αの[文字会話試作と評価](docs/phase2-conversation-alpha.md)。既存検索から切替、文脈/聞き返し/原文参照に対応。新規PRでレビュー中、main/公開Pagesには未反映。自由生成なし。検索の危険な取り違えは未解決で、正式完成ではありません。MoonshineのIssue #16は別トラック・未修正です。
+## What it actually does
 
-# ぼうさい辞書 AI — Ruri優先ベータ版
+- Finds relevant entries from 88 source-preserving disaster-information records using lexical search and Ruri-v3-30m q8 embedding retrieval (on-device CPU/WASM).
+- Shows complete original instructions, warnings, and references. Relevance is **not** a guarantee that the result answers a particular user's situation.
+- Clarifies insufficient context and blocks some unsupported requests; explicit scenarios and contradictions are only partially audited (4 of 88 sidecars have verified prerequisites).
+- Works without a saved Ruri model via lightweight search; users can opt in to initial Ruri model download (about 44 MB), saved locally. App shell and dictionary use a service worker; model files are stored in IndexedDB.
+- Provides experimental Japanese voice transcription using Moonshine Tiny on supported isolated browser contexts. This is optional and not fully validated on iPad.
 
-**公開URL： https://fun7772ei.github.io/bosai-ai/**
+The fixed offline dictionary cannot check current alarms, road safety, shelter availability, or prescribe individual care.
 
-ベータ版 `f41848b50937` を公開済み。[公開・実モデル保存検証の記録](docs/ruri-beta.md#公開結果2026-10-14-utc)。
+## Developer entry points
 
-88件の防災情報を自然な日本語で探す、端末内検索のベータ版。既定は軽量検索＋Ruri-v3-30m、Ruri単独・モデル不要の軽量検索も選べる。AIは関連候補を探し、選択した項目の概要・全手順・注意・出典を**原文で表示**する。自由生成した防災回答は公開版で実行しない。
+**Start at [AGENTS.md](AGENTS.md)** for the active product constraints **and explicit permission to replace legacy architecture**. Past PR task instructions are not current requirements.
 
-現在の災害状況・警報・予報・避難所の開設状況は確認できない。個人の診断や投薬量、安全性を判断するアプリではない。候補が出ても、質問への具体的な答えが収録されている保証はない。iPad第10世代/iPadOS26.5 SafariとオフラインPWAが最終目標だが、実機の安定性・防災上の安全性は未確認で、正式完成ではない。
-
-使い方：
-
-1. 状況を入力して検索し、関連候補を選んで原文と注意事項を見る。
-2. AI検索には「AIモデルを保存」で約44MBを一度明示取得。未保存・保存失敗・初期化失敗時も軽量検索を利用できる。
-3. アプリ本体・辞書・事前計算EmbeddingはPWA cache、RuriはIndexedDBへ保存する。保存済みモデルを再ダウンロードせず使い、解放/更新で旧モデルを自動削除しない。
-4. Safari通常タブとホーム画面PWAは保存状態を別々に確認する。アプリ削除・再インストールは不要。
-
-[評価・失敗例・容量/速度/メモリ・実機最小手順](docs/ruri-beta.md) / [引き継ぎ](CLOUD_HANDOFF.md)。レビュー修正後の未使用60問では併用Top-1 31/36、Top-3 35/36。未収録の明示棄却9/16で、危険な候補取り違えも残る。Chromiumの成功をiPad Safari成功とは扱わない。
-
-## 開発と検証
-
-Node.js24以降。
+- [Architecture map and potential replacement](docs/architecture-current.md)
+- [Conversation rewrite: concrete design and acceptance](docs/conversation-rewrite-brief.md)
+- [Short Codex implementation task](docs/codex-task.md)
+- [Development workflow: draft/quick vs ready/full CI](docs/development-workflow.md)
+- [Historical handoffs](docs/history/) and [diagnostic results](docs/diagnostics/) — read only for relevant investigations
+- [iPad verification notes](docs/ipad-verification.md)
 
 ```bash
 npm ci
 npm test
 npm run build
 node scripts/check-public-build.mjs
-npm run preview -- --port 4173 --strictPort
+npm run dev
 ```
 
-http://localhost:4173/bosai-ai/ 。実Ruriのブラウザ・オフライン・更新試験は上記評価資料を参照。重みは明示取得してGit対象外の`test-results/`へ置く。外部AI APIは使用しない。アプリ配信はGitHub Pages、初回モデル取得はHugging Face。出典を開くと外部サイトへ移動する。
+Node.js 24+ is used in CI. Production preview: `npm run preview -- --port 4173 --strictPort`; development / research source is in `research.html`, and can be started using `npm run dev:research`.
 
-`fun7772ei/bosai-app`の固定commitの88件をコピーして同梱。元リポジトリ・原文は変更せず、実行時にGitHubへ同期しない。`node scripts/import-bosai-data.mjs --check`で全フィールド・ID・順序を照合する。Ruriのrevision/bytes/SHAは`src/aux-assets.json`、原データの来歴は`docs/source/`。
+## Sources and retention
 
-## 研究用コード
+The 88 records come from a fixed import from `fun7772ei/bosai-app`, with provenance under `docs/source/`. The source text and source references are retained; optional model weights are downloaded and cached, not committed to Git. Ruri and the archived research-model licenses are documented in `docs/model-licenses/`. Research generation code must not be confused with the public beta.
 
-PR #6〜#9の通常生成・保存・モデル選択・比較コードと、既存GGUF/ONNXの保存は維持する。公開ビルドには実行コード/LLM用WASMを含めない。
-
-- `npm run dev:research`：ローカルの`/bosai-ai/research.html`。
-- `npm run build:research`：`research-dist/`に明示出力。Pages配信対象外。
-- 過去の[6方式](docs/phase1-six-methods.md)・[4モデル](docs/phase1-four-cpu-models.md)・[品質](docs/phase1-cpu-quality.md)・[検索](docs/phase1-search-prototype.md)比較は履歴。現在の公開用方針はRuri＋原文である。
-
-RuriはApache-2.0、研究用LFMはLFM Open License。利用条件を混同しない。正式Phase 2への移行は行っていない。
+The beta remains offline-first, and user questions are not submitted to an external generative AI service.
