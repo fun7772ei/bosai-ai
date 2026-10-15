@@ -1,8 +1,11 @@
 // Scope triage, never a generated answer or a claim of answerability.
+import {classifyAnswerRequest} from './question-intent.js';
 const normalize=s=>s.normalize('NFKC').toLowerCase();
 const choices=['地震のとき','津波のとき','大雨・浸水のとき','在宅避難の支援について'];
 export function assessQuestion(query){
  const q=normalize(query);
+ const boundary=classifyAnswerRequest(query);
+ if(boundary)return {kind:'unsupported',reason:boundary.reason,code:boundary.kind,choices:[]};
  const unavailable=(reason,code)=>({kind:'unsupported',reason,code,choices:[]});
  if(/パスワード|保険|補償額|給付金|見舞金|補助金|罹災証明|り災証明|電話番号|連絡先の番号|電話は何番|住所を|住所と|所在地を/.test(q))return unavailable('連絡先・認証情報・金額や制度の個別情報は、この辞書には収録していません。自治体や担当機関の案内を確認してください。','specific-facts');
  if(/何(単位|錠|ミリリットル|ml|mg)|投与量|用量|服用量|処方して|診断して|何の病気/.test(q))return unavailable('個人の診断や薬の量は判断できません。この辞書は医療者による指示の代わりにはなりません。','individual-medical');
