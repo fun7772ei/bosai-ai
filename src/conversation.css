@@ -22,3 +22,17 @@
 .settings-contents .model-panel,.settings-contents .help{width:100%}
 #appSettings[hidden],#conversation[hidden]{display:none!important}
 @media(max-width:760px){#appNavigation{position:relative;gap:6px}#appNavigation button{flex:1;padding:8px 10px;min-width:0;font-size:.85rem}}
+
+
+/* Read-only dictionary catalog; no model/network required after the existing shell loads. */
+.browse-panel{margin-top:2px}
+.browse-panel>summary{font-weight:750;cursor:pointer}
+.browse-panel>p{font-size:.84rem;color:#52645c;margin-top:12px}
+.browse-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;align-items:center;margin-top:16px}
+.browse-controls label{margin:0}
+.browse-controls input,.browse-controls select{min-width:0;width:100%;min-height:46px;border:1px solid #8ba599;border-radius:12px;background:#fff;padding:10px 12px;color:inherit;margin:0}
+.browse-results{max-height:280px;overflow:auto;display:grid;gap:6px;margin-top:12px}
+.browse-results button{min-height:44px;text-align:left;background:#f1f6f2;border:1px solid var(--line);color:#264435;border-radius:12px;padding:9px 12px;font-size:.84rem}
+.browse-results button[aria-pressed=true]{border-color:var(--primary);background:#d6ecdf}
+#browseArticle .entry{margin-top:16px}
+@media(max-width:540px){.browse-controls{grid-template-columns:1fr}}

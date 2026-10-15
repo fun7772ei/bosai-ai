@@ -1,4 +1,5 @@
 import {Conversation} from './conversation.js';
+import {corpus} from './beta-search.js';
 import './conversation.css';
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
 export function mountConversation(controller){
@@ -66,6 +67,40 @@ export function mountConversation(controller){
  navDictionary.setAttribute('aria-current','page');
 
  function source(entry,parent){const card=node('article','');card.className='entry';card.dataset.sourceId=entry.id;card.append(node('h3',entry.title),node('p',entry.summary));const warning=node('div','');warning.className='warning';warning.append(node('h4','注意事項'),node('p',entry.warning));const steps=node('ol','');entry.steps.forEach(s=>steps.append(node('li',s)));card.append(warning,node('h4','手順（原文・省略なし）'),steps,node('p',entry.items));for(const s of entry.sources){const a=node('a',s.label);a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';card.append(a,node('br',''));}parent.append(card);}
+
+ // Offline catalog browsing never needs a loaded model or a speech session.
+ const browsePanel=node('details','');browsePanel.id='browseDictionary';browsePanel.className='surface browse-panel';
+ const browseSummary=node('summary','全88件の防災辞書を一覧で見る');
+ const browseLead=node('p','キーワードまたはカテゴリで原文を絞り込めます。AI検索を使わず、保存済みの辞書だけで動きます。');
+ const browseControls=node('div','');browseControls.className='browse-controls';
+ const browseLabel=node('label','辞書内の文字検索'),browseInput=node('input','');
+ browseInput.type='search';browseInput.id='browseQuery';browseInput.placeholder='例：津波・停電・トイレ';browseLabel.htmlFor=browseInput.id;
+ const categoryLabel=node('label','カテゴリ'),categorySelect=node('select','');categorySelect.id='browseCategory';categoryLabel.htmlFor=categorySelect.id;
+ const allOption=node('option','すべてのカテゴリ');allOption.value='';categorySelect.append(allOption);
+ for(const name of [...new Set(corpus.map(entry=>entry.category))]){
+  const option=node('option',name);option.value=name;categorySelect.append(option);
+ }
+ browseControls.append(browseLabel,browseInput,categoryLabel,categorySelect);
+ const browseCount=node('p','');browseCount.className='small';browseCount.id='browseCount';
+ const browseList=node('div','');browseList.className='browse-results';browseList.setAttribute('aria-label','辞書の記事');
+ const browseArticle=node('div','');browseArticle.id='browseArticle';browseArticle.setAttribute('aria-live','polite');
+ function renderBrowse(){
+  const query=browseInput.value.normalize('NFKC').toLowerCase().trim(),category=categorySelect.value;
+  const matches=corpus.filter(entry=>(!category||entry.category===category)&&(!query||[entry.title,entry.summary,entry.category].some(s=>s.normalize('NFKC').toLowerCase().includes(query))));
+  browseCount.textContent='一致した原文 '+matches.length+' / '+corpus.length+'件';
+  browseList.replaceChildren();
+  for(const entry of matches){
+   const b=node('button',entry.title);b.type='button';b.dataset.browseEntry=entry.id;
+   b.onclick=()=>{browseArticle.replaceChildren();source(entry,browseArticle);for(const item of browseList.querySelectorAll('button'))item.setAttribute('aria-pressed',String(item===b));};
+   browseList.append(b);
+  }
+  browseArticle.replaceChildren();
+ }
+ browseInput.addEventListener('input',renderBrowse);categorySelect.addEventListener('change',renderBrowse);
+ browsePanel.append(browseSummary,browseLead,browseControls,browseCount,browseList,browseArticle);
+ document.querySelector('.search-side').append(browsePanel);
+ browsePanel.addEventListener('toggle',()=>{if(browsePanel.open)renderBrowse();});
+
  function render(){const nearBottom=log.scrollHeight-log.clientHeight-log.scrollTop<100,top=log.scrollTop;log.replaceChildren();for(const message of engine.history){const bubble=node('div','');bubble.className=`bubble ${message.role}`;bubble.append(node('strong',message.role==='user'?'あなた':'防災辞書'),node('p',message.text));
   if(message.role==='assistant'){
    for(const c of message.candidates||[]){const fitStatus={candidate:'適用候補（安全性未確認）','needs-confirmation':'要確認','not-applicable':'適用外'}[c.applicability?.status]||'関連情報・適用未確認';const b=node('button',`${c.category} · ${c.title}（${fitStatus}）`);b.type='button';b.dataset.sourceChoice=c.id;b.disabled=message.selection!==engine.state.selection||!engine.state.pending.includes(c.id)||engine.busy;b.onclick=()=>{try{engine.choose(c.id,message.selection);render();}catch(e){status.textContent=e.message;}};bubble.append(b);}

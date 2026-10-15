@@ -158,6 +158,6 @@ if(['localhost','127.0.0.1'].includes(location.hostname))Object.defineProperty(w
 controller.inspect();refresh();
 (async()=>{if('serviceWorker'in navigator&&import.meta.env.PROD)try{await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`);await navigator.serviceWorker.ready;$('shellState').textContent='アプリ・辞書のオフライン準備が完了しました。AI検索にはモデルの保存も必要です。';}catch(e){$('shellState').textContent=`アプリのオフライン準備は未完了です：${e.message}`;}else $('shellState').textContent='開発画面です。オフライン利用は公開ビルドで確認してください。';})();
 
-// Independent text-only Phase 2 alpha; Moonshine callbacks above remain unchanged.
+// Unified Phase 2 chat, dictionary browsing, and settings; existing Moonshine runtime is reused.
 import {mountConversation} from "./conversation-ui.js";
 mountConversation(controller);
