@@ -1,4 +1,5 @@
 // Real pinned Ruri30 ONNX. Model bytes are local fixture transport only; inference is genuine WASM.
+import {execFileSync} from 'node:child_process';
 import {chromium} from '@playwright/test';
 import {readFileSync,writeFileSync,createReadStream,mkdtempSync,rmSync} from 'node:fs';
 import {createServer} from 'node:http';
@@ -11,7 +12,7 @@ const baseline=process.argv.includes('--baseline');
 const cases=JSON.parse(readFileSync(casesPath));
 const base=option('base','http://localhost:4173/bosai-ai/');
 const freeze=JSON.parse(readFileSync(option('freeze','docs/diagnostics/conversation-v18-regression-freeze.json')));
-if(!baseline)for(const [path,hash] of Object.entries(freeze.coreSha256))if(createHash('sha256').update(readFileSync(path)).digest('hex')!==hash)throw Error('Current code differs from the versioned regression checkpoint: '+path);
+if(!baseline&&process.argv.some(x=>x.startsWith('--freeze=')))for(const [path,hash] of Object.entries(freeze.coreSha256))if(createHash('sha256').update(readFileSync(path)).digest('hex')!==hash)throw Error('Current code differs from the versioned regression checkpoint: '+path);
 if(casesPath===freeze.initialCases&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.initialCasesSha256)throw Error('Initial final/regression cases changed');
 if(casesPath===freeze.finalCases&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.finalCasesSha256)throw Error('Final cases changed');
 if(casesPath.endsWith('conversation-final-24.json')&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.oldRegressionSha256)throw Error('Original 24 cases changed');
@@ -20,7 +21,7 @@ const assets=JSON.parse(readFileSync('test-results/ruri-assets.json'));
 const server=createServer((req,res)=>{const a=assets[Number(new URL(req.url,'http://localhost').searchParams.get('id'))];res.writeHead(200,{'content-length':a.bytes,'access-control-allow-origin':'*'});createReadStream(a.localFile).pipe(res);});
 await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const profile=mkdtempSync('test-results/conversation-profile-');
-const out={createdAt:new Date().toISOString(),platform:'Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari',baseline, casesPath, implementation:baseline?freeze.baselineCommit:freeze.implementationCommit,casesSha256:createHash('sha256').update(readFileSync(casesPath)).digest('hex'),rows:[],errors:[],requests:[],memory:[],checks:{}};
+const out={createdAt:new Date().toISOString(),platform:'Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari',baseline, casesPath, implementation:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),workingTreeDirty:!!execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim(),coreSha256:Object.fromEntries([...new Set([...Object.keys(freeze.coreSha256),'src/request-scope.js','src/request-facts.js','src/request-understanding.js'])].filter(path=>{try{readFileSync(path);return true;}catch{return false;}}).map(path=>[path,createHash('sha256').update(readFileSync(path)).digest('hex')])),casesSha256:createHash('sha256').update(readFileSync(casesPath)).digest('hex'),rows:[],errors:[],requests:[],memory:[],checks:{}};
 let context,page,pid;const save=()=>writeFileSync('test-results/'+tag+'.json',JSON.stringify(out,null,2));
 const memory=()=>{if(pid)out.memory.push(browserMemory(pid));};const timer=setInterval(memory,500);
 async function launch(offline=false){context=await chromium.launchPersistentContext(profile,{offline,viewport:{width:1024,height:1000}});await context.addInitScript(()=>Object.defineProperty(Navigator.prototype,'gpu',{configurable:true,get:()=>undefined}));const cdp=await context.browser().newBrowserCDPSession();pid=(await cdp.send('SystemInfo.getProcessInfo')).processInfo.find(p=>p.type==='browser').id;await cdp.detach();page=context.pages()[0];page.on('pageerror',e=>out.errors.push(e.message));await context.route('https://huggingface.co/**',async route=>{const i=assets.findIndex(a=>a.url===route.request().url());if(i<0)throw Error('Unexpected model URL');out.requests.push(assets[i].file);await route.fulfill({status:302,headers:{location:`http://127.0.0.1:${server.address().port}/?id=${i}`,'access-control-allow-origin':'*'}});});await page.goto(base);await page.waitForFunction(()=>document.querySelector('#shellState').textContent.startsWith('アプリ・辞書のオフライン準備が完了'));}

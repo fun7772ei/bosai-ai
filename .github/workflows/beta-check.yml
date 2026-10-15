@@ -1,7 +1,7 @@
 name: Check Ruri public beta
 on:
   pull_request:
-    branches: [main]
+    branches: [main, refactor/architecture-reset-20261015]
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
 permissions:
