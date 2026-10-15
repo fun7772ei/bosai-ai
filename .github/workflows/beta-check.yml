@@ -45,11 +45,16 @@ jobs:
             sleep 1
           done
           BOSAI_MOONSHINE_NATIVE_PROBE=1 node scripts/voice-isolation-check.mjs
+          node scripts/moonshine-manifest-check.mjs
+          python3 scripts/fetch-moonshine-assets.py
+          node scripts/moonshine-runtime-check.mjs
+          node scripts/voice-review-browser-check.mjs
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/final-64.json --tag=beta-regression-64
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-review-regression-80
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-review-final-60.json --tag=beta-review-final-60
       - name: Text conversation with real Ruri and offline restart
         run: |
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/voice-integration-heldout.json --tag=voice-integration-heldout-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-core-heldout-18.json --tag=conversation-core-heldout-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-core-final-12.json --tag=conversation-core-final-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-core-review-final-6.json --tag=conversation-core-review-final-ci
@@ -76,6 +81,11 @@ jobs:
         with:
           name: ruri-beta-check
           path: |
+            test-results/moonshine-manifests.json
+            test-results/moonshine-assets.json
+            test-results/moonshine-runtime.json
+            test-results/voice-review-ui.json
+            test-results/voice-integration-*.json
             test-results/conversation-core-*.json
             test-results/beta-review-regression-80.json
             test-results/beta-review-final-60.json

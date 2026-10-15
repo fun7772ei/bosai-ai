@@ -71,7 +71,7 @@ export function evaluateEvidence(run,focus=null,facts={},topics=[]) {
     if(assess(entry).status==='not-applicable')return 'contradictory-prerequisite';
     if(topics.length===1&&topics[0]==='大雨・浸水'&&entry.category==='地震'&&!/大雨|台風|雨|洪水|浸水|冠水/.test(entry.title+' '+entry.summary))return 'different-hazard';
     const other=catalog.byId.get(entry.id)?.focus;
-    if(focus?.startsWith('flood-')&&(/津波|竜巻|雷/.test(entry.title)||(other&&other!==focus)))return 'different-scene-or-action';
+    if((focus?.startsWith('flood-')||focus==='vehicle-escape')&&(/津波|竜巻|雷/.test(entry.title)||(other&&other!==focus)))return 'different-scene-or-action';
     if(focus==='tsunami-time'&&entry.category!=='津波')return 'different-hazard';
     return null;
   };

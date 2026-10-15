@@ -36,8 +36,17 @@ self.addEventListener('fetch', event => {
     // A module Worker needs COEP on its own top-level script response,
     // not only on the document that spawned it. Limit this to Moonshine SDK
     // assets; ordinary Ruri runtime/files stay byte-for-byte unchanged.
-    if(reqUrl.pathname.startsWith(new URL('moonshine/',self.registration.scope).pathname) && /\.(?:js|mjs)$/.test(reqUrl.pathname)) {
-      const response = await cache.match(event.request, {ignoreVary:true}) || await fetch(event.request);
+    if(reqUrl.pathname.startsWith(new URL('moonshine/',self.registration.scope).pathname)) {
+      // Optional SDK cache is populated only on use, never during shell install.
+      // Keep the pinned key separate from shell upgrades and model caches.
+      let sdkCache,response;
+      try{sdkCache=await caches.open('bosai-ai-moonshine-sdk-0.1.5');response=await sdkCache.match(event.request,{ignoreVary:true});}catch{}
+      if(!response){
+        response=await fetch(event.request);
+        // Storage/quota failure must not disable online voice or clear saved data.
+        if(response.ok&&sdkCache)try{await sdkCache.put(event.request,response.clone());}catch{}
+      }
+      if(!/\.(?:js|mjs)$/.test(reqUrl.pathname))return response;
       if (!response.ok) return response;
       const headers = new Headers(response.headers);
       headers.set('Cross-Origin-Embedder-Policy','require-corp');
@@ -45,6 +54,14 @@ self.addEventListener('fetch', event => {
       headers.delete('content-length');
       return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
     }
-    return await cache.match(event.request, { ignoreVary: true }) || fetch(event.request);
+    const response=await cache.match(event.request, { ignoreVary: true }) || await fetch(event.request);
+    // Ruri must also start after voice in an isolated document. A module
+    // worker inherits isolation only when its own response permits it.
+    if(/\/assets\/ruri\.worker-[^/]+\.js$/.test(reqUrl.pathname)&&response.ok){
+      const headers=new Headers(response.headers);headers.set('Cross-Origin-Embedder-Policy','require-corp');
+      headers.set('Cross-Origin-Resource-Policy','same-origin');headers.delete('content-length');
+      return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+    }
+    return response;
   })());
 });
