@@ -1,14 +1,12 @@
 import {corpus} from './beta-search.js';
+import {applicabilityRecords,applicabilityValidation} from './conversation-applicability.js';
 // Curated document capabilities, not query/benchmark IDs or generated advice.
 // Exact titles make drift fail closed. Full original steps/warnings/sources are always shown.
-const capabilities = [
-  {focus:'flood-footwear', title:'浸水避難では履き慣れた運動靴を選ぶ'},
-  {focus:'flood-walk', requires:{floodedRoad:true}, title:'冠水した道路を歩かない'},
-  {focus:'flood-drive', requires:{floodedRoad:true}, title:'冠水した道路へ車で入らない'},
-  {focus:'vehicle-escape', requires:{vehicleFlooded:true}, title:'車が水没し始めたら早めに脱出する'},
-  {focus:'tsunami-time', requires:{unreachableHeight:true}, title:'高台まで間に合わないときの垂直避難'},
-];
+const capabilities = applicabilityRecords.filter(record=>record.focus).map(record=>({
+  focus:record.focus,title:record.sourceTitle,requires:record.prerequisites||{}
+}));
 export function contextualEvidence(run, focus, facts={}) {
+  if(!applicabilityValidation.valid)return {...run,results:[],evidence:{focus,policy:'invalid-applicability-catalog'}};
   if(run.scope.kind!=='related')return {...run,evidence:{focus:null,policy:'retrieval-only'}};
   const originalResultIds=run.resultIds||run.results.map(r=>r.entry.id);
   // A prerequisite explicitly denied by the user disqualifies that capability,

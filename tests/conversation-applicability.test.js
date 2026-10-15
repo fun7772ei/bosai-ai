@@ -9,7 +9,8 @@ test('all 88 source-bound sidecars map one to one and match original fields',()=
  assert.deepEqual(applicabilityValidation.errors,[]);
  assert.equal(applicabilityValidation.valid,true);
  assert.deepEqual(applicabilityRecords.map(r=>r.id),corpus.map(e=>e.id));
- assert(applicabilityRecords.every(r=>r.reviewStatus==='provisional-title-and-summary'));
+ assert.equal(applicabilityRecords.filter(r=>r.reviewStatus==='verified-prerequisite-only').length,4);
+ assert(applicabilityRecords.every(r=>['verified-prerequisite-only','provisional-title-and-summary'].includes(r.reviewStatus)));
 });
 test('metadata fails closed if original title, warning, source, or prerequisite changes',()=>{
  for(const altered of [{...corpus[69],title:'変更'}, {...corpus[69],warning:'変更'}, {...corpus[69],sources:[]}]){
@@ -27,4 +28,12 @@ test('unknown prerequisite is never treated as confirmed, and explicit conflict 
  assert.equal(assessApplicability(car,{facts:{floodedRoad:true},focus:'flood-walk'}).status,'needs-confirmation');
  assert.equal(assessApplicability(tsunami,{facts:{unreachableHeight:false},focus:'tsunami-time'}).status,'not-applicable');
  assert.equal(assessApplicability({...road,warning:'tampered'}, {facts:{floodedRoad:true},focus:'flood-walk'}).status,'needs-confirmation');
+});
+
+test('only source-evidenced prerequisites can be promoted to applicable candidates',()=>{
+ const footwear=corpus.find(e=>e.id==='bosai-84'),flood=corpus.find(e=>e.id==='bosai-69');
+ assert.equal(assessApplicability(footwear,{focus:'flood-footwear',facts:{}}).status,'needs-confirmation');
+ assert.equal(assessApplicability(flood,{focus:'flood-walk',facts:{floodedRoad:true}}).status,'candidate');
+ const altered=applicabilityRecords.map(r=>r.id==='bosai-69'?{...r,reviewStatus:'verified-prerequisite-only',prerequisiteEvidence:null}:r);
+ assert.equal(validateApplicability(corpus,altered).valid,false);
 });

@@ -26,6 +26,9 @@ export function validateApplicability(entries=corpus, annotations=records) {
     const evidence=[entry.title,entry.summary,...entry.steps,entry.warning].join('\n');
     if(record.prerequisiteEvidence && !evidence.includes(record.prerequisiteEvidence))errors.push('Unsupported prerequisite: '+entry.id);
     if(Object.values(record.prerequisites||{}).some(x=>typeof x!=='boolean'))errors.push('Invalid prerequisite: '+entry.id);
+    if(!['provisional-title-and-summary','verified-prerequisite-only'].includes(record.reviewStatus))errors.push('Unrecognized review state: '+entry.id);
+    if(record.reviewStatus==='verified-prerequisite-only' &&
+       (!record.prerequisiteEvidence||!Object.keys(record.prerequisites||{}).length||!record.focus))errors.push('Unverified capability marked as verified: '+entry.id);
   }
   return {valid:errors.length===0,errors,byId:lookup};
 }
@@ -45,7 +48,7 @@ export function assessApplicability(entry,{facts={},focus=null}={}) {
   }
   const missing=Object.keys(record.prerequisites||{}).filter(k=>facts[k]===undefined||facts[k]===null);
   if(missing.length)return {status:'needs-confirmation',reason:'原文の前提条件が質問から確認できません。'};
-  if(focus && record.focus===focus){
+  if(focus && record.focus===focus && record.reviewStatus==='verified-prerequisite-only'){
     return {status:'candidate',reason:'確認された状況・対象行動と原文用途が整合します。現在の安全性や質問全体への回答を保証しません。'};
   }
   return {status:'needs-confirmation',reason:'関連記事ですが、原文が質問へ直接適用できるかは未確認です。'};

@@ -97,11 +97,19 @@ export class Conversation {
       if(run.scope.kind==='unsupported') { this.forget(); return this.reply('unsupported',run.scope.reason,{answerability:'outside-coverage',diagnostics}); }
       if(run.scope.kind==='clarify')return this.clarify(run.scope.reason,{choices:run.scope.choices,diagnostics},true);
       if(!run.results.length) { this.forget(); return this.reply('unknown','この辞書で根拠を確認できません。関連する言葉だけで答えがあるとは判断しません。',{answerability:'no-evidence',diagnostics}); }
-      const applicability=run.results.map(r=>({id:r.entry.id,...assessApplicability(r.entry,{facts,focus})}));
-      this.state.awaitingContext=false; this.state.pending=run.results.map(r=>r.entry.id); this.state.selection=++this.sequence;
+      // A known contradiction must not remain a selectable result even if retrieval found it.
+      // Preserve the original ranking and exclusion reasons for explicit diagnostics.
+      const reviewed=run.results.map(r=>({row:r,assessment:assessApplicability(r.entry,{facts,focus})}));
+      const rejected=reviewed.filter(x=>x.assessment.status==='not-applicable');
+      const available=reviewed.filter(x=>x.assessment.status!=='not-applicable');
+      const applicability=reviewed.map(({row,assessment})=>({id:row.entry.id,...assessment}));
+      if(!available.length){this.forget();return this.reply('unknown','質問で明示された条件と矛盾しない原文候補を確認できません。別の状況を説明するか、従来の辞書検索で原文を確認してください。',{
+        answerability:'no-evidence',diagnostics:{...diagnostics,applicability,excludedIds:rejected.map(x=>x.row.entry.id)}
+      });}
+      this.state.awaitingContext=false; this.state.pending=available.map(x=>x.row.entry.id); this.state.selection=++this.sequence;
       return this.reply('confirm',focus?'確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。':'意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。',{
-        candidates:run.results.map((r,i)=>({id:r.entry.id,title:r.entry.title,category:r.entry.category,fit:r.fit||'unverified',provenance:r.provenance||'retrieval',applicability:applicability[i]})),
-        selection:this.state.selection, answerability:focus?'context-compatible-unverified':'unverified-candidates',diagnostics:{...diagnostics,applicability}});
+        candidates:available.map(({row:r,assessment})=>({id:r.entry.id,title:r.entry.title,category:r.entry.category,fit:r.fit||'unverified',provenance:r.provenance||'retrieval',applicability:{id:r.entry.id,...assessment}})),
+        selection:this.state.selection, answerability:focus?'context-compatible-unverified':'unverified-candidates',diagnostics:{...diagnostics,applicability,excludedIds:rejected.map(x=>x.row.entry.id)}});
     } finally { if(generation===this.generation)this.busy=false; }
   }
 }
