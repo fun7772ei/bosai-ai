@@ -118,9 +118,9 @@ export function mountConversation(controller){
  back.onclick=()=>showView('dictionary');
  clear.onclick=()=>{epoch++;if(engine.busy)controller.stop();engine.clear();send.disabled=false;status.textContent='会話の文脈を解除しました。モデル保存は維持しています。';render();};
  form.onsubmit=async event=>{event.preventDefault();if(engine.busy)return;
-  // The existing button is the single authority for Moonshine busy/listening gating.
+  // The shared lifecycle state also gates failed-close handles, not just listening.
   // Do not initialise a second speech/runtime path or change recognition callbacks.
-  if(document.querySelector('#search').disabled||!document.querySelector('#voiceListen').disabled){status.textContent='音声入力の停止・モデル解放または検索処理の終了後に送信してください。';return;}
+  if(document.querySelector('#search').disabled||voiceActive()){status.textContent='音声入力の停止・モデル解放または検索処理の終了後に送信してください。';return;}
   const seq=++epoch;send.disabled=true;status.textContent='条件を確認しています…';try{const text=input.value;const pending=engine.send(text,document.querySelector('#mode').value);render();await pending;if(seq===epoch){input.value='';status.textContent='';render();}}catch(e){if(seq===epoch)status.textContent=e.message;}finally{if(seq===epoch)send.disabled=false;}
  };
  document.querySelector('#stop').addEventListener('click',()=>{epoch++;engine.cancel();send.disabled=false;status.textContent='会話の検索を停止しました。再送信できます。';render();});

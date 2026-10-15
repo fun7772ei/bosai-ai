@@ -16,9 +16,12 @@ for model,row in report['models'].items():
    p=pathlib.Path('test-results/moonshine-assets')/model/f['name'];p.parent.mkdir(parents=True,exist_ok=True)
    h=p.with_suffix('.headers.txt')
    if not p.exists():subprocess.run(['curl','--fail','--silent','--show-error','--location','--header','Origin: https://fun7772ei.github.io','--dump-header',str(h),'--output',str(p),f['url']],check=True)
+   # Check CORS even when reusing a previously downloaded local fixture.
+   subprocess.run(['curl','--fail','--silent','--show-error','--location','--head','--header','Origin: https://fun7772ei.github.io','--dump-header',str(h),'--output','/dev/null',f['url']],check=True)
    headers=h.read_text()
+   if 'access-control-allow-origin: *' not in headers.lower():raise ValueError('CDN CORS not confirmed: '+f['url'])
    if p.stat().st_size!=f['size']:raise ValueError('Wrong size: '+str(p))
    if f['checksum_type']!='crc32c' or crc32c(p.read_bytes())!=f['checksum']:raise ValueError('Manifest checksum mismatch: '+str(p))
-   f.update(checksumVerified=True,localFile=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),responseHeaders=headers)
+   f.update(checksumVerified=True,corsVerified=True,localFile=str(p),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),responseHeaders=headers)
    print(model,f['name'],p.stat().st_size,flush=True)
 json.dump(report,open('test-results/moonshine-assets.json','w'),indent=2)
