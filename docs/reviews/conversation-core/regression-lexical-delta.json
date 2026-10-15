@@ -1,0 +1,411 @@
+{
+  "baselineCommit": "042bf982681ecf50d6c026a4ccc17337e2b1b2fb",
+  "implementationCommit": "57ecf1da6170fd028ad66ca25006b1a3eec30be7",
+  "mode": "lexical-only; not real-model/browser or independent expert evaluation",
+  "casesSha256": {
+    "scripts/evaluation/conversation-final-24.json": "76bf98bc2407b125ddfaddd0b9d1f0ba4dcf7175da5ea98b96b7cb561f88fc65",
+    "scripts/evaluation/conversation-v10-final-3.json": "990c632a6757df4fe7e67f935886d8316e66366d8ef5074d5ca9adf28943b56a",
+    "scripts/evaluation/conversation-v11-final-2.json": "ba59b4944d3721803ef8edff8230888705dbf12a13dc332006d050194c8cc3f3",
+    "scripts/evaluation/conversation-v12-final-2.json": "8cf8c03d2addf6721e78f252b4411c6af813caa7e93ff7c5fb26d80d52ad8ea4",
+    "scripts/evaluation/conversation-v13-final-2.json": "100b037469c6cecd9483837b6fb8fbab2dd5026dc0c1672df745efecad41df93",
+    "scripts/evaluation/conversation-v14-final-2.json": "0c13cea59baab808e5228ee1dd5f34e8479948a91be5a8b176bb8c293d7ca33a",
+    "scripts/evaluation/conversation-v15-final-2.json": "aa9d48f941df08a175ff5d2db77fca9b3b79b22e95521a39276baea3d804dc83",
+    "scripts/evaluation/conversation-v16-final-4.json": "ff79c85ddb7622a30ea28dc8676dfaa3a6958296508c6a3df4d5c807eb4fe021",
+    "scripts/evaluation/conversation-v2-dev.json": "adb793fe9ce7466b101bd533006af1cd39c15f4d2b389a8cd0bba5d966cb4e86",
+    "scripts/evaluation/conversation-v2-final-24.json": "81095168ad611dc15ef33d8b9cda19ac2dd803cdcdf61ab58144984bc8088e62",
+    "scripts/evaluation/conversation-v2-final-32.json": "e03ea44584048575fdfdf1b8a81e1e016e3dabdff107f2c76c1dfa612bf51dcc",
+    "scripts/evaluation/conversation-v3-final-12.json": "cfdd63acf52440358ba7e8bc1cc9779f33a75600dfd6cb5f715a1c2d7b80b743",
+    "scripts/evaluation/conversation-v4-final-12.json": "33f1a44ee06cae4bf228e5d5ea9a90f9d5496284d73e7e8f7eaadc33e15cdf88",
+    "scripts/evaluation/conversation-v5-final-8.json": "ee04f12555ed8133f382e607a586a60311e2261f8a81c5cfc7a0af06bea9382b",
+    "scripts/evaluation/conversation-v6-final-6.json": "96c81ba7b6cd16c7776d9a7bf00df00c08a7f3ca0dec572ad6b6cdead9b0a9fd",
+    "scripts/evaluation/conversation-v7-final-4.json": "6e5608e686f7400fb36fa38218c45e8a6e7a47c83fba315ac3764432a48ea7ab",
+    "scripts/evaluation/conversation-v8-final-2.json": "2efc919d3b70f9d026a4199e5cfd1be5a2b51f7a179f54d82114cd39eab6d371",
+    "scripts/evaluation/conversation-v9-final-2.json": "0019e5a80ba0cac5d578f7139721e2901a76dd796bc89f0d6ed604b59710ab81"
+  },
+  "baseline": {
+    "turns": 242,
+    "controlPassed": 237,
+    "goldQueries": 121,
+    "goldTop1": 113,
+    "badTop3Queries": 3
+  },
+  "current": {
+    "turns": 242,
+    "controlPassed": 237,
+    "goldQueries": 121,
+    "goldTop1": 113,
+    "badTop3Queries": 3
+  },
+  "differences": [
+    {
+      "path": "scripts/evaluation/conversation-final-24.json",
+      "id": "c01",
+      "turn": 2,
+      "input": "寝室です",
+      "old": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-39",
+          "bosai-29",
+          "bosai-40",
+          "bosai-43",
+          "bosai-48"
+        ],
+        "facts": {},
+        "focus": null,
+        "controlPass": true,
+        "goldRank": 1
+      },
+      "new": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-39",
+          "bosai-43",
+          "bosai-40",
+          "bosai-57",
+          "bosai-38"
+        ],
+        "facts": {},
+        "focus": null,
+        "controlPass": true,
+        "goldRank": 1
+      }
+    },
+    {
+      "path": "scripts/evaluation/conversation-v10-final-3.json",
+      "id": "c01",
+      "turn": 2,
+      "input": "その後、他の乗用車に乗り換えていません。同じ車から出る情報が必要です。",
+      "old": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-65",
+          "bosai-64"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      },
+      "new": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-64",
+          "bosai-83"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      }
+    },
+    {
+      "path": "scripts/evaluation/conversation-v15-final-2.json",
+      "id": "k02",
+      "turn": 2,
+      "input": "その後も乗り換えたくないです。脱出の原文を確認したいです。",
+      "old": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-64",
+          "bosai-86",
+          "bosai-83"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      },
+      "new": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-64",
+          "bosai-83"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      }
+    },
+    {
+      "path": "scripts/evaluation/conversation-v16-final-4.json",
+      "id": "e01",
+      "turn": 2,
+      "input": "乗り換えたくはないです。車から出る原文を見せて。",
+      "old": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-65",
+          "bosai-64"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      },
+      "new": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-64",
+          "bosai-83"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      }
+    },
+    {
+      "path": "scripts/evaluation/conversation-v9-final-2.json",
+      "id": "p01",
+      "turn": 2,
+      "input": "その車は他の自家用車ではありません。同じ車から出る手順を知りたい。",
+      "old": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-83",
+          "bosai-84"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      },
+      "new": {
+        "expected": "confirm",
+        "kind": "confirm",
+        "ids": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-84",
+          "bosai-83"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "focus": "vehicle-escape",
+        "controlPass": true,
+        "goldRank": 1
+      }
+    }
+  ],
+  "existingFailures": [
+    {
+      "path": "scripts/evaluation/conversation-final-24.json",
+      "id": "c21",
+      "turn": 1,
+      "input": "大雨で車を運転しています",
+      "expected": "confirm",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": null,
+      "controlPass": false
+    },
+    {
+      "path": "scripts/evaluation/conversation-final-24.json",
+      "id": "c21",
+      "turn": 2,
+      "input": "車ではなく徒歩です",
+      "expected": "confirm",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": null,
+      "controlPass": false,
+      "goldRank": null
+    },
+    {
+      "path": "scripts/evaluation/conversation-v16-final-4.json",
+      "id": "e02",
+      "turn": 1,
+      "input": "台風が過ぎたあと、車道は冠水していません。軽自動車で移動する一般情報がある？",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-71",
+        "bosai-86",
+        "bosai-72"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": false,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": null,
+      "controlPass": true,
+      "badTop3": [
+        "bosai-71"
+      ]
+    },
+    {
+      "path": "scripts/evaluation/conversation-v2-final-24.json",
+      "id": "n18",
+      "turn": 1,
+      "input": "大雨ですが道は冠水していません。車で移動するときに読む一般情報は？",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-86",
+        "bosai-71",
+        "bosai-64"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": false,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": null,
+      "controlPass": true,
+      "badTop3": [
+        "bosai-71"
+      ]
+    },
+    {
+      "path": "scripts/evaluation/conversation-v2-final-32.json",
+      "id": "f01",
+      "turn": 1,
+      "input": "雨が強く、道路が水で覆われています。膝まで水があるけど歩いて向こうへ渡りたいです。",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-69",
+        "bosai-70",
+        "bosai-55",
+        "bosai-10"
+      ],
+      "facts": {
+        "road": true,
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": null,
+      "controlPass": true,
+      "goldRank": 1,
+      "badTop3": [
+        "bosai-70"
+      ]
+    },
+    {
+      "path": "scripts/evaluation/conversation-v2-final-32.json",
+      "id": "f05",
+      "turn": 1,
+      "input": "豪雨で通りが水浸しです。徒歩で渡るか迷っています。",
+      "expected": "confirm",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "floodedRoad": null,
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": null,
+      "controlPass": false,
+      "goldRank": null,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-v7-final-4.json",
+      "id": "v01",
+      "turn": 1,
+      "input": "水没車ではないです。車から出る場合の一般情報はありますか。",
+      "expected": "confirm",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "goal": "movement",
+        "movement": "drive",
+        "vehicleFlooded": false
+      },
+      "focus": null,
+      "controlPass": false,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-v7-final-4.json",
+      "id": "v02",
+      "turn": 1,
+      "input": "水没していない車から避難する注意を知りたいです。",
+      "expected": "confirm",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "goal": "movement",
+        "movement": "drive",
+        "vehicleFlooded": false
+      },
+      "focus": null,
+      "controlPass": false,
+      "badTop3": []
+    }
+  ]
+}

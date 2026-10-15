@@ -52,6 +52,7 @@ try{
    if(turn.notFocus)row.controlPass&&=r.diagnostics?.evidence?.focus!==turn.notFocus;
    if(turn.rejectPrevious){row.staleEnabled=await page.locator('[data-source-choice]:enabled').count();row.oldChoiceRejected=await page.evaluate(id=>{try{window.bosaiConversation.choose(id);return false;}catch{return true;}},previous);row.controlPass&&=row.staleEnabled===0&&row.oldChoiceRejected;}
    if(turn.badIds)row.badTop3=(r.candidates||[]).slice(0,3).filter(c=>turn.badIds.includes(c.id)).map(c=>c.id);
+   if(turn.needsConfirmationIds)row.controlPass&&=turn.needsConfirmationIds.every(id=>r.candidates?.find(c=>c.id===id)?.applicability.status==='needs-confirmation');
    if(turn.gold){row.gold=turn.gold;row.rank=r.candidates?.findIndex(c=>c.id===turn.gold)+1||null;row.retrievalBeforeCapabilityRank=r.diagnostics?.evidence?.originalResultIds?(r.diagnostics.evidence.originalResultIds.indexOf(turn.gold)+1||null):row.rank;row.provenance=r.candidates?.find(c=>c.id===turn.gold)?.provenance;}
    if(turn.requiredIds){row.requiredIds=turn.requiredIds;row.allRequiredFound=turn.requiredIds.every(id=>r.candidates?.some(c=>c.id===id));}
    if(['unsupported','clarify'].includes(turn.kind))row.unqualifiedCandidates=(r.candidates||[]).length;

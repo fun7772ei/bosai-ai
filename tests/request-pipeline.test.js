@@ -10,7 +10,7 @@ const light=async(q,m,request)=>({...retrieve(q,'light',undefined,request?.scope
 test('dictionary and conversation reject the same unsupported requests before loading any model',async()=>{
   let loads=0;
   const controller=new BetaController({status:async()=>{loads++;throw Error('unexpected model access');}});
-  for(const text of ['地震の発生日は？','この道路は今通れますか','今日の避難所は開いていますか','インスリンを増やしていい？']){
+  for(const text of ['地震の発生日は？','昨年この県で津波が発生した日時を知りたいです','この道路は今通れますか','今日の避難所は開いていますか','インスリンを増やしていい？']){
     for(const mode of ['light','hybrid','ruri']){
       const dictionary=await controller.search(text,mode);
       assert.equal(dictionary.scope.kind,'unsupported',text);

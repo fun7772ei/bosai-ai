@@ -50,6 +50,7 @@ jobs:
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-review-final-60.json --tag=beta-review-final-60
       - name: Text conversation with real Ruri and offline restart
         run: |
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-core-heldout-18.json --tag=conversation-core-heldout-ci
           node scripts/conversation-browser-check.mjs
           node scripts/conversation-v2-browser-check.mjs --tag=conversation-v2-dev-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-32.json --tag=conversation-v2-regression32-ci
@@ -73,6 +74,7 @@ jobs:
         with:
           name: ruri-beta-check
           path: |
+            test-results/conversation-core-*.json
             test-results/beta-review-regression-80.json
             test-results/beta-review-final-60.json
             test-results/beta-regression-64.json
