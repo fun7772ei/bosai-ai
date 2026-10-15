@@ -12,6 +12,7 @@ try{
  }`}));
  const page=await context.newPage();await page.goto('http://localhost:4173/bosai-ai/');await page.evaluate(()=>navigator.serviceWorker.ready);await page.goto('http://localhost:4173/bosai-ai/?voice_iso=1');
  await page.locator('#chatToggle').click();
+ out.checks.composerDoesNotCoverHeading=await page.evaluate(()=>document.querySelector('#conversation h2').getBoundingClientRect().bottom<=document.querySelector('#chatQuestion').getBoundingClientRect().top);
  await page.locator('#voiceLoad').click();await page.locator('#voiceListen').click();
  await page.evaluate(()=>{window.testMic.text('自信が発生した。');window.testMic.line({id:'1',text:'自信が発生した。津波は来ない。震度5。'});});
  out.checks.committed=await page.locator('#voiceCommitted').textContent().then(t=>t.startsWith('確定：'));
