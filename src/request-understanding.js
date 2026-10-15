@@ -1,26 +1,14 @@
 // Pure request interpretation and state transition. No retrieval, storage or UI dependencies.
-import {topicsIn,factsIn,mergeFacts,focusFor,contextText,vehicleNoun} from './request-facts.js';
+import {topicsIn,factsIn,mergeFacts,focusFor,contextText,conditions} from './request-facts.js';
 import {assessRequestScope,resolveRequestScope} from './request-scope.js';
 /** @typedef {{value: boolean|string|null, polarity:'asserted'|'denied'|'unknown', subject:string, sourceTurn:number|null}} Assertion */
-export function conditions(text) {
-  const excluded = [];
-  const remove = span => { excluded.push(span); return ''; };
-  // Prefer a typed contrast argument so '道路が冠水、車ではなく徒歩' keeps the scene.
-  // Identity contrasts deny a different vehicle, not the current automobile mode.
-  const identityContrast=new RegExp('(?:別の|他の|違う|新しい)?'+vehicleNoun+'(?:(?:に|へ)?(?:乗り換え|乗換え|乗り替え)(?:た|る|ました|ている)(?:の|わけ|ん)?)?(?:ではなく|じゃなく)(?:て)?[、,]?((?:同じ|元の|以前の)(?:'+vehicleNoun+'|(?=で|だ|な|[、。！？?]|$)))','g');
-  let identityCorrected=false;
-  let positive = text.replace(identityContrast,(_,same)=>{identityCorrected=true;return new RegExp(vehicleNoun+'$').test(same)?same:same+'車';});
-  positive = positive.replace(/(水没した車|水没車|車椅子|車いす|車イス|自転車|電車|列車|ベビーカー|乳母車|自動車|車|運転|徒歩|歩行|津波|地震|電話番号|カロリー計算)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span));
-  positive = positive.replace(/([^、。！？!?]{1,60}?)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span))
-    .replace(/(?:診断|電話番号|カロリー計算)(?:を)?(?:求めていない|聞いていない|必要としていない)[、。]?/g, remove);
-  return {positive:positive.trim(), excluded, ...(identityCorrected?{identityCorrected:true}:{})};
-}
+export {conditions} from './request-facts.js';
 
 export function understandRequest(text, previous, turn=1) {
     let nextState;
     const clarify=(reason,extra={},keepContext=false)=>({route:'clarify',reason,...extra,keepContext,state:keepContext?nextState:null});
     const parsed=conditions(text), explicitTopics=topicsIn(parsed.positive);
-    const directScope=assessRequestScope(parsed.positive);
+    const directScope=assessRequestScope(parsed);
     if(directScope.kind==='unsupported')return {route:'unsupported',scope:directScope};
     const subjects=new Set((parsed.positive.match(/(?:私|自分|友人|家族|子ども|子供|相手|祖母|祖父|母|父|兄|姉|弟|妹)(?:は|が)/g)||[]).map(s=>s.slice(0,-1).replace(/^自分$/,'私')));
     if(subjects.size>1)return clarify('複数の人の状況を分けて確認します。まず誰の、どの場面について調べますか？');

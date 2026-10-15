@@ -131,3 +131,17 @@ export function contextText(topics, facts) {
     facts.vehicleFlooded && '車内へ水が入っています', facts.unreachableHeight && '高台へ行く時間がありません',
   ].filter(Boolean).join('。');
 }
+
+export function conditions(text) {
+  const excluded = [];
+  const remove = span => { excluded.push(span); return ''; };
+  // Prefer a typed contrast argument so '道路が冠水、車ではなく徒歩' keeps the scene.
+  // Identity contrasts deny a different vehicle, not the current automobile mode.
+  const identityContrast=new RegExp('(?:別の|他の|違う|新しい)?'+vehicleNoun+'(?:(?:に|へ)?(?:乗り換え|乗換え|乗り替え)(?:た|る|ました|ている)(?:の|わけ|ん)?)?(?:ではなく|じゃなく)(?:て)?[、,]?((?:同じ|元の|以前の)(?:'+vehicleNoun+'|(?=で|だ|な|[、。！？?]|$)))','g');
+  let identityCorrected=false;
+  let positive = text.replace(identityContrast,(_,same)=>{identityCorrected=true;return new RegExp(vehicleNoun+'$').test(same)?same:same+'車';});
+  positive = positive.replace(/(水没した車|水没車|車椅子|車いす|車イス|自転車|電車|列車|ベビーカー|乳母車|自動車|車|運転|徒歩|歩行|津波|地震|電話番号|カロリー計算)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span));
+  positive = positive.replace(/([^、。！？!?]{1,60}?)(?:ではなく|じゃなく)(?:て)?[、,]?/g, (_, span) => remove(span))
+    .replace(/(?:診断|電話番号|カロリー計算)(?:を)?(?:求めていない|聞いていない|必要としていない)[、。]?/g, remove);
+  return {positive:positive.trim(), excluded, ...(identityCorrected?{identityCorrected:true}:{})};
+}

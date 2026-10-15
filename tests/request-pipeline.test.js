@@ -10,7 +10,7 @@ const light=async(q,m,request)=>({...retrieve(q,'light',undefined,request?.scope
 test('dictionary and conversation reject the same unsupported requests before loading any model',async()=>{
   let loads=0;
   const controller=new BetaController({status:async()=>{loads++;throw Error('unexpected model access');}});
-  for(const text of ['地震の発生日は？','昨年この県で津波が発生した日時を知りたいです','この道路は今通れますか','今日の避難所は開いていますか','インスリンを増やしていい？']){
+  for(const text of ['地震の発生日は？','地震はいつ？','昨年この県で津波が発生した日時を知りたいです','この道路は今通れますか','今日の避難所は開いていますか','インスリンを増やしていい？']){
     for(const mode of ['light','hybrid','ruri']){
       const dictionary=await controller.search(text,mode);
       assert.equal(dictionary.scope.kind,'unsupported',text);
@@ -81,4 +81,13 @@ test('stop followed by a new in-flight turn cannot be changed by the old complet
   assert.equal((await fresh).kind,'confirm');
   assert.equal(chat.busy,false);
   assert.deepEqual(chat.state.topics,['津波']);
+});
+
+
+test('dictionary and conversation apply the same contrast boundary',async()=>{
+  const text='電話番号ではなく在宅避難の支援情報を読みたい';
+  const controller=new BetaController();
+  const dictionary=await controller.search(text,'light');
+  assert.equal(dictionary.scope.kind,'related');
+  assert.equal((await new Conversation(light).send(text)).kind,'confirm');
 });
