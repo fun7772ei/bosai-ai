@@ -37,6 +37,6 @@ for(const path of paths){
   }
 }
 const summary={turns:rows.length,controlPassed:rows.filter(x=>x.controlPass).length,goldQueries:rows.filter(x=>'goldRank'in x).length,goldTop1:rows.filter(x=>x.goldRank===1).length,badTop3Queries:rows.filter(x=>x.badTop3?.length).length};
-const out={commit:execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),mode:'lexical-only; not real-model/browser or independent expert evaluation',casesSha256:hashes,summary,rows};
+const out={commit:execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),workingTreeDirty:!!execFileSync('git',['-C',root,'status','--porcelain'],{encoding:'utf8'}).trim(),coreSha256:Object.fromEntries(['conversation.js','request-understanding.js','request-facts.js','request-scope.js','conversation-applicability.js','beta-search.js','beta-controller.js'].flatMap(name=>{try{return [['src/'+name,createHash('sha256').update(readFileSync(resolve(root,'src',name))).digest('hex')]];}catch{return []}})),mode:'lexical-only; not real-model/browser or independent expert evaluation',casesSha256:hashes,summary,rows};
 writeFileSync(option('output','test-results/conversation-policy.json'),JSON.stringify(out,null,2)+'\n');
 console.log(JSON.stringify(summary));

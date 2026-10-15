@@ -74,6 +74,12 @@ out.checks.memoryOnlyHistory=await page.evaluate(()=>window.bosaiConversation.hi
  await page.locator('#browseDictionary summary').click();
  out.checks.voiceIntact=await page.locator('#voiceLoad').isVisible()&&await page.locator('#question').count()===1;out.release={before:browserMemory(pid)};await page.locator('#resetModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy);await page.waitForTimeout(3000);out.release.after=browserMemory(pid);out.checks.workerReleased=await page.evaluate(()=>!window.bosaiBeta.channel&&!window.bosaiBeta.ready);
  out.control={passed:out.rows.filter(r=>r.controlPass).length,total:out.rows.length};
+ out.semantic={control:out.control,kindAgreement:out.rows.filter(row=>row.kind===row.expected).length,
+   badTop3Queries:out.rows.filter(row=>row.badTop3?.length).length,
+   failures:out.rows.filter(row=>!row.controlPass||row.badTop3?.length).map(row=>({caseId:row.caseId,turn:row.turn,input:row.input,expected:row.expected,actual:row.kind,facts:row.state.facts,badTop3:row.badTop3}))};
+ // Runtime/offline success is separate from semantic agreement with frozen labels.
+ if(out.semantic.failures.length)console.warn('::warning::Semantic differences (not runtime failures): '+JSON.stringify(out.semantic));
+
  out.checks.noStaleCandidateSelection=out.rows.filter(r=>r.oldChoiceRejected!==undefined).every(r=>r.oldChoiceRejected&&r.staleEnabled===0);
  out.status=Object.entries(out.checks).every(([key,passed])=>passed||(baseline&&key==='noStaleCandidateSelection'))&&!out.errors.length?'passed':'failed';if(out.status==='failed')process.exitCode=1;
 }catch(e){out.status='failed';out.failure=e.message;console.error(e);process.exitCode=1;}finally{clearInterval(timer);memory();save();await context?.close();rmSync(profile,{recursive:true,force:true});server.closeAllConnections();await new Promise(r=>server.close(r));console.log(out.status,out.failure||'',out.rows.length,out.checks);}
