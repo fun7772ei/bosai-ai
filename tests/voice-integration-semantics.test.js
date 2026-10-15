@@ -13,7 +13,7 @@ test('vehicle interior negative and road affirmative are independent',()=>{
 });
 test('ordinary duration questions survive triage; safety verdicts remain unsupported',()=>{
  assert.equal(assessRequestScope('飲料水を沸騰させる時間は何分ですか').kind,'related');
- for(const q of ['水深は何センチまで安全ですか','今の道路は通れますか','今日の津波警報は？','絶対安全な方法ですか'])assert.equal(assessRequestScope(q).kind,'unsupported');
+ for(const q of ['水深は何センチまで安全ですか','今の道路は通れますか','今日の津波警報は？','絶対安全な方法ですか','浸水した車で何分まで待っても安全ですか','冠水路を何秒以内なら渡れますか'])assert.equal(assessRequestScope(q).kind,'unsupported');
 });
 test('short road correction retains movement, denial provenance, and no footwear detour',async()=>{
  const c=chat();await c.send('私は冠水した道路を徒歩で移動します');await c.send('道路は冠水していません');
