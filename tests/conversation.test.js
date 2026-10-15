@@ -92,3 +92,13 @@ test('tenth review P1: negative desire and past desire are not completed transit
 
 test('eleventh review P1: bare transition follow-ups retain an established vehicle scene',async()=>{const c=new Conversation(search);await c.send('水没した車の車内に水が入っています');const r=await c.send('乗り換えたくありません。脱出方法を教えて');assert.equal(c.state.facts.vehicleFlooded,true);assert.equal(r.candidates[0].id,'bosai-71');assert.equal(c.state.facts.vehicleTransitionMentioned,undefined);});
 test('eleventh review P1: explicit negative prerequisites filter capabilities even without a positive focus',async()=>{const {contextualEvidence}=await import('../src/conversation-evidence.js');const entries=['bosai-69','bosai-70','bosai-71','bosai-2','bosai-55'].map(id=>({entry:corpus.find(e=>e.id===id),score:1}));const run={scope:{kind:'related'},results:entries};assert.deepEqual(contextualEvidence(run,null,{floodedRoad:false}).results.map(x=>x.entry.id),['bosai-71','bosai-2','bosai-55']);assert.equal(contextualEvidence(run,null,{floodedRoad:null}).results.length,5);assert.equal(contextualEvidence(run,'flood-drive',{floodedRoad:false}).results.length,0);assert(!contextualEvidence(run,null,{vehicleFlooded:false}).results.some(x=>x.entry.id==='bosai-71'));const c=new Conversation(search);const r=await c.send('大雨ですが道路は冠水していません。車で移動するときに気をつける情報はある？');assert(!r.candidates?.some(x=>['bosai-69','bosai-70'].includes(x.id)));});
+
+test('an explicitly storm-only question excludes earthquake-only driving advice while retaining multi-hazard cases',async()=>{
+ const {contextualEvidence}=await import('../src/conversation-evidence.js');
+ const rows=['bosai-55','bosai-70','bosai-17'].map(id=>({entry:corpus.find(x=>x.id===id),score:0.8}));
+ const run={scope:{kind:'related'},results:rows};
+ const filtered=contextualEvidence(run,null,{floodedRoad:null},['大雨・浸水']);
+ assert(!filtered.results.some(row=>row.entry.id==='bosai-55'));
+ assert(filtered.evidence.excludedIds.includes('bosai-55'));
+ assert(contextualEvidence(run,null,{floodedRoad:null},['大雨・浸水','地震']).results.some(row=>row.entry.id==='bosai-55'));
+});

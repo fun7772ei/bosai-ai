@@ -92,7 +92,7 @@ export class Conversation {
     const generation=++this.generation; this.busy=true;
     try {
       const rawRun=await this.search(query,mode,{topics,facts,focus}); if(generation!==this.generation)throw Error('会話を中断しました。');
-      const run=contextualEvidence(rawRun,focus,facts);
+      const run=contextualEvidence(rawRun,focus,facts,topics);
       const diagnostics={actual:run.actual,fallback:run.fallback,timings:{...run.timings,conversationMs:performance.now()-started},query,topics,facts,excluded:this.state.excluded,evidence:run.evidence};
       if(run.scope.kind==='unsupported') { this.forget(); return this.reply('unsupported',run.scope.reason,{answerability:'outside-coverage',diagnostics}); }
       if(run.scope.kind==='clarify')return this.clarify(run.scope.reason,{choices:run.scope.choices,diagnostics},true);
