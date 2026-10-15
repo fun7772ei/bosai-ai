@@ -18,7 +18,7 @@ export function classifyAnswerRequest(text){
   // A road safety verdict depends on conditions this static dictionary cannot measure.
   const road=/(道路|歩道|車道|アンダーパス|通学路|橋|経路|ルート)/;
   const liveVerdict=/(今|現在|今日|ここ|この場所|付近|近く|近所|現時点)/;
-  const safe=/(安全|通れる|通行できる|通っていい|渡れる|通行可能|危険(?:ですか|かどうか))/;
+  const safe=/(安全|通れ(?:る|ます|ない)|通行できる|通って(?:いい|もよい)|渡れ(?:る|ます)|通行可能|危険(?:ですか|かどうか))/;
   if(road.test(q)&&liveVerdict.test(q)&&safe.test(q)){
     return {kind:'current-road-safety',reason:'特定の道路や経路が現在安全かは、この辞書では確認できません。道路管理者や自治体の最新情報を確認してください。'};
   }
