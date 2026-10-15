@@ -1,6 +1,7 @@
 import './beta.css';
 import {BetaController} from './beta-controller.js';
 import {corpus} from './beta-search.js';
+import {VoiceDraft} from './voice-draft.js';
 const $=id=>document.getElementById(id),el=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
 let uiRun=0,currentQuery='',lastRun;
 const controller=new BetaController({changed:refresh});
@@ -19,12 +20,16 @@ async function modelAction(action){const seq=++uiRun;try{await controller[action
 $('saveModel').onclick=()=>modelAction('save');$('loadModel').onclick=()=>modelAction('load');$('stop').onclick=()=>{uiRun++;controller.stop();$('message').textContent='処理を停止しました。軽量検索または再試行をご利用ください。';controller.inspect();};$('resetModel').onclick=async()=>{uiRun++;await controller.reset();$('message').textContent='モデルを解放しました。保存済みデータと表示中の原文は維持しています。';};
 for(const text of ['寝ているときに地震が来たら？','高台に間に合わない津波の避難は？','避難所で水が使えないときのトイレは？']){const b=el('button',text);b.type='button';b.onclick=()=>{$('question').value=text;$('question').dispatchEvent(new Event('input'));$('searchForm').requestSubmit();};$('examples').append(b);}
 
-// Moonshine Voice Japanese Tiny Streaming is opt-in. Keep text search usable if this fails.
+// Moonshine Voice Japanese Tiny (non-streaming) is opt-in. Keep text search usable if this fails.
 // The official WASM package is pinned; the microphone and model load only on button press.
 const MOONSHINE_MODULE=new URL('moonshine/index.js',location.origin+import.meta.env.BASE_URL).href;
 $('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
-let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceFinal=[],voiceBase='';
+let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceTarget=null;
+const voiceDraft=new VoiceDraft(),voiceEvents=[];
 let voiceStage='未準備',voiceLastError=null;
+function voiceLog(type,text=''){voiceEvents.push({type,at:Date.now(),characters:String(text).length,stage:voiceStage});if(voiceEvents.length>120)voiceEvents.shift();}
+function voiceInput(){const chat=$('conversation');return chat&&!chat.hidden?$('chatQuestion'):$('question');}
+for(const id of ['question','chatQuestion']){const input=$(id);if(input)input.addEventListener('input',()=>{if(voiceTarget===input&&voiceListening)voiceDraft.noteManualChange(input.value);});}
 function voiceState(message){
   $('voiceStatus').textContent=message;
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
@@ -45,14 +50,16 @@ function voiceFailure(e){
   voiceState('音声入力エラー【'+voiceStage+'】：'+message+'。文字入力は引き続き利用できます。');
 }
 function voiceApply(){
-  const finalText=voiceFinal.join(' ').trim();
-  if(!finalText)return;
-  $('question').value=[voiceBase,finalText].filter(Boolean).join(' ').slice(0,200);
-  $('question').dispatchEvent(new Event('input'));
+  if(!voiceTarget||voiceDraft.edited)return;
+  // Live text is a REPLACEMENT view, never appended onto a previous preview.
+  voiceTarget.value=voiceDraft.value;
+  voiceTarget.dispatchEvent(new Event('input'));
 }
-async function voiceRelease(){
+async function voiceRelease(alreadyStopped=false){
   const mic=voiceMic;voiceMic=null;voiceListening=false;
-  try{await mic?.stop();}catch{}
+  if(!alreadyStopped)try{await mic?.stop();}catch{}
+  // Accept any onLine delivered during stop before invalidating callbacks.
+  voiceSeq++;
   try{await mic?.close();}catch{}
   $('voiceLoad').disabled=voiceBusy;
   $('voiceListen').disabled=true;
@@ -94,12 +101,12 @@ $('voiceLoad').onclick=async()=>{
       .language('ja')
       .modelArch(ModelArch.Tiny)
       .onProgress((fraction,file)=>{if(generation===voiceSeq){voiceStage='モデル取得・読み込み';voiceState('モデル準備中 '+Math.round(fraction*100)+'% '+(file||''));}})
-      .onText(text=>{if(generation===voiceSeq)$('voiceLive').textContent=text?'認識中：'+text:'';})
+      .onText(text=>{if(generation!==voiceSeq)return;voiceDraft.interim(text);voiceLog('onText',text);voiceApply();$('voiceLive').textContent=text?'認識中（暫定）：'+text:'';})
       .onLine(line=>{
         if(generation!==voiceSeq)return;
         const t=String(line?.text||'').trim();if(!t)return;
-        voiceFinal.push(t);voiceApply();
-        $('voiceLive').textContent='確定：'+voiceFinal.join(' ');
+        voiceDraft.commit(line);voiceLog('onLine',t);voiceApply();
+        $('voiceLive').textContent='確定：'+voiceDraft.committed;
       })
       .onError(error=>{if(generation===voiceSeq)voiceFailure(error?.error||error);});
     voiceMic=mic;
@@ -113,8 +120,8 @@ $('voiceLoad').onclick=async()=>{
 };
 $('voiceListen').onclick=async()=>{
   if(voiceBusy||!voiceMic||voiceListening)return;
-  voiceBusy=true;voiceStage='マイク開始';voiceBase=$('question').value.trim();voiceFinal=[];
-  $('voiceLive').textContent='';
+  voiceBusy=true;voiceStage='マイク開始';voiceTarget=voiceInput();voiceDraft.begin(voiceTarget.value.trim());
+  $('voiceLive').textContent='';voiceLog('start');
   voiceState('マイクの許可を確認しています…');
   try{
     // start() is only called from a direct tap, required by Safari microphone gating.
@@ -130,9 +137,9 @@ $('voiceStop').onclick=async()=>{
   voiceState('録音を終了しています…');
   try{
     await voiceMic.stop();
-    voiceApply();
-    await voiceRelease();
-    voiceState(voiceFinal.length?'文字起こし完了。入力欄の日本語を確認して検索してください。':'録音を終了しました。認識されなかった場合は再度お試しください。');
+    const ended=voiceDraft.stop();voiceLog('stop',ended.text);voiceApply();
+    await voiceRelease(true);
+    voiceState(ended.manuallyEdited?'録音終了。手入力での修正を保持しました。認識結果との違いを確認してください。':ended.provisional?'録音終了。末尾は暫定認識のため、入力欄を必ず確認・修正してから送信してください。':ended.text?'文字起こし完了。入力欄を確認・修正してから送信してください。':'録音を終了しました。文字が認識されていません。');
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
 };
@@ -141,7 +148,7 @@ addEventListener('pagehide',()=>{voiceSeq++;const m=voiceMic;voiceMic=null;try{P
 try{$('mode').value=localStorage.getItem('bosai-beta-mode')||'hybrid';}catch{}if(!$('mode').value)$('mode').value='hybrid';$('mode').onchange=()=>{try{localStorage.setItem('bosai-beta-mode',$('mode').value);}catch{}};
 $('build').textContent=`ベータ版 ${__APP_BUILD__} / 辞書 ${corpus.length}件 / CPU・WASM / 自由生成なし`;
 try{const previous=localStorage.getItem('bosai-beta-stage');if(previous&&!/完了|利用可能|解放|停止/.test(previous))$('recovery').textContent=`前回の記録：${previous}。終了理由は未確定です。保存は削除していません。`;}catch{}
-$('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({build:__APP_BUILD__,userAgent:navigator.userAgent,standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,origin:location.origin,saved:controller.saved,storageError:controller.storageError,state:controller.state,runs:controller.runs,deviceVerification:'Not automatically iPad verified',voice:{stage:voiceStage,error:voiceLastError,crossOriginIsolated,mode:new URL(location.href).searchParams.get('voice_iso')==='1'}},null,2)],{type:'application/json'}));const a=el('a','');a.href=url;a.download='bosai-ruri-beta.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+$('export').onclick=()=>{const url=URL.createObjectURL(new Blob([JSON.stringify({build:__APP_BUILD__,userAgent:navigator.userAgent,standalone:matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,origin:location.origin,saved:controller.saved,storageError:controller.storageError,state:controller.state,runs:controller.runs,deviceVerification:'Not automatically iPad verified',voice:{stage:voiceStage,error:voiceLastError,crossOriginIsolated,mode:new URL(location.href).searchParams.get('voice_iso')==='1',events:voiceEvents,provisionalAtStop:voiceDraft.provisionalAtStop,manuallyEdited:voiceDraft.edited}},null,2)],{type:'application/json'}));const a=el('a','');a.href=url;a.download='bosai-ruri-beta.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
 const online=()=>$('connection').textContent=navigator.onLine?'オンライン':'オフライン';addEventListener('online',online);addEventListener('offline',online);online();
 if(['localhost','127.0.0.1'].includes(location.hostname))Object.defineProperty(window,'bosaiBeta',{value:controller});
 controller.inspect();refresh();
