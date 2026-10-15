@@ -1,1 +1,12 @@
 .conversation{margin:20px 0;padding:clamp(16px,4vw,32px);max-width:960px}.conversation textarea{width:100%;box-sizing:border-box}.conversation label{display:block}.conversation [role=log]{max-height:65vh;overflow:auto;padding:8px}.bubble{margin:12px 0;padding:16px;border-radius:20px;background:#edf5f0;overflow-wrap:anywhere}.bubble.user{margin-left:10%;background:#d4e9e1}.bubble.assistant{margin-right:4%}.bubble button{margin:4px;max-width:100%;white-space:normal;text-align:left}.bubble pre{white-space:pre-wrap;overflow-wrap:anywhere}.bubble a{overflow-wrap:anywhere}#chatToggle{margin:16px 0}[hidden]{display:none!important}
+
+/* Lightweight touch-friendly chat composer; keyboard viewport is owned by Safari. */
+.conversation{display:flex;flex-direction:column;gap:12px}
+.conversation [role=log]{min-height:150px;max-height:min(55dvh,700px);overscroll-behavior:contain;scrollbar-gutter:stable}
+.conversation form{position:sticky;bottom:env(safe-area-inset-bottom,0px);z-index:2;border-radius:18px;padding:14px;background:var(--surface,#fff);box-shadow:0 -2px 18px rgba(0,0,0,.06)}
+.conversation textarea{min-height:72px;padding:12px;font:inherit;line-height:1.5;border-radius:14px}
+.conversation button{min-height:44px;touch-action:manipulation}
+#chatVoiceDock:empty{display:none}
+#chatVoiceDock .voice-lab{padding:12px;margin:10px 0;border-radius:16px}
+@media(max-width:700px){.conversation{margin:8px 0;padding:12px}.bubble.user{margin-left:4%}.bubble.assistant{margin-right:0}.conversation [role=log]{max-height:48dvh}.conversation form{padding:10px}}
+@media(prefers-reduced-motion:reduce){.conversation *{scroll-behavior:auto!important;animation:none!important}}
