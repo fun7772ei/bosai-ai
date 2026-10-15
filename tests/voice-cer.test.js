@@ -28,3 +28,22 @@ test('unknown or duplicate IDs and model mixups are rejected',()=>{
  assert.throws(()=>evaluateAsrCases(cases,[{id:'v01',transcript:'x'},{id:'v01',transcript:'y'}],'base'));
  assert.throws(()=>evaluateAsrCases(cases,[],'tiny-streaming'));
 });
+
+test('Tiny/Base comparison uses only paired actual recordings',async()=>{
+ const {compareAsrReports}=await import('../src/voice-cer.js');
+ const tiny=evaluateAsrCases(cases,[{id:'v01',transcript:'地震が発生したらまず何をすればいいですか'},{id:'v02',transcript:'自信が発生しました'}],'tiny');
+ const base=evaluateAsrCases(cases,[{id:'v01',transcript:'地震が発生したらまず何をすればいいですか'}],'base');
+ const comparison=compareAsrReports(tiny,base);
+ assert.equal(comparison.paired,1);
+ assert.equal(comparison.unpaired,27);
+ assert.equal(comparison.deltaBaseMinusTiny,0);
+ assert.equal(comparison.rows.find(row=>row.id==='v02').status,'unpaired');
+ assert.throws(()=>compareAsrReports(base,tiny));
+});
+test('empty model comparison does not invent an accuracy score',async()=>{
+ const {compareAsrReports}=await import('../src/voice-cer.js');
+ const result=compareAsrReports(evaluateAsrCases(cases,[],'tiny'),evaluateAsrCases(cases,[],'base'));
+ assert.equal(result.paired,0);
+ assert.equal(result.tinyPairedCer,null);
+ assert.equal(result.basePairedCer,null);
+});

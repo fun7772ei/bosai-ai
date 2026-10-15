@@ -2,7 +2,7 @@
 
 **Base branch**: prep/voice-conversation-eval-20261015 (this draft PR), not old PR #18 or #19. Keep this PR open/draft; do not merge main or deploy Pages. Read AGENTS.md; docs/moonshine-tiny-base-research.md; docs/source-audit-and-regressions.md; docs/voice-evaluation.md; docs/conversation-core-design.md. Treat archived logs as historical.
 
-Already completed in this PR: 28-versioned Japanese ASR text cases, Unicode CER evaluator with untouched raw transcripts/unmeasured semantics, candidate-only correction helper and tests, source/defect investigation, documentation. No real Tiny/Base recording or iPad inference conducted. Source corpus/sidecars were not changed.
+Already completed in this PR: 28-versioned Japanese ASR text cases and paired Tiny/Base comparison CLI, Unicode CER evaluator with untouched raw transcripts/unmeasured semantics, candidate-only correction helper and tests, source/defect investigation, documentation. No real Tiny/Base recording or iPad inference conducted. Source corpus/sidecars were not changed.
 
 Implement as one coordinated task:
 1. Check actual pinned moonshine-wasm@0.1.5 ja Tiny/Base manifest and license/artifact URLs. Add an explicit opt-in Base to src/beta-main.js only if proven loadable on iPad; keep Tiny default and Ruri mutual exclusion. Preserve user gesture for microphone start, SDK stop/close, VoiceDraft manual edits, provisional text, and download/diagnostic display. Do not use TinyStreaming with old manifest.

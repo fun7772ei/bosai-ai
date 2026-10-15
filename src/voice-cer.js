@@ -40,3 +40,25 @@ export function evaluateAsrCases(cases, results, model){
     measured,unmeasured:cases.length-measured,total:cases.length,
     aggregateCer:measured&&chars?edits/chars:null,totalEdits:measured?edits:null,totalReferenceChars:measured?chars:null,rows};
 }
+
+/** Compare only matched, actually measured utterances; never turn missing into zero CER. */
+export function compareAsrReports(tiny,base){
+  if(tiny?.model!=='tiny'||base?.model!=='base'||tiny.normalization!==base.normalization)
+    throw Error('Expected comparable tiny/base reports with identical normalization');
+  const other=new Map(base.rows.map(row=>[row.id,row]));
+  if(other.size!==base.rows.length||tiny.rows.length!==base.rows.length)throw Error('Case IDs differ');
+  let tinyEdits=0,baseEdits=0,referenceChars=0,paired=0;
+  const rows=tiny.rows.map(t=>{
+    const b=other.get(t.id);
+    if(!b||b.reference!==t.reference)throw Error('Case IDs or references differ: '+t.id);
+    if(t.status!=='measured'||b.status!=='measured')
+      return {id:t.id,status:'unpaired',tinyCer:t.cer,baseCer:b.cer,deltaBaseMinusTiny:null};
+    if(t.referenceChars!==b.referenceChars)throw Error('Reference lengths differ: '+t.id);
+    paired++;tinyEdits+=t.edits;baseEdits+=b.edits;referenceChars+=t.referenceChars;
+    return {id:t.id,status:'paired',tinyCer:t.cer,baseCer:b.cer,deltaBaseMinusTiny:b.cer-t.cer};
+  });
+  return {schemaVersion:1,metric:'CER',normalization:tiny.normalization,paired,total:rows.length,unpaired:rows.length-paired,
+    tinyPairedCer:paired&&referenceChars?tinyEdits/referenceChars:null,
+    basePairedCer:paired&&referenceChars?baseEdits/referenceChars:null,
+    deltaBaseMinusTiny:paired&&referenceChars?(baseEdits-tinyEdits)/referenceChars:null,rows};
+}
