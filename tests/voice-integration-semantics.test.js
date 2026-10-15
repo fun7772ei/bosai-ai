@@ -32,3 +32,9 @@ test('shared flood predicate supports water-covered roads without footwear candi
  const c=chat(),r=await c.send(text);assert.equal(c.state.facts.floodedRoad,true);assert.equal(r.kind,'confirm');assert(!r.candidates.some(x=>x.id==='bosai-84'));
  }
 });
+
+test('a general vehicle-exit request does not require an unrelated road condition',async()=>{
+ for(const query of ['水没車ではないです。車から出る場合の一般情報はありますか。','水没していない車から避難する注意を知りたいです。']){
+ const c=chat(),r=await c.send(query);assert.equal(r.kind,'confirm');assert.equal(c.state.facts.vehicleFlooded,false);assert(!r.candidates.some(x=>x.id==='bosai-71'));
+ }
+});

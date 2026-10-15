@@ -102,6 +102,7 @@ export function factsIn(input) {
     if(questionTail.test(directTail)||questionedAction||(!directDenied&&!deniedAction&&(intendedAction||(transition&&!completedAction))))facts.vehicleChangeQuestion=true;
     else if(!directDenied&&!deniedAction)facts.vehicleChanged=true;
   }
+  if(new RegExp(vehicleNoun+'(?:から|を)[^、。]{0,8}(?:出る|降りる|降り|離れる|脱出|避難)').test(text))facts.goal='vehicle-exit';
   if (/靴|長靴|サンダル|履物/.test(text) && !/(?:進ん|歩い|渡っ).*(?:いい|よい|大丈夫|安全|問題ない)/.test(text)) facts.goal = 'footwear';
   if (/(?:高台|高い(?:所|場所)|丘|高所).*(?:間に合わ|時間が(?:ない|ありませ)|時間.*足り|たどり着けない|行けない)|(?:時間がない|間に合わない).*(?:高台|高い場所)/.test(text)) facts.unreachableHeight = true;
   if (/高台.*(?:時間はある|間に合う)|間に合わないわけではない/.test(text)) facts.unreachableHeight = false;

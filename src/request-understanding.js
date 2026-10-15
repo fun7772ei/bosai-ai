@@ -39,7 +39,7 @@ export function understandRequest(text, previous, turn=1) {
     if(facts.vehicleFlooded===null)return clarify('この辞書は車内の現在の浸水状態を確認できません。分かっている車の状況と、調べたい一般情報を教えてください。',{},true);
     if(facts.road && ['wheelchair','bicycle','rail','stroller'].includes(facts.movement))return clarify('この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。',{},true);
     if(facts.movement==='mixed')return clarify('徒歩と車のどちらの場面を調べますか？',{choices:['徒歩です','車です']},true);
-    if((topics.includes('大雨・浸水')||facts.floodedRoad===null) && ['walk','drive'].includes(facts.movement) && facts.floodedRoad==null && !facts.vehicleFlooded)return clarify('この辞書は道路の現在の冠水状況を確認できません。一般情報を調べるため、分かっている道路の状況を教えてください。',{choices:['道路が冠水しています','道路は冠水していません']},true);
+    if((topics.includes('大雨・浸水')||facts.floodedRoad===null) && facts.goal==='movement' && ['walk','drive'].includes(facts.movement) && facts.floodedRoad==null && !facts.vehicleFlooded)return clarify('この辞書は道路の現在の冠水状況を確認できません。一般情報を調べるため、分かっている道路の状況を教えてください。',{choices:['道路が冠水しています','道路は冠水していません']},true);
     const focus=focusFor(topics,facts), prefix=focus?contextText(topics,facts):'';
     if(prefix && !query.startsWith(prefix))query=`${prefix}。${query}`;
     if(query.length>200)return clarify('条件が長くなりました。調べたい状況を200文字以内でまとめ直してください。');

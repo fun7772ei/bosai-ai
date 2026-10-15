@@ -14,3 +14,15 @@ test('Ruri is reused for warm queries and reinitialized only after explicit rele
  await c.search('寝ているときに地震');const second=await c.search('寝ているときに地震','ruri');assert.equal(loads,1);assert.equal(embeds,2);assert.equal(second.timings.warm,true);await c.reset();assert.equal(disposals,1);await c.search('寝ているときに地震');assert.equal(loads,2);
 });
 test('unsupported questions do not start model initialization or present source candidates',async()=>{const c=new BetaController({status:()=>{throw Error('must not read model');}});for(const q of ['今夜の津波の予想は何メートル？','インスリンは何単位打つ？']){const r=await c.search(q);assert.equal(r.scope.kind,'unsupported');assert.deepEqual(r.resultIds,[]);assert.equal(r.fallback,null);}});
+
+test('dictionary and conversation share typed action evidence without certifying footwear',async()=>{
+ const c=new BetaController({status:async()=>({complete:false})});
+ const query='大雨で膝まで水がある道路を、足元を確かめながら歩くのは？';
+ const r=await c.search(query,'light');
+ assert(!r.resultIds.some(id=>['bosai-84','bosai-70'].includes(id)));assert.deepEqual(r.resultIds,r.results.map(x=>x.entry.id));
+ assert(r.results.every(x=>x.assessment));
+ const shoes=await c.search('道路が冠水したときの履物は長靴と運動靴のどちら？','light');
+ assert(shoes.resultIds.includes('bosai-84'));assert.equal(shoes.results.find(x=>x.entry.id==='bosai-84').assessment.status,'needs-confirmation');
+ const denied=await c.search('道路は冠水していません。徒歩です','light');
+ assert(!denied.resultIds.some(id=>['bosai-69','bosai-70'].includes(id)));
+});
