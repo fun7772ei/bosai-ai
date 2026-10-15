@@ -55,7 +55,8 @@ export function factsIn(input) {
   if(uncertain||(dry&&wet))facts.floodedRoad=null;
   else if(dry)facts.floodedRoad=false;
   else if(wet)facts.floodedRoad=true;
-  else if(/冠水|浸水|水浸し|水につか|水に浸か/.test(text))facts.floodedRoad=null;
+  // Do not reinterpret an explicitly vehicle-scoped flooded-car phrase as a road fact.
+  else if(/冠水|浸水|水浸し|水につか|水に浸か/.test(text) && (road || !new RegExp('(?:水没|浸水)(?:した|している|してしまった)?'+vehicleNoun).test(text)))facts.floodedRoad=null;
   const walk = /徒歩|歩く|歩い|歩行|歩き/.test(text);
   // A parked/abandoned vehicle is not the actor's current mode of travel.
   const leftVehicle = new RegExp('(?:'+[...automobileNouns].join('|')+')(?:を|から).*(?:置いて|離れて|降りて)').test(text);
@@ -68,7 +69,7 @@ export function factsIn(input) {
   if (modes.length) facts.movement = automobile || modes.length>1 ? 'mixed' : modes[0];
   else if (walk || drive) facts.movement = walk && drive ? 'mixed' : walk ? 'walk' : 'drive';
   const vehicleDenial=new RegExp(vehicleNoun+'[^、。]*水没'+negativePredicate+'|(?:水没|浸水)'+negativePredicate+'(?:の)?'+vehicleNoun+'|(?:水没|浸水)(?:した)?'+vehicleNoun+negativePredicate+'|車内[^、。]*水[^、。]*入って(?:い)?(?:ない|ません)');
-  const vehicleAffirmation=new RegExp('水没(?:した|している|してしまった)?'+vehicleNoun+'|'+vehicleNoun+'[^、。]*水没(?:しています|している|してます|していた|した|です)?|車内[^、。]*水[^、。]*入(?:っています|っている|ってます|りました|った|る)');
+  const vehicleAffirmation=new RegExp('(?:水没|浸水)(?:した|している|してしまった)?'+vehicleNoun+'|'+vehicleNoun+'[^、。]*(?:水没|浸水)(?:しています|している|してます|していた|した|です)?|車内[^、。]*水[^、。]*入(?:っています|っている|ってます|りました|った|る)');
   const denial=vehicleDenial.exec(autoText), assertion=vehicleAffirmation.exec(autoText);
   const vehicleQuestion=[denial,assertion].some(match=>match&&questionTail.test(autoText.slice(match.index+match[0].length)));
   if(vehicleQuestion) facts.vehicleFlooded=null;
