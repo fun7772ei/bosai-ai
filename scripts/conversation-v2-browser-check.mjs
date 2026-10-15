@@ -42,7 +42,7 @@ try{
  await page.locator('#browseDictionary summary').click();
  await page.locator('#chatToggle').click();const missing=await send('寝室で地震にあったときは？');out.checks.unsavedFallback=missing.diagnostics.actual==='light';await page.getByRole('button',{name:'通常検索に戻る',exact:true}).click();
  await page.locator('#saveModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy&&window.bosaiBeta.saved?.complete,null,{timeout:180000});await page.locator('#chatToggle').click();
- for(const test of cases){await page.locator('#chatClear').click();let chosen,previous;
+ for(const test of cases){await page.locator('#chatClear').click();let chosen,previous,previousSelection;
   for(const [index,turn] of test.turns.entries()){
    const r=await send(turn.text),row={caseId:test.id,category:test.kind,turn:index+1,input:turn.text,expected:turn.kind,...r};row.controlPass=r.kind===turn.kind&&(!turn.queryIncludes||r.diagnostics?.query.includes(turn.queryIncludes))&&(!turn.queryExcludes||!r.diagnostics?.query.includes(turn.queryExcludes));
    const state=await page.evaluate(()=>window.bosaiConversation.state);row.state=state;
@@ -50,7 +50,7 @@ try{
    if(turn.absentFacts)row.controlPass&&=turn.absentFacts.every(k=>state.facts?.[k]===undefined);
    if(turn.facts)row.controlPass&&=Object.entries(turn.facts).every(([k,v])=>state.facts?.[k]===v);
    if(turn.notFocus)row.controlPass&&=r.diagnostics?.evidence?.focus!==turn.notFocus;
-   if(turn.rejectPrevious){row.staleEnabled=await page.locator('[data-source-choice]:enabled').count();row.oldChoiceRejected=await page.evaluate(id=>{try{window.bosaiConversation.choose(id);return false;}catch{return true;}},previous);row.controlPass&&=row.staleEnabled===0&&row.oldChoiceRejected;}
+   if(turn.rejectPrevious){row.staleEnabled=await page.locator('#conversationLog .bubble:not(:last-child) [data-source-choice]:enabled').count();row.oldChoiceRejected=await page.evaluate(({id,selection})=>{try{window.bosaiConversation.choose(id,selection);return false;}catch{return true;}},{id:previous,selection:previousSelection});row.controlPass&&=row.staleEnabled===0&&row.oldChoiceRejected;}
    if(turn.badIds)row.badTop3=(r.candidates||[]).slice(0,3).filter(c=>turn.badIds.includes(c.id)).map(c=>c.id);
    if(turn.needsConfirmationIds)row.controlPass&&=turn.needsConfirmationIds.every(id=>r.candidates?.find(c=>c.id===id)?.applicability.status==='needs-confirmation');
    if(turn.gold){row.gold=turn.gold;row.rank=r.candidates?.findIndex(c=>c.id===turn.gold)+1||null;row.retrievalBeforeCapabilityRank=r.diagnostics?.evidence?.originalResultIds?(r.diagnostics.evidence.originalResultIds.indexOf(turn.gold)+1||null):row.rank;row.provenance=r.candidates?.find(c=>c.id===turn.gold)?.provenance;}
@@ -59,7 +59,7 @@ try{
 
    if(r.kind==='source')row.sourceRetained=!!chosen&&r.entryIds?.[0]===chosen;
    if(turn.choose&&r.candidates?.length){chosen=r.candidates.find(c=>c.id===turn.gold)?.id||r.candidates[0].id;await choose(chosen);row.chosen=chosen;row.originalFieldsVerified=true;}
-   previous=r.candidates?.[0]?.id||previous;out.rows.push(row);save();
+   previous=r.candidates?.[0]?.id||previous;previousSelection=r.selection??previousSelection;out.rows.push(row);save();
   }
  }
  // Stop a real cold initialization via existing controls, then recover in the conversation UI.

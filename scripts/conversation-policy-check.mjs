@@ -15,7 +15,7 @@ for(const path of paths){
   const bytes=readFileSync(path);hashes[path]=createHash('sha256').update(bytes).digest('hex');
   for(const scenario of JSON.parse(bytes)){
     const engine=new Conversation(async(q,m,request)=>({...retrieve(q,'light',undefined,request?.scope),actual:'light',timings:{}}));
-    let previous;
+    let previous,previousSelection;
     for(const [index,turn] of scenario.turns.entries()){
       const result=await engine.send(turn.text,'light'),facts=structuredClone(engine.state.facts);
       const ids=result.candidates?.map(x=>x.id)||[];
@@ -25,13 +25,13 @@ for(const path of paths){
       if(turn.absentFacts)row.controlPass&&=turn.absentFacts.every(key=>facts[key]===undefined);
       if(turn.facts)row.controlPass&&=Object.entries(turn.facts).every(([key,value])=>facts[key]===value);
       if(turn.notFocus)row.controlPass&&=row.focus!==turn.notFocus;
-      if(turn.rejectPrevious){try{engine.choose(previous);row.controlPass=false;}catch{}}
+      if(turn.rejectPrevious){try{engine.choose(previous,previousSelection);row.controlPass=false;}catch{}}
       if(turn.needsConfirmationIds)row.controlPass&&=turn.needsConfirmationIds.every(id=>result.candidates?.find(c=>c.id===id)?.applicability.status==='needs-confirmation');
       if(turn.gold)row.goldRank=ids.indexOf(turn.gold)+1||null;
       if(turn.badIds)row.badTop3=ids.slice(0,3).filter(id=>turn.badIds.includes(id));
       if(turn.requiredIds)row.allRequiredFound=turn.requiredIds.every(id=>ids.includes(id));
       if(turn.choose&&ids.length)engine.choose(ids.includes(turn.gold)?turn.gold:ids[0]);
-      previous=ids[0]||previous;
+      previous=ids[0]||previous;previousSelection=result.selection??previousSelection;
       rows.push(row);
     }
   }
