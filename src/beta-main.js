@@ -2,6 +2,7 @@ import './beta.css';
 import {BetaController} from './beta-controller.js';
 import {corpus} from './beta-search.js';
 import {VoiceDraft} from './voice-draft.js';
+import {releaseVoiceResources} from './voice-lifecycle.js';
 import {correctionReview,applyCorrection} from './voice-review.js';
 import {mountVoiceEvaluation} from './voice-evaluation-ui.js';
 const $=id=>document.getElementById(id),el=(tag,text)=>{const e=document.createElement(tag);e.textContent=text;return e;};
@@ -17,7 +18,7 @@ function render(run){lastRun=run;$('candidates').replaceChildren();$('clarify').
  $('metrics').textContent=`初期化 ${run.timings.loadMs?.toFixed(1)??'なし/再利用'} ms / 質問Embedding ${run.timings.embeddingMs?.toFixed(1)??'なし'} ms / 検索 ${run.timings.retrievalMs.toFixed(1)} ms / 合計 ${run.timings.totalMs.toFixed(1)} ms${run.fallback?` / 切替理由: ${run.fallback}`:''}`;$('candidates').dataset.run=JSON.stringify({...run,results:undefined});
 }
 $('question').oninput=()=>$('count').textContent=`${$('question').value.length} / 200`;
-$('searchForm').onsubmit=async event=>{event.preventDefault();if(controller.busy)return;if(voiceListening){$('message').textContent='先に「録音停止」を押し、認識結果を確認してください。';return;}if(voiceMic){await voiceRelease();voiceState('音声モデルを解放しました。Ruri検索に切り替えます。');}const seq=++uiRun;currentQuery=$('question').value.trim();$('message').textContent='関連する情報を検索しています…';try{const run=await controller.search(currentQuery,$('mode').value);if(seq===uiRun)render(run);}catch(e){if(seq===uiRun)$('message').textContent=e.message;}};
+$('searchForm').onsubmit=async event=>{event.preventDefault();if(controller.busy)return;if(voiceListening){$('message').textContent='先に「録音停止」を押し、認識結果を確認してください。';return;}if(voiceMic){if(!await voiceRelease())return;voiceState('音声モデルを解放しました。Ruri検索に切り替えます。');}const seq=++uiRun;currentQuery=$('question').value.trim();$('message').textContent='関連する情報を検索しています…';try{const run=await controller.search(currentQuery,$('mode').value);if(seq===uiRun)render(run);}catch(e){if(seq===uiRun)$('message').textContent=e.message;}};
 async function modelAction(action){const seq=++uiRun;try{await controller[action]();}catch(e){if(seq===uiRun)controller.phase(`処理を完了できませんでした：${e.message}。軽量検索は利用できます。`);}if(seq===uiRun)await controller.inspect();}
 $('saveModel').onclick=()=>modelAction('save');$('loadModel').onclick=()=>modelAction('load');$('stop').onclick=()=>{uiRun++;controller.stop();$('message').textContent='処理を停止しました。軽量検索または再試行をご利用ください。';controller.inspect();};$('resetModel').onclick=async()=>{uiRun++;await controller.reset();$('message').textContent='モデルを解放しました。保存済みデータと表示中の原文は維持しています。';};
 for(const text of ['寝ているときに地震が来たら？','高台に間に合わない津波の避難は？','避難所で水が使えないときのトイレは？']){const b=el('button',text);b.type='button';b.onclick=()=>{$('question').value=text;$('question').dispatchEvent(new Event('input'));$('searchForm').requestSubmit();};$('examples').append(b);}
@@ -29,7 +30,7 @@ const voiceModel=new URL(location.href).searchParams.get('voice_eval')==='base'?
 const MOONSHINE_MODULE=new URL('moonshine/index.js',location.origin+import.meta.env.BASE_URL).href;
 $('voiceEnableIso').onclick=()=>{const url=new URL(location.href);url.searchParams.set('voice_iso','1');location.assign(url.href);};
 const voiceUnload=el('button','音声モデルを解放');voiceUnload.type='button';voiceUnload.id='voiceUnload';voiceUnload.className='outlined';$('voiceStop').after(voiceUnload);voiceUnload.disabled=true;
-let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceTarget=null;
+let voiceMic=null,voiceBusy=false,voiceListening=false,voiceSeq=0,voiceTarget=null,voiceReleaseFailed=false;
 const voiceDraft=new VoiceDraft(),voiceEvents=[];
 document.querySelector('.voice-lab-tag').textContent='Powered by Moonshine AI · 日本語'+(voiceModel==='base'?'Base（実機評価専用・未検証）':'Tiny');
 const modelEvaluation=el('details',''),modelSummary=el('summary','Tiny / Base の実機比較について'),modelNote=el('p','通常はTinyを使用します。BaseはiPad未検証の評価専用です。下の選択でページを開き直すと、この画面の入力・会話・評価記録は消えます。必要な記録を先に書き出してください。保存済みモデルは維持します。'),modelChoice=el('a',voiceModel==='base'?'Tinyに戻る':'Baseの評価画面を開く（任意・未検証）');
@@ -53,7 +54,7 @@ function voiceState(message){
   $('voiceStatus').textContent=message;
   const lab=document.querySelector('.voice-lab');if(lab)lab.dataset.active=String(voiceBusy||voiceListening||!!voiceMic);
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
-  $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening;
+  $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening||voiceReleaseFailed;
   $('voiceStop').disabled=voiceBusy||!voiceListening;
   voiceUnload.disabled=voiceBusy||!voiceMic||voiceListening;
   refresh();
@@ -78,13 +79,16 @@ function voiceApply(){
 }
 async function voiceRelease(alreadyStopped=false){
   const mic=voiceMic;voiceMic=null;voiceListening=false;
-  if(!alreadyStopped)try{await mic?.stop();}catch{}
-  // Accept any onLine delivered during stop before invalidating callbacks.
+  const released=await releaseVoiceResources(mic,{alreadyStopped});
+  // Accept any onLine delivered during stop/close before invalidating callbacks.
   voiceSeq++;
-  try{await mic?.close();}catch{}
-  $('voiceLoad').disabled=voiceBusy;
+  voiceReleaseFailed=!released.closed;
+  if(!released.closed)voiceMic=mic; // Keep the handle for a retry; Ruri remains gated.
+  $('voiceLoad').disabled=voiceBusy||!!voiceMic;
   $('voiceListen').disabled=true;
   $('voiceStop').disabled=true;
+  if(!released.ok)voiceFailure(Error('音声の停止・解放を確認できません：'+released.errors.join('; ')));
+  return released.ok;
 }
 if(!crossOriginIsolated){
   $('voiceEnableIso').hidden=false;
@@ -139,9 +143,9 @@ $('voiceLoad').onclick=async()=>{
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}
 };
-voiceUnload.onclick=async()=>{if(voiceBusy||voiceListening||!voiceMic)return;voiceBusy=true;voiceStage='モデル解放';voiceState('音声モデルを解放しています…');try{await voiceRelease();voiceLog('release');voiceState('音声モデルを解放しました。Ruriへ戻れます。');}catch(e){voiceFailure(e);}finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}};
+voiceUnload.onclick=async()=>{if(voiceBusy||voiceListening||!voiceMic)return;voiceBusy=true;voiceStage='モデル解放';voiceState('音声モデルを解放しています…');try{if(await voiceRelease()){voiceLog('release');voiceState('音声モデルを解放しました。Ruriへ戻れます。');}}catch(e){voiceFailure(e);}finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}};
 $('voiceListen').onclick=async()=>{
-  if(voiceBusy||!voiceMic||voiceListening)return;
+  if(voiceBusy||!voiceMic||voiceListening||voiceReleaseFailed)return;
   voiceBusy=true;voiceStage='マイク開始';voiceTarget=voiceInput();voiceDraft.begin(voiceTarget.value.trim());
   $('voiceLive').textContent='';committedView.textContent='';correctionPanel.replaceChildren();voiceAttempt=null;voiceLog('start');
   voiceState('マイクの許可を確認しています…');
@@ -162,7 +166,7 @@ $('voiceStop').onclick=async()=>{
     const ended=voiceDraft.stop();voiceLog('stop',ended.text);voiceApply();
     voiceAttempt={id:++voiceAttemptId,text:voiceDraft.committed,provisional:ended.provisional};
     reviewVoice();
-    await voiceRelease(true);
+    if(!await voiceRelease(true))return;
     voiceState(ended.manuallyEdited?'録音終了。手入力での修正を保持しました。認識結果との違いを確認してください。':ended.provisional?'録音終了。末尾は暫定認識のため、入力欄を必ず確認・修正してから送信してください。':ended.text?'文字起こし完了。入力欄を確認・修正してから送信してください。':'録音を終了しました。文字が認識されていません。');
   }catch(e){await voiceRelease();voiceFailure(e);}
   finally{voiceBusy=false;voiceState($('voiceStatus').textContent);}

@@ -8,7 +8,7 @@ try{
  export const ModelArch={Tiny:0,Base:1};
  export class MicTranscriber {
  language(){return this} modelArch(a){window.testVoiceArch=a;return this} onProgress(){return this} onText(cb){this.text=cb;return this} onLine(cb){this.line=cb;return this} onError(){return this}
- async load(){window.testMic=this} async start(){} async stop(){} async close(){window.testClosed=true}
+ async load(){window.testMic=this} async start(){} async stop(){} async close(){if(window.testCloseFailure)throw Error('test close failure');window.testClosed=true}
  }`}));
  const page=await context.newPage();await page.goto('http://localhost:4173/bosai-ai/');await page.evaluate(()=>navigator.serviceWorker.ready);await page.goto('http://localhost:4173/bosai-ai/?voice_iso=1');
  await page.locator('#chatToggle').click();
@@ -28,6 +28,7 @@ try{
  await page.locator('#voiceLoad').click();await page.locator('#voiceListen').click();await page.evaluate(()=>window.testMic.line({id:'2',text:'自信が発生した。'}));await page.locator('#chatQuestion').fill('私の手入力は変えない');await page.evaluate(()=>window.testMic.line({id:'3',text:'自信が発生した。'}));await page.locator('#voiceStop').click();
  out.checks.editsPreserved=await page.locator('#chatQuestion').inputValue().then(t=>t==='私の手入力は変えない')&&await page.locator('#voiceCorrections button').count()===0;
  await page.goto('http://localhost:4173/bosai-ai/?voice_iso=1&voice_eval=base');await page.locator('#voiceLoad').click();out.checks.baseExplicit=await page.evaluate(()=>window.testVoiceArch===1)&&await page.locator('.voice-lab-tag').textContent().then(t=>t.includes('未検証'));
- await page.locator('#voiceUnload').click();await page.locator('#appNavigation [data-view="settings"]').click();out.checks.settingsAfterRelease=await page.locator('#appSettings').isVisible();
+ await page.evaluate(()=>window.testCloseFailure=true);await page.locator('#voiceUnload').click();out.checks.releaseFailureVisible=await page.locator('#voiceStatus').textContent().then(t=>t.includes('停止・解放を確認できません'))&&await page.locator('#voiceListen').isDisabled();
+ await page.evaluate(()=>window.testCloseFailure=false);await page.locator('#voiceUnload').click();await page.locator('#appNavigation [data-view="settings"]').click();out.checks.settingsAfterRelease=await page.locator('#appSettings').isVisible();
  out.status=Object.values(out.checks).every(Boolean)?'passed':'failed';if(out.status==='failed')process.exitCode=1;
 }catch(e){out.status='failed';out.error=e.message;process.exitCode=1;}finally{writeFileSync('test-results/voice-review-ui.json',JSON.stringify(out,null,2));console.log(out);await browser.close();}
