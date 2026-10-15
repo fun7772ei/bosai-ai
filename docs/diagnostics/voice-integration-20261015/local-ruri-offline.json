@@ -1,0 +1,1583 @@
+{
+  "implementation": "37af2dca3bae208c00eedb18ad537cde201b76c9",
+  "workingTreeDirty": true,
+  "coreSha256": {
+    "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+    "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+    "src/query-scope.js": "7a5797bf85f1eb783b38689e19e051596727c9cec3a79026762f772266c97008",
+    "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+    "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef",
+    "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+    "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+    "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+    "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+    "src/request-scope.js": "0c2db49b39413a9a475e48aa5c074a02b75a15e20528e5b816cfca6c0b051248",
+    "src/request-facts.js": "750143d3e0f19d061dc3ee30946d93aea2a32a5032109fbb0c21d15210613ca1",
+    "src/request-understanding.js": "a72a51f9081387cc89d9608dc8c8ce7b40443febb3afaa35a66fa573468aad46"
+  },
+  "casesSha256": null,
+  "createdAt": "2026-10-15T05:30:29.088Z",
+  "platform": "Linux Chromium CPU/WASM, WebGPU disabled; not iPad Safari",
+  "status": "passed",
+  "runs": [
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": "モデル未保存",
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "scores": [
+        55.41615153585045,
+        19.43990391929703
+      ],
+      "timings": {
+        "retrievalMs": 2.1000000000058208,
+        "totalMs": 24.20000000001164
+      },
+      "ready": false,
+      "time": "2026-10-15T05:30:30.255Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": "モデル未保存",
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "scores": [
+        55.41615153585045,
+        19.43990391929703
+      ],
+      "timings": {
+        "retrievalMs": 1.2999999999883585,
+        "totalMs": 17.70000000001164
+      },
+      "ready": false,
+      "time": "2026-10-15T05:30:30.571Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-42",
+        "bosai-40"
+      ],
+      "scores": [
+        1,
+        0.25737857837486333,
+        0.1808354335150015,
+        0.12195425544765175,
+        0.11128645119626926
+      ],
+      "timings": {
+        "warm": true,
+        "embeddingMs": 347.9000000000233,
+        "tokens": 11,
+        "retrievalMs": 7.399999999994179,
+        "totalMs": 361.20000000001164
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:34.797Z"
+    },
+    {
+      "query": "津波の高台に間に合わなかったら？",
+      "requested": "ruri",
+      "actual": "ruri",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-2",
+        "bosai-51",
+        "bosai-0",
+        "bosai-16",
+        "bosai-1",
+        "bosai-4",
+        "bosai-14",
+        "bosai-9",
+        "bosai-8",
+        "bosai-3"
+      ],
+      "scores": [
+        0.8875489660320766,
+        0.8776697066744026,
+        0.8760505013194015,
+        0.866528717700145,
+        0.8634330501326248,
+        0.8626700343487419,
+        0.8594233011847097,
+        0.8545083712940282,
+        0.8542683360400665,
+        0.851049975954948
+      ],
+      "timings": {
+        "warm": true,
+        "embeddingMs": 128.20000000001164,
+        "tokens": 14,
+        "retrievalMs": 1.3000000000174623,
+        "totalMs": 134.80000000001746
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:35.685Z"
+    },
+    {
+      "query": "水のことで困っています",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": null,
+      "scope": {
+        "kind": "clarify",
+        "reason": "どの災害・状況について調べますか？条件を選ぶか、具体的な状況を追加してください。",
+        "choices": [
+          "飲料水・水分補給",
+          "断水時のトイレ",
+          "浸水・洪水"
+        ],
+        "code": "needs-context"
+      },
+      "resultIds": [],
+      "scores": [],
+      "timings": {
+        "retrievalMs": 0,
+        "totalMs": 0.20000000001164153
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:36.489Z"
+    },
+    {
+      "query": "今日の津波警報は？",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": null,
+      "scope": {
+        "kind": "unsupported",
+        "reason": "現在の警報・予報・避難所の開設や、あなたの場所の安全性は確認できません。気象庁・自治体の最新の発表を確認してください。",
+        "code": "live-local",
+        "choices": []
+      },
+      "resultIds": [],
+      "scores": [],
+      "timings": {
+        "retrievalMs": 0,
+        "totalMs": 0.10000000000582077
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:36.732Z"
+    },
+    {
+      "query": "家に残るか避難するか迷っています",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": null,
+      "scope": {
+        "kind": "clarify",
+        "reason": "どの災害・状況について調べますか？条件を選ぶか、具体的な状況を追加してください。",
+        "choices": [
+          "地震のとき",
+          "津波のとき",
+          "大雨・浸水のとき",
+          "在宅避難の支援について"
+        ],
+        "code": "needs-context"
+      },
+      "resultIds": [],
+      "scores": [],
+      "timings": {
+        "retrievalMs": 0,
+        "totalMs": 0
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:36.857Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら",
+      "requested": "hybrid",
+      "actual": "light",
+      "fallback": "Test-injected model failure",
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "scores": [
+        55.41615153585045,
+        19.43990391929703
+      ],
+      "timings": {
+        "warm": true,
+        "retrievalMs": 0.7999999999883585,
+        "totalMs": 1.6000000000058208
+      },
+      "ready": false,
+      "time": "2026-10-15T05:30:36.964Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-42",
+        "bosai-40"
+      ],
+      "scores": [
+        1,
+        0.26376277919470476,
+        0.16574391780286848,
+        0.10884985471616494,
+        0.10249172495293726
+      ],
+      "timings": {
+        "loadMs": 3691.7999999999884,
+        "warm": false,
+        "embeddingMs": 277.29999999998836,
+        "tokens": 10,
+        "retrievalMs": 1.6000000000058208,
+        "totalMs": 4069
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:41.440Z"
+    },
+    {
+      "query": "避難所で断水したトイレは？",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-17",
+        "bosai-82",
+        "bosai-18",
+        "bosai-25",
+        "bosai-40"
+      ],
+      "scores": [
+        1,
+        0.36089203091403316,
+        0.33265975306755513,
+        0.2902242073293715,
+        0.2521354510818569
+      ],
+      "timings": {
+        "loadMs": 4450.600000000006,
+        "warm": false,
+        "embeddingMs": 254.10000000000582,
+        "tokens": 14,
+        "retrievalMs": 0.9000000000232831,
+        "totalMs": 4767.600000000006
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:49.738Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-42",
+        "bosai-40"
+      ],
+      "scores": [
+        1,
+        0.25737857837486333,
+        0.1808354335150015,
+        0.12195425544765175,
+        0.11128645119626926
+      ],
+      "timings": {
+        "warm": true,
+        "embeddingMs": 52.10000000000582,
+        "tokens": 11,
+        "retrievalMs": 0.7999999999883585,
+        "totalMs": 54.39999999999418
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:52.945Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "hybrid",
+      "actual": "hybrid",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-42",
+        "bosai-40"
+      ],
+      "scores": [
+        1,
+        0.25737857837486333,
+        0.1808354335150015,
+        0.12195425544765175,
+        0.11128645119626926
+      ],
+      "timings": {
+        "loadMs": 2501.600000000006,
+        "warm": false,
+        "embeddingMs": 125.10000000000582,
+        "tokens": 11,
+        "retrievalMs": 6.5,
+        "totalMs": 2712.5
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:56.983Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "ruri",
+      "actual": "ruri",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-38",
+        "bosai-44",
+        "bosai-42",
+        "bosai-40",
+        "bosai-56",
+        "bosai-14",
+        "bosai-45",
+        "bosai-51",
+        "bosai-57"
+      ],
+      "scores": [
+        0.9150787545465016,
+        0.8852850071523553,
+        0.8758855604446701,
+        0.8686549913800851,
+        0.8673449921929277,
+        0.8595491503088327,
+        0.8563902943066213,
+        0.8548031040556603,
+        0.854300811730474,
+        0.8536790908346565
+      ],
+      "timings": {
+        "warm": true,
+        "embeddingMs": 61.399999999965075,
+        "tokens": 11,
+        "retrievalMs": 1,
+        "totalMs": 63.20000000001164
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:58.356Z"
+    },
+    {
+      "query": "寝ているときに地震が来たら？",
+      "requested": "light",
+      "actual": "light",
+      "fallback": null,
+      "scope": {
+        "kind": "related",
+        "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+        "choices": [],
+        "code": "candidates-only"
+      },
+      "resultIds": [
+        "bosai-39",
+        "bosai-54"
+      ],
+      "scores": [
+        55.41615153585045,
+        19.43990391929703
+      ],
+      "timings": {
+        "retrievalMs": 0.40000000002328306,
+        "totalMs": 0.5
+      },
+      "ready": true,
+      "time": "2026-10-15T05:30:58.530Z"
+    }
+  ],
+  "samples": [],
+  "errors": [],
+  "assetRequests": [
+    "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/config.json",
+    "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/onnx/model_quantized.onnx",
+    "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/onnx/model_quantized.onnx",
+    "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer.json",
+    "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer_config.json"
+  ],
+  "memory": [
+    {
+      "phase": "startup",
+      "pssMiB": 188.1669921875,
+      "rssMiB": 389.55078125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 42.9931640625,
+        "zygote": 20.0146484375,
+        "gpu-process": 29.095703125,
+        "renderer": 72.19140625,
+        "utility": 23.8720703125
+      },
+      "rendererPssMiB": 72.19140625
+    },
+    {
+      "phase": "startup",
+      "pssMiB": 216.7822265625,
+      "rssMiB": 425.8984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5224609375,
+        "zygote": 19.9931640625,
+        "gpu-process": 30.380859375,
+        "renderer": 93.1064453125,
+        "utility": 23.779296875
+      },
+      "rendererPssMiB": 93.1064453125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 236.6923828125,
+      "rssMiB": 456.79296875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.4013671875,
+        "zygote": 19.9765625,
+        "gpu-process": 34.375,
+        "renderer": 110.2451171875,
+        "utility": 23.6943359375
+      },
+      "rendererPssMiB": 110.2451171875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 284.7041015625,
+      "rssMiB": 508.02734375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 53.447265625,
+        "zygote": 19.9765625,
+        "gpu-process": 34.9599609375,
+        "renderer": 151.552734375,
+        "utility": 24.767578125
+      },
+      "rendererPssMiB": 151.552734375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 243.2470703125,
+      "rssMiB": 464.8359375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.658203125,
+        "zygote": 19.9765625,
+        "gpu-process": 35.0693359375,
+        "renderer": 114.853515625,
+        "utility": 23.689453125
+      },
+      "rendererPssMiB": 114.853515625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 400.626953125,
+      "rssMiB": 622.41015625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.8828125,
+        "zygote": 19.9765625,
+        "gpu-process": 35.0693359375,
+        "renderer": 272.033203125,
+        "utility": 23.6650390625
+      },
+      "rendererPssMiB": 272.033203125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 444.439453125,
+      "rssMiB": 666.54296875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3115234375,
+        "zygote": 19.9765625,
+        "gpu-process": 35.0625,
+        "renderer": 316.3857421875,
+        "utility": 23.703125
+      },
+      "rendererPssMiB": 316.3857421875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 561.451171875,
+      "rssMiB": 783.66015625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.373046875,
+        "zygote": 19.9765625,
+        "gpu-process": 35.0625,
+        "renderer": 433.2998046875,
+        "utility": 23.7392578125
+      },
+      "rendererPssMiB": 433.2998046875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 569.306640625,
+      "rssMiB": 791.515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.373046875,
+        "zygote": 19.9765625,
+        "gpu-process": 35.0625,
+        "renderer": 441.1552734375,
+        "utility": 23.7392578125
+      },
+      "rendererPssMiB": 441.1552734375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 603.466796875,
+      "rssMiB": 825.67578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.373046875,
+        "zygote": 19.9765625,
+        "gpu-process": 35.0625,
+        "renderer": 475.3154296875,
+        "utility": 23.7392578125
+      },
+      "rendererPssMiB": 475.3154296875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 680.783203125,
+      "rssMiB": 903.4453125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.416015625,
+        "zygote": 19.9765625,
+        "gpu-process": 35.30859375,
+        "renderer": 552.3388671875,
+        "utility": 23.7431640625
+      },
+      "rendererPssMiB": 552.3388671875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 676.548828125,
+      "rssMiB": 899.375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5009765625,
+        "zygote": 19.9765625,
+        "gpu-process": 35.34375,
+        "renderer": 547.9892578125,
+        "utility": 23.73828125
+      },
+      "rendererPssMiB": 547.9892578125
+    },
+    {
+      "phase": "ruri",
+      "pssMiB": 733.904296875,
+      "rssMiB": 957.37109375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5126953125,
+        "zygote": 19.9765625,
+        "gpu-process": 35.71875,
+        "renderer": 604.9580078125,
+        "utility": 23.73828125
+      },
+      "rendererPssMiB": 604.9580078125
+    },
+    {
+      "phase": "ruri",
+      "pssMiB": 618.517578125,
+      "rssMiB": 842.046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4814453125,
+        "zygote": 19.9765625,
+        "gpu-process": 35.7109375,
+        "renderer": 489.6103515625,
+        "utility": 23.73828125
+      },
+      "rendererPssMiB": 489.6103515625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 668.294921875,
+      "rssMiB": 892.19921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4892578125,
+        "zygote": 19.9765625,
+        "gpu-process": 35.95703125,
+        "renderer": 539.1337890625,
+        "utility": 23.73828125
+      },
+      "rendererPssMiB": 539.1337890625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 485.310546875,
+      "rssMiB": 709.21484375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4384765625,
+        "zygote": 19.9765625,
+        "gpu-process": 35.95703125,
+        "renderer": 356.2001953125,
+        "utility": 23.73828125
+      },
+      "rendererPssMiB": 356.2001953125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 523.9013671875,
+      "rssMiB": 747.8671875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.0546875,
+        "zygote": 19.9765625,
+        "gpu-process": 36.0224609375,
+        "renderer": 395.1103515625,
+        "utility": 23.7373046875
+      },
+      "rendererPssMiB": 395.1103515625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 615.3857421875,
+      "rssMiB": 839.3515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.09375,
+        "zygote": 19.9765625,
+        "gpu-process": 36.0224609375,
+        "renderer": 486.5556640625,
+        "utility": 23.7373046875
+      },
+      "rendererPssMiB": 486.5556640625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 560.2333984375,
+      "rssMiB": 784.19921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.36328125,
+        "zygote": 19.9765625,
+        "gpu-process": 36.0224609375,
+        "renderer": 431.1337890625,
+        "utility": 23.7373046875
+      },
+      "rendererPssMiB": 431.1337890625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 620.9208984375,
+      "rssMiB": 844.88671875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3984375,
+        "zygote": 19.9765625,
+        "gpu-process": 36.0224609375,
+        "renderer": 491.7861328125,
+        "utility": 23.7373046875
+      },
+      "rendererPssMiB": 491.7861328125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 651.4873046875,
+      "rssMiB": 874.453125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3984375,
+        "zygote": 19.9765625,
+        "gpu-process": 36.5224609375,
+        "renderer": 521.8525390625,
+        "utility": 23.7373046875
+      },
+      "rendererPssMiB": 521.8525390625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 685.74609375,
+      "rssMiB": 908.73046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3984375,
+        "zygote": 19.96875,
+        "gpu-process": 36.521484375,
+        "renderer": 556.1279296875,
+        "utility": 23.7294921875
+      },
+      "rendererPssMiB": 556.1279296875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 692.1513671875,
+      "rssMiB": 915.28515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3681640625,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.5341796875,
+        "renderer": 563.5908203125,
+        "utility": 23.7138671875
+      },
+      "rendererPssMiB": 563.5908203125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 654.2197265625,
+      "rssMiB": 877.33984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3671875,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.5341796875,
+        "renderer": 525.6474609375,
+        "utility": 23.7265625
+      },
+      "rendererPssMiB": 525.6474609375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 627.541015625,
+      "rssMiB": 850.69921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.361328125,
+        "zygote": 19.9326171875,
+        "gpu-process": 35.5302734375,
+        "renderer": 499.0029296875,
+        "utility": 23.7138671875
+      },
+      "rendererPssMiB": 499.0029296875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 614.240234375,
+      "rssMiB": 837.375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3671875,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.5341796875,
+        "renderer": 485.6806640625,
+        "utility": 23.7138671875
+      },
+      "rendererPssMiB": 485.6806640625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 445.869140625,
+      "rssMiB": 669.00390625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3671875,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.5380859375,
+        "renderer": 317.3056640625,
+        "utility": 23.7138671875
+      },
+      "rendererPssMiB": 317.3056640625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 313.009765625,
+      "rssMiB": 535.33203125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3671875,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.9443359375,
+        "renderer": 184.0400390625,
+        "utility": 23.7138671875
+      },
+      "rendererPssMiB": 184.0400390625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 313.0107421875,
+      "rssMiB": 535.33203125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3681640625,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.9443359375,
+        "renderer": 184.0400390625,
+        "utility": 23.7138671875
+      },
+      "rendererPssMiB": 184.0400390625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 312.201171875,
+      "rssMiB": 534.5234375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3671875,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.1357421875,
+        "renderer": 184.0400390625,
+        "utility": 23.7138671875
+      },
+      "rendererPssMiB": 184.0400390625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 312.240234375,
+      "rssMiB": 534.6875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4453125,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.1220703125,
+        "renderer": 184.01953125,
+        "utility": 23.708984375
+      },
+      "rendererPssMiB": 184.01953125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 312.240234375,
+      "rssMiB": 534.6875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4453125,
+        "zygote": 19.9443359375,
+        "gpu-process": 35.1220703125,
+        "renderer": 184.01953125,
+        "utility": 23.708984375
+      },
+      "rendererPssMiB": 184.01953125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 348.873046875,
+      "rssMiB": 571.3515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.95703125,
+        "zygote": 19.9443359375,
+        "gpu-process": 32.8447265625,
+        "renderer": 222.3515625,
+        "utility": 23.775390625
+      },
+      "rendererPssMiB": 222.3515625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 436.154296875,
+      "rssMiB": 658.6328125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.97265625,
+        "zygote": 19.9443359375,
+        "gpu-process": 32.8447265625,
+        "renderer": 309.6171875,
+        "utility": 23.775390625
+      },
+      "rendererPssMiB": 309.6171875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 544.275390625,
+      "rssMiB": 766.75390625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5546875,
+        "zygote": 19.9443359375,
+        "gpu-process": 32.8447265625,
+        "renderer": 418.15625,
+        "utility": 23.775390625
+      },
+      "rendererPssMiB": 418.15625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 568.103515625,
+      "rssMiB": 790.5859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.578125,
+        "zygote": 19.9443359375,
+        "gpu-process": 32.8447265625,
+        "renderer": 441.9560546875,
+        "utility": 23.7802734375
+      },
+      "rendererPssMiB": 441.9560546875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 607.029296875,
+      "rssMiB": 826.76171875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.6171875,
+        "zygote": 19.9443359375,
+        "gpu-process": 34.2197265625,
+        "renderer": 479.4677734375,
+        "utility": 23.7802734375
+      },
+      "rendererPssMiB": 479.4677734375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 627.650390625,
+      "rssMiB": 847.3828125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.6171875,
+        "zygote": 19.9443359375,
+        "gpu-process": 34.2197265625,
+        "renderer": 500.0888671875,
+        "utility": 23.7802734375
+      },
+      "rendererPssMiB": 500.0888671875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 613.5087890625,
+      "rssMiB": 833.1953125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.6298828125,
+        "zygote": 19.9580078125,
+        "gpu-process": 31.478515625,
+        "renderer": 488.650390625,
+        "utility": 23.7919921875
+      },
+      "rendererPssMiB": 488.650390625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 634.955078125,
+      "rssMiB": 854.6875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.6171875,
+        "zygote": 19.9443359375,
+        "gpu-process": 31.4736328125,
+        "renderer": 510.1396484375,
+        "utility": 23.7802734375
+      },
+      "rendererPssMiB": 510.1396484375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 630.31640625,
+      "rssMiB": 849.94140625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.6474609375,
+        "zygote": 19.9765625,
+        "gpu-process": 31.490234375,
+        "renderer": 505.400390625,
+        "utility": 23.8017578125
+      },
+      "rendererPssMiB": 505.400390625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 667.17578125,
+      "rssMiB": 886.80078125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.7685546875,
+        "zygote": 19.9765625,
+        "gpu-process": 31.490234375,
+        "renderer": 542.138671875,
+        "utility": 23.8017578125
+      },
+      "rendererPssMiB": 542.138671875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 733.4462890625,
+      "rssMiB": 947.37109375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.748046875,
+        "zygote": 19.9482421875,
+        "gpu-process": 28.5986328125,
+        "renderer": 611.3681640625,
+        "utility": 23.783203125
+      },
+      "rendererPssMiB": 611.3681640625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 747.6494140625,
+      "rssMiB": 963.01953125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.6591796875,
+        "zygote": 19.9619140625,
+        "gpu-process": 29.353515625,
+        "renderer": 624.873046875,
+        "utility": 23.8017578125
+      },
+      "rendererPssMiB": 624.873046875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 699.41796875,
+      "rssMiB": 916.29296875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.8349609375,
+        "zygote": 19.9765625,
+        "gpu-process": 30.0712890625,
+        "renderer": 575.7578125,
+        "utility": 23.77734375
+      },
+      "rendererPssMiB": 575.7578125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 666.86328125,
+      "rssMiB": 887.54296875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.486328125,
+        "zygote": 19.9765625,
+        "gpu-process": 31.712890625,
+        "renderer": 540.9365234375,
+        "utility": 23.7509765625
+      },
+      "rendererPssMiB": 540.9365234375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 703.2216796875,
+      "rssMiB": 926.03125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 61.6259765625,
+        "zygote": 19.9765625,
+        "gpu-process": 56.900390625,
+        "renderer": 540.970703125,
+        "utility": 23.748046875
+      },
+      "rendererPssMiB": 540.970703125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 653.671875,
+      "rssMiB": 879.8828125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 51.5908203125,
+        "zygote": 19.9765625,
+        "gpu-process": 38.400390625,
+        "renderer": 519.7685546875,
+        "utility": 23.935546875
+      },
+      "rendererPssMiB": 519.7685546875
+    },
+    {
+      "phase": "offline-restart",
+      "pssMiB": 172.630859375,
+      "rssMiB": 366.37109375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 45.6953125,
+        "zygote": 20.302734375,
+        "gpu-process": 27.7822265625,
+        "renderer": 56.291015625,
+        "utility": 22.5595703125
+      },
+      "rendererPssMiB": 56.291015625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 214.5322265625,
+      "rssMiB": 421.04296875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.6240234375,
+        "zygote": 20.2373046875,
+        "gpu-process": 30.7255859375,
+        "renderer": 92.671875,
+        "utility": 22.2734375
+      },
+      "rendererPssMiB": 92.671875
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 429.21875,
+      "rssMiB": 639.58203125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.1474609375,
+        "zygote": 20.23828125,
+        "gpu-process": 31.138671875,
+        "renderer": 305.4833984375,
+        "utility": 22.2109375
+      },
+      "rendererPssMiB": 305.4833984375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 488.2666015625,
+      "rssMiB": 697.03515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.060546875,
+        "zygote": 20.23828125,
+        "gpu-process": 31.107421875,
+        "renderer": 365.583984375,
+        "utility": 22.2763671875
+      },
+      "rendererPssMiB": 365.583984375
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 566.6025390625,
+      "rssMiB": 775.42578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.033203125,
+        "zygote": 20.23828125,
+        "gpu-process": 31.107421875,
+        "renderer": 443.947265625,
+        "utility": 22.2763671875
+      },
+      "rendererPssMiB": 443.947265625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 623.2314453125,
+      "rssMiB": 833.578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.0048828125,
+        "zygote": 20.2197265625,
+        "gpu-process": 31.0498046875,
+        "renderer": 499.8759765625,
+        "utility": 23.0810546875
+      },
+      "rendererPssMiB": 499.8759765625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 655.1337890625,
+      "rssMiB": 865.48046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.0048828125,
+        "zygote": 20.2197265625,
+        "gpu-process": 31.0498046875,
+        "renderer": 531.7783203125,
+        "utility": 23.0810546875
+      },
+      "rendererPssMiB": 531.7783203125
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 666.8056640625,
+      "rssMiB": 877.23046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.9853515625,
+        "zygote": 20.2197265625,
+        "gpu-process": 31.0498046875,
+        "renderer": 543.4697265625,
+        "utility": 23.0810546875
+      },
+      "rendererPssMiB": 543.4697265625
+    },
+    {
+      "phase": "hybrid",
+      "pssMiB": 733.3681640625,
+      "rssMiB": 944.92578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.9892578125,
+        "zygote": 20.2197265625,
+        "gpu-process": 31.6318359375,
+        "renderer": 609.4462890625,
+        "utility": 23.0810546875
+      },
+      "rendererPssMiB": 609.4462890625
+    },
+    {
+      "phase": "ruri",
+      "pssMiB": 720.7783203125,
+      "rssMiB": 935.71484375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.0205078125,
+        "zygote": 20.2216796875,
+        "gpu-process": 33.3701171875,
+        "renderer": 595.0849609375,
+        "utility": 23.0810546875
+      },
+      "rendererPssMiB": 595.0849609375
+    },
+    {
+      "phase": "light",
+      "pssMiB": 739.6630859375,
+      "rssMiB": 963.2734375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2275390625,
+        "zygote": 20.2177734375,
+        "gpu-process": 37.7529296875,
+        "renderer": 609.3701171875,
+        "utility": 23.0947265625
+      },
+      "rendererPssMiB": 609.3701171875
+    }
+  ],
+  "release": [
+    {
+      "label": "ruri-only",
+      "before": {
+        "pssMiB": 607.744140625,
+        "rssMiB": 830.87890625,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 49.3671875,
+          "zygote": 19.9443359375,
+          "gpu-process": 35.5341796875,
+          "renderer": 479.1845703125,
+          "utility": 23.7138671875
+        },
+        "rendererPssMiB": 479.1845703125
+      },
+      "threeSeconds": {
+        "pssMiB": 312.2412109375,
+        "rssMiB": 534.6875,
+        "processes": 6,
+        "complete": true,
+        "unavailableCount": 0,
+        "rolePssMiB": {
+          "browser": 49.4462890625,
+          "zygote": 19.9443359375,
+          "gpu-process": 35.1220703125,
+          "renderer": 184.01953125,
+          "utility": 23.708984375
+        },
+        "rendererPssMiB": 184.01953125
+      }
+    }
+  ],
+  "build": "ベータ版 eb99fac289cf / 辞書 88件 / CPU・WASM / 自由生成なし",
+  "unsaved": {
+    "query": "寝ているときに地震が来たら？",
+    "requested": "hybrid",
+    "actual": "light",
+    "fallback": "モデル未保存",
+    "scope": {
+      "kind": "related",
+      "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+      "choices": [],
+      "code": "candidates-only"
+    },
+    "resultIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "scores": [
+      55.41615153585045,
+      19.43990391929703
+    ],
+    "timings": {
+      "retrievalMs": 2.1000000000058208,
+      "totalMs": 24.20000000001164
+    },
+    "ready": false,
+    "time": "2026-10-15T05:30:30.255Z"
+  },
+  "failedSave": {
+    "query": "寝ているときに地震が来たら？",
+    "requested": "hybrid",
+    "actual": "light",
+    "fallback": "モデル未保存",
+    "scope": {
+      "kind": "related",
+      "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+      "choices": [],
+      "code": "candidates-only"
+    },
+    "resultIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "scores": [
+      55.41615153585045,
+      19.43990391929703
+    ],
+    "timings": {
+      "retrievalMs": 1.2999999999883585,
+      "totalMs": 17.70000000001164
+    },
+    "ready": false,
+    "time": "2026-10-15T05:30:30.571Z"
+  },
+  "savedFiles": 5,
+  "stoppedCold": {
+    "ready": false,
+    "worker": false
+  },
+  "loaded": true,
+  "clarificationUI": true,
+  "failedRuri": {
+    "query": "寝ているときに地震が来たら",
+    "requested": "hybrid",
+    "actual": "light",
+    "fallback": "Test-injected model failure",
+    "scope": {
+      "kind": "related",
+      "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+      "choices": [],
+      "code": "candidates-only"
+    },
+    "resultIds": [
+      "bosai-39",
+      "bosai-54"
+    ],
+    "scores": [
+      55.41615153585045,
+      19.43990391929703
+    ],
+    "timings": {
+      "warm": true,
+      "retrievalMs": 0.7999999999883585,
+      "totalMs": 1.6000000000058208
+    },
+    "ready": false,
+    "time": "2026-10-15T05:30:36.964Z"
+  },
+  "generationBlocked": true,
+  "duringUpdate": {
+    "query": "寝ているときに地震が来たら？",
+    "requested": "hybrid",
+    "actual": "hybrid",
+    "fallback": null,
+    "scope": {
+      "kind": "related",
+      "reason": "検索は関連候補を探すものです。質問への答えが収録されている保証はありません。",
+      "choices": [],
+      "code": "candidates-only"
+    },
+    "resultIds": [
+      "bosai-39",
+      "bosai-38",
+      "bosai-44",
+      "bosai-42",
+      "bosai-40"
+    ],
+    "scores": [
+      1,
+      0.25737857837486333,
+      0.1808354335150015,
+      0.12195425544765175,
+      0.11128645119626926
+    ],
+    "timings": {
+      "warm": true,
+      "embeddingMs": 52.10000000000582,
+      "tokens": 11,
+      "retrievalMs": 0.7999999999883585,
+      "totalMs": 54.39999999999418
+    },
+    "ready": true,
+    "time": "2026-10-15T05:30:52.945Z"
+  },
+  "safeShellUpdate": true,
+  "oldDataPreserved": true,
+  "offlineRestart": true,
+  "offlineNotices": true
+}

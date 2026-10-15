@@ -1,0 +1,75 @@
+{
+  "createdAt": "2026-10-15T05:29:52.263Z",
+  "sdk": "0.1.5",
+  "platform": "Linux Chromium; NOT iPad Safari",
+  "models": {
+    "tiny": {
+      "arch": 0,
+      "manifest": {
+        "groups": [
+          {
+            "base_url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja",
+            "files": [
+              {
+                "name": "encoder_model.ort",
+                "url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/encoder_model.ort",
+                "size": 13238184,
+                "checksum": "UJX6fA==",
+                "checksum_type": "crc32c"
+              },
+              {
+                "name": "decoder_model_merged.ort",
+                "url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/decoder_model_merged.ort",
+                "size": 58327272,
+                "checksum": "yiH1qg==",
+                "checksum_type": "crc32c"
+              },
+              {
+                "name": "tokenizer.bin",
+                "url": "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/tokenizer.bin",
+                "size": 249974,
+                "checksum": "B7s10Q==",
+                "checksum_type": "crc32c"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "base": {
+      "arch": 1,
+      "manifest": {
+        "groups": [
+          {
+            "base_url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja",
+            "files": [
+              {
+                "name": "encoder_model.ort",
+                "url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja/encoder_model.ort",
+                "size": 31326816,
+                "checksum": "LErsPw==",
+                "checksum_type": "crc32c"
+              },
+              {
+                "name": "decoder_model_merged.ort",
+                "url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja/decoder_model_merged.ort",
+                "size": 109424424,
+                "checksum": "FLBs0A==",
+                "checksum_type": "crc32c"
+              },
+              {
+                "name": "tokenizer.bin",
+                "url": "https://download.moonshine.ai/model/base-ja/quantized/base-ja/tokenizer.bin",
+                "size": 249974,
+                "checksum": "B7s10Q==",
+                "checksum_type": "crc32c"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "isolated": true,
+  "status": "passed"
+}

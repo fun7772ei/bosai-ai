@@ -1,0 +1,18 @@
+{
+  "platform": "Linux Chromium",
+  "sdk": "test double; UI only",
+  "checks": {
+    "composerDoesNotCoverHeading": true,
+    "committed": true,
+    "noAutoRewrite": true,
+    "closed": true,
+    "confirmedOnly": true,
+    "rawCapture": true,
+    "editsPreserved": true,
+    "baseExplicit": true,
+    "releaseFailureVisible": true,
+    "failedCloseBlocksConversation": true,
+    "settingsAfterRelease": true
+  },
+  "status": "passed"
+}
