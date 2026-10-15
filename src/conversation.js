@@ -2,6 +2,8 @@
 import {corpus} from './beta-search.js';
 import {topicsIn, factsIn, mergeFacts, focusFor, contextText, vehicleNoun} from './conversation-context.js';
 import {contextualEvidence} from './conversation-evidence.js';
+import {classifyAnswerRequest} from './question-intent.js';
+import {assessApplicability} from './conversation-applicability.js';
 export const HISTORY_LIMIT = 40;
 const emptyState = () => ({topics:[], facts:{}, situation:'', action:'', excluded:[], confirmed:[], referenceIds:[], pending:[], awaitingContext:false, selection:null});
 const item = id => corpus.find(e => e.id === id);
@@ -19,6 +21,8 @@ export function conditions(text) {
   return {positive:positive.trim(), excluded, ...(identityCorrected?{identityCorrected:true}:{})};
 }
 export function coverage(text) {
+  const boundary=classifyAnswerRequest(text);
+  if(boundary)return boundary.reason;
   if (/(?:今|現在|今日|近所|近く|ここ|この場所).*(?:安全|開設|開い|満員|営業|何人|人数|警報|水位)|(?:避難所|薬局).*(?:定員|収容人数|営業時間)/.test(text)) return '現在地や施設の最新状況は確認できません。自治体・気象庁などの最新情報を確認してください。';
   if (/(?:薬|インスリン).*(?:増や|追加|減ら|何錠|何単位)|(?:診断|処方)して/.test(text)) return '個人の薬の増減や診断は判断できません。医療者の指示を確認してください。';
   if (/何(?:cm|センチ|メートル|分|秒)|水深.*(?:まで|なら|限界)|(?:絶対|必ず).*安全/.test(text)) return '個別の数値限界や安全の保証は、この一般情報から判断できません。';
@@ -93,10 +97,11 @@ export class Conversation {
       if(run.scope.kind==='unsupported') { this.forget(); return this.reply('unsupported',run.scope.reason,{answerability:'outside-coverage',diagnostics}); }
       if(run.scope.kind==='clarify')return this.clarify(run.scope.reason,{choices:run.scope.choices,diagnostics},true);
       if(!run.results.length) { this.forget(); return this.reply('unknown','この辞書で根拠を確認できません。関連する言葉だけで答えがあるとは判断しません。',{answerability:'no-evidence',diagnostics}); }
+      const applicability=run.results.map(r=>({id:r.entry.id,...assessApplicability(r.entry,{facts,focus})}));
       this.state.awaitingContext=false; this.state.pending=run.results.map(r=>r.entry.id); this.state.selection=++this.sequence;
       return this.reply('confirm',focus?'確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。':'意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。',{
-        candidates:run.results.map(r=>({id:r.entry.id,title:r.entry.title,category:r.entry.category,fit:r.fit||'unverified',provenance:r.provenance||'retrieval'})),
-        selection:this.state.selection, answerability:focus?'context-compatible-unverified':'unverified-candidates',diagnostics});
+        candidates:run.results.map((r,i)=>({id:r.entry.id,title:r.entry.title,category:r.entry.category,fit:r.fit||'unverified',provenance:r.provenance||'retrieval',applicability:applicability[i]})),
+        selection:this.state.selection, answerability:focus?'context-compatible-unverified':'unverified-candidates',diagnostics:{...diagnostics,applicability}});
     } finally { if(generation===this.generation)this.busy=false; }
   }
 }
