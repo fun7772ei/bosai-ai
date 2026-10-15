@@ -1,3 +1,11 @@
+> **現行：PR #18の継続改善（Phase 2 α）、固定c768c10、135単体。** [最新の実装・比較・失敗・再現・iPad判断](docs/phase2-conversation-improvement.md)を先に読む。P1/P2と再レビュー追加指摘を修正し、複数ラウンドで固定後の未使用会話を実Ruriで評価。旧セットは回帰へ移行し、成績/失敗を保持。極性/対象/質問の扱いは改善したが、原文の適用・否定した場面の記事・発生日の未収録等は未解決。安全性完成ではない。main6ae5471と既存公開版を維持し、**マージ/Pages公開/新規PR作成はしない**。Ruri30 q8/既存保存/原文88件/通常検索/SW/DBを維持。Moonshineは既存Tiny通常版、Issue #16は今回未修正。iPad実機未操作。
+
+---
+
+以下はPR #18初版以前の履歴で、現在の方針/評価と混同しない。
+
+> **現在の作業：Phase 2 α（文字会話試作）。** Issue [#17](https://github.com/fun7772ei/bosai-ai/issues/17)全文と最新main `6ae5471` を基準に開始。新規PRまで。**mainマージ・Pages更新は禁止（今回未実施）。** [実装・評価・失敗・次の手順](docs/phase2-conversation-alpha.md)を先に読む。PR #14はOPEN・ガード未採用。MoonshineはPR #12/#13/#15で日本語Tiny通常版まで実装済み、ユーザーの基本認識成功報告あり、Issue #16の反映停止/誤認識は未解決・今回未修正。自由生成なし、30M/88原文/既存保存と音声導線を維持。以下は過去の経緯であり、「今回公開する」「音声未着手」「iPad基本動作未確認」等を現在の方針と混同しない。
+
 > 公開済み（2026-10-14 UTC）：https://fun7772ei.github.io/bosai-ai/ 、ベータ版 `f41848b50937`。PR #10を7c413abで一括通常merge、公開CI/Pages/実HF保存・SHA256/Chromiumオフライン再起動が成功。[公開結果](docs/ruri-beta.md#公開結果2026-10-14-utc)・[証跡](docs/diagnostics/beta-release.json)。#7〜#9は統合済み重複のためclosed、元ブランチは保持。iPad Safari実機は未確認。以下の「PR予定」は実装時の経緯。
 
 # Ruri優先・公開ベータへの引き継ぎ（2026-10-14 UTC）

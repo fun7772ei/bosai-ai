@@ -1,0 +1,6 @@
+[
+ {"id":"e01","kind":"bare-negated-desire","turns":[{"text":"水没した車の車内に水が入っています。脱出の一般情報は？","kind":"confirm","gold":"bosai-71"},{"text":"乗り換えたくはないです。車から出る原文を見せて。","kind":"confirm","facts":{"vehicleFlooded":true},"absentFacts":["vehicleTransitionMentioned"],"gold":"bosai-71"}]},
+ {"id":"e02","kind":"explicit-dry-driving","turns":[{"text":"台風が過ぎたあと、車道は冠水していません。軽自動車で移動する一般情報がある？","kind":"confirm","facts":{"floodedRoad":false,"movement":"drive"},"badIds":["bosai-69","bosai-70","bosai-71","bosai-74","bosai-54","bosai-55","bosai-84"]}]},
+ {"id":"e03","kind":"explicit-dry-walking","turns":[{"text":"大雨のあとですが道路には水がありません。徒歩で移動する際に参照できる一般情報は？","kind":"confirm","facts":{"floodedRoad":false,"movement":"walk"},"badIds":["bosai-69","bosai-70","bosai-71","bosai-74","bosai-54","bosai-55","bosai-84"]}]},
+ {"id":"e04","kind":"affirmed-flooded-walking-still-eligible","turns":[{"text":"大雨で歩道が冠水しています。徒歩で通ってよいかの原文は？","kind":"confirm","facts":{"floodedRoad":true,"movement":"walk"},"gold":"bosai-69","badIds":["bosai-70","bosai-74","bosai-84"]}]}
+]

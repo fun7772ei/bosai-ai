@@ -1,0 +1,27 @@
+{
+  "createdAt": "2026-10-14T16:43:49.445Z",
+  "implementationCommit": "71acf5946c5cb53b64f4772f09b124ed12692423",
+  "baselineCommit": "9e85e753bd3913286b329d240292dbd449ca0628",
+  "development": "scripts/evaluation/conversation-v2-dev.json; original24 now regression",
+  "finalSetAuthored": true,
+  "policy": "Freeze engine/retrieval/scene capabilities before new final dialogue authorship. No tuning against final labels. Model/corpus/vectors unchanged.",
+  "coreSha256": {
+    "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+    "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+    "src/query-scope.js": "d4e32acf20a2d1a64e2489f3088e1611e33c1469fed854daa5476d8b8fff9833",
+    "src/beta-search.js": "cf0fec94d3fda690449ae77224c88acee613688d708adf8b1f672a744627c418",
+    "src/beta-controller.js": "b86402fead18e215fb3d69b38c6835109c16ec3e3fbad22fc5f3939deceeb891",
+    "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+    "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+    "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+    "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+    "src/conversation.js": "215f8f57cab054435ec5650e92faaebe44634fd26c1c7c57e3f385d2de29a41b",
+    "src/conversation-context.js": "3de739e4cb302e1efdd32be6d1e267439f409cf8c154c432b02f89fd5f13a82e",
+    "src/conversation-evidence.js": "ff041d12dc6ee7abaf8a9b7afd29fa0a98ed73dbe115a2316f7ec4f0a262b2c0",
+    "src/conversation-ui.js": "6a757f0b8dfd699fc34a483d37e05c3860e9b267dbf44872e6e66cc43782e5ba"
+  },
+  "finalAuthoredAt": "2026-10-14T16:45:18.556Z",
+  "finalCases": "scripts/evaluation/conversation-v2-final-32.json",
+  "finalCasesSha256": "e03ea44584048575fdfdf1b8a81e1e016e3dabdff107f2c76c1dfa612bf51dcc",
+  "oldRegressionSha256": "76bf98bc2407b125ddfaddd0b9d1f0ba4dcf7175da5ea98b96b7cb561f88fc65"
+}

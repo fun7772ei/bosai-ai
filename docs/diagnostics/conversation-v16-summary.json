@@ -1,0 +1,300 @@
+{
+  "createdAt": "2026-10-15T00:05:06.255Z",
+  "platform": "Linux Chromium149 CPU/WASM, WebGPU disabled; not iPad Safari",
+  "freeze": {
+    "createdAt": "2026-10-14T23:59:32.517469+00:00",
+    "implementationCommit": "c768c10d1becd03e702eff680674353fbd9c8a9b",
+    "baselineCommit": "8feb1f215ea9bcbcfe187b0b2d3d093c5c44ca19",
+    "policy": "Freeze negative capability filtering and bare transition retention before fresh4; all earlier sets are regression.",
+    "finalSetAuthored": true,
+    "initialCases": "scripts/evaluation/conversation-v2-final-32.json",
+    "initialCasesSha256": "e03ea44584048575fdfdf1b8a81e1e016e3dabdff107f2c76c1dfa612bf51dcc",
+    "oldRegressionSha256": "76bf98bc2407b125ddfaddd0b9d1f0ba4dcf7175da5ea98b96b7cb561f88fc65",
+    "regressionCaseSha256": {
+      "scripts/evaluation/conversation-v2-final-24.json": "81095168ad611dc15ef33d8b9cda19ac2dd803cdcdf61ab58144984bc8088e62",
+      "scripts/evaluation/conversation-v3-final-12.json": "cfdd63acf52440358ba7e8bc1cc9779f33a75600dfd6cb5f715a1c2d7b80b743",
+      "scripts/evaluation/conversation-v4-final-12.json": "33f1a44ee06cae4bf228e5d5ea9a90f9d5496284d73e7e8f7eaadc33e15cdf88",
+      "scripts/evaluation/conversation-v5-final-8.json": "ee04f12555ed8133f382e607a586a60311e2261f8a81c5cfc7a0af06bea9382b",
+      "scripts/evaluation/conversation-v6-final-6.json": "96c81ba7b6cd16c7776d9a7bf00df00c08a7f3ca0dec572ad6b6cdead9b0a9fd",
+      "scripts/evaluation/conversation-v7-final-4.json": "6e5608e686f7400fb36fa38218c45e8a6e7a47c83fba315ac3764432a48ea7ab",
+      "scripts/evaluation/conversation-v8-final-2.json": "2efc919d3b70f9d026a4199e5cfd1be5a2b51f7a179f54d82114cd39eab6d371",
+      "scripts/evaluation/conversation-v9-final-2.json": "0019e5a80ba0cac5d578f7139721e2901a76dd796bc89f0d6ed604b59710ab81",
+      "scripts/evaluation/conversation-v10-final-3.json": "990c632a6757df4fe7e67f935886d8316e66366d8ef5074d5ca9adf28943b56a",
+      "scripts/evaluation/conversation-v11-final-2.json": "ba59b4944d3721803ef8edff8230888705dbf12a13dc332006d050194c8cc3f3",
+      "scripts/evaluation/conversation-v12-final-2.json": "8cf8c03d2addf6721e78f252b4411c6af813caa7e93ff7c5fb26d80d52ad8ea4",
+      "scripts/evaluation/conversation-v13-final-2.json": "100b037469c6cecd9483837b6fb8fbab2dd5026dc0c1672df745efecad41df93",
+      "scripts/evaluation/conversation-v14-final-2.json": "0c13cea59baab808e5228ee1dd5f34e8479948a91be5a8b176bb8c293d7ca33a",
+      "scripts/evaluation/conversation-v15-final-2.json": "aa9d48f941df08a175ff5d2db77fca9b3b79b22e95521a39276baea3d804dc83"
+    },
+    "coreSha256": {
+      "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+      "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+      "src/query-scope.js": "d4e32acf20a2d1a64e2489f3088e1611e33c1469fed854daa5476d8b8fff9833",
+      "src/beta-search.js": "cf0fec94d3fda690449ae77224c88acee613688d708adf8b1f672a744627c418",
+      "src/beta-controller.js": "b86402fead18e215fb3d69b38c6835109c16ec3e3fbad22fc5f3939deceeb891",
+      "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+      "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+      "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+      "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+      "src/conversation.js": "ce0fa6b6987543cbe20f78ff22697c4b3956af9e64fc809e73e4343ef0ef941d",
+      "src/conversation-context.js": "9e8a4bfa2b72bc727fdf5d81cf90e4e547d6031fab8851e7c1225f465ea250d5",
+      "src/conversation-evidence.js": "8442d745ad8ea177f2dec8c1c6a1d63e7e9dc2e9007ecae5cdaf4f76d65ddcfd",
+      "src/conversation-ui.js": "6a757f0b8dfd699fc34a483d37e05c3860e9b267dbf44872e6e66cc43782e5ba"
+    },
+    "finalCases": "scripts/evaluation/conversation-v16-final-4.json",
+    "finalAuthoredAt": "2026-10-15T00:00:19.472591+00:00",
+    "finalCasesSha256": "ff79c85ddb7622a30ea28dc8676dfaa3a6958296508c6a3df4d5c807eb4fe021"
+  },
+  "sets": {
+    "before-final": {
+      "implementation": "8feb1f215ea9bcbcfe187b0b2d3d093c5c44ca19",
+      "build": "ベータ版 cbada3604ba3 / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 5,
+      "control": {
+        "passed": 4,
+        "total": 5
+      },
+      "kindAgreement": 5,
+      "positive": 3,
+      "top1": 2,
+      "top3": 2,
+      "top5": 2,
+      "needsClarification": 0,
+      "clarified": 0,
+      "labelledBadQueries": 3,
+      "badTop1": 1,
+      "badTop3": 2,
+      "warmMedianMs": 44.3999999910593,
+      "first": {
+        "loadMs": 2088.7000000029802,
+        "warm": false,
+        "embeddingMs": 166.5,
+        "tokens": 31,
+        "retrievalMs": 8.400000005960464,
+        "totalMs": 2319.4000000059605,
+        "conversationMs": 2321.4000000059605
+      },
+      "peakBrowserPssMiB": 791.03515625,
+      "releasePssMiB": [
+        781.13671875,
+        294.4013671875
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [
+        {
+          "id": "e01",
+          "turn": 2,
+          "expected": "confirm",
+          "actual": "confirm",
+          "facts": {
+            "goal": "movement",
+            "movement": "drive"
+          }
+        }
+      ],
+      "badCases": [
+        {
+          "id": "e02",
+          "input": "台風が過ぎたあと、車道は冠水していません。軽自動車で移動する一般情報がある？",
+          "first": "bosai-70",
+          "badTop3": [
+            "bosai-70",
+            "bosai-69"
+          ]
+        },
+        {
+          "id": "e03",
+          "input": "大雨のあとですが道路には水がありません。徒歩で移動する際に参照できる一般情報は？",
+          "first": "bosai-86",
+          "badTop3": [
+            "bosai-55",
+            "bosai-70"
+          ]
+        }
+      ]
+    },
+    "after-final": {
+      "implementation": "c768c10d1becd03e702eff680674353fbd9c8a9b",
+      "build": "ベータ版 336a17f20f0e / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 5,
+      "control": {
+        "passed": 5,
+        "total": 5
+      },
+      "kindAgreement": 5,
+      "positive": 3,
+      "top1": 3,
+      "top3": 3,
+      "top5": 3,
+      "needsClarification": 0,
+      "clarified": 0,
+      "labelledBadQueries": 3,
+      "badTop1": 0,
+      "badTop3": 1,
+      "warmMedianMs": 82.59999999403954,
+      "first": {
+        "loadMs": 1908.2000000029802,
+        "warm": false,
+        "embeddingMs": 122.59999999403954,
+        "tokens": 31,
+        "retrievalMs": 3.0999999940395355,
+        "totalMs": 2100.7000000029802,
+        "conversationMs": 2103.5
+      },
+      "peakBrowserPssMiB": 743.87109375,
+      "releasePssMiB": [
+        723.8583984375,
+        290.1962890625
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [],
+      "badCases": [
+        {
+          "id": "e03",
+          "input": "大雨のあとですが道路には水がありません。徒歩で移動する際に参照できる一般情報は？",
+          "first": "bosai-86",
+          "badTop3": [
+            "bosai-55"
+          ]
+        }
+      ]
+    },
+    "regression24": {
+      "implementation": "c768c10d1becd03e702eff680674353fbd9c8a9b",
+      "build": "ベータ版 336a17f20f0e / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 35,
+      "control": {
+        "passed": 34,
+        "total": 35
+      },
+      "kindAgreement": 34,
+      "positive": 18,
+      "top1": 18,
+      "top3": 18,
+      "top5": 18,
+      "needsClarification": 7,
+      "clarified": 7,
+      "labelledBadQueries": 9,
+      "badTop1": 0,
+      "badTop3": 0,
+      "warmMedianMs": 24.30000001192093,
+      "first": {
+        "loadMs": 2108,
+        "warm": false,
+        "embeddingMs": 207.29999999701977,
+        "tokens": 36,
+        "retrievalMs": 3.7000000029802322,
+        "totalMs": 2380.5,
+        "conversationMs": 2385.5
+      },
+      "peakBrowserPssMiB": 837.0634765625,
+      "releasePssMiB": [
+        755.7333984375,
+        297.234375
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [
+        {
+          "id": "n16",
+          "turn": 1,
+          "expected": "unsupported",
+          "actual": "confirm",
+          "facts": {}
+        }
+      ],
+      "badCases": []
+    },
+    "regression2": {
+      "implementation": "c768c10d1becd03e702eff680674353fbd9c8a9b",
+      "build": "ベータ版 336a17f20f0e / 辞書 88件 / CPU・WASM / 自由生成なし",
+      "turns": 4,
+      "control": {
+        "passed": 4,
+        "total": 4
+      },
+      "kindAgreement": 4,
+      "positive": 4,
+      "top1": 4,
+      "top3": 4,
+      "top5": 4,
+      "needsClarification": 0,
+      "clarified": 0,
+      "labelledBadQueries": 0,
+      "badTop1": 0,
+      "badTop3": 0,
+      "warmMedianMs": 74.90000000596046,
+      "first": {
+        "loadMs": 2080.1000000089407,
+        "warm": false,
+        "embeddingMs": 251.29999999701977,
+        "tokens": 31,
+        "retrievalMs": 17,
+        "totalMs": 2418.2999999970198,
+        "conversationMs": 2420.699999988079
+      },
+      "peakBrowserPssMiB": 784.076171875,
+      "releasePssMiB": [
+        682.099609375,
+        292.0322265625
+      ],
+      "checks": {
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "failures": [],
+      "badCases": []
+    }
+  },
+  "limitations": [
+    "Fresh4 is a targeted review-fix set, not general safety",
+    "Previous sets are regression; no final labels tuned",
+    "Correct fact polarity does not make related retrieval answer-sufficient",
+    "Denied prerequisites are filtered; other hazard/action mismatches and earthquake date rejection remain",
+    "Latency/whole browser PSS is not iPad memory or stability"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "createdAt": "2026-10-14T17:27:38.204Z",
+  "implementation": "482b1fd5af299f53b41e029b54a641dd3dd30986",
+  "main": "6ae5471659499a16fd0c6ad4b7dbc0844b49b151",
+  "unitTests": 109,
+  "originalRecords": 88,
+  "originalBlob": "881355b4a4b85a1da39515e8578aa5f74bb2644b",
+  "publicBuild": true,
+  "generativeRuntime": false,
+  "weights": false,
+  "voice": "normal/isolation SDK/assets passed; recognition/Issue16 not changed",
+  "regressions": [
+    {
+      "set": "64",
+      "samples": 192,
+      "status": "passed",
+      "offlineRestart": true,
+      "oldDataPreserved": true,
+      "generationBlocked": true
+    },
+    {
+      "set": "80",
+      "samples": 240,
+      "status": "passed",
+      "offlineRestart": true,
+      "oldDataPreserved": true,
+      "generationBlocked": true
+    },
+    {
+      "set": "60",
+      "samples": 180,
+      "status": "passed",
+      "offlineRestart": true,
+      "oldDataPreserved": true,
+      "generationBlocked": true
+    }
+  ],
+  "reviewFixed": [
+    4272957036,
+    4272957051,
+    4273902063,
+    4273902075
+  ],
+  "iPadVerified": false,
+  "merged": false,
+  "deployed": false,
+  "executionFailure": "Existing localhost4173 preview was gone after environment transport interruption; restarted preview, reran remaining actual-model tests successfully"
+}

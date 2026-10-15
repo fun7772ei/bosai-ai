@@ -1,0 +1,4 @@
+[
+ {"id":"p01","kind":"denied-identity-change","turns":[{"text":"水没した車の車内に水が入っています。脱出の原文を見たい。","kind":"confirm","gold":"bosai-71"},{"text":"その車は他の自家用車ではありません。同じ車から出る手順を知りたい。","kind":"confirm","facts":{"vehicleFlooded":true},"absentFacts":["vehicleChanged"],"gold":"bosai-71"}]},
+ {"id":"p02","kind":"affirmed-identity-change","turns":[{"text":"水没した車の車内に水が入っています。脱出の情報は？","kind":"confirm","gold":"bosai-71"},{"text":"その後、違うトラックで冠水した道路を進みます。","kind":"confirm","facts":{"movement":"drive","floodedRoad":true},"absentFacts":["vehicleFlooded","vehicleChanged"],"queryExcludes":"車内","gold":"bosai-70","badIds":["bosai-71"]}]}
+]

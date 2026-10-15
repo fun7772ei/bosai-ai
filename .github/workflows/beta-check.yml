@@ -32,6 +32,26 @@ jobs:
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/final-64.json --tag=beta-regression-64
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-review-regression-80
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-review-final-60.json --tag=beta-review-final-60
+      - name: Text conversation with real Ruri and offline restart
+        run: |
+          node scripts/conversation-browser-check.mjs
+          node scripts/conversation-v2-browser-check.mjs --tag=conversation-v2-dev-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-32.json --tag=conversation-v2-regression32-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-24.json --tag=conversation-v2-regression24-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v3-final-12.json --tag=conversation-v3-regression-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v4-final-12.json --tag=conversation-v4-regression-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v5-final-8.json --tag=conversation-v5-regression-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v6-final-6.json --tag=conversation-v6-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v7-final-4.json --tag=conversation-v7-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v8-final-2.json --tag=conversation-v8-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v9-final-2.json --tag=conversation-v9-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v10-final-3.json --tag=conversation-v10-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v11-final-2.json --tag=conversation-v11-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v12-final-2.json --tag=conversation-v12-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v13-final-2.json --tag=conversation-v13-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v14-final-2.json --tag=conversation-v14-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v15-final-2.json --tag=conversation-v15-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v16-final-4.json --tag=conversation-v16-final-ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -42,3 +62,33 @@ jobs:
             test-results/beta-regression-64.json
             test-results/beta-mobile.png
             test-results/beta-ipad-layout.png
+            test-results/conversation-v16-*.json
+            test-results/conversation-v16-*-mobile.png
+            test-results/conversation-v15-*.json
+            test-results/conversation-v15-*-mobile.png
+            test-results/conversation-v14-*.json
+            test-results/conversation-v14-*-mobile.png
+            test-results/conversation-v13-*.json
+            test-results/conversation-v13-*-mobile.png
+            test-results/conversation-v12-*.json
+            test-results/conversation-v12-*-mobile.png
+            test-results/conversation-v11-*.json
+            test-results/conversation-v11-*-mobile.png
+            test-results/conversation-v10-*.json
+            test-results/conversation-v10-*-mobile.png
+            test-results/conversation-v9-*.json
+            test-results/conversation-v9-*-mobile.png
+            test-results/conversation-v8-*.json
+            test-results/conversation-v8-*-mobile.png
+            test-results/conversation-v7-*.json
+            test-results/conversation-v7-*-mobile.png
+            test-results/conversation-v6-*.json
+            test-results/conversation-v5-*.json
+            test-results/conversation-v4-*.json
+            test-results/conversation-v3-*.json
+            test-results/conversation-v2-*.json
+            test-results/conversation-v2-*-mobile.png
+            test-results/conversation-v3-*-mobile.png
+            test-results/conversation-v6-*-mobile.png
+            test-results/conversation-v5-*-mobile.png
+            test-results/conversation-v4-*-mobile.png

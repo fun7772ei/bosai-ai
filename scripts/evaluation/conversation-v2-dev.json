@@ -1,0 +1,18 @@
+[
+ {"id":"d01","kind":"stale-live","turns":[{"text":"地震で寝室にいます","kind":"confirm"},{"text":"今日の津波警報は出ていますか？","kind":"unsupported","noPending":true},{"text":"そのとき注意することは？","kind":"clarify","noPending":true}]},
+ {"id":"d02","kind":"stale-subject","turns":[{"text":"地震で寝室にいます","kind":"confirm"},{"text":"私は徒歩で友人は車です","kind":"clarify","rejectPrevious":true},{"text":"もっと詳しく","kind":"clarify"}]},
+ {"id":"d03","kind":"stale-selected","turns":[{"text":"地震で寝室にいます","kind":"confirm","choose":true},{"text":"私は徒歩で家族は車です","kind":"clarify","noPending":true},{"text":"注意事項は？","kind":"clarify"}]},
+ {"id":"d04","kind":"walk-flood","turns":[{"text":"激しい雨で道が膝の高さまで水につかりました。棒で足元を調べつつ徒歩で進んでもいい？","kind":"confirm","gold":"bosai-69","badIds":["bosai-74","bosai-84","bosai-70","bosai-10"]}]},
+ {"id":"d05","kind":"correction","turns":[{"text":"大雨で道路が冠水しています。車で移動したい","kind":"confirm","gold":"bosai-70"},{"text":"車ではなく徒歩です","kind":"confirm","gold":"bosai-69","queryExcludes":"車","facts":{"floodedRoad":true,"movement":"walk"},"badIds":["bosai-70","bosai-71","bosai-84"]}]},
+ {"id":"d06","kind":"tsunami-time","turns":[{"text":"津波で高い場所まで行く時間がありません","kind":"confirm","gold":"bosai-2"}]},
+ {"id":"d07","kind":"negation","turns":[{"text":"水没車ではなく、地震後に車を置いて避難する手順を教えて","kind":"confirm","gold":"bosai-55","badIds":["bosai-71"]}]},
+ {"id":"d08","kind":"missing-flood","turns":[{"text":"大雨で車を運転しています","kind":"clarify"},{"text":"車ではなく徒歩です","kind":"clarify"}]},
+ {"id":"d09","kind":"negative-flood","turns":[{"text":"大雨ですが道路は冠水していません。車で移動するときは？","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-drive"}]},
+ {"id":"d10","kind":"stale-late-scope","turns":[{"text":"津波で高台に間に合わない","kind":"confirm"},{"text":"保険の補償額はいくら","kind":"unsupported"},{"text":"そのときの手順は？","kind":"clarify"}]},
+ {"id":"d11","kind":"subject-reverse","turns":[{"text":"地震で室内です","kind":"confirm"},{"text":"友人は車で私は歩いています","kind":"clarify","rejectPrevious":true}]},
+ {"id":"d12","kind":"tsunami-not-time","turns":[{"text":"津波の高台まで歩いて逃げたい","kind":"confirm","notFocus":"tsunami-time"}]},
+ {"id":"d13","kind":"drive-flood","turns":[{"text":"冠水した道路を自動車で通行してよい？","kind":"confirm","gold":"bosai-70","badIds":["bosai-69","bosai-84"]}]},
+ {"id":"d14","kind":"correction-reverse","turns":[{"text":"道路が浸水している中を徒歩で移動したい","kind":"confirm","gold":"bosai-69"},{"text":"徒歩ではなく車で移動します","kind":"confirm","gold":"bosai-70","facts":{"floodedRoad":true,"movement":"drive"}}]},
+ {"id":"d15","kind":"normal","turns":[{"text":"避難所で食物アレルギーを伝えるには？","kind":"confirm","gold":"bosai-32","choose":true},{"text":"出典は？","kind":"source"}]},
+ {"id":"d16","kind":"negation","turns":[{"text":"電話番号ではなく在宅避難の支援について知りたい","kind":"confirm","gold":"bosai-37"}]}
+]

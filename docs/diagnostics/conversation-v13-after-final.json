@@ -1,0 +1,976 @@
+{
+  "createdAt": "2026-10-14T23:41:48.306Z",
+  "platform": "Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari",
+  "baseline": false,
+  "casesPath": "scripts/evaluation/conversation-v13-final-2.json",
+  "implementation": "9c5c34f1dbc0ebf94fe50aaf2374451262efef3c",
+  "casesSha256": "100b037469c6cecd9483837b6fb8fbab2dd5026dc0c1672df745efecad41df93",
+  "rows": [
+    {
+      "caseId": "u01",
+      "category": "wish-then-completed-transition",
+      "turn": 1,
+      "input": "水没した車の車内に水が入っています。脱出の情報は？",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-71",
+          "title": "車が水没し始めたら早めに脱出する",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability"
+        },
+        {
+          "id": "bosai-70",
+          "title": "冠水した道路へ車で入らない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-55",
+          "title": "車を置いて避難するとき",
+          "category": "地震",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-54",
+          "title": "車を運転中に地震が起きたとき",
+          "category": "地震",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 6,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "loadMs": 1916.5999999940395,
+          "warm": false,
+          "embeddingMs": 170,
+          "tokens": 29,
+          "retrievalMs": 7.799999997019768,
+          "totalMs": 2155.8999999910593,
+          "conversationMs": 2157.6000000089407
+        },
+        "query": "大雨・浸水。車で移動。車内へ水が入っています。水没した車の車内に水が入っています。脱出の情報は？",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "excluded": [],
+        "evidence": {
+          "focus": "vehicle-escape",
+          "policy": "explicit-scene-capability",
+          "originalResultIds": [
+            "bosai-71",
+            "bosai-70",
+            "bosai-86",
+            "bosai-55",
+            "bosai-54"
+          ],
+          "relatedIds": [
+            "bosai-70",
+            "bosai-86",
+            "bosai-55",
+            "bosai-54"
+          ],
+          "excludedIds": [],
+          "caution": "条件と原文の用途の一致のみ確認しています。現在の安全性・建物の適否・数値限界や、質問全体への十分性は判断しません。"
+        }
+      },
+      "wallMs": 2295.897627,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "situation": "水没した車の車内に水が入っています。脱出の情報は？",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-55",
+          "bosai-54"
+        ],
+        "awaitingContext": false,
+        "selection": 6
+      },
+      "gold": "bosai-71",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval-and-capability"
+    },
+    {
+      "caseId": "u01",
+      "category": "wish-then-completed-transition",
+      "turn": 2,
+      "input": "その後、乗り換えるつもりです。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "乗り換えは既に行った状況ですか、それとも検討中ですか？現在どの車の中にいるかを確認します。乗り換えの安全性はこの辞書では判断できません。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 183.88974499999995,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "situation": "水没した車の車内に水が入っています。脱出の情報は？。その後、乗り換えるつもりです。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "u01",
+      "category": "wish-then-completed-transition",
+      "turn": 3,
+      "input": "もう乗り換えました。道路は冠水しています。車で移動します。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-70",
+          "title": "冠水した道路へ車で入らない",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-68",
+          "title": "川の水位が上がる前に避難判断をする",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-54",
+          "title": "車を運転中に地震が起きたとき",
+          "category": "地震",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 10,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 41.79999999701977,
+          "tokens": 35,
+          "retrievalMs": 1.8999999910593033,
+          "totalMs": 51.5,
+          "conversationMs": 54.099999994039536
+        },
+        "query": "大雨・浸水。道路。道路が冠水しています。車で移動。もう乗り換えました。道路は冠水しています。車で移動します。",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "road": true,
+          "floodedRoad": true
+        },
+        "excluded": [],
+        "evidence": {
+          "focus": "flood-drive",
+          "policy": "explicit-scene-capability",
+          "originalResultIds": [
+            "bosai-70",
+            "bosai-86",
+            "bosai-69",
+            "bosai-68",
+            "bosai-54"
+          ],
+          "relatedIds": [
+            "bosai-86",
+            "bosai-68",
+            "bosai-54"
+          ],
+          "excludedIds": [
+            "bosai-69"
+          ],
+          "caution": "条件と原文の用途の一致のみ確認しています。現在の安全性・建物の適否・数値限界や、質問全体への十分性は判断しません。"
+        }
+      },
+      "wallMs": 300.6390330000004,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "road": true,
+          "floodedRoad": true
+        },
+        "situation": "大雨・浸水。道路。道路が冠水しています。車で移動。もう乗り換えました。道路は冠水しています。車で移動します。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-70",
+          "bosai-86",
+          "bosai-68",
+          "bosai-54"
+        ],
+        "awaitingContext": false,
+        "selection": 10
+      },
+      "gold": "bosai-70",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval-and-capability"
+    },
+    {
+      "caseId": "u02",
+      "category": "conditional-transition",
+      "turn": 1,
+      "input": "水没した車の車内に水が入っています。脱出の原文は？",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-71",
+          "title": "車が水没し始めたら早めに脱出する",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability"
+        },
+        {
+          "id": "bosai-70",
+          "title": "冠水した道路へ車で入らない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-55",
+          "title": "車を置いて避難するとき",
+          "category": "地震",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-54",
+          "title": "車を運転中に地震が起きたとき",
+          "category": "地震",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 13,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 54.79999999701977,
+          "tokens": 31,
+          "retrievalMs": 1.7999999970197678,
+          "totalMs": 57.19999998807907,
+          "conversationMs": 57.70000000298023
+        },
+        "query": "大雨・浸水。車で移動。車内へ水が入っています。水没した車の車内に水が入っています。脱出の原文は？",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "excluded": [],
+        "evidence": {
+          "focus": "vehicle-escape",
+          "policy": "explicit-scene-capability",
+          "originalResultIds": [
+            "bosai-71",
+            "bosai-70",
+            "bosai-86",
+            "bosai-55",
+            "bosai-54"
+          ],
+          "relatedIds": [
+            "bosai-70",
+            "bosai-86",
+            "bosai-55",
+            "bosai-54"
+          ],
+          "excludedIds": [],
+          "caution": "条件と原文の用途の一致のみ確認しています。現在の安全性・建物の適否・数値限界や、質問全体への十分性は判断しません。"
+        }
+      },
+      "wallMs": 143.97683400000005,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "situation": "水没した車の車内に水が入っています。脱出の原文は？",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-71",
+          "bosai-70",
+          "bosai-86",
+          "bosai-55",
+          "bosai-54"
+        ],
+        "awaitingContext": false,
+        "selection": 13
+      },
+      "gold": "bosai-71",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval-and-capability"
+    },
+    {
+      "caseId": "u02",
+      "category": "conditional-transition",
+      "turn": 2,
+      "input": "その後、別の車に乗り換えたら。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "乗り換えは既に行った状況ですか、それとも検討中ですか？現在どの車の中にいるかを確認します。乗り換えの安全性はこの辞書では判断できません。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 58.75728100000015,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive",
+          "vehicleFlooded": true
+        },
+        "situation": "水没した車の車内に水が入っています。脱出の原文は？。その後、別の車に乗り換えたら。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "config.json",
+    "onnx/model_quantized.onnx",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "memory": [
+    {
+      "pssMiB": 215.720703125,
+      "rssMiB": 426.859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.939453125,
+        "zygote": 20.4345703125,
+        "gpu-process": 31.369140625,
+        "renderer": 91.0517578125,
+        "utility": 23.92578125
+      },
+      "rendererPssMiB": 91.0517578125
+    },
+    {
+      "pssMiB": 277.9140625,
+      "rssMiB": 494.546875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.755859375,
+        "zygote": 20.4228515625,
+        "gpu-process": 32.60546875,
+        "renderer": 152.2294921875,
+        "utility": 23.900390625
+      },
+      "rendererPssMiB": 152.2294921875
+    },
+    {
+      "pssMiB": 386.099609375,
+      "rssMiB": 605.9921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.73828125,
+        "zygote": 20.4228515625,
+        "gpu-process": 34.015625,
+        "renderer": 258.02734375,
+        "utility": 23.8955078125
+      },
+      "rendererPssMiB": 258.02734375
+    },
+    {
+      "pssMiB": 539.6328125,
+      "rssMiB": 760.03125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.115234375,
+        "zygote": 20.4208984375,
+        "gpu-process": 34.0009765625,
+        "renderer": 412.1845703125,
+        "utility": 23.9111328125
+      },
+      "rendererPssMiB": 412.1845703125
+    },
+    {
+      "pssMiB": 601.6181640625,
+      "rssMiB": 822.15625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3818359375,
+        "zygote": 20.4208984375,
+        "gpu-process": 33.9921875,
+        "renderer": 473.8671875,
+        "utility": 23.9560546875
+      },
+      "rendererPssMiB": 473.8671875
+    },
+    {
+      "pssMiB": 637.9853515625,
+      "rssMiB": 858.5234375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3818359375,
+        "zygote": 20.4208984375,
+        "gpu-process": 33.9921875,
+        "renderer": 510.234375,
+        "utility": 23.9560546875
+      },
+      "rendererPssMiB": 510.234375
+    },
+    {
+      "pssMiB": 649.9306640625,
+      "rssMiB": 870.46875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2490234375,
+        "zygote": 20.4208984375,
+        "gpu-process": 33.9921875,
+        "renderer": 522.3125,
+        "utility": 23.9560546875
+      },
+      "rendererPssMiB": 522.3125
+    },
+    {
+      "pssMiB": 723.2822265625,
+      "rssMiB": 944.0546875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2705078125,
+        "zygote": 20.41796875,
+        "gpu-process": 34.078125,
+        "renderer": 595.5595703125,
+        "utility": 23.9560546875
+      },
+      "rendererPssMiB": 595.5595703125
+    },
+    {
+      "pssMiB": 450.1650390625,
+      "rssMiB": 671.046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2783203125,
+        "zygote": 20.41796875,
+        "gpu-process": 34.09375,
+        "renderer": 322.4189453125,
+        "utility": 23.9560546875
+      },
+      "rendererPssMiB": 322.4189453125
+    },
+    {
+      "pssMiB": 515.7705078125,
+      "rssMiB": 737.44921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.9306640625,
+        "zygote": 20.41796875,
+        "gpu-process": 34.49609375,
+        "renderer": 386.9345703125,
+        "utility": 23.9912109375
+      },
+      "rendererPssMiB": 386.9345703125
+    },
+    {
+      "pssMiB": 685.1416015625,
+      "rssMiB": 906.8515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.0888671875,
+        "zygote": 20.4169921875,
+        "gpu-process": 34.4951171875,
+        "renderer": 556.1455078125,
+        "utility": 23.9951171875
+      },
+      "rendererPssMiB": 556.1455078125
+    },
+    {
+      "pssMiB": 551.9033203125,
+      "rssMiB": 773.64453125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.2177734375,
+        "zygote": 20.4169921875,
+        "gpu-process": 34.4951171875,
+        "renderer": 422.7783203125,
+        "utility": 23.9951171875
+      },
+      "rendererPssMiB": 422.7783203125
+    },
+    {
+      "pssMiB": 613.8876953125,
+      "rssMiB": 835.62890625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4677734375,
+        "zygote": 20.4169921875,
+        "gpu-process": 34.4951171875,
+        "renderer": 485.5009765625,
+        "utility": 24.0068359375
+      },
+      "rendererPssMiB": 485.5009765625
+    },
+    {
+      "pssMiB": 627.6689453125,
+      "rssMiB": 849.41015625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4677734375,
+        "zygote": 20.4169921875,
+        "gpu-process": 34.4951171875,
+        "renderer": 499.2822265625,
+        "utility": 24.0068359375
+      },
+      "rendererPssMiB": 499.2822265625
+    },
+    {
+      "pssMiB": 647.3046875,
+      "rssMiB": 869.6484375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.66015625,
+        "zygote": 20.4169921875,
+        "gpu-process": 32.0380859375,
+        "renderer": 521.220703125,
+        "utility": 23.96875
+      },
+      "rendererPssMiB": 521.220703125
+    },
+    {
+      "pssMiB": 207.4677734375,
+      "rssMiB": 411.94140625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 47.7392578125,
+        "zygote": 20.3330078125,
+        "gpu-process": 29.2548828125,
+        "renderer": 87.86328125,
+        "utility": 22.27734375
+      },
+      "rendererPssMiB": 87.86328125
+    },
+    {
+      "pssMiB": 337.2177734375,
+      "rssMiB": 551.41015625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.1455078125,
+        "zygote": 20.33203125,
+        "gpu-process": 32.0400390625,
+        "renderer": 213.5361328125,
+        "utility": 22.1640625
+      },
+      "rendererPssMiB": 213.5361328125
+    },
+    {
+      "pssMiB": 518.2685546875,
+      "rssMiB": 730.8984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0712890625,
+        "zygote": 20.33203125,
+        "gpu-process": 32.0400390625,
+        "renderer": 395.58203125,
+        "utility": 22.2431640625
+      },
+      "rendererPssMiB": 395.58203125
+    },
+    {
+      "pssMiB": 589.4052734375,
+      "rssMiB": 802.03515625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0712890625,
+        "zygote": 20.33203125,
+        "gpu-process": 32.0439453125,
+        "renderer": 466.71484375,
+        "utility": 22.2431640625
+      },
+      "rendererPssMiB": 466.71484375
+    },
+    {
+      "pssMiB": 627.81640625,
+      "rssMiB": 841.8359375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0986328125,
+        "zygote": 20.3310546875,
+        "gpu-process": 31.98046875,
+        "renderer": 504.408203125,
+        "utility": 22.998046875
+      },
+      "rendererPssMiB": 504.408203125
+    },
+    {
+      "pssMiB": 636.3203125,
+      "rssMiB": 850.33984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0986328125,
+        "zygote": 20.3310546875,
+        "gpu-process": 31.98046875,
+        "renderer": 512.912109375,
+        "utility": 22.998046875
+      },
+      "rendererPssMiB": 512.912109375
+    },
+    {
+      "pssMiB": 474.328125,
+      "rssMiB": 688.66796875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0966796875,
+        "zygote": 20.3310546875,
+        "gpu-process": 32.08984375,
+        "renderer": 350.822265625,
+        "utility": 22.98828125
+      },
+      "rendererPssMiB": 350.822265625
+    },
+    {
+      "pssMiB": 465.921875,
+      "rssMiB": 680.26171875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0966796875,
+        "zygote": 20.3310546875,
+        "gpu-process": 32.08984375,
+        "renderer": 342.416015625,
+        "utility": 22.98828125
+      },
+      "rendererPssMiB": 342.416015625
+    },
+    {
+      "pssMiB": 476.59375,
+      "rssMiB": 690.93359375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0966796875,
+        "zygote": 20.3310546875,
+        "gpu-process": 32.08984375,
+        "renderer": 353.087890625,
+        "utility": 22.98828125
+      },
+      "rendererPssMiB": 353.087890625
+    },
+    {
+      "pssMiB": 293.328125,
+      "rssMiB": 507.66796875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.0966796875,
+        "zygote": 20.3310546875,
+        "gpu-process": 32.08984375,
+        "renderer": 169.822265625,
+        "utility": 22.98828125
+      },
+      "rendererPssMiB": 169.822265625
+    },
+    {
+      "pssMiB": 292.9033203125,
+      "rssMiB": 507.1640625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.2119140625,
+        "zygote": 20.3251953125,
+        "gpu-process": 32.2109375,
+        "renderer": 169.1513671875,
+        "utility": 23.00390625
+      },
+      "rendererPssMiB": 169.1513671875
+    },
+    {
+      "pssMiB": 292.9697265625,
+      "rssMiB": 506.73046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.2783203125,
+        "zygote": 20.3251953125,
+        "gpu-process": 32.4609375,
+        "renderer": 168.9013671875,
+        "utility": 23.00390625
+      },
+      "rendererPssMiB": 168.9013671875
+    },
+    {
+      "pssMiB": 292.9736328125,
+      "rssMiB": 506.734375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.2822265625,
+        "zygote": 20.3251953125,
+        "gpu-process": 32.4609375,
+        "renderer": 168.9013671875,
+        "utility": 23.00390625
+      },
+      "rendererPssMiB": 168.9013671875
+    }
+  ],
+  "checks": {
+    "unsavedFallback": true,
+    "stoppedCold": true,
+    "resetDuringLoad": true,
+    "recoveredReal": true,
+    "mobileNoOverflow": true,
+    "offlineReal": true,
+    "noRedownload": true,
+    "memoryOnlyHistory": true,
+    "voiceIntact": true,
+    "workerReleased": true,
+    "noStaleCandidateSelection": true
+  },
+  "build": "ベータ版 7b5c3a8e17c4 / 辞書 88件 / CPU・WASM / 自由生成なし",
+  "offline": {
+    "role": "assistant",
+    "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+    "kind": "confirm",
+    "candidates": [
+      {
+        "id": "bosai-79",
+        "title": "停電時は冷蔵庫・冷凍庫をなるべく開けない",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-80",
+        "title": "浸水・停電後の家電はすぐ再使用しない",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-81",
+        "title": "避難時に主幹ブレーカーを切る",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-78",
+        "title": "停電時にスマートフォンの電池を長持ちさせる",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-59",
+        "title": "避難時の通電火災を防ぐ",
+        "category": "地震",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      }
+    ],
+    "selection": 3,
+    "answerability": "unverified-candidates",
+    "diagnostics": {
+      "actual": "hybrid",
+      "fallback": null,
+      "timings": {
+        "loadMs": 2068.6000000089407,
+        "warm": false,
+        "embeddingMs": 105.3999999910593,
+        "tokens": 12,
+        "retrievalMs": 3.5,
+        "totalMs": 2270.0999999940395,
+        "conversationMs": 2277.6000000089407
+      },
+      "query": "停電中は冷蔵庫を開けてよいですか",
+      "topics": [],
+      "facts": {},
+      "excluded": [],
+      "evidence": {
+        "focus": null,
+        "policy": "retrieval-only"
+      }
+    },
+    "wallMs": 2547.7010100000007
+  },
+  "release": {
+    "before": {
+      "pssMiB": 701.4453125,
+      "rssMiB": 915.56640625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.1064453125,
+        "zygote": 20.3310546875,
+        "gpu-process": 32.0390625,
+        "renderer": 577.970703125,
+        "utility": 22.998046875
+      },
+      "rendererPssMiB": 577.970703125
+    },
+    "after": {
+      "pssMiB": 292.9697265625,
+      "rssMiB": 506.73046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.2783203125,
+        "zygote": 20.3251953125,
+        "gpu-process": 32.4609375,
+        "renderer": 168.9013671875,
+        "utility": 23.00390625
+      },
+      "rendererPssMiB": 168.9013671875
+    }
+  },
+  "control": {
+    "passed": 5,
+    "total": 5
+  },
+  "status": "passed"
+}

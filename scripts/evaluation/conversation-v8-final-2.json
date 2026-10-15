@@ -1,0 +1,4 @@
+[
+ {"id":"i01","kind":"alternate-car-noun-negation","turns":[{"text":"水没していない乗用車から出ます。注意する一般情報はありますか。","kind":"clarify","facts":{"vehicleFlooded":false},"noPending":true}]},
+ {"id":"i02","kind":"vehicle-identity-transition","turns":[{"text":"水没した車の車内に水が入っています。避難の原文は？","kind":"confirm","gold":"bosai-71"},{"text":"その後、新しい乗用車で冠水した車道を運転します。","kind":"confirm","gold":"bosai-70","absentFacts":["vehicleFlooded","vehicleChanged"],"facts":{"movement":"drive","floodedRoad":true},"queryExcludes":"車内","badIds":["bosai-71"]}]}
+]

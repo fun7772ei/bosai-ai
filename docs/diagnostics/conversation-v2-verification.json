@@ -1,0 +1,56 @@
+{
+  "createdAt": "2026-10-14T17:02:04.931Z",
+  "baseMain": "6ae5471659499a16fd0c6ad4b7dbc0844b49b151",
+  "implementation": "5bc2c64",
+  "unitTests": 104,
+  "originalCorpusSha256": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+  "corpusEntries": 88,
+  "originalSourceBlob": "881355b4a4b85a1da39515e8578aa5f74bb2644b",
+  "existingMainVoicePrefixUnchanged": true,
+  "storageWorkerSWSearchUnchanged": true,
+  "legacyRegression": [
+    {
+      "set": "64",
+      "status": "passed",
+      "samples": 192,
+      "offlineRestart": true,
+      "generationBlocked": true,
+      "oldDataPreserved": true
+    },
+    {
+      "set": "80",
+      "status": "passed",
+      "samples": 240,
+      "offlineRestart": true,
+      "generationBlocked": true,
+      "oldDataPreserved": true
+    },
+    {
+      "set": "60",
+      "status": "passed",
+      "samples": 180,
+      "offlineRestart": true,
+      "generationBlocked": true,
+      "oldDataPreserved": true
+    }
+  ],
+  "voiceCheck": "normal/isolation, same-origin SDK/WASM assets passed; no microphone recognition/Issue16 fix",
+  "publicBuild": {
+    "success": true,
+    "files": 109,
+    "shellAssets": 12,
+    "generativeRuntime": false,
+    "weights": false
+  },
+  "iPadVerified": false,
+  "merged": false,
+  "deployed": false,
+  "environmentFailures": [
+    "Playwright --with-deps: su authentication failed; existing Chromium149 used",
+    "Intermittent exec-server transport disconnects before commands started; reconnected, all verification completed"
+  ],
+  "reviewReproduction": {
+    "P1": "Old unsupported live and late scope retained stale pronoun context; now asks with empty context",
+    "P2": "Old pending/source allowed choice after multi-subject clarification; now revoked and UI tokens enforced"
+  }
+}

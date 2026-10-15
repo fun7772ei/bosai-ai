@@ -1,0 +1,4 @@
+[
+ {"id":"k01","kind":"identity-without-demonstrative","turns":[{"text":"水没した車の車内に水が入っています。脱出の原文を見たい。","kind":"confirm","gold":"bosai-71"},{"text":"他の車へ乗り換えたわけではなく、元の車です。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]},
+ {"id":"k02","kind":"negative-wish","turns":[{"text":"水没した車の車内に水が入っています。脱出の一般情報は？","kind":"confirm","gold":"bosai-71"},{"text":"その後も乗り換えたくないです。脱出の原文を確認したいです。","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]}
+]

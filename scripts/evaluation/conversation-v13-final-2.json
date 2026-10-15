@@ -1,0 +1,4 @@
+[
+ {"id":"u01","kind":"wish-then-completed-transition","turns":[{"text":"水没した車の車内に水が入っています。脱出の情報は？","kind":"confirm","gold":"bosai-71"},{"text":"その後、乗り換えるつもりです。","kind":"clarify","facts":{"vehicleFlooded":true},"noPending":true},{"text":"もう乗り換えました。道路は冠水しています。車で移動します。","kind":"confirm","gold":"bosai-70","absentFacts":["vehicleFlooded","vehicleChanged"],"facts":{"floodedRoad":true,"movement":"drive"}}]},
+ {"id":"u02","kind":"conditional-transition","turns":[{"text":"水没した車の車内に水が入っています。脱出の原文は？","kind":"confirm","gold":"bosai-71"},{"text":"その後、別の車に乗り換えたら。","kind":"clarify","facts":{"vehicleFlooded":true},"noPending":true}]}
+]

@@ -1,0 +1,247 @@
+{
+  "createdAt": "2026-10-14T15:32:44.853Z",
+  "build": "ベータ版 5e5afc805c41 / 辞書 88件 / CPU・WASM / 自由生成なし",
+  "platform": "Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari",
+  "implementationFreeze": "937a981",
+  "casesSha256": "76bf98bc2407b125ddfaddd0b9d1f0ba4dcf7175da5ea98b96b7cb561f88fc65",
+  "conversations": 24,
+  "turns": 38,
+  "controlPass": 38,
+  "positiveQueries": 15,
+  "top1": 10,
+  "top3": 13,
+  "top5": 13,
+  "realRuriQueries": 20,
+  "sourceFollowup": 3,
+  "sourceFollowupCorrect": 3,
+  "originalSelectionsVerified": 6,
+  "warmMedianMs": 18.700000002980232,
+  "first": {
+    "loadMs": 2003.5999999940395,
+    "warm": false,
+    "embeddingMs": 147.5,
+    "tokens": 10,
+    "retrievalMs": 6.299999997019768,
+    "totalMs": 2221.0999999940395
+  },
+  "peakBrowserPssMiB": 756.515625,
+  "release": {
+    "before": {
+      "pssMiB": 744.37890625,
+      "rssMiB": 958.2109375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.275390625,
+        "zygote": 20.4052734375,
+        "gpu-process": 32.4423828125,
+        "renderer": 620.2900390625,
+        "utility": 22.9658203125
+      },
+      "rendererPssMiB": 620.2900390625
+    },
+    "after": {
+      "pssMiB": 292.732421875,
+      "rssMiB": 506.15625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 48.3671875,
+        "zygote": 20.3994140625,
+        "gpu-process": 32.869140625,
+        "renderer": 168.1279296875,
+        "utility": 22.96875
+      },
+      "rendererPssMiB": 168.1279296875
+    }
+  },
+  "checks": {
+    "unsavedFallback": true,
+    "stoppedCold": true,
+    "resetDuringLoad": true,
+    "recoveredReal": true,
+    "mobileNoOverflow": true,
+    "offlineReal": true,
+    "noRedownload": true,
+    "memoryOnlyHistory": true,
+    "voiceIntact": true,
+    "workerReleased": true
+  },
+  "failures": [
+    {
+      "caseId": "c03",
+      "input": "津波で高い場所まで行く時間がありません",
+      "gold": "bosai-2",
+      "rank": null,
+      "candidates": [
+        {
+          "id": "bosai-0",
+          "title": "津波からの避難：「遠く」だけでなく「より高く」",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-6",
+          "title": "津波は引き潮から始まるとは限らない",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-3",
+          "title": "揺れが弱くても長く続いたら津波を警戒",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-51",
+          "title": "海岸で地震にあったら津波を優先して避難",
+          "category": "地震"
+        },
+        {
+          "id": "bosai-1",
+          "title": "海岸・川の近くで揺れを感じたらすぐ避難",
+          "category": "津波"
+        }
+      ]
+    },
+    {
+      "caseId": "c05",
+      "input": "診断を求めていない、避難生活でいつもの薬が尽きたら誰に相談する？",
+      "gold": "bosai-28",
+      "rank": 2,
+      "candidates": [
+        {
+          "id": "bosai-29",
+          "title": "持病がある人は早めに相談する",
+          "category": "避難所生活"
+        },
+        {
+          "id": "bosai-28",
+          "title": "薬が足りない・薬の名前が分からないとき",
+          "category": "避難所生活"
+        },
+        {
+          "id": "bosai-24",
+          "title": "生活不活発を防ぐ",
+          "category": "避難所生活"
+        },
+        {
+          "id": "bosai-30",
+          "title": "妊産婦・乳幼児は必要な支援を早めに伝える",
+          "category": "避難所生活"
+        },
+        {
+          "id": "bosai-37",
+          "title": "在宅避難でも支援情報を確認する",
+          "category": "避難所生活"
+        }
+      ]
+    },
+    {
+      "caseId": "c07",
+      "input": "激しい雨で道が膝の高さまで水につかりました。棒で足元を調べつつ徒歩で進んでもいい？",
+      "gold": "bosai-69",
+      "rank": 3,
+      "candidates": [
+        {
+          "id": "bosai-74",
+          "title": "竜巻・激しい突風から身を守る",
+          "category": "台風・大雨・停電"
+        },
+        {
+          "id": "bosai-84",
+          "title": "浸水避難では履き慣れた運動靴を選ぶ",
+          "category": "台風・大雨・停電"
+        },
+        {
+          "id": "bosai-69",
+          "title": "冠水した道路を歩かない",
+          "category": "台風・大雨・停電"
+        },
+        {
+          "id": "bosai-10",
+          "title": "津波避難は徒歩を基本にする",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電"
+        }
+      ]
+    },
+    {
+      "caseId": "c19",
+      "input": "夜中に津波で避難するときの注意は？",
+      "gold": "bosai-14",
+      "rank": 2,
+      "candidates": [
+        {
+          "id": "bosai-2",
+          "title": "高台まで間に合わないときの垂直避難",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-14",
+          "title": "夜間の津波避難",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-8",
+          "title": "津波警報・注意報が解除されるまで避難を続ける",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-9",
+          "title": "川沿い・河口でも津波に注意する",
+          "category": "津波"
+        },
+        {
+          "id": "bosai-52",
+          "title": "川べりで地震にあったら津波・堤防に注意",
+          "category": "地震"
+        }
+      ]
+    },
+    {
+      "caseId": "c21",
+      "input": "車ではなく徒歩です",
+      "gold": "bosai-69",
+      "rank": null,
+      "candidates": [
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電"
+        },
+        {
+          "id": "bosai-77",
+          "title": "側溝・排水口の掃除は雨が強くなる前に",
+          "category": "台風・大雨・停電"
+        },
+        {
+          "id": "bosai-84",
+          "title": "浸水避難では履き慣れた運動靴を選ぶ",
+          "category": "台風・大雨・停電"
+        },
+        {
+          "id": "bosai-83",
+          "title": "簡易水のうは浅い初期浸水だけの応急対策",
+          "category": "台風・大雨・停電"
+        },
+        {
+          "id": "bosai-52",
+          "title": "川べりで地震にあったら津波・堤防に注意",
+          "category": "地震"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Hand-authored 24 dialogue cases; no independent disaster-expert review",
+    "Control pass is expected state/condition handling, not semantic answer safety",
+    "Gold ID agreement is not full evidence sufficiency",
+    "Linux Chromium PSS is not Safari or model-only RAM",
+    "Model bytes served locally after pinned SHA verification; internet download speed not measured",
+    "No iPad execution, no Moonshine recognition or voice offline retest"
+  ]
+}

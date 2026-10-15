@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "bosai-0",
+    "sourceTitle": "津波からの避難：「遠く」だけでなく「より高く」",
+    "sourceFingerprint": "d7eb1a21",
+    "hazard": "津波",
+    "scenario": "津波からの避難：「遠く」だけでなく「より高く」",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-1",
+    "sourceTitle": "海岸・川の近くで揺れを感じたらすぐ避難",
+    "sourceFingerprint": "f17e453b",
+    "hazard": "津波",
+    "scenario": "海岸・川の近くで揺れを感じたらすぐ避難",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-2",
+    "sourceTitle": "高台まで間に合わないときの垂直避難",
+    "sourceFingerprint": "a90047a5",
+    "hazard": "津波",
+    "scenario": "高台まで間に合わないときの垂直避難",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {
+      "unreachableHeight": true
+    },
+    "prerequisiteEvidence": "間に合わない",
+    "focus": "tsunami-time",
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "verified-prerequisite-only"
+  },
+  {
+    "id": "bosai-3",
+    "sourceTitle": "揺れが弱くても長く続いたら津波を警戒",
+    "sourceFingerprint": "ac87c3e5",
+    "hazard": "津波",
+    "scenario": "揺れが弱くても長く続いたら津波を警戒",
+    "audience": null,
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-4",
+    "sourceTitle": "大津波警報・津波警報が出たとき",
+    "sourceFingerprint": "4c52d4a6",
+    "hazard": "津波",
+    "scenario": "大津波警報・津波警報が出たとき",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-5",
+    "sourceTitle": "津波注意報でも海から上がり海岸から離れる",
+    "sourceFingerprint": "fa0f94a9",
+    "hazard": "津波",
+    "scenario": "津波注意報でも海から上がり海岸から離れる",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-6",
+    "sourceTitle": "津波は引き潮から始まるとは限らない",
+    "sourceFingerprint": "2ddf8754",
+    "hazard": "津波",
+    "scenario": "津波は引き潮から始まるとは限らない",
+    "audience": null,
+    "action": "explain",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-explanation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-7",
+    "sourceTitle": "第1波のあとも戻らない",
+    "sourceFingerprint": "5bb2cb19",
+    "hazard": "津波",
+    "scenario": "第1波のあとも戻らない",
+    "audience": null,
+    "action": "explain",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-explanation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-8",
+    "sourceTitle": "津波警報・注意報が解除されるまで避難を続ける",
+    "sourceFingerprint": "c6d50ca6",
+    "hazard": "津波",
+    "scenario": "津波警報・注意報が解除されるまで避難を続ける",
+    "audience": null,
+    "action": "explain",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-explanation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-9",
+    "sourceTitle": "川沿い・河口でも津波に注意する",
+    "sourceFingerprint": "a9bad788",
+    "hazard": "津波",
+    "scenario": "川沿い・河口でも津波に注意する",
+    "audience": null,
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-10",
+    "sourceTitle": "津波避難は徒歩を基本にする",
+    "sourceFingerprint": "48d8f378",
+    "hazard": "津波",
+    "scenario": "津波避難は徒歩を基本にする",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-11",
+    "sourceTitle": "第一波到達予想時刻を『避難の締切』にしない",
+    "sourceFingerprint": "cec3509c",
+    "hazard": "津波",
+    "scenario": "第一波到達予想時刻を『避難の締切』にしない",
+    "audience": null,
+    "action": "explain",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-explanation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-12",
+    "sourceTitle": "津波避難場所と避難所の違いを確認する",
+    "sourceFingerprint": "f31bcb12",
+    "hazard": "津波",
+    "scenario": "津波避難場所と避難所の違いを確認する",
+    "audience": null,
+    "action": "explain",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-explanation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-13",
+    "sourceTitle": "旅行先・初めての海辺では避難先を先に確認",
+    "sourceFingerprint": "d18fc33f",
+    "hazard": "津波",
+    "scenario": "旅行先・初めての海辺では避難先を先に確認",
+    "audience": null,
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-14",
+    "sourceTitle": "夜間の津波避難",
+    "sourceFingerprint": "476c693c",
+    "hazard": "津波",
+    "scenario": "夜間の津波避難",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-15",
+    "sourceTitle": "津波フラッグを見たら海から離れる",
+    "sourceFingerprint": "d2b02785",
+    "hazard": "津波",
+    "scenario": "津波フラッグを見たら海から離れる",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-16",
+    "sourceTitle": "家族・支援が必要な人の津波避難を平時に決める",
+    "sourceFingerprint": "31cc0443",
+    "hazard": "津波",
+    "scenario": "家族・支援が必要な人の津波避難を平時に決める",
+    "audience": "支援が必要な人",
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-17",
+    "sourceTitle": "断水時の簡易トイレを衛生的に使う",
+    "sourceFingerprint": "9bf0a5bc",
+    "hazard": "避難所生活",
+    "scenario": "断水時の簡易トイレを衛生的に使う",
+    "audience": null,
+    "action": "sanitize",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-18",
+    "sourceTitle": "水が少ないときの手指衛生",
+    "sourceFingerprint": "8ad605e3",
+    "hazard": "避難所生活",
+    "scenario": "水が少ないときの手指衛生",
+    "audience": null,
+    "action": "sanitize",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-19",
+    "sourceTitle": "避難所で食中毒を防ぐ",
+    "sourceFingerprint": "6cc88141",
+    "hazard": "避難所生活",
+    "scenario": "避難所で食中毒を防ぐ",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-20",
+    "sourceTitle": "水分を我慢しすぎない",
+    "sourceFingerprint": "5a995caf",
+    "hazard": "避難所生活",
+    "scenario": "水分を我慢しすぎない",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-21",
+    "sourceTitle": "避難所・停電時の熱中症を防ぐ",
+    "sourceFingerprint": "132b74b6",
+    "hazard": "避難所生活",
+    "scenario": "避難所・停電時の熱中症を防ぐ",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-22",
+    "sourceTitle": "低体温を防ぐ",
+    "sourceFingerprint": "794c1a9d",
+    "hazard": "避難所生活",
+    "scenario": "低体温を防ぐ",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-23",
+    "sourceTitle": "エコノミークラス症候群を予防する",
+    "sourceFingerprint": "44954464",
+    "hazard": "避難所生活",
+    "scenario": "エコノミークラス症候群を予防する",
+    "audience": "車中泊・避難所で長時間座る人",
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-24",
+    "sourceTitle": "生活不活発を防ぐ",
+    "sourceFingerprint": "23357ec3",
+    "hazard": "避難所生活",
+    "scenario": "生活不活発を防ぐ",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-25",
+    "sourceTitle": "水が少ないときの口腔ケア",
+    "sourceFingerprint": "9616442d",
+    "hazard": "避難所生活",
+    "scenario": "水が少ないときの口腔ケア",
+    "audience": null,
+    "action": "sanitize",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-26",
+    "sourceTitle": "義歯（入れ歯）を清潔に保つ",
+    "sourceFingerprint": "62fb6bb2",
+    "hazard": "避難所生活",
+    "scenario": "義歯（入れ歯）を清潔に保つ",
+    "audience": null,
+    "action": "sanitize",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-27",
+    "sourceTitle": "避難所で睡眠・休息を確保する",
+    "sourceFingerprint": "d43e2833",
+    "hazard": "避難所生活",
+    "scenario": "避難所で睡眠・休息を確保する",
+    "audience": null,
+    "action": "rest",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-28",
+    "sourceTitle": "薬が足りない・薬の名前が分からないとき",
+    "sourceFingerprint": "53bd2169",
+    "hazard": "避難所生活",
+    "scenario": "薬が足りない・薬の名前が分からないとき",
+    "audience": "薬を使用する人",
+    "action": "consult",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-29",
+    "sourceTitle": "持病がある人は早めに相談する",
+    "sourceFingerprint": "a8eb22f2",
+    "hazard": "避難所生活",
+    "scenario": "持病がある人は早めに相談する",
+    "audience": null,
+    "action": "consult",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-30",
+    "sourceTitle": "妊産婦・乳幼児は必要な支援を早めに伝える",
+    "sourceFingerprint": "3c8f7cee",
+    "hazard": "避難所生活",
+    "scenario": "妊産婦・乳幼児は必要な支援を早めに伝える",
+    "audience": "妊産婦・乳幼児",
+    "action": "consult",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-31",
+    "sourceTitle": "高齢者・要配慮者の体調変化に気づく",
+    "sourceFingerprint": "d25961c3",
+    "hazard": "避難所生活",
+    "scenario": "高齢者・要配慮者の体調変化に気づく",
+    "audience": "高齢者・要配慮者",
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-32",
+    "sourceTitle": "食物アレルギーや食事制限を伝える",
+    "sourceFingerprint": "625b0ffc",
+    "hazard": "避難所生活",
+    "scenario": "食物アレルギーや食事制限を伝える",
+    "audience": "食物アレルギー・食事制限のある人",
+    "action": "consult",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-33",
+    "sourceTitle": "ペットとは『同行避難』を基本に事前準備する",
+    "sourceFingerprint": "708a7a0e",
+    "hazard": "避難所生活",
+    "scenario": "ペットとは『同行避難』を基本に事前準備する",
+    "audience": "ペットの飼い主",
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-34",
+    "sourceTitle": "避難所でプライバシーを確保する",
+    "sourceFingerprint": "7c8946c5",
+    "hazard": "避難所生活",
+    "scenario": "避難所でプライバシーを確保する",
+    "audience": null,
+    "action": null,
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-35",
+    "sourceTitle": "避難所で感染症を広げない",
+    "sourceFingerprint": "5b909480",
+    "hazard": "避難所生活",
+    "scenario": "避難所で感染症を広げない",
+    "audience": null,
+    "action": "sanitize",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-36",
+    "sourceTitle": "車中泊では定期的に体を動かす",
+    "sourceFingerprint": "08f0b933",
+    "hazard": "避難所生活",
+    "scenario": "車中泊では定期的に体を動かす",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-37",
+    "sourceTitle": "在宅避難でも支援情報を確認する",
+    "sourceFingerprint": "efce7a6f",
+    "hazard": "避難所生活",
+    "scenario": "在宅避難でも支援情報を確認する",
+    "audience": null,
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-38",
+    "sourceTitle": "自宅・室内で地震が起きたとき",
+    "sourceFingerprint": "4bd932e1",
+    "hazard": "地震",
+    "scenario": "自宅・室内で地震が起きたとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-39",
+    "sourceTitle": "寝ているときに地震が起きたら",
+    "sourceFingerprint": "ea1bade2",
+    "hazard": "地震",
+    "scenario": "寝ているときに地震が起きたら",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-40",
+    "sourceTitle": "お風呂・トイレで地震にあったとき",
+    "sourceFingerprint": "21db3c64",
+    "hazard": "地震",
+    "scenario": "お風呂・トイレで地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-41",
+    "sourceTitle": "台所で地震が起きたとき",
+    "sourceFingerprint": "16896ac7",
+    "hazard": "地震",
+    "scenario": "台所で地震が起きたとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-42",
+    "sourceTitle": "マンション・高層階で地震にあったとき",
+    "sourceFingerprint": "09c10a75",
+    "hazard": "地震",
+    "scenario": "マンション・高層階で地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-43",
+    "sourceTitle": "学校で地震が起きたとき",
+    "sourceFingerprint": "b52052cc",
+    "hazard": "地震",
+    "scenario": "学校で地震が起きたとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-44",
+    "sourceTitle": "職場・オフィスで地震が起きたとき",
+    "sourceFingerprint": "f874a277",
+    "hazard": "地震",
+    "scenario": "職場・オフィスで地震が起きたとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-45",
+    "sourceTitle": "スーパー・商業施設で地震にあったとき",
+    "sourceFingerprint": "4fbf80ba",
+    "hazard": "地震",
+    "scenario": "スーパー・商業施設で地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-46",
+    "sourceTitle": "映画館・劇場で地震にあったとき",
+    "sourceFingerprint": "fdd86e39",
+    "hazard": "地震",
+    "scenario": "映画館・劇場で地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-47",
+    "sourceTitle": "地下街で地震にあったとき",
+    "sourceFingerprint": "cb312ea4",
+    "hazard": "地震",
+    "scenario": "地下街で地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-48",
+    "sourceTitle": "エレベーター内で地震にあったとき",
+    "sourceFingerprint": "82b90d38",
+    "hazard": "地震",
+    "scenario": "エレベーター内で地震にあったとき",
+    "audience": null,
+    "action": null,
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-49",
+    "sourceTitle": "屋外・オフィス街で地震にあったとき",
+    "sourceFingerprint": "5ae6a73f",
+    "hazard": "地震",
+    "scenario": "屋外・オフィス街で地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-50",
+    "sourceTitle": "住宅地ではブロック塀・自動販売機から離れる",
+    "sourceFingerprint": "7300c789",
+    "hazard": "地震",
+    "scenario": "住宅地ではブロック塀・自動販売機から離れる",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-51",
+    "sourceTitle": "海岸で地震にあったら津波を優先して避難",
+    "sourceFingerprint": "072d453b",
+    "hazard": "地震",
+    "scenario": "海岸で地震にあったら津波を優先して避難",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-52",
+    "sourceTitle": "川べりで地震にあったら津波・堤防に注意",
+    "sourceFingerprint": "4c521da1",
+    "hazard": "地震",
+    "scenario": "川べりで地震にあったら津波・堤防に注意",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-53",
+    "sourceTitle": "山・崖の近くで地震にあったとき",
+    "sourceFingerprint": "22f9140b",
+    "hazard": "地震",
+    "scenario": "山・崖の近くで地震にあったとき",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-54",
+    "sourceTitle": "車を運転中に地震が起きたとき",
+    "sourceFingerprint": "b771461b",
+    "hazard": "地震",
+    "scenario": "車を運転中に地震が起きたとき",
+    "audience": "運転中の人",
+    "action": "driving",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-55",
+    "sourceTitle": "車を置いて避難するとき",
+    "sourceFingerprint": "d258cce4",
+    "hazard": "地震",
+    "scenario": "車を置いて避難するとき",
+    "audience": null,
+    "action": "leaveVehicle",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-56",
+    "sourceTitle": "電車・鉄道で地震にあったとき",
+    "sourceFingerprint": "2b98f103",
+    "hazard": "地震",
+    "scenario": "電車・鉄道で地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-57",
+    "sourceTitle": "地下鉄で地震にあったとき",
+    "sourceFingerprint": "2aee41bc",
+    "hazard": "地震",
+    "scenario": "地下鉄で地震にあったとき",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-58",
+    "sourceTitle": "揺れが収まったら出口と周囲の危険を確認",
+    "sourceFingerprint": "b39399a9",
+    "hazard": "地震",
+    "scenario": "揺れが収まったら出口と周囲の危険を確認",
+    "audience": null,
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-59",
+    "sourceTitle": "避難時の通電火災を防ぐ",
+    "sourceFingerprint": "84927284",
+    "hazard": "地震",
+    "scenario": "避難時の通電火災を防ぐ",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-60",
+    "sourceTitle": "2026年から防災気象情報の名称が変わった",
+    "sourceFingerprint": "19fc7006",
+    "hazard": "台風・大雨・停電",
+    "scenario": "2026年から防災気象情報の名称が変わった",
+    "audience": null,
+    "action": "explain",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-explanation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-61",
+    "sourceTitle": "警戒レベル3では避難に時間がかかる人は早めに避難",
+    "sourceFingerprint": "67b4c806",
+    "hazard": "台風・大雨・停電",
+    "scenario": "警戒レベル3では避難に時間がかかる人は早めに避難",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-62",
+    "sourceTitle": "警戒レベル4では危険な場所から避難する",
+    "sourceFingerprint": "21a34550",
+    "hazard": "台風・大雨・停電",
+    "scenario": "警戒レベル4では危険な場所から避難する",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-63",
+    "sourceTitle": "警戒レベル5は『避難を始める段階』ではない",
+    "sourceFingerprint": "6ef58983",
+    "hazard": "台風・大雨・停電",
+    "scenario": "警戒レベル5は『避難を始める段階』ではない",
+    "audience": null,
+    "action": "explain",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-explanation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-64",
+    "sourceTitle": "キキクルで今いる場所の危険度を確認する",
+    "sourceFingerprint": "6078c742",
+    "hazard": "台風・大雨・停電",
+    "scenario": "キキクルで今いる場所の危険度を確認する",
+    "audience": null,
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-65",
+    "sourceTitle": "線状降水帯の情報を見たら早めに備える",
+    "sourceFingerprint": "ecbf9982",
+    "hazard": "台風・大雨・停電",
+    "scenario": "線状降水帯の情報を見たら早めに備える",
+    "audience": null,
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-66",
+    "sourceTitle": "土砂災害の前兆に気づいたらすぐ離れる",
+    "sourceFingerprint": "34a65be0",
+    "hazard": "台風・大雨・停電",
+    "scenario": "土砂災害の前兆に気づいたらすぐ離れる",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-67",
+    "sourceTitle": "外へ逃げる方が危険なときの緊急安全確保",
+    "sourceFingerprint": "2c28c160",
+    "hazard": "台風・大雨・停電",
+    "scenario": "外へ逃げる方が危険なときの緊急安全確保",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-68",
+    "sourceTitle": "川の水位が上がる前に避難判断をする",
+    "sourceFingerprint": "3a81295a",
+    "hazard": "台風・大雨・停電",
+    "scenario": "川の水位が上がる前に避難判断をする",
+    "audience": null,
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-69",
+    "sourceTitle": "冠水した道路を歩かない",
+    "sourceFingerprint": "20039d85",
+    "hazard": "台風・大雨・停電",
+    "scenario": "冠水した道路を歩かない",
+    "audience": "冠水路を歩く人",
+    "action": "walking",
+    "prerequisites": {
+      "floodedRoad": true
+    },
+    "prerequisiteEvidence": "冠水した道路",
+    "focus": "flood-walk",
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "verified-prerequisite-only"
+  },
+  {
+    "id": "bosai-70",
+    "sourceTitle": "冠水した道路へ車で入らない",
+    "sourceFingerprint": "3250ae5d",
+    "hazard": "台風・大雨・停電",
+    "scenario": "冠水した道路へ車で入らない",
+    "audience": "冠水路を運転する人",
+    "action": "driving",
+    "prerequisites": {
+      "floodedRoad": true
+    },
+    "prerequisiteEvidence": "冠水した道路",
+    "focus": "flood-drive",
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "verified-prerequisite-only"
+  },
+  {
+    "id": "bosai-71",
+    "sourceTitle": "車が水没し始めたら早めに脱出する",
+    "sourceFingerprint": "c2c0678e",
+    "hazard": "台風・大雨・停電",
+    "scenario": "車が水没し始めたら早めに脱出する",
+    "audience": "水没し始めた車内の人",
+    "action": "leaveVehicle",
+    "prerequisites": {
+      "vehicleFlooded": true
+    },
+    "prerequisiteEvidence": "水没",
+    "focus": "vehicle-escape",
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "verified-prerequisite-only"
+  },
+  {
+    "id": "bosai-72",
+    "sourceTitle": "高潮は海岸から離れて早めに避難する",
+    "sourceFingerprint": "469db417",
+    "hazard": "台風・大雨・停電",
+    "scenario": "高潮は海岸から離れて早めに避難する",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-73",
+    "sourceTitle": "雷が近づいたら建物や車の中へ避難する",
+    "sourceFingerprint": "4840bb46",
+    "hazard": "台風・大雨・停電",
+    "scenario": "雷が近づいたら建物や車の中へ避難する",
+    "audience": null,
+    "action": "evacuate",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-74",
+    "sourceTitle": "竜巻・激しい突風から身を守る",
+    "sourceFingerprint": "1c64963d",
+    "hazard": "台風・大雨・停電",
+    "scenario": "竜巻・激しい突風から身を守る",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-75",
+    "sourceTitle": "窓ガラスは台風が来る前に対策する",
+    "sourceFingerprint": "0fdb2485",
+    "hazard": "台風・大雨・停電",
+    "scenario": "窓ガラスは台風が来る前に対策する",
+    "audience": null,
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-76",
+    "sourceTitle": "ベランダ・庭の飛びやすい物を片付ける",
+    "sourceFingerprint": "c97a39d6",
+    "hazard": "台風・大雨・停電",
+    "scenario": "ベランダ・庭の飛びやすい物を片付ける",
+    "audience": null,
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-77",
+    "sourceTitle": "側溝・排水口の掃除は雨が強くなる前に",
+    "sourceFingerprint": "26643736",
+    "hazard": "台風・大雨・停電",
+    "scenario": "側溝・排水口の掃除は雨が強くなる前に",
+    "audience": null,
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-78",
+    "sourceTitle": "停電時にスマートフォンの電池を長持ちさせる",
+    "sourceFingerprint": "a87b584d",
+    "hazard": "台風・大雨・停電",
+    "scenario": "停電時にスマートフォンの電池を長持ちさせる",
+    "audience": null,
+    "action": "conservePower",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-79",
+    "sourceTitle": "停電時は冷蔵庫・冷凍庫をなるべく開けない",
+    "sourceFingerprint": "5549505d",
+    "hazard": "台風・大雨・停電",
+    "scenario": "停電時は冷蔵庫・冷凍庫をなるべく開けない",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-80",
+    "sourceTitle": "浸水・停電後の家電はすぐ再使用しない",
+    "sourceFingerprint": "e25ef043",
+    "hazard": "台風・大雨・停電",
+    "scenario": "浸水・停電後の家電はすぐ再使用しない",
+    "audience": null,
+    "action": "check",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-81",
+    "sourceTitle": "避難時に主幹ブレーカーを切る",
+    "sourceFingerprint": "b9445f54",
+    "hazard": "台風・大雨・停電",
+    "scenario": "避難時に主幹ブレーカーを切る",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-82",
+    "sourceTitle": "トイレ・排水口の逆流を簡易水のうで抑える",
+    "sourceFingerprint": "95214766",
+    "hazard": "台風・大雨・停電",
+    "scenario": "トイレ・排水口の逆流を簡易水のうで抑える",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-83",
+    "sourceTitle": "簡易水のうは浅い初期浸水だけの応急対策",
+    "sourceFingerprint": "b2ea83ab",
+    "hazard": "台風・大雨・停電",
+    "scenario": "簡易水のうは浅い初期浸水だけの応急対策",
+    "audience": null,
+    "action": "prevent",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-84",
+    "sourceTitle": "浸水避難では履き慣れた運動靴を選ぶ",
+    "sourceFingerprint": "8901885e",
+    "hazard": "台風・大雨・停電",
+    "scenario": "浸水避難では履き慣れた運動靴を選ぶ",
+    "audience": null,
+    "action": "footwear",
+    "prerequisites": {},
+    "prerequisiteEvidence": "浸水避難",
+    "focus": "flood-footwear",
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-85",
+    "sourceTitle": "暴風中は窓から離れて過ごす",
+    "sourceFingerprint": "a854dbeb",
+    "hazard": "台風・大雨・停電",
+    "scenario": "暴風中は窓から離れて過ごす",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-86",
+    "sourceTitle": "大雨のとき地下・アンダーパスへ近づかない",
+    "sourceFingerprint": "6f60dbda",
+    "hazard": "台風・大雨・停電",
+    "scenario": "大雨のとき地下・アンダーパスへ近づかない",
+    "audience": null,
+    "action": "protect",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-guidance",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  },
+  {
+    "id": "bosai-87",
+    "sourceTitle": "ハザードマップは災害が起きる前に確認する",
+    "sourceFingerprint": "81ff1e48",
+    "hazard": "台風・大雨・停電",
+    "scenario": "ハザードマップは災害が起きる前に確認する",
+    "audience": null,
+    "action": "prepare",
+    "prerequisites": {},
+    "prerequisiteEvidence": null,
+    "focus": null,
+    "canAnswer": "general-preparation",
+    "cannotAnswer": [
+      "現在の警報・予報・避難所開設などのリアルタイム情報",
+      "特定の災害が発生した日時や個別の予測",
+      "現場や個人についての安全性の保証"
+    ],
+    "reviewStatus": "provisional-title-and-summary"
+  }
+]

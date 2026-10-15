@@ -1,0 +1,6 @@
+[
+ {"id":"v01","kind":"nominal-vehicle-negation","turns":[{"text":"水没車ではないです。車から出る場合の一般情報はありますか。","kind":"confirm","facts":{"vehicleFlooded":false},"notFocus":"vehicle-escape","badIds":["bosai-71"]}]},
+ {"id":"v02","kind":"modifier-vehicle-negation","turns":[{"text":"水没していない車から避難する注意を知りたいです。","kind":"confirm","facts":{"vehicleFlooded":false},"notFocus":"vehicle-escape","badIds":["bosai-71"]}]},
+ {"id":"v03","kind":"new-walking-scene","turns":[{"text":"水没した車の車内に水が入っています。脱出に関する原文を探して。","kind":"confirm","gold":"bosai-71"},{"text":"その後、冠水した歩道を徒歩で移動します。","kind":"confirm","facts":{"movement":"walk","floodedRoad":true},"absentFacts":["vehicleFlooded"],"queryExcludes":"車内","gold":"bosai-69","badIds":["bosai-71"]},{"text":"そのときの注意を知りたい。","kind":"confirm","absentFacts":["vehicleFlooded"],"gold":"bosai-69"}]},
+ {"id":"v04","kind":"affirmed-current-vehicle","turns":[{"text":"車が水没して車内に水が入ります。車から逃げる情報は？","kind":"confirm","facts":{"vehicleFlooded":true},"gold":"bosai-71"}]}
+]

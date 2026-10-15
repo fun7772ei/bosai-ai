@@ -1,0 +1,14 @@
+[
+ {"id":"r01","kind":"water-scope","turns":[{"text":"台風で水道が止まり、飲む水がありません。車で給水所へ行きたいです。","kind":"clarify","absentFacts":["floodedRoad"],"noPending":true},{"text":"その道を歩いて進む場合はどうですか？","kind":"clarify","absentFacts":["floodedRoad"],"noPending":true}]},
+ {"id":"r02","kind":"water-scope","turns":[{"text":"道路を通って水を買いに行きます。断水して水がないので自動車を使います。大雨です。","kind":"clarify","absentFacts":["floodedRoad"]},{"text":"その道路は冠水していません。","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-drive","badIds":["bosai-70","bosai-69"]}]},
+ {"id":"r03","kind":"water-scope","turns":[{"text":"台風の日に飲料水がなくなりました。乗用車で買いに行くための一般情報は？","kind":"clarify","absentFacts":["floodedRoad"]}]},
+ {"id":"r04","kind":"wheelchair","turns":[{"text":"大雨で冠水した道路を電動車椅子で渡るときの情報はありますか？","kind":"clarify","facts":{"movement":"wheelchair","floodedRoad":true},"noPending":true,"badIds":["bosai-70","bosai-69"]},{"text":"車椅子のことではなく、徒歩で移動する場合です。","kind":"confirm","facts":{"movement":"walk","floodedRoad":true},"gold":"bosai-69"}]},
+ {"id":"r05","kind":"bicycle","turns":[{"text":"道路が冠水した所で自転車を運転する際の注意を知りたいです。","kind":"clarify","facts":{"movement":"bicycle"},"badIds":["bosai-70","bosai-69"],"noPending":true}]},
+ {"id":"r06","kind":"rail","turns":[{"text":"電車の車内で揺れた場合の身の守り方を知りたいです。","kind":"confirm","facts":{"movement":"rail"},"gold":"bosai-56","notFocus":"flood-drive"}]},
+ {"id":"r07","kind":"stroller","turns":[{"text":"大雨で道路が浸水しています。乳母車を押して避難するときの情報は？","kind":"clarify","facts":{"movement":"stroller"},"noPending":true,"badIds":["bosai-70"]}]},
+ {"id":"r08","kind":"automobile","turns":[{"text":"冠水した道路を軽自動車で通るかどうかの一般情報を見たいです。","kind":"confirm","gold":"bosai-70"}]},
+ {"id":"r09","kind":"compound-correction","turns":[{"text":"冠水した道路を自転車で通るときのことを調べたい。","kind":"clarify","facts":{"movement":"bicycle"},"noPending":true},{"text":"自転車ではなく乗用車で通ります。","kind":"confirm","gold":"bosai-70","facts":{"movement":"drive","floodedRoad":true},"queryExcludes":"自転"}]},
+ {"id":"r10","kind":"explicit-road-negation","turns":[{"text":"道路には水がないのですが、家で飲む水もなくなりました。台風の中を車で移動するときは？","kind":"confirm","facts":{"floodedRoad":false},"notFocus":"flood-drive","badIds":["bosai-69","bosai-70"]}]},
+ {"id":"r11","kind":"place-compound","turns":[{"text":"北海道では大雨で飲む水がないので、徒歩で買いに行こうと思っています。","kind":"clarify","absentFacts":["floodedRoad"]}]},
+ {"id":"r12","kind":"original-source","turns":[{"text":"避難所生活で、食物アレルギーがあることを周囲に伝えたいです。","kind":"confirm","gold":"bosai-32","choose":true},{"text":"手順は？","kind":"source"}]}
+]

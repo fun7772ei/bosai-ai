@@ -1,0 +1,1702 @@
+{
+  "createdAt": "2026-10-14T17:21:17.477Z",
+  "platform": "Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari",
+  "baseline": false,
+  "casesPath": "scripts/evaluation/conversation-v3-final-12.json",
+  "implementation": "482b1fd5af299f53b41e029b54a641dd3dd30986",
+  "casesSha256": "cfdd63acf52440358ba7e8bc1cc9779f33a75600dfd6cb5f715a1c2d7b80b743",
+  "rows": [
+    {
+      "caseId": "r01",
+      "category": "water-scope",
+      "turn": 1,
+      "input": "台風で水道が止まり、飲む水がありません。車で給水所へ行きたいです。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "移動する道路は冠水していますか？大雨だけでは冠水した状況と判断しません。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "choices": [
+        "道路が冠水しています",
+        "道路は冠水していません"
+      ],
+      "wallMs": 37.627072,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "situation": "台風で水道が止まり、飲む水がありません。車で給水所へ行きたいです。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r01",
+      "category": "water-scope",
+      "turn": 2,
+      "input": "その道を歩いて進む場合はどうですか？",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "移動する道路は冠水していますか？大雨だけでは冠水した状況と判断しません。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "choices": [
+        "道路が冠水しています",
+        "道路は冠水していません"
+      ],
+      "wallMs": 35.87054599999988,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "situation": "台風で水道が止まり、飲む水がありません。車で給水所へ行きたいです。。その道を歩いて進む場合はどうですか？",
+        "action": "歩行",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r02",
+      "category": "water-scope",
+      "turn": 1,
+      "input": "道路を通って水を買いに行きます。断水して水がないので自動車を使います。大雨です。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "移動する道路は冠水していますか？大雨だけでは冠水した状況と判断しません。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "choices": [
+        "道路が冠水しています",
+        "道路は冠水していません"
+      ],
+      "wallMs": 36.01255600000013,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "situation": "道路を通って水を買いに行きます。断水して水がないので自動車を使います。大雨です。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r02",
+      "category": "water-scope",
+      "turn": 2,
+      "input": "その道路は冠水していません。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-69",
+          "title": "冠水した道路を歩かない",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-70",
+          "title": "冠水した道路へ車で入らない",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-77",
+          "title": "側溝・排水口の掃除は雨が強くなる前に",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-84",
+          "title": "浸水避難では履き慣れた運動靴を選ぶ",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 13,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "loadMs": 2151.5,
+          "warm": false,
+          "embeddingMs": 94.69999998807907,
+          "tokens": 13,
+          "retrievalMs": 2.1000000089406967,
+          "totalMs": 2306.1000000089407,
+          "conversationMs": 2306.7000000029802
+        },
+        "query": "その道路は冠水していません。",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "goal": "movement",
+          "movement": "drive",
+          "floodedRoad": false
+        },
+        "excluded": [],
+        "evidence": {
+          "focus": null,
+          "policy": "retrieval-only"
+        }
+      },
+      "wallMs": 2710.5857479999995,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "goal": "movement",
+          "movement": "drive",
+          "floodedRoad": false
+        },
+        "situation": "その道路は冠水していません。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-69",
+          "bosai-70",
+          "bosai-86",
+          "bosai-77",
+          "bosai-84"
+        ],
+        "awaitingContext": false,
+        "selection": 13
+      },
+      "badTop3": [
+        "bosai-69",
+        "bosai-70"
+      ]
+    },
+    {
+      "caseId": "r03",
+      "category": "water-scope",
+      "turn": 1,
+      "input": "台風の日に飲料水がなくなりました。乗用車で買いに行くための一般情報は？",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "移動する道路は冠水していますか？大雨だけでは冠水した状況と判断しません。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "choices": [
+        "道路が冠水しています",
+        "道路は冠水していません"
+      ],
+      "wallMs": 106.9223379999994,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "situation": "台風の日に飲料水がなくなりました。乗用車で買いに行くための一般情報は？",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r04",
+      "category": "wheelchair",
+      "turn": 1,
+      "input": "大雨で冠水した道路を電動車椅子で渡るときの情報はありますか？",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 69.37785899999926,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "movement": "wheelchair"
+        },
+        "situation": "大雨で冠水した道路を電動車椅子で渡るときの情報はありますか？",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "badTop3": [],
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r04",
+      "category": "wheelchair",
+      "turn": 2,
+      "input": "車椅子のことではなく、徒歩で移動する場合です。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-69",
+          "title": "冠水した道路を歩かない",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-77",
+          "title": "側溝・排水口の掃除は雨が強くなる前に",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 21,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 68.90000000596046,
+          "tokens": 26,
+          "retrievalMs": 0.9000000059604645,
+          "totalMs": 70.40000000596046,
+          "conversationMs": 71.20000000298023
+        },
+        "query": "大雨・浸水。道路。道路が冠水しています。徒歩で移動。徒歩で移動する場合です。",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "excluded": [
+          "車椅子のこと"
+        ],
+        "evidence": {
+          "focus": "flood-walk",
+          "policy": "explicit-scene-capability",
+          "originalResultIds": [
+            "bosai-69",
+            "bosai-86",
+            "bosai-70",
+            "bosai-84",
+            "bosai-77"
+          ],
+          "relatedIds": [
+            "bosai-86",
+            "bosai-77"
+          ],
+          "excludedIds": [
+            "bosai-70",
+            "bosai-84"
+          ],
+          "caution": "条件と原文の用途の一致のみ確認しています。現在の安全性・建物の適否・数値限界や、質問全体への十分性は判断しません。"
+        }
+      },
+      "wallMs": 219.98169099999996,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "situation": "大雨・浸水。道路。道路が冠水しています。徒歩で移動。徒歩で移動する場合です。",
+        "action": "歩行",
+        "excluded": [
+          "車椅子のこと"
+        ],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-69",
+          "bosai-86",
+          "bosai-77"
+        ],
+        "awaitingContext": false,
+        "selection": 21
+      },
+      "gold": "bosai-69",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval-and-capability"
+    },
+    {
+      "caseId": "r05",
+      "category": "bicycle",
+      "turn": 1,
+      "input": "道路が冠水した所で自転車を運転する際の注意を知りたいです。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 45.60877299999993,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "movement": "bicycle"
+        },
+        "situation": "道路が冠水した所で自転車を運転する際の注意を知りたいです。",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "badTop3": [],
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r06",
+      "category": "rail",
+      "turn": 1,
+      "input": "電車の車内で揺れた場合の身の守り方を知りたいです。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-56",
+          "title": "電車・鉄道で地震にあったとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-57",
+          "title": "地下鉄で地震にあったとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-54",
+          "title": "車を運転中に地震が起きたとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-71",
+          "title": "車が水没し始めたら早めに脱出する",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-44",
+          "title": "職場・オフィスで地震が起きたとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 27,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 24.299999997019768,
+          "tokens": 17,
+          "retrievalMs": 1.2000000029802322,
+          "totalMs": 26.299999997019768,
+          "conversationMs": 26.80000001192093
+        },
+        "query": "電車の車内で揺れた場合の身の守り方を知りたいです。",
+        "topics": [
+          "地震"
+        ],
+        "facts": {
+          "movement": "rail"
+        },
+        "excluded": [],
+        "evidence": {
+          "focus": null,
+          "policy": "retrieval-only"
+        }
+      },
+      "wallMs": 77.90289399999983,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "地震"
+        ],
+        "facts": {
+          "movement": "rail"
+        },
+        "situation": "電車の車内で揺れた場合の身の守り方を知りたいです。",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-56",
+          "bosai-57",
+          "bosai-54",
+          "bosai-71",
+          "bosai-44"
+        ],
+        "awaitingContext": false,
+        "selection": 27
+      },
+      "gold": "bosai-56",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval"
+    },
+    {
+      "caseId": "r07",
+      "category": "stroller",
+      "turn": 1,
+      "input": "大雨で道路が浸水しています。乳母車を押して避難するときの情報は？",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 23.786184999999932,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "movement": "stroller"
+        },
+        "situation": "大雨で道路が浸水しています。乳母車を押して避難するときの情報は？",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "badTop3": [],
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r08",
+      "category": "automobile",
+      "turn": 1,
+      "input": "冠水した道路を軽自動車で通るかどうかの一般情報を見たいです。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-70",
+          "title": "冠水した道路へ車で入らない",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-64",
+          "title": "キキクルで今いる場所の危険度を確認する",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-65",
+          "title": "線状降水帯の情報を見たら早めに備える",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 33,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 57.599999994039536,
+          "tokens": 36,
+          "retrievalMs": 1.2000000029802322,
+          "totalMs": 59.20000000298023,
+          "conversationMs": 59.70000000298023
+        },
+        "query": "大雨・浸水。道路。道路が冠水しています。車で移動。冠水した道路を軽自動車で通るかどうかの一般情報を見たいです。",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "excluded": [],
+        "evidence": {
+          "focus": "flood-drive",
+          "policy": "explicit-scene-capability",
+          "originalResultIds": [
+            "bosai-70",
+            "bosai-69",
+            "bosai-86",
+            "bosai-64",
+            "bosai-65"
+          ],
+          "relatedIds": [
+            "bosai-86",
+            "bosai-64",
+            "bosai-65"
+          ],
+          "excludedIds": [
+            "bosai-69"
+          ],
+          "caution": "条件と原文の用途の一致のみ確認しています。現在の安全性・建物の適否・数値限界や、質問全体への十分性は判断しません。"
+        }
+      },
+      "wallMs": 116.33496800000012,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "situation": "冠水した道路を軽自動車で通るかどうかの一般情報を見たいです。",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-70",
+          "bosai-86",
+          "bosai-64",
+          "bosai-65"
+        ],
+        "awaitingContext": false,
+        "selection": 33
+      },
+      "gold": "bosai-70",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval-and-capability"
+    },
+    {
+      "caseId": "r09",
+      "category": "compound-correction",
+      "turn": 1,
+      "input": "冠水した道路を自転車で通るときのことを調べたい。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "この移動手段に固有の通行方法や安全性を、この辞書では判断できません。自動車や徒歩の原文を代用せず、誰のどの場面か、必要な一般情報を分けて教えてください。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "wallMs": 42.58516700000018,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "movement": "bicycle"
+        },
+        "situation": "冠水した道路を自転車で通るときのことを調べたい。",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r09",
+      "category": "compound-correction",
+      "turn": 2,
+      "input": "自転車ではなく乗用車で通ります。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "確認できた状況・対象行動に対応する原文候補です。適用範囲や現在の安全性は未確認です。条件と注意事項を確認して選んでください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-70",
+          "title": "冠水した道路へ車で入らない",
+          "category": "台風・大雨・停電",
+          "fit": "scene-and-action",
+          "provenance": "retrieval-and-capability"
+        },
+        {
+          "id": "bosai-86",
+          "title": "大雨のとき地下・アンダーパスへ近づかない",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-68",
+          "title": "川の水位が上がる前に避難判断をする",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-77",
+          "title": "側溝・排水口の掃除は雨が強くなる前に",
+          "category": "台風・大雨・停電",
+          "fit": "related-unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 38,
+      "answerability": "context-compatible-unverified",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 34.5,
+          "tokens": 26,
+          "retrievalMs": 1.0999999940395355,
+          "totalMs": 39.099999994039536,
+          "conversationMs": 39.599999994039536
+        },
+        "query": "大雨・浸水。道路。道路が冠水しています。車で移動。乗用車で通ります。",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "excluded": [
+          "自転車"
+        ],
+        "evidence": {
+          "focus": "flood-drive",
+          "policy": "explicit-scene-capability",
+          "originalResultIds": [
+            "bosai-70",
+            "bosai-86",
+            "bosai-69",
+            "bosai-68",
+            "bosai-77"
+          ],
+          "relatedIds": [
+            "bosai-86",
+            "bosai-68",
+            "bosai-77"
+          ],
+          "excludedIds": [
+            "bosai-69"
+          ],
+          "caution": "条件と原文の用途の一致のみ確認しています。現在の安全性・建物の適否・数値限界や、質問全体への十分性は判断しません。"
+        }
+      },
+      "wallMs": 90.44813199999953,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": true,
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "situation": "大雨・浸水。道路。道路が冠水しています。車で移動。乗用車で通ります。",
+        "action": "車の移動",
+        "excluded": [
+          "自転車"
+        ],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-70",
+          "bosai-86",
+          "bosai-68",
+          "bosai-77"
+        ],
+        "awaitingContext": false,
+        "selection": 38
+      },
+      "gold": "bosai-70",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval-and-capability"
+    },
+    {
+      "caseId": "r10",
+      "category": "explicit-road-negation",
+      "turn": 1,
+      "input": "道路には水がないのですが、家で飲む水もなくなりました。台風の中を車で移動するときは？",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-54",
+          "title": "車を運転中に地震が起きたとき",
+          "category": "地震",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-70",
+          "title": "冠水した道路へ車で入らない",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-20",
+          "title": "水分を我慢しすぎない",
+          "category": "避難所生活",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-77",
+          "title": "側溝・排水口の掃除は雨が強くなる前に",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-69",
+          "title": "冠水した道路を歩かない",
+          "category": "台風・大雨・停電",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 41,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 23.299999997019768,
+          "tokens": 23,
+          "retrievalMs": 1.0999999940395355,
+          "totalMs": 25,
+          "conversationMs": 25.600000008940697
+        },
+        "query": "道路には水がないのですが、家で飲む水もなくなりました。台風の中を車で移動するときは？",
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": false,
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "excluded": [],
+        "evidence": {
+          "focus": null,
+          "policy": "retrieval-only"
+        }
+      },
+      "wallMs": 89.11207899999954,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "road": true,
+          "floodedRoad": false,
+          "goal": "movement",
+          "movement": "drive"
+        },
+        "situation": "道路には水がないのですが、家で飲む水もなくなりました。台風の中を車で移動するときは？",
+        "action": "車の移動",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-54",
+          "bosai-70",
+          "bosai-20",
+          "bosai-77",
+          "bosai-69"
+        ],
+        "awaitingContext": false,
+        "selection": 41
+      },
+      "badTop3": [
+        "bosai-70"
+      ]
+    },
+    {
+      "caseId": "r11",
+      "category": "place-compound",
+      "turn": 1,
+      "input": "北海道では大雨で飲む水がないので、徒歩で買いに行こうと思っています。",
+      "expected": "clarify",
+      "role": "assistant",
+      "text": "移動する道路は冠水していますか？大雨だけでは冠水した状況と判断しません。",
+      "kind": "clarify",
+      "answerability": "needs-context",
+      "choices": [
+        "道路が冠水しています",
+        "道路は冠水していません"
+      ],
+      "wallMs": 36.18644799999947,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "大雨・浸水"
+        ],
+        "facts": {
+          "goal": "movement",
+          "movement": "walk"
+        },
+        "situation": "北海道では大雨で飲む水がないので、徒歩で買いに行こうと思っています。",
+        "action": "歩行",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [],
+        "awaitingContext": true,
+        "selection": null
+      },
+      "unqualifiedCandidates": 0
+    },
+    {
+      "caseId": "r12",
+      "category": "original-source",
+      "turn": 1,
+      "input": "避難所生活で、食物アレルギーがあることを周囲に伝えたいです。",
+      "expected": "confirm",
+      "role": "assistant",
+      "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+      "kind": "confirm",
+      "candidates": [
+        {
+          "id": "bosai-32",
+          "title": "食物アレルギーや食事制限を伝える",
+          "category": "避難所生活",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-30",
+          "title": "妊産婦・乳幼児は必要な支援を早めに伝える",
+          "category": "避難所生活",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-19",
+          "title": "避難所で食中毒を防ぐ",
+          "category": "避難所生活",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-29",
+          "title": "持病がある人は早めに相談する",
+          "category": "避難所生活",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        },
+        {
+          "id": "bosai-28",
+          "title": "薬が足りない・薬の名前が分からないとき",
+          "category": "避難所生活",
+          "fit": "unverified",
+          "provenance": "retrieval"
+        }
+      ],
+      "selection": 47,
+      "answerability": "unverified-candidates",
+      "diagnostics": {
+        "actual": "hybrid",
+        "fallback": null,
+        "timings": {
+          "warm": true,
+          "embeddingMs": 21.400000005960464,
+          "tokens": 16,
+          "retrievalMs": 1.300000011920929,
+          "totalMs": 23.100000008940697,
+          "conversationMs": 23.30000001192093
+        },
+        "query": "避難所生活で、食物アレルギーがあることを周囲に伝えたいです。",
+        "topics": [
+          "避難生活"
+        ],
+        "facts": {},
+        "excluded": [],
+        "evidence": {
+          "focus": null,
+          "policy": "retrieval-only"
+        }
+      },
+      "wallMs": 76.44342799999959,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "避難生活"
+        ],
+        "facts": {},
+        "situation": "避難所生活で、食物アレルギーがあることを周囲に伝えたいです。",
+        "action": "",
+        "excluded": [],
+        "confirmed": [],
+        "referenceIds": [],
+        "pending": [
+          "bosai-32",
+          "bosai-30",
+          "bosai-19",
+          "bosai-29",
+          "bosai-28"
+        ],
+        "awaitingContext": false,
+        "selection": 47
+      },
+      "gold": "bosai-32",
+      "rank": 1,
+      "retrievalBeforeCapabilityRank": 1,
+      "provenance": "retrieval",
+      "chosen": "bosai-32",
+      "originalFieldsVerified": true
+    },
+    {
+      "caseId": "r12",
+      "category": "original-source",
+      "turn": 2,
+      "input": "手順は？",
+      "expected": "source",
+      "role": "assistant",
+      "text": "直前に選択した原文の概要・全手順・注意事項・出典です。",
+      "kind": "source",
+      "answerability": "user-confirmed-source",
+      "entryIds": [
+        "bosai-32"
+      ],
+      "wallMs": 41.02225300000009,
+      "controlPass": true,
+      "state": {
+        "topics": [
+          "避難生活"
+        ],
+        "facts": {},
+        "situation": "避難所生活で、食物アレルギーがあることを周囲に伝えたいです。",
+        "action": "",
+        "excluded": [],
+        "confirmed": [
+          "避難所生活で、食物アレルギーがあることを周囲に伝えたいです。"
+        ],
+        "referenceIds": [
+          "bosai-32"
+        ],
+        "pending": [],
+        "awaitingContext": false,
+        "selection": null
+      },
+      "sourceRetained": true
+    }
+  ],
+  "errors": [],
+  "requests": [
+    "config.json",
+    "onnx/model_quantized.onnx",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "memory": [
+    {
+      "pssMiB": 219.609375,
+      "rssMiB": 427.06640625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 53.2958984375,
+        "zygote": 20.0322265625,
+        "gpu-process": 30.74609375,
+        "renderer": 90.8544921875,
+        "utility": 24.6806640625
+      },
+      "rendererPssMiB": 90.8544921875
+    },
+    {
+      "pssMiB": 274.912109375,
+      "rssMiB": 487.84765625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5849609375,
+        "zygote": 20.0234375,
+        "gpu-process": 31.990234375,
+        "renderer": 148.7080078125,
+        "utility": 24.60546875
+      },
+      "rendererPssMiB": 148.7080078125
+    },
+    {
+      "pssMiB": 273.9052734375,
+      "rssMiB": 490.00390625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5712890625,
+        "zygote": 20.0234375,
+        "gpu-process": 33.3818359375,
+        "renderer": 146.2890625,
+        "utility": 24.6396484375
+      },
+      "rendererPssMiB": 146.2890625
+    },
+    {
+      "pssMiB": 481.5078125,
+      "rssMiB": 698.0546875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.033203125,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3818359375,
+        "renderer": 354.453125,
+        "utility": 24.6220703125
+      },
+      "rendererPssMiB": 354.453125
+    },
+    {
+      "pssMiB": 581.25,
+      "rssMiB": 797.828125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.201171875,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3818359375,
+        "renderer": 454.02734375,
+        "utility": 24.6220703125
+      },
+      "rendererPssMiB": 454.02734375
+    },
+    {
+      "pssMiB": 592.25390625,
+      "rssMiB": 808.875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2265625,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3857421875,
+        "renderer": 464.998046875,
+        "utility": 24.6259765625
+      },
+      "rendererPssMiB": 464.998046875
+    },
+    {
+      "pssMiB": 669.484375,
+      "rssMiB": 886.10546875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2265625,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3857421875,
+        "renderer": 542.228515625,
+        "utility": 24.6259765625
+      },
+      "rendererPssMiB": 542.228515625
+    },
+    {
+      "pssMiB": 686.2568359375,
+      "rssMiB": 902.94140625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2080078125,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3857421875,
+        "renderer": 559.0302734375,
+        "utility": 24.615234375
+      },
+      "rendererPssMiB": 559.0302734375
+    },
+    {
+      "pssMiB": 728.4443359375,
+      "rssMiB": 945.17578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.1298828125,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3544921875,
+        "renderer": 601.3271484375,
+        "utility": 24.615234375
+      },
+      "rendererPssMiB": 601.3271484375
+    },
+    {
+      "pssMiB": 733.1591796875,
+      "rssMiB": 949.96875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.1513671875,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3544921875,
+        "renderer": 606.0400390625,
+        "utility": 24.595703125
+      },
+      "rendererPssMiB": 606.0400390625
+    },
+    {
+      "pssMiB": 752.8232421875,
+      "rssMiB": 969.6328125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.1748046875,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3544921875,
+        "renderer": 625.6767578125,
+        "utility": 24.599609375
+      },
+      "rendererPssMiB": 625.6767578125
+    },
+    {
+      "pssMiB": 369.2685546875,
+      "rssMiB": 586.1015625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2958984375,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3310546875,
+        "renderer": 242.0244140625,
+        "utility": 24.599609375
+      },
+      "rendererPssMiB": 242.0244140625
+    },
+    {
+      "pssMiB": 343.6982421875,
+      "rssMiB": 560.578125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.9755859375,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3544921875,
+        "renderer": 215.7080078125,
+        "utility": 24.642578125
+      },
+      "rendererPssMiB": 215.7080078125
+    },
+    {
+      "pssMiB": 452.8857421875,
+      "rssMiB": 669.8125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.119140625,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3427734375,
+        "renderer": 324.767578125,
+        "utility": 24.638671875
+      },
+      "rendererPssMiB": 324.767578125
+    },
+    {
+      "pssMiB": 564.2568359375,
+      "rssMiB": 781.18359375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.119140625,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3427734375,
+        "renderer": 436.138671875,
+        "utility": 24.638671875
+      },
+      "rendererPssMiB": 436.138671875
+    },
+    {
+      "pssMiB": 608.1162109375,
+      "rssMiB": 825.08984375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.123046875,
+        "zygote": 20.017578125,
+        "gpu-process": 33.3388671875,
+        "renderer": 479.974609375,
+        "utility": 24.662109375
+      },
+      "rendererPssMiB": 479.974609375
+    },
+    {
+      "pssMiB": 668.0390625,
+      "rssMiB": 885.13671875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.3701171875,
+        "zygote": 20.017578125,
+        "gpu-process": 30.7353515625,
+        "renderer": 543.2646484375,
+        "utility": 24.6513671875
+      },
+      "rendererPssMiB": 543.2646484375
+    },
+    {
+      "pssMiB": 684.970703125,
+      "rssMiB": 905.0078125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 50.35546875,
+        "zygote": 20.0126953125,
+        "gpu-process": 31.78125,
+        "renderer": 558.2236328125,
+        "utility": 24.59765625
+      },
+      "rendererPssMiB": 558.2236328125
+    },
+    {
+      "pssMiB": 227.5166015625,
+      "rssMiB": 438.859375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.2197265625,
+        "zygote": 20,
+        "gpu-process": 32.69140625,
+        "renderer": 103.5537109375,
+        "utility": 22.0517578125
+      },
+      "rendererPssMiB": 103.5537109375
+    },
+    {
+      "pssMiB": 436.70703125,
+      "rssMiB": 648.9921875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5,
+        "zygote": 20,
+        "gpu-process": 32.6533203125,
+        "renderer": 312.486328125,
+        "utility": 22.0673828125
+      },
+      "rendererPssMiB": 312.486328125
+    },
+    {
+      "pssMiB": 544.6171875,
+      "rssMiB": 756.98046875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.46875,
+        "zygote": 20,
+        "gpu-process": 32.6611328125,
+        "renderer": 420.412109375,
+        "utility": 22.0751953125
+      },
+      "rendererPssMiB": 420.412109375
+    },
+    {
+      "pssMiB": 612.33984375,
+      "rssMiB": 824.703125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.46875,
+        "zygote": 20,
+        "gpu-process": 32.6650390625,
+        "renderer": 488.130859375,
+        "utility": 22.0751953125
+      },
+      "rendererPssMiB": 488.130859375
+    },
+    {
+      "pssMiB": 639.1572265625,
+      "rssMiB": 852.98828125,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.416015625,
+        "zygote": 19.998046875,
+        "gpu-process": 32.6044921875,
+        "renderer": 514.2177734375,
+        "utility": 22.9208984375
+      },
+      "rendererPssMiB": 514.2177734375
+    },
+    {
+      "pssMiB": 388.90625,
+      "rssMiB": 602.9609375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.458984375,
+        "zygote": 19.998046875,
+        "gpu-process": 32.6787109375,
+        "renderer": 263.849609375,
+        "utility": 22.9208984375
+      },
+      "rendererPssMiB": 263.849609375
+    },
+    {
+      "pssMiB": 342.767578125,
+      "rssMiB": 556.82421875,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4580078125,
+        "zygote": 19.998046875,
+        "gpu-process": 32.677734375,
+        "renderer": 217.712890625,
+        "utility": 22.9208984375
+      },
+      "rendererPssMiB": 217.712890625
+    },
+    {
+      "pssMiB": 292.677734375,
+      "rssMiB": 506.734375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4580078125,
+        "zygote": 19.998046875,
+        "gpu-process": 32.677734375,
+        "renderer": 167.623046875,
+        "utility": 22.9208984375
+      },
+      "rendererPssMiB": 167.623046875
+    },
+    {
+      "pssMiB": 292.677734375,
+      "rssMiB": 506.734375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.4580078125,
+        "zygote": 19.998046875,
+        "gpu-process": 32.677734375,
+        "renderer": 167.623046875,
+        "utility": 22.9208984375
+      },
+      "rendererPssMiB": 167.623046875
+    },
+    {
+      "pssMiB": 292.763671875,
+      "rssMiB": 506.84375,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.5517578125,
+        "zygote": 19.998046875,
+        "gpu-process": 32.673828125,
+        "renderer": 167.619140625,
+        "utility": 22.9208984375
+      },
+      "rendererPssMiB": 167.619140625
+    },
+    {
+      "pssMiB": 292.271484375,
+      "rssMiB": 505.6640625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.552734375,
+        "zygote": 19.9921875,
+        "gpu-process": 33.048828125,
+        "renderer": 166.7412109375,
+        "utility": 22.9365234375
+      },
+      "rendererPssMiB": 166.7412109375
+    },
+    {
+      "pssMiB": 292.271484375,
+      "rssMiB": 505.6640625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.552734375,
+        "zygote": 19.9921875,
+        "gpu-process": 33.048828125,
+        "renderer": 166.7412109375,
+        "utility": 22.9365234375
+      },
+      "rendererPssMiB": 166.7412109375
+    },
+    {
+      "pssMiB": 292.271484375,
+      "rssMiB": 505.6640625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.552734375,
+        "zygote": 19.9921875,
+        "gpu-process": 33.048828125,
+        "renderer": 166.7412109375,
+        "utility": 22.9365234375
+      },
+      "rendererPssMiB": 166.7412109375
+    }
+  ],
+  "checks": {
+    "unsavedFallback": true,
+    "stoppedCold": true,
+    "resetDuringLoad": true,
+    "recoveredReal": true,
+    "mobileNoOverflow": true,
+    "offlineReal": true,
+    "noRedownload": true,
+    "memoryOnlyHistory": true,
+    "voiceIntact": true,
+    "workerReleased": true,
+    "noStaleCandidateSelection": true
+  },
+  "build": "ベータ版 e0b90952f9c2 / 辞書 88件 / CPU・WASM / 自由生成なし",
+  "offline": {
+    "role": "assistant",
+    "text": "意味が近い原文が見つかりましたが、質問に十分答えられるかは未確認です。状況に合う項目がなければ補足してください。",
+    "kind": "confirm",
+    "candidates": [
+      {
+        "id": "bosai-79",
+        "title": "停電時は冷蔵庫・冷凍庫をなるべく開けない",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-80",
+        "title": "浸水・停電後の家電はすぐ再使用しない",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-81",
+        "title": "避難時に主幹ブレーカーを切る",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-78",
+        "title": "停電時にスマートフォンの電池を長持ちさせる",
+        "category": "台風・大雨・停電",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      },
+      {
+        "id": "bosai-59",
+        "title": "避難時の通電火災を防ぐ",
+        "category": "地震",
+        "fit": "unverified",
+        "provenance": "retrieval"
+      }
+    ],
+    "selection": 3,
+    "answerability": "unverified-candidates",
+    "diagnostics": {
+      "actual": "hybrid",
+      "fallback": null,
+      "timings": {
+        "loadMs": 1849.8999999910593,
+        "warm": false,
+        "embeddingMs": 115.1000000089407,
+        "tokens": 12,
+        "retrievalMs": 2.5,
+        "totalMs": 2030.9000000059605,
+        "conversationMs": 2032.7999999970198
+      },
+      "query": "停電中は冷蔵庫を開けてよいですか",
+      "topics": [],
+      "facts": {},
+      "excluded": [],
+      "evidence": {
+        "focus": null,
+        "policy": "retrieval-only"
+      }
+    },
+    "wallMs": 2298.9856390000004
+  },
+  "release": {
+    "before": {
+      "pssMiB": 601.9345703125,
+      "rssMiB": 815.765625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.427734375,
+        "zygote": 19.998046875,
+        "gpu-process": 32.6044921875,
+        "renderer": 476.9833984375,
+        "utility": 22.9208984375
+      },
+      "rendererPssMiB": 476.9833984375
+    },
+    "after": {
+      "pssMiB": 292.271484375,
+      "rssMiB": 505.6640625,
+      "processes": 6,
+      "complete": true,
+      "unavailableCount": 0,
+      "rolePssMiB": {
+        "browser": 49.552734375,
+        "zygote": 19.9921875,
+        "gpu-process": 33.048828125,
+        "renderer": 166.7412109375,
+        "utility": 22.9365234375
+      },
+      "rendererPssMiB": 166.7412109375
+    }
+  },
+  "control": {
+    "passed": 17,
+    "total": 17
+  },
+  "status": "passed"
+}
