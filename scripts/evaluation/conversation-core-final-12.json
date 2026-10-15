@@ -1,0 +1,14 @@
+[
+ {"id":"f01","kind":"event","turns":[{"text":"先月の台風が発生した日付を調べてください","kind":"unsupported","noPending":true}]},
+ {"id":"f02","kind":"general","turns":[{"text":"地震が起きたとき室内で身を守る方法を読みたい","kind":"confirm","choose":true},{"text":"出典は？","kind":"source"}]},
+ {"id":"f03","kind":"live","turns":[{"text":"本日、自宅近くの避難所は開設していますか？","kind":"unsupported","noPending":true}]},
+ {"id":"f04","kind":"medical","turns":[{"text":"インスリンの服用量を教えてほしい","kind":"unsupported","noPending":true}]},
+ {"id":"f05","kind":"negative","turns":[{"text":"台風の後ですが農道には水がない。徒歩での移動の一般情報は？","kind":"confirm","facts":{"floodedRoad":false,"movement":"walk"},"badIds":["bosai-69","bosai-70","bosai-55"]}]},
+ {"id":"f06","kind":"question","turns":[{"text":"冠水している道路ですか？自家用車での通行情報を見たい","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]},
+ {"id":"f07","kind":"multi-person","turns":[{"text":"祖母は車椅子、私は徒歩で大雨からの避難を考えています","kind":"clarify","noPending":true}]},
+ {"id":"f08","kind":"scene-update","turns":[{"text":"道路が水に浸かっています。乗用車で進めますか","kind":"confirm","gold":"bosai-70"},{"text":"その後は車ではなく徒歩です","kind":"confirm","gold":"bosai-69","facts":{"movement":"walk","floodedRoad":true},"badIds":["bosai-70","bosai-71"],"rejectPrevious":true}]},
+ {"id":"f09","kind":"provisional","turns":[{"text":"道路が冠水したとき、長靴を履くかについての原文は？","kind":"confirm","gold":"bosai-84","needsConfirmationIds":["bosai-84"]}]},
+ {"id":"f10","kind":"unsupported-revocation","turns":[{"text":"地震のとき寝床にいる人の一般的な行動を知りたい","kind":"confirm","choose":true},{"text":"今日、この経路は安全ですか？","kind":"unsupported","noPending":true},{"text":"それについて詳しく","kind":"clarify","noPending":true}]},
+ {"id":"f11","kind":"unknown","turns":[{"text":"浸水した乗用車なのですか？避難の資料は？","kind":"clarify","facts":{"vehicleFlooded":null},"noPending":true}]},
+ {"id":"f12","kind":"ambiguous","turns":[{"text":"水のことが心配になりました","kind":"clarify","noPending":true},{"text":"飲料水の備えについてです","kind":"confirm"}]}
+]

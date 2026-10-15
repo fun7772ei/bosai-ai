@@ -1,0 +1,8 @@
+[
+ {"id":"r01","kind":"event-ellipsis","turns":[{"text":"先日の地震は何時だったのですか","kind":"unsupported","noPending":true}]},
+ {"id":"r02","kind":"event","turns":[{"text":"いつ津波が来たのか調べたいです","kind":"unsupported","noPending":true}]},
+ {"id":"r03","kind":"general","turns":[{"text":"地震発生時に寝室にいる場合の注意事項を読みたいです","kind":"confirm","gold":"bosai-39","choose":true},{"text":"もっと詳しく","kind":"source"}]},
+ {"id":"r04","kind":"contrast","turns":[{"text":"診断ではなく、避難生活で薬が足りないときの相談先を知りたい","kind":"confirm","gold":"bosai-28"}]},
+ {"id":"r05","kind":"negative","turns":[{"text":"台風ですが道は冠水していない。徒歩移動の一般的な情報はある？","kind":"confirm","facts":{"floodedRoad":false,"movement":"walk"},"badIds":["bosai-69","bosai-70","bosai-55"]}]},
+ {"id":"r06","kind":"unknown","turns":[{"text":"車内に水が入っているのでしょうか？乗用車の脱出資料は？","kind":"clarify","facts":{"vehicleFlooded":null},"noPending":true}]}
+]

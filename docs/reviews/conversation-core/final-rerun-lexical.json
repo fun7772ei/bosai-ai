@@ -1,0 +1,296 @@
+{
+  "commit": "0b2543434b7839ff334045b78fb371b084816b81",
+  "workingTreeDirty": true,
+  "coreSha256": {
+    "src/conversation.js": "7cb7ddc7cb8e024fc8c32a6bb40c3c6f940ea4f9136270def63c5d7fec3aa0bb",
+    "src/request-understanding.js": "c5d3cac1c589bd9e97bcb216e25d17d1a2a3bff609667dbbef288adb094524a4",
+    "src/request-facts.js": "9827af8c835502bf245de60032d5281f79e4b37391ecb08e6670d45f3fcc2fc0",
+    "src/request-scope.js": "dd49d40c992b2bd7e4496ab1ad25d55b9c142f4d1298a20f26a955986ea2db0b",
+    "src/conversation-applicability.js": "750d12dd3cbb8482664f11cbe308d8e7cbef2f9cbf2169df4213f5b939c0cdbb",
+    "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+    "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef"
+  },
+  "mode": "lexical-only; not real-model/browser or independent expert evaluation",
+  "casesSha256": {
+    "scripts/evaluation/conversation-core-final-12.json": "109ea0c2d414951b2c62beaf7dfcbea525f69a5f89338428b16b78788a1a8ff2"
+  },
+  "summary": {
+    "turns": 17,
+    "controlPassed": 16,
+    "goldQueries": 3,
+    "goldTop1": 3,
+    "badTop3Queries": 0
+  },
+  "rows": [
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f01",
+      "turn": 1,
+      "input": "先月の台風が発生した日付を調べてください",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f02",
+      "turn": 1,
+      "input": "地震が起きたとき室内で身を守る方法を読みたい",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-38",
+        "bosai-43",
+        "bosai-41",
+        "bosai-44",
+        "bosai-54"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f02",
+      "turn": 2,
+      "input": "出典は？",
+      "expected": "source",
+      "kind": "source",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f03",
+      "turn": 1,
+      "input": "本日、自宅近くの避難所は開設していますか？",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f04",
+      "turn": 1,
+      "input": "インスリンの服用量を教えてほしい",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f05",
+      "turn": 1,
+      "input": "台風の後ですが農道には水がない。徒歩での移動の一般情報は？",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-72",
+        "bosai-81",
+        "bosai-75",
+        "bosai-76"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": false,
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": null,
+      "controlPass": true,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f06",
+      "turn": 1,
+      "input": "冠水している道路ですか？自家用車での通行情報を見たい",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "road": true,
+        "floodedRoad": null,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f07",
+      "turn": 1,
+      "input": "祖母は車椅子、私は徒歩で大雨からの避難を考えています",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f08",
+      "turn": 1,
+      "input": "道路が水に浸かっています。乗用車で進めますか",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-70",
+        "bosai-86",
+        "bosai-83"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": "flood-drive",
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f08",
+      "turn": 2,
+      "input": "その後は車ではなく徒歩です",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-69",
+        "bosai-86"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": "flood-walk",
+      "controlPass": true,
+      "goldRank": 1,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f09",
+      "turn": 1,
+      "input": "道路が冠水したとき、長靴を履くかについての原文は？",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-84",
+        "bosai-86",
+        "bosai-83"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "goal": "footwear"
+      },
+      "focus": "flood-footwear",
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f10",
+      "turn": 1,
+      "input": "地震のとき寝床にいる人の一般的な行動を知りたい",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-27",
+        "bosai-39",
+        "bosai-48",
+        "bosai-56",
+        "bosai-33"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f10",
+      "turn": 2,
+      "input": "今日、この経路は安全ですか？",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f10",
+      "turn": 3,
+      "input": "それについて詳しく",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f11",
+      "turn": 1,
+      "input": "浸水した乗用車なのですか？避難の資料は？",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "floodedRoad": null,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": null,
+      "controlPass": false
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f12",
+      "turn": 1,
+      "input": "水のことが心配になりました",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-final-12.json",
+      "id": "f12",
+      "turn": 2,
+      "input": "飲料水の備えについてです",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-20",
+        "bosai-36",
+        "bosai-21",
+        "bosai-57"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    }
+  ]
+}

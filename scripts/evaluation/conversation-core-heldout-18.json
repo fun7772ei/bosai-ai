@@ -1,0 +1,20 @@
+[
+ {"id":"h01","kind":"live","turns":[{"text":"今朝、近所の避難所に空きはありますか？","kind":"unsupported","noPending":true}]},
+ {"id":"h02","kind":"event","turns":[{"text":"昨年この県で津波が発生した日時を知りたいです","kind":"unsupported","noPending":true}]},
+ {"id":"h03","kind":"road-safety","turns":[{"text":"現在、近くの橋は通行可能でしょうか","kind":"unsupported","noPending":true}]},
+ {"id":"h04","kind":"medical","turns":[{"text":"避難所にいますが薬を減らして飲んでよいですか","kind":"unsupported","noPending":true}]},
+ {"id":"h05","kind":"general","turns":[{"text":"揺れが来たとき寝室で身を守る一般的な方法を読みたい","kind":"confirm","gold":"bosai-39","choose":true},{"text":"注意事項は？","kind":"source"}]},
+ {"id":"h06","kind":"unknown-route","turns":[{"text":"通勤路は浸水しているのでしょうか？徒歩で帰る情報がほしい","kind":"clarify","facts":{"floodedRoad":null},"noPending":true}]},
+ {"id":"h07","kind":"dry-route","turns":[{"text":"大雨のあと、県道は浸水していません。乗用車で移動する一般情報は？","kind":"confirm","facts":{"floodedRoad":false,"movement":"drive"},"badIds":["bosai-69","bosai-70","bosai-55"]}]},
+ {"id":"h08","kind":"correction","turns":[{"text":"冠水した国道をトラックで進んでよいかの原文を見たい","kind":"confirm","gold":"bosai-70"},{"text":"トラックではなく歩いて避難します","kind":"confirm","facts":{"movement":"walk","floodedRoad":true},"gold":"bosai-69","badIds":["bosai-70","bosai-71"],"rejectPrevious":true}]},
+ {"id":"h09","kind":"subject","turns":[{"text":"私は冠水した道を徒歩で移動、姉は自動車です","kind":"clarify","noPending":true}]},
+ {"id":"h10","kind":"subject-change","turns":[{"text":"私は水没した乗用車にいます","kind":"confirm","gold":"bosai-71"},{"text":"その後、父は車です","kind":"clarify","noPending":true,"absentFacts":["vehicleFlooded"]}]},
+ {"id":"h11","kind":"provisional","turns":[{"text":"浸水した歩道で避難するための履物の原文はありますか","kind":"confirm","gold":"bosai-84","needsConfirmationIds":["bosai-84"]}]},
+ {"id":"h12","kind":"unknown-vehicle","turns":[{"text":"軽自動車は水没していますか？脱出の一般情報を確認したい","kind":"clarify","facts":{"vehicleFlooded":null},"noPending":true}]},
+ {"id":"h13","kind":"unsupported-topic","turns":[{"text":"火山灰が自宅の屋根に積もった時の処理方法は？","kind":"unsupported","noPending":true}]},
+ {"id":"h14","kind":"mode","turns":[{"text":"水浸しの通学路をベビーカーで避難する方法は？","kind":"clarify","noPending":true}]},
+ {"id":"h15","kind":"reset","turns":[{"text":"地震で寝室にいる場合の一般情報を読みたい","kind":"confirm","choose":true},{"text":"新しい話題","kind":"clarify","noPending":true},{"text":"その場所ではどうする？","kind":"clarify","noPending":true}]},
+ {"id":"h16","kind":"unknown-subject","turns":[{"text":"叔父は車、私は徒歩で冠水した道路を避難します","kind":"clarify","noPending":true}]},
+ {"id":"h17","kind":"polarity-update","turns":[{"text":"大雨で道が冠水しています。自家用車で移動する原文を見たい","kind":"confirm","gold":"bosai-70"},{"text":"その道路には水がありません。車の情報は？","kind":"confirm","facts":{"floodedRoad":false},"badIds":["bosai-69","bosai-70"],"queryExcludes":"冠水しています","rejectPrevious":true}]},
+ {"id":"h18","kind":"ambiguous","turns":[{"text":"トイレのことで困りました","kind":"clarify","noPending":true},{"text":"断水時のトイレの使い方です","kind":"confirm","gold":"bosai-17"}]}
+]

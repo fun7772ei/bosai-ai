@@ -15,7 +15,7 @@ export function mountConversation(controller){
  function voiceActive(){return voiceLab?.dataset.active==='true';}
  panel.append(heading,note,log,form);main.insertBefore(panel,workspace);
  const toggle=node('button','会話モードを試す（文字入力）');toggle.type='button';toggle.id='chatToggle';toggle.className='tonal';main.insertBefore(toggle,workspace);
- const engine=new Conversation((q,m)=>controller.search(q,m));let epoch=0;
+ const engine=new Conversation((q,m,request)=>controller.search(q,m,request));let epoch=0;
 
  // Three independent routes share the same Ruri controller and existing controls.
  // Keep the dictionary as the initial route until the new chat has iPad validation.

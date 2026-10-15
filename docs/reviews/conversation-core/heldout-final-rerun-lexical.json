@@ -1,0 +1,431 @@
+{
+  "commit": "0b2543434b7839ff334045b78fb371b084816b81",
+  "workingTreeDirty": true,
+  "coreSha256": {
+    "src/conversation.js": "7cb7ddc7cb8e024fc8c32a6bb40c3c6f940ea4f9136270def63c5d7fec3aa0bb",
+    "src/request-understanding.js": "c5d3cac1c589bd9e97bcb216e25d17d1a2a3bff609667dbbef288adb094524a4",
+    "src/request-facts.js": "9827af8c835502bf245de60032d5281f79e4b37391ecb08e6670d45f3fcc2fc0",
+    "src/request-scope.js": "dd49d40c992b2bd7e4496ab1ad25d55b9c142f4d1298a20f26a955986ea2db0b",
+    "src/conversation-applicability.js": "750d12dd3cbb8482664f11cbe308d8e7cbef2f9cbf2169df4213f5b939c0cdbb",
+    "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+    "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef"
+  },
+  "mode": "lexical-only; not real-model/browser or independent expert evaluation",
+  "casesSha256": {
+    "scripts/evaluation/conversation-core-heldout-18.json": "c3ef6639705deadd5f325b9c2fe51867f4ce7e135ab9b8dd25bce2cf48fb6d00"
+  },
+  "summary": {
+    "turns": 25,
+    "controlPassed": 25,
+    "goldQueries": 7,
+    "goldTop1": 6,
+    "badTop3Queries": 0
+  },
+  "rows": [
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h01",
+      "turn": 1,
+      "input": "今朝、近所の避難所に空きはありますか？",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h02",
+      "turn": 1,
+      "input": "昨年この県で津波が発生した日時を知りたいです",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h03",
+      "turn": 1,
+      "input": "現在、近くの橋は通行可能でしょうか",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h04",
+      "turn": 1,
+      "input": "避難所にいますが薬を減らして飲んでよいですか",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h05",
+      "turn": 1,
+      "input": "揺れが来たとき寝室で身を守る一般的な方法を読みたい",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-74",
+        "bosai-38",
+        "bosai-39",
+        "bosai-41",
+        "bosai-3"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true,
+      "goldRank": 3
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h05",
+      "turn": 2,
+      "input": "注意事項は？",
+      "expected": "source",
+      "kind": "source",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h06",
+      "turn": 1,
+      "input": "通勤路は浸水しているのでしょうか？徒歩で帰る情報がほしい",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "road": true,
+        "floodedRoad": null,
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h07",
+      "turn": 1,
+      "input": "大雨のあと、県道は浸水していません。乗用車で移動する一般情報は？",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-86",
+        "bosai-64",
+        "bosai-84"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": false,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": null,
+      "controlPass": true,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h08",
+      "turn": 1,
+      "input": "冠水した国道をトラックで進んでよいかの原文を見たい",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-70",
+        "bosai-86",
+        "bosai-65",
+        "bosai-64"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": "flood-drive",
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h08",
+      "turn": 2,
+      "input": "トラックではなく歩いて避難します",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-69",
+        "bosai-86"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": "flood-walk",
+      "controlPass": true,
+      "goldRank": 1,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h09",
+      "turn": 1,
+      "input": "私は冠水した道を徒歩で移動、姉は自動車です",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h10",
+      "turn": 1,
+      "input": "私は水没した乗用車にいます",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-71",
+        "bosai-70",
+        "bosai-86",
+        "bosai-83",
+        "bosai-64"
+      ],
+      "facts": {
+        "goal": "movement",
+        "movement": "drive",
+        "vehicleFlooded": true
+      },
+      "focus": "vehicle-escape",
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h10",
+      "turn": 2,
+      "input": "その後、父は車です",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h11",
+      "turn": 1,
+      "input": "浸水した歩道で避難するための履物の原文はありますか",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-84",
+        "bosai-86",
+        "bosai-83"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "goal": "footwear"
+      },
+      "focus": "flood-footwear",
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h12",
+      "turn": 1,
+      "input": "軽自動車は水没していますか？脱出の一般情報を確認したい",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "goal": "movement",
+        "movement": "drive",
+        "vehicleFlooded": null
+      },
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h13",
+      "turn": 1,
+      "input": "火山灰が自宅の屋根に積もった時の処理方法は？",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h14",
+      "turn": 1,
+      "input": "水浸しの通学路をベビーカーで避難する方法は？",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "movement": "stroller"
+      },
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h15",
+      "turn": 1,
+      "input": "地震で寝室にいる場合の一般情報を読みたい",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-39",
+        "bosai-37",
+        "bosai-65",
+        "bosai-40",
+        "bosai-54"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h15",
+      "turn": 2,
+      "input": "新しい話題",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h15",
+      "turn": 3,
+      "input": "その場所ではどうする？",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h16",
+      "turn": 1,
+      "input": "叔父は車、私は徒歩で冠水した道路を避難します",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h17",
+      "turn": 1,
+      "input": "大雨で道が冠水しています。自家用車で移動する原文を見たい",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-70",
+        "bosai-86",
+        "bosai-64",
+        "bosai-65"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": true,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": "flood-drive",
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h17",
+      "turn": 2,
+      "input": "その道路には水がありません。車の情報は？",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-86",
+        "bosai-71",
+        "bosai-83"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": false,
+        "goal": "movement",
+        "movement": "drive"
+      },
+      "focus": null,
+      "controlPass": true,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h18",
+      "turn": 1,
+      "input": "トイレのことで困りました",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-heldout-18.json",
+      "id": "h18",
+      "turn": 2,
+      "input": "断水時のトイレの使い方です",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-17",
+        "bosai-82",
+        "bosai-40",
+        "bosai-18",
+        "bosai-25"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true,
+      "goldRank": 1
+    }
+  ]
+}

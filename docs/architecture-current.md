@@ -51,3 +51,7 @@ Detailed implementation contract: [Conversation-engine rewrite brief](conversati
 ### Guardrail
 
 A full rewrite is encouraged when it removes accidental complexity, **but a shorter implementation is not automatically a safer one**. Never discard negation, disaster distinctions, uncertain prerequisites, source warnings, or offline recovery just to reduce line count.
+
+## Proposed conversation core (PR #20)
+
+The replacement and intentional differences are described in [conversation-core-design.md](conversation-core-design.md). `request-understanding` owns scene transitions; `request-scope` is shared by chat and dictionary; `evaluateEvidence` owns source selection and applicability. Storage, model and speech adapters retain their formats and lifecycles. Validation results are tracked separately from historical checkpoints.

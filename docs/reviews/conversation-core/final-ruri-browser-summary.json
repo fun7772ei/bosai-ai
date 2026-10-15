@@ -1,0 +1,168 @@
+{
+  "runs": [
+    {
+      "createdAt": "2026-10-15T01:57:40.721Z",
+      "implementation": "a7a11e8a5fbd589ad4986910290d6f82834c0fff",
+      "workingTreeDirty": true,
+      "coreSha256": {
+        "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+        "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+        "src/query-scope.js": "7a5797bf85f1eb783b38689e19e051596727c9cec3a79026762f772266c97008",
+        "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+        "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef",
+        "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+        "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+        "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+        "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+        "src/conversation.js": "7cb7ddc7cb8e024fc8c32a6bb40c3c6f940ea4f9136270def63c5d7fec3aa0bb",
+        "src/conversation-context.js": "5c78814d04cd337ec9bdf648439d2c622211d2c8f08c6046018acb3da0189e4b",
+        "src/conversation-evidence.js": "2988025b897c911863d44e8bf722ad4599f00e115e6a6f060c5065ae648145f8",
+        "src/conversation-ui.js": "b005e7914d247104744f4e209f3874eade11ee60ef19863ac199f5efb0c10c02",
+        "src/conversation-applicability.js": "750d12dd3cbb8482664f11cbe308d8e7cbef2f9cbf2169df4213f5b939c0cdbb",
+        "src/conversation-applicability.json": "16cfdae894688d030b5784964d85a1cdf2e42d6274d94852186ef8954bda7a95",
+        "src/question-intent.js": "9036359c5dfab915a3b228dd86aab9eb3981ac5ff3e87948973ef2f69d7282b8",
+        "src/voice-draft.js": "52fc303d435c9fcf5a259a00646b6d29737d86085b4f3b75f691fca7c8d880d4",
+        "src/conversation.css": "2c0836a37f2a4253905886ef52ec282d7624c887cb522e3b6107d06ded04fc25",
+        "src/beta-main.js": "03cac19543add32e1e979b703955bf03fc3b895daba753213381ea95dd448d9b",
+        "src/request-scope.js": "71053ff17ad38c83ab07b931beb51e2a5453ea090ce45d05bd06dcf3381622b7",
+        "src/request-facts.js": "9e8a4bfa2b72bc727fdf5d81cf90e4e547d6031fab8851e7c1225f465ea250d5",
+        "src/request-understanding.js": "8a0676d093031fefeac812b489a559ba5410cf2770fbcb69eb31c4fb0a99f317"
+      },
+      "casesPath": "scripts/evaluation/conversation-core-final-12.json",
+      "casesSha256": "109ea0c2d414951b2c62beaf7dfcbea525f69a5f89338428b16b78788a1a8ff2",
+      "platform": "Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari",
+      "status": "failed",
+      "control": {
+        "passed": 15,
+        "total": 17
+      },
+      "checks": {
+        "dictionaryDefault": true,
+        "settingsRoute": true,
+        "offlineCatalog": true,
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "offlineCatalogRestart": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": false
+      },
+      "errors": [],
+      "tag": "conversation-core-final-local",
+      "semantic": null,
+      "gold": [
+        {
+          "id": "f08",
+          "rank": 1
+        },
+        {
+          "id": "f08",
+          "rank": 1
+        },
+        {
+          "id": "f09",
+          "rank": 1
+        }
+      ]
+    },
+    {
+      "createdAt": "2026-10-15T01:59:44.342Z",
+      "implementation": "1b33a37dd4c898699b531f3c6dda883d3d541e70",
+      "workingTreeDirty": false,
+      "coreSha256": {
+        "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+        "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+        "src/query-scope.js": "7a5797bf85f1eb783b38689e19e051596727c9cec3a79026762f772266c97008",
+        "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+        "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef",
+        "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+        "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+        "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+        "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+        "src/conversation.js": "7cb7ddc7cb8e024fc8c32a6bb40c3c6f940ea4f9136270def63c5d7fec3aa0bb",
+        "src/conversation-context.js": "5c78814d04cd337ec9bdf648439d2c622211d2c8f08c6046018acb3da0189e4b",
+        "src/conversation-evidence.js": "2988025b897c911863d44e8bf722ad4599f00e115e6a6f060c5065ae648145f8",
+        "src/conversation-ui.js": "b005e7914d247104744f4e209f3874eade11ee60ef19863ac199f5efb0c10c02",
+        "src/conversation-applicability.js": "750d12dd3cbb8482664f11cbe308d8e7cbef2f9cbf2169df4213f5b939c0cdbb",
+        "src/conversation-applicability.json": "16cfdae894688d030b5784964d85a1cdf2e42d6274d94852186ef8954bda7a95",
+        "src/question-intent.js": "9036359c5dfab915a3b228dd86aab9eb3981ac5ff3e87948973ef2f69d7282b8",
+        "src/voice-draft.js": "52fc303d435c9fcf5a259a00646b6d29737d86085b4f3b75f691fca7c8d880d4",
+        "src/conversation.css": "2c0836a37f2a4253905886ef52ec282d7624c887cb522e3b6107d06ded04fc25",
+        "src/beta-main.js": "03cac19543add32e1e979b703955bf03fc3b895daba753213381ea95dd448d9b",
+        "src/request-scope.js": "71053ff17ad38c83ab07b931beb51e2a5453ea090ce45d05bd06dcf3381622b7",
+        "src/request-facts.js": "9e8a4bfa2b72bc727fdf5d81cf90e4e547d6031fab8851e7c1225f465ea250d5",
+        "src/request-understanding.js": "8a0676d093031fefeac812b489a559ba5410cf2770fbcb69eb31c4fb0a99f317"
+      },
+      "casesPath": "scripts/evaluation/conversation-core-final-12.json",
+      "casesSha256": "109ea0c2d414951b2c62beaf7dfcbea525f69a5f89338428b16b78788a1a8ff2",
+      "platform": "Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari",
+      "status": "passed",
+      "control": {
+        "passed": 16,
+        "total": 17
+      },
+      "checks": {
+        "dictionaryDefault": true,
+        "settingsRoute": true,
+        "offlineCatalog": true,
+        "unsavedFallback": true,
+        "stoppedCold": true,
+        "resetDuringLoad": true,
+        "recoveredReal": true,
+        "mobileNoOverflow": true,
+        "offlineReal": true,
+        "noRedownload": true,
+        "memoryOnlyHistory": true,
+        "offlineCatalogRestart": true,
+        "voiceIntact": true,
+        "workerReleased": true,
+        "noStaleCandidateSelection": true
+      },
+      "errors": [],
+      "tag": "conversation-core-final-local-verified",
+      "semantic": {
+        "control": {
+          "passed": 16,
+          "total": 17
+        },
+        "kindAgreement": 17,
+        "badTop3Queries": 0,
+        "failures": [
+          {
+            "caseId": "f11",
+            "turn": 1,
+            "input": "浸水した乗用車なのですか？避難の資料は？",
+            "expected": "clarify",
+            "actual": "clarify",
+            "facts": {
+              "floodedRoad": null,
+              "goal": "movement",
+              "movement": "drive"
+            }
+          }
+        ]
+      },
+      "gold": [
+        {
+          "id": "f08",
+          "rank": 1
+        },
+        {
+          "id": "f08",
+          "rank": 1
+        },
+        {
+          "id": "f09",
+          "rank": 1
+        }
+      ]
+    }
+  ],
+  "note": "First run failed because the stale-control harness counted valid controls for the current turn. No app or label changes followed. The second run fixes that measurement, checks old selection tokens and passes runtime checks; the f11 fact-schema difference remains."
+}
