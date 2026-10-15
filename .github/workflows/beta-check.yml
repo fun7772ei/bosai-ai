@@ -2,13 +2,15 @@ name: Check Ruri public beta
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  verify:
+  quick:
+    name: Fast unit and build checks
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,6 +21,20 @@ jobs:
       - run: npm test
       - run: npm run build
       - run: node scripts/check-public-build.mjs
+  verify:
+    name: Full real-Ruri and offline regression
+    needs: quick
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: python3 scripts/fetch-ruri-assets.py
       - name: Real Ruri, regression, offline restart and safe update

@@ -1,0 +1,29 @@
+<!-- Historical snapshot from repository root, 2026-10-15. Relative links originally assumed the repository root. -->
+
+> **現行：PR #18の継続改善（Phase 2 α）、固定c768c10、135単体。** [最新の実装・比較・失敗・再現・iPad判断](docs/phase2-conversation-improvement.md)を先に読む。P1/P2と再レビュー追加指摘を修正し、複数ラウンドで固定後の未使用会話を実Ruriで評価。旧セットは回帰へ移行し、成績/失敗を保持。極性/対象/質問の扱いは改善したが、原文の適用・否定した場面の記事・発生日の未収録等は未解決。安全性完成ではない。main6ae5471と既存公開版を維持し、**マージ/Pages公開/新規PR作成はしない**。Ruri30 q8/既存保存/原文88件/通常検索/SW/DBを維持。Moonshineは既存Tiny通常版、Issue #16は今回未修正。iPad実機未操作。
+
+---
+
+以下はPR #18初版以前の履歴で、現在の方針/評価と混同しない。
+
+> **現在の作業：Phase 2 α（文字会話試作）。** Issue [#17](https://github.com/fun7772ei/bosai-ai/issues/17)全文と最新main `6ae5471` を基準に開始。新規PRまで。**mainマージ・Pages更新は禁止（今回未実施）。** [実装・評価・失敗・次の手順](docs/phase2-conversation-alpha.md)を先に読む。PR #14はOPEN・ガード未採用。MoonshineはPR #12/#13/#15で日本語Tiny通常版まで実装済み、ユーザーの基本認識成功報告あり、Issue #16の反映停止/誤認識は未解決・今回未修正。自由生成なし、30M/88原文/既存保存と音声導線を維持。以下は過去の経緯であり、「今回公開する」「音声未着手」「iPad基本動作未確認」等を現在の方針と混同しない。
+
+# bosai-ai：Ruri優先ベータの継続作業
+
+2026-10-14 UTCにPR #10を通常mergeして公開済み。アプリ版f41848b50937、公開URL https://fun7772ei.github.io/bosai-ai/ 。実HF保存・Chromiumオフライン再起動まで成功、iPad実機は未確認。公開証跡は `docs/diagnostics/beta-release.json`。
+
+`fun7772ei/bosai-ai` の [CLOUD_HANDOFF.md](CLOUD_HANDOFF.md)、[README.md](README.md)、[公開ベータ検証](docs/ruri-beta.md) を先に読んでください。過去のCPU品質/6方式比較は履歴として残っています。
+
+公開版は88件の原文を参照する防災辞書です。既定は軽量＋Ruri-v3-30m q8 CPU/WASM、Ruri単独も利用可能、未保存や失敗時は軽量検索へ戻ります。候補と質問の答えを同一視せず、状況を確認して原文・注意・出典を表示します。現在の災害/警報・開設状況や個別医療判断は提供できません。未収録判定には取りこぼしがあり、正式な安全性確認済みではありません。
+
+公開ビルドで防災回答の自由生成を実行しないでください。研究コードと旧保存は維持し、研究は `research.html` / `npm run dev:research` / `npm run build:research` で分離します。公開成果物へ研究HTML・LFMランタイム・モデル重みを混入させないでください。`node scripts/check-public-build.mjs` で検査します。
+
+データ88件の原文を変更せず、元 `fun7772ei/bosai-app` も変更しません。アプリに固定コピーと事前計算ベクトルを同梱し、実行時にGitHubへ同期しません。Ruri本体は初回明示取得→既存IndexedDBへ4MiB分割保存→保存済みのみで再利用。既存モデル選択・設定・保存を更新で削除しないでください。質問を外部AI APIへ送らず、重みをGitに含めません。
+
+PR #9の64問は回帰用。87cf7c3後の80問はレビュー修正後には回帰用です。安全上のレビュー修正をd7be140で再凍結した後の60問が最終評価用で、正解を見て検索設定を調整してはいけません。次回改善は新たな開発問題で行い、新しい独立評価を用意します。結果と失敗例は `docs/diagnostics/beta-*.json`。精度・棄却・危険な取り違え・曖昧質問を別々に評価してください。
+
+Node.js 24以降で `npm ci`、`npm test`、`npm run build`、公開成果物検査。実モデル用は `python3 scripts/fetch-ruri-assets.py`、port 4173の本番previewと `scripts/beta-browser-check.mjs`。詳細な再現コマンドは公開ベータ資料を参照してください。実モデル・ダミー保存・Chromium・Safari実機の結果を混同しません。
+
+現在の公開依頼は、PRで変更をレビュー可能にし、必要な検証が成功した場合のmain統合とPages公開まで承認されています。積み上げPR #6〜#9を個別に公開せず、生成無効化までまとめてmainへ統合します。公開チェックに重大な問題があれば公開せず報告します。今後の作業で公開範囲が変わる場合は、その時点のユーザー指示を優先してください。
+
+目標端末はiPad第10世代・iPadOS 26.5・Safari・オフラインPWAですが、今回の開発側実機検証は未実施です。「iPad確認済み」「完全オフライン完成」と報告せず、ベータ版を明示してください。Safari通常タブとホーム画面PWAは別に最小限の試験を行い、アプリ/サイトデータの削除を要求しないでください。Phase 2正式統合・会話/RAGへ進めません。
