@@ -52,6 +52,7 @@ jobs:
         run: |
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-core-heldout-18.json --tag=conversation-core-heldout-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-core-final-12.json --tag=conversation-core-final-ci
+          node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-core-review-final-6.json --tag=conversation-core-review-final-ci
           node scripts/conversation-browser-check.mjs
           node scripts/conversation-v2-browser-check.mjs --tag=conversation-v2-dev-ci
           node scripts/conversation-v2-browser-check.mjs --cases=scripts/evaluation/conversation-v2-final-32.json --tag=conversation-v2-regression32-ci

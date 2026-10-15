@@ -10,7 +10,7 @@
 
 ## 軽量検証
 
-153 unit tests、build、public-build検査は成功。原文88件、研究用生成ランタイムなし、weights混入なし。ローカルの通常 `npm ci` は ONNX native postinstall のネットワーク接続で失敗し、`npm ci --ignore-scripts` を使用。GitHub quick CIでは通常npm ciを含め成功。
+154 unit tests、build、public-build検査は成功。原文88件、研究用生成ランタイムなし、weights混入なし。ローカルの通常 `npm ci` は ONNX native postinstall のネットワーク接続で失敗し、`npm ci --ignore-scripts` を使用。GitHub quick CIでは通常npm ciを含め成功。
 
 凍結済み会話18セット242ターンを同じlexical経路で新旧比較:
 
@@ -45,3 +45,8 @@ iPad 10 Safari、PWA更新後の保存モデル再利用、オフライン再起
 最終レビューで、旧coverageが保護した「地震はいつ」のような省略形を保持するため、日時判定を災害語＋日時属性＋一般行動の区別へ簡素化した。辞書・会話とも同じconditionsの除外範囲を使うように整理し、電話番号を否定した一般質問の範囲も一致させた。上記の初回/追加未使用測定はそれぞれ記載したコードに対する履歴として残し、最終コードへの再測定と新規確認を別ログへ記録する。
 
 フルCI初回 `38668753180` は音声分離まで成功後、beta runnerが古いquery-scopeのコードhashを要求したため停止。会話runnerと同様、既定で現行コードの実測hashを記録し、明示freeze指定時は厳密比較する方式に変更した。凍結質問・正解hashの検査は維持。旧freezeファイルは変更しない。
+
+
+最終エンジン `0b25434` に対し、未使用6会話7ターンを別に作成した。軽量/実Ruriの両方で制御7/7、種別7/7、gold先頭2/2、指定不適切top3は0。実Ruriのruntime/offline15検査も全て成功。`review-final-*` にコードhashと結果を保存。これらの結果を見た後のエンジン変更は行っていない。
+
+旧18セット242ターンの最終エンジン再測定も237/242・先頭113/121・指定不適切top3残存3件。5ターンの順位差を `regression-final-lexical-delta.json` に別保存。最初の18会話は25/25、追加12会話は16/17で、f11の不明状態の記録差は最終コードでも残る（`heldout-final-rerun-lexical.json` / `final-rerun-lexical.json`）。この記録は過去セットを新たな未使用評価とみなすものではない。

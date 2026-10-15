@@ -1,0 +1,74 @@
+{
+  "createdAt": "2026-10-15T02:03:37.072Z",
+  "implementation": "0b2543434b7839ff334045b78fb371b084816b81",
+  "workingTreeDirty": true,
+  "coreSha256": {
+    "src/bosai-search.js": "2b19faa46ed0d836d8b5a8ab17f04c1ae2660417075cfcfee0c73b207edda9db",
+    "src/semantic-search.js": "ba6bf76550f472317afd90d71c64ae2ba6736ea017d0d94a4bca483be33c467c",
+    "src/query-scope.js": "7a5797bf85f1eb783b38689e19e051596727c9cec3a79026762f772266c97008",
+    "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+    "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef",
+    "src/embedding-runtime.js": "10cddaaf4db4f447f7d3c5303cacbee69eaa5a92b13bec2395fd46c1a6604662",
+    "src/ruri-models.js": "2d7a445a928b457a9bfe7f10027cf7ede9f3f727905649d7af8ddd00d530f328",
+    "src/bosai-data.json": "9ab01f30286d5368794184f040575d3e7c9b9aa563d4d505d9d3eea9c0167891",
+    "src/bosai-vectors.json": "b80fdb63eaff0d147712ff7858150ce603aec95baf8cbf0be39abbd42e4990d4",
+    "src/conversation.js": "7cb7ddc7cb8e024fc8c32a6bb40c3c6f940ea4f9136270def63c5d7fec3aa0bb",
+    "src/conversation-context.js": "5c78814d04cd337ec9bdf648439d2c622211d2c8f08c6046018acb3da0189e4b",
+    "src/conversation-evidence.js": "2988025b897c911863d44e8bf722ad4599f00e115e6a6f060c5065ae648145f8",
+    "src/conversation-ui.js": "b005e7914d247104744f4e209f3874eade11ee60ef19863ac199f5efb0c10c02",
+    "src/conversation-applicability.js": "750d12dd3cbb8482664f11cbe308d8e7cbef2f9cbf2169df4213f5b939c0cdbb",
+    "src/conversation-applicability.json": "16cfdae894688d030b5784964d85a1cdf2e42d6274d94852186ef8954bda7a95",
+    "src/question-intent.js": "9036359c5dfab915a3b228dd86aab9eb3981ac5ff3e87948973ef2f69d7282b8",
+    "src/voice-draft.js": "52fc303d435c9fcf5a259a00646b6d29737d86085b4f3b75f691fca7c8d880d4",
+    "src/conversation.css": "2c0836a37f2a4253905886ef52ec282d7624c887cb522e3b6107d06ded04fc25",
+    "src/beta-main.js": "03cac19543add32e1e979b703955bf03fc3b895daba753213381ea95dd448d9b",
+    "src/request-scope.js": "dd49d40c992b2bd7e4496ab1ad25d55b9c142f4d1298a20f26a955986ea2db0b",
+    "src/request-facts.js": "9827af8c835502bf245de60032d5281f79e4b37391ecb08e6670d45f3fcc2fc0",
+    "src/request-understanding.js": "c5d3cac1c589bd9e97bcb216e25d17d1a2a3bff609667dbbef288adb094524a4"
+  },
+  "casesPath": "scripts/evaluation/conversation-core-review-final-6.json",
+  "casesSha256": "94ee55ce819bd41a591463b85319a92c59414b13710367499b2961fd931a7b01",
+  "platform": "Linux Chromium, CPU/WASM, WebGPU disabled; not iPad Safari",
+  "status": "passed",
+  "control": {
+    "passed": 7,
+    "total": 7
+  },
+  "semantic": {
+    "control": {
+      "passed": 7,
+      "total": 7
+    },
+    "kindAgreement": 7,
+    "badTop3Queries": 0,
+    "failures": []
+  },
+  "checks": {
+    "dictionaryDefault": true,
+    "settingsRoute": true,
+    "offlineCatalog": true,
+    "unsavedFallback": true,
+    "stoppedCold": true,
+    "resetDuringLoad": true,
+    "recoveredReal": true,
+    "mobileNoOverflow": true,
+    "offlineReal": true,
+    "noRedownload": true,
+    "memoryOnlyHistory": true,
+    "offlineCatalogRestart": true,
+    "voiceIntact": true,
+    "workerReleased": true,
+    "noStaleCandidateSelection": true
+  },
+  "errors": [],
+  "gold": [
+    {
+      "id": "r03",
+      "rank": 1
+    },
+    {
+      "id": "r04",
+      "rank": 1
+    }
+  ]
+}

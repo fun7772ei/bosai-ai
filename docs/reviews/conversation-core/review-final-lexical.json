@@ -1,0 +1,137 @@
+{
+  "commit": "0b2543434b7839ff334045b78fb371b084816b81",
+  "workingTreeDirty": true,
+  "coreSha256": {
+    "src/conversation.js": "7cb7ddc7cb8e024fc8c32a6bb40c3c6f940ea4f9136270def63c5d7fec3aa0bb",
+    "src/request-understanding.js": "c5d3cac1c589bd9e97bcb216e25d17d1a2a3bff609667dbbef288adb094524a4",
+    "src/request-facts.js": "9827af8c835502bf245de60032d5281f79e4b37391ecb08e6670d45f3fcc2fc0",
+    "src/request-scope.js": "dd49d40c992b2bd7e4496ab1ad25d55b9c142f4d1298a20f26a955986ea2db0b",
+    "src/conversation-applicability.js": "750d12dd3cbb8482664f11cbe308d8e7cbef2f9cbf2169df4213f5b939c0cdbb",
+    "src/beta-search.js": "335f870a01b5bbeddd3b63ab3d662a051e364fef34365438ef9b467b82501086",
+    "src/beta-controller.js": "c78bc633a7f1c287a9bebab1979ef2277066912bc2d3cdd4caebafaf959f22ef"
+  },
+  "mode": "lexical-only; not real-model/browser or independent expert evaluation",
+  "casesSha256": {
+    "scripts/evaluation/conversation-core-review-final-6.json": "94ee55ce819bd41a591463b85319a92c59414b13710367499b2961fd931a7b01"
+  },
+  "summary": {
+    "turns": 7,
+    "controlPassed": 7,
+    "goldQueries": 2,
+    "goldTop1": 2,
+    "badTop3Queries": 0
+  },
+  "rows": [
+    {
+      "path": "scripts/evaluation/conversation-core-review-final-6.json",
+      "id": "r01",
+      "turn": 1,
+      "input": "先日の地震は何時だったのですか",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-review-final-6.json",
+      "id": "r02",
+      "turn": 1,
+      "input": "いつ津波が来たのか調べたいです",
+      "expected": "unsupported",
+      "kind": "unsupported",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-review-final-6.json",
+      "id": "r03",
+      "turn": 1,
+      "input": "地震発生時に寝室にいる場合の注意事項を読みたいです",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-39",
+        "bosai-81",
+        "bosai-78",
+        "bosai-59",
+        "bosai-40"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-review-final-6.json",
+      "id": "r03",
+      "turn": 2,
+      "input": "もっと詳しく",
+      "expected": "source",
+      "kind": "source",
+      "ids": [],
+      "facts": {},
+      "focus": null,
+      "controlPass": true
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-review-final-6.json",
+      "id": "r04",
+      "turn": 1,
+      "input": "診断ではなく、避難生活で薬が足りないときの相談先を知りたい",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-28",
+        "bosai-67",
+        "bosai-2",
+        "bosai-29",
+        "bosai-25"
+      ],
+      "facts": {},
+      "focus": null,
+      "controlPass": true,
+      "goldRank": 1
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-review-final-6.json",
+      "id": "r05",
+      "turn": 1,
+      "input": "台風ですが道は冠水していない。徒歩移動の一般的な情報はある？",
+      "expected": "confirm",
+      "kind": "confirm",
+      "ids": [
+        "bosai-86",
+        "bosai-72"
+      ],
+      "facts": {
+        "road": true,
+        "floodedRoad": false,
+        "goal": "movement",
+        "movement": "walk"
+      },
+      "focus": null,
+      "controlPass": true,
+      "badTop3": []
+    },
+    {
+      "path": "scripts/evaluation/conversation-core-review-final-6.json",
+      "id": "r06",
+      "turn": 1,
+      "input": "車内に水が入っているのでしょうか？乗用車の脱出資料は？",
+      "expected": "clarify",
+      "kind": "clarify",
+      "ids": [],
+      "facts": {
+        "goal": "movement",
+        "movement": "drive",
+        "vehicleFlooded": null
+      },
+      "focus": null,
+      "controlPass": true
+    }
+  ]
+}
