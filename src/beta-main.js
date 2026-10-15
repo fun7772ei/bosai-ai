@@ -29,7 +29,7 @@ const voiceDraft=new VoiceDraft(),voiceEvents=[];
 let voiceStage='未準備',voiceLastError=null;
 function voiceLog(type,text=''){voiceEvents.push({type,at:Date.now(),characters:String(text).length,stage:voiceStage});if(voiceEvents.length>120)voiceEvents.shift();}
 function voiceInput(){const chat=$('conversation');return chat&&!chat.hidden?$('chatQuestion'):$('question');}
-for(const id of ['question','chatQuestion']){const input=$(id);if(input)input.addEventListener('input',()=>{if(voiceTarget===input&&voiceListening)voiceDraft.noteManualChange(input.value);});}
+document.addEventListener('input',event=>{if(voiceTarget===event.target&&voiceListening)voiceDraft.noteManualChange(voiceTarget.value);});
 function voiceState(message){
   $('voiceStatus').textContent=message;
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
