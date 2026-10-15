@@ -10,3 +10,15 @@
 #chatVoiceDock .voice-lab{padding:12px;margin:10px 0;border-radius:16px}
 @media(max-width:700px){.conversation{margin:8px 0;padding:12px}.bubble.user{margin-left:4%}.bubble.assistant{margin-right:0}.conversation [role=log]{max-height:48dvh}.conversation form{padding:10px}}
 @media(prefers-reduced-motion:reduce){.conversation *{scroll-behavior:auto!important;animation:none!important}}
+
+
+/* Accessible app navigation; the existing dictionary remains an available fallback. */
+#appNavigation{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0 16px}
+#appNavigation button{background:transparent;color:var(--primary);border:1px solid var(--line);border-radius:14px;padding:9px 18px;min-height:48px}
+#appNavigation button[aria-current="page"]{background:#d6ecdf;border-color:#86b6a1;font-weight:750}
+.app-settings{padding:14px 0 8px}
+.app-settings>p{max-width:65ch;color:#52645c}
+.settings-contents{display:grid;gap:18px;max-width:740px}
+.settings-contents .model-panel,.settings-contents .help{width:100%}
+#appSettings[hidden],#conversation[hidden]{display:none!important}
+@media(max-width:760px){#appNavigation{position:relative;gap:6px}#appNavigation button{flex:1;padding:8px 10px;min-width:0;font-size:.85rem}}

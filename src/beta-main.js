@@ -33,6 +33,7 @@ function voiceInput(){const chat=$('conversation');return chat&&!chat.hidden?$('
 document.addEventListener('input',event=>{if(voiceTarget===event.target&&voiceListening)voiceDraft.noteManualChange(voiceTarget.value);});
 function voiceState(message){
   $('voiceStatus').textContent=message;
+  const lab=document.querySelector('.voice-lab');if(lab)lab.dataset.active=String(voiceBusy||voiceListening||!!voiceMic);
   $('voiceLoad').disabled=voiceBusy||!!voiceMic||voiceListening;
   $('voiceListen').disabled=voiceBusy||!voiceMic||voiceListening;
   $('voiceStop').disabled=voiceBusy||!voiceListening;
