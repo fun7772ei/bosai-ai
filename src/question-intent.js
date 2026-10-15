@@ -6,7 +6,8 @@ const eventTime=/(発生(?:日|日時|年月日|時刻)|起きた日|起こっ�
 const reverseTime=/(いつ|何月何日|何年|何日|何時).{0,30}(地震|津波|洪水|台風).{0,25}(起き|発生|来た|来る)/;
 const factualQuery=/(いつ|何年|何月|何日|何時|何分|日時|日付|発生日|発生時刻|年月日|時刻|知りたい|教えて|ですか|だった|でした|いつ頃)/;
 const genericAction=/(備える|備え|対策|注意する|注意点|避難|身を守|どうする|手順|方法|したら|すべき|準備|ときの行動)/;
-const dateQuestion=q=>((disasters.test(q) && eventTime.test(q) && factualQuery.test(q))||reverseTime.test(q));
+const forwardTime=/(地震|津波|洪水|台風).{0,20}(?:いつ|何時|何月何日).{0,15}(?:起き|発生|来る)/;
+const dateQuestion=q=>((disasters.test(q) && eventTime.test(q) && factualQuery.test(q))||reverseTime.test(q)||forwardTime.test(q));
 // Keep the boundary narrow: "地震が起きたときの避難手順" remains a supported general question.
 export function classifyAnswerRequest(text){
   const q=normalize(text);
