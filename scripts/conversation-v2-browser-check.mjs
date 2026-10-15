@@ -27,7 +27,19 @@ async function launch(offline=false){context=await chromium.launchPersistentCont
 async function send(text){const before=await page.locator('#conversation').getAttribute('data-state');await page.locator('#chatQuestion').fill(text);const t=performance.now();await page.locator('#chatSend').click();await page.waitForFunction(before=>!window.bosaiConversation.busy&&document.querySelector('#conversation').dataset.state!==before,before,{timeout:180000});const state=JSON.parse(await page.locator('#conversation').getAttribute('data-state'));return {...state.history.at(-1),wallMs:performance.now()-t};}
 async function choose(id){await page.locator(`[data-source-choice="${id}"]:enabled`).last().click();const e=corpus.find(e=>e.id===id),card=page.locator(`[data-source-id="${id}"]`).last();const text=await card.textContent();for(const s of [e.title,e.summary,e.warning,e.items,...e.steps])if(!text.includes(s))throw Error('Missing original field '+id);const links=await card.locator('a').evaluateAll(ns=>ns.map(n=>({label:n.textContent,url:n.getAttribute('href')})));if(JSON.stringify(links)!==JSON.stringify(e.sources))throw Error('Sources changed');}
 try{
- await launch();out.build=await page.locator('#build').textContent();await page.locator('#chatToggle').click();const missing=await send('寝室で地震にあったときは？');out.checks.unsavedFallback=missing.diagnostics.actual==='light';await page.getByRole('button',{name:'通常検索に戻る',exact:true}).click();
+ await launch();out.build=await page.locator('#build').textContent();
+ // Non-destructive offline dictionary/settings navigation smoke tests.
+ out.checks.dictionaryDefault=await page.locator('#appNavigation [data-view="dictionary"]').getAttribute('aria-current')==='page';
+ await page.locator('#appNavigation [data-view="settings"]').click();
+ out.checks.settingsRoute=await page.locator('#appSettings').isVisible()&&await page.locator('#saveModel').isVisible();
+ await page.locator('#appNavigation [data-view="dictionary"]').click();
+ await page.locator('#browseDictionary summary').click();
+ await page.locator('#browseQuery').fill('冠水した道路を歩かない');
+ await page.locator('[data-browse-entry="bosai-69"]').click();
+ const catalogEntry=page.locator('#browseArticle [data-source-id="bosai-69"]');
+ out.checks.offlineCatalog=await catalogEntry.isVisible()&&await catalogEntry.textContent().then(s=>s.includes(corpus.find(e=>e.id==='bosai-69').warning));
+ await page.locator('#browseDictionary summary').click();
+ await page.locator('#chatToggle').click();const missing=await send('寝室で地震にあったときは？');out.checks.unsavedFallback=missing.diagnostics.actual==='light';await page.getByRole('button',{name:'通常検索に戻る',exact:true}).click();
  await page.locator('#saveModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy&&window.bosaiBeta.saved?.complete,null,{timeout:180000});await page.locator('#chatToggle').click();
  for(const test of cases){await page.locator('#chatClear').click();let chosen,previous;
   for(const [index,turn] of test.turns.entries()){
@@ -51,7 +63,11 @@ try{
  // Stop a real cold initialization via existing controls, then recover in the conversation UI.
  await page.getByRole('button',{name:'通常検索に戻る',exact:true}).click();await page.locator('#resetModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy);await page.locator('#chatToggle').click();await page.locator('#chatClear').click();await page.locator('#chatQuestion').fill('地震で寝室にいたらどうする？');await page.locator('#chatSend').click();await page.waitForFunction(()=>window.bosaiBeta.busy);await page.locator('#chatStop').click();await page.waitForTimeout(200);out.checks.stoppedCold=await page.evaluate(()=>!window.bosaiBeta.busy&&!window.bosaiBeta.channel&&!window.bosaiConversation.busy);await page.locator('#chatClear').click();out.checks.resetDuringLoad=await page.evaluate(()=>window.bosaiConversation.history.length===0);const recovered=await send('地震で寝室にいたらどうする？');out.checks.recoveredReal=recovered.diagnostics.actual==='hybrid';
  await page.setViewportSize({width:390,height:844});out.checks.mobileNoOverflow=await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth);await page.screenshot({path:'test-results/'+tag+'-mobile.png',fullPage:true});
- const before=out.requests.length;await context.close();pid=null;await launch(true);await page.locator('#chatToggle').click();const offline=await send('停電中は冷蔵庫を開けてよいですか');out.offline=offline;out.checks.offlineReal=offline.diagnostics.actual==='hybrid'&&offline.diagnostics.timings.embeddingMs!==undefined;out.checks.noRedownload=out.requests.length===before;out.checks.memoryOnlyHistory=await page.evaluate(()=>window.bosaiConversation.history.length===2);
+ const before=out.requests.length;await context.close();pid=null;await launch(true);await page.locator('#chatToggle').click();const offline=await send('停電中は冷蔵庫を開けてよいですか');out.offline=offline;out.checks.offlineReal=offline.diagnostics.actual==='hybrid'&&offline.diagnostics.timings.embeddingMs!==undefined;out.checks.noRedownload=out.requests.length===before;
+ await page.locator('#browseDictionary summary').click();
+ await page.locator('#browseQuery').fill('津波');
+ out.checks.offlineCatalogRestart=await page.locator('.browse-results [data-browse-entry]').count()>0;
+ await page.locator('#browseDictionary summary').click();out.checks.memoryOnlyHistory=await page.evaluate(()=>window.bosaiConversation.history.length===2);
  await page.getByRole('button',{name:'通常検索に戻る',exact:true}).click();out.checks.voiceIntact=await page.locator('#voiceLoad').isVisible()&&await page.locator('#question').count()===1;out.release={before:browserMemory(pid)};await page.locator('#resetModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy);await page.waitForTimeout(3000);out.release.after=browserMemory(pid);out.checks.workerReleased=await page.evaluate(()=>!window.bosaiBeta.channel&&!window.bosaiBeta.ready);
  out.control={passed:out.rows.filter(r=>r.controlPass).length,total:out.rows.length};
  out.checks.noStaleCandidateSelection=out.rows.filter(r=>r.oldChoiceRejected!==undefined).every(r=>r.oldChoiceRejected&&r.staleEnabled===0);
