@@ -10,7 +10,7 @@ const tag=option('tag','conversation-v2-dev'),casesPath=option('cases','scripts/
 const baseline=process.argv.includes('--baseline');
 const cases=JSON.parse(readFileSync(casesPath));
 const base=option('base','http://localhost:4173/bosai-ai/');
-const freeze=JSON.parse(readFileSync(option('freeze','docs/diagnostics/conversation-v16-freeze.json')));
+const freeze=JSON.parse(readFileSync(option('freeze','docs/diagnostics/conversation-v17-regression-freeze.json')));
 if(!baseline)for(const [path,hash] of Object.entries(freeze.coreSha256))if(createHash('sha256').update(readFileSync(path)).digest('hex')!==hash)throw Error('Frozen v2 implementation changed: '+path);
 if(casesPath===freeze.initialCases&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.initialCasesSha256)throw Error('Initial final/regression cases changed');
 if(casesPath===freeze.finalCases&&createHash('sha256').update(readFileSync(casesPath)).digest('hex')!==freeze.finalCasesSha256)throw Error('Final cases changed');
