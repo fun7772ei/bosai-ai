@@ -60,6 +60,12 @@ try {
     );
   }
   await start();
+  const recordingDraft = await page.locator("#chatQuestion").inputValue();
+  await page.locator("#chatExamples button").first().click();
+  assert.equal(
+    await page.locator("#chatQuestion").inputValue(),
+    recordingDraft,
+  );
   assert.equal(await page.evaluate(() => window.testLoadCount), 1);
   assert(await page.locator("#voiceStop").isVisible());
   assert.equal(await page.locator("#voiceLoad").count(), 0);

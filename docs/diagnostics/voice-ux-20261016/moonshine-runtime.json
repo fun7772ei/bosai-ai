@@ -1,0 +1,85 @@
+{
+  "createdAt": "2026-10-16T03:08:27.291Z",
+  "platform": "Linux Chromium; fixture transport of actual CDN weights; NOT iPad Safari",
+  "rows": [
+    {
+      "model": "tiny",
+      "offline": false,
+      "loadMs": 1006.0449999999255,
+      "loaded": true,
+      "started": true,
+      "stopped": true,
+      "closed": true,
+      "elapsedMs": 1063.2649999998976
+    },
+    {
+      "model": "base",
+      "offline": false,
+      "loadMs": 1232.0849999999627,
+      "loaded": true,
+      "started": true,
+      "stopped": true,
+      "closed": true,
+      "elapsedMs": 1250.9899999999907
+    },
+    {
+      "appSwitch": true,
+      "offline": false,
+      "model": "Powered by Moonshine AI · 日本語 Tiny · 必要時に読み込み",
+      "actual": "hybrid"
+    },
+    {
+      "appSwitch": true,
+      "offline": false,
+      "model": "Powered by Moonshine AI · 日本語 Base（iPad未検証） · 必要時に読み込み",
+      "actual": "hybrid"
+    },
+    {
+      "model": "tiny",
+      "offline": true,
+      "loadMs": 423.6500000001397,
+      "loaded": true,
+      "started": true,
+      "stopped": true,
+      "closed": true,
+      "elapsedMs": 467.78000000002794
+    },
+    {
+      "model": "base",
+      "offline": true,
+      "loadMs": 451.52499999990687,
+      "loaded": true,
+      "started": true,
+      "stopped": true,
+      "closed": true,
+      "elapsedMs": 473.16500000003725
+    },
+    {
+      "appSwitch": true,
+      "offline": true,
+      "model": "Powered by Moonshine AI · 日本語 Tiny · 必要時に読み込み",
+      "actual": "hybrid"
+    },
+    {
+      "appSwitch": true,
+      "offline": true,
+      "model": "Powered by Moonshine AI · 日本語 Base（iPad未検証） · 必要時に読み込み",
+      "actual": "hybrid"
+    }
+  ],
+  "requests": [
+    "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/config.json",
+    "https://huggingface.co/onnx-community/ruri-v3-30m-ONNX/resolve/1b41a27f31213fc55a9c4653c067770e39406408/onnx/model_quantized.onnx",
+    "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer.json",
+    "https://huggingface.co/cl-nagoya/ruri-v3-30m/resolve/24899e5de370b56d179604a007c0d727bf144504/tokenizer_config.json",
+    "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/encoder_model.ort",
+    "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/decoder_model_merged.ort",
+    "https://download.moonshine.ai/model/tiny-ja/quantized/tiny-ja/tokenizer.bin",
+    "https://download.moonshine.ai/model/base-ja/quantized/base-ja/encoder_model.ort",
+    "https://download.moonshine.ai/model/base-ja/quantized/base-ja/decoder_model_merged.ort",
+    "https://download.moonshine.ai/model/base-ja/quantized/base-ja/tokenizer.bin"
+  ],
+  "speechAccuracy": "unmeasured",
+  "noRedownload": true,
+  "status": "passed"
+}

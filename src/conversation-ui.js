@@ -211,6 +211,10 @@ export function mountConversation(controller, voice) {
     const b = node("button", text + " ↗");
     b.type = "button";
     b.onclick = () => {
+      if (voice.active) {
+        voiceOpen(true);
+        return;
+      }
       input.value = text;
       form.requestSubmit();
     };
@@ -326,6 +330,10 @@ export function mountConversation(controller, voice) {
           b.type = "button";
           b.disabled = message !== engine.history.at(-1) || engine.busy;
           b.onclick = () => {
+            if (voice.active) {
+              voiceOpen(true);
+              return;
+            }
             input.value = c;
             form.requestSubmit();
           };
@@ -339,6 +347,10 @@ export function mountConversation(controller, voice) {
             b.type = "button";
             b.disabled = message !== engine.history.at(-1) || engine.busy;
             b.onclick = () => {
+              if (voice.active) {
+                voiceOpen(true);
+                return;
+              }
               input.value = text;
               form.requestSubmit();
             };

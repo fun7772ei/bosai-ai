@@ -1,0 +1,10 @@
+{
+  "platform": "Linux Chromium fake microphone playing actual synthetic WAV, NOT human or iPad capture",
+  "recordingPhase": "recording",
+  "finalPhase": "review",
+  "statusText": "入力欄を確認・修正してから送信してください。",
+  "transcript": "きのうから強い雨が降り? 今は自宅の２階に 家族も一緒にいます。 川の近くには住んでいませんが、 道路に水がたまっているようです。 避難所が開いているかはまだ確認 車で移動しても安全だとは考えていません。 まず何を確認すればよいでしょ 最新の情報が必要なことは分かっています。 停電したときのために 飲み水や食べ物 懐中電灯などを用意したいと思ってい 家には小さな子供がいて。 毎日飲んでいる薬もあり 外に出る前に。 家の中でできる準備を教えてくださ",
+  "sent": "",
+  "errors": [],
+  "status": "passed"
+}
