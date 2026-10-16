@@ -1,128 +1,380 @@
-import {Conversation} from './conversation.js';
-import {corpus} from './beta-search.js';
-import './conversation.css';
-const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
-export function mountConversation(controller){
- const main=document.querySelector('main'),workspace=document.querySelector('.workspace');
- const panel=node('section','');panel.className='surface conversation';panel.id='conversation';panel.hidden=true;
- const heading=node('h2','状況を整理して原文を探す'),note=node('p','自由生成なしの会話試作です。条件を確認し、辞書の原文を参照します。会話はこの画面のメモリ内のみ（最大40メッセージ）。再読み込みで消えます。現在の警報・安全性・個人の診断は判断できません。');
- const log=node('div','');log.id='conversationLog';log.setAttribute('role','log');log.setAttribute('aria-label','会話履歴');log.setAttribute('aria-live','polite');
- const form=node('form',''),label=node('label','状況を入力'),input=node('textarea','');input.id='chatQuestion';input.maxLength=200;input.required=true;input.rows=3;label.htmlFor=input.id;
- const stop=node('button','検索を停止');stop.id='chatStop';stop.type='button';stop.disabled=true;
- const send=node('button','送信'),clear=node('button','会話をリセット'),back=node('button','通常検索に戻る');send.id='chatSend';send.type='submit';clear.id='chatClear';clear.type=back.type='button';
- const status=node('p',''),controls=node('div',''),voiceDock=node('div','');status.id='chatStatus';status.setAttribute('role','status');voiceDock.id='chatVoiceDock';controls.className='actions';controls.append(send,stop,clear,back);form.append(label,input,voiceDock,controls,status);
- const voiceLab=document.querySelector('.voice-lab'),voiceParent=voiceLab?.parentNode,voiceAnchor=voiceLab?.nextSibling;
- function voiceActive(){return voiceLab?.dataset.active==='true';}
- panel.append(heading,note,log,form);main.insertBefore(panel,workspace);
- const toggle=node('button','会話モードを試す（文字入力）');toggle.type='button';toggle.id='chatToggle';toggle.className='tonal';main.insertBefore(toggle,workspace);
- const engine=new Conversation((q,m,request)=>controller.search(q,m,request));let epoch=0;
-
- // Three independent routes share the same Ruri controller and existing controls.
- // Keep the dictionary as the initial route until the new chat has iPad validation.
- const navigation=node('nav','');navigation.id='appNavigation';navigation.setAttribute('aria-label','アプリ内の画面切替');
- const navChat=node('button','会話'),navDictionary=node('button','辞書検索'),navSettings=node('button','設定・準備');
- const navButtons={chat:navChat,dictionary:navDictionary,settings:navSettings};
- for(const [name,button] of Object.entries(navButtons)){button.type='button';button.dataset.view=name;navigation.append(button);}
- const settings=node('section','');settings.className='app-settings';settings.id='appSettings';settings.hidden=true;settings.setAttribute('aria-label','モデルとアプリの設定');
- const settingsTitle=node('h2','設定・オフラインの準備');
- const settingsIntro=node('p','モデルの保存、現在の動作状態、プライバシーと使い方を確認できます。音声モデルは会話画面または辞書検索画面から準備してください。');
- const settingsContents=node('div','');settingsContents.className='settings-contents';
- settings.append(settingsTitle,settingsIntro,settingsContents);
- const modelPanel=document.querySelector('.model-panel'),helpPanel=document.querySelector('.help');
- const modelHome=document.createComment('model-panel-original-position'),helpHome=document.createComment('help-original-position');
- modelPanel?.before(modelHome);helpPanel?.before(helpHome);
- main.insertBefore(navigation,panel);main.insertBefore(settings,workspace);
- let activeView='dictionary';
- function showView(next){
-  if(next===activeView)return true;
-  if(voiceActive()){
-   const message='音声の準備・録音を終了し、モデルを解放してから画面を切り替えてください。';
-   if(activeView==='chat')status.textContent=message;
-   else document.querySelector('#voiceStatus').textContent=message;
-   return false;
+import { Conversation } from "./conversation.js";
+import { corpus } from "./beta-search.js";
+import "./conversation.css";
+const $ = (id) => document.getElementById(id),
+  node = (tag, text) => {
+    const n = document.createElement(tag);
+    n.textContent = text;
+    return n;
+  };
+// Original fields are rendered as text; neither source content nor user input is HTML.
+export function renderSource(entry, parent, { expand = false } = {}) {
+  const card = node("article", "");
+  card.className = "entry";
+  card.dataset.sourceId = entry.id;
+  card.append(
+    node("span", entry.category + " / " + entry.id),
+    node("h3", entry.title),
+    node("p", entry.summary),
+  );
+  const warning = node("div", "");
+  warning.className = "warning";
+  warning.append(node("h4", "注意事項"), node("p", entry.warning));
+  card.append(warning);
+  const details = node("details", "");
+  details.open = expand;
+  details.append(node("summary", "原文・手順と出典を読む"));
+  const steps = node("ol", "");
+  entry.steps.forEach((s) => steps.append(node("li", s)));
+  details.append(
+    node("h4", "手順（原文・省略なし）"),
+    steps,
+    node("h4", "準備するもの"),
+    node("p", entry.items),
+    node("h4", "出典（外部サイト）"),
+  );
+  for (const s of entry.sources) {
+    const a = node("a", s.label);
+    a.href = s.url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    details.append(a, node("br", ""));
   }
-  if(activeView!=='chat'&&controller.busy)return false;
-  if(activeView==='chat'&&engine.busy){epoch++;controller.stop();engine.cancel();send.disabled=false;render();}
-  if(next==='settings'){
-   if(modelPanel)settingsContents.append(modelPanel);
-   if(helpPanel)settingsContents.append(helpPanel);
-  }else{
-   if(modelPanel&&modelHome.parentNode)modelHome.after(modelPanel);
-   if(helpPanel&&helpHome.parentNode)helpHome.after(helpPanel);
+  card.append(details);
+  parent.append(card);
+}
+export function mountConversation(controller) {
+  const panel = $("conversation"),
+    log = $("conversationLog"),
+    input = $("chatQuestion"),
+    form = $("chatForm"),
+    status = $("chatStatus"),
+    send = $("chatSend"),
+    stop = $("chatStop"),
+    voiceLab = document.querySelector(".voice-lab");
+  try {
+    const draft = sessionStorage.getItem("bosai-voice-draft");
+    if (draft !== null) {
+      input.value = draft;
+      sessionStorage.removeItem("bosai-voice-draft");
+    }
+  } catch {}
+  const engine = new Conversation((q, m, request) =>
+    controller.search(q, m, request),
+  );
+  let epoch = 0,
+    activeView = "chat";
+  const voiceActive = () => voiceLab.dataset.active === "true";
+  const menu = $("menuToggle"),
+    navigation = $("appNavigation");
+  menu.onclick = () => {
+    const open = menu.getAttribute("aria-expanded") !== "true";
+    menu.setAttribute("aria-expanded", String(open));
+    navigation.classList.toggle("open", open);
+  };
+  const titles = { chat: "会話する", dictionary: "防災辞書", settings: "設定" };
+  function showView(next) {
+    activeView = next;
+    panel.hidden = next !== "chat";
+    $("dictionary").hidden = next !== "dictionary";
+    $("appSettings").hidden = next !== "settings";
+    $("viewTitle").textContent = titles[next];
+    $("chatClear").hidden = next !== "chat";
+    for (const button of navigation.querySelectorAll("[data-view]"))
+      button.setAttribute(
+        "aria-current",
+        button.dataset.view === next ? "page" : "false",
+      );
+    menu.setAttribute("aria-expanded", "false");
+    navigation.classList.remove("open");
+    // Switching views does not cancel a running turn, drop the draft or alter the microphone target.
+    $("main").scrollTop = 0;
+    $("viewTitle").setAttribute("tabindex", "-1");
+    $("viewTitle").focus({ preventScroll: true });
   }
-  if(voiceLab){
-   if(next==='chat')voiceDock.append(voiceLab);
-   else if(voiceParent)voiceParent.insertBefore(voiceLab,voiceAnchor);
+  for (const button of navigation.querySelectorAll("[data-view]"))
+    button.onclick = () => showView(button.dataset.view);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      navigation.classList.remove("open");
+      menu.setAttribute("aria-expanded", "false");
+      $("voicePopover").hidden = true;
+      $("voiceToggle").setAttribute("aria-expanded", "false");
+    }
+  });
+  function voiceOpen(open) {
+    $("voicePopover").hidden = !open;
+    $("voiceToggle").setAttribute("aria-expanded", String(open));
   }
-  activeView=next;
-  panel.hidden=next!=='chat';workspace.hidden=next!=='dictionary';settings.hidden=next!=='settings';
-  toggle.hidden=next!=='dictionary';
-  for(const [name,button] of Object.entries(navButtons)){
-   button.setAttribute('aria-current',name===next?'page':'false');
+  $("voiceToggle").onclick = () => voiceOpen($("voicePopover").hidden);
+  $("voiceClose").onclick = () => voiceOpen(false);
+  // Detailed experiments belong in settings, not in the everyday voice composer.
+  for (const detail of voiceLab.querySelectorAll("details"))
+    $("voiceExperiments").append(detail);
+  const theme = $("theme");
+  function applyTheme() {
+    document.documentElement.dataset.theme = theme.value;
+    try {
+      localStorage.setItem("bosai-theme", theme.value);
+    } catch {}
   }
-  if(next==='chat')input.focus({preventScroll:true});
-  return true;
- }
- for(const [name,button] of Object.entries(navButtons))button.onclick=()=>showView(name);
- navDictionary.setAttribute('aria-current','page');
-
- function source(entry,parent){const card=node('article','');card.className='entry';card.dataset.sourceId=entry.id;card.append(node('h3',entry.title),node('p',entry.summary));const warning=node('div','');warning.className='warning';warning.append(node('h4','注意事項'),node('p',entry.warning));const steps=node('ol','');entry.steps.forEach(s=>steps.append(node('li',s)));card.append(warning,node('h4','手順（原文・省略なし）'),steps,node('p',entry.items));for(const s of entry.sources){const a=node('a',s.label);a.href=s.url;a.target='_blank';a.rel='noopener noreferrer';card.append(a,node('br',''));}parent.append(card);}
-
- // Offline catalog browsing never needs a loaded model or a speech session.
- const browsePanel=node('details','');browsePanel.id='browseDictionary';browsePanel.className='surface browse-panel';
- const browseSummary=node('summary','全88件の防災辞書を一覧で見る');
- const browseLead=node('p','キーワードまたはカテゴリで原文を絞り込めます。AI検索を使わず、保存済みの辞書だけで動きます。');
- const browseControls=node('div','');browseControls.className='browse-controls';
- const browseLabel=node('label','辞書内の文字検索'),browseInput=node('input','');
- browseInput.type='search';browseInput.id='browseQuery';browseInput.placeholder='例：津波・停電・トイレ';browseLabel.htmlFor=browseInput.id;
- const categoryLabel=node('label','カテゴリ'),categorySelect=node('select','');categorySelect.id='browseCategory';categoryLabel.htmlFor=categorySelect.id;
- const allOption=node('option','すべてのカテゴリ');allOption.value='';categorySelect.append(allOption);
- for(const name of [...new Set(corpus.map(entry=>entry.category))]){
-  const option=node('option',name);option.value=name;categorySelect.append(option);
- }
- browseControls.append(browseLabel,browseInput,categoryLabel,categorySelect);
- const browseCount=node('p','');browseCount.className='small';browseCount.id='browseCount';
- const browseList=node('div','');browseList.className='browse-results';browseList.setAttribute('aria-label','辞書の記事');
- const browseArticle=node('div','');browseArticle.id='browseArticle';browseArticle.setAttribute('aria-live','polite');
- function renderBrowse(){
-  const query=browseInput.value.normalize('NFKC').toLowerCase().trim(),category=categorySelect.value;
-  const matches=corpus.filter(entry=>(!category||entry.category===category)&&(!query||[entry.title,entry.summary,entry.category].some(s=>s.normalize('NFKC').toLowerCase().includes(query))));
-  browseCount.textContent='一致した原文 '+matches.length+' / '+corpus.length+'件';
-  browseList.replaceChildren();
-  for(const entry of matches){
-   const b=node('button',entry.title);b.type='button';b.dataset.browseEntry=entry.id;
-   b.onclick=()=>{browseArticle.replaceChildren();source(entry,browseArticle);for(const item of browseList.querySelectorAll('button'))item.setAttribute('aria-pressed',String(item===b));};
-   browseList.append(b);
+  try {
+    theme.value = localStorage.getItem("bosai-theme") || "system";
+  } catch {}
+  theme.onchange = applyTheme;
+  applyTheme();
+  const category = $("browseCategory"),
+    query = $("browseQuery"),
+    list = $("browseList"),
+    article = $("browseArticle");
+  for (const name of [...new Set(corpus.map((e) => e.category))]) {
+    const o = node("option", name);
+    o.value = name;
+    category.append(o);
   }
-  browseArticle.replaceChildren();
- }
- browseInput.addEventListener('input',renderBrowse);categorySelect.addEventListener('change',renderBrowse);
- browsePanel.append(browseSummary,browseLead,browseControls,browseCount,browseList,browseArticle);
- document.querySelector('.search-side').append(browsePanel);
- browsePanel.addEventListener('toggle',()=>{if(browsePanel.open)renderBrowse();});
-
- function render(){const nearBottom=log.scrollHeight-log.clientHeight-log.scrollTop<100,top=log.scrollTop;log.replaceChildren();for(const message of engine.history){const bubble=node('div','');bubble.className=`bubble ${message.role}`;bubble.append(node('strong',message.role==='user'?'あなた':'防災辞書'),node('p',message.text));
-  if(message.role==='assistant'){
-   for(const c of message.candidates||[]){const fitStatus={candidate:'適用候補（安全性未確認）','needs-confirmation':'要確認','not-applicable':'適用外'}[c.applicability?.status]||'関連情報・適用未確認';const b=node('button',`${c.category} · ${c.title}（${fitStatus}）`);b.type='button';b.dataset.sourceChoice=c.id;b.disabled=message.selection!==engine.state.selection||!engine.state.pending.includes(c.id)||engine.busy;b.onclick=()=>{try{engine.choose(c.id,message.selection);render();}catch(e){status.textContent=e.message;}};bubble.append(b);}
-   for(const c of message.choices||[]){const b=node('button',c);b.type='button';b.disabled=message!==engine.history.at(-1)||engine.busy;b.onclick=()=>{input.value=c;form.requestSubmit();};bubble.append(b);}
-   for(const e of message.entries||[])source(e,bubble);
-   if(message.entries){for(const text of ['もっと詳しく','ほかの状況なら？']){const b=node('button',text);b.type='button';b.disabled=message!==engine.history.at(-1)||engine.busy;b.onclick=()=>{input.value=text;form.requestSubmit();};bubble.append(b);}}
-   if(message.diagnostics){const d=node('details','');d.append(node('summary','検索の診断'),node('pre',JSON.stringify(message.diagnostics,null,2)));bubble.append(d);}
-  }log.append(bubble);}
-  stop.disabled=!engine.busy;
-  if(nearBottom)log.scrollTop=log.scrollHeight;else log.scrollTop=top;
-  panel.dataset.state=JSON.stringify({history:engine.history.map(({entries,...m})=>({...m,entryIds:entries?.map(e=>e.id)})),state:engine.state});
- }
- toggle.onclick=()=>showView('chat');
- stop.onclick=()=>{epoch++;controller.stop();engine.cancel();send.disabled=false;status.textContent='会話の検索を停止しました。入力と履歴は残しています。';render();};
- back.onclick=()=>showView('dictionary');
- clear.onclick=()=>{epoch++;if(engine.busy)controller.stop();engine.clear();send.disabled=false;status.textContent='会話の文脈を解除しました。モデル保存は維持しています。';render();};
- form.onsubmit=async event=>{event.preventDefault();if(engine.busy)return;
-  // The shared lifecycle state also gates failed-close handles, not just listening.
-  // Do not initialise a second speech/runtime path or change recognition callbacks.
-  if(document.querySelector('#search').disabled||voiceActive()){status.textContent='音声入力の停止・モデル解放または検索処理の終了後に送信してください。';return;}
-  const seq=++epoch;send.disabled=true;status.textContent='条件を確認しています…';try{const text=input.value;const pending=engine.send(text,document.querySelector('#mode').value);render();await pending;if(seq===epoch){input.value='';status.textContent='';render();}}catch(e){if(seq===epoch)status.textContent=e.message;}finally{if(seq===epoch)send.disabled=false;}
- };
- document.querySelector('#stop').addEventListener('click',()=>{epoch++;engine.cancel();send.disabled=false;status.textContent='会話の検索を停止しました。再送信できます。';render();});
- if(['localhost','127.0.0.1'].includes(location.hostname))Object.defineProperty(window,'bosaiConversation',{value:engine});
+  let selectedId = null;
+  function openEntry(entry) {
+    selectedId = entry.id;
+    article.replaceChildren();
+    renderSource(entry, article, { expand: true });
+    for (const b of list.querySelectorAll("button"))
+      b.setAttribute(
+        "aria-pressed",
+        String(b.dataset.browseEntry === entry.id),
+      );
+    if (matchMedia("(max-width:700px)").matches)
+      article.scrollIntoView({ block: "start" });
+  }
+  function browse() {
+    const q = query.value.normalize("NFKC").toLowerCase().trim();
+    const matches = corpus.filter(
+      (e) =>
+        (!category.value || e.category === category.value) &&
+        (!q ||
+          [
+            e.title,
+            e.summary,
+            e.warning,
+            e.items,
+            ...e.steps,
+            ...e.sources.map((s) => s.label),
+          ]
+            .join(" ")
+            .normalize("NFKC")
+            .toLowerCase()
+            .includes(q)),
+    );
+    $("browseCount").textContent = `${matches.length} / 88件`;
+    list.replaceChildren();
+    for (const e of matches) {
+      const b = node("button", "");
+      b.type = "button";
+      b.dataset.browseEntry = e.id;
+      b.setAttribute("aria-pressed", String(e.id === selectedId));
+      b.append(
+        node("small", e.category),
+        node("strong", e.title),
+        node("span", "原文を読む →"),
+      );
+      b.onclick = () => openEntry(e);
+      list.append(b);
+    }
+    if (!matches.length)
+      list.append(
+        node("p", "一致する記事がありません。別の言葉をお試しください。"),
+      );
+  }
+  query.oninput = browse;
+  category.onchange = browse;
+  browse();
+  for (const text of [
+    "寝ているときに地震が来たら？",
+    "津波から高台に逃げられないときは？",
+    "避難所で水が使えないときのトイレは？",
+  ]) {
+    const b = node("button", text + " ↗");
+    b.type = "button";
+    b.onclick = () => {
+      input.value = text;
+      form.requestSubmit();
+    };
+    $("chatExamples").append(b);
+  }
+  function sync() {
+    const busy = engine.busy;
+    send.hidden = busy;
+    stop.hidden = !busy;
+    stop.disabled = !busy;
+    send.disabled = voiceActive() || controller.busy;
+    $("chatCount").textContent = `${input.value.length} / 200`;
+  }
+  document.addEventListener("bosai:state", sync);
+  input.addEventListener("input", sync);
+  function render() {
+    const scroller = log.parentNode,
+      nearBottom =
+        scroller.scrollHeight - scroller.clientHeight - scroller.scrollTop <
+        140,
+      top = scroller.scrollTop;
+    log.replaceChildren();
+    $("chatWelcome").hidden = engine.history.length > 0;
+    for (const message of engine.history) {
+      const bubble = node("div", "");
+      bubble.className = `bubble ${message.role}`;
+      bubble.append(
+        node("strong", message.role === "user" ? "あなた" : "bosai AI"),
+        node("p", message.text),
+      );
+      if (message.role === "assistant") {
+        const candidates = node("div", "");
+        candidates.className = "candidate-list";
+        for (const c of message.candidates || []) {
+          const fit =
+            {
+              candidate: "適用候補・安全性未確認",
+              "needs-confirmation": "適用条件は要確認",
+              "not-applicable": "適用外",
+            }[c.applicability?.status] || "関連情報・適用未確認";
+          const b = node("button", "");
+          b.type = "button";
+          b.dataset.sourceChoice = c.id;
+          b.append(
+            node("small", c.category + " · " + fit),
+            node("span", c.title + " →"),
+          );
+          b.disabled =
+            message.selection !== engine.state.selection ||
+            !engine.state.pending.includes(c.id) ||
+            engine.busy;
+          b.onclick = () => {
+            try {
+              engine.choose(c.id, message.selection);
+              render();
+            } catch (e) {
+              status.textContent = e.message;
+            }
+          };
+          candidates.append(b);
+        }
+        bubble.append(candidates);
+        for (const c of message.choices || []) {
+          const b = node("button", c);
+          b.className = "choice";
+          b.type = "button";
+          b.disabled = message !== engine.history.at(-1) || engine.busy;
+          b.onclick = () => {
+            input.value = c;
+            form.requestSubmit();
+          };
+          bubble.append(b);
+        }
+        for (const e of message.entries || []) renderSource(e, bubble);
+        if (message.entries)
+          for (const text of ["もっと詳しく", "ほかの状況なら？"]) {
+            const b = node("button", text);
+            b.className = "choice";
+            b.type = "button";
+            b.disabled = message !== engine.history.at(-1) || engine.busy;
+            b.onclick = () => {
+              input.value = text;
+              form.requestSubmit();
+            };
+            bubble.append(b);
+          }
+      }
+      log.append(bubble);
+    }
+    sync();
+    if (nearBottom) scroller.scrollTop = scroller.scrollHeight;
+    else scroller.scrollTop = top;
+    panel.dataset.state = JSON.stringify({
+      history: engine.history.map(({ entries, ...m }) => ({
+        ...m,
+        entryIds: entries?.map((e) => e.id),
+      })),
+      state: engine.state,
+    });
+  }
+  stop.onclick = () => {
+    epoch++;
+    controller.stop();
+    engine.cancel();
+    status.textContent = "検索を停止しました。入力と履歴は残しています。";
+    render();
+  };
+  $("chatClear").onclick = () => {
+    if (voiceActive()) {
+      voiceOpen(true);
+      status.textContent =
+        "録音・音声モデルを終了してから新しい会話を始めてください。";
+      return;
+    }
+    epoch++;
+    if (engine.busy) controller.stop();
+    engine.clear();
+    status.textContent = "新しい会話を始めました。";
+    render();
+  };
+  form.onsubmit = async (event) => {
+    event.preventDefault();
+    if (engine.busy) return;
+    if (voiceActive()) {
+      voiceOpen(true);
+      status.textContent =
+        "音声入力の停止・モデル解放後に、認識結果を確認して送信してください。";
+      return;
+    }
+    if (controller.busy) {
+      status.textContent = "モデルの処理が終わってから送信してください。";
+      return;
+    }
+    const text = input.value.trim();
+    if (!text) return;
+    const seq = ++epoch;
+    status.textContent = "辞書を検索し、条件を確認しています…";
+    status.setAttribute("aria-busy", "true");
+    try {
+      const pending = engine.send(text, $("mode").value);
+      render();
+      await pending;
+      if (seq === epoch) {
+        input.value = "";
+        status.textContent = "";
+        render();
+      }
+    } catch (e) {
+      if (seq === epoch) {
+        status.textContent =
+          e.message + "。入力を残しました。もう一度送信できます。";
+        render();
+      }
+    } finally {
+      if (seq === epoch) status.removeAttribute("aria-busy");
+      sync();
+    }
+  };
+  // Enter adds a line on touch devices; explicit Cmd/Ctrl+Enter sends without interfering with IME.
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && !e.isComposing) {
+      e.preventDefault();
+      form.requestSubmit();
+    }
+  });
+  const viewport = window.visualViewport;
+  const resize = () => {
+    document.documentElement.style.setProperty(
+      "--app-height",
+      `${viewport?.height || innerHeight}px`,
+    );
+    document.documentElement.style.setProperty(
+      "--viewport-top",
+      `${viewport?.offsetTop || 0}px`,
+    );
+  };
+  viewport?.addEventListener("resize", resize);
+  viewport?.addEventListener("scroll", resize);
+  resize();
+  if (["localhost", "127.0.0.1"].includes(location.hostname))
+    Object.defineProperty(window, "bosaiConversation", { value: engine });
+  render();
 }

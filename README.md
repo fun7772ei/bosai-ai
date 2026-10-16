@@ -2,7 +2,7 @@
 
 Offline-oriented disaster-information dictionary and conversation beta for iPad 10 / Safari. [Public GitHub Pages beta](https://fun7772ei.github.io/bosai-ai/).
 
-**Status (2026-10-15):** PR #18 was merged to `main` (commit `782ccdce`); the Pages deployment for that merge completed. The app now has conversation UI, 88-entry original-text browsing, and optional Moonshine voice-input integration. This remains **a beta**, not verified disaster guidance; meaningful applicability/negation edge cases, long voice transcription and actual iPad behavior still need review.
+**Status (2026-10-16):** Chat-first redesign: one composer, a full offline dictionary and focused settings, with adaptive iPad navigation and light/dark themes. [Design and validation details](docs/ui-redesign-20261016.md). This remains a beta; physical iPad Safari/PWA and long Japanese speech recognition require device verification.
 
 ## What it actually does
 
@@ -20,7 +20,7 @@ The fixed offline dictionary cannot check current alarms, road safety, shelter a
 
 - [Architecture map and potential replacement](docs/architecture-current.md)
 - [Conversation rewrite: concrete design and acceptance](docs/conversation-rewrite-brief.md)
-- [Short Codex implementation task](docs/codex-task.md)
+- [Historical conversation task (archive pointer)](docs/codex-task.md)
 - [Development workflow: draft/quick vs ready/full CI](docs/development-workflow.md)
 - [Historical handoffs](docs/history/) and [diagnostic results](docs/diagnostics/) — read only for relevant investigations
 - [iPad verification notes](docs/ipad-verification.md)

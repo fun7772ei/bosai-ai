@@ -9,8 +9,11 @@ self.addEventListener('install', event => event.waitUntil((async () => {
   // Immediate activation would delete the hashed Worker/modules referenced by
   // an already-open page. Closing the old tabs permits normal activation.
 })()));
+self.addEventListener('message', event => { if(event.data?.type === 'APPLY_UPDATE') self.skipWaiting(); });
 self.addEventListener('activate', event => event.waitUntil((async () => {
-  for (const key of await caches.keys()) if (key.startsWith('bosai-ai-shell-') && key !== SHELL) await caches.delete(key);
+  // A user may apply an update while another tab still needs old hashed modules.
+  // Only collect old shells when no controlled clients remain. Never touch model/SDK stores.
+  if (!(await self.clients.matchAll()).length) for (const key of await caches.keys()) if (key.startsWith('bosai-ai-shell-') && key !== SHELL) await caches.delete(key);
   await self.clients.claim();
 })()));
 self.addEventListener('fetch', event => {
@@ -54,7 +57,7 @@ self.addEventListener('fetch', event => {
       headers.delete('content-length');
       return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
     }
-    const response=await cache.match(event.request, { ignoreVary: true }) || await fetch(event.request);
+    const response=await cache.match(event.request, { ignoreVary: true }) || (/\/assets\//.test(reqUrl.pathname) ? await caches.match(event.request, { ignoreVary: true }) : null) || await fetch(event.request);
     // Ruri must also start after voice in an isolated document. A module
     // worker inherits isolation only when its own response permits it.
     if(/\/assets\/ruri\.worker-[^/]+\.js$/.test(reqUrl.pathname)&&response.ok){
