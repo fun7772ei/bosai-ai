@@ -286,3 +286,12 @@
   align-items: center;
   gap: 6px;
 }
+
+#voiceToggle[data-active="true"] {
+  border-color: var(--primary);
+  background: var(--tint);
+}
+.voice-indicator {
+  font-size: 10px;
+  color: var(--primary);
+}

@@ -1,10 +1,36 @@
+import { spawn } from "node:child_process";
 import { chromium, webkit } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
 import assert from "node:assert/strict";
 import corpus from "../src/bosai-data.json" with { type: "json" };
 mkdirSync("test-results", { recursive: true });
 const browserType = process.env.BOSAI_BROWSER === "webkit" ? webkit : chromium;
-const base = process.env.BOSAI_PUBLIC_URL || "http://localhost:4173/bosai-ai/";
+// WebKit's Playwright offline emulation can reject navigation before dispatching to SW.
+// For local WebKit, stop a dedicated origin server instead: the network really is unavailable.
+const isolatedServer =
+  browserType === webkit && !process.env.BOSAI_PUBLIC_URL
+    ? spawn(
+        process.execPath,
+        [
+          "node_modules/vite/bin/vite.js",
+          "preview",
+          "--port",
+          "4174",
+          "--strictPort",
+        ],
+        { stdio: "ignore" },
+      )
+    : null;
+const base =
+  process.env.BOSAI_PUBLIC_URL ||
+  `http://localhost:${isolatedServer ? 4174 : 4173}/bosai-ai/`;
+if (isolatedServer)
+  for (let attempt = 0; attempt < 30; attempt++) {
+    try {
+      if ((await fetch(base)).ok) break;
+    } catch {}
+    await new Promise((r) => setTimeout(r, 100));
+  }
 const browser = await browserType.launch(),
   out = {
     browser: browserType.name(),
@@ -13,7 +39,7 @@ const browser = await browserType.launch(),
     checks: [],
     errors: [],
   };
-const context = await browser.newContext();
+const context = await browser.newContext({ hasTouch: true });
 const page = await context.newPage();
 page.on("pageerror", (e) => out.errors.push(e.message));
 async function nav(view) {
@@ -60,14 +86,12 @@ try {
     ])
       assert(text.includes(value), entry.id);
     assert.deepEqual(
-      await card
-        .locator("a")
-        .evaluateAll((ns) =>
-          ns.map((n) => ({
-            label: n.textContent,
-            url: n.getAttribute("href"),
-          })),
-        ),
+      await card.locator("a").evaluateAll((ns) =>
+        ns.map((n) => ({
+          label: n.textContent,
+          url: n.getAttribute("href"),
+        })),
+      ),
       entry.sources,
     );
   }
@@ -119,7 +143,7 @@ try {
     history,
   );
   out.checks.push("view changes preserve chat, draft and dictionary filters");
-  await page.locator("#voiceToggle").click();
+  await page.locator("#voiceToggle").tap();
   assert(await page.locator("#voiceLoad").isVisible());
   await page.locator("#voiceClose").click();
   assert(await page.locator("#voicePopover").isHidden());
@@ -164,7 +188,11 @@ try {
   );
   await page.evaluate(() => navigator.serviceWorker.ready);
   await page.reload();
-  await context.setOffline(true);
+  if (isolatedServer) {
+    const exited = new Promise((r) => isolatedServer.once("exit", r));
+    isolatedServer.kill();
+    await exited;
+  } else await context.setOffline(true);
   await page.reload();
   await nav("dictionary");
   assert.equal(await page.locator("[data-browse-entry]").count(), 88);
@@ -186,5 +214,6 @@ try {
     JSON.stringify(out, null, 2),
   );
   console.log(out);
+  isolatedServer?.kill();
   await browser.close();
 }

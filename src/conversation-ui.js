@@ -206,6 +206,28 @@ export function mountConversation(controller) {
     stop.hidden = !busy;
     stop.disabled = !busy;
     send.disabled = voiceActive() || controller.busy;
+    const voiceButton = $("voiceToggle");
+    voiceButton.dataset.active = String(voiceActive());
+    voiceButton.setAttribute(
+      "aria-label",
+      voiceLab.dataset.listening === "true"
+        ? "録音中：音声パネルを開く"
+        : voiceActive()
+          ? "音声使用中：音声パネルを開く"
+          : "音声入力",
+    );
+    let indicator = voiceButton.querySelector(".voice-indicator");
+    if (!indicator) {
+      indicator = node("span", "");
+      indicator.className = "voice-indicator";
+      voiceButton.append(indicator);
+    }
+    indicator.textContent =
+      voiceLab.dataset.listening === "true"
+        ? "● 録音中"
+        : voiceActive()
+          ? "● 使用中"
+          : "";
     $("chatCount").textContent = `${input.value.length} / 200`;
   }
   document.addEventListener("bosai:state", sync);
@@ -250,6 +272,9 @@ export function mountConversation(controller) {
             try {
               engine.choose(c.id, message.selection);
               render();
+              log.lastElementChild
+                ?.querySelector(".entry")
+                ?.scrollIntoView({ block: "start" });
             } catch (e) {
               status.textContent = e.message;
             }
@@ -338,7 +363,7 @@ export function mountConversation(controller) {
       render();
       await pending;
       if (seq === epoch) {
-        input.value = "";
+        if (input.value.trim() === text) input.value = "";
         status.textContent = "";
         render();
       }

@@ -163,8 +163,10 @@ document.addEventListener("input", (event) => {
 function voiceState(message) {
   $("voiceStatus").textContent = message;
   const lab = document.querySelector(".voice-lab");
-  if (lab)
+  if (lab) {
     lab.dataset.active = String(voiceBusy || voiceListening || !!voiceMic);
+    lab.dataset.listening = String(voiceListening);
+  }
   $("voiceLoad").disabled = voiceBusy || !!voiceMic || voiceListening;
   $("voiceListen").disabled =
     voiceBusy || !voiceMic || voiceListening || voiceReleaseFailed;
