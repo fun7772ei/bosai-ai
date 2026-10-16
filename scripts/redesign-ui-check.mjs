@@ -98,6 +98,11 @@ try {
   out.checks.push(
     "all 88 original records, warnings, steps, items and source links",
   );
+  const longest=[...corpus].sort((a,b)=>[b.summary,b.warning,b.items,...b.steps].join('').length-[a.summary,a.warning,a.items,...a.steps].join('').length)[0];
+  await page.locator(`[data-browse-entry="${longest.id}"]`).click();
+  const lastSource=page.locator('#browseArticle a').last();await lastSource.evaluate(n=>n.scrollIntoView({block:'nearest'}));
+  const lastRect=await lastSource.boundingBox();assert(lastRect.y>=0&&lastRect.y+lastRect.height<=820,'long original source cannot be reached');
+  out.checks.push('long original scroll reaches the last source in split view');
   await page.locator("#browseQuery").fill("津波");
   assert((await page.locator("[data-browse-entry]").count()) > 0);
   assert((await page.locator("[data-browse-entry]").count()) < 88);

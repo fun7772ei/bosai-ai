@@ -577,3 +577,6 @@ main {
   font-size: 12px;
   background: var(--surface);
 }
+
+/* Long originals stay readable in the split dictionary without scrolling past 88 rows. */
+@media(min-width:701px){#browseArticle{max-height:calc(var(--app-height,100dvh) - 120px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}}
