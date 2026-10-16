@@ -228,6 +228,21 @@ try {
   out.checks.push(
     "uncertain release retains lightweight text search; cancel during model load and restart recover",
   );
+  await start();
+  await page.evaluate(()=>window.testHost.emit({id:'tiny-eval',text:'Tinyの原認識',isComplete:true}));await stop();
+  await nav('settings');await page.locator('#diagnostics summary').first().click();
+  const evaluation=page.locator('#voiceExperiments details').filter({hasText:'音声評価（28文・手動記録）'});
+  await evaluation.locator('summary').click();
+  await evaluation.getByRole('button',{name:'直前の試行を記録',exact:true}).click();
+  await page.locator('#voiceModel').selectOption('base');
+  await evaluation.getByRole('button',{name:'直前の試行を記録',exact:true}).click();
+  assert((await evaluation.textContent()).includes('新しく録音を開始'));
+  await nav('chat');await start();await page.evaluate(()=>window.testHost.emit({id:'base-eval',text:'Baseの原認識',isComplete:true}));await stop();
+  await nav('settings');await evaluation.getByRole('button',{name:'直前の試行を記録',exact:true}).click();
+  async function capture(){const pending=page.waitForEvent('download');await evaluation.getByRole('button',{name:'評価JSONを書き出す',exact:true}).click();const download=await pending;const stream=await download.createReadStream();let body='';for await(const chunk of stream)body+=chunk.toString();return JSON.parse(body);}
+  const baseCapture=await capture();assert.equal(baseCapture.model,'base');assert.equal(baseCapture.results.length,1);assert.equal(baseCapture.results[0].transcript,'Baseの原認識');
+  await page.locator('#voiceModel').selectOption('tiny');const tinyCapture=await capture();assert.equal(tinyCapture.model,'tiny');assert.equal(tinyCapture.results.length,1);assert.equal(tinyCapture.results[0].transcript,'Tinyの原認識');
+  out.checks.push('manual evaluation keeps raw captures by model and rejects stale attempts after switching');
   assert.deepEqual(errors, []);
   out.status = "passed";
 } catch (e) {
