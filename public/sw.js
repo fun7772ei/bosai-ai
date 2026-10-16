@@ -22,7 +22,7 @@ self.addEventListener("install", (event) =>
 // every old shell until they close. Heartbeats reclaim unneeded shells after that point.
 const clientAssets = new Map();
 async function collectShells() {
-  const clients = await self.clients.matchAll({ type: "window" }),
+  const clients = (await self.clients.matchAll({ type: "window", includeUncontrolled: true })).filter(client=>client.url.startsWith(self.registration.scope)),
     live = new Set(clients.map((c) => c.id));
   for (const id of clientAssets.keys())
     if (!live.has(id)) clientAssets.delete(id);
