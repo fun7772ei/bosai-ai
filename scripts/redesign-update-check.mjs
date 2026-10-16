@@ -53,6 +53,9 @@ try {
     async () => !!(await navigator.serviceWorker.getRegistration())?.waiting,
   );
   await page.locator(".update-notice button").waitFor();
+  await page.evaluate(()=>new Promise(resolve=>{const channel=new MessageChannel();channel.port1.onmessage=resolve;navigator.serviceWorker.controller.postMessage({type:'CLIENT_READY',assets:[...document.querySelectorAll('script[src],link[rel="stylesheet"]')].map(n=>n.src||n.href)},[channel.port2]);}));
+  assert(await page.evaluate(()=>caches.has('bosai-ai-shell-redesign-update-check')));
+  out.checks.push('active worker never collects a pending update shell');
   await Promise.all([
     page.waitForEvent("load"),
     page.locator(".update-notice button").click(),

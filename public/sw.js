@@ -21,7 +21,10 @@ self.addEventListener("install", (event) =>
 // Active windows announce their entry assets. Unknown/legacy clients conservatively pin
 // every old shell until they close. Heartbeats reclaim unneeded shells after that point.
 const clientAssets = new Map();
+const updatePending=()=>!!self.registration.installing||!!self.registration.waiting||self.registration.active?.state!=="activated";
 async function collectShells() {
+  // An unused cache may belong to the next worker, not an obsolete release.
+  if(updatePending())return;
   const clients = (await self.clients.matchAll({ type: "window", includeUncontrolled: true })).filter(client=>client.url.startsWith(self.registration.scope)),
     live = new Set(clients.map((c) => c.id));
   for (const id of clientAssets.keys())
@@ -44,7 +47,7 @@ async function collectShells() {
       if (!found) return; // A window using a not-yet-cached version cannot be safely classified.
     }
   }
-  for (const key of keys) if (!keep.has(key)) await caches.delete(key);
+  for (const key of keys) {if(updatePending())return;if (!keep.has(key)) await caches.delete(key);}
 }
 self.addEventListener("message", (event) => {
   if (event.data?.type === "APPLY_UPDATE") self.skipWaiting();
@@ -57,7 +60,7 @@ self.addEventListener("message", (event) => {
         )
       : [];
     clientAssets.set(event.source.id, assets);
-    event.waitUntil(collectShells());
+    event.waitUntil(collectShells().then(()=>event.ports[0]?.postMessage("ready")));
   }
 });
 self.addEventListener("activate", (event) =>
