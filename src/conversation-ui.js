@@ -324,6 +324,7 @@ export function mountConversation(controller) {
     epoch++;
     controller.stop();
     engine.cancel();
+    status.removeAttribute("aria-busy");
     status.textContent = "検索を停止しました。入力と履歴は残しています。";
     render();
   };
@@ -337,6 +338,7 @@ export function mountConversation(controller) {
     epoch++;
     if (engine.busy) controller.stop();
     engine.clear();
+    status.removeAttribute("aria-busy");
     status.textContent = "新しい会話を始めました。";
     render();
   };
