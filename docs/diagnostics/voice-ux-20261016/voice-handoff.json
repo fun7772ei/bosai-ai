@@ -1,0 +1,9 @@
+{
+  "platform": "Linux Chromium, not iPad",
+  "checks": [
+    "first-use isolation navigation preserves draft, history, context and candidate selection",
+    "normal controlled navigation stays isolated without voice URL parameters",
+    "storage access failure does not block text conversation"
+  ],
+  "status": "passed"
+}

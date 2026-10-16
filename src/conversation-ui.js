@@ -132,13 +132,22 @@ export function mountConversation(controller, voice) {
     o.value = name;
     category.append(o);
   }
-  let selectedId = null, catalogScroll=0;
+  let selectedId = null,
+    catalogScroll = 0;
   function openEntry(entry) {
     selectedId = entry.id;
-    catalogScroll=$('main').scrollTop;
+    catalogScroll = $("main").scrollTop;
     article.replaceChildren();
-    const back=node('button','← 一覧に戻る');back.type='button';back.className='catalog-back outlined';
-    back.onclick=()=>{$('dictionary').classList.remove('reading');$('main').scrollTop=catalogScroll;list.querySelector(`[data-browse-entry="${selectedId}"]`)?.focus({preventScroll:true});};
+    const back = node("button", "← 一覧に戻る");
+    back.type = "button";
+    back.className = "catalog-back outlined";
+    back.onclick = () => {
+      $("dictionary").classList.remove("reading");
+      $("main").scrollTop = catalogScroll;
+      list
+        .querySelector(`[data-browse-entry="${selectedId}"]`)
+        ?.focus({ preventScroll: true });
+    };
     article.append(back);
     renderSource(entry, article, { expand: true });
     for (const b of list.querySelectorAll("button"))
@@ -146,8 +155,11 @@ export function mountConversation(controller, voice) {
         "aria-pressed",
         String(b.dataset.browseEntry === entry.id),
       );
-    $('dictionary').classList.add('reading');
-    if (matchMedia("(max-width:700px)").matches){$('main').scrollTop=0;back.focus({preventScroll:true});}
+    $("dictionary").classList.add("reading");
+    if (matchMedia("(max-width:700px)").matches) {
+      $("main").scrollTop = 0;
+      back.focus({ preventScroll: true });
+    }
   }
   function browse() {
     const q = query.value.normalize("NFKC").toLowerCase().trim();
@@ -252,9 +264,9 @@ export function mountConversation(controller, voice) {
           ? "音声使用中：音声パネルを開く"
           : "音声入力",
     );
-    $("chatCount").textContent = `${input.value.length.toLocaleString()} / 2,000`;
+    $("chatCount").textContent =
+      `${input.value.length.toLocaleString()} / 2,000`;
     $("chatInputClear").disabled = !input.value || voiceProcessing || recording;
-
   }
   document.addEventListener("bosai:state", sync);
   input.addEventListener("input", sync);
@@ -415,17 +427,28 @@ export function mountConversation(controller, voice) {
   $("chatInputClear").onclick = () => {
     if (voice.active) return;
     input.value = "";
-    input.dispatchEvent(new Event("input", {bubbles:true}));
-    input.focus({preventScroll:true});
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.focus({ preventScroll: true });
   };
   // Temporary handoff for the first isolation navigation, never persistent history.
-  document.addEventListener('bosai:voice-handoff',()=>{
-    sessionStorage.setItem('bosai-voice-conversation',JSON.stringify({history:engine.history,state:engine.state,turn:engine.turn,sequence:engine.sequence}));
+  document.addEventListener("bosai:voice-handoff", () => {
+    sessionStorage.setItem(
+      "bosai-voice-conversation",
+      JSON.stringify({
+        history: engine.history,
+        state: engine.state,
+        turn: engine.turn,
+        sequence: engine.sequence,
+      }),
+    );
   });
   try {
-    const saved=sessionStorage.getItem('bosai-voice-conversation');
-    if(saved){sessionStorage.removeItem('bosai-voice-conversation');Object.assign(engine,JSON.parse(saved));}
-  }catch{}
+    const saved = sessionStorage.getItem("bosai-voice-conversation");
+    if (saved) {
+      sessionStorage.removeItem("bosai-voice-conversation");
+      Object.assign(engine, JSON.parse(saved));
+    }
+  } catch {}
   // Enter adds a line on touch devices; explicit Cmd/Ctrl+Enter sends without interfering with IME.
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && !e.isComposing) {

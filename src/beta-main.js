@@ -1,5 +1,5 @@
 import "./beta.css";
-import {mountIcons} from "./icons.js";
+import { mountIcons } from "./icons.js";
 mountIcons();
 import { BetaController } from "./beta-controller.js";
 import { corpus } from "./beta-search.js";
@@ -10,11 +10,11 @@ const $ = (id) => document.getElementById(id),
     e.textContent = text;
     return e;
   };
-let voice = {active:false,resident:false};
+let voice = { active: false, resident: false };
 const controller = new BetaController({ changed: refresh });
 function refresh() {
   const busy = controller.busy,
-    voiceActive = voice.active || voice.resident;
+    voiceActive = voice.active;
   for (const id of ["saveModel", "loadModel", "mode"])
     $(id).disabled = busy || voiceActive;
   $("stop").disabled = !busy;
@@ -30,6 +30,7 @@ function refresh() {
 }
 async function modelAction(action) {
   try {
+    if (!(await voice.beforeSearch())) return;
     await controller[action]();
   } catch (e) {
     controller.phase(

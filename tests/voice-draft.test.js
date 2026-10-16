@@ -29,3 +29,26 @@ test('manual edits are detected so subsequent callbacks cannot overwrite input',
  v.commit({id:'1',text:'自信'});assert.equal(v.edited,true);
  v.begin('別の入力');assert.equal(v.edited,false);
 });
+
+test('worker snapshots include initial text, deduplicate repeated completion and ignore stale partials',()=>{
+ const d=new VoiceDraft();d.begin('入力');
+ d.update({id:'a',text:'津波は来ない',isComplete:false});
+ assert.equal(d.value,'入力 津波は来ない');
+ d.update({id:'a',text:'津波は来ていない。',isComplete:true});
+ d.update({id:'a',text:'津波は来ていない。',isComplete:true});
+ d.update({id:'a',text:'津波は',isComplete:false});
+ assert.equal(d.value,'入力 津波は来ていない。');
+ assert.equal(d.committed,'津波は来ていない。');
+});
+test('out-of-order completion retains original line ordering and uncommitted tail at stop',()=>{
+ const d=new VoiceDraft();d.begin();
+ d.update({id:'a',text:'最初',isComplete:false});
+ d.update({id:'b',text:'次',isComplete:true});
+ assert.equal(d.value,'最初 次');
+ assert.equal(d.stop().provisional,true);
+ d.update({id:'a',text:'最初。',isComplete:true});
+ d.update({id:'c',text:'失わない末尾',isComplete:false});
+ assert.equal(d.stop().text,'最初。 次 失わない末尾');
+ assert.equal(d.committed,'最初。 次');
+ d.begin('新規');assert.equal(d.value,'新規');
+});

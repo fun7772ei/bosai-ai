@@ -1,36 +1,238 @@
-// Deterministic SDK double checks UI/state only. Not an ASR accuracy/runtime result.
-import {chromium} from '@playwright/test';
-import {writeFileSync} from 'node:fs';
-const browser=await chromium.launch(),out={platform:'Linux Chromium',sdk:'test double; UI only',checks:{}};
-try{
- const context=await browser.newContext({acceptDownloads:true});
- await context.route('**/moonshine/index.js',route=>route.fulfill({contentType:'text/javascript',body:`
- export const ModelArch={Tiny:0,Base:1};
- export class MicTranscriber {
- language(){return this} modelArch(a){window.testVoiceArch=a;return this} onProgress(){return this} onText(cb){this.text=cb;return this} onLine(cb){this.line=cb;return this} onError(){return this}
- async load(){window.testMic=this} async start(){} async stop(){} async close(){if(window.testCloseFailure)throw Error('test close failure');window.testClosed=true}
- }`}));
- const page=await context.newPage();await page.goto('http://localhost:4173/bosai-ai/');await page.evaluate(()=>navigator.serviceWorker.ready);await page.goto('http://localhost:4173/bosai-ai/?voice_iso=1');
- await page.locator('#voiceToggle').click();
- out.checks.composerDoesNotCoverHeading=await page.evaluate(()=>document.querySelector('#conversation h2').getBoundingClientRect().bottom<=document.querySelector('#chatQuestion').getBoundingClientRect().top);
- await page.locator('#voiceLoad').click();await page.locator('#voiceListen').click();
- await page.locator('#voiceClose').click();await page.locator('#appNavigation [data-view="dictionary"]').evaluate(b=>b.click());out.checks.persistentVoiceControl=await page.locator('#voiceActivity').isVisible()&&await page.locator('#voiceActivity').textContent().then(t=>t.includes('録音中'))&&await page.locator('#voiceActivity button').last().isEnabled();await page.locator('#voiceActivity button').first().click();await page.keyboard.press('Escape');out.checks.escapeKeepsRecordingControl=await page.locator('#voiceActivity').isVisible();await page.locator('#voiceActivity button').first().click();await page.evaluate(()=>{window.testMic.text('自信が発生した。');window.testMic.line({id:'1',text:'自信が発生した。津波は来ない。震度5。'});});
- out.checks.committed=await page.locator('#voiceCommitted').textContent().then(t=>t.startsWith('確定：'));
- out.checks.noAutoRewrite=await page.locator('#chatQuestion').inputValue().then(t=>t.startsWith('自信'));
- await page.locator('#voiceStop').click();out.checks.closed=await page.evaluate(()=>window.testClosed);
- await page.locator('#voiceCorrections button').click();
- out.checks.confirmedOnly=await page.locator('#chatQuestion').inputValue().then(t=>t==='地震が発生した。津波は来ない。震度5。');
- await page.locator('#appNavigation [data-view="settings"]').evaluate(b=>b.click());await page.locator('#diagnostics summary').first().click();const evaluation=page.locator('#voiceExperiments details').filter({hasText:'音声評価（28文・手動記録）'});await evaluation.locator('summary').click();await evaluation.getByRole('button',{name:'直前の試行を記録',exact:true}).click();
- const downloadPromise=page.waitForEvent('download');await evaluation.getByRole('button',{name:'評価JSONを書き出す',exact:true}).click();const download=await downloadPromise;await download.saveAs('test-results/voice-review-capture.json');
- const capture=JSON.parse(await (await import('node:fs/promises')).readFile('test-results/voice-review-capture.json','utf8'));
- out.checks.rawCapture=capture.model==='tiny'&&capture.results.length===1&&capture.results[0].transcript.startsWith('自信');
- // This deliberately generated capture must never be reported as measured ASR data.
- writeFileSync('test-results/voice-review-capture.json',JSON.stringify({...capture,synthetic:true,warning:'SDK double, NOT measured ASR'},null,2));
- await page.locator('#appNavigation [data-view="chat"]').evaluate(b=>b.click());await page.locator('#voiceLoad').click();await page.locator('#voiceListen').click();await page.evaluate(()=>window.testMic.line({id:'2',text:'自信が発生した。'}));await page.locator('#chatQuestion').fill('私の手入力は変えない');await page.evaluate(()=>window.testMic.line({id:'3',text:'自信が発生した。'}));await page.locator('#voiceStop').click();
- out.checks.editsPreserved=await page.locator('#chatQuestion').inputValue().then(t=>t==='私の手入力は変えない')&&await page.locator('#voiceCorrections button').count()===0;
- await page.goto('http://localhost:4173/bosai-ai/?voice_iso=1&voice_eval=base');await page.locator('#voiceToggle').click();await page.locator('#voiceLoad').click();await page.waitForFunction(()=>!document.querySelector('#voiceListen').disabled);out.checks.baseExplicit=await page.evaluate(()=>window.testVoiceArch===1)&&await page.locator('.voice-lab-tag').textContent().then(t=>t.includes('未検証'));
- await page.evaluate(()=>window.testCloseFailure=true);await page.locator('#voiceUnload').click();out.checks.releaseFailureVisible=await page.locator('#voiceStatus').textContent().then(t=>t.includes('停止・解放を確認できません'))&&await page.locator('#voiceListen').isDisabled();
- await page.locator('#chatQuestion').fill('地震が来たら？');await page.locator('#chatForm').evaluate(f=>f.requestSubmit());await page.waitForFunction(()=>!window.bosaiConversation.busy&&window.bosaiConversation.history.at(-1)?.diagnostics);out.checks.failedCloseAllowsLightConversation=await page.evaluate(()=>window.bosaiConversation.history.at(-1).diagnostics.actual==='light')&&await page.locator('#chatStatus').textContent().then(t=>t.includes('軽量検索'));
- await page.evaluate(()=>window.testCloseFailure=false);await page.locator('#voiceUnload').click();await page.locator('#appNavigation [data-view="settings"]').evaluate(b=>b.click());out.checks.settingsAfterRelease=await page.locator('#appSettings').isVisible();
- out.status=Object.values(out.checks).every(Boolean)?'passed':'failed';if(out.status==='failed')process.exitCode=1;
-}catch(e){out.status='failed';out.error=e.message;process.exitCode=1;}finally{writeFileSync('test-results/voice-review-ui.json',JSON.stringify(out,null,2));console.log(out);await browser.close();}
+// Deterministic SDK double checks UI/state only; not recognition or performance.
+import { chromium, webkit } from "@playwright/test";
+import assert from "node:assert/strict";
+import { writeFileSync, mkdirSync } from "node:fs";
+import {
+  installVoiceDouble,
+  installCaptureDouble,
+} from "./helpers/voice-sdk-double.mjs";
+const browserType = process.env.BOSAI_BROWSER === "webkit" ? webkit : chromium;
+const browser = await browserType.launch(),
+  out = {
+    platform: `Linux ${browserType.name()}`,
+    sdk: "test double; UI only",
+    checks: [],
+  };
+mkdirSync("test-results", { recursive: true });
+try {
+  const context = await browser.newContext({
+    serviceWorkers: "block",
+    viewport: { width: 1180, height: 820 },
+  });
+  await installVoiceDouble(context);
+  await context.route("**/bosai-ai/", async (route) => {
+    const response = await route.fetch();
+    await route.fulfill({
+      response,
+      headers: {
+        ...response.headers(),
+        "cross-origin-opener-policy": "same-origin",
+        "cross-origin-embedder-policy": "require-corp",
+      },
+    });
+  });
+  const page = await context.newPage();
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("http://localhost:4173/bosai-ai/");
+  await page.reload();
+  await page.evaluate(installCaptureDouble);
+  async function nav(view) {
+    await page.locator(`[data-view="${view}"]`).evaluate((b) => b.click());
+  }
+  async function start() {
+    await page.locator("#voiceToggle").click();
+    await page.waitForFunction(() =>
+      ["recording", "error"].includes(
+        document.querySelector(".voice-lab").dataset.phase,
+      ),
+    );
+    assert.equal(
+      await page.locator(".voice-lab").getAttribute("data-phase"),
+      "recording",
+      await page.locator("#voiceStatus").textContent(),
+    );
+  }
+  async function stop() {
+    await page.locator("#voiceStop").click();
+    await page.waitForFunction(
+      () => document.querySelector(".voice-lab").dataset.phase === "review",
+    );
+  }
+  await start();
+  assert.equal(await page.evaluate(() => window.testLoadCount), 1);
+  assert(await page.locator("#voiceStop").isVisible());
+  assert.equal(await page.locator("#voiceLoad").count(), 0);
+  assert.equal(await page.locator("#voiceCommitted").count(), 0);
+  out.checks.push(
+    "one tap automatically prepares and starts; no model panel or duplicate transcript",
+  );
+  await page.evaluate(() => {
+    window.testHost.emit({ id: "a", text: "津波は", isComplete: false });
+    window.testHost.emit({
+      id: "a",
+      text: "津波は来ていません。",
+      isComplete: true,
+    });
+    window.testHost.emit({
+      id: "a",
+      text: "津波は来ていません。",
+      isComplete: true,
+    });
+    window.testFinal = { id: "b", text: "家の中です。", isComplete: true };
+  });
+  await stop();
+  assert.equal(
+    await page.locator("#chatQuestion").inputValue(),
+    "津波は来ていません。 家の中です。",
+  );
+  assert.equal(await page.locator("#conversationLog").textContent(), "");
+  assert(await page.evaluate(() => window.testStreamClosed));
+  assert(!(await page.evaluate(() => window.testClosed)));
+  out.checks.push(
+    "line ids deduplicate; final stop callback retained; no auto send; only stream released",
+  );
+  await start();
+  assert.equal(await page.evaluate(() => window.testLoadCount), 1);
+  await page.locator("#chatQuestion").fill("手動修正を維持する");
+  await page.evaluate(() =>
+    window.testHost.emit({ id: "c", text: "勝手に変えない", isComplete: true }),
+  );
+  await stop();
+  assert.equal(
+    await page.locator("#chatQuestion").inputValue(),
+    "手動修正を維持する",
+  );
+  out.checks.push("restart reuses model; manual edits survive final callbacks");
+  await page.evaluate(() => (window.testFinal = null));
+  await page.locator("#chatQuestion").fill("キャンセル前");
+  await start();
+  await page.evaluate(() =>
+    window.testHost.emit({ id: "d", text: "破棄する", isComplete: false }),
+  );
+  await nav("dictionary");
+  assert(await page.locator("#voiceActivity").isVisible());
+  await page.locator("#voiceActivity button").last().click();
+  await page.waitForFunction(
+    () => document.querySelector(".voice-lab").dataset.phase === "review",
+  );
+  await nav("chat");
+  await start();
+  await page.locator("#voiceCancel").click();
+  await page.waitForFunction(
+    () => document.querySelector(".voice-lab").dataset.phase === "idle",
+  );
+  assert(await page.evaluate(() => window.testClosed));
+  out.checks.push(
+    "recording remains controllable in dictionary; cancellation terminates worker",
+  );
+  await page.locator("#chatQuestion").fill("消去する入力");
+  await page.locator("#chatInputClear").click();
+  assert.equal(await page.locator("#chatQuestion").inputValue(), "");
+  await page.evaluate(() => (window.testPermissionDenied = true));
+  await page.locator("#voiceToggle").click();
+  await page.waitForFunction(
+    () => document.querySelector(".voice-lab").dataset.phase === "error",
+  );
+  assert((await page.locator("#voiceStatus").textContent()).includes("マイク"));
+  await page.evaluate(() => (window.testPermissionDenied = false));
+  await page.locator("#voiceRetry").click();
+  await page.waitForFunction(
+    () => document.querySelector(".voice-lab").dataset.phase === "recording",
+  );
+  await stop();
+  out.checks.push("clear input; microphone refusal and retry recover");
+  await page.locator("#chatQuestion").fill("寝ているときに地震が来たら？");
+  await page.locator("#chatSend").click();
+  await page.waitForFunction(
+    () =>
+      !window.bosaiConversation.busy &&
+      window.bosaiConversation.history.length >= 2,
+  );
+  assert(await page.evaluate(() => window.testClosed));
+  out.checks.push(
+    "send releases voice worker and resumes selected search mode",
+  );
+  await nav("settings");
+  await page.locator("#voiceModel").selectOption("base");
+  await nav("chat");
+  await start();
+  assert.equal(await page.evaluate(() => window.testVoiceArch), 1);
+  await page.locator("#voiceCancel").click();
+  await page.waitForFunction(
+    () => document.querySelector(".voice-lab").dataset.phase === "idle",
+  );
+  await page.evaluate(() => (window.testLoadError = true));
+  await page.locator("#voiceToggle").click();
+  await page.waitForFunction(
+    () => document.querySelector(".voice-lab").dataset.phase === "error",
+  );
+  await nav("settings");
+  await page.locator("#voiceModel").selectOption("tiny");
+  await page.evaluate(() => (window.testLoadError = false));
+  await nav("chat");
+  await start();
+  assert.equal(await page.evaluate(() => window.testVoiceArch), 0);
+  await stop();
+  out.checks.push(
+    "Base is explicit; load failure recovers through visible Tiny selection",
+  );
+  await page.locator("#chatQuestion").fill("編集中");
+  await start();
+  await page.evaluate(() =>
+    window.testHost.emit({ id: "tail", text: "暫定の末尾", isComplete: false }),
+  );
+  await stop();
+  assert(
+    (await page.locator("#chatQuestion").inputValue()).endsWith("暫定の末尾"),
+  );
+  assert((await page.locator("#voiceStatus").textContent()).includes("暫定"));
+  out.checks.push("uncommitted tail preserved and labelled for review");
+  await page.evaluate(() => (window.testCloseFailure = true));
+  await page.locator("#chatQuestion").fill("寝ているときに地震が来たら？");
+  await page.locator("#chatSend").click();
+  await page.waitForFunction(
+    () =>
+      !window.bosaiConversation.busy &&
+      window.bosaiConversation.history.at(-1)?.diagnostics,
+  );
+  assert.equal(
+    await page.evaluate(
+      () => window.bosaiConversation.history.at(-1).diagnostics.actual,
+    ),
+    "light",
+  );
+  assert(
+    (await page.locator("#chatStatus").textContent()).includes("軽量検索"),
+  );
+  await page.evaluate(() => (window.testCloseFailure = false));
+  await nav("settings");
+  await page.locator("#voiceUnload").click();
+  await nav("chat");
+  await page.evaluate(() => (window.testHoldLoad = true));
+  await page.locator("#voiceToggle").click();
+  await page.waitForFunction(() => !!window.testResumeLoad);
+  await page.locator("#voiceCancel").click();
+  await page.waitForFunction(
+    () => document.querySelector(".voice-lab").dataset.phase === "idle",
+  );
+  await page.evaluate(() => (window.testHoldLoad = false));
+  await start();
+  await stop();
+  out.checks.push(
+    "uncertain release retains lightweight text search; cancel during model load and restart recover",
+  );
+  assert.deepEqual(errors, []);
+  out.status = "passed";
+} catch (e) {
+  out.status = "failed";
+  out.error = e.stack;
+  process.exitCode = 1;
+} finally {
+  writeFileSync(
+    `test-results/voice-review-ui${browserType === webkit ? "-webkit" : ""}.json`,
+    JSON.stringify(out, null, 2),
+  );
+  console.log(out);
+  await browser.close();
+}

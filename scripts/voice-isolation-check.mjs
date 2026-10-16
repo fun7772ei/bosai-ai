@@ -21,7 +21,7 @@ try {
   const result = await isolated.evaluate(() => ({
     isolated: crossOriginIsolated,
     workerController: !!navigator.serviceWorker.controller,
-    swHeader: document.querySelector('#voiceEnableIso') !== null,
+    swHeader: document.querySelector('#voiceModel') !== null,
     microphoneWarning: document.querySelector('#voiceStatus')?.textContent,
   }));
   if (!result.workerController || !result.isolated || !result.swHeader) {
@@ -73,7 +73,7 @@ try {
   regular.on('pageerror', error => errors.push(error.message));
   await regular.goto(base, { waitUntil: 'load' });
   const regularIso = await regular.evaluate(() => crossOriginIsolated);
-  if (regularIso) throw Error('Regular Ruri page must remain non-isolated');
+  if (!regularIso) throw Error('Controlled normal page must support voice without a mode reload');
   const sdkHead = await regular.request.get(new URL('moonshine/index.js', base).href);
   const wasmHead = await regular.request.get(new URL('moonshine/moonshine.wasm', base).href, { timeout: 60000 });
   if (!sdkHead.ok() || !wasmHead.ok()) throw Error('Moonshine same-origin assets missing: ' + sdkHead.status() + '/' + wasmHead.status());

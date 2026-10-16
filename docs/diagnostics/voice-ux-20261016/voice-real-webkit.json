@@ -1,0 +1,624 @@
+{
+  "createdAt": "2026-10-16T03:06:56.641Z",
+  "platform": "Linux webkit, NOT physical iPad",
+  "audio": "Open JTalk synthetic voice. Not human speech, ambient noise or microphone accuracy.",
+  "models": [
+    {
+      "model": "tiny",
+      "loadMs": 2255.24,
+      "modelBytes": 71815430,
+      "trials": [
+        {
+          "id": "short",
+          "reference": "地震が来たら、どうすればいいですか。",
+          "seconds": 3.175,
+          "transcript": "自信がきたら どうすればいいですか？",
+          "elapsedMs": 2394.0000000000005,
+          "heartbeat": 80,
+          "lines": [
+            {
+              "id": "14073063275236774572",
+              "text": "自信がきたら",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774573",
+              "text": "どうすればいいですか？",
+              "isComplete": true
+            }
+          ],
+          "edits": 3,
+          "referenceChars": 16,
+          "hypothesisChars": 16,
+          "realTimeFactor": 0.7540157480314962
+        },
+        {
+          "id": "terms",
+          "reference": "避難所で断水が続いています。携帯トイレと簡易トイレの使い方を教えてください。",
+          "seconds": 6.655,
+          "transcript": "避難所で断水が続いて 携帯トイレとカニトイレの使い方を教えてくださ",
+          "elapsedMs": 2287.9799999999996,
+          "heartbeat": 81,
+          "lines": [
+            {
+              "id": "14073063275236774574",
+              "text": "避難所で断水が続いて",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774575",
+              "text": "携帯トイレとカニトイレの使い方を教えてくださ",
+              "isComplete": true
+            }
+          ],
+          "edits": 6,
+          "referenceChars": 36,
+          "hypothesisChars": 32,
+          "realTimeFactor": 0.3437986476333583
+        },
+        {
+          "id": "negation",
+          "reference": "津波は来ていません。建物は壊れていません。今すぐ外に出たほうがいいとは思っていません。",
+          "seconds": 7.405,
+          "transcript": "津波は来ていません。 建物はこまれていません。 今すぐ外に出た不法ないいとは思っていません。",
+          "elapsedMs": 1848.58,
+          "heartbeat": 66,
+          "lines": [
+            {
+              "id": "14073063275236774576",
+              "text": "津波は来ていません。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774577",
+              "text": "建物はこまれていません。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774578",
+              "text": "今すぐ外に出た不法ないいとは思っていません。",
+              "isComplete": true
+            }
+          ],
+          "edits": 5,
+          "referenceChars": 40,
+          "hypothesisChars": 41,
+          "realTimeFactor": 0.24963943281566509
+        },
+        {
+          "id": "colloquial",
+          "reference": "えっと、さっき地震があって、家にいるんですけど、水道が使えないみたいなんです。トイレってどうしたらいいですか。",
+          "seconds": 9.015,
+          "transcript": "えっと。 さっき自信があって。 家にいるんですけど。 水道が使えないみたいなんです。 トイレってどうしたらいいです",
+          "elapsedMs": 1111.7600000000002,
+          "heartbeat": 47,
+          "lines": [
+            {
+              "id": "14073063275236774579",
+              "text": "えっと。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774580",
+              "text": "さっき自信があって。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774581",
+              "text": "家にいるんですけど。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774582",
+              "text": "水道が使えないみたいなんです。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774583",
+              "text": "トイレってどうしたらいいです",
+              "isComplete": true
+            }
+          ],
+          "edits": 3,
+          "referenceChars": 50,
+          "hypothesisChars": 49,
+          "realTimeFactor": 0.12332334997226846
+        },
+        {
+          "id": "long",
+          "reference": "昨日から強い雨が降り続いています。今は自宅の二階にいて、家族も一緒にいます。川の近くには住んでいませんが、道路に水がたまっているようです。避難所が開いているかはまだ確認できていません。車で移動しても安全だとは考えていません。まず何を確認すればよいでしょうか。最新の情報が必要なことは分かっています。停電したときのために、飲み水や食べ物、懐中電灯などを用意したいと思っています。家には小さな子供がいて、毎日飲んでいる薬もあります。外に出る前に、家の中でできる準備を教えてください。",
+          "seconds": 41.7,
+          "transcript": "きのうから強い雨が降り? 今は自宅の２階に 家族も一緒にいます。 川の近くには住んでいませんが。 道路に水がたまっているようです。 避難所が開いているかはまだ確認 車で移動しても安全だとは考えていません。 まず何を確認すればよいでしょ 最新の情報が必要なことは分かっています。 停電したときのために 飲み水や食べ物 懐中電灯などを用意したいと思ってい 家には小さな子供がいて。 毎日飲んでいる薬もあ 外に出る前に。 家の中でできる準備を教えてくださ",
+          "elapsedMs": 6791.139999999999,
+          "heartbeat": 283,
+          "lines": [
+            {
+              "id": "14073063275236774584",
+              "text": "きのうから強い雨が降り?",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774585",
+              "text": "今は自宅の２階に",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774586",
+              "text": "家族も一緒にいます。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774587",
+              "text": "川の近くには住んでいませんが。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774588",
+              "text": "道路に水がたまっているようです。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774589",
+              "text": "避難所が開いているかはまだ確認",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774590",
+              "text": "車で移動しても安全だとは考えていません。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774591",
+              "text": "まず何を確認すればよいでしょ",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774592",
+              "text": "最新の情報が必要なことは分かっています。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774593",
+              "text": "停電したときのために",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774594",
+              "text": "飲み水や食べ物",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774595",
+              "text": "懐中電灯などを用意したいと思ってい",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774596",
+              "text": "家には小さな子供がいて。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774597",
+              "text": "毎日飲んでいる薬もあ",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774598",
+              "text": "外に出る前に。",
+              "isComplete": true
+            },
+            {
+              "id": "14073063275236774599",
+              "text": "家の中でできる準備を教えてくださ",
+              "isComplete": true
+            }
+          ],
+          "edits": 27,
+          "referenceChars": 223,
+          "hypothesisChars": 201,
+          "realTimeFactor": 0.16285707434052757
+        }
+      ],
+      "peakBrowserProcessRssBytes": null
+    },
+    {
+      "model": "base",
+      "loadMs": 2720.420000000002,
+      "modelBytes": 141001214,
+      "trials": [
+        {
+          "id": "short",
+          "reference": "地震が来たら、どうすればいいですか。",
+          "seconds": 3.175,
+          "transcript": "じしんがきいたら。 どうすればいいですか？",
+          "elapsedMs": 1882.0599999999977,
+          "heartbeat": 65,
+          "lines": [
+            {
+              "id": "18042672941495807199",
+              "text": "じしんがきいたら。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807200",
+              "text": "どうすればいいですか？",
+              "isComplete": true
+            }
+          ],
+          "edits": 5,
+          "referenceChars": 16,
+          "hypothesisChars": 18,
+          "realTimeFactor": 0.5927748031496055
+        },
+        {
+          "id": "terms",
+          "reference": "避難所で断水が続いています。携帯トイレと簡易トイレの使い方を教えてください。",
+          "seconds": 6.655,
+          "transcript": "避難所で断水が続いて 携帯トイレと紙トイレの使い方を教えてくだ",
+          "elapsedMs": 2299.4799999999996,
+          "heartbeat": 97,
+          "lines": [
+            {
+              "id": "18042672941495807201",
+              "text": "避難所で断水が続いて",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807202",
+              "text": "携帯トイレと紙トイレの使い方を教えてくだ",
+              "isComplete": true
+            }
+          ],
+          "edits": 7,
+          "referenceChars": 36,
+          "hypothesisChars": 30,
+          "realTimeFactor": 0.34552667167543194
+        },
+        {
+          "id": "negation",
+          "reference": "津波は来ていません。建物は壊れていません。今すぐ外に出たほうがいいとは思っていません。",
+          "seconds": 7.405,
+          "transcript": "「津波はきていません」 たてものはこわれていません。 今すぐ外に出たほうがいいとは思っていません。",
+          "elapsedMs": 2195.100000000002,
+          "heartbeat": 92,
+          "lines": [
+            {
+              "id": "18042672941495807203",
+              "text": "「津波はきていません」",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807204",
+              "text": "たてものはこわれていません。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807205",
+              "text": "今すぐ外に出たほうがいいとは思っていません。",
+              "isComplete": true
+            }
+          ],
+          "edits": 7,
+          "referenceChars": 40,
+          "hypothesisChars": 43,
+          "realTimeFactor": 0.2964348413234304
+        },
+        {
+          "id": "colloquial",
+          "reference": "えっと、さっき地震があって、家にいるんですけど、水道が使えないみたいなんです。トイレってどうしたらいいですか。",
+          "seconds": 9.015,
+          "transcript": "えっと さっきじしんがあって。 家にいるんですけど。 水道が使えないみたいなんです。 ってどうしたらいいですか？",
+          "elapsedMs": 3640.139999999996,
+          "heartbeat": 117,
+          "lines": [
+            {
+              "id": "18042672941495807206",
+              "text": "えっと",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807207",
+              "text": "さっきじしんがあって。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807208",
+              "text": "家にいるんですけど。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807209",
+              "text": "水道が使えないみたいなんです。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807210",
+              "text": "ってどうしたらいいですか？",
+              "isComplete": true
+            }
+          ],
+          "edits": 6,
+          "referenceChars": 50,
+          "hypothesisChars": 48,
+          "realTimeFactor": 0.4037870216306152
+        },
+        {
+          "id": "long",
+          "reference": "昨日から強い雨が降り続いています。今は自宅の二階にいて、家族も一緒にいます。川の近くには住んでいませんが、道路に水がたまっているようです。避難所が開いているかはまだ確認できていません。車で移動しても安全だとは考えていません。まず何を確認すればよいでしょうか。最新の情報が必要なことは分かっています。停電したときのために、飲み水や食べ物、懐中電灯などを用意したいと思っています。家には小さな子供がいて、毎日飲んでいる薬もあります。外に出る前に、家の中でできる準備を教えてください。",
+          "seconds": 41.7,
+          "transcript": "きのうから強い雨が降り? 今は自宅の２階に 家族も一緒にいます。 かなのちかくにはすんでいませんが。 道路に水がたまっているようです。 避難所が開いているかはまだ確認 車で移動しても安全だとは考えていません。 まず何を確認すればよいでしょ 最新の情報が必要なことは分かっています。 停電した時のために。 飲み水や食べ物。 懐中電灯などを用意したいと思ってい 家には小さな子どもがいて。 毎日飲んでいる薬もあ 外に出る前に。 家の中でできる準備を教えてくださ",
+          "elapsedMs": 12757.82,
+          "heartbeat": 526,
+          "lines": [
+            {
+              "id": "18042672941495807211",
+              "text": "きのうから強い雨が降り?",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807212",
+              "text": "今は自宅の２階に",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807213",
+              "text": "家族も一緒にいます。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807214",
+              "text": "かなのちかくにはすんでいませんが。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807215",
+              "text": "道路に水がたまっているようです。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807216",
+              "text": "避難所が開いているかはまだ確認",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807217",
+              "text": "車で移動しても安全だとは考えていません。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807218",
+              "text": "まず何を確認すればよいでしょ",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807219",
+              "text": "最新の情報が必要なことは分かっています。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807220",
+              "text": "停電した時のために。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807221",
+              "text": "飲み水や食べ物。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807222",
+              "text": "懐中電灯などを用意したいと思ってい",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807223",
+              "text": "家には小さな子どもがいて。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807224",
+              "text": "毎日飲んでいる薬もあ",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807225",
+              "text": "外に出る前に。",
+              "isComplete": true
+            },
+            {
+              "id": "18042672941495807226",
+              "text": "家の中でできる準備を教えてくださ",
+              "isComplete": true
+            }
+          ],
+          "edits": 36,
+          "referenceChars": 223,
+          "hypothesisChars": 203,
+          "realTimeFactor": 0.3059429256594724
+        }
+      ],
+      "peakBrowserProcessRssBytes": null
+    }
+  ],
+  "peakMemory": "Browser process RSS sum (includes shared pages), sampled every 100ms. NOT Safari/iPad or JS heap.",
+  "reports": {
+    "tiny": {
+      "schemaVersion": 1,
+      "model": "tiny",
+      "metric": "CER",
+      "normalization": "NFKC + lowercase + remove Unicode whitespace/punctuation/symbols; Unicode code points",
+      "measured": 5,
+      "unmeasured": 0,
+      "total": 5,
+      "aggregateCer": 0.12054794520547946,
+      "totalEdits": 44,
+      "totalReferenceChars": 365,
+      "rows": [
+        {
+          "id": "short",
+          "reference": "地震が来たら、どうすればいいですか。",
+          "transcript": "自信がきたら どうすればいいですか？",
+          "edits": 3,
+          "referenceChars": 16,
+          "hypothesisChars": 16,
+          "cer": 0.1875,
+          "status": "measured"
+        },
+        {
+          "id": "terms",
+          "reference": "避難所で断水が続いています。携帯トイレと簡易トイレの使い方を教えてください。",
+          "transcript": "避難所で断水が続いて 携帯トイレとカニトイレの使い方を教えてくださ",
+          "edits": 6,
+          "referenceChars": 36,
+          "hypothesisChars": 32,
+          "cer": 0.16666666666666666,
+          "status": "measured"
+        },
+        {
+          "id": "negation",
+          "reference": "津波は来ていません。建物は壊れていません。今すぐ外に出たほうがいいとは思っていません。",
+          "transcript": "津波は来ていません。 建物はこまれていません。 今すぐ外に出た不法ないいとは思っていません。",
+          "edits": 5,
+          "referenceChars": 40,
+          "hypothesisChars": 41,
+          "cer": 0.125,
+          "status": "measured"
+        },
+        {
+          "id": "colloquial",
+          "reference": "えっと、さっき地震があって、家にいるんですけど、水道が使えないみたいなんです。トイレってどうしたらいいですか。",
+          "transcript": "えっと。 さっき自信があって。 家にいるんですけど。 水道が使えないみたいなんです。 トイレってどうしたらいいです",
+          "edits": 3,
+          "referenceChars": 50,
+          "hypothesisChars": 49,
+          "cer": 0.06,
+          "status": "measured"
+        },
+        {
+          "id": "long",
+          "reference": "昨日から強い雨が降り続いています。今は自宅の二階にいて、家族も一緒にいます。川の近くには住んでいませんが、道路に水がたまっているようです。避難所が開いているかはまだ確認できていません。車で移動しても安全だとは考えていません。まず何を確認すればよいでしょうか。最新の情報が必要なことは分かっています。停電したときのために、飲み水や食べ物、懐中電灯などを用意したいと思っています。家には小さな子供がいて、毎日飲んでいる薬もあります。外に出る前に、家の中でできる準備を教えてください。",
+          "transcript": "きのうから強い雨が降り? 今は自宅の２階に 家族も一緒にいます。 川の近くには住んでいませんが。 道路に水がたまっているようです。 避難所が開いているかはまだ確認 車で移動しても安全だとは考えていません。 まず何を確認すればよいでしょ 最新の情報が必要なことは分かっています。 停電したときのために 飲み水や食べ物 懐中電灯などを用意したいと思ってい 家には小さな子供がいて。 毎日飲んでいる薬もあ 外に出る前に。 家の中でできる準備を教えてくださ",
+          "edits": 27,
+          "referenceChars": 223,
+          "hypothesisChars": 201,
+          "cer": 0.1210762331838565,
+          "status": "measured"
+        }
+      ]
+    },
+    "base": {
+      "schemaVersion": 1,
+      "model": "base",
+      "metric": "CER",
+      "normalization": "NFKC + lowercase + remove Unicode whitespace/punctuation/symbols; Unicode code points",
+      "measured": 5,
+      "unmeasured": 0,
+      "total": 5,
+      "aggregateCer": 0.16712328767123288,
+      "totalEdits": 61,
+      "totalReferenceChars": 365,
+      "rows": [
+        {
+          "id": "short",
+          "reference": "地震が来たら、どうすればいいですか。",
+          "transcript": "じしんがきいたら。 どうすればいいですか？",
+          "edits": 5,
+          "referenceChars": 16,
+          "hypothesisChars": 18,
+          "cer": 0.3125,
+          "status": "measured"
+        },
+        {
+          "id": "terms",
+          "reference": "避難所で断水が続いています。携帯トイレと簡易トイレの使い方を教えてください。",
+          "transcript": "避難所で断水が続いて 携帯トイレと紙トイレの使い方を教えてくだ",
+          "edits": 7,
+          "referenceChars": 36,
+          "hypothesisChars": 30,
+          "cer": 0.19444444444444445,
+          "status": "measured"
+        },
+        {
+          "id": "negation",
+          "reference": "津波は来ていません。建物は壊れていません。今すぐ外に出たほうがいいとは思っていません。",
+          "transcript": "「津波はきていません」 たてものはこわれていません。 今すぐ外に出たほうがいいとは思っていません。",
+          "edits": 7,
+          "referenceChars": 40,
+          "hypothesisChars": 43,
+          "cer": 0.175,
+          "status": "measured"
+        },
+        {
+          "id": "colloquial",
+          "reference": "えっと、さっき地震があって、家にいるんですけど、水道が使えないみたいなんです。トイレってどうしたらいいですか。",
+          "transcript": "えっと さっきじしんがあって。 家にいるんですけど。 水道が使えないみたいなんです。 ってどうしたらいいですか？",
+          "edits": 6,
+          "referenceChars": 50,
+          "hypothesisChars": 48,
+          "cer": 0.12,
+          "status": "measured"
+        },
+        {
+          "id": "long",
+          "reference": "昨日から強い雨が降り続いています。今は自宅の二階にいて、家族も一緒にいます。川の近くには住んでいませんが、道路に水がたまっているようです。避難所が開いているかはまだ確認できていません。車で移動しても安全だとは考えていません。まず何を確認すればよいでしょうか。最新の情報が必要なことは分かっています。停電したときのために、飲み水や食べ物、懐中電灯などを用意したいと思っています。家には小さな子供がいて、毎日飲んでいる薬もあります。外に出る前に、家の中でできる準備を教えてください。",
+          "transcript": "きのうから強い雨が降り? 今は自宅の２階に 家族も一緒にいます。 かなのちかくにはすんでいませんが。 道路に水がたまっているようです。 避難所が開いているかはまだ確認 車で移動しても安全だとは考えていません。 まず何を確認すればよいでしょ 最新の情報が必要なことは分かっています。 停電した時のために。 飲み水や食べ物。 懐中電灯などを用意したいと思ってい 家には小さな子どもがいて。 毎日飲んでいる薬もあ 外に出る前に。 家の中でできる準備を教えてくださ",
+          "edits": 36,
+          "referenceChars": 223,
+          "hypothesisChars": 203,
+          "cer": 0.16143497757847533,
+          "status": "measured"
+        }
+      ]
+    }
+  },
+  "isolated": true,
+  "comparison": {
+    "schemaVersion": 1,
+    "metric": "CER",
+    "normalization": "NFKC + lowercase + remove Unicode whitespace/punctuation/symbols; Unicode code points",
+    "paired": 5,
+    "total": 5,
+    "unpaired": 0,
+    "tinyPairedCer": 0.12054794520547946,
+    "basePairedCer": 0.16712328767123288,
+    "deltaBaseMinusTiny": 0.04657534246575343,
+    "rows": [
+      {
+        "id": "short",
+        "status": "paired",
+        "tinyCer": 0.1875,
+        "baseCer": 0.3125,
+        "deltaBaseMinusTiny": 0.125
+      },
+      {
+        "id": "terms",
+        "status": "paired",
+        "tinyCer": 0.16666666666666666,
+        "baseCer": 0.19444444444444445,
+        "deltaBaseMinusTiny": 0.02777777777777779
+      },
+      {
+        "id": "negation",
+        "status": "paired",
+        "tinyCer": 0.125,
+        "baseCer": 0.175,
+        "deltaBaseMinusTiny": 0.04999999999999999
+      },
+      {
+        "id": "colloquial",
+        "status": "paired",
+        "tinyCer": 0.06,
+        "baseCer": 0.12,
+        "deltaBaseMinusTiny": 0.06
+      },
+      {
+        "id": "long",
+        "status": "paired",
+        "tinyCer": 0.1210762331838565,
+        "baseCer": 0.16143497757847533,
+        "deltaBaseMinusTiny": 0.040358744394618826
+      }
+    ]
+  },
+  "status": "passed"
+}

@@ -35,18 +35,17 @@
         <button data-view="chat" aria-current="page">
           チャット <svg data-icon="chat" aria-hidden="true"></svg></button
         ><button data-view="dictionary">防災辞書 <span>88</span></button
-        ><button data-view="settings">設定 <svg data-icon="settings" aria-hidden="true"></svg></button>
+        ><button data-view="settings">
+          設定 <svg data-icon="settings" aria-hidden="true"></svg>
+        </button>
       </nav>
       <div class="sidebar-foot">
-        
         <p id="connection" role="status"></p>
-        
       </div>
     </aside>
     <main id="main" tabindex="-1">
       <header class="view-header">
         <div>
-          
           <h1 id="viewTitle">チャット</h1>
         </div>
         <button id="chatClear" class="outlined" type="button">
@@ -77,15 +76,23 @@
                   type="button"
                   aria-label="音声パネルを閉じる"
                 >
-                  ×
+                  <svg data-icon="x" aria-hidden="true"></svg>
                 </button>
               </div>
-              <div class="voice-meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="voice-meter" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
+              </div>
               <p id="voiceStatus" role="status"></p>
+              <p id="voiceCurrentModel" class="small"></p>
               <div class="voice-actions">
                 <button id="voiceCancel" type="button">キャンセル</button>
-                <button id="voiceStop" type="button" class="primary" disabled><svg data-icon="stop" aria-hidden="true"></svg> 停止して確認</button>
-                <button id="voiceRetry" type="button" hidden>再試行</button>
+                <button id="voiceStop" type="button" class="primary" disabled>
+                  <svg data-icon="stop" aria-hidden="true"></svg> 停止して確認
+                </button>
+                <button id="voiceRetry" type="button" hidden>再試行</button
+                ><button id="voiceFallback" type="button" hidden>
+                  Tinyに切り替えて再試行
+                </button>
               </div>
             </section>
           </div>
@@ -119,7 +126,15 @@
                   <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
                 </svg>
                 <span class="sr-only">音声入力</span></button
-              ><span id="chatCount" class="small">0 / 200</span
+              ><button
+                id="chatInputClear"
+                type="button"
+                class="outlined"
+                aria-label="入力をすべて削除"
+                title="入力をすべて削除"
+              >
+                <svg data-icon="x" aria-hidden="true"></svg></button
+              ><span id="chatCount" class="small">0 / 2,000</span
               ><button
                 id="chatStop"
                 type="button"
@@ -213,11 +228,20 @@
           <section class="surface">
             <h2>音声入力</h2>
             <label for="voiceModel">日本語モデル</label>
-            <select id="voiceModel"><option value="tiny">Tiny（標準）</option><option value="base">Base（高品質候補・iPad未検証）</option></select>
+            <select id="voiceModel">
+              <option value="tiny">Tiny（標準）</option>
+              <option value="base">Base（高品質候補・iPad未検証）</option>
+            </select>
             <p id="voiceModelState" role="status"></p>
-            <p>マイクから自動準備します。初回はモデルを取得し、音声は端末内で文字に変換します。録音停止後もモデルを再利用し、送信時にRuriへ自動で切り替えます。</p>
-            <button id="voiceUnload" type="button" class="outlined" disabled>音声モデルを解放</button>
-            <p>BaseはTinyと同じWASMに対応する候補です。iPadの精度・速度・メモリは未検証です。モデルは自動で切り替えません。障害時はTinyを選び直せます。</p>
+            <p>
+              マイクから自動準備します。初回はモデルを取得し、音声は端末内で文字に変換します。録音停止後もモデルを再利用し、送信時にRuriへ自動で切り替えます。
+            </p>
+            <button id="voiceUnload" type="button" class="outlined" disabled>
+              音声モデルを解放
+            </button>
+            <p>
+              BaseはTinyと同じWASMに対応する候補です。iPadの精度・速度・メモリは未検証です。モデルは自動で切り替えません。障害時はTinyを選び直せます。
+            </p>
           </section>
           <details class="surface help">
             <summary>使い方・プライバシー・ライセンス</summary>

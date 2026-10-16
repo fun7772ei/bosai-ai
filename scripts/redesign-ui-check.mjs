@@ -1,3 +1,4 @@
+import {installVoiceDouble} from "./helpers/voice-sdk-double.mjs";
 import { spawn } from "node:child_process";
 import { chromium, webkit } from "@playwright/test";
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -40,6 +41,7 @@ const browser = await browserType.launch(),
     errors: [],
   };
 const context = await browser.newContext({ hasTouch: true });
+await installVoiceDouble(context);
 const page = await context.newPage();
 page.on("pageerror", (e) => out.errors.push(e.message));
 async function nav(view) {
@@ -62,6 +64,8 @@ async function send(text) {
 try {
   await page.setViewportSize({ width: 1180, height: 820 });
   await page.goto(base);
+  await page.evaluate(()=>navigator.serviceWorker.ready);
+  await page.reload();
   await page.waitForFunction(
     () => document.querySelector("#conversation").dataset.state,
   );
@@ -148,11 +152,9 @@ try {
     history,
   );
   out.checks.push("view changes preserve chat, draft and dictionary filters");
-  await page.locator("#voiceToggle").tap();
-  assert(await page.locator("#voiceLoad").isVisible());
-  await page.locator("#voiceClose").click();
-  assert(await page.locator("#voicePopover").isHidden());
-  out.checks.push("voice controls open and close from composer");
+  assert(await page.locator("#voiceToggle").isVisible());
+  assert(await page.locator("#voiceToggle").isEnabled());
+  out.checks.push("voice entry available in composer; lifecycle covered by voice-review-browser-check");
   for (const [name, width, height] of [
     ["portrait", 820, 1180],
     ["phone", 390, 844],
