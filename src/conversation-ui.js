@@ -132,18 +132,22 @@ export function mountConversation(controller) {
     o.value = name;
     category.append(o);
   }
-  let selectedId = null;
+  let selectedId = null, catalogScroll=0;
   function openEntry(entry) {
     selectedId = entry.id;
+    catalogScroll=$('main').scrollTop;
     article.replaceChildren();
+    const back=node('button','← 一覧に戻る');back.type='button';back.className='catalog-back outlined';
+    back.onclick=()=>{$('dictionary').classList.remove('reading');$('main').scrollTop=catalogScroll;list.querySelector(`[data-browse-entry="${selectedId}"]`)?.focus({preventScroll:true});};
+    article.append(back);
     renderSource(entry, article, { expand: true });
     for (const b of list.querySelectorAll("button"))
       b.setAttribute(
         "aria-pressed",
         String(b.dataset.browseEntry === entry.id),
       );
-    if (matchMedia("(max-width:700px)").matches)
-      article.scrollIntoView({ block: "start" });
+    $('dictionary').classList.add('reading');
+    if (matchMedia("(max-width:700px)").matches){$('main').scrollTop=0;back.focus({preventScroll:true});}
   }
   function browse() {
     const q = query.value.normalize("NFKC").toLowerCase().trim();

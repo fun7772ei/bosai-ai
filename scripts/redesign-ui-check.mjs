@@ -181,6 +181,12 @@ try {
       await page.locator("#theme").selectOption("light");
       await nav("chat");
     }
+    if(name==='phone'){
+      await nav('dictionary');if(await page.locator('.catalog-back').isVisible())await page.locator('.catalog-back').click();await page.locator('#browseCategory').selectOption('');await page.locator('#browseQuery').fill('');
+      await page.locator('[data-browse-entry]').first().click();assert(await page.locator('#browseList').isHidden());assert(await page.locator('.catalog-back').isVisible());
+      await page.locator('.catalog-back').click();assert(await page.locator('#browseList').isVisible());assert.equal(await page.locator('[data-browse-entry]').count(),88);
+      out.checks.push('phone dictionary opens original and returns directly to filtered list');await nav('chat');
+    }
     await page.screenshot({ path: `test-results/redesign-${name}.png` });
     out.checks.push(
       `${name}: no horizontal overflow, composer visible, 44px target`,

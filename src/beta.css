@@ -580,3 +580,5 @@ main {
 
 /* Long originals stay readable in the split dictionary without scrolling past 88 rows. */
 @media(min-width:701px){#browseArticle{max-height:calc(var(--app-height,100dvh) - 120px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}}
+
+.catalog-back{display:none}@media(max-width:700px){#dictionary:not(.reading) #browseArticle{display:none}#dictionary.reading #browseList,#dictionary.reading .browse-controls,#dictionary.reading #browseCount{display:none}.catalog-back{display:block;margin-bottom:18px}#dictionary.reading .dictionary-layout{margin-top:0}}
