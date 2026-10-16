@@ -155,6 +155,9 @@ try {
     ["keyboard", 820, 500],
   ]) {
     await page.setViewportSize({ width, height });
+    // setViewportSize can resolve before visualViewport's resize event reaches the app.
+    // Wait for the app to consume that event, then inspect its actual composer bounds.
+    await page.waitForFunction(()=>Math.abs(document.body.getBoundingClientRect().height-(window.visualViewport?.height||innerHeight))<1);
     assert(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -164,7 +167,7 @@ try {
     const send = await page.locator("#chatSend").boundingBox();
     assert(
       input.y >= 0 && send.y + send.height <= height,
-      `${name} composer outside viewport`,
+      `${name} composer outside viewport: ${JSON.stringify({input,send,height})}`,
     );
     assert(send.width >= 44 && send.height >= 44);
     if (name === "portrait") {
