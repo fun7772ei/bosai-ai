@@ -19,7 +19,7 @@ try {
       await caches.open(shell)
     ).put(
       "/bosai-ai/assets/old-tab-module.js",
-      new Response("old tab retained"),
+      new Response("/* old tab retained */",{headers:{"content-type":"application/javascript"}}),
     );
     await (
       await caches.open("bosai-model-sentinel")
@@ -28,10 +28,20 @@ try {
   });
   const other = await context.newPage();
   await other.goto("http://localhost:4173/bosai-ai/");
+  await other.evaluate(async () => {
+    const script = document.createElement("script");
+    script.src = new URL("./assets/old-tab-module.js", location.href);
+    script.type = "module";
+    document.head.append(script);
+    await new Promise((resolve, reject) => {
+      script.onload = resolve;
+      script.onerror = reject;
+    });
+  });
   writeFileSync(
     "dist/sw.js",
     original.replace(
-      /const SHELL = '[^']+';/,
+      /const SHELL = ['"][^'"]+['"];/,
       "const SHELL = 'bosai-ai-shell-redesign-update-check';",
     ),
   );
@@ -71,12 +81,40 @@ try {
     await other.evaluate(() =>
       fetch("./assets/old-tab-module.js").then((r) => r.text()),
     ),
-    "old tab retained",
+    "/* old tab retained */",
   );
   out.checks.push("old tab can still load old hashed assets offline");
   await page.reload();
   assert(await page.locator("#conversation").isVisible());
   out.checks.push("updated shell restarts offline");
+  await other.close();
+  await page.evaluate(() =>
+    navigator.serviceWorker.controller.postMessage({
+      type: "CLIENT_READY",
+      assets: [
+        ...document.querySelectorAll('script[src],link[rel="stylesheet"]'),
+      ].map((n) => n.src || n.href),
+    }),
+  );
+  await page.waitForFunction(
+    async () =>
+      (await caches.keys()).filter((k) => k.startsWith("bosai-ai-shell-"))
+        .length === 1,
+  );
+  assert.equal(
+    await page.evaluate(
+      async () =>
+        await (
+          await (
+            await caches.open("bosai-model-sentinel")
+          ).match("/saved-model")
+        ).text(),
+    ),
+    "model bytes",
+  );
+  out.checks.push(
+    "obsolete shells collected after old tab closes; saved store preserved",
+  );
   assert.equal(out.errors.length, 0);
   out.status = "passed";
 } catch (e) {

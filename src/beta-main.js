@@ -166,6 +166,7 @@ function voiceState(message) {
   if (lab) {
     lab.dataset.active = String(voiceBusy || voiceListening || !!voiceMic);
     lab.dataset.listening = String(voiceListening);
+    lab.dataset.processing = String(voiceBusy);
   }
   $("voiceLoad").disabled = voiceBusy || !!voiceMic || voiceListening;
   $("voiceListen").disabled =
@@ -477,6 +478,21 @@ refresh();
       await navigator.serviceWorker.ready;
       $("shellState").textContent =
         "アプリ・辞書のオフライン準備が完了しました。AI検索にはモデルの保存も必要です。";
+      const announceAssets = () =>
+        navigator.serviceWorker.controller?.postMessage({
+          type: "CLIENT_READY",
+          assets: [
+            ...document.querySelectorAll('script[src],link[rel="stylesheet"]'),
+          ].map((n) => n.src || n.href),
+        });
+      announceAssets();
+      navigator.serviceWorker.addEventListener(
+        "controllerchange",
+        announceAssets,
+      );
+      addEventListener("pageshow", announceAssets);
+      addEventListener("focus", announceAssets);
+      setInterval(announceAssets, 30000);
       const updateNotice = () => {
         if (!registration.waiting) return;
         const notice = el("div", "");

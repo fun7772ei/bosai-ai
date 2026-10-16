@@ -200,12 +200,44 @@ export function mountConversation(controller) {
     };
     $("chatExamples").append(b);
   }
+  const voiceBar = node("div", "");
+  voiceBar.id = "voiceActivity";
+  voiceBar.className = "voice-activity";
+  voiceBar.hidden = true;
+  const voiceBarText = node("span", ""),
+    voiceReturn = node("button", "音声パネル"),
+    voiceEnd = node("button", "録音停止");
+  voiceBarText.setAttribute("role", "status");
+  voiceReturn.type = voiceEnd.type = "button";
+  voiceReturn.onclick = () => {
+    showView("chat");
+    voiceOpen(true);
+  };
+  voiceEnd.onclick = () => {
+    const action =
+      voiceLab.dataset.listening === "true" ? $("voiceStop") : $("voiceUnload");
+    action?.click();
+  };
+  voiceBar.append(voiceBarText, voiceReturn, voiceEnd);
+  document.querySelector(".view-header").after(voiceBar);
   function sync() {
     const busy = engine.busy;
     send.hidden = busy;
     stop.hidden = !busy;
     stop.disabled = !busy;
-    send.disabled = voiceActive() || controller.busy;
+    const voiceProcessing = voiceLab.dataset.processing === "true",
+      recording = voiceLab.dataset.listening === "true";
+    send.disabled = voiceProcessing || recording || controller.busy;
+    voiceBar.hidden = !voiceActive();
+    voiceBarText.textContent = recording
+      ? "● 録音中 — 入力欄で認識結果を確認できます"
+      : voiceProcessing
+        ? "音声処理中…"
+        : "音声モデルを使用中（文字検索は軽量モードで利用できます）";
+    voiceEnd.textContent = recording ? "録音停止" : "音声モデルを解放";
+    voiceEnd.disabled = recording
+      ? $("voiceStop").disabled
+      : $("voiceUnload").disabled;
     const voiceButton = $("voiceToggle");
     voiceButton.dataset.active = String(voiceActive());
     voiceButton.setAttribute(
@@ -345,10 +377,13 @@ export function mountConversation(controller) {
   form.onsubmit = async (event) => {
     event.preventDefault();
     if (engine.busy) return;
-    if (voiceActive()) {
+    if (
+      voiceLab.dataset.processing === "true" ||
+      voiceLab.dataset.listening === "true"
+    ) {
       voiceOpen(true);
       status.textContent =
-        "音声入力の停止・モデル解放後に、認識結果を確認して送信してください。";
+        "録音・音声処理を終了し、認識結果を確認して送信してください。";
       return;
     }
     if (controller.busy) {
@@ -361,12 +396,18 @@ export function mountConversation(controller) {
     status.textContent = "辞書を検索し、条件を確認しています…";
     status.setAttribute("aria-busy", "true");
     try {
-      const pending = engine.send(text, $("mode").value);
+      const lightweightVoice = voiceActive();
+      const pending = engine.send(
+        text,
+        lightweightVoice ? "light" : $("mode").value,
+      );
       render();
       await pending;
       if (seq === epoch) {
         if (input.value.trim() === text) input.value = "";
-        status.textContent = "";
+        status.textContent = lightweightVoice
+          ? "音声モデル使用中のため軽量検索で回答しました。"
+          : "";
         render();
       }
     } catch (e) {

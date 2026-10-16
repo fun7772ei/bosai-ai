@@ -555,3 +555,25 @@ main {
 .update-notice button {
   flex-shrink: 0;
 }
+
+.voice-activity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border: 1px solid var(--primary);
+  border-radius: 14px;
+  background: var(--tint);
+  flex-shrink: 0;
+  font-size: 12px;
+}
+.voice-activity > span {
+  flex: 1;
+  min-width: 180px;
+}
+.voice-activity button {
+  font-size: 12px;
+  background: var(--surface);
+}
