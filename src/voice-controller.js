@@ -92,6 +92,7 @@ export function mountVoice(controller, changed) {
     $("voiceToggle").setAttribute("aria-expanded", "true");
     if (active()) return;
     const seq = ++epoch;
+    attempt = null;
     before = $("chatQuestion").value;
     draft.begin(before);
     if (!crossOriginIsolated) {
@@ -291,6 +292,7 @@ export function mountVoice(controller, changed) {
       $("voiceModel").value = model;
       return;
     }
+    attempt = null;
     model = $("voiceModel").value;
     write("localStorage", "bosai-voice-model", model);
     state("idle", "次の音声入力から選択したモデルを使います。");
