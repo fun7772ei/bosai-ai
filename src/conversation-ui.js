@@ -43,7 +43,7 @@ export function renderSource(entry, parent, { expand = false } = {}) {
   card.append(details);
   parent.append(card);
 }
-export function mountConversation(controller) {
+export function mountConversation(controller, voice) {
   const panel = $("conversation"),
     log = $("conversationLog"),
     input = $("chatQuestion"),
@@ -72,7 +72,7 @@ export function mountConversation(controller) {
     menu.setAttribute("aria-expanded", String(open));
     navigation.classList.toggle("open", open);
   };
-  const titles = { chat: "会話する", dictionary: "防災辞書", settings: "設定" };
+  const titles = { chat: "チャット", dictionary: "防災辞書", settings: "設定" };
   function showView(next) {
     activeView = next;
     panel.hidden = next !== "chat";
@@ -87,6 +87,7 @@ export function mountConversation(controller) {
       );
     menu.setAttribute("aria-expanded", "false");
     navigation.classList.remove("open");
+    sync();
     // Switching views does not cancel a running turn, drop the draft or alter the microphone target.
     $("main").scrollTop = 0;
     $("viewTitle").setAttribute("tabindex", "-1");
@@ -106,7 +107,6 @@ export function mountConversation(controller) {
     $("voicePopover").hidden = !open;
     $("voiceToggle").setAttribute("aria-expanded", String(open));
   }
-  $("voiceToggle").onclick = () => voiceOpen($("voicePopover").hidden);
   $("voiceClose").onclick = () => voiceOpen(false);
   // Detailed experiments belong in settings, not in the everyday voice composer.
   for (const detail of voiceLab.querySelectorAll("details"))
@@ -132,13 +132,22 @@ export function mountConversation(controller) {
     o.value = name;
     category.append(o);
   }
-  let selectedId = null, catalogScroll=0;
+  let selectedId = null,
+    catalogScroll = 0;
   function openEntry(entry) {
     selectedId = entry.id;
-    catalogScroll=$('main').scrollTop;
+    catalogScroll = $("main").scrollTop;
     article.replaceChildren();
-    const back=node('button','← 一覧に戻る');back.type='button';back.className='catalog-back outlined';
-    back.onclick=()=>{$('dictionary').classList.remove('reading');$('main').scrollTop=catalogScroll;list.querySelector(`[data-browse-entry="${selectedId}"]`)?.focus({preventScroll:true});};
+    const back = node("button", "← 一覧に戻る");
+    back.type = "button";
+    back.className = "catalog-back outlined";
+    back.onclick = () => {
+      $("dictionary").classList.remove("reading");
+      $("main").scrollTop = catalogScroll;
+      list
+        .querySelector(`[data-browse-entry="${selectedId}"]`)
+        ?.focus({ preventScroll: true });
+    };
     article.append(back);
     renderSource(entry, article, { expand: true });
     for (const b of list.querySelectorAll("button"))
@@ -146,8 +155,11 @@ export function mountConversation(controller) {
         "aria-pressed",
         String(b.dataset.browseEntry === entry.id),
       );
-    $('dictionary').classList.add('reading');
-    if (matchMedia("(max-width:700px)").matches){$('main').scrollTop=0;back.focus({preventScroll:true});}
+    $("dictionary").classList.add("reading");
+    if (matchMedia("(max-width:700px)").matches) {
+      $("main").scrollTop = 0;
+      back.focus({ preventScroll: true });
+    }
   }
   function browse() {
     const q = query.value.normalize("NFKC").toLowerCase().trim();
@@ -199,6 +211,10 @@ export function mountConversation(controller) {
     const b = node("button", text + " ↗");
     b.type = "button";
     b.onclick = () => {
+      if (voice.active) {
+        voiceOpen(true);
+        return;
+      }
       input.value = text;
       form.requestSubmit();
     };
@@ -219,7 +235,7 @@ export function mountConversation(controller) {
   };
   voiceEnd.onclick = () => {
     const action =
-      voiceLab.dataset.listening === "true" ? $("voiceStop") : $("voiceUnload");
+      voiceLab.dataset.listening === "true" ? $("voiceStop") : $("voiceCancel");
     action?.click();
   };
   voiceBar.append(voiceBarText, voiceReturn, voiceEnd);
@@ -232,16 +248,16 @@ export function mountConversation(controller) {
     const voiceProcessing = voiceLab.dataset.processing === "true",
       recording = voiceLab.dataset.listening === "true";
     send.disabled = voiceProcessing || recording || controller.busy;
-    voiceBar.hidden = !voiceActive();
+    voiceBar.hidden = !voiceActive() || activeView === "chat";
     voiceBarText.textContent = recording
       ? "● 録音中 — 入力欄で認識結果を確認できます"
       : voiceProcessing
         ? "音声処理中…"
-        : "音声モデルを使用中（文字検索は軽量モードで利用できます）";
-    voiceEnd.textContent = recording ? "録音停止" : "音声モデルを解放";
+        : "音声入力を準備中…";
+    voiceEnd.textContent = recording ? "録音停止" : "キャンセル";
     voiceEnd.disabled = recording
       ? $("voiceStop").disabled
-      : $("voiceUnload").disabled;
+      : $("voiceCancel").disabled;
     const voiceButton = $("voiceToggle");
     voiceButton.dataset.active = String(voiceActive());
     voiceButton.setAttribute(
@@ -252,19 +268,9 @@ export function mountConversation(controller) {
           ? "音声使用中：音声パネルを開く"
           : "音声入力",
     );
-    let indicator = voiceButton.querySelector(".voice-indicator");
-    if (!indicator) {
-      indicator = node("span", "");
-      indicator.className = "voice-indicator";
-      voiceButton.append(indicator);
-    }
-    indicator.textContent =
-      voiceLab.dataset.listening === "true"
-        ? "● 録音中"
-        : voiceActive()
-          ? "● 使用中"
-          : "";
-    $("chatCount").textContent = `${input.value.length} / 200`;
+    $("chatCount").textContent =
+      `${input.value.length.toLocaleString()} / 2,000`;
+    $("chatInputClear").disabled = !input.value || voiceProcessing || recording;
   }
   document.addEventListener("bosai:state", sync);
   input.addEventListener("input", sync);
@@ -324,6 +330,10 @@ export function mountConversation(controller) {
           b.type = "button";
           b.disabled = message !== engine.history.at(-1) || engine.busy;
           b.onclick = () => {
+            if (voice.active) {
+              voiceOpen(true);
+              return;
+            }
             input.value = c;
             form.requestSubmit();
           };
@@ -337,6 +347,10 @@ export function mountConversation(controller) {
             b.type = "button";
             b.disabled = message !== engine.history.at(-1) || engine.busy;
             b.onclick = () => {
+              if (voice.active) {
+                voiceOpen(true);
+                return;
+              }
               input.value = text;
               form.requestSubmit();
             };
@@ -400,17 +414,14 @@ export function mountConversation(controller) {
     status.textContent = "辞書を検索し、条件を確認しています…";
     status.setAttribute("aria-busy", "true");
     try {
-      const lightweightVoice = voiceActive();
-      const pending = engine.send(
-        text,
-        lightweightVoice ? "light" : $("mode").value,
-      );
+      const canUseRuri = await voice.beforeSearch();
+      const pending = engine.send(text, canUseRuri ? $("mode").value : "light");
       render();
       await pending;
       if (seq === epoch) {
         if (input.value.trim() === text) input.value = "";
-        status.textContent = lightweightVoice
-          ? "音声モデル使用中のため軽量検索で回答しました。"
+        status.textContent = !canUseRuri
+          ? "音声モデルの解放を確認できないため軽量検索で回答しました。"
           : "";
         render();
       }
@@ -425,6 +436,31 @@ export function mountConversation(controller) {
       sync();
     }
   };
+  $("chatInputClear").onclick = () => {
+    if (voice.active) return;
+    input.value = "";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.focus({ preventScroll: true });
+  };
+  // Temporary handoff for the first isolation navigation, never persistent history.
+  document.addEventListener("bosai:voice-handoff", () => {
+    sessionStorage.setItem(
+      "bosai-voice-conversation",
+      JSON.stringify({
+        history: engine.history,
+        state: engine.state,
+        turn: engine.turn,
+        sequence: engine.sequence,
+      }),
+    );
+  });
+  try {
+    const saved = sessionStorage.getItem("bosai-voice-conversation");
+    if (saved) {
+      sessionStorage.removeItem("bosai-voice-conversation");
+      Object.assign(engine, JSON.parse(saved));
+    }
+  } catch {}
   // Enter adds a line on touch devices; explicit Cmd/Ctrl+Enter sends without interfering with IME.
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && !e.isComposing) {

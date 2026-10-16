@@ -26,3 +26,9 @@ test('dictionary and conversation share typed action evidence without certifying
  const denied=await c.search('道路は冠水していません。徒歩です','light');
  assert(!denied.resultIds.some(id=>['bosai-69','bosai-70'].includes(id)));
 });
+test('long dictation reaches lightweight retrieval without the old 200-character rejection',async()=>{
+ const c=new BetaController({status:saved});
+ const text='地震の備えについて教えてください。'+'詳しい状況です。'.repeat(40);
+ const run=await c.search(text,'light');assert.equal(run.query,text);assert.equal(run.actual,'light');
+ await assert.rejects(()=>c.search('あ'.repeat(2001),'light'),/2000文字/);
+});

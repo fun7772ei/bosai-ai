@@ -582,3 +582,20 @@ main {
 @media(min-width:701px){#browseArticle{max-height:calc(var(--app-height,100dvh) - 120px);overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}}
 
 .catalog-back{display:none}@media(max-width:700px){#dictionary:not(.reading) #browseArticle{display:none}#dictionary.reading #browseList,#dictionary.reading .browse-controls,#dictionary.reading #browseCount{display:none}.catalog-back{display:block;margin-bottom:18px}#dictionary.reading .dictionary-layout{margin-top:0}}
+
+/* Compact chat shell: content takes precedence over decorative framing. */
+svg[data-icon]{width:20px;height:20px;flex-shrink:0;vertical-align:middle}
+body{grid-template-columns:194px minmax(0,1fr)}
+.sidebar{padding:22px 12px 16px;gap:24px}
+.brand{font-size:21px;gap:9px}.brand-icon{width:34px;height:38px}
+#appNavigation button{min-height:46px;padding:10px 12px}
+main{padding:0 24px 12px}.view-header{min-height:64px}
+.voice-lab{padding:14px 18px}.voice-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.voice-meter{--level:0;display:flex;align-items:center;justify-content:center;gap:5px;height:46px;margin:4px auto}
+.voice-meter i{width:6px;height:12px;border-radius:9px;background:var(--primary);transform:scaleY(calc(1 + var(--level)*2));transition:transform 80ms linear}
+.voice-meter i:nth-child(2n){height:20px}.voice-meter i:nth-child(3){height:28px}
+.voice-lab[data-phase="loading"] .voice-meter{animation:pulse 1s infinite alternate}
+.voice-lab[data-phase="recording"] .voice-meter i{background:#c64c3b}
+#voiceStatus{text-align:center}.voice-lab[data-phase="error"] #voiceStatus{color:var(--warn-ink)}
+@media(max-width:1099px){body{grid-template-columns:1fr;grid-template-rows:56px minmax(0,1fr)}.sidebar{padding:8px 20px}.view-header{min-height:56px}#appNavigation{top:54px}main{padding:0 24px 10px}}
+@media(max-width:700px){main{padding:0 12px 8px}.sidebar{padding:6px 12px}.view-header{min-height:52px}.voice-lab{padding:12px}}

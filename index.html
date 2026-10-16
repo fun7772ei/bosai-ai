@@ -21,7 +21,7 @@
     <aside class="sidebar">
       <a class="brand" href="./"
         ><span class="brand-icon" aria-hidden="true">防</span
-        ><span>bosai <b>AI</b><small>そなえを、手元に。</small></span></a
+        ><span>bosai <b>AI</b></span></a
       ><button
         id="menuToggle"
         type="button"
@@ -29,25 +29,24 @@
         aria-controls="appNavigation"
         aria-label="メニューを開閉"
       >
-        ☰
+        <svg data-icon="menu" aria-hidden="true"></svg>
       </button>
       <nav id="appNavigation" aria-label="メインメニュー">
         <button data-view="chat" aria-current="page">
-          会話する <span>＋</span></button
+          チャット <svg data-icon="chat" aria-hidden="true"></svg></button
         ><button data-view="dictionary">防災辞書 <span>88</span></button
-        ><button data-view="settings">設定 <span>⚙</span></button>
+        ><button data-view="settings">
+          設定 <svg data-icon="settings" aria-hidden="true"></svg>
+        </button>
       </nav>
       <div class="sidebar-foot">
-        <span class="beta-badge">ベータ版</span>
         <p id="connection" role="status"></p>
-        <p>質問・音声は端末内で処理</p>
       </div>
     </aside>
     <main id="main" tabindex="-1">
       <header class="view-header">
         <div>
-          <span class="eyebrow">BOSAI / YOUR EVERYDAY PREPAREDNESS</span>
-          <h1 id="viewTitle">会話する</h1>
+          <h1 id="viewTitle">チャット</h1>
         </div>
         <button id="chatClear" class="outlined" type="button">
           新しい会話
@@ -56,12 +55,8 @@
       <section id="conversation" class="conversation" aria-label="防災チャット">
         <div class="chat-scroll">
           <div id="chatWelcome" class="welcome">
-            <span class="welcome-mark" aria-hidden="true">✳︎</span>
-            <p class="eyebrow">いつもの備えも、もしもの時も。</p>
-            <h2>こんなとき、<br />どうする？</h2>
-            <p>
-              気になることを、あなたの言葉で。<br />88件の防災情報から、一緒に探します。
-            </p>
+            <h2>防災について、聞いてみる</h2>
+            <p>88件の原文から、状況に合う情報を探します。</p>
             <div id="chatExamples" class="examples"></div>
           </div>
           <div
@@ -81,24 +76,24 @@
                   type="button"
                   aria-label="音声パネルを閉じる"
                 >
-                  ×
+                  <svg data-icon="x" aria-hidden="true"></svg>
                 </button>
               </div>
-              <span class="voice-lab-tag"></span>
-              <p class="small">
-                初回はSDK・モデルを外部から取得します。音声は端末内で文字に変換し、自動送信・保存しません。認識結果を入力欄で確認・修正してください。音声モードの初回有効化は再読み込みが必要です（入力は保持、会話は終了）。
-              </p>
-              <div class="actions">
-                <button id="voiceLoad" type="button" class="tonal">
-                  音声AIを準備</button
-                ><button id="voiceEnableIso" type="button" hidden>
-                  音声モードを有効化</button
-                ><button id="voiceListen" type="button" disabled>
-                  マイク開始</button
-                ><button id="voiceStop" type="button" disabled>録音停止</button>
+              <div class="voice-meter" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i>
               </div>
               <p id="voiceStatus" role="status"></p>
-              <p id="voiceLive" aria-live="polite"></p>
+              <p id="voiceCurrentModel" class="small"></p>
+              <div class="voice-actions">
+                <button id="voiceCancel" type="button">キャンセル</button>
+                <button id="voiceStop" type="button" class="primary" disabled>
+                  <svg data-icon="stop" aria-hidden="true"></svg> 停止して確認
+                </button>
+                <button id="voiceRetry" type="button" hidden>再試行</button
+                ><button id="voiceFallback" type="button" hidden>
+                  Tinyに切り替えて再試行
+                </button>
+              </div>
             </section>
           </div>
           <form id="chatForm">
@@ -106,7 +101,7 @@
             ><textarea
               id="chatQuestion"
               rows="2"
-              maxlength="200"
+              maxlength="2000"
               required
               placeholder="防災について、気になることを…"
             ></textarea>
@@ -130,28 +125,36 @@
                   <rect x="9" y="2" width="6" height="13" rx="3" />
                   <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
                 </svg>
-                音声入力</button
-              ><span id="chatCount" class="small">0 / 200</span
+                <span class="sr-only">音声入力</span></button
+              ><button
+                id="chatInputClear"
+                type="button"
+                class="outlined"
+                aria-label="入力をすべて削除"
+                title="入力をすべて削除"
+              >
+                <svg data-icon="x" aria-hidden="true"></svg></button
+              ><span id="chatCount" class="small">0 / 2,000</span
               ><button
                 id="chatStop"
                 type="button"
                 hidden
                 aria-label="検索を停止"
               >
-                ■ 停止</button
+                <svg data-icon="stop" aria-hidden="true"></svg> 停止</button
               ><button
                 id="chatSend"
                 class="primary"
                 type="submit"
                 aria-label="送信"
               >
-                ↑
+                <svg data-icon="send" aria-hidden="true"></svg>
               </button>
             </div>
           </form>
           <p id="chatStatus" role="status"></p>
           <p class="composer-note">
-            現在の警報・避難所の開設状況・個人の安全性は判断できません。<br />自治体・気象庁の最新情報も確認してください。
+            現在の警報・避難先・安全性は、自治体・気象庁の最新情報も確認してください。
           </p>
         </div>
       </section>
@@ -222,6 +225,24 @@
             </p>
             <p id="shellState" role="status">オフライン準備を確認中…</p>
           </section>
+          <section class="surface">
+            <h2>音声入力</h2>
+            <label for="voiceModel">日本語モデル</label>
+            <select id="voiceModel">
+              <option value="tiny">Tiny（標準）</option>
+              <option value="base">Base（高品質候補・iPad未検証）</option>
+            </select>
+            <p id="voiceModelState" role="status"></p>
+            <p>
+              マイクから自動準備します。初回はモデルを取得し、音声は端末内で文字に変換します。録音停止後もモデルを再利用し、送信時にRuriへ自動で切り替えます。
+            </p>
+            <button id="voiceUnload" type="button" class="outlined" disabled>
+              音声モデルを解放
+            </button>
+            <p>
+              BaseはTinyと同じWASMに対応する候補です。iPadの精度・速度・メモリは未検証です。モデルは自動で切り替えません。障害時はTinyを選び直せます。
+            </p>
+          </section>
           <details class="surface help">
             <summary>使い方・プライバシー・ライセンス</summary>
             <p>
@@ -232,7 +253,7 @@
               Pages、任意の初回モデル取得は外部配信を使います。出典リンクは外部サイトを開きます。
             </p>
             <p>
-              会話はこの画面内のみ（最大40メッセージ）。再読み込みで消えます。このベータは現在の安全判断・診断・薬の量の判断を行いません。iPad実機での安定性は検証中です。
+              ベータ版。会話はこの画面内のみ（最大40メッセージ）。再読み込みで消えます。このベータは現在の安全判断・診断・薬の量の判断を行いません。iPad実機での安定性は検証中です。
             </p>
             <a href="./model-notices.txt" target="_blank" rel="noopener"
               >モデルの出典・利用条件</a

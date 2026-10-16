@@ -1,0 +1,42 @@
+[
+  {
+    "id": "short",
+    "kind": "短文",
+    "reference": "地震が来たら、どうすればいいですか。",
+    "file": "scripts/evaluation/synthetic-ja/short.wav",
+    "seconds": 3.175,
+    "source": "Synthetic Open JTalk / pyopenjtalk-plus 0.4.1.post9 default voice; NOT human speech"
+  },
+  {
+    "id": "terms",
+    "kind": "防災語句",
+    "reference": "避難所で断水が続いています。携帯トイレと簡易トイレの使い方を教えてください。",
+    "file": "scripts/evaluation/synthetic-ja/terms.wav",
+    "seconds": 6.655,
+    "source": "Synthetic Open JTalk / pyopenjtalk-plus 0.4.1.post9 default voice; NOT human speech"
+  },
+  {
+    "id": "negation",
+    "kind": "否定",
+    "reference": "津波は来ていません。建物は壊れていません。今すぐ外に出たほうがいいとは思っていません。",
+    "file": "scripts/evaluation/synthetic-ja/negation.wav",
+    "seconds": 7.405,
+    "source": "Synthetic Open JTalk / pyopenjtalk-plus 0.4.1.post9 default voice; NOT human speech"
+  },
+  {
+    "id": "colloquial",
+    "kind": "話し言葉の台本",
+    "reference": "えっと、さっき地震があって、家にいるんですけど、水道が使えないみたいなんです。トイレってどうしたらいいですか。",
+    "file": "scripts/evaluation/synthetic-ja/colloquial.wav",
+    "seconds": 9.015,
+    "source": "Synthetic Open JTalk / pyopenjtalk-plus 0.4.1.post9 default voice; NOT human speech"
+  },
+  {
+    "id": "long",
+    "kind": "長文・否定・複数条件",
+    "reference": "昨日から強い雨が降り続いています。今は自宅の二階にいて、家族も一緒にいます。川の近くには住んでいませんが、道路に水がたまっているようです。避難所が開いているかはまだ確認できていません。車で移動しても安全だとは考えていません。まず何を確認すればよいでしょうか。最新の情報が必要なことは分かっています。停電したときのために、飲み水や食べ物、懐中電灯などを用意したいと思っています。家には小さな子供がいて、毎日飲んでいる薬もあります。外に出る前に、家の中でできる準備を教えてください。",
+    "file": "scripts/evaluation/synthetic-ja/long.wav",
+    "seconds": 41.7,
+    "source": "Synthetic Open JTalk / pyopenjtalk-plus 0.4.1.post9 default voice; NOT human speech"
+  }
+]

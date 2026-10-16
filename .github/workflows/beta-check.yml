@@ -35,7 +35,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      - run: npx playwright install --with-deps chromium webkit
       - run: python3 scripts/fetch-ruri-assets.py
       - name: Real Ruri, regression, offline restart and safe update
         run: |
@@ -49,7 +49,12 @@ jobs:
           python3 scripts/fetch-moonshine-assets.py
           node scripts/moonshine-runtime-check.mjs
           node scripts/voice-review-browser-check.mjs
+          BOSAI_BROWSER=webkit node scripts/voice-review-browser-check.mjs
+          node scripts/voice-handoff-check.mjs
+          node scripts/voice-real-comparison.mjs
+          BOSAI_BROWSER=webkit node scripts/voice-real-comparison.mjs
           node scripts/redesign-ui-check.mjs
+          BOSAI_BROWSER=webkit node scripts/redesign-ui-check.mjs
           node scripts/redesign-update-check.mjs
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/final-64.json --tag=beta-regression-64
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-review-regression-80
@@ -88,7 +93,9 @@ jobs:
             test-results/moonshine-manifests.json
             test-results/moonshine-assets.json
             test-results/moonshine-runtime.json
-            test-results/voice-review-ui.json
+            test-results/voice-review-ui*.json
+            test-results/voice-real-*.json
+            test-results/voice-handoff.json
             test-results/voice-integration-*.json
             test-results/conversation-core-*.json
             test-results/beta-review-regression-80.json

@@ -102,3 +102,11 @@ test('an explicitly storm-only question excludes earthquake-only driving advice 
  assert(filtered.evidence.excludedIds.includes('bosai-55'));
  assert(contextualEvidence(run,null,{floodedRoad:null},['大雨・浸水','地震']).results.some(row=>row.entry.id==='bosai-55'));
 });
+
+test('long voice drafts survive the full 2000-character conversation boundary',async()=>{
+ const engine=new Conversation(search);
+ const text='地震の備えについて教えてください。'+'詳しい状況です。'.repeat(40);
+ await engine.send(text,'light');
+ assert.equal(engine.history[0].text,text);
+ await assert.rejects(()=>engine.send('あ'.repeat(2001)),/2000文字/);
+});

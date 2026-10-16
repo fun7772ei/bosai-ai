@@ -72,7 +72,7 @@ out.checks.memoryOnlyHistory=await page.evaluate(()=>window.bosaiConversation.hi
  await page.locator('#appNavigation [data-view="dictionary"]').evaluate(b=>b.click());await page.locator('#browseQuery').fill('津波');
  out.checks.offlineCatalogRestart=await page.locator('.browse-results [data-browse-entry]').count()>0;
 
- out.checks.voiceIntact=await page.locator('#voiceLoad').count()===1&&await page.locator('#chatQuestion').count()===1;await page.locator('#appNavigation [data-view="settings"]').evaluate(b=>b.click());out.release={before:browserMemory(pid)};await page.locator('#resetModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy);await page.waitForTimeout(3000);out.release.after=browserMemory(pid);out.checks.workerReleased=await page.evaluate(()=>!window.bosaiBeta.channel&&!window.bosaiBeta.ready);
+ out.checks.voiceIntact=await page.locator('#voiceToggle').count()===1&&await page.locator('#chatQuestion').count()===1&&await page.locator('#voiceModel').count()===1&&await page.locator('#voiceLoad').count()===0;await page.locator('#appNavigation [data-view="settings"]').evaluate(b=>b.click());out.release={before:browserMemory(pid)};await page.locator('#resetModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy);await page.waitForTimeout(3000);out.release.after=browserMemory(pid);out.checks.workerReleased=await page.evaluate(()=>!window.bosaiBeta.channel&&!window.bosaiBeta.ready);
  out.control={passed:out.rows.filter(r=>r.controlPass).length,total:out.rows.length};
  out.semantic={control:out.control,kindAgreement:out.rows.filter(row=>row.kind===row.expected).length,
    badTop3Queries:out.rows.filter(row=>row.badTop3?.length).length,

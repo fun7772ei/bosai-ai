@@ -2,7 +2,7 @@
 
 Offline-oriented disaster-information dictionary and conversation beta for iPad 10 / Safari. [Public GitHub Pages beta](https://fun7772ei.github.io/bosai-ai/).
 
-**Status (2026-10-16):** Chat-first redesign: one composer, a full offline dictionary and focused settings, with adaptive iPad navigation and light/dark themes. [Design and validation details](docs/ui-redesign-20261016.md). This remains a beta; physical iPad Safari/PWA and long Japanese speech recognition require device verification.
+**Status (2026-10-16):** Compact chat UI and one-tap dictation with reusable Moonshine workers, editable transcripts and automatic Ruri switching. [Voice/UI design, measured Tiny/Base comparison and limits](docs/voice-ux-20261016.md). This remains a beta; physical iPad Safari/PWA and human microphone recognition require device verification.
 
 ## What it actually does
 
@@ -10,7 +10,7 @@ Offline-oriented disaster-information dictionary and conversation beta for iPad 
 - Shows complete original instructions, warnings, and references. Relevance is **not** a guarantee that the result answers a particular user's situation.
 - Clarifies insufficient context and blocks some unsupported requests; explicit scenarios and contradictions are only partially audited (4 of 88 sidecars have verified prerequisites).
 - Works without a saved Ruri model via lightweight search; users can opt in to initial Ruri model download (about 44 MB), saved locally. App shell and dictionary use a service worker; model files are stored in IndexedDB.
-- Provides experimental Japanese voice transcription using Moonshine Tiny on supported isolated browser contexts. This is optional and not fully validated on iPad.
+- Provides experimental Japanese voice transcription using Moonshine Japanese Tiny (default) or explicit Base in settings on supported isolated browser contexts. Both real models run in Chromium/WebKit; Base did not improve the small synthetic comparison and is not promoted. Physical iPad remains unverified.
 
 The fixed offline dictionary cannot check current alarms, road safety, shelter availability, or prescribe individual care.
 

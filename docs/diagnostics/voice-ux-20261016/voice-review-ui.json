@@ -1,0 +1,17 @@
+{
+  "platform": "Linux chromium",
+  "sdk": "test double; UI only",
+  "checks": [
+    "one tap automatically prepares and starts; no model panel or duplicate transcript",
+    "line ids deduplicate; final stop callback retained; no auto send; only stream released",
+    "restart reuses model; manual edits survive final callbacks",
+    "recording remains controllable in dictionary; cancellation terminates worker",
+    "clear input; microphone refusal and retry recover",
+    "send releases voice worker and resumes selected search mode",
+    "Base is explicit; load failure recovers through visible Tiny selection",
+    "uncommitted tail preserved and labelled for review",
+    "uncertain release retains lightweight text search; cancel during model load and restart recover",
+    "manual evaluation keeps raw captures by model and rejects stale attempts after switching"
+  ],
+  "status": "passed"
+}
