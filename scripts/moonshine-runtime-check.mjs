@@ -21,14 +21,14 @@ async function appSwitch(offline,model){
  await page.goto('http://localhost:4173/bosai-ai/?voice_iso=1'+(model==='base'?'&voice_eval=base':''));
  await page.waitForFunction(()=>window.bosaiBeta.saved?.complete&&!window.bosaiBeta.busy);
 
- await page.locator('#loadModel').click();await page.waitForFunction(()=>window.bosaiBeta.ready&&!window.bosaiBeta.busy,null,{timeout:180000});
- await page.locator('#voiceLoad').click();await page.waitForFunction(()=>!document.querySelector('#voiceListen').disabled,null,{timeout:180000});
+ await page.locator('#appNavigation [data-view="settings"]').evaluate(b=>b.click());await page.locator('#loadModel').click();await page.waitForFunction(()=>window.bosaiBeta.ready&&!window.bosaiBeta.busy,null,{timeout:180000});
+ await page.locator('#appNavigation [data-view="chat"]').evaluate(b=>b.click());await page.locator('#voiceToggle').click();await page.locator('#voiceLoad').click();await page.waitForFunction(()=>!document.querySelector('#voiceListen').disabled,null,{timeout:180000});
  if(!await page.evaluate(()=>!window.bosaiBeta.channel&&!window.bosaiBeta.ready))throw Error('Ruri still resident during voice');
  await page.locator('#voiceListen').click();await page.waitForFunction(()=>!document.querySelector('#voiceStop').disabled);
  await page.locator('#voiceStop').click();await page.waitForFunction(()=>document.querySelector('.voice-lab').dataset.active==='false');
- await page.locator('#question').fill('寝ているときに地震が来たら？');await page.locator('#search').click();
- await page.waitForFunction(()=>!window.bosaiBeta.busy&&!!document.querySelector('#candidates').dataset.run,null,{timeout:180000});
- const run=JSON.parse(await page.locator('#candidates').getAttribute('data-run'));if(run.actual!=='hybrid')throw Error('Real Ruri did not recover after voice');
+ await page.locator('#chatQuestion').fill('寝ているときに地震が来たら？');await page.locator('#chatSend').click();
+ await page.waitForFunction(()=>!window.bosaiConversation.busy&&window.bosaiConversation.history.at(-1)?.diagnostics,null,{timeout:180000});
+ const run=await page.evaluate(()=>window.bosaiConversation.history.at(-1).diagnostics);if(run.actual!=='hybrid')throw Error('Real Ruri did not recover after voice');
  out.rows.push({appSwitch:true,offline,model:await page.locator('.voice-lab-tag').textContent(),actual:run.actual});
 }
 async function check(model,offline){
@@ -42,7 +42,7 @@ async function check(model,offline){
 }
 try{
  await launch();
- await page.locator('#saveModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy,null,{timeout:60000});console.log('SAVE',await page.locator('#modelState').textContent());if(!await page.evaluate(()=>window.bosaiBeta.saved?.complete))throw Error('Save failed: '+await page.locator('#modelState').textContent());
+ await page.locator('#appNavigation [data-view="settings"]').evaluate(b=>b.click());await page.locator('#saveModel').click();await page.waitForFunction(()=>!window.bosaiBeta.busy,null,{timeout:60000});console.log('SAVE',await page.locator('#modelState').textContent());if(!await page.evaluate(()=>window.bosaiBeta.saved?.complete))throw Error('Save failed: '+await page.locator('#modelState').textContent());
  for(const m of ['tiny','base'])await check(m,false);
  for(const m of ['tiny','base'])await appSwitch(false,m);
  const count=out.requests.length;await context.close();await launch(true);

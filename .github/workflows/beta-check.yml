@@ -49,6 +49,8 @@ jobs:
           python3 scripts/fetch-moonshine-assets.py
           node scripts/moonshine-runtime-check.mjs
           node scripts/voice-review-browser-check.mjs
+          node scripts/redesign-ui-check.mjs
+          node scripts/redesign-update-check.mjs
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/final-64.json --tag=beta-regression-64
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-unseen-80.json --tag=beta-review-regression-80
           node scripts/beta-browser-check.mjs --cases=scripts/evaluation/beta-review-final-60.json --tag=beta-review-final-60
@@ -81,6 +83,8 @@ jobs:
         with:
           name: ruri-beta-check
           path: |
+            test-results/redesign-*.json
+            test-results/redesign-*.png
             test-results/moonshine-manifests.json
             test-results/moonshine-assets.json
             test-results/moonshine-runtime.json

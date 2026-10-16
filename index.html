@@ -1,9 +1,271 @@
-<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#176b5b"><meta name="description" content="88件の防災情報を端末内AIで検索。初回保存後はオフラインでも参照できるベータ版。"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./apple-touch-icon.png"><title>ぼうさい辞書 AI｜ベータ版</title></head><body>
-<header class="topbar"><a class="brand" href="./"><span class="brand-icon" aria-hidden="true">防</span><span>ぼうさい辞書 <b>AI</b></span></a><span class="beta-badge">ベータ版</span><span id="connection" class="connection"></span></header>
-<main><section class="intro"><p class="eyebrow">そなえを、手元に。</p><h1>こんなとき、どうする？</h1><p>自然な言葉で、88件の防災情報を探せます。<br>AIは検索を手伝い、情報は辞書の原文を表示します。</p></section>
-<aside class="scope-note"><strong>現在の災害状況は確認できません。</strong> 警報・予報・避難所の開設情報はリアルタイムではありません。気象庁・自治体の最新の発表を確認してください。個人の診断・薬の量や、いま安全かどうかは判断しません。安全性・iPad実機での安定性は検証中です。</aside>
-<div class="workspace"><div class="search-side"><section class="surface search-panel" aria-labelledby="searchHeading"><h2 id="searchHeading">調べたいこと</h2><form id="searchForm"><label for="question">状況や困っていることを入力</label><textarea id="question" maxlength="200" rows="4" required placeholder="寝ているときに地震が来たら？"></textarea><section class="voice-lab" aria-labelledby="voiceLabTitle"><h3 id="voiceLabTitle">音声入力を試す <span class="voice-lab-tag">Powered by Moonshine AI · 日本語Tiny（互換版）</span></h3><p>端末内で音声を文字に変換します。認識結果を確認・修正してから検索してください。録音は自動送信・保存しません。初回のSDK・モデル取得は外部通信を使います。<a href="./moonshine-license/LICENSE.txt" target="_blank" rel="noopener">利用条件</a>・<a href="./moonshine-license/Notice.txt" target="_blank" rel="noopener">表記</a>を確認できます。</p><div class="actions"><button id="voiceLoad" class="tonal" type="button">音声AIを準備</button><button id="voiceEnableIso" class="outlined" type="button" hidden>音声実験モードを有効化</button><button id="voiceListen" class="outlined" type="button" disabled>マイク開始</button><button id="voiceStop" class="outlined" type="button" disabled>録音停止</button></div><p id="voiceStatus" class="small" role="status">未準備。初回はモデルのダウンロードに通信が必要です。</p><p id="voiceLive" class="voice-live" aria-live="polite"></p><p class="small">通常は日本語Tiny（非Streaming）を使用。Baseは評価専用の任意選択です。初回取得とSafariでの動作・オフライン再起動は検証中です。Ruriは音声利用時に一時解放し、保存データは維持します。</p></section><div class="input-meta"><span>質問は端末内で処理します</span><span id="count">0 / 200</span></div><label for="mode">検索モード</label><select id="mode"><option value="hybrid">おすすめ：軽量＋Ruri AI</option><option value="ruri">Ruri AIのみ</option><option value="light">モデル不要：軽量検索</option></select><button id="search" class="primary" type="submit">関連する情報を探す <span aria-hidden="true">→</span></button></form><div id="examples" class="chips" aria-label="質問の例"></div></section>
-<section class="surface model-panel" aria-labelledby="modelHeading"><h2 id="modelHeading">オフラインの準備</h2><span class="model-tag">日本語検索AI · Ruri-v3-30m</span><p>約44MBを一度保存すると、次回から端末内で再利用します。保存しなくても軽量検索で使えます。</p><p id="saved" role="status">保存状態を確認中…</p><p id="modelState" role="status">未読み込み</p><div class="actions"><button id="saveModel" class="tonal">AIモデルを保存</button><button id="loadModel" class="outlined">読み込み・再試行</button><button id="stop" class="outlined" disabled>処理を停止</button><button id="resetModel" class="text-button">モデルを解放</button></div><p class="small">解放・再読み込みでは保存を消しません。Safariタブとホーム画面PWAの保存状態は、それぞれ確認してください。</p></section>
-<details class="surface help"><summary>使い方・保存とプライバシー</summary><p>初回はオンラインでアプリを開き、オフライン準備の完了を確認してください。AI検索にはモデルの明示保存が必要です。端末の空き容量やOSの管理により保存が失われる場合があります。</p><p>iPadではSafariの共有メニューから「ホーム画面に追加」。Safari通常タブとPWAで、モデル保存表示を別々に確認してください。既存のアプリや保存データを消す必要はありません。</p><p>入力は外部AIへ送信しません。モデルの初回取得はHugging Face、アプリの配信はGitHub Pagesを使います。出典リンクを開くと外部サイトへ移動します。</p><p>このベータ版は保存された一般情報を探す辞書です。状況の安全判断・診断・個人の薬の量・現在地からの避難誘導は行いません。</p><a href="./model-notices.txt" target="_blank" rel="noopener noreferrer">モデルの出典・利用条件</a></details></div>
-<section class="results-side" aria-labelledby="resultsHeading"><div class="result-header"><h2 id="resultsHeading">関連する情報</h2><span id="resultCount"></span></div><div id="message" class="message" role="status">状況を入力して検索してください。検索結果は質問への答えを保証するものではありません。</div><div id="clarify" class="chips" aria-label="状況を絞り込む"></div><p id="methodInfo" class="small"></p><div id="candidates" class="candidates" aria-label="関連候補"></div><article id="entry" class="surface entry" hidden></article><div id="empty" class="empty-state"><span aria-hidden="true">⌕</span><h3>必要な情報を、手元の辞書から。</h3><p>地震・津波・大雨・避難所での生活など。<br>検索AIがなくても利用できます。</p></div></section></div>
-<footer><p id="shellState" role="status">アプリのオフライン準備を確認中…</p><details><summary>診断情報</summary><p id="recovery"></p><p id="build"></p><p id="metrics"></p><p>診断JSONには入力した質問を含みます。自動送信はしません。</p><button id="export" class="text-button">診断JSONを保存</button></details><p>ぼうさい辞書 AI · ベータ版 · 防災データ88件</p></footer></main><script type="module" src="/src/beta-main.js"></script></body></html>
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#176b5b" />
+    <meta
+      name="description"
+      content="88件の防災情報を、会話と辞書から。端末内で使えるオフライン防災アプリ。"
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <title>bosai AI — そなえを、手元に。</title>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ移動</a>
+    <aside class="sidebar">
+      <a class="brand" href="./"
+        ><span class="brand-icon" aria-hidden="true">防</span
+        ><span>bosai <b>AI</b><small>そなえを、手元に。</small></span></a
+      ><button
+        id="menuToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="appNavigation"
+        aria-label="メニューを開閉"
+      >
+        ☰
+      </button>
+      <nav id="appNavigation" aria-label="メインメニュー">
+        <button data-view="chat" aria-current="page">
+          会話する <span>＋</span></button
+        ><button data-view="dictionary">防災辞書 <span>88</span></button
+        ><button data-view="settings">設定 <span>⚙</span></button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="beta-badge">ベータ版</span>
+        <p id="connection" role="status"></p>
+        <p>質問・音声は端末内で処理</p>
+      </div>
+    </aside>
+    <main id="main" tabindex="-1">
+      <header class="view-header">
+        <div>
+          <span class="eyebrow">BOSAI / YOUR EVERYDAY PREPAREDNESS</span>
+          <h1 id="viewTitle">会話する</h1>
+        </div>
+        <button id="chatClear" class="outlined" type="button">
+          新しい会話
+        </button>
+      </header>
+      <section id="conversation" class="conversation" aria-label="防災チャット">
+        <div class="chat-scroll">
+          <div id="chatWelcome" class="welcome">
+            <span class="welcome-mark" aria-hidden="true">✳︎</span>
+            <p class="eyebrow">いつもの備えも、もしもの時も。</p>
+            <h2>こんなとき、<br />どうする？</h2>
+            <p>
+              気になることを、あなたの言葉で。<br />88件の防災情報から、一緒に探します。
+            </p>
+            <div id="chatExamples" class="examples"></div>
+          </div>
+          <div
+            id="conversationLog"
+            role="log"
+            aria-label="会話履歴"
+            aria-live="polite"
+          ></div>
+        </div>
+        <div class="composer-area">
+          <div id="voicePopover" hidden>
+            <section class="voice-lab" aria-label="音声入力">
+              <div class="section-head">
+                <h3>音声入力</h3>
+                <button
+                  id="voiceClose"
+                  type="button"
+                  aria-label="音声パネルを閉じる"
+                >
+                  ×
+                </button>
+              </div>
+              <span class="voice-lab-tag"></span>
+              <p class="small">
+                初回はSDK・モデルを外部から取得します。音声は端末内で文字に変換し、自動送信・保存しません。認識結果を入力欄で確認・修正してください。音声モードの初回有効化は再読み込みが必要です（入力は保持、会話は終了）。
+              </p>
+              <div class="actions">
+                <button id="voiceLoad" type="button" class="tonal">
+                  音声AIを準備</button
+                ><button id="voiceEnableIso" type="button" hidden>
+                  音声モードを有効化</button
+                ><button id="voiceListen" type="button" disabled>
+                  マイク開始</button
+                ><button id="voiceStop" type="button" disabled>録音停止</button>
+              </div>
+              <p id="voiceStatus" role="status"></p>
+              <p id="voiceLive" aria-live="polite"></p>
+            </section>
+          </div>
+          <form id="chatForm">
+            <label class="sr-only" for="chatQuestion">状況や質問を入力</label
+            ><textarea
+              id="chatQuestion"
+              rows="2"
+              maxlength="200"
+              required
+              placeholder="防災について、気になることを…"
+            ></textarea>
+            <div class="composer-tools">
+              <button
+                id="voiceToggle"
+                type="button"
+                class="outlined"
+                aria-expanded="false"
+                aria-controls="voicePopover"
+              >
+                <svg
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <rect x="9" y="2" width="6" height="13" rx="3" />
+                  <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
+                </svg>
+                音声入力</button
+              ><span id="chatCount" class="small">0 / 200</span
+              ><button
+                id="chatStop"
+                type="button"
+                hidden
+                aria-label="検索を停止"
+              >
+                ■ 停止</button
+              ><button
+                id="chatSend"
+                class="primary"
+                type="submit"
+                aria-label="送信"
+              >
+                ↑
+              </button>
+            </div>
+          </form>
+          <p id="chatStatus" role="status"></p>
+          <p class="composer-note">
+            現在の警報・避難所の開設状況・個人の安全性は判断できません。<br />自治体・気象庁の最新情報も確認してください。
+          </p>
+        </div>
+      </section>
+      <section id="dictionary" hidden aria-label="防災辞書">
+        <p class="view-lead">
+          知っておきたいことを、原文から。AIモデルなしでも使えます。
+        </p>
+        <div class="browse-controls">
+          <label for="browseQuery"
+            >キーワード<input
+              id="browseQuery"
+              type="search"
+              placeholder="津波、停電、トイレ…" /></label
+          ><label for="browseCategory"
+            >カテゴリ<select id="browseCategory">
+              <option value="">すべて</option>
+            </select></label
+          >
+        </div>
+        <p id="browseCount" class="small" role="status"></p>
+        <div class="dictionary-layout">
+          <div
+            id="browseList"
+            class="browse-results"
+            aria-label="辞書の記事"
+          ></div>
+          <div id="browseArticle">
+            <div class="dictionary-empty">
+              記事を選ぶと、原文・注意事項・出典を確認できます。
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="appSettings" hidden aria-label="設定">
+        <p class="view-lead">端末に合わせて、使いやすく。</p>
+        <div class="settings-contents">
+          <section class="surface">
+            <h2>表示</h2>
+            <label for="theme">カラーモード</label
+            ><select id="theme">
+              <option value="system">端末に合わせる</option>
+              <option value="light">ライト</option>
+              <option value="dark">ダーク</option>
+            </select>
+          </section>
+          <section class="surface model-panel">
+            <h2>検索とオフライン</h2>
+            <label for="mode">検索モード</label
+            ><select id="mode">
+              <option value="hybrid">おすすめ：軽量＋Ruri AI</option>
+              <option value="light">モデル不要：軽量検索</option>
+              <option value="ruri">Ruri AIのみ</option>
+            </select>
+            <p class="small">
+              Ruri-v3-30m：約44MB。保存しなくても軽量検索・辞書は使えます。初回保存時はHugging
+              Faceへ通信します。
+            </p>
+            <p id="saved" role="status"></p>
+            <p id="modelState" role="status"></p>
+            <div class="actions">
+              <button id="saveModel" class="tonal">AIモデルを保存</button
+              ><button id="loadModel" class="outlined">読み込み・再試行</button
+              ><button id="stop" disabled>処理を停止</button
+              ><button id="resetModel" class="outlined">モデルを解放</button>
+            </div>
+            <p class="small">
+              解放しても保存モデルは消えません。Safariとホーム画面PWAの保存状態はそれぞれ確認してください。
+            </p>
+            <p id="shellState" role="status">オフライン準備を確認中…</p>
+          </section>
+          <details class="surface help">
+            <summary>使い方・プライバシー・ライセンス</summary>
+            <p>
+              初回はオンラインで開き、オフライン準備の完了を確認してください。iPadではSafariの共有メニューから「ホーム画面に追加」できます。端末の空き容量やOSの管理で保存が失われる場合があります。
+            </p>
+            <p>
+              質問は外部AIへ送信しません。アプリはGitHub
+              Pages、任意の初回モデル取得は外部配信を使います。出典リンクは外部サイトを開きます。
+            </p>
+            <p>
+              会話はこの画面内のみ（最大40メッセージ）。再読み込みで消えます。このベータは現在の安全判断・診断・薬の量の判断を行いません。iPad実機での安定性は検証中です。
+            </p>
+            <a href="./model-notices.txt" target="_blank" rel="noopener"
+              >モデルの出典・利用条件</a
+            >
+            /
+            <a
+              href="./moonshine-license/LICENSE.txt"
+              target="_blank"
+              rel="noopener"
+              >Moonshine利用条件</a
+            >
+            /
+            <a
+              href="./moonshine-license/Notice.txt"
+              target="_blank"
+              rel="noopener"
+              >表記</a
+            >
+          </details>
+          <details id="diagnostics" class="surface">
+            <summary>詳細・開発用ツール</summary>
+            <p id="recovery"></p>
+            <p id="build"></p>
+            <p id="metrics"></p>
+            <p class="small">
+              診断JSONには入力した質問を含みます。自動送信はしません。
+            </p>
+            <button id="export" class="outlined">診断JSONを保存</button>
+            <div id="voiceExperiments"></div>
+          </details>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/beta-main.js"></script>
+  </body>
+</html>

@@ -21,7 +21,7 @@ This is the short, **current** entry point for coding agents and contributors. `
 
 ## Work efficiently
 
-1. Read this file, `README.md`, and only the relevant modules. See `docs/architecture-current.md` for entry points; for the planned conversation-engine replacement use `docs/conversation-rewrite-brief.md` and the compact `docs/codex-task.md`.
+1. Read this file, `README.md`, and only the relevant modules. See `docs/architecture-current.md` for entry points; for the planned conversation-engine replacement use `docs/conversation-rewrite-brief.md` ; `docs/codex-task.md` is a historical task pointer.
 2. Treat `docs/diagnostics/**`, `docs/history/**`, `docs/phase1-*.md`, and frozen v2–v18 logs as **opt-in evidence**, not mandatory reading on every task.
 3. For small changes, run targeted `node --test tests/<related>.test.js`. Then run the **quick** suite described in `docs/development-workflow.md`.
 4. Work on a **draft PR** while iterating. Quick CI still runs; the full real-model/browser matrix runs when the PR is marked ready for review, and on subsequent commits to a ready PR.
