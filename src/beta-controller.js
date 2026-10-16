@@ -17,7 +17,7 @@ export class BetaController{
  stop(){++this.epoch;const c=this.channel;this.channel=null;this.ready=false;c?.kill();this.busy=false;this.phase('停止しました。軽量検索は利用できます。保存は維持しています。');}
  async reset(){const c=this.channel,wasBusy=this.busy,epoch=++this.epoch;this.channel=null;this.ready=false;this.busy=true;this.phase('モデルを解放中…');try{if(wasBusy)c?.kill();else await c?.dispose();}finally{if(epoch===this.epoch){this.busy=false;this.phase('モデルを解放しました。保存データは維持しています。');}}}
  async search(query,mode='hybrid',request={}){
-  query=query.trim();if(!query||query.length>200)throw Error('質問は1〜200文字で入力してください。');if(!['hybrid','ruri','light'].includes(mode))throw Error('検索モードが不正です。');
+  query=query.trim();if(!query||query.length>2000)throw Error('質問は1〜2000文字で入力してください。');if(!['hybrid','ruri','light'].includes(mode))throw Error('検索モードが不正です。');
   return this.action(async epoch=>{const t=performance.now(),timings={};const scope=request.scope||assessRequestScope(query);let vector,actual='light',fallback=null;
    if(mode!=='light'&&scope.kind==='related')try{await this.ensure(epoch,timings);this.valid(epoch);this.phase('質問の意味を検索中…');const r=await this.channel.request('embed',{query});this.valid(epoch);vector=r.vector;timings.embeddingMs=r.elapsedMs;timings.tokens=r.tokens;actual=mode;}catch(e){this.valid(epoch);fallback=e.message;const c=this.channel;this.channel=null;this.ready=false;c?.kill();}
    this.valid(epoch);const begin=performance.now(),{results,scope:assessed}=retrieve(query,actual,vector,scope);timings.retrievalMs=performance.now()-begin;timings.totalMs=performance.now()-t;

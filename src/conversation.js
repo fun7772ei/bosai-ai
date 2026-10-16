@@ -27,7 +27,7 @@ export class Conversation {
   }
   async send(raw,mode='hybrid') {
     const started=performance.now();
-    const text=raw.trim(); if(!text || text.length>200)throw Error('1〜200文字で入力してください。'); if(this.busy)throw Error('会話の処理中です。');
+    const text=raw.trim(); if(!text || text.length>2000)throw Error('1〜2000文字で入力してください。'); if(this.busy)throw Error('会話の処理中です。');
     if(/^(リセット|話題をリセット|新しい話題)$/.test(text)) { this.clear(); this.remember('user',text); return this.clarify('前の文脈を解除しました。どのような状況ですか？'); }
     this.remember('user',text);
     if(/^(もっと詳しく|手順は[？?]?|注意事項は[？?]?|出典は[？?]?|それについて詳しく)$/.test(text)) {

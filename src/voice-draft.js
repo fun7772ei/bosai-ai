@@ -6,13 +6,21 @@ export class VoiceDraft {
   begin(base=''){
     this.base=String(base);
     this.lines=new Map();
+    this.pendingLines=new Map();
     this.partial='';
     this.edited=false;
     this.count=0;
     this.provisionalAtStop=false;
   }
-  get value(){return [this.base,...this.lines.values(),this.partial].filter(Boolean).join(' ').trim();}
+  get value(){return [this.base,...this.lines.values(),...this.pendingLines.values(),this.partial].filter(Boolean).join(' ').trim();}
   get committed(){return [...this.lines.values()].join(' ').trim();}
+  update(line){
+    if(line?.id==null)return;
+    const id=String(line.id),text=String(line.text??'').trim();
+    if(line.isComplete){this.lines.set(id,text);this.pendingLines.delete(id);}
+    else if(!this.lines.has(id))this.pendingLines.set(id,text);
+    return this.value;
+  }
   interim(text){this.partial=String(text??'').trim();return this.value;}
   commit(line){
     const text=String(line?.text??'').trim();
@@ -26,7 +34,7 @@ export class VoiceDraft {
   }
   noteManualChange(value){if(String(value)!==this.value)this.edited=true;}
   stop(){
-    this.provisionalAtStop=!!this.partial;
+    this.provisionalAtStop=!!this.partial||this.pendingLines.size>0;
     // Deliberately retain the last partial. The SDK might not commit it.
     return {text:this.value,provisional:this.provisionalAtStop,manuallyEdited:this.edited};
   }

@@ -295,3 +295,15 @@
   font-size: 10px;
   color: var(--primary);
 }
+
+.conversation{max-width:1040px}
+.welcome{max-width:720px;margin:clamp(16px,5vh,48px) auto 18px}
+.welcome h2{font-size:clamp(21px,2.5vw,28px);margin:8px 0;font-weight:600;letter-spacing:-.025em}
+.welcome > p:not(.eyebrow){font-size:13px}
+.examples{margin-top:20px}.examples button{min-height:64px;padding:12px;font-size:12px}
+#chatQuestion{min-height:76px;height:clamp(76px,13vh,156px);max-height:190px;overflow-y:auto}
+#chatForm{padding:8px;border-radius:20px}
+#voiceToggle,#chatInputClear{width:44px;height:44px;justify-content:center;padding:0;flex-shrink:0}
+.composer-tools{gap:6px}.composer-tools .small{font-size:10px}
+.composer-note{margin-top:6px}#voicePopover{max-height:min(42dvh,280px)}
+@media(max-width:700px){.welcome{margin:14px auto}.welcome h2{font-size:22px}.examples{margin-top:14px}.examples button{min-height:44px}.chat-scroll{padding-bottom:12px}}

@@ -79,8 +79,8 @@ self.addEventListener("fetch", (event) => {
     (async () => {
       const cache = await caches.open(SHELL);
       if (event.request.mode === "navigate") {
-        // GitHub Pages cannot configure COOP/COEP itself. Opt in only on
-        // ?voice_iso=1 so existing Ruri pages and offline storage are untouched.
+        // All controlled navigations use isolation. The first network document
+        // cannot gain COOP from clients.claim(); first-use voice may navigate once.
         let response;
         try {
           response = await fetch(event.request);
@@ -92,7 +92,6 @@ self.addEventListener("fetch", (event) => {
         }
         if (!response) return Response.error();
         if (
-          new URL(event.request.url).searchParams.get("voice_iso") !== "1" ||
           !response.ok
         )
           return response;
