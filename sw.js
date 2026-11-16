@@ -1,4 +1,4 @@
-const SHELL = "bosai-ai-shell-5cf24bcacc0583e4";
+const SHELL = "bosai-ai-shell-d3ce692af91d5d8f";
 self.addEventListener("install", (event) =>
   event.waitUntil(
     (async () => {

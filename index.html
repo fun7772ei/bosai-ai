@@ -15,18 +15,30 @@
     <link rel="icon" href="./icon.svg" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>ぼうさい辞書</title>
-    <script type="module" crossorigin src="/bosai-ai/assets/index-DRXEqokY.js"></script>
-    <link rel="stylesheet" crossorigin href="/bosai-ai/assets/index-BPxFAYrO.css">
+    <script type="module" crossorigin src="/bosai-ai/assets/index-N521AVD5.js"></script>
+    <link rel="stylesheet" crossorigin href="/bosai-ai/assets/index-SwMsULN0.css">
   </head>
   <body>
     <a class="skip" href="#main">本文へ移動</a>
 
     <div class="app-frame" id="appFrame" data-mode="landing">
       <header class="topbar">
-        <button id="homeButton" class="brand" type="button">
-          <span class="brand-mark" aria-hidden="true">防</span>
-          <span class="brand-name">ぼうさい辞書</span>
-        </button>
+        <div class="topbar-left">
+          <button id="homeButton" class="brand" type="button">
+            <span class="brand-mark" aria-hidden="true">防</span>
+            <span class="brand-name">ぼうさい辞書</span>
+          </button>
+          <button
+            id="commsHeaderBtn"
+            type="button"
+            class="comms-header-btn"
+            aria-haspopup="dialog"
+            aria-controls="commsModal"
+          >
+            <span class="comms-dot" aria-hidden="true"></span>
+            <span>圏外・緊急通信</span>
+          </button>
+        </div>
         <div class="topbar-right">
           <button
             id="ruriStatusChip"
@@ -64,6 +76,24 @@
 
       <main id="main" class="main-stage" tabindex="-1">
         <section class="search-stage" aria-label="防災検索">
+          <button
+            id="commsLandingBtn"
+            type="button"
+            class="comms-landing-banner"
+            aria-haspopup="dialog"
+            aria-controls="commsModal"
+          >
+            <span class="comms-banner-top">
+              <span class="comms-banner-badge">圏外・通信障害時</span>
+              <span class="comms-banner-date">2026年11月時点</span>
+            </span>
+            <strong class="comms-banner-title"
+              >条件が揃えば、110・119番や通信につながる場合があります</strong
+            >
+            <span class="comms-banner-sub"
+              >JAPANローミング™・衛星通信の設定手順をみる ›</span
+            >
+          </button>
           <form id="searchForm" class="search-form" role="search">
             <label class="sr-only" for="searchQuery"
               >いま困っていること・知りたいことを入力</label
@@ -270,6 +300,71 @@
             ダウンロードを中止
           </button>
         </div>
+      </div>
+    </div>
+
+    <!-- Emergency communications guide modal (JAPANローミング™ & Satellite) -->
+    <div
+      id="commsModal"
+      class="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="commsModalTitle"
+      hidden
+    >
+      <div class="modal-card comms-modal-card">
+        <div class="comms-modal-head">
+          <div>
+            <h2 id="commsModalTitle">圏外・通信障害時の緊急連絡</h2>
+            <p class="comms-asof">
+              2026年11月時点の情報（検索機能とは別枠のオフライン手順ガイド）
+            </p>
+          </div>
+          <button
+            id="commsModalClose"
+            type="button"
+            class="icon-btn comms-close-btn"
+            aria-label="閉じる"
+          >
+            <svg
+              aria-hidden="true"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+            >
+              <path d="m6 6 12 12M6 18 18 6" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="comms-tabs" role="tablist" aria-label="通信手段の切り替え">
+          <button
+            id="commsTabRoaming"
+            type="button"
+            role="tab"
+            class="comms-tab-btn"
+            data-comms-tab="roaming"
+            aria-selected="true"
+          >
+            JAPANローミング™
+          </button>
+          <button
+            id="commsTabSatellite"
+            type="button"
+            role="tab"
+            class="comms-tab-btn"
+            data-comms-tab="satellite"
+            aria-selected="false"
+          >
+            衛星通信
+          </button>
+        </div>
+
+        <div id="commsModalBody" class="comms-modal-body"></div>
       </div>
     </div>
 
