@@ -15,8 +15,8 @@
     <link rel="icon" href="./icon.svg" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>ぼうさい辞書</title>
-    <script type="module" crossorigin src="/bosai-ai/assets/index-D00Dv0P1.js"></script>
-    <link rel="stylesheet" crossorigin href="/bosai-ai/assets/index-BlOMhIg8.css">
+    <script type="module" crossorigin src="/bosai-ai/assets/index-CFx1hq6E.js"></script>
+    <link rel="stylesheet" crossorigin href="/bosai-ai/assets/index-CChygQp6.css">
   </head>
   <body>
     <a class="skip" href="#main">本文へ移動</a>
@@ -28,6 +28,20 @@
           <span class="brand-name">ぼうさい辞書</span>
         </button>
         <div class="topbar-right">
+          <button
+            id="ruriStatusChip"
+            type="button"
+            class="ruri-chip"
+            data-state="checking"
+            aria-haspopup="dialog"
+            hidden
+          >
+            <span class="ruri-chip-dot" aria-hidden="true"></span>
+            <span id="ruriStatusLabel" class="ruri-chip-label">確認中…</span>
+            <span id="ruriChipBar" class="ruri-chip-bar" hidden>
+              <span id="ruriChipFill" class="ruri-chip-fill"></span>
+            </span>
+          </button>
           <span id="offlineBadge" class="offline-badge" hidden>オフライン</span>
           <div id="updateNotice" class="update-chip" hidden>
             <span>新しい版があります</span>
@@ -118,6 +132,48 @@
             role="group"
             aria-label="災害カテゴリ"
           ></div>
+
+          <div id="ruriInlineProgress" class="m3-dl-card" hidden>
+            <div class="m3-dl-row">
+              <span id="ruriInlineTitle" class="m3-dl-title"
+                >オフライン検索データを保存中</span
+              >
+              <span id="ruriInlineMeta" class="m3-dl-meta">0%</span>
+            </div>
+            <div
+              id="ruriInlineTrack"
+              class="m3-progress-track"
+              role="progressbar"
+              aria-label="オフライン検索データの保存進捗"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              data-indeterminate="false"
+              data-complete="false"
+            >
+              <div id="ruriInlineFill" class="m3-progress-fill"></div>
+              <span class="m3-progress-stop" aria-hidden="true"></span>
+            </div>
+            <div class="m3-dl-foot">
+              <span id="ruriInlineDetail" class="m3-dl-detail"></span>
+              <div class="m3-dl-actions">
+                <button
+                  id="ruriInlineOpen"
+                  type="button"
+                  class="text-btn compact-btn"
+                >
+                  詳細
+                </button>
+                <button
+                  id="ruriInlineCancel"
+                  type="button"
+                  class="text-btn compact-btn"
+                >
+                  中止
+                </button>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section
@@ -182,13 +238,36 @@
         <p id="ruriModalBody" class="modal-body">
           ことばの意味で防災情報を探せる追加データ（約44MB）を端末に保存します。一度保存するとネットが切れても使えます。
         </p>
-        <p id="ruriModalProgress" class="modal-progress" hidden></p>
+        <div id="ruriProgressBox" class="m3-progress-box">
+          <div class="m3-dl-row">
+            <span id="ruriModalStatus" class="m3-dl-title">保存状況を確認中…</span>
+            <span id="ruriModalMeta" class="m3-dl-meta">0%</span>
+          </div>
+          <div
+            id="ruriModalTrack"
+            class="m3-progress-track m3-progress-lg"
+            role="progressbar"
+            aria-label="オフライン検索データの保存進捗"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            data-indeterminate="false"
+            data-complete="false"
+          >
+            <div id="ruriModalFill" class="m3-progress-fill"></div>
+            <span class="m3-progress-stop" aria-hidden="true"></span>
+          </div>
+          <p id="ruriModalDetail" class="m3-dl-detail"></p>
+        </div>
         <div class="modal-actions">
           <button id="ruriModalSave" type="button" class="primary-btn">
             保存して使う（約44MB）
           </button>
           <button id="ruriModalSkip" type="button" class="text-btn">
             今は基本検索だけで使う
+          </button>
+          <button id="ruriModalCancel" type="button" class="text-btn" hidden>
+            ダウンロードを中止
           </button>
         </div>
       </div>
