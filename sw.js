@@ -1,4 +1,4 @@
-const SHELL = "bosai-ai-shell-c05c2e7d6944e8d5";
+const SHELL = "bosai-ai-shell-2c010f4167e8905c";
 self.addEventListener("install", (event) =>
   event.waitUntil(
     (async () => {
@@ -99,6 +99,35 @@ self.addEventListener("fetch", (event) => {
         headers.set("Cross-Origin-Opener-Policy", "same-origin");
         headers.set("Cross-Origin-Embedder-Policy", "require-corp");
         // The body may be streamed; the header from the origin is no longer valid.
+        headers.delete("content-length");
+        return new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers,
+        });
+      }
+      // The AI runtime is optional. Keep it out of the core install so first
+      // launch is fast, then cache it on first model use. Bump this cache name
+      // when the pinned onnxruntime-web version changes.
+      if (
+        reqUrl.pathname.startsWith(
+          new URL("runtime/", self.registration.scope).pathname,
+        )
+      ) {
+        const aiCache = await caches.open("bosai-ai-ai-runtime-v1");
+        let response = await aiCache.match(event.request, { ignoreVary: true });
+        if (!response) {
+          response = await fetch(event.request);
+          if (response.ok)
+            try {
+              await aiCache.put(event.request, response.clone());
+            } catch {}
+        }
+        if (!response.ok) return response;
+        if (!/\.(?:mjs|wasm)$/.test(reqUrl.pathname)) return response;
+        const headers = new Headers(response.headers);
+        headers.set("Cross-Origin-Embedder-Policy", "require-corp");
+        headers.set("Cross-Origin-Resource-Policy", "same-origin");
         headers.delete("content-length");
         return new Response(response.body, {
           status: response.status,

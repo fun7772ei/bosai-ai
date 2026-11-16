@@ -1,293 +1,198 @@
 <!doctype html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#176b5b" />
+    <meta name="theme-color" content="#1b6b52" />
     <meta
       name="description"
-      content="88件の防災情報を、会話と辞書から。端末内で使えるオフライン防災アプリ。"
+      content="112件の防災情報をオフラインで検索できる防災辞書アプリ。"
     />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <title>bosai AI — そなえを、手元に。</title>
-    <script type="module" crossorigin src="/bosai-ai/assets/index-CraWAtuD.js"></script>
-    <link rel="stylesheet" crossorigin href="/bosai-ai/assets/index-Brsn9HEf.css">
+    <title>ぼうさい辞書</title>
+    <script type="module" crossorigin src="/bosai-ai/assets/index-D00Dv0P1.js"></script>
+    <link rel="stylesheet" crossorigin href="/bosai-ai/assets/index-BlOMhIg8.css">
   </head>
   <body>
     <a class="skip" href="#main">本文へ移動</a>
-    <aside class="sidebar">
-      <a class="brand" href="./"
-        ><span class="brand-icon" aria-hidden="true">防</span
-        ><span>bosai <b>AI</b></span></a
-      ><button
-        id="menuToggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="appNavigation"
-        aria-label="メニューを開閉"
-      >
-        <svg data-icon="menu" aria-hidden="true"></svg>
-      </button>
-      <nav id="appNavigation" aria-label="メインメニュー">
-        <button data-view="chat" aria-current="page">
-          チャット <svg data-icon="chat" aria-hidden="true"></svg></button
-        ><button data-view="dictionary">防災辞書 <span>88</span></button
-        ><button data-view="settings">
-          設定 <svg data-icon="settings" aria-hidden="true"></svg>
+
+    <div class="app-frame" id="appFrame" data-mode="landing">
+      <header class="topbar">
+        <button id="homeButton" class="brand" type="button">
+          <span class="brand-mark" aria-hidden="true">防</span>
+          <span class="brand-name">ぼうさい辞書</span>
         </button>
-      </nav>
-      <div class="sidebar-foot">
-        <p id="connection" role="status"></p>
-      </div>
-    </aside>
-    <main id="main" tabindex="-1">
-      <header class="view-header">
-        <div>
-          <h1 id="viewTitle">チャット</h1>
+        <div class="topbar-right">
+          <span id="offlineBadge" class="offline-badge" hidden>オフライン</span>
+          <div id="updateNotice" class="update-chip" hidden>
+            <span>新しい版があります</span>
+            <button id="updateApply" type="button" class="chip-btn">更新</button>
+          </div>
         </div>
-        <button id="chatClear" class="outlined" type="button">
-          新しい会話
-        </button>
       </header>
-      <section id="conversation" class="conversation" aria-label="防災チャット">
-        <div class="chat-scroll">
-          <div id="chatWelcome" class="welcome">
-            <h2>防災について、聞いてみる</h2>
-            <p>88件の原文から、状況に合う情報を探します。</p>
-            <div id="chatExamples" class="examples"></div>
-          </div>
-          <div
-            id="conversationLog"
-            role="log"
-            aria-label="会話履歴"
-            aria-live="polite"
-          ></div>
+
+      <div id="errorBanner" class="error-banner" role="alert" hidden>
+        <p id="errorText"></p>
+        <div class="error-actions">
+          <button id="errorReload" type="button" class="tonal-btn">
+            再読み込み
+          </button>
+          <button id="errorDismiss" type="button" class="text-btn">
+            基本検索で続ける
+          </button>
         </div>
-        <div class="composer-area">
-          <div id="voicePopover" hidden>
-            <section class="voice-lab" aria-label="音声入力">
-              <div class="section-head">
-                <h3>音声入力</h3>
-                <button
-                  id="voiceClose"
-                  type="button"
-                  aria-label="音声パネルを閉じる"
-                >
-                  <svg data-icon="x" aria-hidden="true"></svg>
-                </button>
-              </div>
-              <div class="voice-meter" aria-hidden="true">
-                <i></i><i></i><i></i><i></i><i></i>
-              </div>
-              <p id="voiceStatus" role="status"></p>
-              <p id="voiceCurrentModel" class="small"></p>
-              <div class="voice-actions">
-                <button id="voiceCancel" type="button">キャンセル</button>
-                <button id="voiceStop" type="button" class="primary" disabled>
-                  <svg data-icon="stop" aria-hidden="true"></svg> 停止して確認
-                </button>
-                <button id="voiceRetry" type="button" hidden>再試行</button
-                ><button id="voiceFallback" type="button" hidden>
-                  Tinyに切り替えて再試行
-                </button>
-              </div>
-            </section>
-          </div>
-          <form id="chatForm">
-            <label class="sr-only" for="chatQuestion">状況や質問を入力</label
-            ><textarea
-              id="chatQuestion"
-              rows="2"
-              maxlength="2000"
-              required
-              placeholder="防災について、気になることを…"
-            ></textarea>
-            <div class="composer-tools">
+      </div>
+
+      <main id="main" class="main-stage" tabindex="-1">
+        <section class="search-stage" aria-label="防災検索">
+          <form id="searchForm" class="search-form" role="search">
+            <label class="sr-only" for="searchQuery"
+              >いま困っていること・知りたいことを入力</label
+            >
+            <div class="search-pill">
+              <svg
+                class="search-icon"
+                aria-hidden="true"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input
+                id="searchQuery"
+                type="search"
+                maxlength="2000"
+                autocomplete="off"
+                enterkeyhint="search"
+                placeholder="困っていることや言葉を入力"
+              />
               <button
-                id="voiceToggle"
+                id="searchClear"
                 type="button"
-                class="outlined"
-                aria-expanded="false"
-                aria-controls="voicePopover"
+                class="icon-btn"
+                aria-label="入力を消す"
+                hidden
               >
                 <svg
                   aria-hidden="true"
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="1.7"
+                  stroke-width="2"
+                  stroke-linecap="round"
                 >
-                  <rect x="9" y="2" width="6" height="13" rx="3" />
-                  <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
+                  <path d="m6 6 12 12M6 18 18 6" />
                 </svg>
-                <span class="sr-only">音声入力</span></button
-              ><button
-                id="chatInputClear"
+              </button>
+              <button
+                id="searchStop"
                 type="button"
-                class="outlined"
-                aria-label="入力をすべて削除"
-                title="入力をすべて削除"
-              >
-                <svg data-icon="x" aria-hidden="true"></svg></button
-              ><span id="chatCount" class="small">0 / 2,000</span
-              ><button
-                id="chatStop"
-                type="button"
+                class="stop-btn"
                 hidden
-                aria-label="検索を停止"
               >
-                <svg data-icon="stop" aria-hidden="true"></svg> 停止</button
-              ><button
-                id="chatSend"
-                class="primary"
-                type="submit"
-                aria-label="送信"
-              >
-                <svg data-icon="send" aria-hidden="true"></svg>
+                停止
+              </button>
+              <button id="searchSubmit" type="submit" class="primary-btn">
+                さがす
               </button>
             </div>
           </form>
-          <p id="chatStatus" role="status"></p>
-          <p class="composer-note">
-            現在の警報・避難先・安全性は、自治体・気象庁の最新情報も確認してください。
-          </p>
-        </div>
-      </section>
-      <section id="dictionary" hidden aria-label="防災辞書">
-        <p class="view-lead">
-          知っておきたいことを、原文から。AIモデルなしでも使えます。
-        </p>
-        <div class="browse-controls">
-          <label for="browseQuery"
-            >キーワード<input
-              id="browseQuery"
-              type="search"
-              placeholder="津波、停電、トイレ…" /></label
-          ><label for="browseCategory"
-            >カテゴリ<select id="browseCategory">
-              <option value="">すべて</option>
-            </select></label
-          >
-        </div>
-        <p id="browseCount" class="small" role="status"></p>
-        <div class="dictionary-layout">
+
           <div
-            id="browseList"
-            class="browse-results"
-            aria-label="辞書の記事"
+            id="categoryBar"
+            class="category-bar"
+            role="group"
+            aria-label="災害カテゴリ"
           ></div>
-          <div id="browseArticle">
-            <div class="dictionary-empty">
-              記事を選ぶと、原文・注意事項・出典を確認できます。
-            </div>
-          </div>
+        </section>
+
+        <section
+          id="resultsRegion"
+          class="results-region"
+          aria-live="polite"
+          hidden
+        >
+          <div id="subgroupBar" class="subgroup-bar" hidden></div>
+          <p id="resultNotice" class="result-notice" hidden></p>
+          <div id="clarifyCard" class="clarify-card" hidden></div>
+          <div id="resultCards" class="result-cards"></div>
+        </section>
+      </main>
+
+      <footer class="quiet-footer">
+        <p>
+          現在の警報・避難先の安全は、自治体・気象庁の最新情報を確認してください。
+        </p>
+        <a href="./model-notices.txt" target="_blank" rel="noopener"
+          >データの出典と利用条件</a
+        >
+      </footer>
+
+      <!-- Hidden developer diagnostics: only shown when URL has ?debug=1 -->
+      <section
+        id="debugPanel"
+        class="debug-panel"
+        aria-label="開発用診断"
+        hidden
+      >
+        <h2>開発用診断（?debug=1）</h2>
+        <p id="debugBuild"></p>
+        <p id="debugSaved"></p>
+        <p id="debugState"></p>
+        <p id="debugShell"></p>
+        <div class="debug-actions">
+          <select id="debugMode" aria-label="検索モード">
+            <option value="hybrid">hybrid（軽量＋Ruri）</option>
+            <option value="light">light（軽量のみ）</option>
+            <option value="ruri">ruri（Ruriのみ）</option>
+          </select>
+          <button id="debugSave" type="button" class="tonal-btn">Ruri保存</button>
+          <button id="debugLoad" type="button" class="tonal-btn">読み込み</button>
+          <button id="debugReset" type="button" class="tonal-btn">解放</button>
+          <button id="debugExport" type="button" class="tonal-btn">JSON保存</button>
         </div>
       </section>
-      <section id="appSettings" hidden aria-label="設定">
-        <p class="view-lead">端末に合わせて、使いやすく。</p>
-        <div class="settings-contents">
-          <section class="surface">
-            <h2>表示</h2>
-            <label for="theme">カラーモード</label
-            ><select id="theme">
-              <option value="system">端末に合わせる</option>
-              <option value="light">ライト</option>
-              <option value="dark">ダーク</option>
-            </select>
-          </section>
-          <section class="surface model-panel">
-            <h2>検索とオフライン</h2>
-            <label for="mode">検索モード</label
-            ><select id="mode">
-              <option value="hybrid">おすすめ：軽量＋Ruri AI</option>
-              <option value="light">モデル不要：軽量検索</option>
-              <option value="ruri">Ruri AIのみ</option>
-            </select>
-            <p class="small">
-              Ruri-v3-30m：約44MB。保存しなくても軽量検索・辞書は使えます。初回保存時はHugging
-              Faceへ通信します。
-            </p>
-            <p id="saved" role="status"></p>
-            <p id="modelState" role="status"></p>
-            <div class="actions">
-              <button id="saveModel" class="tonal">AIモデルを保存</button
-              ><button id="loadModel" class="outlined">読み込み・再試行</button
-              ><button id="stop" disabled>処理を停止</button
-              ><button id="resetModel" class="outlined">モデルを解放</button>
-            </div>
-            <p class="small">
-              解放しても保存モデルは消えません。Safariとホーム画面PWAの保存状態はそれぞれ確認してください。
-            </p>
-            <p id="shellState" role="status">オフライン準備を確認中…</p>
-          </section>
-          <section class="surface">
-            <h2>音声入力</h2>
-            <label for="voiceModel">日本語モデル</label>
-            <select id="voiceModel">
-              <option value="tiny">Tiny（標準）</option>
-              <option value="base">Base（高品質候補・iPad未検証）</option>
-            </select>
-            <p id="voiceModelState" role="status"></p>
-            <p>
-              マイクから自動準備します。初回はモデルを取得し、音声は端末内で文字に変換します。録音停止後もモデルを再利用し、送信時にRuriへ自動で切り替えます。
-            </p>
-            <button id="voiceUnload" type="button" class="outlined" disabled>
-              音声モデルを解放
-            </button>
-            <p>
-              BaseはTinyと同じWASMに対応する候補です。iPadの精度・速度・メモリは未検証です。モデルは自動で切り替えません。障害時はTinyを選び直せます。
-            </p>
-          </section>
-          <details class="surface help">
-            <summary>使い方・プライバシー・ライセンス</summary>
-            <p>
-              初回はオンラインで開き、オフライン準備の完了を確認してください。iPadではSafariの共有メニューから「ホーム画面に追加」できます。端末の空き容量やOSの管理で保存が失われる場合があります。
-            </p>
-            <p>
-              質問は外部AIへ送信しません。アプリはGitHub
-              Pages、任意の初回モデル取得は外部配信を使います。出典リンクは外部サイトを開きます。
-            </p>
-            <p>
-              ベータ版。会話はこの画面内のみ（最大40メッセージ）。再読み込みで消えます。このベータは現在の安全判断・診断・薬の量の判断を行いません。iPad実機での安定性は検証中です。
-            </p>
-            <a href="./model-notices.txt" target="_blank" rel="noopener"
-              >モデルの出典・利用条件</a
-            >
-            /
-            <a
-              href="./moonshine-license/LICENSE.txt"
-              target="_blank"
-              rel="noopener"
-              >Moonshine利用条件</a
-            >
-            /
-            <a
-              href="./moonshine-license/Notice.txt"
-              target="_blank"
-              rel="noopener"
-              >表記</a
-            >
-          </details>
-          <details id="diagnostics" class="surface">
-            <summary>詳細・開発用ツール</summary>
-            <p id="recovery"></p>
-            <p id="build"></p>
-            <p id="metrics"></p>
-            <p class="small">
-              診断JSONには入力した質問を含みます。自動送信はしません。
-            </p>
-            <button id="export" class="outlined">診断JSONを保存</button>
-            <div id="voiceExperiments"></div>
-          </details>
+    </div>
+
+    <!-- First-run modal: only shown online on first visit before Ruri is saved -->
+    <div
+      id="ruriModal"
+      class="modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ruriModalTitle"
+      hidden
+    >
+      <div class="modal-card">
+        <h2 id="ruriModalTitle">オフライン検索の準備</h2>
+        <p id="ruriModalBody" class="modal-body">
+          ことばの意味で防災情報を探せる追加データ（約44MB）を端末に保存します。一度保存するとネットが切れても使えます。
+        </p>
+        <p id="ruriModalProgress" class="modal-progress" hidden></p>
+        <div class="modal-actions">
+          <button id="ruriModalSave" type="button" class="primary-btn">
+            保存して使う（約44MB）
+          </button>
+          <button id="ruriModalSkip" type="button" class="text-btn">
+            今は基本検索だけで使う
+          </button>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
+
   </body>
 </html>
